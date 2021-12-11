@@ -1,5 +1,6 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
+import Head from 'next/head'
 import Link from 'next/link'
 import { Navbar, NavbarMenu } from '@nodestrap/navbar';
 import { Icon, config as iconConfig } from '@nodestrap/icon'
@@ -14,10 +15,13 @@ function MyApp({ Component, pageProps }: AppProps) {
     const Outlet = Component;
     return (
         <>
+            <Head>
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
             <header>
                 <Navbar
                     theme='primary'
-                    logo={<Icon icon='nodestrap' size='lg' />}
+                    logo={<NavbarMenu><Link href='/'><Icon icon='nodestrap' size='lg' /></Link></NavbarMenu>}
                 >
                     <NavbarMenu><Link href='/'>Home</Link></NavbarMenu>
                     <NavbarMenu><Link href='/docs'>Docs</Link></NavbarMenu>
@@ -31,13 +35,13 @@ function MyApp({ Component, pageProps }: AppProps) {
                 <h3 className='h5'>Support Us</h3>
                 <p>
                     Nodestrap is open source project (ISC-licensed).
-                    It&apos;s created and maintained by single person: <Button btnStyle='link' theme='primary' href='https://www.instagram.com/heyyy.marco/'>Hey Marco</Button>.
+                    It&apos;s created and maintained by single person: <Button btnStyle='link' theme='primary' href='https://www.instagram.com/heyyy.marco/' target='_blank'>Hey Marco</Button>.
                 </p>
                 <p>
                     If you feel our lib is useful for your projects,<br />
                     please make a donation to avoid our project from extinction.
                 </p>
-                <Button theme='primary' href='https://ko-fi.com/heymarco'>Make a donation</Button>
+                <Button icon='volunteer_activism' theme='primary' href='https://ko-fi.com/heymarco' target='_blank'>Make a donation</Button>
             </Container>
         </>
     );

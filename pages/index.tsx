@@ -2,8 +2,6 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import { Container } from '@nodestrap/container'
-import { Element } from '@nodestrap/element'
-import { Basic } from '@nodestrap/basic'
 import { ButtonIcon as Button } from '@nodestrap/button-icon'
 import styles from '../styles/Home.module.scss'
 
@@ -24,7 +22,7 @@ const Home: NextPage = () => {
                         <h1 className='display-4'>Nodestrap</h1>
                         <p className='display-6'>A React component library<br />for building sites quickly</p>
                         <div className='actions'>
-                            <Button theme='primary' size='lg'>
+                            <Button icon='directions_run' theme='primary' size='lg'>
                                 <Link href='/docs/getting-started'>Get Started</Link>
                             </Button>
                         </div>
@@ -36,7 +34,7 @@ const Home: NextPage = () => {
                             <h3 className='h5'>Modular</h3>
                             <p>Only install components what you need.</p>
                             <p>Each our component has its own installation.</p>
-                            <p>If you only need a button and navbar, just install:<br /><code>npm i @nodestrap/button</code><br />and<br /><code>npm i @nodestrap/navbar</code>.</p>
+                            <p>If you only need a button and navbar, just install:<br /><code>npm i @nodestrap/button</code><br />and<br /><code>npm i @nodestrap/navbar</code></p>
                         </section>
                         <section>
                             <h3 className='h5'>Customizable</h3>

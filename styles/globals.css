@@ -3,6 +3,11 @@ body {
   padding: 0;
   margin: 0;
 }
+body>*>header {
+  z-index: 1020;
+  position: sticky;
+  inset-block-start: 0px;
+}
 
 a {
   color: inherit;
