@@ -8,9 +8,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@nodestrap/basic": "^4.0.3",
+    "@nodestrap/button-icon": "^4.0.2",
+    "@nodestrap/container": "^4.0.4",
+    "@nodestrap/element": "^4.0.2",
+    "@nodestrap/icon": "^4.0.5",
+    "@nodestrap/navbar": "^4.0.7",
     "next": "12.0.7",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "sass": "^1.45.0"
   },
   "devDependencies": {
     "@types/node": "16.11.12",
