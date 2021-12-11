@@ -31,7 +31,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                 <h3 className='h5'>Support Us</h3>
                 <p>
                     Nodestrap is open source project (ISC-licensed).
-                    It's created and maintained by single person: <Button btnStyle='link' theme='primary' href='https://www.instagram.com/heyyy.marco/'>Hey Marco</Button>.
+                    It&apos;s created and maintained by single person: <Button btnStyle='link' theme='primary' href='https://www.instagram.com/heyyy.marco/'>Hey Marco</Button>.
                 </p>
                 <p>
                     If you feel our lib is useful for your projects,<br />
