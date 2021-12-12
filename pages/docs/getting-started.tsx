@@ -151,7 +151,7 @@ function App() {
                             Then we try to add a button and a link into our page.
                         </p>
                         <p>
-                            In Nodestrap, a button and a link are the same, just different in styling and the tag name (the <code>tag=</code> prop will be assigned to <code>tag=&apos;a&apos;</code> automatically if not assigned and there is <code>href='/something'</code> or <code>&lt;Link&gt;</code> exists).
+                            In Nodestrap, a button and a link are the same, just different in styling and the tag name (the <code>tag=</code> prop will be assigned to <code>tag=&apos;a&apos;</code> automatically if not assigned and there is <code>href=&apos;/something&apos;</code> or <code>&lt;Link&gt;</code> exists).
                         </p>
                         <p>
                             Let&apos;s install the button:
