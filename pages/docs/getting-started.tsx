@@ -78,7 +78,7 @@ npx create-react-app my-react-app
 ]
                         `}</TypeScriptCode>
                         <p>
-                            Note: for <strong>Next JS</strong> or <strong>Gatsby JS</strong>, you <em>do not need</em> to do it. It's <em>already</em> supported by default.
+                            Note: for <strong>Next JS</strong> or <strong>Gatsby JS</strong>, you <em>do not need</em> to do it. It&apos;s <em>already</em> supported by default.
                         </p>
                     </article>
                 </Container>
@@ -154,7 +154,7 @@ function App() {
                             In Nodestrap, a button and a link are the same, just different in styling and the tag name (the <code>tag=</code> prop will be assigned to <code>tag='a'</code> automatically if not assigned and there is <code>href='/something'</code> or <code>&lt;Link&gt;</code> exists).
                         </p>
                         <p>
-                            Let's install the button:
+                            Let&apos;s install the button:
                         </p>
                         <BashCode>{`
 npm install @nodestrap/button
@@ -205,7 +205,7 @@ function App() {
                     <article>
                         <h2>Done!</h2>
                         <p>
-                            That's it. You should be able to use another our components easily.
+                            That&apos;s it. You should be able to use another our components easily.
                         </p>
                         <p>
                             To configure the navbar and the button, please visit:<br />
