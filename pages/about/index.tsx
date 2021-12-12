@@ -33,10 +33,10 @@ const About: NextPage = () => {
                             <Tooltip targetRef={profileRef} theme='warning'>
                                 An ugly creature
                             </Tooltip>
-                            Hi I`&apos;`m Marco (my english nickname).<br />
+                            Hi I&apos;m Marco (my english nickname).<br />
                             My original name is Yunus Kurniawan.
                             Sadly my english friends have trouble pronouncing my name, even if my local friends.
-                            Then I created a nickname <strong>Mario</strong>, inspired by Nintendo's mascot: <strong>Super Mario Bross</strong>.
+                            Then I created a nickname <strong>Mario</strong>, inspired by Nintendo&apos;s mascot: <strong>Super Mario Bross</strong>.
                             But that name actually makes me ridiculed, so then I modified my nickname to <strong>Marco</strong>.
                             So, please call me <strong>Marco</strong>.
                         </p>
