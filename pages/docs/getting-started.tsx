@@ -29,12 +29,12 @@ const Download: NextPage = () => {
                         </p>
                         <p>
                             Our project is similar to <strong>Bootstrap</strong> or <strong>Ant Design</strong> but we made them with <em>React way</em>.
-                            All the components are <strong>React based</strong>, so it wouldn't work outside the React app.
+                            All the components are <strong>React based</strong>, so it wouldn&apos;t work outside the React app.
                             Everything are <strong>virtual DOM</strong>-based with <em>props</em> and <em>React hooks</em>.
                         </p>
                         <p>
-                            We asssume you're familiar with <Button btnStyle='link' theme='primary' href='https://reactjs.org/' target='_blank' rel='nofollow'>React</Button> or React-based frameworks such as <Button btnStyle='link' theme='primary' href='https://nextjs.org/' target='_blank' rel='nofollow'>Next JS</Button> or <Button btnStyle='link' theme='primary' href='https://www.gatsbyjs.com/' target='_blank' rel='nofollow'>Gatsby JS</Button>.
-                            If not, we're recommended you learn it first.
+                            We asssume you&apos;re familiar with <Button btnStyle='link' theme='primary' href='https://reactjs.org/' target='_blank' rel='nofollow'>React</Button> or React-based frameworks such as <Button btnStyle='link' theme='primary' href='https://nextjs.org/' target='_blank' rel='nofollow'>Next JS</Button> or <Button btnStyle='link' theme='primary' href='https://www.gatsbyjs.com/' target='_blank' rel='nofollow'>Gatsby JS</Button>.
+                            If not, we&apos;re recommended you learn it first.
                         </p>
                     </article>
                 </Container>
@@ -42,7 +42,7 @@ const Download: NextPage = () => {
                     <article>
                         <h2>Prepare</h2>
                         <p>
-                            To do this tutorial you'll need a working React app.
+                            To do this tutorial you&apos;ll need a working React app.
                         </p>
                         <BashCode>{`
 npx create-react-app my-react-app
