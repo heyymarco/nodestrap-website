@@ -25,7 +25,7 @@ const Download: NextPage = () => {
                         <p>
                             Only install the components what you need.<br />
                             Find our components in the
-                            <Button btnStyle='link' theme='primary'><Link href='/docs'>documentation page</Link></Button>
+                            <Button btnStyle='link' theme='primary'><Link href='/docs/components'>documentation page</Link></Button>
                             or in
                             <Button btnStyle='link' theme='primary' href='https://github.com/nodestrap' target='_blank'>our GitHub</Button>.
                         </p>

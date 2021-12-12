@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     return (
         <>
             <Head>
-                <link rel="icon" href="/favicon.ico" />
+                <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
             </Head>
             <header>
                 <Navbar
@@ -26,8 +26,9 @@ function MyApp({ Component, pageProps }: AppProps) {
                     <NavbarMenu><Link href='/'>Home</Link></NavbarMenu>
                     <NavbarMenu><Link href='/docs'>Docs</Link></NavbarMenu>
                     <NavbarMenu><Link href='/download'>Download</Link></NavbarMenu>
-                    <NavbarMenu><a href='https://github.com/nodestrap'>GitHub</a></NavbarMenu>
-                    <NavbarMenu><a href='https://www.npmjs.com/org/nodestrap'>NPM</a></NavbarMenu>
+                    <NavbarMenu><Link href='/about'>About</Link></NavbarMenu>
+                    <NavbarMenu href='https://github.com/nodestrap' target='_blank'>GitHub</NavbarMenu>
+                    <NavbarMenu href='https://www.npmjs.com/org/nodestrap' target='_blank'>NPM</NavbarMenu>
                 </Navbar>
             </header>
             <Outlet {...pageProps} />
