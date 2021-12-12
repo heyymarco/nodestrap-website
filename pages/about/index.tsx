@@ -28,7 +28,7 @@ const About: NextPage = () => {
                         </p>
                         <p>
                             <span className={styles.profileImg} style={{}} ref={profileRef}>
-                                <Image src='/marco.jpg' width={80} height={80} />
+                                <Image src='/marco.jpg' alt='Marco' width={80} height={80} />
                             </span>
                             <Tooltip targetRef={profileRef} theme='warning'>
                                 An ugly creature

@@ -9,7 +9,7 @@ const Download: NextPage = () => {
     const router = useRouter();
     useEffect(() => {
         router.replace('/docs/getting-started')
-    }, []);
+    }, [router]);
     
     
     
