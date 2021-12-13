@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { Container } from '@nodestrap/container'
 import { ButtonIcon as Button } from '@nodestrap/button-icon'
-import { BashCode, TypeScriptCode } from '../../components/Code'
+import { BashCode, TypeScriptCode } from '../components/Code'
 import React from 'react'
 
 

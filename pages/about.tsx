@@ -5,8 +5,8 @@ import Image from 'next/image'
 import { Container } from '@nodestrap/container'
 import { ButtonIcon as Button } from '@nodestrap/button-icon'
 import { Tooltip } from '@nodestrap/tooltip'
-import { TypeScriptCode } from '../../components/Code'
-import styles from '../../styles/About.module.scss'
+import { TypeScriptCode } from '../components/Code'
+import styles from '../styles/About.module.scss'
 
 
 

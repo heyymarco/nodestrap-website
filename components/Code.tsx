@@ -47,3 +47,4 @@ export { Code as default }
 
 export const BashCode = (props: Omit<CodeProps, 'language'>)       => <Code {...props} language='bash'/>
 export const TypeScriptCode = (props: Omit<CodeProps, 'language'>) => <Code {...props} language='tsx'/>
+export const CssCode = (props: Omit<CodeProps, 'language'>) => <Code {...props} language='css'/>
