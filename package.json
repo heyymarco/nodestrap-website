@@ -16,7 +16,7 @@
     "@nodestrap/icon": "^4.0.8",
     "@nodestrap/label": "^4.0.4",
     "@nodestrap/navbar": "^4.0.8",
-    "@nodestrap/range": "^4.0.4",
+    "@nodestrap/range": "^4.0.5",
     "@nodestrap/tooltip": "^4.0.3",
     "next": "12.0.7",
     "react": "17.0.2",
