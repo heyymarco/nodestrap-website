@@ -2,14 +2,41 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import { TypeScriptCode, CssCode } from '../../../components/Code'
 import { ColorPreview } from '../../../components/ColorPreview'
-import { colors } from '@nodestrap/colors'
-import React from 'react'
+import { colors, cssVals as colorVals, defineTheme } from '@nodestrap/colors'
+import React, { useState, useEffect, useRef } from 'react'
 import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
-
+import styles from '../../../styles/Colors.module.scss'
+import { Content } from '@nodestrap/content'
+import { Range } from '@nodestrap/range'
+import Color from 'color'
+import { ButtonIcon as Button } from '@nodestrap/button-icon'
 
 
 const Colors: NextPage = () => {
+    const initialColor = useRef((() => {
+        const color = Color(colorVals.blue);
+        return {
+            hue: color.hue(),
+            sat: color.saturationl(),
+            lgt: color.lightness(),
+        };
+    })());
+    const [colorHue, setColorHue] = useState<number>(() => initialColor.current.hue);
+    const [colorSat, setColorSat] = useState<number>(() => initialColor.current.sat);
+    const [colorLgt, setColorLgt] = useState<number>(() => initialColor.current.lgt);
+
+    useEffect(() => {
+        const handler = setTimeout(() => {
+            defineTheme('primary', Color.hsl(colorHue, colorSat, colorLgt));
+        }, 10);
+
+        return () => clearTimeout(handler);
+    }, [colorHue, colorSat, colorLgt]);
+    
+
+    
+    
     return (
         <>
             <Head>
@@ -30,6 +57,46 @@ const Colors: NextPage = () => {
                         <p>
                             The main purpose of this component is to create <strong>a consistent theme colors</strong> between components.
                         </p>
+                    </article>
+                </Section>
+                <Section>
+                    <article>
+                        <h1>Demonstration</h1>
+                        <p>
+                            Move some sliders below!
+                            You&apos; see our site primary color is changed instantly.
+                        </p>
+                        <Content classes={[styles.panel]} theme='secondary'>
+                            <span>Hue</span>
+                            <Range enableValidation={false} min={0} max={360} step={1} value={colorHue} onChange={({currentTarget}) => setColorHue(currentTarget.valueAsNumber)} />
+
+                            <span>Saturation</span>
+                            <Range enableValidation={false} min={0} max={100} step={1} value={colorSat} onChange={({currentTarget}) => setColorSat(currentTarget.valueAsNumber)} />
+
+                            <span>Lightness</span>
+                            <Range enableValidation={false} min={0} max={100} step={1} value={colorLgt} onChange={({currentTarget}) => setColorLgt(currentTarget.valueAsNumber)} />
+
+                            <span>Reset</span>
+                            <Button
+                                theme='success'
+                                enabled={
+                                    (colorHue !== initialColor.current.hue)
+                                    ||
+                                    (colorSat !== initialColor.current.sat)
+                                    ||
+                                    (colorLgt !== initialColor.current.lgt)
+                                }
+                                onClick={() => {
+                                    defineTheme('primary', Color.hsl(
+                                        initialColor.current.hue,
+                                        initialColor.current.sat,
+                                        initialColor.current.lgt
+                                    ));
+                                }}
+                            >
+                                Reset to Default
+                            </Button>
+                        </Content>
                     </article>
                 </Section>
                 <Section>
