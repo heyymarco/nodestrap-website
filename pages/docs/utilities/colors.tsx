@@ -24,7 +24,7 @@ const Colors: NextPage = () => {
                             <code>@nodestrap/colors</code> is a color utility that is shared across other components.
                         </p>
                         <p>
-                            <strong>Changing</strong> the color will <strong>affect all the components</strong> that depend on <code>@nodestrap/colors</code>.
+                            <strong>Changing</strong> the colors <strong>affects all components</strong> that depend on <code>@nodestrap/colors</code>.
                         </p>
                         <p>
                             The main purpose of this component is to create <strong>a consistent theme colors</strong> between components.
@@ -44,10 +44,10 @@ const Colors: NextPage = () => {
                                 ])
                             }
                             <br />
-                            You can <em>add</em> or <em>modify</em> the pre-defined theme colors <em>but</em> we advice <em>not to delete</em> it.
+                            You can <em>add</em> or <em>modify</em> the <strong>pre-defined theme colors</strong> <em>but</em> we advice <em>not to delete</em> it.
                         </p>
                         <p>
-                            Because the absence of color function `<code>color-mod()</code>` in the css, so we create a JavaScript function `<code>defineTheme()</code>`.
+                            Because the absence of color function <code>color-mod()</code> in the css, so we create a JavaScript function <code>defineTheme()</code>.
                         </p>
                         <p>
                             Here the code for <em>adding</em> a new theme color or <em>modifying</em> the existing one: 
@@ -59,7 +59,7 @@ defineTheme('primary', '#0000ff'); // set \`primary\` color to rgb blue (pure bl
 defineTheme('cool', '#00ff00'); // add \`cool\` color to green
                         `}</TypeScriptCode>
                         <p>
-                            For deleting a specific color theme, just pass <code>null</code> or <code>undefined</code> to the second parameter:
+                            For deleting a specific theme color, just pass <code>null</code> or <code>undefined</code> to the second parameter:
                         </p>
                         <TypeScriptCode>{`
 import { defineTheme } from '@nodestrap/colors'
@@ -218,7 +218,7 @@ const useMySheet = createUseSheet(() => [
         layout({
             backg  : colors.primary,
             foreg  : colors.primaryText,
-            border : [['solid', '1px' colors.primaryBold]]
+            border : [['solid', '1px', colors.primaryBold]]
         }),
     ])
 ]);
