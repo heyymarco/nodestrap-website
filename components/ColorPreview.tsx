@@ -25,14 +25,14 @@ import {
     usesBackg,
     usesBorderRadius,
     usesPadding,
+    
+    
+    // react components:
+    Basic,
 }                           from '@nodestrap/basic'
 import {
     // styles:
     usesBadgeLayout,
-    
-    
-    // react components:
-    Badge,
 }                           from '@nodestrap/badge'
 
 
@@ -100,10 +100,9 @@ export function ColorPreview(props: ColorPreviewProps) {
     const sheet = useColorPreviewSheet();
     
     
-    const [, , backgDecls] = usesBackg();
     return (
         <>
-            <Badge
+            <Basic
                 {...props}
                 
                 

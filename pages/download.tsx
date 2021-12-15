@@ -1,10 +1,11 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
-import { Container } from '@nodestrap/container'
 import { ButtonIcon as Button } from '@nodestrap/button-icon'
 import { BashCode, TypeScriptCode } from '../components/Code'
 import React from 'react'
+import { Main } from '../components/Main'
+import { Section } from '../components/Section'
 
 
 
@@ -16,8 +17,8 @@ const Download: NextPage = () => {
                 <meta name="description" content="Download Nodestrap to be included into your React/NextJS/Gatsby app." />
             </Head>
 
-            <Container tag='main'>
-                <Container tag='section' classes={['fill']}>
+            <Main>
+                <Section>
                     <article>
                         <p>
                             All Nodestrap components are <em>modular</em>.
@@ -60,8 +61,8 @@ export default function MyPage() {
 }
                         `}</TypeScriptCode>
                     </article>
-                </Container>
-            </Container>
+                </Section>
+            </Main>
         </>
     )
 }

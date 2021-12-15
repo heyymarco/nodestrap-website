@@ -2,10 +2,11 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
-import { Container } from '@nodestrap/container'
 import { ButtonIcon as Button } from '@nodestrap/button-icon'
 import { BashCode, TypeScriptCode } from '../../components/Code'
 import { Navbar, NavbarMenu } from '@nodestrap/navbar';
+import { Main } from '../../components/Main'
+import { Section } from '../../components/Section'
 
 
 
@@ -17,8 +18,8 @@ const Download: NextPage = () => {
                 <meta name="description" content="Start to learn how to implement Nodestrap components into your react app." />
             </Head>
 
-            <Container tag='main'>
-                <Container tag='section' classes={['fill']}>
+            <Main>
+                <Section>
                     <article>
                         <h1>Getting Started</h1>
                         <p>
@@ -37,8 +38,8 @@ const Download: NextPage = () => {
                             If not, we&apos;re recommended you learn it first.
                         </p>
                     </article>
-                </Container>
-                <Container tag='section' classes={['fill']}>
+                </Section>
+                <Section>
                     <article>
                         <h2>Prepare</h2>
                         <p>
@@ -81,8 +82,8 @@ npx create-react-app my-react-app
                             Note: for <strong>Next JS</strong> or <strong>Gatsby JS</strong>, you <em>do not need</em> to do it. It&apos;s <em>already</em> supported by default.
                         </p>
                     </article>
-                </Container>
-                <Container tag='section' classes={['fill']}>
+                </Section>
+                <Section>
                     <article>
                         <h2>Installing the First Component</h2>
                         <p>
@@ -143,8 +144,8 @@ function App() {
                             <NavbarMenu href='/about'>About</NavbarMenu>
                         </Navbar>
                     </article>
-                </Container>
-                <Container tag='section' classes={['fill']}>
+                </Section>
+                <Section>
                     <article>
                         <h2>Installing the Second Component</h2>
                         <p>
@@ -200,8 +201,8 @@ function App() {
                             visit me!
                         </Button>
                     </article>
-                </Container>
-                <Container tag='section' classes={['fill']}>
+                </Section>
+                <Section>
                     <article>
                         <h2>Done!</h2>
                         <p>
@@ -232,8 +233,8 @@ function App() {
                             Show me your creativity!
                         </p>
                     </article>
-                </Container>
-            </Container>
+                </Section>
+            </Main>
         </>
     )
 }

@@ -2,11 +2,12 @@ import React, { useRef } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import { Container } from '@nodestrap/container'
 import { ButtonIcon as Button } from '@nodestrap/button-icon'
 import { Tooltip } from '@nodestrap/tooltip'
 import { TypeScriptCode } from '../components/Code'
 import styles from '../styles/About.module.scss'
+import { Main } from '../components/Main'
+import { Section } from '../components/Section'
 
 
 
@@ -19,8 +20,8 @@ const About: NextPage = () => {
                 <meta name="description" content="Download Nodestrap to be included into your React/NextJS/Gatsby app." />
             </Head>
 
-            <Container tag='main'>
-                <Container tag='section' classes={['fill']}>
+            <Main>
+                <Section>
                     <article>
                         <p>
                             Nodestrap is a personal project created by <Button btnStyle='link' theme='primary' href='https://www.instagram.com/heyyy.marco/' target='_blank'>Hey Marco</Button>.
@@ -59,8 +60,8 @@ import { YunusKurniawan as Marco } from '@nodestrap/creator'
                             Please support me for my existence!
                         </p>
                     </article>
-                </Container>
-            </Container>
+                </Section>
+            </Main>
         </>
     )
 }

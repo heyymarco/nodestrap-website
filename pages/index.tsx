@@ -1,9 +1,10 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
-import { Container } from '@nodestrap/container'
 import { ButtonIcon as Button } from '@nodestrap/button-icon'
 import styles from '../styles/Home.module.scss'
+import { Main } from '../components/Main'
+import { Section } from '../components/Section'
 
 
 
@@ -16,8 +17,8 @@ const Home: NextPage = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <Container tag='main'>
-                <Container tag='section' theme='primary' classes={['fill']}>
+            <Main>
+                <Section theme='primary'>
                     <article className={styles.hero}>
                         <h1 className='display-4'>Nodestrap</h1>
                         <p className='display-6'>A React component library<br />for building sites quickly</p>
@@ -27,8 +28,8 @@ const Home: NextPage = () => {
                             </Button>
                         </div>
                     </article>
-                </Container>
-                <Container tag='section' classes={['fill']}>
+                </Section>
+                <Section>
                     <article className={styles.features}>
                         <section>
                             <h3 className='h5'>Modular</h3>
@@ -64,8 +65,8 @@ const Home: NextPage = () => {
                             <p>Built on top NextJS + Nodestrap components.</p>
                         </section>
                     </article>
-                </Container>
-            </Container>
+                </Section>
+            </Main>
         </>
     )
 }

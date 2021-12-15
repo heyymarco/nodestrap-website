@@ -1,10 +1,11 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { Container } from '@nodestrap/container'
 import { TypeScriptCode, CssCode } from '../../../components/Code'
 import { ColorPreview } from '../../../components/ColorPreview'
 import { colors } from '@nodestrap/colors'
 import React from 'react'
+import { Main } from '../../../components/Main'
+import { Section } from '../../../components/Section'
 
 
 
@@ -16,8 +17,8 @@ const Colors: NextPage = () => {
                 <meta name="description" content="Configuring `colors` utility" />
             </Head>
 
-            <Container tag='main'>
-                <Container tag='section' classes={['fill']}>
+            <Main>
+                <Section>
                     <article>
                         <h1>Colors Utility</h1>
                         <p>
@@ -30,8 +31,8 @@ const Colors: NextPage = () => {
                             The main purpose of this component is to create <strong>a consistent theme colors</strong> between components.
                         </p>
                     </article>
-                </Container>
-                <Container tag='section' classes={['fill']}>
+                </Section>
+                <Section>
                     <article>
                         <h1>Defining Theme Colors</h1>
                         <p>
@@ -118,8 +119,8 @@ defineTheme('primary', '#0000ff');
                             Any changes before/after calling the <code>defineTheme()</code> will be applied to corresponding <em>base color</em>.
                         </p>
                     </article>
-                </Container>
-                <Container tag='section' classes={['fill']}>
+                </Section>
+                <Section>
                     <article>
                         <h1>Defining Background Color</h1>
                         <p>
@@ -158,8 +159,8 @@ colors.dark = '#000000' // set \`dark\` color to black
 colors.light = '#ffffff' // set \`light\` color to white
                         `}</TypeScriptCode>
                     </article>
-                </Container>
-                <Container tag='section' classes={['fill']}>
+                </Section>
+                <Section>
                     <article>
                         <h1>Defining Foreground (Text) Color</h1>
                         <p>
@@ -183,8 +184,8 @@ colors.dark = '#0000aa' // set \`dark\` color to dark blue
 colors.light = '#aaaaff' // set \`light\` color to light blue
                         `}</TypeScriptCode>
                     </article>
-                </Container>
-                <Container tag='section' classes={['fill']}>
+                </Section>
+                <Section>
                     <article>
                         <h1>Consuming (getting) the Colors</h1>
                         <p>
@@ -233,8 +234,8 @@ export default function MyComponent(props) {
 }
                         `}</TypeScriptCode>
                     </article>
-                </Container>
-                <Container tag='section' classes={['fill']}>
+                </Section>
+                <Section>
                     <article>
                         <h1>Where the Colors are Actually Stored?</h1>
                         <p>
@@ -326,8 +327,8 @@ console.log(value); // var(--col-primary)
                             So any changes after already cached will not be affected.
                         </p>
                     </article>
-                </Container>
-            </Container>
+                </Section>
+            </Main>
         </>
     )
 }
