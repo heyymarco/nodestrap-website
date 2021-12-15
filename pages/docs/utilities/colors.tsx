@@ -80,18 +80,16 @@ const Colors: NextPage = () => {
                             <Button
                                 theme='success'
                                 enabled={
-                                    (colorHue !== initialColor.current.hue)
+                                    (Math.abs(colorHue - initialColor.current.hue) >= 1)
                                     ||
-                                    (colorSat !== initialColor.current.sat)
+                                    (Math.abs(colorSat - initialColor.current.sat) >= 1)
                                     ||
-                                    (colorLgt !== initialColor.current.lgt)
+                                    (Math.abs(colorLgt - initialColor.current.lgt) >= 1)
                                 }
                                 onClick={() => {
-                                    defineTheme('primary', Color.hsl(
-                                        initialColor.current.hue,
-                                        initialColor.current.sat,
-                                        initialColor.current.lgt
-                                    ));
+                                    setColorHue(initialColor.current.hue);
+                                    setColorSat(initialColor.current.sat);
+                                    setColorLgt(initialColor.current.lgt);
                                 }}
                             >
                                 Reset to Default
