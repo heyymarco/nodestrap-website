@@ -379,8 +379,8 @@ export default function MyComponent(props) {
 }
                         `}</CssCode>
                         <p>
-                            Btw, you <strong>should not</strong> to modify our <code>css variables</code> directy!
-                            Otherwise any changes you made will be swapped out.
+                            Btw, you <strong>should not</strong> modify our <code>css variables</code> directly!
+                            Otherwise any changes you&apos;ve made will be swapped out.
                             Instead use <strong>our API</strong> in the <code>@nodestrap/colors</code> to get/set/modify the colors.
                             Like this:
                         </p>

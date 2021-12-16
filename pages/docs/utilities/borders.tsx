@@ -128,28 +128,44 @@ const BordersPage: NextPage = () => {
                                     (index < (themes.length - 1)) ? ', ' : null
                                 ])
                             }
+                            <br />
+                            And 7 pre-defined border radius properties:<br />
+                            {
+                                ['none', 'sm', 'md', 'lg', 'pill', 'circle', 'default']
+                                .flatMap((border, index, themes) => [
+                                    <code key={border}>{ border }</code>,
+                                    (index < (themes.length - 1)) ? ', ' : null
+                                ])
+                            }
                         </p>
                         <p>
-                            You can <em>add</em> or <em>modify</em> the <strong>pre-defined border properties</strong> <em>but</em> we advice <em>not to delete</em> them.
+                            You can <em>add</em> or <em>modify</em> the <strong>pre-defined border properties</strong> and <strong>pre-defined border radius properties</strong> <em>but</em> we advice <em>not to delete</em> them.
                         </p>
                         <p>
                             Here the code for <em>adding</em> a new border property or <em>modifying</em> the existing ones: 
                         </p>
                         <TypeScriptCode>{`
-import { borders } from '@nodestrap/borders'
+import { borders, borderRadiuses } from '@nodestrap/borders'
 
 borders.bold = '8px'; // set the thickness of \`bold\` to 8 px
 borders.ultraBold = '15px'; // add a new property \`ultraBold\` as 15 px
-borders.style = 'dashed' // set the border style to dashed
-borders.defaultWidth = borders.bold // set the thickness of \`defaultWidth\` to \`bold\` (8 px)
+borders.style = 'dashed'; // set the border style to dashed
+borders.defaultWidth = borders.bold; // set the default thickness to \`bold\` (8 px)
+borders.default = [[borders.style, borders.defaultWidth, borders.color]]; // set the default border
+
+borderRadiuses.lg = '0.8rem'; // set the border radius of \`lg\` to 0.8 rem
+borderRadiuses.xxl = '3rem'; // add a new property \`xxl\` as 3 rem
+borderRadiuses.default = borderRadiuses.lg; // set the default border radius to \`lg\` (0.8 rem)
                         `}</TypeScriptCode>
                         <p>
                             For deleting a specific border property, just assign <code>null</code> or <code>undefined</code> to the desired property:
                         </p>
                         <TypeScriptCode>{`
-import { borders } from '@nodestrap/borders'
+import { borders, borderRadiuses } from '@nodestrap/borders'
 
 borders.ultraBold = null; // delete property \`ultraBold\`
+
+borderRadiuses.xxl = null; // delete property \`xxl\`
                         `}</TypeScriptCode>
                     </article>
                 </Section>
@@ -161,7 +177,7 @@ borders.ultraBold = null; // delete property \`ultraBold\`
                             You can do like this:
                         </p>
                         <TypeScriptCode>{`
-import { borders } from '@nodestrap/borders'
+import { borders, borderRadiuses } from '@nodestrap/borders'
 
 export default function MyComponent(props) {
     return (
@@ -171,7 +187,8 @@ export default function MyComponent(props) {
             borderWidth : borders.hair
         }}>
             <span style={{
-                border : borders.default
+                border       : borders.default
+                borderRadius : borderRadiuses.default,
             }}>
                 { props.children }
             </span>
@@ -185,14 +202,15 @@ export default function MyComponent(props) {
                         <TypeScriptCode>{`
 import { compositionOf, layout } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
-import { borders } from '@nodestrap/borders'
+import { borders, borderRadiuses } from '@nodestrap/borders'
 
 const useMySheet = createUseSheet(() => [
     compositionOf('myClass1', [
         layout({
-            borderStyle : borders.style,
-            borderColor : borders.color,
-            borderWidth : borders.hair
+            borderStyle  : borders.style,
+            borderColor  : borders.color,
+            borderWidth  : borders.hair,
+            borderRadius : borderRadiuses.default,
         }),
     ])
 ]);
@@ -226,10 +244,19 @@ export default function MyComponent(props) {
     --bd-defaultWidth: var(--bd-hair);
     --bd-default: var(--bd-style) var(--bd-hair) var(--bd-color);
 }
+:root {
+    --bd-rd-none: 0px;
+    --bd-rd-sm: 0.2rem;
+    --bd-rd-md: 0.25rem;
+    --bd-rd-lg: 0.3rem;
+    --bd-rd-pill: 50rem;
+    --bd-rd-circle: 50%;
+    --bd-rd-default: var(--bd-rd-md);
+}
                         `}</CssCode>
                         <p>
-                            Btw, you <strong>should not</strong> to modify our <code>css variables</code> directy!
-                            Otherwise any changes you made will be swapped out.
+                            Btw, you <strong>should not</strong> modify our <code>css variables</code> directly!
+                            Otherwise any changes you&apos;ve made will be swapped out.
                             Instead use <strong>our API</strong> in the <code>@nodestrap/borders</code> to get/set/modify the borders.
                             Like this:
                         </p>
@@ -238,13 +265,13 @@ import { borders, cssDecls as borderDecls, cssVals as borderVals } from '@nodest
 
 borders.thin = '3px'; // set the --bd-thin in the :root
 
-const valueByRef = borders.thin // get the value of --bd-thin in the :root
+const valueByRef = borders.thin; // get the value of --bd-thin in the :root
 console.log(valueByRef); // var(--bd-thin)
 
-const declaration = borderDecls.thin // get the css property name of --bd-thin in the :root
+const declaration = borderDecls.thin; // get the css property name of --bd-thin in the :root
 console.log(declaration); // --bd-thin
 
-const valueByVal = borderVals.thin // get the value of --bd-thin in the :root
+const valueByVal = borderVals.thin; // get the value of --bd-thin in the :root
 console.log(valueByVal); // 3px
                         `}</TypeScriptCode>
                         <p>
