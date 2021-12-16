@@ -1,6 +1,7 @@
 // react:
 import {
     default as React,
+    useMemo,
 }                           from 'react'         // base technology of our nodestrap components
 
 // others libs:
@@ -12,7 +13,6 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 
 export interface CodeProps {
     // code:
-    plugins  ?: string[]
     language ?: string
     children ?: string
 }
@@ -20,7 +20,6 @@ export function Code(props: CodeProps) {
     // rest props:
     const {
         // code:
-        plugins,
         language,
         children : code,
     ...restProps} = props;
@@ -28,7 +27,7 @@ export function Code(props: CodeProps) {
     
     
     // jsx:
-    return (
+    return useMemo(() => (
         <SyntaxHighlighter
             // other props:
             {...restProps}
@@ -41,7 +40,7 @@ export function Code(props: CodeProps) {
         >
             { code?.trim() }
         </SyntaxHighlighter>
-    );
+    ), [restProps, language, code]);
 }
 export { Code as default }
 

@@ -49,7 +49,7 @@ const Download: NextPage = () => {
 npx create-react-app my-react-app
                         `}</BashCode>
                         <p>
-                            Because Nodestrap components are made with <strong>JavaScript ES6</strong>, we need to configure the react to support it by modifying the <code>package.json</code> a bit:
+                            Because Nodestrap components are made with <strong>JavaScript ES10</strong>, we need to configure the react to support it by modifying the <code>package.json</code> a bit:
                         </p>
                         <p>
                             from:

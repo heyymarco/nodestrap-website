@@ -28,7 +28,10 @@ const Colors: NextPage = () => {
 
     useEffect(() => {
         const handler = setTimeout(() => {
-            defineTheme('primary', Color.hsl(colorHue, colorSat, colorLgt));
+            new Promise<void>((resolve) => {
+                defineTheme('primary', Color.hsl(colorHue, colorSat, colorLgt));
+                resolve();
+            });
         }, 10);
 
         return () => clearTimeout(handler);
