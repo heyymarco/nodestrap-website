@@ -6,14 +6,14 @@ import { colors, cssVals as colorVals, defineTheme } from '@nodestrap/colors'
 import React, { useState, useEffect, useRef } from 'react'
 import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
-import styles from '../../../styles/Colors.module.scss'
+import styles from '../../../styles/Panel.module.scss'
 import { Content } from '@nodestrap/content'
 import { Range } from '@nodestrap/range'
 import Color from 'color'
 import { ButtonIcon as Button } from '@nodestrap/button-icon'
 
 
-const Colors: NextPage = () => {
+const ColorsPage: NextPage = () => {
     const initialColor = useRef((() => {
         const color = Color(colorVals.blue);
         return {
@@ -58,7 +58,7 @@ const Colors: NextPage = () => {
                             <strong>Changing</strong> the colors <strong>affects all components</strong> that depend on <code>@nodestrap/colors</code>.
                         </p>
                         <p>
-                            The main purpose of this component is to create <strong>a consistent theme colors</strong> between components.
+                            The main purpose of this utility is to create <strong>a consistent theme colors</strong> between components.
                         </p>
                     </article>
                 </Section>
@@ -67,7 +67,7 @@ const Colors: NextPage = () => {
                         <h1>Demonstration</h1>
                         <p>
                             Move some sliders below!
-                            You&apos; see our site primary color is changed instantly.
+                            You&apos;ll see our site&apos;s primary color is changed instantly.
                         </p>
                         <Content classes={[styles.panel]} theme='secondary'>
                             <span>Hue</span>
@@ -112,14 +112,15 @@ const Colors: NextPage = () => {
                                     (index < (themes.length - 1)) ? ', ' : null
                                 ])
                             }
-                            <br />
-                            You can <em>add</em> or <em>modify</em> the <strong>pre-defined theme colors</strong> <em>but</em> we advice <em>not to delete</em> it.
+                        </p>
+                        <p>
+                            You can <em>add</em> or <em>modify</em> the <strong>pre-defined theme colors</strong> <em>but</em> we advice <em>not to delete</em> them.
                         </p>
                         <p>
                             Because the absence of color function <code>color-mod()</code> in the css, so we create a JavaScript function <code>defineTheme()</code>.
                         </p>
                         <p>
-                            Here the code for <em>adding</em> a new theme color or <em>modifying</em> the existing one: 
+                            Here the code for <em>adding</em> a new theme color or <em>modifying</em> the existing ones: 
                         </p>
                         <TypeScriptCode>{`
 import { defineTheme } from '@nodestrap/colors'
@@ -281,6 +282,7 @@ export default function MyComponent(props) {
                         <TypeScriptCode>{`
 import { compositionOf, layout } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
+import { colors } from '@nodestrap/colors'
 
 const useMySheet = createUseSheet(() => [
     compositionOf('myClass1', [
@@ -383,15 +385,22 @@ export default function MyComponent(props) {
                             Like this:
                         </p>
                         <TypeScriptCode>{`
-import { colors } from '@nodestrap/colors'
+import { colors, cssDecls as colorDecls, cssVals as colorVals } from '@nodestrap/colors'
 
 colors.primary = '#0000ff'; // set the --col-primary in the :root
-const value = colors.primary // get the value of --col-primary in the :root
-console.log(value); // var(--col-primary)
+
+const valueByRef = colors.primary // get the value of --col-primary in the :root
+console.log(valueByRef); // var(--col-primary)
+
+const declaration = colorDecls.primary // get the css property name of --col-primary in the :root
+console.log(declaration); // --col-primary
+
+const valueByVal = colors.primary // get the value of --col-primary in the :root
+console.log(valueByVal); // #0000ff
                         `}</TypeScriptCode>
                         <p>
-                            And you should modify the colors <em>as soon as possible</em>, usually <strong>after</strong> the <code>{`import { colors } from '@nodestrap/colors`}</code> statement.
-                            Most the Nodestrap components build the dynamic css at the first load and <strong>cached it</strong> for re-use.
+                            And you should modify the colors <em>as soon as possible</em>, usually <strong>after</strong> the <code>import</code> statement.
+                            Most the Nodestrap components build the dynamic css at the first render and <strong>cached it</strong> for re-use.
                             So any changes after already cached will not be affected.
                         </p>
                     </article>
@@ -401,4 +410,4 @@ console.log(value); // var(--col-primary)
     )
 }
 
-export default Colors
+export default ColorsPage
