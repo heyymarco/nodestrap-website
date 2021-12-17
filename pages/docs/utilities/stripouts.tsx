@@ -108,7 +108,7 @@ export default function AwesomeCheckbox(props) {
 }
                                 `}</TypeScriptCode>
                             </AccordionItem>
-                            <AccordionItem tag='h4' label={<><code>stripoutTextbox()</code> - Removes browser&apos;s default style on textbox (input type='text|email|search|etc')</>}>
+                            <AccordionItem tag='h4' label={<><code>stripoutTextbox()</code> - Removes browser&apos;s default style on textbox (input type=&apos;text|email|search|etc&apos;)</>}>
                                 <p>example:</p>
                                 <TypeScriptCode>{`
 import { stripoutTextbox } from '@nodestrap/stripouts'
@@ -145,7 +145,7 @@ export default function AwesomeTextbox(props) {
 }
                                 `}</TypeScriptCode>
                             </AccordionItem>
-                            <AccordionItem tag='h4' label={<><code>stripoutRange()</code> - Removes browser&apos;s default style on range (input type='range')</>}>
+                            <AccordionItem tag='h4' label={<><code>stripoutRange()</code> - Removes browser&apos;s default style on range (input type=&apos;range&apos;)</>}>
                                 <p>example:</p>
                                 <TypeScriptCode>{`
 import { stripoutRange } from '@nodestrap/stripouts'
