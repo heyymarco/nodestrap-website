@@ -1,0 +1,369 @@
+import type { NextPage } from 'next'
+import Head from 'next/head'
+import React, {  } from 'react'
+import { Main } from '../../../components/Main'
+import { Section } from '../../../components/Section'
+import { Accordion, AccordionItem } from '@nodestrap/accordion'
+import { TypeScriptCode } from '../../../components/Code'
+import styles from '../../../styles/CodeList.module.scss'
+
+
+const StripoutsPage: NextPage = () => {
+    return (
+        <>
+            <Head>
+                <title>Stripouts Utility</title>
+                <meta name="description" content="Using `stripouts` utility" />
+            </Head>
+
+            <Main>
+                <Section>
+                    <article>
+                        <h1>Stripouts Utility</h1>
+                        <p>
+                            <code>@nodestrap/stripouts</code> is a utility for resetting browser default styling to unstyled element.
+                        </p>
+                        <p>
+                            The default styles in <code>&lt;button&gt;</code>, <code>&lt;input&gt;</code>, <code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, etc are great,<br />
+                            but in some cases we need to <em>un-style</em> them as something like unstyled <code>&lt;div&gt;</code>.
+                        </p>
+                        <p>
+                            Once we&apos;ve <em>un-styled</em> them, we can override them with <em>own styles</em> without worrying about inconsistency across browsers.
+                        </p>
+                    </article>
+                </Section>
+                <Section>
+                    <article>
+                        <h1>List of Strippable Elements</h1>
+                        <Accordion theme='primary' classes={[styles.codeList]} listStyle={'content'}>
+                            <AccordionItem tag='h4' label={<><code>stripoutLink()</code> - Removes browser&apos;s default style on link (anchor)</>}>
+                                <p>example:</p>
+                                <TypeScriptCode>{`
+import { stripoutLink } from '@nodestrap/stripouts'
+import { mainComposition, imports, layout, rules, rule } from '@cssfn/cssfn'
+import { createUseSheet } from '@cssfn/react-cssfn'
+
+const useAwesomeLinkSheet = createUseSheet(() => [
+    mainComposition([
+        imports([
+            stripoutLink(),
+        ]),
+        layout({
+            display : 'inline',
+            color   : 'red',
+        }),
+        rules([
+            rule([':hover', ':active'], [
+                layout({
+                    color: 'darkred',
+                }),
+            ]),
+        ]),
+    ])
+]);
+
+export default function AwesomeLink(props) {
+    const sheet = useAwesomeLinkSheet();
+    return (
+        <a className={sheet.main} {...props}>
+            { props.children }
+        </a>
+    );
+}
+                                `}</TypeScriptCode>
+                            </AccordionItem>
+                            <AccordionItem tag='h4' label={<><code>stripoutControl()</code> - Removes browser&apos;s default style on control (button, checkbox, etc)</>}>
+                                <p>example:</p>
+                                <TypeScriptCode>{`
+import { stripoutControl } from '@nodestrap/stripouts'
+import { mainComposition, imports, layout, rules, rule } from '@cssfn/cssfn'
+import { createUseSheet } from '@cssfn/react-cssfn'
+
+const useAwesomeCheckboxSheet = createUseSheet(() => [
+    mainComposition([
+        imports([
+            stripoutControl(),
+        ]),
+        layout({
+            display    : 'inline-block',
+            width      : '30px',
+            height     : '30px',
+            background : 'lightblue',
+        }),
+        rules([
+            rule(':checked', [
+                layout({
+                    background : 'darkblue',
+                }),
+            ]),
+        ]),
+    ])
+]);
+
+export default function AwesomeCheckbox(props) {
+    const sheet = useAwesomeCheckboxSheet();
+    return (
+        <input type='checkbox' className={sheet.main} {...props} />
+    );
+}
+                                `}</TypeScriptCode>
+                            </AccordionItem>
+                            <AccordionItem tag='h4' label={<><code>stripoutTextbox()</code> - Removes browser&apos;s default style on textbox (input type='text|email|search|etc')</>}>
+                                <p>example:</p>
+                                <TypeScriptCode>{`
+import { stripoutTextbox } from '@nodestrap/stripouts'
+import { mainComposition, imports, layout, rules, rule } from '@cssfn/cssfn'
+import { createUseSheet } from '@cssfn/react-cssfn'
+
+const useAwesomeTextboxSheet = createUseSheet(() => [
+    mainComposition([
+        imports([
+            stripoutTextbox(),
+        ]),
+        layout({
+            display    : 'inline-block',
+            width      : '200px',
+            height     : '30px',
+            background : 'lightblue',
+            textAlign  : 'left',
+        }),
+        rules([
+            rule([':hover', ':focus'], [
+                layout({
+                    background : 'skyblue',
+                }),
+            ]),
+        ]),
+    ])
+]);
+
+export default function AwesomeTextbox(props) {
+    const sheet = useAwesomeTextboxSheet();
+    return (
+        <input type='text' className={sheet.main} {...props} />
+    );
+}
+                                `}</TypeScriptCode>
+                            </AccordionItem>
+                            <AccordionItem tag='h4' label={<><code>stripoutRange()</code> - Removes browser&apos;s default style on range (input type='range')</>}>
+                                <p>example:</p>
+                                <TypeScriptCode>{`
+import { stripoutRange } from '@nodestrap/stripouts'
+import { mainComposition, imports, layout, children, rules, rule } from '@cssfn/cssfn'
+import { createUseSheet } from '@cssfn/react-cssfn'
+
+const useAwesomeRangeSheet = createUseSheet(() => [
+    mainComposition([
+        imports([
+            stripoutRange(),
+        ]),
+        layout({
+            display    : 'inline-block',
+            width      : '200px',
+            height     : '30px',
+            background : 'lightblue',
+
+            ...children(['::-webkit-slider-thumb', '::-moz-range-thumb', '::-ms-thumb'], [
+                layout({
+                    display    : 'block',
+                    width      : '25px',
+                    height     : '25px',
+                    background : 'darkblue',
+                }),
+            ], { groupSelectors: false }), // any invalid selector does not cause the whole selectors to fail
+        }),
+        rules([
+            rule([':hover', ':focus'], [
+                layout({
+                    background : 'skyblue',
+                }),
+            ]),
+        ]),
+    ])
+]);
+
+export default function AwesomeRange(props) {
+    const sheet = useAwesomeRangeSheet();
+    return (
+        <input type='range' className={sheet.main} {...props} />
+    );
+}
+                                `}</TypeScriptCode>
+                            </AccordionItem>
+                            <AccordionItem tag='h4' label={<><code>stripoutList()</code> - Removes browser&apos;s default style on list (ul &amp; ol)</>}>
+                                <p>example:</p>
+                                <TypeScriptCode>{`
+import React from 'react'
+import { stripoutList } from '@nodestrap/stripouts'
+import { mainComposition, imports, layout, children } from '@cssfn/cssfn'
+import { createUseSheet } from '@cssfn/react-cssfn'
+
+const useAwesomeListSheet = createUseSheet(() => [
+    mainComposition([
+        imports([
+            stripoutList(),
+        ]),
+        layout({
+            display     : 'block',
+            background  : 'lightblue',
+            paddingLeft : '30px',
+
+            ...children('li', [
+                layout({
+                    display    : 'block',
+                    border     : [['solid', '1px', 'darkblue']],
+                }),
+            ]),
+        }),
+    ])
+]);
+
+export default function AwesomeList(props) {
+    const sheet = useAwesomeListSheet();
+    return (
+        <ul className={sheet.main} {...props}>
+            { React.Children.map(props.children, (child) => <li>{ child }</li>) }
+        </ul>
+    );
+}
+                                `}</TypeScriptCode>
+                            </AccordionItem>
+                            <AccordionItem tag='h4' label={<><code>stripoutFigure()</code> - Removes browser&apos;s default style on figure</>}>
+                                <p>example:</p>
+                                <TypeScriptCode>{`
+import { stripoutFigure } from '@nodestrap/stripouts'
+import { mainComposition, imports, layout } from '@cssfn/cssfn'
+import { createUseSheet } from '@cssfn/react-cssfn'
+
+const useAwesomeFigureSheet = createUseSheet(() => [
+    mainComposition([
+        imports([
+            stripoutFigure(),
+        ]),
+        layout({
+            display    : 'block',
+            background : 'lightblue',
+            border     : [['solid', '1px', 'darkblue']],
+            padding    : '10px',
+        }),
+    ])
+]);
+
+export default function AwesomeFigure(props) {
+    const sheet = useAwesomeFigureSheet();
+    return (
+        <figure className={sheet.main} {...props}>
+            { props.children }
+        </figure>
+    );
+}
+                                `}</TypeScriptCode>
+                            </AccordionItem>
+                            <AccordionItem tag='h4' label={<><code>stripoutFocusableElement()</code> - Removes browser&apos;s default style on focus indicator on any focusable elements</>}>
+                                <p>example:</p>
+                                <TypeScriptCode>{`
+import { stripoutFocusableElement } from '@nodestrap/stripouts'
+import { mainComposition, imports, layout, rules, rule } from '@cssfn/cssfn'
+import { createUseSheet } from '@cssfn/react-cssfn'
+
+const useAwesomeElementSheet = createUseSheet(() => [
+    mainComposition([
+        imports([
+            stripoutFocusableElement(),
+        ]),
+        layout({
+            display    : 'inline-block',
+            width      : '100px',
+            height     : '50px',
+            background : 'lightblue',
+        }),
+        rules([
+            rule(':focus', [
+                layout({
+                    background : 'darkblue',
+                }),
+            ]),
+        ]),
+    ])
+]);
+
+export default function AwesomeElement(props) {
+    const sheet = useAwesomeElementSheet();
+    return (
+        <div tabIndex={0} className={sheet.main} {...props}>
+            { props.children }
+        </div>
+    );
+}
+                                `}</TypeScriptCode>
+                            </AccordionItem>
+                            <AccordionItem tag='h4' label={<><code>stripoutScrollbar()</code> - Removes browser&apos;s scrollbar on any scrollable element</>}>
+                                <p>example:</p>
+                                <TypeScriptCode>{`
+import { stripoutScrollbar } from '@nodestrap/stripouts'
+import { mainComposition, imports, layout } from '@cssfn/cssfn'
+import { createUseSheet } from '@cssfn/react-cssfn'
+
+const useAwesomeContainerSheet = createUseSheet(() => [
+    mainComposition([
+        imports([
+            stripoutScrollbar(),
+        ]),
+        layout({
+            display    : 'inline-block',
+            width      : '500px',
+            height     : '300px',
+            background : 'lightblue',
+            overflow   : 'scroll',
+        }),
+    ])
+]);
+
+export default function AwesomeContainer(props) {
+    const sheet = useAwesomeContainerSheet();
+    return (
+        <div tabIndex={0} className={sheet.main} {...props}>
+            { props.children }
+        </div>
+    );
+}
+                                `}</TypeScriptCode>
+                            </AccordionItem>
+                            <AccordionItem tag='h4' label={<><code>stripoutImage()</code> - Removes browser&apos;s default style on image (img)</>}>
+                                <p>example:</p>
+                                <TypeScriptCode>{`
+import { stripoutImage } from '@nodestrap/stripouts'
+import { mainComposition, imports, layout } from '@cssfn/cssfn'
+import { createUseSheet } from '@cssfn/react-cssfn'
+
+const useAwesomeImageSheet = createUseSheet(() => [
+    mainComposition([
+        imports([
+            stripoutImage(),
+        ]),
+        layout({
+            display : 'inline-block',
+            width   : '100px',
+            height  : '100px',
+            border  : [['solid', '1px', 'darkblue']],
+        }),
+    ])
+]);
+
+export default function AwesomeImage(props) {
+    const sheet = useAwesomeImageSheet();
+    return (
+        <img className={sheet.main} {...props} />
+    );
+}
+                                `}</TypeScriptCode>
+                            </AccordionItem>
+                        </Accordion>
+                    </article>
+                </Section>
+            </Main>
+        </>
+    )
+}
+
+export default StripoutsPage

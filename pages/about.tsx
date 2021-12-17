@@ -16,8 +16,8 @@ const About: NextPage = () => {
     return (
         <>
             <Head>
-                <title>Download Nodestrap</title>
-                <meta name="description" content="Download Nodestrap to be included into your React/NextJS/Gatsby app." />
+                <title>About Nodestrap</title>
+                <meta name="description" content="A short history about Nodestrap libs" />
             </Head>
 
             <Main>

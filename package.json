@@ -8,6 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@nodestrap/accordion": "^4.0.3",
     "@nodestrap/badge": "^4.0.3",
     "@nodestrap/basic": "^4.0.4",
     "@nodestrap/button-icon": "^4.0.3",
