@@ -27,7 +27,8 @@ const BordersPage: NextPage = () => {
     useEffect(() => {
         const handler = setTimeout(() => {
             new Promise<void>((resolve) => {
-                borders.defaultWidth = `${borderWidth}px`   as any;
+                borders.defaultWidth = `${borderWidth}px` as any;
+                borders.default      = [[styles.style, borders.defaultWidth, styles.color]] as any;
                 borders.style        = borderStyle as any;
                 resolve();
             });
