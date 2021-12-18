@@ -22,17 +22,13 @@ export function Code(props: CodeProps) {
         // code:
         language,
         children : code,
-    ...restProps} = props;
+    } = props;
     
     
     
     // jsx:
     return useMemo(() => (
         <SyntaxHighlighter
-            // other props:
-            {...restProps}
-            
-            
             language={language}
             
             
@@ -40,7 +36,7 @@ export function Code(props: CodeProps) {
         >
             { code?.trim() }
         </SyntaxHighlighter>
-    ), [restProps, language, code]);
+    ), [language, code]);
 }
 export { Code as default }
 
