@@ -21,14 +21,14 @@ const StripoutsPage: NextPage = () => {
                     <article>
                         <h1>Stripouts Utility</h1>
                         <p>
-                            <code>@nodestrap/stripouts</code> is a utility for resetting browser default styling to unstyled element.
+                            <code>@nodestrap/stripouts</code> is a utility for resetting browser default style to an unstyled element.
                         </p>
                         <p>
                             The default styles in <code>&lt;button&gt;</code>, <code>&lt;input&gt;</code>, <code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, etc are great,<br />
-                            but in some cases we need to <em>un-style</em> them as something like unstyled <code>&lt;div&gt;</code>.
+                            but in some cases we need to <em>un-style</em> them as something like an unstyled <code>&lt;div&gt;</code>.
                         </p>
                         <p>
-                            Once we&apos;ve <em>un-styled</em> them, we can override them with <em>own styles</em> without worrying about inconsistency across browsers.
+                            Once we&apos;ve <em>un-styled</em> them, we can override ones with <em>own styles</em> without worrying about inconsistency across browsers.
                         </p>
                     </article>
                 </Section>
