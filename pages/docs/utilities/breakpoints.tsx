@@ -71,7 +71,7 @@ breakpoints.xxxl = null; // delete property \`xxxl\`
                     <article>
                         <h1>Consuming (getting) the Breakpoints</h1>
                         <p>
-                            Let&apos; say you want to make a custom component and need to switch some style based on configured breakpoints in <code>@nodestrap/breakpoints</code>.
+                            Let&apos; say you want to make a custom component and need to switch some styles based on the configured breakpoints in <code>@nodestrap/breakpoints</code>.
                             You can do like this:
                         </p>
                         <TypeScriptCode>{`
@@ -140,7 +140,7 @@ export default function MyComponent(props) {
                         <List listStyle='content' theme='primary'>
                             <ListItem>
                                 <code>isScreenWidthAtLeast</code>(<code>breakpointName</code>, <code>styles</code>)
-                                <p>Applies the specified <code>styles</code> if the device&apos;s screen width is <strong>smaller/equal</strong> to the specified <code>breakpointName</code>.</p>
+                                <p>Applies the specified <code>styles</code> if the device&apos;s screen width is <strong>bigger/equal</strong> to the specified <code>breakpointName</code>.</p>
                             </ListItem>
                             <ListItem>
                                 <code>isScreenWidthSmallerThan</code>(<code>breakpointName</code>, <code>styles</code>)
@@ -152,7 +152,7 @@ export default function MyComponent(props) {
                             </ListItem>
                             <ListItem>
                                 <code>isScreenWidth</code>(<code>breakpointName</code>, <code>styles</code>)
-                                <p>Applies the specified <code>styles</code> if the device&apos;s screen width is <strong>equal</strong> to the specified <code>breakpointName</code>.</p>
+                                <p>Applies the specified <code>styles</code> if the device&apos;s screen width is <strong>bigger/equal</strong> to the specified <code>breakpointName</code> but <strong>smaller</strong> than the next <code>breakpointName</code>.</p>
                             </ListItem>
                         </List>
                     </article>
