@@ -3,7 +3,7 @@ import Head from 'next/head'
 import React, {  } from 'react'
 import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
-import { SpecList, SimpleSpecItem } from '../../../components/SpecList'
+import { SpecList, SimpleSpecItem, DetailSpecItem } from '../../../components/SpecList'
 
 
 const LayoutsPage: NextPage = () => {
@@ -33,17 +33,19 @@ const LayoutsPage: NextPage = () => {
                             There&apos;re some hooks you can import into your components:
                         </p>
                         <SpecList>
-                            <SimpleSpecItem>
-                                <code>useIsomorphicLayoutEffect()</code>
+                            <DetailSpecItem
+                                code='useIsomorphicLayoutEffect()'
+                            >
                                 <p>
                                     Similar to <code>useLayoutEffect()</code> but it does <strong>server side support</strong>.
                                     Actually it does <strong>nothing</strong> in server side environment.
                                 </p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>--under construction--</code>
+                            </DetailSpecItem>
+                            <DetailSpecItem
+                                code='--under construction--'
+                            >
                                 <p>coming soon...</p>
-                            </SimpleSpecItem>
+                            </DetailSpecItem>
                         </SpecList>
                     </article>
                 </Section>

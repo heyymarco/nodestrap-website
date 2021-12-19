@@ -35,7 +35,7 @@ const StripoutsPage: NextPage = () => {
                     <article>
                         <h1>List of Strippable Elements</h1>
                         <SpecList>
-                            <DetailSpecItem tag='h4' label={<><code>stripoutLink()</code> - Removes browser&apos;s default style on link (anchor)</>}>
+                            <DetailSpecItem code='stripoutLink()' excerpt='Removes browser&apos;s default style on link (anchor)'>
                                 <p>example:</p>
                                 <TypeScriptCode>{`
 import { stripoutLink } from '@nodestrap/stripouts'
@@ -71,7 +71,7 @@ export default function AwesomeLink(props) {
 }
                                 `}</TypeScriptCode>
                             </DetailSpecItem>
-                            <DetailSpecItem tag='h4' label={<><code>stripoutControl()</code> - Removes browser&apos;s default style on control (button, checkbox, etc)</>}>
+                            <DetailSpecItem code='stripoutControl()' excerpt='Removes browser&apos;s default style on control (button, checkbox, etc)'>
                                 <p>example:</p>
                                 <TypeScriptCode>{`
 import { stripoutControl } from '@nodestrap/stripouts'
@@ -107,7 +107,7 @@ export default function AwesomeCheckbox(props) {
 }
                                 `}</TypeScriptCode>
                             </DetailSpecItem>
-                            <DetailSpecItem tag='h4' label={<><code>stripoutTextbox()</code> - Removes browser&apos;s default style on textbox (input type=&apos;text|email|search|etc&apos;)</>}>
+                            <DetailSpecItem code='stripoutTextbox()' excerpt='Removes browser&apos;s default style on textbox (input type=&apos;text|email|search|etc&apos;)'>
                                 <p>example:</p>
                                 <TypeScriptCode>{`
 import { stripoutTextbox } from '@nodestrap/stripouts'
@@ -144,7 +144,7 @@ export default function AwesomeTextbox(props) {
 }
                                 `}</TypeScriptCode>
                             </DetailSpecItem>
-                            <DetailSpecItem tag='h4' label={<><code>stripoutRange()</code> - Removes browser&apos;s default style on range (input type=&apos;range&apos;)</>}>
+                            <DetailSpecItem code='stripoutRange()' excerpt='Removes browser&apos;s default style on range (input type=&apos;range&apos;)'>
                                 <p>example:</p>
                                 <TypeScriptCode>{`
 import { stripoutRange } from '@nodestrap/stripouts'
@@ -189,7 +189,7 @@ export default function AwesomeRange(props) {
 }
                                 `}</TypeScriptCode>
                             </DetailSpecItem>
-                            <DetailSpecItem tag='h4' label={<><code>stripoutList()</code> - Removes browser&apos;s default style on list (ul &amp; ol)</>}>
+                            <DetailSpecItem code='stripoutList()' excerpt='Removes browser&apos;s default style on list (ul &amp; ol)'>
                                 <p>example:</p>
                                 <TypeScriptCode>{`
 import React from 'react'
@@ -227,7 +227,7 @@ export default function AwesomeList(props) {
 }
                                 `}</TypeScriptCode>
                             </DetailSpecItem>
-                            <DetailSpecItem tag='h4' label={<><code>stripoutFigure()</code> - Removes browser&apos;s default style on figure</>}>
+                            <DetailSpecItem code='stripoutFigure()' excerpt='Removes browser&apos;s default style on figure'>
                                 <p>example:</p>
                                 <TypeScriptCode>{`
 import { stripoutFigure } from '@nodestrap/stripouts'
@@ -258,7 +258,7 @@ export default function AwesomeFigure(props) {
 }
                                 `}</TypeScriptCode>
                             </DetailSpecItem>
-                            <DetailSpecItem tag='h4' label={<><code>stripoutFocusableElement()</code> - Removes browser&apos;s default style on focus indicator on any focusable elements</>}>
+                            <DetailSpecItem code='stripoutFocusableElement()' excerpt='Removes browser&apos;s default style on focus indicator on any focusable elements'>
                                 <p>example:</p>
                                 <TypeScriptCode>{`
 import { stripoutFocusableElement } from '@nodestrap/stripouts'
@@ -296,7 +296,7 @@ export default function AwesomeElement(props) {
 }
                                 `}</TypeScriptCode>
                             </DetailSpecItem>
-                            <DetailSpecItem tag='h4' label={<><code>stripoutScrollbar()</code> - Removes browser&apos;s scrollbar on any scrollable element</>}>
+                            <DetailSpecItem code='stripoutScrollbar()' excerpt='Removes browser&apos;s scrollbar on any scrollable element'>
                                 <p>example:</p>
                                 <TypeScriptCode>{`
 import { stripoutScrollbar } from '@nodestrap/stripouts'
@@ -328,7 +328,7 @@ export default function AwesomeContainer(props) {
 }
                                 `}</TypeScriptCode>
                             </DetailSpecItem>
-                            <DetailSpecItem tag='h4' label={<><code>stripoutImage()</code> - Removes browser&apos;s default style on image (img)</>}>
+                            <DetailSpecItem code='stripoutImage()' excerpt='Removes browser&apos;s default style on image (img)'>
                                 <p>example:</p>
                                 <TypeScriptCode>{`
 import { stripoutImage } from '@nodestrap/stripouts'
