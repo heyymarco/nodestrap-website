@@ -3,9 +3,8 @@ import Head from 'next/head'
 import React, {  } from 'react'
 import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
-import { Accordion, AccordionItem } from '@nodestrap/accordion'
 import { TypeScriptCode } from '../../../components/Code'
-import styles from '../../../styles/CodeList.module.scss'
+import { SpecList, DetailSpecItem } from '../../../components/SpecList'
 
 
 const StripoutsPage: NextPage = () => {
@@ -35,8 +34,8 @@ const StripoutsPage: NextPage = () => {
                 <Section>
                     <article>
                         <h1>List of Strippable Elements</h1>
-                        <Accordion theme='primary' classes={[styles.codeList]} listStyle={'content'}>
-                            <AccordionItem tag='h4' label={<><code>stripoutLink()</code> - Removes browser&apos;s default style on link (anchor)</>}>
+                        <SpecList>
+                            <DetailSpecItem tag='h4' label={<><code>stripoutLink()</code> - Removes browser&apos;s default style on link (anchor)</>}>
                                 <p>example:</p>
                                 <TypeScriptCode>{`
 import { stripoutLink } from '@nodestrap/stripouts'
@@ -71,8 +70,8 @@ export default function AwesomeLink(props) {
     );
 }
                                 `}</TypeScriptCode>
-                            </AccordionItem>
-                            <AccordionItem tag='h4' label={<><code>stripoutControl()</code> - Removes browser&apos;s default style on control (button, checkbox, etc)</>}>
+                            </DetailSpecItem>
+                            <DetailSpecItem tag='h4' label={<><code>stripoutControl()</code> - Removes browser&apos;s default style on control (button, checkbox, etc)</>}>
                                 <p>example:</p>
                                 <TypeScriptCode>{`
 import { stripoutControl } from '@nodestrap/stripouts'
@@ -107,8 +106,8 @@ export default function AwesomeCheckbox(props) {
     );
 }
                                 `}</TypeScriptCode>
-                            </AccordionItem>
-                            <AccordionItem tag='h4' label={<><code>stripoutTextbox()</code> - Removes browser&apos;s default style on textbox (input type=&apos;text|email|search|etc&apos;)</>}>
+                            </DetailSpecItem>
+                            <DetailSpecItem tag='h4' label={<><code>stripoutTextbox()</code> - Removes browser&apos;s default style on textbox (input type=&apos;text|email|search|etc&apos;)</>}>
                                 <p>example:</p>
                                 <TypeScriptCode>{`
 import { stripoutTextbox } from '@nodestrap/stripouts'
@@ -144,8 +143,8 @@ export default function AwesomeTextbox(props) {
     );
 }
                                 `}</TypeScriptCode>
-                            </AccordionItem>
-                            <AccordionItem tag='h4' label={<><code>stripoutRange()</code> - Removes browser&apos;s default style on range (input type=&apos;range&apos;)</>}>
+                            </DetailSpecItem>
+                            <DetailSpecItem tag='h4' label={<><code>stripoutRange()</code> - Removes browser&apos;s default style on range (input type=&apos;range&apos;)</>}>
                                 <p>example:</p>
                                 <TypeScriptCode>{`
 import { stripoutRange } from '@nodestrap/stripouts'
@@ -189,8 +188,8 @@ export default function AwesomeRange(props) {
     );
 }
                                 `}</TypeScriptCode>
-                            </AccordionItem>
-                            <AccordionItem tag='h4' label={<><code>stripoutList()</code> - Removes browser&apos;s default style on list (ul &amp; ol)</>}>
+                            </DetailSpecItem>
+                            <DetailSpecItem tag='h4' label={<><code>stripoutList()</code> - Removes browser&apos;s default style on list (ul &amp; ol)</>}>
                                 <p>example:</p>
                                 <TypeScriptCode>{`
 import React from 'react'
@@ -227,8 +226,8 @@ export default function AwesomeList(props) {
     );
 }
                                 `}</TypeScriptCode>
-                            </AccordionItem>
-                            <AccordionItem tag='h4' label={<><code>stripoutFigure()</code> - Removes browser&apos;s default style on figure</>}>
+                            </DetailSpecItem>
+                            <DetailSpecItem tag='h4' label={<><code>stripoutFigure()</code> - Removes browser&apos;s default style on figure</>}>
                                 <p>example:</p>
                                 <TypeScriptCode>{`
 import { stripoutFigure } from '@nodestrap/stripouts'
@@ -258,8 +257,8 @@ export default function AwesomeFigure(props) {
     );
 }
                                 `}</TypeScriptCode>
-                            </AccordionItem>
-                            <AccordionItem tag='h4' label={<><code>stripoutFocusableElement()</code> - Removes browser&apos;s default style on focus indicator on any focusable elements</>}>
+                            </DetailSpecItem>
+                            <DetailSpecItem tag='h4' label={<><code>stripoutFocusableElement()</code> - Removes browser&apos;s default style on focus indicator on any focusable elements</>}>
                                 <p>example:</p>
                                 <TypeScriptCode>{`
 import { stripoutFocusableElement } from '@nodestrap/stripouts'
@@ -296,8 +295,8 @@ export default function AwesomeElement(props) {
     );
 }
                                 `}</TypeScriptCode>
-                            </AccordionItem>
-                            <AccordionItem tag='h4' label={<><code>stripoutScrollbar()</code> - Removes browser&apos;s scrollbar on any scrollable element</>}>
+                            </DetailSpecItem>
+                            <DetailSpecItem tag='h4' label={<><code>stripoutScrollbar()</code> - Removes browser&apos;s scrollbar on any scrollable element</>}>
                                 <p>example:</p>
                                 <TypeScriptCode>{`
 import { stripoutScrollbar } from '@nodestrap/stripouts'
@@ -328,8 +327,8 @@ export default function AwesomeContainer(props) {
     );
 }
                                 `}</TypeScriptCode>
-                            </AccordionItem>
-                            <AccordionItem tag='h4' label={<><code>stripoutImage()</code> - Removes browser&apos;s default style on image (img)</>}>
+                            </DetailSpecItem>
+                            <DetailSpecItem tag='h4' label={<><code>stripoutImage()</code> - Removes browser&apos;s default style on image (img)</>}>
                                 <p>example:</p>
                                 <TypeScriptCode>{`
 import { stripoutImage } from '@nodestrap/stripouts'
@@ -357,8 +356,8 @@ export default function AwesomeImage(props) {
     );
 }
                                 `}</TypeScriptCode>
-                            </AccordionItem>
-                        </Accordion>
+                            </DetailSpecItem>
+                        </SpecList>
                     </article>
                 </Section>
             </Main>

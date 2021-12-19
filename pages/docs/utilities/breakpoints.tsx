@@ -3,9 +3,8 @@ import Head from 'next/head'
 import React, {  } from 'react'
 import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
-import { List, ListItem } from '@nodestrap/list'
+import { SpecList, SimpleSpecItem } from '../../../components/SpecList'
 import { TypeScriptCode } from '../../../components/Code'
-import styles from '../../../styles/CodeList.module.scss'
 
 
 const BreakpointsPage: NextPage = () => {
@@ -137,24 +136,24 @@ export default function MyComponent(props) {
                         <p>
                             There are several functions you can use for making responsive design:
                         </p>
-                        <List listStyle='content' theme='primary'>
-                            <ListItem>
+                        <SpecList>
+                            <SimpleSpecItem>
                                 <code>isScreenWidthAtLeast</code>(<code>breakpointName</code>, <code>styles</code>)
                                 <p>Applies the specified <code>styles</code> if the device&apos;s screen width is <strong>bigger/equal</strong> to the specified <code>breakpointName</code>.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>isScreenWidthSmallerThan</code>(<code>breakpointName</code>, <code>styles</code>)
                                 <p>Applies the specified <code>styles</code> if the device&apos;s screen width is <strong>smaller</strong> than the specified <code>breakpointName</code>.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>isScreenWidthBetween</code>(<code>lowerBreakpointName</code>, <code>upperBreakpointName</code>, <code>styles</code>)
                                 <p>Applies the specified <code>styles</code> if the device&apos;s screen width is <strong>within (inclusive)</strong> the specified <code>lowerBreakpointName</code> and <code>upperBreakpointName</code>.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>isScreenWidth</code>(<code>breakpointName</code>, <code>styles</code>)
                                 <p>Applies the specified <code>styles</code> if the device&apos;s screen width is <strong>bigger/equal</strong> to the specified <code>breakpointName</code> but <strong>smaller</strong> than the next <code>breakpointName</code>.</p>
-                            </ListItem>
-                        </List>
+                            </SimpleSpecItem>
+                        </SpecList>
                     </article>
                 </Section>
                 <Section>

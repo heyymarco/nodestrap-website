@@ -3,7 +3,7 @@ import Head from 'next/head'
 import React, {  } from 'react'
 import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
-import { List, ListItem } from '@nodestrap/list'
+import { SpecList, SimpleSpecItem } from '../../../components/SpecList'
 
 
 const TyposPage: NextPage = () => {
@@ -39,12 +39,12 @@ const TyposPage: NextPage = () => {
                         <p>
                             Here several properties in <code>generals</code> of <code>{`import generals from @nodestrap/typos`}</code> you can customize:
                         </p>
-                        <List theme='primary'>
-                            <ListItem>
+                        <SpecList>
+                            <SimpleSpecItem>
                                 <code>fontSize</code>
                                 <p>The default font size in your site.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 {
                                     ['fontSizeXs', 'fontSizeSm', 'fontSizeNm', 'fontSizeMd', 'fontSizeLg', 'fontSizeXl', 'fontSizeXxl', 'fontSizeXxxl']
                                     .flatMap((fontSize, index, fontSizes) => [
@@ -53,12 +53,12 @@ const TyposPage: NextPage = () => {
                                     ])
                                 }
                                 <p>The specific font size in your site.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>fontFamily</code>
                                 <p>The default font appearance in your site.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 {
                                     ['fontFamilySansSerief', 'fontFamilyMonospace']
                                     .flatMap((fontSize, index, fontSizes) => [
@@ -67,12 +67,12 @@ const TyposPage: NextPage = () => {
                                     ])
                                 }
                                 <p>The specific font appearance used in special cases.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>fontWeight</code>
                                 <p>The default font thickness in your site.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 {
                                     ['fontWeightLighter', 'fontWeightLight', 'fontWeightNormal', 'fontWeightBold', 'fontWeightBolder']
                                     .flatMap((fontSize, index, fontSizes) => [
@@ -81,16 +81,16 @@ const TyposPage: NextPage = () => {
                                     ])
                                 }
                                 <p>The specific font thickness in your site.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>fontStyle</code> &amp; <code>textDecoration</code>
                                 <p>The default font style in your site such as <em>italic</em>, <em>underline</em>, <em>dashed</em>, etc.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>lineHeight</code>
                                 <p>The default font height (including the gap between text rows) in your site.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 {
                                     ['lineHeightSm', 'lineHeightNm', 'lineHeightLg']
                                     .flatMap((fontSize, index, fontSizes) => [
@@ -99,13 +99,13 @@ const TyposPage: NextPage = () => {
                                     ])
                                 }
                                 <p>The specific font height in your site.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>foreg</code>
                                 <p>The default foreground color (text &amp; icon) in your site.</p>
                                 <p>Mostly, you should <strong>not modify this property</strong> here, instead change the foreground color in <code>colors.foreg</code> of <code>{`import colors from '@nodestrap/colors'`}</code></p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>backg</code>
                                 <p>The default background color or image in your site.</p>
                                 <p>Tips:</p>
@@ -117,8 +117,8 @@ const TyposPage: NextPage = () => {
                                     If you want to set a <strong>background image</strong>, please set the image to <code>backg</code> and then
                                     set a <strong>solid color</strong> (represents the average color in your image) to <code>colors.backg</code> of <code>{`import colors from '@nodestrap/colors'`}</code>
                                 </p>
-                            </ListItem>
-                        </List>
+                            </SimpleSpecItem>
+                        </SpecList>
                     </article>
                 </Section>
                 <Section>
@@ -131,36 +131,36 @@ const TyposPage: NextPage = () => {
                         <p>
                             Here several properties in <code>secondary.default</code> of <code>{`import { secondary } from @nodestrap/typos`}</code> you can customize:
                         </p>
-                        <List theme='primary'>
-                            <ListItem>
+                        <SpecList>
+                            <SimpleSpecItem>
                                 <code>fontSize</code>
                                 <p>The font size of secondary text.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>fontFamily</code>
                                 <p>The font appearance of secondary text.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>fontWeight</code>
                                 <p>The font thickness of secondary text.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>fontStyle</code> &amp; <code>textDecoration</code>
                                 <p>The font style of secondary text such as <em>italic</em>, <em>underline</em>, <em>dashed</em>, etc.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>lineHeight</code>
                                 <p>The font height (including the gap between text rows) of secondary text.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>foreg</code>
                                 <p>The font color of secondary text.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>opacity</code>
                                 <p>The opacity of secondary text.</p>
-                            </ListItem>
-                        </List>
+                            </SimpleSpecItem>
+                        </SpecList>
                     </article>
                 </Section>
                 <Section>
@@ -172,41 +172,41 @@ const TyposPage: NextPage = () => {
                         <p>
                             Here several properties in <code>paragraph.default</code> of <code>{`import { paragraph } from @nodestrap/typos`}</code> you can customize:
                         </p>
-                        <List theme='primary'>
-                            <ListItem>
+                        <SpecList>
+                            <SimpleSpecItem>
                                 <code>fontSize</code>
                                 <p>The font size of paragraph.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>fontFamily</code>
                                 <p>The font appearance of paragraph.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>fontWeight</code>
                                 <p>The font thickness of paragraph.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>fontStyle</code> &amp; <code>textDecoration</code>
                                 <p>The font style of paragraph such as <em>italic</em>, <em>underline</em>, <em>dashed</em>, etc.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>lineHeight</code>
                                 <p>The font height (including the gap between text rows) of paragraph.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>foreg</code>
                                 <p>The font color of paragraph.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>marginBlockStart</code> &amp; <code>marginBlockEnd</code>
                                 <p>The gap on the top &amp; bottom of paragraph.</p>
                                 <p>Note: At the first paragraph, the <code>marginBlockStart</code> is ignored and at the last paragraph, the <code>marginBlockEnd</code> is ignored.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>marginInlineStart</code> &amp; <code>marginInlineEnd</code>
                                 <p>The gap on the left &amp; right of paragraph.</p>
-                            </ListItem>
-                        </List>
+                            </SimpleSpecItem>
+                        </SpecList>
                     </article>
                 </Section>
                 <Section>
@@ -219,41 +219,41 @@ const TyposPage: NextPage = () => {
                         <p>
                             Here several properties in <code>lead.default</code> of <code>{`import { lead } from @nodestrap/typos`}</code> you can customize:
                         </p>
-                        <List theme='primary'>
-                            <ListItem>
+                        <SpecList>
+                            <SimpleSpecItem>
                                 <code>fontSize</code>
                                 <p>The font size of Lead.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>fontFamily</code>
                                 <p>The font appearance of Lead.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>fontWeight</code>
                                 <p>The font thickness of Lead.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>fontStyle</code> &amp; <code>textDecoration</code>
                                 <p>The font style of Lead such as <em>italic</em>, <em>underline</em>, <em>dashed</em>, etc.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>lineHeight</code>
                                 <p>The font height (including the gap between text rows) of Lead.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>foreg</code>
                                 <p>The font color of Lead.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>marginBlockStart</code> &amp; <code>marginBlockEnd</code>
                                 <p>The gap on the top &amp; bottom of Lead.</p>
                                 <p>Note: At the first Lead, the <code>marginBlockStart</code> is ignored and at the last Lead, the <code>marginBlockEnd</code> is ignored.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>marginInlineStart</code> &amp; <code>marginInlineEnd</code>
                                 <p>The gap on the left &amp; right of Lead.</p>
-                            </ListItem>
-                        </List>
+                            </SimpleSpecItem>
+                        </SpecList>
                     </article>
                 </Section>
                 <Section>
@@ -271,45 +271,45 @@ const TyposPage: NextPage = () => {
                         <p>
                             Here several properties in <code>heading.default</code> of <code>{`import { heading } from @nodestrap/typos`}</code> you can customize:
                         </p>
-                        <List theme='primary'>
-                            <ListItem>
+                        <SpecList>
+                            <SimpleSpecItem>
                                 <code>fontSize1</code>, <code>fontSize2</code>, <code>fontSize3</code>, <code>fontSize4</code>, <code>fontSize5</code> and <code>fontSize6</code>
                                 <p>The font size of Heading level 1 (<code>&lt;h1&gt;</code> or <code>.h1</code>) to Heading level 6 (<code>&lt;h6&gt;</code> or <code>.h6</code>) respectively.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>fontFamily</code>
                                 <p>The font appearance of Headings.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>fontWeight</code>
                                 <p>The font thickness of Headings.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>fontStyle</code> &amp; <code>textDecoration</code>
                                 <p>The font style of Headings such as <em>italic</em>, <em>underline</em>, <em>dashed</em>, etc.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>lineHeight</code>
                                 <p>The font height (including the gap between text rows) of Headings.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>foreg</code>
                                 <p>The font color of Headings.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>marginBlockStart</code> &amp; <code>marginBlockEnd</code>
                                 <p>The gap on the top &amp; bottom of Headings.</p>
                                 <p>Note: At the first Headings, the <code>marginBlockStart</code> is ignored and at the last Headings, the <code>marginBlockEnd</code> is ignored.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>marginInlineStart</code> &amp; <code>marginInlineEnd</code>
                                 <p>The gap on the left &amp; right of Headings.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>subOpacity</code>
                                 <p>The opacity of the sub Headings (any Headings in which directly next to the previous one).</p>
-                            </ListItem>
-                        </List>
+                            </SimpleSpecItem>
+                        </SpecList>
                     </article>
                 </Section>
                 <Section>
@@ -325,45 +325,45 @@ const TyposPage: NextPage = () => {
                         <p>
                             Here several properties in <code>display.default</code> of <code>{`import { display } from @nodestrap/typos`}</code> you can customize:
                         </p>
-                        <List theme='primary'>
-                            <ListItem>
+                        <SpecList>
+                            <SimpleSpecItem>
                                 <code>fontSize1</code>, <code>fontSize2</code>, <code>fontSize3</code>, <code>fontSize4</code>, <code>fontSize5</code> and <code>fontSize6</code>
                                 <p>The font size of Display level 1 (<code>.d1</code>) to Display level 6 (<code>.d6</code>) respectively.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>fontFamily</code>
                                 <p>The font appearance of Displays.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>fontWeight</code>
                                 <p>The font thickness of Displays.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>fontStyle</code> &amp; <code>textDecoration</code>
                                 <p>The font style of Displays such as <em>italic</em>, <em>underline</em>, <em>dashed</em>, etc.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>lineHeight</code>
                                 <p>The font height (including the gap between text rows) of Displays.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>foreg</code>
                                 <p>The font color of Displays.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>marginBlockStart</code> &amp; <code>marginBlockEnd</code>
                                 <p>The gap on the top &amp; bottom of Displays.</p>
                                 <p>Note: At the first Displays, the <code>marginBlockStart</code> is ignored and at the last Displays, the <code>marginBlockEnd</code> is ignored.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>marginInlineStart</code> &amp; <code>marginInlineEnd</code>
                                 <p>The gap on the left &amp; right of Displays.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>subOpacity</code>
                                 <p>The opacity of the sub Displays (any Displays in which directly next to the previous one).</p>
-                            </ListItem>
-                        </List>
+                            </SimpleSpecItem>
+                        </SpecList>
                     </article>
                 </Section>
                 <Section>
@@ -376,40 +376,40 @@ const TyposPage: NextPage = () => {
                         <p>
                             Here several properties in <code>blockquote.default</code> of <code>{`import { blockquote } from @nodestrap/typos`}</code> you can customize:
                         </p>
-                        <List theme='primary'>
-                            <ListItem>
+                        <SpecList>
+                            <SimpleSpecItem>
                                 <code>fontSize</code>
                                 <p>The font size of Blockquote.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>fontFamily</code>
                                 <p>The font appearance of Blockquote.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>fontWeight</code>
                                 <p>The font thickness of Blockquote.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>fontStyle</code> &amp; <code>textDecoration</code>
                                 <p>The font style of Blockquote such as <em>italic</em>, <em>underline</em>, <em>dashed</em>, etc.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>lineHeight</code>
                                 <p>The font height (including the gap between text rows) of Blockquote.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>foreg</code>
                                 <p>The font color of Blockquote.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>marginBlockStart</code> &amp; <code>marginBlockEnd</code>
                                 <p>The gap on the top &amp; bottom of Blockquote.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>marginInlineStart</code> &amp; <code>marginInlineEnd</code>
                                 <p>The gap on the left &amp; right of Blockquote.</p>
-                            </ListItem>
-                        </List>
+                            </SimpleSpecItem>
+                        </SpecList>
                     </article>
                 </Section>
                 <Section>
@@ -422,52 +422,52 @@ const TyposPage: NextPage = () => {
                         <p>
                             Here several properties in <code>markingMark.default</code> of <code>{`import { markingMark } from @nodestrap/typos`}</code> you can customize:
                         </p>
-                        <List theme='primary'>
-                            <ListItem>
+                        <SpecList>
+                            <SimpleSpecItem>
                                 <code>fontSize</code>
                                 <p>The font size of Mark.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>fontFamily</code>
                                 <p>The font appearance of Mark.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>fontWeight</code>
                                 <p>The font thickness of Mark.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>fontStyle</code> &amp; <code>textDecoration</code>
                                 <p>The font style of Mark such as <em>italic</em>, <em>underline</em>, <em>dashed</em>, etc.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>lineHeight</code>
                                 <p>The font height (including the gap between text rows) of Mark.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>foreg</code>
                                 <p>The font color of Mark.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>backg</code>
                                 <p>The background color or image of Mark.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>border</code>
                                 <p>The border style, width, and color of Mark.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>borderRadius</code>
                                 <p>The border radius of Mark.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>paddingInline</code>
                                 <p>The inner gap on the top &amp; bottom of Mark.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>paddingBlock</code>
                                 <p>The inner gap on the left &amp; right of Mark.</p>
-                            </ListItem>
-                        </List>
+                            </SimpleSpecItem>
+                        </SpecList>
                     </article>
                 </Section>
                 <Section>
@@ -480,52 +480,52 @@ const TyposPage: NextPage = () => {
                         <p>
                             Here several properties in <code>markingCode.default</code> of <code>{`import { markingCode } from @nodestrap/typos`}</code> you can customize:
                         </p>
-                        <List theme='primary'>
-                            <ListItem>
+                        <SpecList>
+                            <SimpleSpecItem>
                                 <code>fontSize</code>
                                 <p>The font size of Code.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>fontFamily</code>
                                 <p>The font appearance of Code.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>fontWeight</code>
                                 <p>The font thickness of Code.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>fontStyle</code> &amp; <code>textDecoration</code>
                                 <p>The font style of Code such as <em>italic</em>, <em>underline</em>, <em>dashed</em>, etc.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>lineHeight</code>
                                 <p>The font height (including the gap between text rows) of Code.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>foreg</code>
                                 <p>The font color of Code.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>backg</code>
                                 <p>The background color or image of Code.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>border</code>
                                 <p>The border style, width, and color of Code.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>borderRadius</code>
                                 <p>The border radius of Code.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>paddingInline</code>
                                 <p>The inner gap on the top &amp; bottom of Code.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>paddingBlock</code>
                                 <p>The inner gap on the left &amp; right of Code.</p>
-                            </ListItem>
-                        </List>
+                            </SimpleSpecItem>
+                        </SpecList>
                     </article>
                 </Section>
                 <Section>
@@ -538,52 +538,52 @@ const TyposPage: NextPage = () => {
                         <p>
                             Here several properties in <code>markingKbd.default</code> of <code>{`import { markingKbd } from @nodestrap/typos`}</code> you can customize:
                         </p>
-                        <List theme='primary'>
-                            <ListItem>
+                        <SpecList>
+                            <SimpleSpecItem>
                                 <code>fontSize</code>
                                 <p>The font size of Kbd.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>fontFamily</code>
                                 <p>The font appearance of Kbd.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>fontWeight</code>
                                 <p>The font thickness of Kbd.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>fontStyle</code> &amp; <code>textDecoration</code>
                                 <p>The font style of Kbd such as <em>italic</em>, <em>underline</em>, <em>dashed</em>, etc.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>lineHeight</code>
                                 <p>The font height (including the gap between text rows) of Kbd.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>foreg</code>
                                 <p>The font color of Kbd.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>backg</code>
                                 <p>The background color or image of Kbd.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>border</code>
                                 <p>The border style, width, and color of Kbd.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>borderRadius</code>
                                 <p>The border radius of Kbd.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>paddingInline</code>
                                 <p>The inner gap on the top &amp; bottom of Kbd.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>paddingBlock</code>
                                 <p>The inner gap on the left &amp; right of Kbd.</p>
-                            </ListItem>
-                        </List>
+                            </SimpleSpecItem>
+                        </SpecList>
                     </article>
                 </Section>
                 <Section>
@@ -598,28 +598,28 @@ const TyposPage: NextPage = () => {
                         <p>
                             Here the list of general marks:
                         </p>
-                        <List theme='primary'>
-                            <ListItem>
+                        <SpecList>
+                            <SimpleSpecItem>
                                 <code>&lt;del&gt;</code> &amp; <code>&lt;s&gt;</code>
                                 <p>Represents a deleted text.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>&lt;ins&gt;</code> &amp; <code>&lt;u&gt;</code>
                                 <p>Represents an inserted (altered) text.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>&lt;small&gt;</code> &amp; <code>.small</code>
                                 <p>Represents an underemphasized text.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>&lt;strong&gt;</code> &amp; <code>&lt;b&gt;</code>
                                 <p>Represents an important text.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>&lt;em&gt;</code> &amp; <code>&lt;i&gt;</code>
                                 <p>Represents an emphasized text.</p>
-                            </ListItem>
-                        </List>
+                            </SimpleSpecItem>
+                        </SpecList>
                     </article>
                 </Section>
                 <Section>
@@ -632,28 +632,28 @@ const TyposPage: NextPage = () => {
                         <p>
                             Here several properties in <code>horizontalRule.default</code> of <code>{`import { horizontalRule } from @nodestrap/typos`}</code> you can customize:
                         </p>
-                        <List theme='primary'>
-                            <ListItem>
+                        <SpecList>
+                            <SimpleSpecItem>
                                 <code>foreg</code>
                                 <p>The color of HorizontalLine.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>opacity</code>
                                 <p>The opacity of HorizontalLine.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>width</code>
                                 <p>The thickness of HorizontalLine.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>marginBlockStart</code> &amp; <code>marginBlockEnd</code>
                                 <p>The gap on the top &amp; bottom of HorizontalLine.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>marginInlineStart</code> &amp; <code>marginInlineEnd</code>
                                 <p>The gap on the left &amp; right of HorizontalLine.</p>
-                            </ListItem>
-                        </List>
+                            </SimpleSpecItem>
+                        </SpecList>
                     </article>
                 </Section>
             </Main>

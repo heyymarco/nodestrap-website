@@ -3,7 +3,7 @@ import Head from 'next/head'
 import React, {  } from 'react'
 import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
-import { List, ListItem } from '@nodestrap/list'
+import { SpecList, SimpleSpecItem } from '../../../components/SpecList'
 
 
 const LayoutsPage: NextPage = () => {
@@ -32,18 +32,18 @@ const LayoutsPage: NextPage = () => {
                         <p>
                             There&apos;re some templates you can import into your css:
                         </p>
-                        <List listStyle='content' theme='primary'>
-                            <ListItem>
+                        <SpecList>
+                            <SimpleSpecItem>
                                 <code>fillTextLineHeightLayout()</code>
                                 <p>Makes the layout&apos;s height as tall as current <strong>font size</strong>, including the current <strong>line height</strong>.</p>
                                 <p>Usually for filling the space in a pseudo element such as <code>::before</code> &amp; <code>::after</code> but can also for filling the another elements.</p>
-                            </ListItem>
-                            <ListItem>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>fillTextLineWidthLayout()</code>
                                 <p>Makes the layout&apos;s width as wide as current <strong>font size</strong>, including the current <strong>line height</strong>.</p>
                                 <p>Usually for filling the space in a pseudo element such as <code>::before</code> &amp; <code>::after</code> but can also for filling the another elements.</p>
-                            </ListItem>
-                        </List>
+                            </SimpleSpecItem>
+                        </SpecList>
                     </article>
                 </Section>
             </Main>
