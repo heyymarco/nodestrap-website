@@ -9,11 +9,12 @@
   },
   "dependencies": {
     "@nodestrap/accordion": "^4.0.3",
+    "@nodestrap/alert": "^4.0.3",
     "@nodestrap/badge": "^4.0.3",
-    "@nodestrap/basic": "^4.0.4",
+    "@nodestrap/basic": "^4.0.5",
     "@nodestrap/button-icon": "^4.0.3",
-    "@nodestrap/container": "^4.0.5",
-    "@nodestrap/element": "^4.0.2",
+    "@nodestrap/container": "^4.0.6",
+    "@nodestrap/element": "^4.0.4",
     "@nodestrap/group": "^4.0.3",
     "@nodestrap/icon": "^4.0.8",
     "@nodestrap/label": "^4.0.4",
@@ -32,7 +33,7 @@
     "@types/node": "16.11.13",
     "@types/react": "17.0.37",
     "@types/react-syntax-highlighter": "^13.5.2",
-    "eslint": "8.4.1",
+    "eslint": "8.5.0",
     "eslint-config-next": "12.0.7",
     "typescript": "4.5.4"
   }

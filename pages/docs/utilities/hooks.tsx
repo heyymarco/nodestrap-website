@@ -6,7 +6,7 @@ import { Section } from '../../../components/Section'
 import { SpecList, SimpleSpecItem, DetailSpecItem } from '../../../components/SpecList'
 
 
-const LayoutsPage: NextPage = () => {
+const HooksPage: NextPage = () => {
     return (
         <>
             <Head>
@@ -54,4 +54,4 @@ const LayoutsPage: NextPage = () => {
     )
 }
 
-export default LayoutsPage
+export default HooksPage

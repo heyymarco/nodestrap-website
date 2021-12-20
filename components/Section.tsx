@@ -22,3 +22,13 @@ export function Section(props: SectionProps) {
     );
 }
 export default Section;
+
+
+
+export function Section2(props: SectionProps) {
+    return (
+        <Section
+            {...props}
+        />
+    );
+}
