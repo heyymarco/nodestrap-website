@@ -592,10 +592,10 @@ export function CustomTextEditor(props) {
 ]
                             .sort()
                             .map((prop, index, props) => (
-                                <>
-                                    <code key={index}>{ prop }</code>
+                                <React.Fragment key={index}>
+                                    <code>{ prop }</code>
                                     { index < (props.length - 1) ? ', ' : undefined }
-                                </>
+                                </React.Fragment>
                             ))
                         }
                         </p>

@@ -64,7 +64,7 @@ const ColorsPage: NextPage = () => {
                 </Section>
                 <Section>
                     <article>
-                        <h1>Demonstration</h1>
+                        <h2>Demonstration</h2>
                         <p>
                             Move some sliders below!
                             You&apos;ll see our site&apos;s primary color is changed instantly.
@@ -102,7 +102,7 @@ const ColorsPage: NextPage = () => {
                 </Section>
                 <Section>
                     <article>
-                        <h1>Defining Theme Colors</h1>
+                        <h2>Defining Theme Colors</h2>
                         <p>
                             There are 8 pre-defined theme colors:<br />
                             {
@@ -191,7 +191,7 @@ defineTheme('primary', '#0000ff');
                 </Section>
                 <Section>
                     <article>
-                        <h1>Defining Background Color</h1>
+                        <h2>Defining Background Color</h2>
                         <p>
                             This color defines the common background color of your site.
                             Set to light color for making light theme, or dark color for dark theme (night mode).
@@ -231,7 +231,7 @@ colors.light = '#ffffff' // set \`light\` color to white
                 </Section>
                 <Section>
                     <article>
-                        <h1>Defining Foreground (Text) Color</h1>
+                        <h2>Defining Foreground (Text) Color</h2>
                         <p>
                             This color defines the common foreground (text) color of your site.
                             You <em>might not need</em> to use this function because setting the <code>defineBackg()</code> will automatically set the foreground color to <ColorPreview name='dark' value={colors.dark} /> or <ColorPreview name='light' value={colors.light} /> for you.
@@ -256,7 +256,7 @@ colors.light = '#aaaaff' // set \`light\` color to light blue
                 </Section>
                 <Section>
                     <article>
-                        <h1>Consuming (getting) the Colors</h1>
+                        <h2>Consuming (getting) the Colors</h2>
                         <p>
                             Let&apos; say you want to make a custom component and need to get some colors in <code>@nodestrap/colors</code> for color consistency.
                             You can do like this:
@@ -307,7 +307,7 @@ export default function MyComponent(props) {
                 </Section>
                 <Section>
                     <article>
-                        <h1>Where the Colors are Actually Stored?</h1>
+                        <h2>Where the Colors are Actually Stored?</h2>
                         <p>
                             Well, the colors are stored internally in <code>@nodestrap/colors</code> and dynamically copied into the browser&apos;s <code>:root</code> by default.
                             Here the actual code you can find on browser&apos;s page inspector:

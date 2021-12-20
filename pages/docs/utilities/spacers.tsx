@@ -60,7 +60,7 @@ const SpacersPage: NextPage = () => {
                 </Section>
                 <Section>
                     <article>
-                        <h1>Demonstration</h1>
+                        <h2>Demonstration</h2>
                         <p>
                             Move the slider below!
                             You&apos;ll see our site&apos;s margin/padding/gap are changed instantly.
@@ -86,7 +86,7 @@ const SpacersPage: NextPage = () => {
                 </Section>
                 <Section>
                     <article>
-                        <h1>Defining Spacers</h1>
+                        <h2>Defining Spacers</h2>
                         <p>
                             There are 8 pre-defined spacer properties:<br />
                             {
@@ -122,7 +122,7 @@ spacers.xxl = null; // delete property \`xxl\`
                 </Section>
                 <Section>
                     <article>
-                        <h1>Consuming (getting) the Spacers</h1>
+                        <h2>Consuming (getting) the Spacers</h2>
                         <p>
                             Let&apos; say you want to make a custom component and need to get some spacers in <code>@nodestrap/spacers</code> for spacing consistency.
                             You can do like this:
@@ -169,7 +169,7 @@ export default function MyComponent(props) {
                 </Section>
                 <Section>
                     <article>
-                        <h1>Where the Spacers are Actually Stored?</h1>
+                        <h2>Where the Spacers are Actually Stored?</h2>
                         <p>
                             Well, the spacers are stored internally in <code>@nodestrap/spacers</code> and dynamically copied into the browser&apos;s <code>:root</code> by default.
                             Here the actual code you can find on browser&apos;s page inspector:

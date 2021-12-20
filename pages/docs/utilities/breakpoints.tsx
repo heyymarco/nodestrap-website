@@ -33,7 +33,7 @@ const BreakpointsPage: NextPage = () => {
                 </Section>
                 <Section>
                     <article>
-                        <h1>Defining Breakpoints</h1>
+                        <h2>Defining Breakpoints</h2>
                         <p>
                             There are 6 pre-defined breakpoint properties:<br />
                             {
@@ -68,7 +68,7 @@ breakpoints.xxxl = null; // delete property \`xxxl\`
                 </Section>
                 <Section>
                     <article>
-                        <h1>Consuming (getting) the Breakpoints</h1>
+                        <h2>Consuming (getting) the Breakpoints</h2>
                         <p>
                             Let&apos; say you want to make a custom component and need to switch some styles based on the configured breakpoints in <code>@nodestrap/breakpoints</code>.
                             You can do like this:
@@ -158,7 +158,7 @@ export default function MyComponent(props) {
                 </Section>
                 <Section>
                     <article>
-                        <h1>Where the Breakpoints are Actually Stored?</h1>
+                        <h2>Where the Breakpoints are Actually Stored?</h2>
                         <p>
                             Well, the breakpoints are stored internally in <code>@nodestrap/breakpoints</code> only.
                             Unlike other utilities that use the power of <em>css variables</em>, <code>@nodestrap/breakpoints</code> is currently relies on JavaScript object for storage.

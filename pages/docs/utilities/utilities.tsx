@@ -28,7 +28,7 @@ const UtilitiesPage: NextPage = () => {
                 </Section>
                 <Section>
                     <article>
-                        <h1>Using the Utilities</h1>
+                        <h2>Using the Utilities</h2>
                         <p>
                             There&apos;re some functions you can import into your components:
                         </p>

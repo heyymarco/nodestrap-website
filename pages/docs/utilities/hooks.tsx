@@ -28,7 +28,7 @@ const HooksPage: NextPage = () => {
                 </Section>
                 <Section>
                     <article>
-                        <h1>Using the Hooks</h1>
+                        <h2>Using the Hooks</h2>
                         <p>
                             There&apos;re some hooks you can import into your components:
                         </p>

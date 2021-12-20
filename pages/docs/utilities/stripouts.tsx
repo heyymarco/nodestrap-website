@@ -33,7 +33,7 @@ const StripoutsPage: NextPage = () => {
                 </Section>
                 <Section>
                     <article>
-                        <h1>List of Strippable Elements</h1>
+                        <h2>List of Strippable Elements</h2>
                         <SpecList>
                             <DetailSpecItem code='stripoutLink()' excerpt='Removes browser&apos;s default style on link (anchor)'>
                                 <p>example:</p>

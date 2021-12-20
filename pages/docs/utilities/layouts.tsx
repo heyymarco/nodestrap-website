@@ -28,7 +28,7 @@ const LayoutsPage: NextPage = () => {
                 </Section>
                 <Section>
                     <article>
-                        <h1>Using the Layout Templates</h1>
+                        <h2>Using the Layout Templates</h2>
                         <p>
                             There&apos;re some templates you can import into your css:
                         </p>

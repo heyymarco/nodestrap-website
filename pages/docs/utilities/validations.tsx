@@ -28,7 +28,7 @@ const ValidationsPage: NextPage = () => {
                 </Section>
                 <Section>
                     <article>
-                        <h1>Using the Validations</h1>
+                        <h2>Using the Validations</h2>
                         <p>
                             There&apos;re some functions you can import into your components:
                         </p>

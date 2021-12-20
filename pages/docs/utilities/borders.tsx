@@ -74,7 +74,7 @@ const BordersPage: NextPage = () => {
                 </Section>
                 <Section>
                     <article>
-                        <h1>Demonstration</h1>
+                        <h2>Demonstration</h2>
                         <p>
                             Move some sliders/controls below!
                             You&apos;ll see our site&apos;s border is changed instantly.
@@ -119,7 +119,7 @@ const BordersPage: NextPage = () => {
                 </Section>
                 <Section>
                     <article>
-                        <h1>Defining Borders</h1>
+                        <h2>Defining Borders</h2>
                         <p>
                             There are 8 pre-defined border properties:<br />
                             {
@@ -172,7 +172,7 @@ borderRadiuses.xxl = null; // delete property \`xxl\`
                 </Section>
                 <Section>
                     <article>
-                        <h1>Consuming (getting) the Borders</h1>
+                        <h2>Consuming (getting) the Borders</h2>
                         <p>
                             Let&apos; say you want to make a custom component and need to get some borders in <code>@nodestrap/borders</code> for border consistency.
                             You can do like this:
@@ -229,7 +229,7 @@ export default function MyComponent(props) {
                 </Section>
                 <Section>
                     <article>
-                        <h1>Where the Borders are Actually Stored?</h1>
+                        <h2>Where the Borders are Actually Stored?</h2>
                         <p>
                             Well, the borders are stored internally in <code>@nodestrap/borders</code> and dynamically copied into the browser&apos;s <code>:root</code> by default.
                             Here the actual code you can find on browser&apos;s page inspector:

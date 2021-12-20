@@ -31,7 +31,7 @@ const TyposPage: NextPage = () => {
                 </Section>
                 <Section>
                     <article>
-                        <h1>Configuring General (Primary) Typography</h1>
+                        <h2>Configuring General (Primary) Typography</h2>
                         <p>
                             <strong>General Typography</strong> represents a common typography in your site&apos;s page.
                             Some elements/components might override the general typography.
@@ -123,7 +123,7 @@ const TyposPage: NextPage = () => {
                 </Section>
                 <Section>
                     <article>
-                        <h1>Configuring Secondary Typography</h1>
+                        <h2>Configuring Secondary Typography</h2>
                         <p>
                             <strong>Secondary Typography</strong> represents a secondary (muted) text.
                             A <code>&lt;small&gt;</code> element or any elements/components with <code>txt-sec</code> class are affected by <em>secondary typography</em>.
@@ -165,7 +165,7 @@ const TyposPage: NextPage = () => {
                 </Section>
                 <Section>
                     <article>
-                        <h1>Configuring Paragraph</h1>
+                        <h2>Configuring Paragraph</h2>
                         <p>
                             <strong>Paragraph</strong> represents a group of sentences in <code>&lt;p&gt;</code> tag.
                         </p>
@@ -211,7 +211,7 @@ const TyposPage: NextPage = () => {
                 </Section>
                 <Section>
                     <article>
-                        <h1>Configuring Lead</h1>
+                        <h2>Configuring Lead</h2>
                         <p>
                             <strong>Lead</strong> represents a special paragraph with more prominently.
                             Any elements/components/paragraph with <code>lead</code> class are affected by <em>Lead</em>.
@@ -258,7 +258,7 @@ const TyposPage: NextPage = () => {
                 </Section>
                 <Section>
                     <article>
-                        <h1>Configuring Headings</h1>
+                        <h2>Configuring Headings</h2>
                         <p>
                             <strong>Headings</strong> represents a title of content.<br />
                             Elements with tag:<br />
@@ -314,7 +314,7 @@ const TyposPage: NextPage = () => {
                 </Section>
                 <Section>
                     <article>
-                        <h1>Configuring Displays</h1>
+                        <h2>Configuring Displays</h2>
                         <p>
                             <strong>Displays</strong> represents a special heading with more prominently.
                             Usually used for the title in banner or hero section.
@@ -368,7 +368,7 @@ const TyposPage: NextPage = () => {
                 </Section>
                 <Section>
                     <article>
-                        <h1>Configuring Blockquote</h1>
+                        <h2>Configuring Blockquote</h2>
                         <p>
                             <strong>Blockquote</strong> represents a quoted content from another source within your document.
                             A <code>&lt;blockquote&gt;</code> element or any elements/components with <code>blockquote</code> class are affected by <em>Blockquote</em>.
@@ -414,7 +414,7 @@ const TyposPage: NextPage = () => {
                 </Section>
                 <Section>
                     <article>
-                        <h1>Configuring Mark</h1>
+                        <h2>Configuring Mark</h2>
                         <p>
                             <strong>Mark</strong> represents a highlighted text.
                             A <code>&lt;mark&gt;</code> element or any elements/components with <code>mark</code> class are affected by <em>Mark</em>.
@@ -472,7 +472,7 @@ const TyposPage: NextPage = () => {
                 </Section>
                 <Section>
                     <article>
-                        <h1>Configuring Code</h1>
+                        <h2>Configuring Code</h2>
                         <p>
                             <strong>Code</strong> represents a piece of programming code.
                             A <code>&lt;code&gt;</code> element or any elements/components with <code>code</code> class are affected by <em>Code</em>.
@@ -530,7 +530,7 @@ const TyposPage: NextPage = () => {
                 </Section>
                 <Section>
                     <article>
-                        <h1>Configuring Kbd</h1>
+                        <h2>Configuring Kbd</h2>
                         <p>
                             <strong>Kbd</strong> represents a single button of a computer keyboard.
                             A <code>&lt;kbd&gt;</code> element or any elements/components with <code>kbd</code> class are affected by <em>Kbd</em>.
@@ -588,7 +588,7 @@ const TyposPage: NextPage = () => {
                 </Section>
                 <Section>
                     <article>
-                        <h1>Configuring General Marks</h1>
+                        <h2>Configuring General Marks</h2>
                         <p>
                             There are several marks for expressing emphasis, important, deleted, etc.
                         </p>
@@ -624,7 +624,7 @@ const TyposPage: NextPage = () => {
                 </Section>
                 <Section>
                     <article>
-                        <h1>Configuring Horizontal Line</h1>
+                        <h2>Configuring Horizontal Line</h2>
                         <p>
                             <strong>HorizontalLine</strong> represents a separator between unrelated contents.
                             A <code>&lt;hr&gt;</code> element is affected by <em>HorizontalLine</em>.
