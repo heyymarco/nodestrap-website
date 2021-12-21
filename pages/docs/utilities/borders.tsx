@@ -6,12 +6,9 @@ import { parseNumber } from '@nodestrap/utilities'
 import React, { useState, useEffect, useRef } from 'react'
 import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
-import styles from '../../../styles/Panel.module.scss'
-import { Content } from '@nodestrap/content'
-import { Range } from '@nodestrap/range'
-import { Group } from '@nodestrap/group'
-import { Radio } from '@nodestrap/radio'
-import { ButtonIcon as Button } from '@nodestrap/button-icon'
+import { DemoPanel, Option, Slider, ResetButton } from '../../../components/DemoPanel'
+import { Basic } from '@nodestrap/basic'
+
 
 
 const BordersPage: NextPage = () => {
@@ -28,7 +25,7 @@ const BordersPage: NextPage = () => {
         const handler = setTimeout(() => {
             new Promise<void>((resolve) => {
                 borders.defaultWidth = `${borderWidth}px` as any;
-                borders.default      = [[styles.style, borders.defaultWidth, styles.color]] as any;
+                borders.default      = [[borders.style, borders.defaultWidth, borders.color]] as any;
                 borders.style        = borderStyle as any;
                 resolve();
             });
@@ -79,26 +76,40 @@ const BordersPage: NextPage = () => {
                             Move some sliders/controls below!
                             You&apos;ll see our site&apos;s border is changed instantly.
                         </p>
-                        <Content classes={[styles.panel]} theme='secondary'>
-                            <span>Border width</span>
-                            <Range enableValidation={false} min={0} max={8} step={1} value={borderWidth} onChange={({currentTarget}) => setBorderWidth(currentTarget.valueAsNumber)} />
+                        <DemoPanel>
+                            <span>Preview</span>
+                            <Basic
+                                theme='primary'
+                            >
+                                hello world
+                            </Basic>
+
+                            <Slider
+                                name='Border width'
+                                min={0}
+                                max={8}
+                                step={1}
+                                value={borderWidth}
+                                setValue={setBorderWidth}
+                            />
                             
-                            <span>Border radius</span>
-                            <Range enableValidation={false} min={0} max={2} step={0.05} value={borderRadius} onChange={({currentTarget}) => setBorderRadius(currentTarget.valueAsNumber)} />
+                            <Slider
+                                name='Border radius'
+                                min={0}
+                                max={2}
+                                step={0.05}
+                                value={borderRadius}
+                                setValue={setBorderRadius}
+                            />
 
-                            <span>Border style</span>
-                            <Group>
-                                {
-                                    ['none', 'solid', 'dashed', 'dotted']
-                                    .map((style) =>
-                                        <Radio key={style} theme='primary' mild={true} enableValidation={false} nude={false} name='borderStyle' value='style' active={borderStyle === style} onActiveChange={(active) => { if (active) setBorderStyle(style) }}>{ style }</Radio>
-                                    )
-                                }
-                            </Group>
+                            <Option
+                                name='Border style'
+                                options={['none', 'solid', 'dashed', 'dotted']}
+                                value={borderStyle}
+                                setValue={setBorderStyle}
+                            />
 
-                            <span>Reset</span>
-                            <Button
-                                theme='success'
+                            <ResetButton
                                 enabled={
                                     (Math.abs(borderWidth - initialBorder.current.width) >= 1)
                                     ||
@@ -111,10 +122,8 @@ const BordersPage: NextPage = () => {
                                     setBorderRadius(initialBorder.current.radius);
                                     setBorderStyle(initialBorder.current.style);
                                 }}
-                            >
-                                Reset to Default
-                            </Button>
-                        </Content>
+                            />
+                        </DemoPanel>
                     </article>
                 </Section>
                 <Section>

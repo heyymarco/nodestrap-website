@@ -6,11 +6,10 @@ import { colors, cssVals as colorVals, defineTheme } from '@nodestrap/colors'
 import React, { useState, useEffect, useRef } from 'react'
 import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
-import styles from '../../../styles/Panel.module.scss'
-import { Content } from '@nodestrap/content'
-import { Range } from '@nodestrap/range'
+import { DemoPanel, Slider, ResetButton } from '../../../components/DemoPanel'
 import Color from 'color'
-import { ButtonIcon as Button } from '@nodestrap/button-icon'
+import { Basic } from '@nodestrap/basic'
+
 
 
 const ColorsPage: NextPage = () => {
@@ -69,19 +68,42 @@ const ColorsPage: NextPage = () => {
                             Move some sliders below!
                             You&apos;ll see our site&apos;s primary color is changed instantly.
                         </p>
-                        <Content classes={[styles.panel]} theme='secondary'>
-                            <span>Hue</span>
-                            <Range enableValidation={false} min={0} max={360} step={1} value={colorHue} onChange={({currentTarget}) => setColorHue(currentTarget.valueAsNumber)} />
+                        <DemoPanel>
+                            <span>Preview</span>
+                            <Basic
+                                theme='primary'
+                            >
+                                hello world
+                            </Basic>
 
-                            <span>Saturation</span>
-                            <Range enableValidation={false} min={0} max={100} step={1} value={colorSat} onChange={({currentTarget}) => setColorSat(currentTarget.valueAsNumber)} />
+                            <Slider
+                                name='Hue'
+                                min={0}
+                                max={360}
+                                step={1}
+                                value={colorHue}
+                                setValue={setColorHue}
+                            />
 
-                            <span>Lightness</span>
-                            <Range enableValidation={false} min={0} max={100} step={1} value={colorLgt} onChange={({currentTarget}) => setColorLgt(currentTarget.valueAsNumber)} />
+                            <Slider
+                                name='Saturation'
+                                min={0}
+                                max={100}
+                                step={1}
+                                value={colorSat}
+                                setValue={setColorSat}
+                            />
 
-                            <span>Reset</span>
-                            <Button
-                                theme='success'
+                            <Slider
+                                name='Lightness'
+                                min={0}
+                                max={100}
+                                step={1}
+                                value={colorLgt}
+                                setValue={setColorLgt}
+                            />
+
+                            <ResetButton
                                 enabled={
                                     (Math.abs(colorHue - initialColor.current.hue) >= 1)
                                     ||
@@ -94,10 +116,8 @@ const ColorsPage: NextPage = () => {
                                     setColorSat(initialColor.current.sat);
                                     setColorLgt(initialColor.current.lgt);
                                 }}
-                            >
-                                Reset to Default
-                            </Button>
-                        </Content>
+                            />
+                        </DemoPanel>
                     </article>
                 </Section>
                 <Section>

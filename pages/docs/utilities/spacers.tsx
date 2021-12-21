@@ -6,10 +6,8 @@ import { parseNumber } from '@nodestrap/utilities'
 import React, { useState, useEffect, useRef } from 'react'
 import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
-import styles from '../../../styles/Panel.module.scss'
-import { Content } from '@nodestrap/content'
-import { Range } from '@nodestrap/range'
-import { ButtonIcon as Button } from '@nodestrap/button-icon'
+import { DemoPanel, Slider, ResetButton } from '../../../components/DemoPanel'
+import { Basic } from '@nodestrap/basic'
 
 
 const SpacersPage: NextPage = () => {
@@ -65,23 +63,36 @@ const SpacersPage: NextPage = () => {
                             Move the slider below!
                             You&apos;ll see our site&apos;s margin/padding/gap are changed instantly.
                         </p>
-                        <Content classes={[styles.panel]} theme='secondary'>
-                            <span>Spacer width</span>
-                            <Range enableValidation={false} min={0} max={10} step={0.5} value={spacer} onChange={({currentTarget}) => setSpacer(currentTarget.valueAsNumber)} />
+                        <DemoPanel>
+                            <span>Preview</span>
+                            <Basic
+                                theme='secondary'
+                            >
+                                <Basic
+                                    theme='primary'
+                                >
+                                    hello world
+                                </Basic>
+                            </Basic>
 
-                            <span>Reset</span>
-                            <Button
-                                theme='success'
+                            <Slider
+                                name='Spacer width'
+                                min={0}
+                                max={10}
+                                step={0.5}
+                                value={spacer}
+                                setValue={setSpacer}
+                            />
+
+                            <ResetButton
                                 enabled={
                                     (Math.abs(spacer - initialSpacer.current) >= 0.5)
                                 }
                                 onClick={() => {
                                     setSpacer(initialSpacer.current);
                                 }}
-                            >
-                                Reset to Default
-                            </Button>
-                        </Content>
+                            />
+                        </DemoPanel>
                     </article>
                 </Section>
                 <Section>
