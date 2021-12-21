@@ -43,7 +43,7 @@ export function Option(props: OptionProps) {
     
     
     return (<>
-        <label>{ name }</label>
+        <span>{ name }</span>
         <Group>
             {
                 options
@@ -84,7 +84,7 @@ export function ThemeOption(props: ThemeOptionProps) {
     
     
     return (<>
-        <label>{ name ?? 'theme' }</label>
+        <span>{ name ?? 'theme' }</span>
         <Group>
             {
                 [...(addUnset ? [undefined] : []), 'primary', 'secondary', 'success', 'info', 'warning', 'danger', 'light', 'dark']
@@ -132,7 +132,7 @@ export function Slider(props: SliderProps) {
     
     
     return (<>
-        <label>{ name }</label>
+        <span>{ name }</span>
         <Range
             enableValidation={false}
             

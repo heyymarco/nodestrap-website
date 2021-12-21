@@ -9,49 +9,45 @@ import { Element } from '@nodestrap/element'
 import { Tips, Warning } from '../../../components/Info'
 
 
-function TipsForRoleTag() {
-    return (
-        <Tips>
-            <p>
-                If you <strong>create a component</strong> to be <strong>consumed to another</strong> programmer,
-                we advice to let the <code>role</code> and <code>tag</code> <strong>unset</strong> and then letting he/she to overwrite the <code>role</code> and/or <code>tag</code> he/she want.<br />
-                You just set the <strong>appropriate</strong> <code>semanticRole</code> and <code>semanticTag</code> describing your <strong>component functionality</strong>.
-            </p>
-            <p>
-                To <strong>unset</strong> the <code>role</code> and/or <code>tag</code>:<br />
-                If <strong>already unset</strong>, just not to write <code>role=...</code> and/or <code>tag=...</code>.<br />
-                If <strong>already set</strong>, reset with <code>role=&apos;&apos;</code> or <code>role=&quot;&quot;</code> and/or <code>tag=&apos;&apos;</code> or <code>tag=&quot;&quot;</code>.
-            </p>
-        </Tips>
-    );
-}
-function TipsForSemanticRoleTag() {
-    return (
-        <Tips>
-            <p>
-                We advice you to <em>firstly</em> define the <code>semanticRole</code> which describes your <strong>component functionality</strong> and
-                then define the <code>semanticTag</code> for <strong>all possible semantic tags</strong> having intrinsically <code>semanticRole</code> or
-                set <code>{`semanticTag={[null]}`}</code> if <strong>there is no appropriate semantic tag</strong> for your component.
-            </p>
-            <p>
-                Then, <strong>if there is no appropriate semantic tag</strong>, set the <code>tag</code> to your <strong>desired tag</strong> to render.
-                The default is to render <code>div</code> if the <code>tag</code> and <code>semanticTag</code> are not set.
-            </p>
-        </Tips>
-    );
-}
-function WarnForSemanticTag() {
-    return (
-        <Warning>
-            <p>
-                The <code>semanticTag</code> has <strong>no effect</strong> if you don&apos;t define the <code>semanticRole</code>.
-            </p>
-            <p>
-                <code>semanticTag</code> is an <strong>additional</strong> property for the <code>semanticRole</code>.
-            </p>
-        </Warning>
-    );
-}
+const TipsForRoleTag = () => (
+    <Tips>
+        <p>
+            If you <strong>create a component</strong> to be <strong>consumed to another</strong> programmer,
+            we advice to let the <code>role</code> and <code>tag</code> <strong>unset</strong> and then letting he/she to overwrite the <code>role</code> and/or <code>tag</code> he/she want.<br />
+            You just set the <strong>appropriate</strong> <code>semanticRole</code> and <code>semanticTag</code> describing your <strong>component functionality</strong>.
+        </p>
+        <p>
+            To <strong>unset</strong> the <code>role</code> and/or <code>tag</code>:<br />
+            If <strong>already unset</strong>, just not to write <code>role=...</code> and/or <code>tag=...</code>.<br />
+            If <strong>already set</strong>, reset with <code>role=&apos;&apos;</code> or <code>role=&quot;&quot;</code> and/or <code>tag=&apos;&apos;</code> or <code>tag=&quot;&quot;</code>.
+        </p>
+    </Tips>
+);
+const TipsForSemanticRoleTag = () => (
+    <Tips>
+        <p>
+            We advice you to <em>firstly</em> define the <code>semanticRole</code> which describes your <strong>component functionality</strong> and
+            then define the <code>semanticTag</code> for <strong>all possible semantic tags</strong> having intrinsically <code>semanticRole</code> or
+            set <code>{`semanticTag={[null]}`}</code> if <strong>there is no appropriate semantic tag</strong> for your component.
+        </p>
+        <p>
+            Then, <strong>if there is no appropriate semantic tag</strong>, set the <code>tag</code> to your <strong>desired tag</strong> to render.
+            The default is to render <code>div</code> if the <code>tag</code> and <code>semanticTag</code> are not set.
+        </p>
+    </Tips>
+);
+const WarnForSemanticTag = () => (
+    <Warning>
+        <p>
+            The <code>semanticTag</code> has <strong>no effect</strong> if you don&apos;t define the <code>semanticRole</code>.
+        </p>
+        <p>
+            <code>semanticTag</code> is an <strong>additional</strong> property for the <code>semanticRole</code>.
+        </p>
+    </Warning>
+);
+
+const ElementCode = () => <code>&lt;Element&gt;</code>;
 
 const ElementPage: NextPage = () => {
     return (
@@ -66,7 +62,7 @@ const ElementPage: NextPage = () => {
                     <article>
                         <h1>Element Component</h1>
                         <p>
-                            <code>&lt;Element&gt;</code> is the most basic component in Nodestrap components.
+                            <ElementCode /> is the most basic component in Nodestrap components.
                             It provides the semantic functionality and some basic essentials.
                         </p>
                     </article>
@@ -80,7 +76,7 @@ const ElementPage: NextPage = () => {
                         <Section2>
                             <h3><code>role</code> Property</h3>
                             <p>
-                                A <code>role</code> property controls the <strong>role property</strong> of rendered <code>&lt;Element&gt;</code>.
+                                A <code>role</code> property controls the <strong>role property</strong> of rendered <ElementCode />.
                             </p>
                             <p>
                                 If the <code>role</code> value is not defined (or <code>undefined</code>), then fallbacks using a value in <code>semanticRole</code> (we&apos;ll choose the best one) and
@@ -106,7 +102,7 @@ const ElementPage: NextPage = () => {
                         <Section2>
                             <h3><code>tag</code> Property</h3>
                             <p>
-                                A <code>tag</code> property controls the <strong>tag name</strong> of rendered <code>&lt;Element&gt;</code>.
+                                A <code>tag</code> property controls the <strong>tag name</strong> of rendered <ElementCode />.
                             </p>
                             <p>
                                 If the <code>tag</code> value is not defined (or <code>undefined</code>), then fallbacks using a value in <code>semanticTag</code> (we&apos;ll choose the best one) and
@@ -408,7 +404,7 @@ export function CustomTextEditor(props) {
                         <h2><code>aria-**</code> Properties</h2>
                         <p>
                             Any properties starting with <code>aria-**</code> will be <strong>rendered directly</strong>.
-                            Fell free to place any <code>aria-**</code> to the <code>&lt;Element&gt;</code>.
+                            Fell free to place any <code>aria-**</code> to the <ElementCode />.
                         </p>
                         <p>
                             Example:
@@ -433,7 +429,7 @@ export function CustomTextEditor(props) {
                         <h2><code>on**</code> Properties</h2>
                         <p>
                             Any properties starting with <code>on**</code> will be treated as <strong>an usual React event</strong>.
-                            Fell free to put any <code>on**</code> to the <code>&lt;Element&gt;</code>.
+                            Fell free to put any <code>on**</code> to the <ElementCode />.
                         </p>
                         <p>
                             Example:
@@ -450,7 +446,7 @@ export function CustomTextEditor(props) {
                         <h2>DOM Properties</h2>
                         <p>
                             Any <strong>DOM</strong> properties will be <strong>rendered directly</strong>.
-                            Fell free to place any <code>DOM properties</code> to the <code>&lt;Element&gt;</code>.
+                            Fell free to place any <code>DOM properties</code> to the <ElementCode />.
                         </p>
                         <p>
                             Here the list of recognized <strong>DOM properties</strong>:<br />

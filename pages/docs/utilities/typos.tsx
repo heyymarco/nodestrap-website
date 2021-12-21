@@ -42,7 +42,7 @@ const TyposPage: NextPage = () => {
                         <SpecList>
                             <SimpleSpecItem>
                                 <code>fontSize</code>
-                                <p>The default font size in your site.</p>
+                                <p>The default text size in your site.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 {
@@ -52,11 +52,11 @@ const TyposPage: NextPage = () => {
                                         (index < (fontSizes.length - 1)) ? ', ' : undefined
                                     ])
                                 }
-                                <p>The specific font size in your site.</p>
+                                <p>The specific text size in your site.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>fontFamily</code>
-                                <p>The default font appearance in your site.</p>
+                                <p>The default text appearance in your site.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 {
@@ -66,11 +66,11 @@ const TyposPage: NextPage = () => {
                                         (index < (fontSizes.length - 1)) ? ', ' : undefined
                                     ])
                                 }
-                                <p>The specific font appearance used in special cases.</p>
+                                <p>The specific text appearance used in special cases.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>fontWeight</code>
-                                <p>The default font thickness in your site.</p>
+                                <p>The default text thickness in your site.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 {
@@ -80,15 +80,15 @@ const TyposPage: NextPage = () => {
                                         (index < (fontSizes.length - 1)) ? ', ' : undefined
                                     ])
                                 }
-                                <p>The specific font thickness in your site.</p>
+                                <p>The specific text thickness in your site.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>fontStyle</code> &amp; <code>textDecoration</code>
-                                <p>The default font style in your site such as <em>italic</em>, <em>underline</em>, <em>dashed</em>, etc.</p>
+                                <p>The default text style in your site such as <em>italic</em>, <em>underline</em>, <em>dashed</em>, etc.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>lineHeight</code>
-                                <p>The default font height (including the gap between text rows) in your site.</p>
+                                <p>The default text height (including the gap between text rows) in your site.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 {
@@ -98,7 +98,7 @@ const TyposPage: NextPage = () => {
                                         (index < (fontSizes.length - 1)) ? ', ' : undefined
                                     ])
                                 }
-                                <p>The specific font height in your site.</p>
+                                <p>The specific text height in your site.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>foreg</code>
@@ -134,27 +134,27 @@ const TyposPage: NextPage = () => {
                         <SpecList>
                             <SimpleSpecItem>
                                 <code>fontSize</code>
-                                <p>The font size of secondary text.</p>
+                                <p>The text size of secondary text.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>fontFamily</code>
-                                <p>The font appearance of secondary text.</p>
+                                <p>The text appearance of secondary text.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>fontWeight</code>
-                                <p>The font thickness of secondary text.</p>
+                                <p>The text thickness of secondary text.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>fontStyle</code> &amp; <code>textDecoration</code>
-                                <p>The font style of secondary text such as <em>italic</em>, <em>underline</em>, <em>dashed</em>, etc.</p>
+                                <p>The text style of secondary text such as <em>italic</em>, <em>underline</em>, <em>dashed</em>, etc.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>lineHeight</code>
-                                <p>The font height (including the gap between text rows) of secondary text.</p>
+                                <p>The text height (including the gap between text rows) of secondary text.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>foreg</code>
-                                <p>The font color of secondary text.</p>
+                                <p>The text color of secondary text.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>opacity</code>
@@ -175,27 +175,27 @@ const TyposPage: NextPage = () => {
                         <SpecList>
                             <SimpleSpecItem>
                                 <code>fontSize</code>
-                                <p>The font size of paragraph.</p>
+                                <p>The text size of paragraph.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>fontFamily</code>
-                                <p>The font appearance of paragraph.</p>
+                                <p>The text appearance of paragraph.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>fontWeight</code>
-                                <p>The font thickness of paragraph.</p>
+                                <p>The text thickness of paragraph.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>fontStyle</code> &amp; <code>textDecoration</code>
-                                <p>The font style of paragraph such as <em>italic</em>, <em>underline</em>, <em>dashed</em>, etc.</p>
+                                <p>The text style of paragraph such as <em>italic</em>, <em>underline</em>, <em>dashed</em>, etc.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>lineHeight</code>
-                                <p>The font height (including the gap between text rows) of paragraph.</p>
+                                <p>The text height (including the gap between text rows) of paragraph.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>foreg</code>
-                                <p>The font color of paragraph.</p>
+                                <p>The text color of paragraph.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>marginBlockStart</code> &amp; <code>marginBlockEnd</code>
@@ -222,27 +222,27 @@ const TyposPage: NextPage = () => {
                         <SpecList>
                             <SimpleSpecItem>
                                 <code>fontSize</code>
-                                <p>The font size of Lead.</p>
+                                <p>The text size of Lead.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>fontFamily</code>
-                                <p>The font appearance of Lead.</p>
+                                <p>The text appearance of Lead.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>fontWeight</code>
-                                <p>The font thickness of Lead.</p>
+                                <p>The text thickness of Lead.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>fontStyle</code> &amp; <code>textDecoration</code>
-                                <p>The font style of Lead such as <em>italic</em>, <em>underline</em>, <em>dashed</em>, etc.</p>
+                                <p>The text style of Lead such as <em>italic</em>, <em>underline</em>, <em>dashed</em>, etc.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>lineHeight</code>
-                                <p>The font height (including the gap between text rows) of Lead.</p>
+                                <p>The text height (including the gap between text rows) of Lead.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>foreg</code>
-                                <p>The font color of Lead.</p>
+                                <p>The text color of Lead.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>marginBlockStart</code> &amp; <code>marginBlockEnd</code>
@@ -274,27 +274,27 @@ const TyposPage: NextPage = () => {
                         <SpecList>
                             <SimpleSpecItem>
                                 <code>fontSize1</code>, <code>fontSize2</code>, <code>fontSize3</code>, <code>fontSize4</code>, <code>fontSize5</code> and <code>fontSize6</code>
-                                <p>The font size of Heading level 1 (<code>&lt;h1&gt;</code> or <code>.h1</code>) to Heading level 6 (<code>&lt;h6&gt;</code> or <code>.h6</code>) respectively.</p>
+                                <p>The text size of Heading level 1 (<code>&lt;h1&gt;</code> or <code>.h1</code>) to Heading level 6 (<code>&lt;h6&gt;</code> or <code>.h6</code>) respectively.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>fontFamily</code>
-                                <p>The font appearance of Headings.</p>
+                                <p>The text appearance of Headings.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>fontWeight</code>
-                                <p>The font thickness of Headings.</p>
+                                <p>The text thickness of Headings.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>fontStyle</code> &amp; <code>textDecoration</code>
-                                <p>The font style of Headings such as <em>italic</em>, <em>underline</em>, <em>dashed</em>, etc.</p>
+                                <p>The text style of Headings such as <em>italic</em>, <em>underline</em>, <em>dashed</em>, etc.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>lineHeight</code>
-                                <p>The font height (including the gap between text rows) of Headings.</p>
+                                <p>The text height (including the gap between text rows) of Headings.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>foreg</code>
-                                <p>The font color of Headings.</p>
+                                <p>The text color of Headings.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>marginBlockStart</code> &amp; <code>marginBlockEnd</code>
@@ -328,27 +328,27 @@ const TyposPage: NextPage = () => {
                         <SpecList>
                             <SimpleSpecItem>
                                 <code>fontSize1</code>, <code>fontSize2</code>, <code>fontSize3</code>, <code>fontSize4</code>, <code>fontSize5</code> and <code>fontSize6</code>
-                                <p>The font size of Display level 1 (<code>.d1</code>) to Display level 6 (<code>.d6</code>) respectively.</p>
+                                <p>The text size of Display level 1 (<code>.d1</code>) to Display level 6 (<code>.d6</code>) respectively.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>fontFamily</code>
-                                <p>The font appearance of Displays.</p>
+                                <p>The text appearance of Displays.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>fontWeight</code>
-                                <p>The font thickness of Displays.</p>
+                                <p>The text thickness of Displays.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>fontStyle</code> &amp; <code>textDecoration</code>
-                                <p>The font style of Displays such as <em>italic</em>, <em>underline</em>, <em>dashed</em>, etc.</p>
+                                <p>The text style of Displays such as <em>italic</em>, <em>underline</em>, <em>dashed</em>, etc.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>lineHeight</code>
-                                <p>The font height (including the gap between text rows) of Displays.</p>
+                                <p>The text height (including the gap between text rows) of Displays.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>foreg</code>
-                                <p>The font color of Displays.</p>
+                                <p>The text color of Displays.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>marginBlockStart</code> &amp; <code>marginBlockEnd</code>
@@ -379,27 +379,27 @@ const TyposPage: NextPage = () => {
                         <SpecList>
                             <SimpleSpecItem>
                                 <code>fontSize</code>
-                                <p>The font size of Blockquote.</p>
+                                <p>The text size of Blockquote.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>fontFamily</code>
-                                <p>The font appearance of Blockquote.</p>
+                                <p>The text appearance of Blockquote.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>fontWeight</code>
-                                <p>The font thickness of Blockquote.</p>
+                                <p>The text thickness of Blockquote.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>fontStyle</code> &amp; <code>textDecoration</code>
-                                <p>The font style of Blockquote such as <em>italic</em>, <em>underline</em>, <em>dashed</em>, etc.</p>
+                                <p>The text style of Blockquote such as <em>italic</em>, <em>underline</em>, <em>dashed</em>, etc.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>lineHeight</code>
-                                <p>The font height (including the gap between text rows) of Blockquote.</p>
+                                <p>The text height (including the gap between text rows) of Blockquote.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>foreg</code>
-                                <p>The font color of Blockquote.</p>
+                                <p>The text color of Blockquote.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>marginBlockStart</code> &amp; <code>marginBlockEnd</code>
@@ -425,27 +425,27 @@ const TyposPage: NextPage = () => {
                         <SpecList>
                             <SimpleSpecItem>
                                 <code>fontSize</code>
-                                <p>The font size of Mark.</p>
+                                <p>The text size of Mark.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>fontFamily</code>
-                                <p>The font appearance of Mark.</p>
+                                <p>The text appearance of Mark.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>fontWeight</code>
-                                <p>The font thickness of Mark.</p>
+                                <p>The text thickness of Mark.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>fontStyle</code> &amp; <code>textDecoration</code>
-                                <p>The font style of Mark such as <em>italic</em>, <em>underline</em>, <em>dashed</em>, etc.</p>
+                                <p>The text style of Mark such as <em>italic</em>, <em>underline</em>, <em>dashed</em>, etc.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>lineHeight</code>
-                                <p>The font height (including the gap between text rows) of Mark.</p>
+                                <p>The text height (including the gap between text rows) of Mark.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>foreg</code>
-                                <p>The font color of Mark.</p>
+                                <p>The text color of Mark.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>backg</code>
@@ -483,27 +483,27 @@ const TyposPage: NextPage = () => {
                         <SpecList>
                             <SimpleSpecItem>
                                 <code>fontSize</code>
-                                <p>The font size of Code.</p>
+                                <p>The text size of Code.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>fontFamily</code>
-                                <p>The font appearance of Code.</p>
+                                <p>The text appearance of Code.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>fontWeight</code>
-                                <p>The font thickness of Code.</p>
+                                <p>The text thickness of Code.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>fontStyle</code> &amp; <code>textDecoration</code>
-                                <p>The font style of Code such as <em>italic</em>, <em>underline</em>, <em>dashed</em>, etc.</p>
+                                <p>The text style of Code such as <em>italic</em>, <em>underline</em>, <em>dashed</em>, etc.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>lineHeight</code>
-                                <p>The font height (including the gap between text rows) of Code.</p>
+                                <p>The text height (including the gap between text rows) of Code.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>foreg</code>
-                                <p>The font color of Code.</p>
+                                <p>The text color of Code.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>backg</code>
@@ -541,27 +541,27 @@ const TyposPage: NextPage = () => {
                         <SpecList>
                             <SimpleSpecItem>
                                 <code>fontSize</code>
-                                <p>The font size of Kbd.</p>
+                                <p>The text size of Kbd.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>fontFamily</code>
-                                <p>The font appearance of Kbd.</p>
+                                <p>The text appearance of Kbd.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>fontWeight</code>
-                                <p>The font thickness of Kbd.</p>
+                                <p>The text thickness of Kbd.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>fontStyle</code> &amp; <code>textDecoration</code>
-                                <p>The font style of Kbd such as <em>italic</em>, <em>underline</em>, <em>dashed</em>, etc.</p>
+                                <p>The text style of Kbd such as <em>italic</em>, <em>underline</em>, <em>dashed</em>, etc.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>lineHeight</code>
-                                <p>The font height (including the gap between text rows) of Kbd.</p>
+                                <p>The text height (including the gap between text rows) of Kbd.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>foreg</code>
-                                <p>The font color of Kbd.</p>
+                                <p>The text color of Kbd.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>backg</code>
