@@ -5,18 +5,19 @@ import { Group } from '@nodestrap/group'
 import { Radio } from '@nodestrap/radio'
 import { Range } from '@nodestrap/range'
 import { ThemeName } from '@nodestrap/basic'
+import { useRef, useState } from 'react'
+import type { Dictionary } from '@cssfn/types'
 
 
 
 
-export function DemoPanel(props: ContentProps) {
+export const DemoPanel = (props: ContentProps) => {
     return (
         <Content
             {...props}
             classes={[...(props.classes ?? []),
                 styles.panel,
             ]}
-            theme={props.theme ?? 'secondary'}
         >
             { props.children }
         </Content>
@@ -32,7 +33,7 @@ export interface OptionProps {
     value    : any
     setValue : React.Dispatch<any>
 }
-export function Option(props: OptionProps) {
+export const Option = (props: OptionProps) => {
     const {
         name,
         options,
@@ -73,7 +74,7 @@ export interface ThemeOptionProps {
     addUnset ?: boolean
     setValue  : React.Dispatch<ThemeName|undefined>
 }
-export function ThemeOption(props: ThemeOptionProps) {
+export const ThemeOption = (props: ThemeOptionProps) => {
     const {
         name,
         value,
@@ -119,7 +120,7 @@ export interface SliderProps {
     value    : number
     setValue : React.Dispatch<number>
 }
-export function Slider(props: SliderProps) {
+export const Slider = (props: SliderProps) => {
     const {
         name,
         min,
@@ -147,13 +148,72 @@ export function Slider(props: SliderProps) {
 
 
 
-export function ResetButton(props: ButtonIconProps) {
+export const ResetButton = (props: ButtonIconProps) => {
     return (<>
         <span>Reset</span>
         <ButtonIcon
             {...props}
             theme={props.theme ?? 'success'}
             icon={props.icon ?? 'restore'}
+        >
+            { props.children ?? 'Reset to Default' }
+        </ButtonIcon>
+    </>);
+}
+
+
+
+export type ResetableState<S, P extends number|unknown = unknown> = readonly [
+    S,
+    React.Dispatch<S>,
+    () => void,
+    S,
+    P,
+];
+export const useResetableState = <S, P extends (S & number)|undefined = undefined>(initial: S | (() => S), precision?: P): ResetableState<S> => {
+    const [value, setValue] = useState<S>(initial);
+    const { current: initialValue } = useRef(value);
+    const { current: resetValue   } = useRef(() => setValue(initialValue));
+    
+    return [
+        value,
+        setValue,
+        
+        resetValue,
+        
+        initialValue,
+        precision,
+    ];
+}
+
+
+
+export const ResetButtonEx = (props: ButtonIconProps & { states: Dictionary<ResetableState<any>> }) => {
+    const { states } = props;
+    
+    
+    
+    return (<>
+        <span>Reset</span>
+        <ButtonIcon
+            {...props}
+            theme={props.theme ?? 'success'}
+            icon={props.icon ?? 'restore'}
+
+            enabled={props.enabled ?? (
+                Object.values(states).some(({0: value, 3: initialValue, 4: precision}) => (
+                    (typeof(precision) === 'number')
+                    ?
+                    (Math.abs(value - initialValue) >= precision)
+                    :
+                    (value !== initialValue)
+                ))
+            )}
+            onClick={(e) => {
+                props.onClick?.(e);
+
+                Object.values(states).forEach(({2: resetValue}) => resetValue())
+            }}
         >
             { props.children ?? 'Reset to Default' }
         </ButtonIcon>

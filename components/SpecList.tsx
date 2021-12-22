@@ -1,6 +1,6 @@
 import { AccordionItemProps, AccordionItem } from '@nodestrap/accordion'
 import { ThemeName } from '@nodestrap/basic';
-import { ListProps, List, ListItem } from '@nodestrap/list'
+import { ListProps, List, ListItem, ListSeparatorItem } from '@nodestrap/list'
 import React from 'react';
 import styles from './SpecList.module.scss'
 

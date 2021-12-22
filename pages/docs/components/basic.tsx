@@ -1,14 +1,15 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
-import React, { useRef, useState } from 'react'
+import React, {  } from 'react'
 import { Main } from '../../../components/Main'
 import { Section, Section2 } from '../../../components/Section'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 import { TypeScriptCode } from '../../../components/Code'
-import { Basic, SizeName, ThemeName } from '@nodestrap/basic'
+import { Basic } from '@nodestrap/basic'
 import { Warning } from '../../../components/Info'
-import { DemoPanel, Option, ResetButton, ThemeOption } from '../../../components/DemoPanel'
+import { DemoPanel, ResetButtonEx } from '../../../components/DemoPanel'
+import { BasicOptions, useBasicStates } from '../../../components/DemoPanel@Basic'
 import Button from '@nodestrap/button'
 
 
@@ -28,20 +29,7 @@ const WarnNotImplementExited = () => (
 
 
 const BasicPage: NextPage = () => {
-    const initialProps = useRef({
-        size     : undefined as SizeName|undefined,
-        nude     : false,
-        theme    : 'secondary' as ThemeName|undefined,
-        gradient : false,
-        outlined : false,
-        mild     : false,
-    });
-    const [size     , setSize    ] = useState(initialProps.current.size);
-    const [nude     , setNude    ] = useState(initialProps.current.nude);
-    const [theme    , setTheme   ] = useState(initialProps.current.theme);
-    const [gradient , setGradient] = useState(initialProps.current.gradient);
-    const [outlined , setOutlined] = useState(initialProps.current.outlined);
-    const [mild     , setMild    ] = useState(initialProps.current.mild);
+    const states = useBasicStates();
     
     
     
@@ -69,95 +57,37 @@ const BasicPage: NextPage = () => {
                     <article>
                         <h2>Demonstration</h2>
                         <p>
-                            Move some sliders below!
-                            You&apos;ll see the <BasicCode /> is highly customizable.
+                            Change some controls below!
+                            You&apos;ll see the <BasicCode /> is customizable.
                         </p>
                         <DemoPanel>
                             <span>Preview</span>
                             <Basic
-                                size={size}
-                                nude={nude}
-                                theme={theme}
-                                gradient={gradient}
-                                outlined={outlined}
-                                mild={mild}
+                                size={states.size[0]}
+                                nude={states.nude[0]}
+                                theme={states.theme[0]}
+                                gradient={states.gradient[0]}
+                                outlined={states.outlined[0]}
+                                mild={states.mild[0]}
                             >
                                 hello world
                             </Basic>
-                            
-                            <Option
-                                name='size'
-                                options={['sm', undefined, 'lg']}
-                                value={size}
-                                setValue={setSize}
-                            />
-                            
-                            <Option
-                                name='nude'
-                                options={[false, true]}
-                                value={nude}
-                                setValue={setNude}
-                            />
 
-                            <ThemeOption
-                                value={theme}
-                                setValue={setTheme}
-                            />
+                            <hr />
                             
-                            <Option
-                                name='gradient'
-                                options={[false, true]}
-                                value={gradient}
-                                setValue={setGradient}
-                            />
+                            <BasicOptions states={states} />
                             
-                            <Option
-                                name='outlined'
-                                options={[false, true]}
-                                value={outlined}
-                                setValue={setOutlined}
-                            />
-                            
-                            <Option
-                                name='mild'
-                                options={[false, true]}
-                                value={mild}
-                                setValue={setMild}
-                            />
-                            
-                            <ResetButton
-                                enabled={
-                                    (size !== initialProps.current.size)
-                                    ||
-                                    (nude !== initialProps.current.nude)
-                                    ||
-                                    (theme !== initialProps.current.theme)
-                                    ||
-                                    (gradient !== initialProps.current.gradient)
-                                    ||
-                                    (outlined !== initialProps.current.outlined)
-                                    ||
-                                    (mild !== initialProps.current.mild)
-                                }
-                                onClick={() => {
-                                    setSize(initialProps.current.size);
-                                    setNude(initialProps.current.nude);
-                                    setTheme(initialProps.current.theme);
-                                    setGradient(initialProps.current.gradient);
-                                    setOutlined(initialProps.current.outlined);
-                                    setMild(initialProps.current.mild);
-                                }}
-                            />
+                            <ResetButtonEx states={states} />
 
                             <span>Code</span>
                             <TypeScriptCode>{`
 <Basic
-    size=${size ? `'${size}'` : '{undefined}'}
-    nude={${nude}}
-    theme='${theme}'
-    gradient={${gradient}}
-    outlined={${outlined}}
-    mild={${mild}}
+    size=${states.size[0] ? `'${states.size[0]}'` : '{undefined}'}
+    nude={${states.nude[0]}}
+    theme='${states.theme[0]}'
+    gradient={${states.gradient[0]}}
+    outlined={${states.outlined[0]}}
+    mild={${states.mild[0]}}
 >
     hello world
 </Basic>
@@ -406,22 +336,22 @@ const BasicPage: NextPage = () => {
                                     </SimpleSpecItem>
                                     <SimpleSpecItem>
                                         <code>@keyframes none</code>
-                                        <p>A keyframe name represents <em>no animation</em>.</p>
+                                        <p>A keyframes name represents <em>an empty keyframes</em>.</p>
                                         <p>You should <strong>not to modify</strong> this property (in most cases).</p>
                                     </SimpleSpecItem>
                                     <SimpleSpecItem>
                                         <code>filterExcited</code>
-                                        <p>The <code>filter</code> to apply when in <code>{`excited={true}`}</code>.</p>
+                                        <p>A <code>filter</code> to apply when in <code>{`excited={true}`}</code>.</p>
                                         <WarnNotImplementExited />
                                     </SimpleSpecItem>
                                     <SimpleSpecItem>
                                         <code>@keyframes excited</code>
-                                        <p>A keyframe name represents <em>exited animation</em>.</p>
+                                        <p>A keyframes name represents <em>an excited keyframes</em>.</p>
                                         <WarnNotImplementExited />
                                     </SimpleSpecItem>
                                     <SimpleSpecItem>
                                         <code>animExcited</code>
-                                        <p>An animation represents <em>exited animation</em>.</p>
+                                        <p>An animation represents <em>excited animation</em>.</p>
                                         <WarnNotImplementExited />
                                     </SimpleSpecItem>
                                 </SubSpecList>
