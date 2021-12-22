@@ -2,39 +2,33 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import { TypeScriptCode, CssCode } from '../../../components/Code'
 import { ColorPreview } from '../../../components/ColorPreview'
-import { colors, cssVals as colorVals, defineTheme } from '@nodestrap/colors'
-import React, { useState, useEffect, useRef } from 'react'
+import { colors, defineTheme } from '@nodestrap/colors'
+import React, { useEffect } from 'react'
 import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
-import { DemoPanel, Slider, ResetButton } from '../../../components/DemoPanel'
+import { DemoPanel, ResetButtonEx } from '../../../components/DemoPanel'
+import { ColorOptions, useColorStates } from '../../../components/DemoPanel@colors'
 import Color from 'color'
 import { Basic } from '@nodestrap/basic'
 
 
 
 const ColorsPage: NextPage = () => {
-    const initialColor = useRef((() => {
-        const color = Color(colorVals.blue);
-        return {
-            hue: color.hue(),
-            sat: color.saturationl(),
-            lgt: color.lightness(),
-        };
-    })());
-    const [colorHue, setColorHue] = useState<number>(() => initialColor.current.hue);
-    const [colorSat, setColorSat] = useState<number>(() => initialColor.current.sat);
-    const [colorLgt, setColorLgt] = useState<number>(() => initialColor.current.lgt);
+    const states = useColorStates();
+    const hue = states.hue[0];
+    const sat = states.sat[0];
+    const lgt = states.lgt[0];
 
     useEffect(() => {
         const handler = setTimeout(() => {
             new Promise<void>((resolve) => {
-                defineTheme('primary', Color.hsl(colorHue, colorSat, colorLgt));
+                defineTheme('primary', Color.hsl(hue, sat, lgt));
                 resolve();
             });
         }, 10);
 
         return () => clearTimeout(handler);
-    }, [colorHue, colorSat, colorLgt]);
+    }, [hue, sat, lgt]);
     
 
     
@@ -76,47 +70,11 @@ const ColorsPage: NextPage = () => {
                                 hello world
                             </Basic>
 
-                            <Slider
-                                name='Hue'
-                                min={0}
-                                max={360}
-                                step={1}
-                                value={colorHue}
-                                setValue={setColorHue}
-                            />
+                            <hr />
 
-                            <Slider
-                                name='Saturation'
-                                min={0}
-                                max={100}
-                                step={1}
-                                value={colorSat}
-                                setValue={setColorSat}
-                            />
+                            <ColorOptions states={states} />
 
-                            <Slider
-                                name='Lightness'
-                                min={0}
-                                max={100}
-                                step={1}
-                                value={colorLgt}
-                                setValue={setColorLgt}
-                            />
-
-                            <ResetButton
-                                enabled={
-                                    (Math.abs(colorHue - initialColor.current.hue) >= 1)
-                                    ||
-                                    (Math.abs(colorSat - initialColor.current.sat) >= 1)
-                                    ||
-                                    (Math.abs(colorLgt - initialColor.current.lgt) >= 1)
-                                }
-                                onClick={() => {
-                                    setColorHue(initialColor.current.hue);
-                                    setColorSat(initialColor.current.sat);
-                                    setColorLgt(initialColor.current.lgt);
-                                }}
-                            />
+                            <ResetButtonEx states={states} />
                         </DemoPanel>
                     </article>
                 </Section>

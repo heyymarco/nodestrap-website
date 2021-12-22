@@ -1,48 +1,43 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { TypeScriptCode, CssCode } from '../../../components/Code'
-import { borders, cssVals as borderVals, borderRadiuses as radiuses, borderRadius as radius } from '@nodestrap/borders'
-import { parseNumber } from '@nodestrap/utilities'
-import React, { useState, useEffect, useRef } from 'react'
+import { borders, borderRadiuses as radiuses } from '@nodestrap/borders'
+import React, { useEffect } from 'react'
 import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
-import { DemoPanel, Option, Slider, ResetButton } from '../../../components/DemoPanel'
+import { DemoPanel, ResetButtonEx } from '../../../components/DemoPanel'
+import { BorderOptions, useBorderStates } from '../../../components/DemoPanel@borders'
 import { Basic } from '@nodestrap/basic'
 
 
 
 const BordersPage: NextPage = () => {
-    const initialBorder = useRef({
-        width  : parseNumber(borderVals.defaultWidth as string) ?? 1,
-        radius : parseNumber(radius.cssVals.md as string) ?? 0,
-        style  : borderVals.style as string,
-    });
-    const [borderWidth, setBorderWidth]   = useState<number>(initialBorder.current.width);
-    const [borderRadius, setBorderRadius] = useState<number>(initialBorder.current.radius);
-    const [borderStyle, setBorderStyle] = useState<string>(initialBorder.current.style);
+    const states = useBorderStates();
+    const width = states.width[0];
+    const radius = states.radius[0];
 
     useEffect(() => {
         const handler = setTimeout(() => {
             new Promise<void>((resolve) => {
-                borders.defaultWidth = `${borderWidth}px` as any;
+                borders.defaultWidth = `${width}px` as any;
                 borders.default      = [[borders.style, borders.defaultWidth, borders.color]] as any;
-                borders.style        = borderStyle as any;
+                borders.style        = states.style[0] as any;
                 resolve();
             });
         }, 10);
 
         return () => clearTimeout(handler);
-    }, [borderWidth, borderStyle]);
+    }, [width, states.style[0]]);
     useEffect(() => {
         const handler = setTimeout(() => {
             new Promise<void>((resolve) => {
-                radiuses.md          = `${borderRadius}rem` as any;
+                radiuses.md          = `${radius}rem` as any;
                 resolve();
             });
         }, 10);
 
         return () => clearTimeout(handler);
-    }, [borderRadius]);
+    }, [radius]);
     
 
     
@@ -84,45 +79,11 @@ const BordersPage: NextPage = () => {
                                 hello world
                             </Basic>
 
-                            <Slider
-                                name='Border width'
-                                min={0}
-                                max={8}
-                                step={1}
-                                value={borderWidth}
-                                setValue={setBorderWidth}
-                            />
-                            
-                            <Slider
-                                name='Border radius'
-                                min={0}
-                                max={2}
-                                step={0.05}
-                                value={borderRadius}
-                                setValue={setBorderRadius}
-                            />
+                            <hr />
 
-                            <Option
-                                name='Border style'
-                                options={['none', 'solid', 'dashed', 'dotted']}
-                                value={borderStyle}
-                                setValue={setBorderStyle}
-                            />
+                            <BorderOptions states={states} />
 
-                            <ResetButton
-                                enabled={
-                                    (Math.abs(borderWidth - initialBorder.current.width) >= 1)
-                                    ||
-                                    (Math.abs(borderRadius - initialBorder.current.radius) >= 0.05)
-                                    ||
-                                    (borderStyle !== initialBorder.current.style)
-                                }
-                                onClick={() => {
-                                    setBorderWidth(initialBorder.current.width);
-                                    setBorderRadius(initialBorder.current.radius);
-                                    setBorderStyle(initialBorder.current.style);
-                                }}
-                            />
+                            <ResetButtonEx states={states} />
                         </DemoPanel>
                     </article>
                 </Section>

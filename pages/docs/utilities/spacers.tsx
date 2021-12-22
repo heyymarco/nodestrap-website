@@ -1,18 +1,19 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { TypeScriptCode, CssCode } from '../../../components/Code'
-import { spacers, cssVals as spacersVals } from '@nodestrap/spacers'
-import { parseNumber } from '@nodestrap/utilities'
-import React, { useState, useEffect, useRef } from 'react'
+import { spacers } from '@nodestrap/spacers'
+import React, { useEffect } from 'react'
 import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
-import { DemoPanel, Slider, ResetButton } from '../../../components/DemoPanel'
+import { DemoPanel, ResetButtonEx } from '../../../components/DemoPanel'
+import { SpacerOptions, useSpacerStates } from '../../../components/DemoPanel@spacers'
 import { Basic } from '@nodestrap/basic'
 
 
+
 const SpacersPage: NextPage = () => {
-    const initialSpacer = useRef(parseNumber(spacersVals.md as string) ?? 1);
-    const [spacer, setSpacer]   = useState<number>(initialSpacer.current);
+    const states = useSpacerStates();
+    const spacer = states.spacer[0];
 
     useEffect(() => {
         const handler = setTimeout(() => {
@@ -75,23 +76,9 @@ const SpacersPage: NextPage = () => {
                                 </Basic>
                             </Basic>
 
-                            <Slider
-                                name='Spacer width'
-                                min={0}
-                                max={10}
-                                step={0.5}
-                                value={spacer}
-                                setValue={setSpacer}
-                            />
+                            <SpacerOptions states={states} />
 
-                            <ResetButton
-                                enabled={
-                                    (Math.abs(spacer - initialSpacer.current) >= 0.5)
-                                }
-                                onClick={() => {
-                                    setSpacer(initialSpacer.current);
-                                }}
-                            />
+                            <ResetButtonEx states={states} />
                         </DemoPanel>
                     </article>
                 </Section>

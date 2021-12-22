@@ -163,14 +163,14 @@ export const ResetButton = (props: ButtonIconProps) => {
 
 
 
-export type ResetableState<S, P extends number|unknown = unknown> = readonly [
+export type ResetableState<S, P extends number|undefined = undefined> = readonly [
     S,
     React.Dispatch<S>,
     () => void,
     S,
     P,
 ];
-export const useResetableState = <S, P extends (S & number)|undefined = undefined>(initial: S | (() => S), precision?: P): ResetableState<S> => {
+export const useResetableState = <S, P extends number|undefined = undefined>(initial: S | (() => S), precision?: P): ResetableState<S, P> => {
     const [value, setValue] = useState<S>(initial);
     const { current: initialValue } = useRef(value);
     const { current: resetValue   } = useRef(() => setValue(initialValue));
@@ -182,13 +182,13 @@ export const useResetableState = <S, P extends (S & number)|undefined = undefine
         resetValue,
         
         initialValue,
-        precision,
+        precision as P,
     ];
 }
 
 
 
-export const ResetButtonEx = (props: ButtonIconProps & { states: Dictionary<ResetableState<any>> }) => {
+export const ResetButtonEx = (props: ButtonIconProps & { states: Dictionary<ResetableState<any, any>> }) => {
     const { states } = props;
     
     

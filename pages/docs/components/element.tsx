@@ -3,10 +3,9 @@ import Head from 'next/head'
 import React, {  } from 'react'
 import { Main } from '../../../components/Main'
 import { Section, Section2 } from '../../../components/Section'
-import { SpecList, DetailSpecItem } from '../../../components/SpecList'
-import { TypeScriptCode, CssCode } from '../../../components/Code'
-import { Element } from '@nodestrap/element'
+import { TypeScriptCode } from '../../../components/Code'
 import { Tips, Warning } from '../../../components/Info'
+
 
 
 const TipsForRoleTag = () => (
