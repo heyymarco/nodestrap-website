@@ -1,22 +1,19 @@
+import React, {  } from 'react'
+
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Link from 'next/link'
-import React, {  } from 'react'
+
 import { Main } from '../../../components/Main'
 import { Section, Section2 } from '../../../components/Section'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 import { TypeScriptCode } from '../../../components/Code'
-import { Indicator } from '@nodestrap/indicator'
 import { Warning } from '../../../components/Info'
+
+import { SectionInheritedProps, LinkIndicatorPage, LinkBasicPage, LinkIconPage } from '../../../components/common-contents'
+
 import { DemoPanel, ResetButtonEx } from '../../../components/DemoPanel'
+import { Indicator } from '@nodestrap/indicator'
 import { IndicatorOptions, useIndicatorStates } from '../../../components/DemoPanel@Indicator'
-import Button from '@nodestrap/button'
-
-
-
-const BasicCode = () => <Link href='/docs/components/basic'><a><code>&lt;Basic&gt;</code></a></Link>;
-const IndicatorCode = () => <code>&lt;Indicator&gt;</code>;
-const IconCode = () => <Link href='/docs/components/icon'><a><code>&lt;Icon&gt;</code></a></Link>;
 
 
 
@@ -37,8 +34,10 @@ const Page: NextPage = () => {
                     <article>
                         <h1>Indicator Component</h1>
                         <p>
-                            <IndicatorCode /> is an <strong>abstract</strong> component for <strong>displaying indications</strong> such as <strong>enabled</strong>/<strong>disabled</strong> and <strong>active</strong>/<strong>passive</strong>.
-                            In <em>most cases</em>, you should <strong>not use </strong>this component <strong>directly</strong>, instead create your own component by derivering <IndicatorCode />.
+                            <LinkIndicatorPage /> is an <strong>abstract</strong> component for <strong>displaying indications</strong> such as <strong>enabled</strong>/<strong>disabled</strong> and <strong>active</strong>/<strong>passive</strong>.
+                        </p>
+                        <p>
+                            In <em>most cases</em>, you should <strong>not use </strong>this component <strong>directly</strong>, instead create your own component by derivering <LinkIndicatorPage />.
                         </p>
                     </article>
                 </Section>
@@ -47,7 +46,7 @@ const Page: NextPage = () => {
                         <h2>Demonstration</h2>
                         <p>
                             Change some controls below!
-                            You&apos;ll see the <IndicatorCode /> is customizable.
+                            You&apos;ll see the <LinkIndicatorPage /> is customizable.
                         </p>
                         <DemoPanel>
                             <span>Preview</span>
@@ -90,16 +89,7 @@ const Page: NextPage = () => {
                         </DemoPanel>
                     </article>
                 </Section>
-                <Section>
-                    <article>
-                        <h2>Inherited Properties</h2>
-                    </article>
-                    <p>
-                        Because <IndicatorCode /> is made from <BasicCode />,
-                        so all properties from <BasicCode /> are inherited.<br />
-                        You can <Button btnStyle='link' theme='primary'><Link href='/docs/components/basic'>see the documentation of &lt;Basic&gt; here</Link></Button>.
-                    </p>
-                </Section>
+                <SectionInheritedProps component={<LinkIndicatorPage />} base={<LinkBasicPage />} />
                 <Section>
                     <article>
                         <h2>State Properties</h2>
@@ -188,7 +178,7 @@ const Page: NextPage = () => {
                                     By default, there is <strong>no visual appearance</strong> for indicating <code>readOnly</code> state.
                                 </p>
                                 <p>
-                                    You should add an <IconCode /> or another visual appearance for indicating <code>readOnly</code> state.
+                                    You should add an <LinkIconPage /> or another visual appearance for indicating <code>readOnly</code> state.
                                 </p>
                             </Warning>
                         </Section2>
@@ -198,8 +188,8 @@ const Page: NextPage = () => {
                     <article>
                         <h2>Customizing Indicator Component</h2>
                         <p>
-                            There is a <strong>global configuration</strong> of <IndicatorCode /> you can tweak.
-                            Changing the global configuration <strong>affects all</strong> <IndicatorCode /> and <strong>other components</strong> derived from <IndicatorCode />.
+                            There is a <strong>global configuration</strong> of <LinkIndicatorPage /> you can tweak.
+                            Changing the global configuration <strong>affects all</strong> <LinkIndicatorPage /> and <strong>other components</strong> derived from <LinkIndicatorPage />.
                             Here several properties in <code>cssProps</code> of <code>{`import { cssProps } from @nodestrap/indicator`}</code> you can customize:
                         </p>
                         <SpecList>
@@ -254,13 +244,13 @@ const Page: NextPage = () => {
                     <article>
                         <h2>Derivering Indicator Component</h2>
                         <p>
-                            <IndicatorCode /> can be derivered to a <strong>new specific component</strong> you want.
+                            <LinkIndicatorPage /> can be derivered to a <strong>new specific component</strong> you want.
                             There are several ways to deriver.
                         </p>
                         <Section2>
                             <h3>Derivering by Overriding the Default Properties</h3>
                             <p>
-                                This is the simples way to deriver <IndicatorCode />, just by <strong>changing</strong> the <strong>default values</strong>.
+                                This is the simples way to deriver <LinkIndicatorPage />, just by <strong>changing</strong> the <strong>default values</strong>.
                                 The values after the <code>??</code> (nullish coalescing operator) are <strong>your default values</strong>.
                                 Here the example:
                             </p>
@@ -287,24 +277,24 @@ export default function OnOffIndicator(props) {
                         <Section2>
                             <h3>Derivering by Customizing the CSS</h3>
                             <p>
-                                <IndicatorCode /> exports <strong>some CSS</strong> that you can import into <strong>your CSS</strong>.
+                                <LinkIndicatorPage /> exports <strong>some CSS</strong> that you can import into <strong>your CSS</strong>.
                                 Here the exported <em>mixins</em>:
                             </p>
                             <SpecList>
                                 <DetailSpecItem code='usesIndicatorLayout()'>
                                     <p>
-                                        Returns a <code>StyleCollection</code> object represents a complete <IndicatorCode /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
+                                        Returns a <code>StyleCollection</code> object represents a complete <LinkIndicatorPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
                                     </p>
                                 </DetailSpecItem>
                                 <DetailSpecItem code='usesIndicatorVariants()'>
                                     <p>
-                                        Returns a <code>StyleCollection</code> object represents the <strong>variants</strong> of <IndicatorCode /> such as:<br />
-                                        <code>SizeVariant</code> and <strong>all variants</strong> inherited from <BasicCode />.
+                                        Returns a <code>StyleCollection</code> object represents the <strong>variants</strong> of <LinkIndicatorPage /> such as:<br />
+                                        <code>SizeVariant</code> and <strong>all variants</strong> inherited from <LinkBasicPage />.
                                     </p>
                                 </DetailSpecItem>
                                 <DetailSpecItem code='usesIndicatorStates()'>
                                     <p>
-                                        Returns a <code>StyleCollection</code> object represents the <strong>states</strong> of <IndicatorCode /> such as:<br />
+                                        Returns a <code>StyleCollection</code> object represents the <strong>states</strong> of <LinkIndicatorPage /> such as:<br />
                                         <strong>enabled</strong>/<strong>disabled</strong> and <strong>active</strong>/<strong>passive</strong>.
                                     </p>
                                 </DetailSpecItem>

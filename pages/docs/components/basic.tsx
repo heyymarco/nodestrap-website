@@ -1,26 +1,26 @@
+import React, {  } from 'react'
+
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Link from 'next/link'
-import React, {  } from 'react'
+
 import { Main } from '../../../components/Main'
 import { Section, Section2 } from '../../../components/Section'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 import { TypeScriptCode } from '../../../components/Code'
-import { Basic } from '@nodestrap/basic'
 import { Warning } from '../../../components/Info'
+
+import { SectionInheritedProps, LinkBasicPage, LinkElementPage, LinkColorsPage } from '../../../components/common-contents'
+
 import { DemoPanel, ResetButtonEx } from '../../../components/DemoPanel'
+import { Basic } from '@nodestrap/basic'
 import { BasicOptions, useBasicStates } from '../../../components/DemoPanel@Basic'
-import Button from '@nodestrap/button'
 
 
-
-const ElementCode = () => <Link href='/docs/components/element'><a><code>&lt;Element&gt;</code></a></Link>;
-const BasicCode = () => <code>&lt;Basic&gt;</code>;
 
 const WarnNotImplementExited = () => (
     <Warning>
         <p>
-            By default <BasicCode /> is doesn&apos;t implement this feature, but
+            By default <LinkBasicPage /> is doesn&apos;t implement this feature, but
             the derived components may do.
         </p>
     </Warning>
@@ -45,11 +45,11 @@ const Page: NextPage = () => {
                     <article>
                         <h1>Basic Component</h1>
                         <p>
-                            <BasicCode /> is the most basic component in Nodestrap components after the <ElementCode />.
+                            <LinkBasicPage /> is the most basic component in Nodestrap components after the <LinkElementPage />.
                             It provides the basic styling and some basic essentials.
                         </p>
                         <p>
-                            Unlike <ElementCode />, <BasicCode /> has a default style that you can see visually.
+                            Unlike <LinkElementPage />, <LinkBasicPage /> has a default style that you can see visually.
                         </p>
                     </article>
                 </Section>
@@ -58,7 +58,7 @@ const Page: NextPage = () => {
                         <h2>Demonstration</h2>
                         <p>
                             Change some controls below!
-                            You&apos;ll see the <BasicCode /> is customizable.
+                            You&apos;ll see the <LinkBasicPage /> is customizable.
                         </p>
                         <DemoPanel>
                             <span>Preview</span>
@@ -95,16 +95,7 @@ const Page: NextPage = () => {
                         </DemoPanel>
                     </article>
                 </Section>
-                <Section>
-                    <article>
-                        <h2>Inherited Properties</h2>
-                    </article>
-                    <p>
-                        Because <BasicCode /> is made from <ElementCode />,
-                        so all properties from <ElementCode /> are inherited.<br />
-                        You can <Button btnStyle='link' theme='primary'><Link href='/docs/components/element'>see the documentation of &lt;Element&gt; here</Link></Button>.
-                    </p>
-                </Section>
+                <SectionInheritedProps component={<LinkBasicPage />} base={<LinkElementPage />} />
                 <Section>
                     <article>
                         <h2>Variant Properties</h2>
@@ -112,7 +103,7 @@ const Page: NextPage = () => {
                             There&apos;re some properties for <strong>modifying the appearances</strong> such as <code>size</code>, <code>nude</code>, <code>theme</code>, <code>gradient</code>, <code>outlined</code>, and <code>mild</code>.
                         </p>
                         <p>
-                            Those properties do not change the <BasicCode /> semantically. Just for <strong>styling</strong> purpose.
+                            Those properties do not change the <LinkBasicPage /> semantically. Just for <strong>styling</strong> purpose.
                         </p>
                         <Section2>
                             <h3><code>size</code> Property</h3>
@@ -203,7 +194,7 @@ const Page: NextPage = () => {
                             </p>
                             <p>
                                 The <strong>smoother</strong> means <strong>near to white</strong> for light background and <strong>near to black</strong> for dark background.
-                                You can <Button btnStyle='link' theme='primary'><Link href='/docs/utilities/colors'>adjust the background color here</Link></Button>.
+                                You can <LinkColorsPage>adjust the background color here</LinkColorsPage>.
                             </p>
                         </Section2>
                     </article>
@@ -212,8 +203,8 @@ const Page: NextPage = () => {
                     <article>
                         <h2>Customizing Basic Component</h2>
                         <p>
-                            There is a <strong>global configuration</strong> of <BasicCode /> you can tweak.
-                            Changing the global configuration <strong>affects all</strong> <BasicCode /> and <strong>other components</strong> derived from <BasicCode />.
+                            There is a <strong>global configuration</strong> of <LinkBasicPage /> you can tweak.
+                            Changing the global configuration <strong>affects all</strong> <LinkBasicPage /> and <strong>other components</strong> derived from <LinkBasicPage />.
                             Here several properties in <code>cssProps</code> of <code>{`import { cssProps } from @nodestrap/basic`}</code> you can customize:
                         </p>
                         <SpecList>
@@ -367,13 +358,13 @@ const Page: NextPage = () => {
                     <article>
                         <h2>Derivering Basic Component</h2>
                         <p>
-                            <BasicCode /> can be derivered to a <strong>new specific component</strong> you want.
+                            <LinkBasicPage /> can be derivered to a <strong>new specific component</strong> you want.
                             There are several ways to deriver.
                         </p>
                         <Section2>
                             <h3>Derivering by Overriding the Default Properties</h3>
                             <p>
-                                This is the simples way to deriver <BasicCode />, just by <strong>changing</strong> the <strong>default values</strong>.
+                                This is the simples way to deriver <LinkBasicPage />, just by <strong>changing</strong> the <strong>default values</strong>.
                                 The values after the <code>??</code> (nullish coalescing operator) are <strong>your default values</strong>.
                                 Here the example:
                             </p>
@@ -400,18 +391,18 @@ export default function SiteSidebar(props) {
                         <Section2>
                             <h3>Derivering by Customizing the CSS</h3>
                             <p>
-                                <BasicCode /> exports <strong>some CSS</strong> that you can import into <strong>your CSS</strong>.
+                                <LinkBasicPage /> exports <strong>some CSS</strong> that you can import into <strong>your CSS</strong>.
                                 Here the exported <em>mixins</em>:
                             </p>
                             <SpecList>
                                 <DetailSpecItem code='usesBasicLayout()'>
                                     <p>
-                                        Returns a <code>StyleCollection</code> object represents a complete <BasicCode /> <strong>layout</strong> except its <strong>variants</strong>.
+                                        Returns a <code>StyleCollection</code> object represents a complete <LinkBasicPage /> <strong>layout</strong> except its <strong>variants</strong>.
                                     </p>
                                 </DetailSpecItem>
                                 <DetailSpecItem code='usesBasicVariants()'>
                                     <p>
-                                        Returns a <code>StyleCollection</code> object represents the <strong>variants</strong> of <BasicCode /> such as:<br />
+                                        Returns a <code>StyleCollection</code> object represents the <strong>variants</strong> of <LinkBasicPage /> such as:<br />
                                         <code>SizeVariant</code>, <code>NudeVariant</code>, <code>ThemeVariant</code>, <code>GradientVariant</code>, <code>OutlinedVariant</code>, and <code>MildVariant</code>.
                                     </p>
                                 </DetailSpecItem>

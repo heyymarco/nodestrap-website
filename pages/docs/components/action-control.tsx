@@ -8,35 +8,35 @@ import { Section, Section2 } from '../../../components/Section'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 import { TypeScriptCode } from '../../../components/Code'
 
-import { SectionInheritedProps, LinkControlPage, LinkIndicatorPage } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkActionControlPage, LinkControlPage } from '../../../components/common-contents'
 
 import { DemoPanel, ResetButtonEx } from '../../../components/DemoPanel'
-import { Control } from '@nodestrap/control'
-import { ControlOptions, useControlStates } from '../../../components/DemoPanel@Control'
+import { ActionControl } from '@nodestrap/action-control'
+import { ActionControlOptions, useActionControlStates } from '../../../components/DemoPanel@ActionControl'
 
 
 
 const Page: NextPage = () => {
-    const states = useControlStates();
+    const states = useActionControlStates();
     
     
     
     return (
         <>
             <Head>
-                <title>Control Component</title>
-                <meta name="description" content="Using <Control> component" />
+                <title>ActionControl Component</title>
+                <meta name="description" content="Using <ActionControl> component" />
             </Head>
 
             <Main>
                 <Section>
                     <article>
-                        <h1>Control Component</h1>
+                        <h1>ActionControl Component</h1>
                         <p>
-                            <LinkControlPage /> is an <strong>abstract</strong> component of <strong>controllable</strong> component. It has some control indicators such as <strong>focus</strong>/<strong>blur</strong> and <strong>arrive</strong>/<strong>leave</strong>.
+                            <LinkActionControlPage /> is an <strong>abstract</strong> component of <strong>clickable</strong> component. It has some control indicators such as <strong>press</strong>/<strong>release</strong> and inherited indicators from <LinkControlPage />.
                         </p>
                         <p>
-                            In <em>most cases</em>, you should <strong>not use </strong>this component <strong>directly</strong>, instead create your own component by derivering <LinkControlPage />.
+                            In <em>most cases</em>, you should <strong>not use </strong>this component <strong>directly</strong>, instead create your own component by derivering <LinkActionControlPage />.
                         </p>
                     </article>
                 </Section>
@@ -45,11 +45,13 @@ const Page: NextPage = () => {
                         <h2>Demonstration</h2>
                         <p>
                             Change some controls below!
-                            You&apos;ll see the <LinkControlPage /> is customizable.
+                            You&apos;ll see the <LinkActionControlPage /> is customizable.
                         </p>
                         <DemoPanel>
                             <span>Preview</span>
-                            <Control
+                            <ActionControl
+                                press={states.press[0]}
+                                
                                 focus={states.focus[0]}
                                 arrive={states.arrive[0]}
 
@@ -63,18 +65,20 @@ const Page: NextPage = () => {
                                 outlined={states.outlined[0]}
                                 mild={states.mild[0]}
                             >
-                                hello world
-                            </Control>
+                                click me
+                            </ActionControl>
 
                             <hr />
                             
-                            <ControlOptions states={states} />
+                            <ActionControlOptions states={states} />
                             
                             <ResetButtonEx states={states} />
 
                             <span>Code</span>
                             <TypeScriptCode>{`
-<Control
+<ActionControl
+    press={${states.press[0]}}
+    
     focus={${states.focus[0]}}
     arrive={${states.arrive[0]}}
     
@@ -88,13 +92,13 @@ const Page: NextPage = () => {
     outlined={${states.outlined[0]}}
     mild={${states.mild[0]}}
 >
-    hello world
-</Control>
+    click me
+</ActionControl>
                             `}</TypeScriptCode>
                         </DemoPanel>
                     </article>
                 </Section>
-                <SectionInheritedProps component={<LinkControlPage />} base={<LinkIndicatorPage />} />
+                <SectionInheritedProps component={<LinkActionControlPage />} base={<LinkControlPage />} />
                 <Section>
                     <article>
                         <h2>State Properties</h2>
@@ -183,8 +187,8 @@ const Page: NextPage = () => {
                     <article>
                         <h2>Customizing Control Component</h2>
                         <p>
-                            There is a <strong>global configuration</strong> of <LinkControlPage /> you can tweak.
-                            Changing the global configuration <strong>affects all</strong> <LinkControlPage /> and <strong>other components</strong> derived from <LinkControlPage />.
+                            There is a <strong>global configuration</strong> of <LinkActionControlPage /> you can tweak.
+                            Changing the global configuration <strong>affects all</strong> <LinkActionControlPage /> and <strong>other components</strong> derived from <LinkActionControlPage />.
                             Here several properties in <code>cssProps</code> of <code>{`import { cssProps } from @nodestrap/control`}</code> you can customize:
                         </p>
                         <SpecList>
@@ -247,13 +251,13 @@ const Page: NextPage = () => {
                     <article>
                         <h2>Derivering Control Component</h2>
                         <p>
-                            <LinkControlPage /> can be derivered to a <strong>new specific component</strong> you want.
+                            <LinkActionControlPage /> can be derivered to a <strong>new specific component</strong> you want.
                             There are several ways to deriver.
                         </p>
                         <Section2>
                             <h3>Derivering by Overriding the Default Properties</h3>
                             <p>
-                                This is the simples way to deriver <LinkControlPage />, just by <strong>changing</strong> the <strong>default values</strong>.
+                                This is the simples way to deriver <LinkActionControlPage />, just by <strong>changing</strong> the <strong>default values</strong>.
                                 The values after the <code>??</code> (nullish coalescing operator) are <strong>your default values</strong>.
                                 Here the example:
                             </p>
@@ -285,25 +289,25 @@ export default function JoystickControl(props) {
                         <Section2>
                             <h3>Derivering by Customizing the CSS</h3>
                             <p>
-                                <LinkControlPage /> exports <strong>some CSS</strong> that you can import into <strong>your CSS</strong>.
+                                <LinkActionControlPage /> exports <strong>some CSS</strong> that you can import into <strong>your CSS</strong>.
                                 Here the exported <em>mixins</em>:
                             </p>
                             <SpecList>
                                 <DetailSpecItem code='usesControlLayout()'>
                                     <p>
-                                        Returns a <code>StyleCollection</code> object represents a complete <LinkControlPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
+                                        Returns a <code>StyleCollection</code> object represents a complete <LinkActionControlPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
                                     </p>
                                 </DetailSpecItem>
                                 <DetailSpecItem code='usesControlVariants()'>
                                     <p>
-                                        Returns a <code>StyleCollection</code> object represents the <strong>variants</strong> of <LinkControlPage /> such as:<br />
-                                        <code>SizeVariant</code> and <strong>all variants</strong> inherited from <LinkIndicatorPage />.
+                                        Returns a <code>StyleCollection</code> object represents the <strong>variants</strong> of <LinkActionControlPage /> such as:<br />
+                                        <code>SizeVariant</code> and <strong>all variants</strong> inherited from <LinkControlPage />.
                                     </p>
                                 </DetailSpecItem>
                                 <DetailSpecItem code='usesControlStates()'>
                                     <p>
-                                        Returns a <code>StyleCollection</code> object represents the <strong>states</strong> of <LinkControlPage /> such as:<br />
-                                        <strong>focus</strong>/<strong>blur</strong>, <strong>arrive</strong>/<strong>leave</strong>, and <strong>all states</strong> inherited from <LinkIndicatorPage />.
+                                        Returns a <code>StyleCollection</code> object represents the <strong>states</strong> of <LinkActionControlPage /> such as:<br />
+                                        <strong>focus</strong>/<strong>blur</strong>, <strong>arrive</strong>/<strong>leave</strong>, and <strong>all states</strong> inherited from <LinkControlPage />.
                                     </p>
                                 </DetailSpecItem>
 

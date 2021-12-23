@@ -13,7 +13,8 @@ import { Basic } from '@nodestrap/basic'
 
 const BordersPage: NextPage = () => {
     const states = useBorderStates();
-    const width = states.width[0];
+    const width  = states.width[0];
+    const style  = states.style[0];
     const radius = states.radius[0];
 
     useEffect(() => {
@@ -21,13 +22,13 @@ const BordersPage: NextPage = () => {
             new Promise<void>((resolve) => {
                 borders.defaultWidth = `${width}px` as any;
                 borders.default      = [[borders.style, borders.defaultWidth, borders.color]] as any;
-                borders.style        = states.style[0] as any;
+                borders.style        = style as any;
                 resolve();
             });
         }, 10);
 
         return () => clearTimeout(handler);
-    }, [width, states.style[0]]);
+    }, [width, style]);
     useEffect(() => {
         const handler = setTimeout(() => {
             new Promise<void>((resolve) => {
