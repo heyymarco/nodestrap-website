@@ -8,7 +8,7 @@ import { Section, Section2 } from '../../../components/Section'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 import { TypeScriptCode } from '../../../components/Code'
 
-import { SectionInheritedProps, LinkActionControlPage, LinkControlPage, ParagraphDefaultValue, ParagraphGlobalConfig, ParagraphDerivering, SectionOverridingDefaultProps, SectionCustomizingCss } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkActionControlPage, LinkControlPage, ParagraphDefaultValue, ParagraphGlobalConfig, ParagraphDerivering, SectionOverridingDefaults, SectionCustomizingCss } from '../../../components/common-contents'
 
 import { DemoPanel, ResetButtonEx } from '../../../components/DemoPanel'
 import { ActionControl } from '@nodestrap/action-control'
@@ -178,7 +178,8 @@ const Page: NextPage = () => {
                     <article>
                         <h2>Derivering ActionControl Component</h2>
                         <ParagraphDerivering component={<LinkActionControlPage />} />
-                        <SectionOverridingDefaultProps component={<LinkActionControlPage />}>{`
+                        
+                        <SectionOverridingDefaults component={<LinkActionControlPage />}>{`
 import { ActionControl } from '@nodestrap/action-control'
 
 export default function CoolButton(props) {
@@ -200,7 +201,8 @@ export default function CoolButton(props) {
         </ActionControl>
     );
 }
-                        `}</SectionOverridingDefaultProps>
+                        `}</SectionOverridingDefaults>
+
                         <SectionCustomizingCss component={<LinkActionControlPage />} specList={
                             <SpecList>
                                 <DetailSpecItem code='usesActionControlLayout()'>

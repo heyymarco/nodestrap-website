@@ -8,7 +8,7 @@ import { Section, Section2 } from '../../../components/Section'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 import { TypeScriptCode } from '../../../components/Code'
 
-import { SectionInheritedProps, LinkControlPage, LinkIndicatorPage, ParagraphDefaultValue, ParagraphGlobalConfig, ParagraphDerivering, SectionOverridingDefaultProps, SectionCustomizingCss } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkControlPage, LinkIndicatorPage, ParagraphDefaultValue, ParagraphGlobalConfig, ParagraphDerivering, SectionOverridingDefaults, SectionCustomizingCss } from '../../../components/common-contents'
 
 import { DemoPanel, ResetButtonEx } from '../../../components/DemoPanel'
 import { Control } from '@nodestrap/control'
@@ -239,7 +239,8 @@ const Page: NextPage = () => {
                     <article>
                         <h2>Derivering Control Component</h2>
                         <ParagraphDerivering component={<LinkControlPage />} />
-                        <SectionOverridingDefaultProps component={<LinkControlPage />}>{`
+                        
+                        <SectionOverridingDefaults component={<LinkControlPage />}>{`
 import { Control } from '@nodestrap/control'
 
 export default function JoystickControl(props) {
@@ -262,7 +263,8 @@ export default function JoystickControl(props) {
         </Control>
     );
 }
-                        `}</SectionOverridingDefaultProps>
+                        `}</SectionOverridingDefaults>
+
                         <SectionCustomizingCss component={<LinkControlPage />} specList={
                             <SpecList>
                                 <DetailSpecItem code='usesControlLayout()'>

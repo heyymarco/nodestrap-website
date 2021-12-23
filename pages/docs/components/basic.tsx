@@ -9,7 +9,7 @@ import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../
 import { TypeScriptCode } from '../../../components/Code'
 import { Warning } from '../../../components/Info'
 
-import { SectionInheritedProps, LinkBasicPage, LinkElementPage, LinkColorsPage, ParagraphGlobalConfig, ParagraphDerivering, SectionOverridingDefaultProps, SectionCustomizingCss } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkBasicPage, LinkElementPage, LinkColorsPage, ParagraphGlobalConfig, ParagraphDerivering, SectionOverridingDefaults, SectionCustomizingCss } from '../../../components/common-contents'
 
 import { DemoPanel, ResetButtonEx } from '../../../components/DemoPanel'
 import { Basic } from '@nodestrap/basic'
@@ -354,7 +354,8 @@ const Page: NextPage = () => {
                     <article>
                         <h2>Derivering Basic Component</h2>
                         <ParagraphDerivering component={<LinkBasicPage />} />
-                        <SectionOverridingDefaultProps component={<LinkBasicPage />}>{`
+                        
+                        <SectionOverridingDefaults component={<LinkBasicPage />}>{`
 import { Basic } from '@nodestrap/basic'
 
 export default function SiteSidebar(props) {
@@ -372,7 +373,8 @@ export default function SiteSidebar(props) {
         </Basic>
     );
 }
-                        `}</SectionOverridingDefaultProps>
+                        `}</SectionOverridingDefaults>
+
                         <SectionCustomizingCss component={<LinkBasicPage />} specList={
                             <SpecList>
                                 <DetailSpecItem code='usesBasicLayout()'>

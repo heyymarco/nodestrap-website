@@ -127,11 +127,11 @@ export const ParagraphDerivering = ({ component: Component }: ParagraphDeriverin
     </p>
 )
 
-export interface SectionOverridingDefaultPropsProps {
+export interface SectionOverridingDefaultsProps {
     component   : React.ReactElement<PageLinkProps, React.FunctionComponent<PageLinkProps>>
     children    : string
 }
-export const SectionOverridingDefaultProps = ({ component: Component, children }: SectionOverridingDefaultPropsProps) => (
+export const SectionOverridingDefaults = ({ component: Component, children }: SectionOverridingDefaultsProps) => (
     <Section2>
         <h3>Derivering by Overriding the Default Properties</h3>
         <p>

@@ -9,7 +9,7 @@ import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../
 import { TypeScriptCode } from '../../../components/Code'
 import { Warning } from '../../../components/Info'
 
-import { SectionInheritedProps, LinkIndicatorPage, LinkBasicPage, LinkIconPage, ParagraphGlobalConfig, ParagraphDerivering, SectionOverridingDefaultProps, SectionCustomizingCss } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkIndicatorPage, LinkBasicPage, LinkIconPage, ParagraphGlobalConfig, ParagraphDerivering, SectionOverridingDefaults, SectionCustomizingCss } from '../../../components/common-contents'
 
 import { DemoPanel, ResetButtonEx } from '../../../components/DemoPanel'
 import { Indicator } from '@nodestrap/indicator'
@@ -240,7 +240,8 @@ const Page: NextPage = () => {
                     <article>
                         <h2>Derivering Indicator Component</h2>
                         <ParagraphDerivering component={<LinkIndicatorPage />} />
-                        <SectionOverridingDefaultProps component={<LinkIndicatorPage />}>{`
+                        
+                        <SectionOverridingDefaults component={<LinkIndicatorPage />}>{`
 import { Indicator } from '@nodestrap/indicator'
 
 export default function OnOffIndicator(props) {
@@ -258,7 +259,8 @@ export default function OnOffIndicator(props) {
         </Indicator>
     );
 }
-                        `}</SectionOverridingDefaultProps>
+                        `}</SectionOverridingDefaults>
+
                         <SectionCustomizingCss component={<LinkIndicatorPage />} specList={
                             <SpecList>
                                 <DetailSpecItem code='usesIndicatorLayout()'>
