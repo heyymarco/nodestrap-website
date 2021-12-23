@@ -8,7 +8,7 @@ import { Section, Section2 } from '../../../components/Section'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 import { TypeScriptCode } from '../../../components/Code'
 
-import { SectionInheritedProps, LinkControlPage, LinkIndicatorPage } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkControlPage, LinkIndicatorPage, ParagraphDefaultValue, ParagraphGlobalConfig, ParagraphDerivering, SectionOverridingDefaultProps, SectionCustomizingCss } from '../../../components/common-contents'
 
 import { DemoPanel, ResetButtonEx } from '../../../components/DemoPanel'
 import { Control } from '@nodestrap/control'
@@ -114,9 +114,7 @@ const Page: NextPage = () => {
                                     <p>
                                         Set to this value will <strong>show</strong> the focus indicator when the control is <strong>in focus</strong> and <strong>hide</strong> one when it&apos;s <strong>out of focus</strong>.
                                     </p>
-                                    <p>
-                                        This is the <strong>default</strong> value if the <code>focus</code> value is not specified.
-                                    </p>
+                                    <ParagraphDefaultValue code='focus' />
                                 </DetailSpecItem>
                                 <DetailSpecItem code='true'>
                                     <p>
@@ -145,9 +143,7 @@ const Page: NextPage = () => {
                                         Set to this value will <strong>show</strong> the arrive indicator when the cursor is currently <strong>hover</strong> on the control <em>and/or</em> the control is currently <strong>has focus</strong>, and <strong>hide</strong> one
                                         when the cursor is <strong>not hover</strong> on the control <em>and</em> the control is currently <strong>out of focus</strong>.
                                     </p>
-                                    <p>
-                                        This is the <strong>default</strong> value if the <code>arrive</code> value is not specified.
-                                    </p>
+                                    <ParagraphDefaultValue code='arrive' />
                                 </DetailSpecItem>
                                 <DetailSpecItem code='true'>
                                     <p>
@@ -182,11 +178,7 @@ const Page: NextPage = () => {
                 <Section>
                     <article>
                         <h2>Customizing Control Component</h2>
-                        <p>
-                            There is a <strong>global configuration</strong> of <LinkControlPage /> you can tweak.
-                            Changing the global configuration <strong>affects all</strong> <LinkControlPage /> and <strong>other components</strong> derived from <LinkControlPage />.
-                            Here several properties in <code>cssProps</code> of <code>{`import { cssProps } from @nodestrap/control`}</code> you can customize:
-                        </p>
+                        <ParagraphGlobalConfig component={<LinkControlPage />} packageName='@nodestrap/control' />
                         <SpecList>
                             <DetailSpecItem title='Accessibilities'>
                                 <SubSpecList>
@@ -246,18 +238,8 @@ const Page: NextPage = () => {
                 <Section>
                     <article>
                         <h2>Derivering Control Component</h2>
-                        <p>
-                            <LinkControlPage /> can be derivered to a <strong>new specific component</strong> you want.
-                            There are several ways to deriver.
-                        </p>
-                        <Section2>
-                            <h3>Derivering by Overriding the Default Properties</h3>
-                            <p>
-                                This is the simples way to deriver <LinkControlPage />, just by <strong>changing</strong> the <strong>default values</strong>.
-                                The values after the <code>??</code> (nullish coalescing operator) are <strong>your default values</strong>.
-                                Here the example:
-                            </p>
-                            <TypeScriptCode>{`
+                        <ParagraphDerivering component={<LinkControlPage />} />
+                        <SectionOverridingDefaultProps component={<LinkControlPage />}>{`
 import { Control } from '@nodestrap/control'
 
 export default function JoystickControl(props) {
@@ -280,14 +262,8 @@ export default function JoystickControl(props) {
         </Control>
     );
 }
-                            `}</TypeScriptCode>
-                        </Section2>
-                        <Section2>
-                            <h3>Derivering by Customizing the CSS</h3>
-                            <p>
-                                <LinkControlPage /> exports <strong>some CSS</strong> that you can import into <strong>your CSS</strong>.
-                                Here the exported <em>mixins</em>:
-                            </p>
+                        `}</SectionOverridingDefaultProps>
+                        <SectionCustomizingCss component={<LinkControlPage />} specList={
                             <SpecList>
                                 <DetailSpecItem code='usesControlLayout()'>
                                     <p>
@@ -381,8 +357,7 @@ export default function JoystickControl(props) {
                                     </p>
                                 </DetailSpecItem>
                             </SpecList>
-                            <p>Example of modifying the CSS:</p>
-                            <TypeScriptCode>{`
+                        }>{`
 import { mainComposition, layout, imports, variants, states, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
 import { Control, usesControlLayout, usesControlVariants, usesControlStates, isFocus, isArrive } from '@nodestrap/control'
@@ -447,8 +422,7 @@ export default function JoystickControl(props) {
         </Control>
     )
 }
-                            `}</TypeScriptCode>
-                        </Section2>
+                        `}</SectionCustomizingCss>
                     </article>
                 </Section>
             </Main>

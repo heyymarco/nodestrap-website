@@ -1,7 +1,9 @@
 import Button from '@nodestrap/button'
 import Link from 'next/link'
 import React from 'react';
-import Section from './Section';
+import { TypeScriptCode } from './Code';
+import Section, { Section2 } from './Section';
+import { SpecListProps } from './SpecList';
 
 
 
@@ -92,4 +94,69 @@ export const SectionInheritedProps = ({component: Component, base: Base}: Sectio
             You can <SeeDocumentation base={Base} />.
         </p>
     </Section>
+)
+
+export interface ParagraphDefaultValueProps {
+    code: string
+}
+export const ParagraphDefaultValue = ({ code }: ParagraphDefaultValueProps) => (
+    <p>
+        This is the <strong>default</strong> value if the <code>{ code }</code> value is not specified.
+    </p>
+)
+
+export interface ParagraphGlobalConfigProps {
+    component   : React.ReactElement<PageLinkProps, React.FunctionComponent<PageLinkProps>>
+    packageName : `@nodestrap/${string}` | (string & {})
+}
+export const ParagraphGlobalConfig = ({ component: Component, packageName }: ParagraphGlobalConfigProps) => (
+    <p>
+        There is a <strong>global configuration</strong> of { Component } you can tweak.
+        Changing the global configuration <strong>affects all</strong> { Component } and <strong>other components</strong> derived from { Component }.
+        Here several properties in <code>cssProps</code> of <code>{`import { cssProps } from ${packageName}`}</code> you can customize:
+    </p>
+)
+
+export interface ParagraphDeriveringProps {
+    component   : React.ReactElement<PageLinkProps, React.FunctionComponent<PageLinkProps>>
+}
+export const ParagraphDerivering = ({ component: Component }: ParagraphDeriveringProps) => (
+    <p>
+        { Component } can be derivered to a <strong>new specific component</strong> you want.
+        There are several ways to deriver.
+    </p>
+)
+
+export interface SectionOverridingDefaultPropsProps {
+    component   : React.ReactElement<PageLinkProps, React.FunctionComponent<PageLinkProps>>
+    children    : string
+}
+export const SectionOverridingDefaultProps = ({ component: Component, children }: SectionOverridingDefaultPropsProps) => (
+    <Section2>
+        <h3>Derivering by Overriding the Default Properties</h3>
+        <p>
+            This is the simples way to deriver { Component }, just by <strong>changing</strong> the <strong>default values</strong>.
+            The values after the <code>??</code> (nullish coalescing operator) are <strong>your default values</strong>.
+            Here the example:
+        </p>
+        <TypeScriptCode>{ children }</TypeScriptCode>
+    </Section2>
+)
+
+export interface SectionCustomizingCssProps {
+    component   : React.ReactElement<PageLinkProps, React.FunctionComponent<PageLinkProps>>
+    specList    : React.ReactElement<SpecListProps, React.FunctionComponent<SpecListProps>>
+    children    : string
+}
+export const SectionCustomizingCss = ({ component: Component, specList: SpecList, children }: SectionCustomizingCssProps) => (
+    <Section2>
+        <h3>Derivering by Customizing the CSS</h3>
+        <p>
+            { Component } exports <strong>some CSS</strong> that you can import into <strong>your CSS</strong>.
+            Here the exported <em>mixins</em>:
+        </p>
+        { SpecList }
+        <p>Example of modifying the CSS:</p>
+        <TypeScriptCode>{ children }</TypeScriptCode>
+    </Section2>
 )

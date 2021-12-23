@@ -9,7 +9,7 @@ import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../
 import { TypeScriptCode } from '../../../components/Code'
 import { Warning } from '../../../components/Info'
 
-import { SectionInheritedProps, LinkBasicPage, LinkElementPage, LinkColorsPage } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkBasicPage, LinkElementPage, LinkColorsPage, ParagraphGlobalConfig, ParagraphDerivering, SectionOverridingDefaultProps, SectionCustomizingCss } from '../../../components/common-contents'
 
 import { DemoPanel, ResetButtonEx } from '../../../components/DemoPanel'
 import { Basic } from '@nodestrap/basic'
@@ -202,11 +202,7 @@ const Page: NextPage = () => {
                 <Section>
                     <article>
                         <h2>Customizing Basic Component</h2>
-                        <p>
-                            There is a <strong>global configuration</strong> of <LinkBasicPage /> you can tweak.
-                            Changing the global configuration <strong>affects all</strong> <LinkBasicPage /> and <strong>other components</strong> derived from <LinkBasicPage />.
-                            Here several properties in <code>cssProps</code> of <code>{`import { cssProps } from @nodestrap/basic`}</code> you can customize:
-                        </p>
+                        <ParagraphGlobalConfig component={<LinkBasicPage />} packageName='@nodestrap/basic' />
                         <SpecList>
                             <DetailSpecItem title='Foregrounds, Backgrounds &amp; Borders'>
                                 <SubSpecList>
@@ -357,18 +353,8 @@ const Page: NextPage = () => {
                 <Section>
                     <article>
                         <h2>Derivering Basic Component</h2>
-                        <p>
-                            <LinkBasicPage /> can be derivered to a <strong>new specific component</strong> you want.
-                            There are several ways to deriver.
-                        </p>
-                        <Section2>
-                            <h3>Derivering by Overriding the Default Properties</h3>
-                            <p>
-                                This is the simples way to deriver <LinkBasicPage />, just by <strong>changing</strong> the <strong>default values</strong>.
-                                The values after the <code>??</code> (nullish coalescing operator) are <strong>your default values</strong>.
-                                Here the example:
-                            </p>
-                            <TypeScriptCode>{`
+                        <ParagraphDerivering component={<LinkBasicPage />} />
+                        <SectionOverridingDefaultProps component={<LinkBasicPage />}>{`
 import { Basic } from '@nodestrap/basic'
 
 export default function SiteSidebar(props) {
@@ -386,14 +372,8 @@ export default function SiteSidebar(props) {
         </Basic>
     );
 }
-                            `}</TypeScriptCode>
-                        </Section2>
-                        <Section2>
-                            <h3>Derivering by Customizing the CSS</h3>
-                            <p>
-                                <LinkBasicPage /> exports <strong>some CSS</strong> that you can import into <strong>your CSS</strong>.
-                                Here the exported <em>mixins</em>:
-                            </p>
+                        `}</SectionOverridingDefaultProps>
+                        <SectionCustomizingCss component={<LinkBasicPage />} specList={
                             <SpecList>
                                 <DetailSpecItem code='usesBasicLayout()'>
                                     <p>
@@ -407,8 +387,7 @@ export default function SiteSidebar(props) {
                                     </p>
                                 </DetailSpecItem>
                             </SpecList>
-                            <p>Example of modifying the CSS:</p>
-                            <TypeScriptCode>{`
+                        }>{`
 import { mainComposition, layout, imports, variants, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
 import { Basic, usesBasicLayout, usesBasicVariants } from '@nodestrap/basic'
@@ -455,8 +434,7 @@ export default function CustomComponent(props) {
         </Basic>
     )
 }
-                            `}</TypeScriptCode>
-                        </Section2>
+                        `}</SectionCustomizingCss>
                     </article>
                 </Section>
             </Main>

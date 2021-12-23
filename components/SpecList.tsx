@@ -6,7 +6,8 @@ import styles from './SpecList.module.scss'
 
 
 
-export function SpecList(props: ListProps) {
+export type SpecListProps = ListProps
+export function SpecList(props: SpecListProps) {
     return (
         <List
             {...props}
@@ -20,7 +21,8 @@ export function SpecList(props: ListProps) {
 }
 SpecList.prototype = List.prototype;
 
-export function SubSpecList(props: ListProps) {
+export type SubSpecListProps = ListProps
+export function SubSpecList(props: SubSpecListProps) {
     return (
         <SpecList
             {...props}

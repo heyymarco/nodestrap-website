@@ -9,7 +9,7 @@ import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../
 import { TypeScriptCode } from '../../../components/Code'
 import { Warning } from '../../../components/Info'
 
-import { SectionInheritedProps, LinkIndicatorPage, LinkBasicPage, LinkIconPage } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkIndicatorPage, LinkBasicPage, LinkIconPage, ParagraphGlobalConfig, ParagraphDerivering, SectionOverridingDefaultProps, SectionCustomizingCss } from '../../../components/common-contents'
 
 import { DemoPanel, ResetButtonEx } from '../../../components/DemoPanel'
 import { Indicator } from '@nodestrap/indicator'
@@ -187,11 +187,7 @@ const Page: NextPage = () => {
                 <Section>
                     <article>
                         <h2>Customizing Indicator Component</h2>
-                        <p>
-                            There is a <strong>global configuration</strong> of <LinkIndicatorPage /> you can tweak.
-                            Changing the global configuration <strong>affects all</strong> <LinkIndicatorPage /> and <strong>other components</strong> derived from <LinkIndicatorPage />.
-                            Here several properties in <code>cssProps</code> of <code>{`import { cssProps } from @nodestrap/indicator`}</code> you can customize:
-                        </p>
+                        <ParagraphGlobalConfig component={<LinkIndicatorPage />} packageName='@nodestrap/indicator' />
                         <SpecList>
                             <DetailSpecItem title='Animations'>
                                 <SubSpecList>
@@ -243,18 +239,8 @@ const Page: NextPage = () => {
                 <Section>
                     <article>
                         <h2>Derivering Indicator Component</h2>
-                        <p>
-                            <LinkIndicatorPage /> can be derivered to a <strong>new specific component</strong> you want.
-                            There are several ways to deriver.
-                        </p>
-                        <Section2>
-                            <h3>Derivering by Overriding the Default Properties</h3>
-                            <p>
-                                This is the simples way to deriver <LinkIndicatorPage />, just by <strong>changing</strong> the <strong>default values</strong>.
-                                The values after the <code>??</code> (nullish coalescing operator) are <strong>your default values</strong>.
-                                Here the example:
-                            </p>
-                            <TypeScriptCode>{`
+                        <ParagraphDerivering component={<LinkIndicatorPage />} />
+                        <SectionOverridingDefaultProps component={<LinkIndicatorPage />}>{`
 import { Indicator } from '@nodestrap/indicator'
 
 export default function OnOffIndicator(props) {
@@ -272,14 +258,8 @@ export default function OnOffIndicator(props) {
         </Indicator>
     );
 }
-                            `}</TypeScriptCode>
-                        </Section2>
-                        <Section2>
-                            <h3>Derivering by Customizing the CSS</h3>
-                            <p>
-                                <LinkIndicatorPage /> exports <strong>some CSS</strong> that you can import into <strong>your CSS</strong>.
-                                Here the exported <em>mixins</em>:
-                            </p>
+                        `}</SectionOverridingDefaultProps>
+                        <SectionCustomizingCss component={<LinkIndicatorPage />} specList={
                             <SpecList>
                                 <DetailSpecItem code='usesIndicatorLayout()'>
                                     <p>
@@ -373,8 +353,7 @@ export default function OnOffIndicator(props) {
                                     </p>
                                 </DetailSpecItem>
                             </SpecList>
-                            <p>Example of modifying the CSS:</p>
-                            <TypeScriptCode>{`
+                        }>{`
 import { mainComposition, layout, imports, variants, states, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
 import { Indicator, usesIndicatorLayout, usesIndicatorVariants, usesIndicatorStates, isDisable, isActive } from '@nodestrap/indicator'
@@ -439,8 +418,7 @@ export default function CustomComponent(props) {
         </Indicator>
     )
 }
-                            `}</TypeScriptCode>
-                        </Section2>
+                        `}</SectionCustomizingCss>
                     </article>
                 </Section>
             </Main>
