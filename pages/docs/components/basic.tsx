@@ -9,7 +9,7 @@ import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../
 import { TypeScriptCode } from '../../../components/Code'
 import { Warning } from '../../../components/Info'
 
-import { SectionInheritedProps, LinkBasicPage, LinkElementPage, LinkColorsPage, ParagraphGlobalConfig, ParagraphDerivering, SectionOverridingDefaults, SectionCustomizingCss } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkBasicPage, LinkElementPage, LinkColorsPage, ParagraphGlobalConfig, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering } from '../../../components/common-contents'
 
 import { DemoPanel, ResetButtonEx } from '../../../components/DemoPanel'
 import { Basic } from '@nodestrap/basic'
@@ -34,7 +34,7 @@ const Page: NextPage = () => {
     
     
     return (
-        <>
+        <ComponentInfoProvider packageName='@nodestrap/basic' component={<LinkBasicPage />} base={<LinkElementPage />}>
             <Head>
                 <title>Basic Component</title>
                 <meta name="description" content="Using <Basic> component" />
@@ -350,12 +350,8 @@ const Page: NextPage = () => {
                         </SpecList>
                     </article>
                 </Section>
-                <Section>
-                    <article>
-                        <h2>Derivering Basic Component</h2>
-                        <ParagraphDerivering component={<LinkBasicPage />} />
-                        
-                        <SectionOverridingDefaults component={<LinkBasicPage />}>{`
+                <SectionDerivering>
+                    <SectionOverridingDefaults>{`
 import { Basic } from '@nodestrap/basic'
 
 export default function SiteSidebar(props) {
@@ -373,23 +369,23 @@ export default function SiteSidebar(props) {
         </Basic>
     );
 }
-                        `}</SectionOverridingDefaults>
+                    `}</SectionOverridingDefaults>
 
-                        <SectionCustomizingCss component={<LinkBasicPage />} specList={
-                            <SpecList>
-                                <DetailSpecItem code='usesBasicLayout()'>
-                                    <p>
-                                        Returns a <code>StyleCollection</code> object represents a complete <LinkBasicPage /> <strong>layout</strong> except its <strong>variants</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='usesBasicVariants()'>
-                                    <p>
-                                        Returns a <code>StyleCollection</code> object represents the <strong>variants</strong> of <LinkBasicPage /> such as:<br />
-                                        <code>SizeVariant</code>, <code>NudeVariant</code>, <code>ThemeVariant</code>, <code>GradientVariant</code>, <code>OutlinedVariant</code>, and <code>MildVariant</code>.
-                                    </p>
-                                </DetailSpecItem>
-                            </SpecList>
-                        }>{`
+                    <SectionCustomizingCss specList={
+                        <SpecList>
+                            <DetailSpecItem code='usesBasicLayout()'>
+                                <p>
+                                    Returns a <code>StyleCollection</code> object represents a complete <LinkBasicPage /> <strong>layout</strong> except its <strong>variants</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='usesBasicVariants()'>
+                                <p>
+                                    Returns a <code>StyleCollection</code> object represents the <strong>variants</strong> of <LinkBasicPage /> such as:<br />
+                                    <code>SizeVariant</code>, <code>NudeVariant</code>, <code>ThemeVariant</code>, <code>GradientVariant</code>, <code>OutlinedVariant</code>, and <code>MildVariant</code>.
+                                </p>
+                            </DetailSpecItem>
+                        </SpecList>
+                    }>{`
 import { mainComposition, layout, imports, variants, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
 import { Basic, usesBasicLayout, usesBasicVariants } from '@nodestrap/basic'
@@ -436,11 +432,10 @@ export default function CustomComponent(props) {
         </Basic>
     )
 }
-                        `}</SectionCustomizingCss>
-                    </article>
-                </Section>
+                    `}</SectionCustomizingCss>
+                </SectionDerivering>
             </Main>
-        </>
+        </ComponentInfoProvider>
     )
 }
 

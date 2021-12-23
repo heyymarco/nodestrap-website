@@ -1,6 +1,6 @@
 import Button from '@nodestrap/button'
 import Link from 'next/link'
-import React from 'react';
+import React, { useContext } from 'react';
 import { TypeScriptCode } from './Code';
 import Section, { Section2 } from './Section';
 import { SpecListProps } from './SpecList';
@@ -117,46 +117,89 @@ export const ParagraphGlobalConfig = ({ component: Component, packageName }: Par
     </p>
 )
 
-export interface ParagraphDeriveringProps {
+
+
+interface ComponentInfo {
+    packageName : `@nodestrap/${string}` | (string & {})
     component   : React.ReactElement<PageLinkProps, React.FunctionComponent<PageLinkProps>>
+    base        : React.ReactElement<PageLinkProps, React.FunctionComponent<PageLinkProps>>
 }
-export const ParagraphDerivering = ({ component: Component }: ParagraphDeriveringProps) => (
-    <p>
-        { Component } can be derivered to a <strong>new specific component</strong> you want.
-        There are several ways to deriver.
-    </p>
-)
+const ComponentInfoContext = React.createContext<ComponentInfo>(/*defaultValue :*/{
+    packageName : '@nodestrap/element',
+    component   : <LinkElementPage />,
+    base        : <LinkElementPage />,
+});
+export interface ComponentInfoProviderProps extends ComponentInfo {
+    children   ?: React.ReactNode
+}
+export function ComponentInfoProvider(props: ComponentInfoProviderProps) {
+    return (
+        <ComponentInfoContext.Provider value={props}>
+            { props.children }
+        </ComponentInfoContext.Provider>
+    );
+}
+const useComponentInfo = () => useContext(ComponentInfoContext)
+
+
+
+export interface SectionDeriveringProps {
+    children   ?: React.ReactNode
+}
+export const SectionDerivering = ({ children }: SectionDeriveringProps) => {
+    const { component } = useComponentInfo();
+    
+    return (
+        <Section>
+            <article>
+                <h2>Derivering ActionControl Component</h2>
+                <p>
+                    { component } can be derivered to a <strong>new specific component</strong> you want.
+                    There are several ways to deriver.
+                </p>
+
+                { children }
+            </article>
+        </Section>
+    );
+}
 
 export interface SectionOverridingDefaultsProps {
-    component   : React.ReactElement<PageLinkProps, React.FunctionComponent<PageLinkProps>>
     children    : string
 }
-export const SectionOverridingDefaults = ({ component: Component, children }: SectionOverridingDefaultsProps) => (
-    <Section2>
-        <h3>Derivering by Overriding the Default Properties</h3>
-        <p>
-            This is the simples way to deriver { Component }, just by <strong>changing</strong> the <strong>default values</strong>.
-            The values after the <code>??</code> (nullish coalescing operator) are <strong>your default values</strong>.
-            Here the example:
-        </p>
-        <TypeScriptCode>{ children }</TypeScriptCode>
-    </Section2>
-)
+export const SectionOverridingDefaults = ({ children }: SectionOverridingDefaultsProps) => {
+    const { component } = useComponentInfo();
+    
+    return (
+        <Section2>
+            <h3>Derivering by Overriding the Default Properties</h3>
+            <p>
+                This is the simples way to deriver { component }, just by <strong>changing</strong> the <strong>default values</strong>.
+                The values after the <code>??</code> (nullish coalescing operator) are <strong>your default values</strong>.
+                Here the example:
+            </p>
+            <TypeScriptCode>{ children }</TypeScriptCode>
+        </Section2>
+    );
+}
 
 export interface SectionCustomizingCssProps {
-    component   : React.ReactElement<PageLinkProps, React.FunctionComponent<PageLinkProps>>
     specList    : React.ReactElement<SpecListProps, React.FunctionComponent<SpecListProps>>
     children    : string
 }
-export const SectionCustomizingCss = ({ component: Component, specList: SpecList, children }: SectionCustomizingCssProps) => (
-    <Section2>
-        <h3>Derivering by Customizing the CSS</h3>
-        <p>
-            { Component } exports <strong>some CSS</strong> that you can import into <strong>your CSS</strong>.
-            Here the exported <em>mixins</em>:
-        </p>
-        { SpecList }
-        <p>Example of modifying the CSS:</p>
-        <TypeScriptCode>{ children }</TypeScriptCode>
-    </Section2>
-)
+export const SectionCustomizingCss = ({ specList: SpecList, children }: SectionCustomizingCssProps) => {
+    const { component } = useComponentInfo();
+    
+    return (
+        <Section2>
+            <h3>Derivering by Customizing the CSS</h3>
+            <p>
+                { component } exports <strong>some CSS</strong> that you can import into <strong>your CSS</strong>.
+                Here the exported <em>mixins</em>:
+            </p>
+            { SpecList }
+            <p>Example of modifying the CSS:</p>
+            <TypeScriptCode>{ children }</TypeScriptCode>
+        </Section2>
+    );
+}

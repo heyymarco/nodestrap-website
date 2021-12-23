@@ -8,7 +8,7 @@ import { Section, Section2 } from '../../../components/Section'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 import { TypeScriptCode } from '../../../components/Code'
 
-import { SectionInheritedProps, LinkActionControlPage, LinkControlPage, ParagraphDefaultValue, ParagraphGlobalConfig, ParagraphDerivering, SectionOverridingDefaults, SectionCustomizingCss } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkActionControlPage, LinkControlPage, ParagraphDefaultValue, ParagraphGlobalConfig, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering } from '../../../components/common-contents'
 
 import { DemoPanel, ResetButtonEx } from '../../../components/DemoPanel'
 import { ActionControl } from '@nodestrap/action-control'
@@ -22,7 +22,7 @@ const Page: NextPage = () => {
     
     
     return (
-        <>
+        <ComponentInfoProvider packageName='@nodestrap/action-control' component={<LinkActionControlPage />} base={<LinkControlPage />}>
             <Head>
                 <title>ActionControl Component</title>
                 <meta name="description" content="Using <ActionControl> component" />
@@ -174,12 +174,8 @@ const Page: NextPage = () => {
                         </SpecList>
                     </article>
                 </Section>
-                <Section>
-                    <article>
-                        <h2>Derivering ActionControl Component</h2>
-                        <ParagraphDerivering component={<LinkActionControlPage />} />
-                        
-                        <SectionOverridingDefaults component={<LinkActionControlPage />}>{`
+                <SectionDerivering>
+                    <SectionOverridingDefaults>{`
 import { ActionControl } from '@nodestrap/action-control'
 
 export default function CoolButton(props) {
@@ -201,66 +197,66 @@ export default function CoolButton(props) {
         </ActionControl>
     );
 }
-                        `}</SectionOverridingDefaults>
+                    `}</SectionOverridingDefaults>
 
-                        <SectionCustomizingCss component={<LinkActionControlPage />} specList={
-                            <SpecList>
-                                <DetailSpecItem code='usesActionControlLayout()'>
-                                    <p>
-                                        Returns a <code>StyleCollection</code> object represents a complete <LinkActionControlPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='usesActionControlVariants()'>
-                                    <p>
-                                        Returns a <code>StyleCollection</code> object represents the <strong>variants</strong> of <LinkActionControlPage /> such as:<br />
-                                        <code>SizeVariant</code> and <strong>all variants</strong> inherited from <LinkControlPage />.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='usesActionControlStates()'>
-                                    <p>
-                                        Returns a <code>StyleCollection</code> object represents the <strong>states</strong> of <LinkActionControlPage /> such as:<br />
-                                        <strong>press</strong>/<strong>release</strong>, and <strong>all states</strong> inherited from <LinkControlPage />.
-                                    </p>
-                                </DetailSpecItem>
+                    <SectionCustomizingCss specList={
+                        <SpecList>
+                            <DetailSpecItem code='usesActionControlLayout()'>
+                                <p>
+                                    Returns a <code>StyleCollection</code> object represents a complete <LinkActionControlPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='usesActionControlVariants()'>
+                                <p>
+                                    Returns a <code>StyleCollection</code> object represents the <strong>variants</strong> of <LinkActionControlPage /> such as:<br />
+                                    <code>SizeVariant</code> and <strong>all variants</strong> inherited from <LinkControlPage />.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='usesActionControlStates()'>
+                                <p>
+                                    Returns a <code>StyleCollection</code> object represents the <strong>states</strong> of <LinkActionControlPage /> such as:<br />
+                                    <strong>press</strong>/<strong>release</strong>, and <strong>all states</strong> inherited from <LinkControlPage />.
+                                </p>
+                            </DetailSpecItem>
 
 
-                                <DetailSpecItem code='isPressed(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>fully pressed</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='isPressing(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>being pressed</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='isReleasing(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>being released</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='isReleased(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>fully released</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='isPress(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>being/fully pressed</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='isRelease(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>being/fully released</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='isPressReleasing(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>being/fully pressed</strong> or <strong>being released</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                            </SpecList>
-                        }>{`
+                            <DetailSpecItem code='isPressed(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>fully pressed</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='isPressing(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>being pressed</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='isReleasing(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>being released</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='isReleased(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>fully released</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='isPress(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>being/fully pressed</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='isRelease(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>being/fully released</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='isPressReleasing(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>being/fully pressed</strong> or <strong>being released</strong>.
+                                </p>
+                            </DetailSpecItem>
+                        </SpecList>
+                    }>{`
 import { mainComposition, layout, imports, variants, states, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
 import { ActionControl, usesActionControlLayout, usesActionControlVariants, usesActionControlStates, isPress } from '@nodestrap/action-control'
@@ -318,11 +314,10 @@ export default function CoolButton(props) {
         </ActionControl>
     )
 }
-                        `}</SectionCustomizingCss>
-                    </article>
-                </Section>
+                    `}</SectionCustomizingCss>
+                </SectionDerivering>
             </Main>
-        </>
+        </ComponentInfoProvider>
     )
 }
 

@@ -5,6 +5,7 @@ import { Main } from '../../../components/Main'
 import { Section, Section2 } from '../../../components/Section'
 import { TypeScriptCode } from '../../../components/Code'
 import { Tips, Warning } from '../../../components/Info'
+import { ComponentInfoProvider, LinkElementPage } from '../../../components/common-contents'
 
 
 
@@ -50,7 +51,7 @@ const ElementCode = () => <code>&lt;Element&gt;</code>;
 
 const Page: NextPage = () => {
     return (
-        <>
+        <ComponentInfoProvider packageName='@nodestrap/element' component={<LinkElementPage />} base={<LinkElementPage />}>
             <Head>
                 <title>Element Component</title>
                 <meta name="description" content="Using <Element> component" />
@@ -613,7 +614,7 @@ export function CustomTextEditor(props) {
                     </article>
                 </Section>
             </Main>
-        </>
+        </ComponentInfoProvider>
     )
 }
 

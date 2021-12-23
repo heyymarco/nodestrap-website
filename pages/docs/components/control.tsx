@@ -8,7 +8,7 @@ import { Section, Section2 } from '../../../components/Section'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 import { TypeScriptCode } from '../../../components/Code'
 
-import { SectionInheritedProps, LinkControlPage, LinkIndicatorPage, ParagraphDefaultValue, ParagraphGlobalConfig, ParagraphDerivering, SectionOverridingDefaults, SectionCustomizingCss } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkControlPage, LinkIndicatorPage, ParagraphDefaultValue, ParagraphGlobalConfig, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering } from '../../../components/common-contents'
 
 import { DemoPanel, ResetButtonEx } from '../../../components/DemoPanel'
 import { Control } from '@nodestrap/control'
@@ -22,7 +22,7 @@ const Page: NextPage = () => {
     
     
     return (
-        <>
+        <ComponentInfoProvider packageName='@nodestrap/control' component={<LinkControlPage />} base={<LinkIndicatorPage />}>
             <Head>
                 <title>Control Component</title>
                 <meta name="description" content="Using <Control> component" />
@@ -235,12 +235,8 @@ const Page: NextPage = () => {
                         </SpecList>
                     </article>
                 </Section>
-                <Section>
-                    <article>
-                        <h2>Derivering Control Component</h2>
-                        <ParagraphDerivering component={<LinkControlPage />} />
-                        
-                        <SectionOverridingDefaults component={<LinkControlPage />}>{`
+                <SectionDerivering>
+                    <SectionOverridingDefaults>{`
 import { Control } from '@nodestrap/control'
 
 export default function JoystickControl(props) {
@@ -263,103 +259,103 @@ export default function JoystickControl(props) {
         </Control>
     );
 }
-                        `}</SectionOverridingDefaults>
+                    `}</SectionOverridingDefaults>
 
-                        <SectionCustomizingCss component={<LinkControlPage />} specList={
-                            <SpecList>
-                                <DetailSpecItem code='usesControlLayout()'>
-                                    <p>
-                                        Returns a <code>StyleCollection</code> object represents a complete <LinkControlPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='usesControlVariants()'>
-                                    <p>
-                                        Returns a <code>StyleCollection</code> object represents the <strong>variants</strong> of <LinkControlPage /> such as:<br />
-                                        <code>SizeVariant</code> and <strong>all variants</strong> inherited from <LinkIndicatorPage />.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='usesControlStates()'>
-                                    <p>
-                                        Returns a <code>StyleCollection</code> object represents the <strong>states</strong> of <LinkControlPage /> such as:<br />
-                                        <strong>focus</strong>/<strong>blur</strong>, <strong>arrive</strong>/<strong>leave</strong>, and <strong>all states</strong> inherited from <LinkIndicatorPage />.
-                                    </p>
-                                </DetailSpecItem>
-
-
-                                <DetailSpecItem code='isFocused(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>fully focused</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='isFocusing(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>being focused</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='isBlurring(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>being blurred</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='isBlurred(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>fully blurred</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='isFocus(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>being/fully focused</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='isBlur(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>being/fully blurred</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='isFocusBlurring(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>being/fully focused</strong> or <strong>being blurred</strong>.
-                                    </p>
-                                </DetailSpecItem>
+                    <SectionCustomizingCss specList={
+                        <SpecList>
+                            <DetailSpecItem code='usesControlLayout()'>
+                                <p>
+                                    Returns a <code>StyleCollection</code> object represents a complete <LinkControlPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='usesControlVariants()'>
+                                <p>
+                                    Returns a <code>StyleCollection</code> object represents the <strong>variants</strong> of <LinkControlPage /> such as:<br />
+                                    <code>SizeVariant</code> and <strong>all variants</strong> inherited from <LinkIndicatorPage />.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='usesControlStates()'>
+                                <p>
+                                    Returns a <code>StyleCollection</code> object represents the <strong>states</strong> of <LinkControlPage /> such as:<br />
+                                    <strong>focus</strong>/<strong>blur</strong>, <strong>arrive</strong>/<strong>leave</strong>, and <strong>all states</strong> inherited from <LinkIndicatorPage />.
+                                </p>
+                            </DetailSpecItem>
 
 
-                                <DetailSpecItem code='isArrived(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>fully arrived</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='isArriving(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>being arrived</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='isLeaving(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>being left</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='isLeft(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>fully left</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='isArrive(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>being/fully arrived</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='isLeave(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>being/fully left</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='isArriveLeaving(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>being/fully arrived</strong> or <strong>being left</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                            </SpecList>
-                        }>{`
+                            <DetailSpecItem code='isFocused(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>fully focused</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='isFocusing(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>being focused</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='isBlurring(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>being blurred</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='isBlurred(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>fully blurred</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='isFocus(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>being/fully focused</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='isBlur(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>being/fully blurred</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='isFocusBlurring(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>being/fully focused</strong> or <strong>being blurred</strong>.
+                                </p>
+                            </DetailSpecItem>
+
+
+                            <DetailSpecItem code='isArrived(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>fully arrived</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='isArriving(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>being arrived</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='isLeaving(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>being left</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='isLeft(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>fully left</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='isArrive(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>being/fully arrived</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='isLeave(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>being/fully left</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='isArriveLeaving(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>being/fully arrived</strong> or <strong>being left</strong>.
+                                </p>
+                            </DetailSpecItem>
+                        </SpecList>
+                    }>{`
 import { mainComposition, layout, imports, variants, states, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
 import { Control, usesControlLayout, usesControlVariants, usesControlStates, isFocus, isArrive } from '@nodestrap/control'
@@ -424,11 +420,10 @@ export default function JoystickControl(props) {
         </Control>
     )
 }
-                        `}</SectionCustomizingCss>
-                    </article>
-                </Section>
+                    `}</SectionCustomizingCss>
+                </SectionDerivering>
             </Main>
-        </>
+        </ComponentInfoProvider>
     )
 }
 

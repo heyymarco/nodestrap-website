@@ -9,7 +9,7 @@ import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../
 import { TypeScriptCode } from '../../../components/Code'
 import { Warning } from '../../../components/Info'
 
-import { SectionInheritedProps, LinkIndicatorPage, LinkBasicPage, LinkIconPage, ParagraphGlobalConfig, ParagraphDerivering, SectionOverridingDefaults, SectionCustomizingCss } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkIndicatorPage, LinkBasicPage, LinkIconPage, ParagraphGlobalConfig, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering } from '../../../components/common-contents'
 
 import { DemoPanel, ResetButtonEx } from '../../../components/DemoPanel'
 import { Indicator } from '@nodestrap/indicator'
@@ -23,7 +23,7 @@ const Page: NextPage = () => {
     
     
     return (
-        <>
+        <ComponentInfoProvider packageName='@nodestrap/indicator' component={<LinkIndicatorPage />} base={<LinkBasicPage />}>
             <Head>
                 <title>Indicator Component</title>
                 <meta name="description" content="Using <Indicator> component" />
@@ -236,12 +236,8 @@ const Page: NextPage = () => {
                         </SpecList>
                     </article>
                 </Section>
-                <Section>
-                    <article>
-                        <h2>Derivering Indicator Component</h2>
-                        <ParagraphDerivering component={<LinkIndicatorPage />} />
-                        
-                        <SectionOverridingDefaults component={<LinkIndicatorPage />}>{`
+                <SectionDerivering>
+                    <SectionOverridingDefaults>{`
 import { Indicator } from '@nodestrap/indicator'
 
 export default function OnOffIndicator(props) {
@@ -259,103 +255,103 @@ export default function OnOffIndicator(props) {
         </Indicator>
     );
 }
-                        `}</SectionOverridingDefaults>
+                    `}</SectionOverridingDefaults>
 
-                        <SectionCustomizingCss component={<LinkIndicatorPage />} specList={
-                            <SpecList>
-                                <DetailSpecItem code='usesIndicatorLayout()'>
-                                    <p>
-                                        Returns a <code>StyleCollection</code> object represents a complete <LinkIndicatorPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='usesIndicatorVariants()'>
-                                    <p>
-                                        Returns a <code>StyleCollection</code> object represents the <strong>variants</strong> of <LinkIndicatorPage /> such as:<br />
-                                        <code>SizeVariant</code> and <strong>all variants</strong> inherited from <LinkBasicPage />.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='usesIndicatorStates()'>
-                                    <p>
-                                        Returns a <code>StyleCollection</code> object represents the <strong>states</strong> of <LinkIndicatorPage /> such as:<br />
-                                        <strong>enabled</strong>/<strong>disabled</strong> and <strong>active</strong>/<strong>passive</strong>.
-                                    </p>
-                                </DetailSpecItem>
-
-
-                                <DetailSpecItem code='isEnabled(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>fully enabled</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='isEnabling(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>being enabled</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='isDisabling(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>being disabled</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='isDisabled(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>fully disabled</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='isEnable(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>being/fully enabled</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='isDisable(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>being/fully disabled</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='isEnablingDisable(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>being enabled</strong> or <strong>being/fully disabled</strong>.
-                                    </p>
-                                </DetailSpecItem>
+                    <SectionCustomizingCss specList={
+                        <SpecList>
+                            <DetailSpecItem code='usesIndicatorLayout()'>
+                                <p>
+                                    Returns a <code>StyleCollection</code> object represents a complete <LinkIndicatorPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='usesIndicatorVariants()'>
+                                <p>
+                                    Returns a <code>StyleCollection</code> object represents the <strong>variants</strong> of <LinkIndicatorPage /> such as:<br />
+                                    <code>SizeVariant</code> and <strong>all variants</strong> inherited from <LinkBasicPage />.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='usesIndicatorStates()'>
+                                <p>
+                                    Returns a <code>StyleCollection</code> object represents the <strong>states</strong> of <LinkIndicatorPage /> such as:<br />
+                                    <strong>enabled</strong>/<strong>disabled</strong> and <strong>active</strong>/<strong>passive</strong>.
+                                </p>
+                            </DetailSpecItem>
 
 
-                                <DetailSpecItem code='isActived(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>fully activated</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='isActivating(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>being activated</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='isPassivating(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>being deactivated</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='isPassived(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>fully deactivated</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='isActive(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>being/fully activated</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='isPassive(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>being/fully deactivated</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='isActivePassivating(styles)'>
-                                    <p>
-                                        Applies the specified <code>styles</code> when current component is <strong>being/fully activated</strong> or <strong>being deactivated</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                            </SpecList>
-                        }>{`
+                            <DetailSpecItem code='isEnabled(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>fully enabled</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='isEnabling(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>being enabled</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='isDisabling(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>being disabled</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='isDisabled(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>fully disabled</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='isEnable(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>being/fully enabled</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='isDisable(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>being/fully disabled</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='isEnablingDisable(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>being enabled</strong> or <strong>being/fully disabled</strong>.
+                                </p>
+                            </DetailSpecItem>
+
+
+                            <DetailSpecItem code='isActived(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>fully activated</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='isActivating(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>being activated</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='isPassivating(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>being deactivated</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='isPassived(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>fully deactivated</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='isActive(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>being/fully activated</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='isPassive(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>being/fully deactivated</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='isActivePassivating(styles)'>
+                                <p>
+                                    Applies the specified <code>styles</code> when current component is <strong>being/fully activated</strong> or <strong>being deactivated</strong>.
+                                </p>
+                            </DetailSpecItem>
+                        </SpecList>
+                    }>{`
 import { mainComposition, layout, imports, variants, states, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
 import { Indicator, usesIndicatorLayout, usesIndicatorVariants, usesIndicatorStates, isDisable, isActive } from '@nodestrap/indicator'
@@ -420,11 +416,10 @@ export default function CustomComponent(props) {
         </Indicator>
     )
 }
-                        `}</SectionCustomizingCss>
-                    </article>
-                </Section>
+                    `}</SectionCustomizingCss>
+                </SectionDerivering>
             </Main>
-        </>
+        </ComponentInfoProvider>
     )
 }
 
