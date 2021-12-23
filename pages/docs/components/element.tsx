@@ -48,7 +48,7 @@ const WarnForSemanticTag = () => (
 
 const ElementCode = () => <code>&lt;Element&gt;</code>;
 
-const ElementPage: NextPage = () => {
+const Page: NextPage = () => {
     return (
         <>
             <Head>
@@ -617,4 +617,4 @@ export function CustomTextEditor(props) {
     )
 }
 
-export default ElementPage
+export default Page

@@ -20,7 +20,7 @@ const IconCode = () => <Link href='/docs/components/icon'><a><code>&lt;Icon&gt;<
 
 
 
-const IndicatorPage: NextPage = () => {
+const Page: NextPage = () => {
     const states = useIndicatorStates();
     
     
@@ -96,7 +96,7 @@ const IndicatorPage: NextPage = () => {
                     </article>
                     <p>
                         Because <IndicatorCode /> is made from <BasicCode />,
-                        so all properties of <BasicCode /> are inherited.<br />
+                        so all properties from <BasicCode /> are inherited.<br />
                         You can <Button btnStyle='link' theme='primary'><Link href='/docs/components/basic'>see the documentation of &lt;Basic&gt; here</Link></Button>.
                     </p>
                 </Section>
@@ -104,12 +104,14 @@ const IndicatorPage: NextPage = () => {
                     <article>
                         <h2>State Properties</h2>
                         <p>
-                            There&apos;re some properties for <strong>modifying the state</strong> such as <code>enabled</code>, <code>active</code> and <code>readOnly</code>.
+                            There&apos;re some properties for <strong>modifying the states</strong> such as <code>enabled</code>, <code>active</code> and <code>readOnly</code>.
                         </p>
                         <Section2>
                             <h3><code>enabled</code> Property</h3>
                             <p>
                                 An <code>enabled</code> property influence the component <strong>functionality</strong>.
+                            </p>
+                            <p>
                                 The options are:
                             </p>
                             <SpecList>
@@ -134,6 +136,8 @@ const IndicatorPage: NextPage = () => {
                             <h3><code>active</code> Property</h3>
                             <p>
                                 An <code>active</code> property indicates the component is currently <strong>selected</strong> or <strong>on state</strong>.
+                            </p>
+                            <p>
                                 The options are:
                             </p>
                             <SpecList>
@@ -157,6 +161,8 @@ const IndicatorPage: NextPage = () => {
                             <p>
                                 A <code>readOnly</code> property influence the component <strong>editing functionality</strong>.
                                 Similar to <code>disabled</code> but only disabling the editing functionality.
+                            </p>
+                            <p>
                                 The options are:
                             </p>
                             <SpecList>
@@ -201,11 +207,11 @@ const IndicatorPage: NextPage = () => {
                                 <SubSpecList>
                                     <SimpleSpecItem>
                                         <code>filterDisable</code>
-                                        <p>A <code>filter</code> to apply when in <code>{`enabled={false}`}</code>.</p>
+                                        <p>A <code>filter</code> to apply when <code>{`enabled={false}`}</code>.</p>
                                     </SimpleSpecItem>
                                     <SimpleSpecItem>
                                         <code>filterActive</code>
-                                        <p>A <code>filter</code> to apply when in <code>{`active={true}`}</code>.</p>
+                                        <p>A <code>filter</code> to apply when <code>{`active={true}`}</code>.</p>
                                     </SimpleSpecItem>
                                     <SimpleSpecItem>
                                         <code>@keyframes enable</code>
@@ -386,7 +392,7 @@ import { Indicator, usesIndicatorLayout, usesIndicatorVariants, usesIndicatorSta
 const useCustomComponentSheet = createUseSheet(() => [
     mainComposition([
         imports([
-            // import some stuff from <Basic>:
+            // import some stuff from <Indicator>:
             usesIndicatorLayout(),
             usesIndicatorVariants(),
             usesIndicatorStates(),
@@ -418,14 +424,14 @@ const useCustomComponentSheet = createUseSheet(() => [
         states([
             isDisable([
                 layout({
-                    // define the style at 'being/fully disabled' variant:
+                    // define the style at 'being/fully disabled' state:
                     background-color: 'gray',
                     /* ... */
                 }),
             ]),
             isActive([
                 layout({
-                    // define the style at 'being/fully active' variant:
+                    // define the style at 'being/fully active' state:
                     background-color: 'red',
                     /* ... */
                 }),
@@ -452,4 +458,4 @@ export default function CustomComponent(props) {
     )
 }
 
-export default IndicatorPage
+export default Page

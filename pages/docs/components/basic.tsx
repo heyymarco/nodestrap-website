@@ -28,7 +28,7 @@ const WarnNotImplementExited = () => (
 
 
 
-const BasicPage: NextPage = () => {
+const Page: NextPage = () => {
     const states = useBasicStates();
     
     
@@ -101,7 +101,7 @@ const BasicPage: NextPage = () => {
                     </article>
                     <p>
                         Because <BasicCode /> is made from <ElementCode />,
-                        so all properties of <ElementCode /> are inherited.<br />
+                        so all properties from <ElementCode /> are inherited.<br />
                         You can <Button btnStyle='link' theme='primary'><Link href='/docs/components/element'>see the documentation of &lt;Element&gt; here</Link></Button>.
                     </p>
                 </Section>
@@ -109,7 +109,7 @@ const BasicPage: NextPage = () => {
                     <article>
                         <h2>Variant Properties</h2>
                         <p>
-                            There&apos;re some properties for <strong>modifying the appearance</strong> such as <code>size</code>, <code>nude</code>, <code>theme</code>, <code>gradient</code>, <code>outlined</code>, and <code>mild</code>.
+                            There&apos;re some properties for <strong>modifying the appearances</strong> such as <code>size</code>, <code>nude</code>, <code>theme</code>, <code>gradient</code>, <code>outlined</code>, and <code>mild</code>.
                         </p>
                         <p>
                             Those properties do not change the <BasicCode /> semantically. Just for <strong>styling</strong> purpose.
@@ -118,6 +118,8 @@ const BasicPage: NextPage = () => {
                             <h3><code>size</code> Property</h3>
                             <p>
                                 A <code>size</code> property changes the <strong>default size</strong>.
+                            </p>
+                            <p>
                                 The options are:
                             </p>
                             <SpecList>
@@ -140,6 +142,8 @@ const BasicPage: NextPage = () => {
                             <h3><code>theme</code> Property</h3>
                             <p>
                                 A <code>theme</code> property changes the <strong>contextual theme</strong> - represented by color.
+                            </p>
+                            <p>
                                 The options are:
                             </p>
                             <SpecList>
@@ -341,7 +345,7 @@ const BasicPage: NextPage = () => {
                                     </SimpleSpecItem>
                                     <SimpleSpecItem>
                                         <code>filterExcited</code>
-                                        <p>A <code>filter</code> to apply when in <code>{`excited={true}`}</code>.</p>
+                                        <p>A <code>filter</code> to apply when <code>{`excited={true}`}</code>.</p>
                                         <WarnNotImplementExited />
                                     </SimpleSpecItem>
                                     <SimpleSpecItem>
@@ -469,4 +473,4 @@ export default function CustomComponent(props) {
     )
 }
 
-export default BasicPage
+export default Page

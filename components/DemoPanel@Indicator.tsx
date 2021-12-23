@@ -1,5 +1,5 @@
 import { useResetableState, Option } from './DemoPanel';
-import { basicInitials, BasicInitials, BasicOptions, useBasicStates } from './DemoPanel@Basic';
+import { BasicInitials, BasicOptions, useBasicStates } from './DemoPanel@Basic';
 import { Warning } from './Info';
 
 
@@ -11,10 +11,9 @@ export const indicatorInitials = {
     active   : false,
     readOnly : false,
 };
-export type IndicatorInitials = typeof indicatorInitials & BasicInitials
+export type IndicatorInitials = typeof indicatorInitials & Partial<BasicInitials>
 export const useIndicatorStates = (initials ?: Partial<IndicatorInitials>) => {
     const initials2 : IndicatorInitials = {
-        ...basicInitials,
         ...indicatorInitials,
         ...initials
     };
@@ -48,13 +47,6 @@ export const IndicatorOptions = (props: { states: ReturnType<typeof useIndicator
             options={[false, true]}
             value={states.active[0]}
             setValue={states.active[1]}
-        />
-        
-        <Option
-            name='readOnly'
-            options={[false, true]}
-            value={states.readOnly[0]}
-            setValue={states.readOnly[1]}
         />
 
         <BasicOptions
