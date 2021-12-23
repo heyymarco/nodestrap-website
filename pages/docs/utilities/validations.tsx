@@ -5,6 +5,9 @@ import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
 import { SpecList, DetailSpecItem } from '../../../components/SpecList'
 
+import { LinkValidationsPage } from '../../../components/common-contents'
+
+
 
 const ValidationsPage: NextPage = () => {
     return (
@@ -19,7 +22,7 @@ const ValidationsPage: NextPage = () => {
                     <article>
                         <h1>Validations Utility</h1>
                         <p>
-                            <code>@nodestrap/validations</code> is a utility for determining the validation statuses of components such as <strong>enableValidation</strong> and <strong>valid</strong>/<strong>invalid</strong>.
+                            <LinkValidationsPage /> is a utility for determining the validation statuses of components such as <strong>enableValidation</strong> and <strong>valid</strong>/<strong>invalid</strong>.
                         </p>
                         <p>
                             By centralizing the reusable codes in one place, the overall bundle size can be reduced.

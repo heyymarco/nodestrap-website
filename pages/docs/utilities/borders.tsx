@@ -9,6 +9,8 @@ import { DemoPanel, ResetButtonEx } from '../../../components/DemoPanel'
 import { BorderOptions, useBorderStates } from '../../../components/DemoPanel@borders'
 import { Basic } from '@nodestrap/basic'
 
+import { LinkBordersPage } from '../../../components/common-contents'
+
 
 
 const BordersPage: NextPage = () => {
@@ -55,10 +57,10 @@ const BordersPage: NextPage = () => {
                     <article>
                         <h1>Borders Utility</h1>
                         <p>
-                            <code>@nodestrap/borders</code> is a border (stroke) utility that is shared across other components.
+                            <LinkBordersPage /> is a border (stroke) utility that is shared across other components.
                         </p>
                         <p>
-                            <strong>Changing</strong> the borders <strong>affects all components</strong> that depend on <code>@nodestrap/borders</code>.
+                            <strong>Changing</strong> the borders <strong>affects all components</strong> that depend on <LinkBordersPage />.
                         </p>
                         <p>
                             The main purpose of this utility is to create <strong>a consistent border (stroke)</strong> between components.
@@ -145,7 +147,7 @@ borderRadiuses.xxl = null; // delete property \`xxl\`
                     <article>
                         <h2>Consuming (getting) the Borders</h2>
                         <p>
-                            Let&apos; say you want to make a custom component and need to get some borders in <code>@nodestrap/borders</code> for border consistency.
+                            Let&apos; say you want to make a custom component and need to get some borders in <LinkBordersPage /> for border consistency.
                             You can do like this:
                         </p>
                         <TypeScriptCode>{`
@@ -202,7 +204,7 @@ export default function MyComponent(props) {
                     <article>
                         <h2>Where the Borders are Actually Stored?</h2>
                         <p>
-                            Well, the borders are stored internally in <code>@nodestrap/borders</code> and dynamically copied into the browser&apos;s <code>:root</code> by default.
+                            Well, the borders are stored internally in <LinkBordersPage /> and dynamically copied into the browser&apos;s <code>:root</code> by default.
                             Here the actual code you can find on browser&apos;s page inspector:
                         </p>
                         <CssCode>{`
@@ -229,7 +231,7 @@ export default function MyComponent(props) {
                         <p>
                             Btw, you <strong>should not</strong> modify our <code>css variables</code> directly!
                             Otherwise any changes you&apos;ve made will be swapped out.
-                            Instead use <strong>our API</strong> in the <code>@nodestrap/borders</code> to get/set/modify the borders.
+                            Instead use <strong>our API</strong> in the <LinkBordersPage /> to get/set/modify the borders.
                             Like this:
                         </p>
                         <TypeScriptCode>{`

@@ -5,6 +5,9 @@ import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
 import { SpecList, DetailSpecItem } from '../../../components/SpecList'
 
+import { LinkUtilitiesPage } from '../../../components/common-contents'
+
+
 
 const UtilitiesPage: NextPage = () => {
     return (
@@ -19,7 +22,7 @@ const UtilitiesPage: NextPage = () => {
                 <article>
                         <h1>Utilities</h1>
                         <p>
-                            <code>@nodestrap/utilities</code> is a utility contains common utility functions.
+                            <LinkUtilitiesPage /> is a utility contains common utility functions.
                         </p>
                         <p>
                             By centralizing the reusable codes in one place, the overall bundle size can be reduced.

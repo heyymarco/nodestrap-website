@@ -3,7 +3,10 @@ import Head from 'next/head'
 import React, {  } from 'react'
 import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
-import { SpecList, SimpleSpecItem, DetailSpecItem } from '../../../components/SpecList'
+import { SpecList, DetailSpecItem } from '../../../components/SpecList'
+
+import { LinkHooksPage } from '../../../components/common-contents'
+
 
 
 const HooksPage: NextPage = () => {
@@ -19,7 +22,7 @@ const HooksPage: NextPage = () => {
                 <article>
                         <h1>Hooks Utility</h1>
                         <p>
-                            <code>@nodestrap/hooks</code> is a utility contains common react hooks.
+                            <LinkHooksPage /> is a utility contains common react hooks.
                         </p>
                         <p>
                             By centralizing the reusable codes in one place, the overall bundle size can be reduced.

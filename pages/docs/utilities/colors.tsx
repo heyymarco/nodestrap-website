@@ -11,6 +11,8 @@ import { ColorOptions, useColorStates } from '../../../components/DemoPanel@colo
 import Color from 'color'
 import { Basic } from '@nodestrap/basic'
 
+import { LinkColorsPage } from '../../../components/common-contents'
+
 
 
 const ColorsPage: NextPage = () => {
@@ -45,10 +47,10 @@ const ColorsPage: NextPage = () => {
                     <article>
                         <h1>Colors Utility</h1>
                         <p>
-                            <code>@nodestrap/colors</code> is a color utility that is shared across other components.
+                            <LinkColorsPage /> is a color utility that is shared across other components.
                         </p>
                         <p>
-                            <strong>Changing</strong> the colors <strong>affects all components</strong> that depend on <code>@nodestrap/colors</code>.
+                            <strong>Changing</strong> the colors <strong>affects all components</strong> that depend on <LinkColorsPage />.
                         </p>
                         <p>
                             The main purpose of this utility is to create <strong>a consistent theme colors</strong> between components.
@@ -236,7 +238,7 @@ colors.light = '#aaaaff' // set \`light\` color to light blue
                     <article>
                         <h2>Consuming (getting) the Colors</h2>
                         <p>
-                            Let&apos; say you want to make a custom component and need to get some colors in <code>@nodestrap/colors</code> for color consistency.
+                            Let&apos; say you want to make a custom component and need to get some colors in <LinkColorsPage /> for color consistency.
                             You can do like this:
                         </p>
                         <TypeScriptCode>{`
@@ -287,7 +289,7 @@ export default function MyComponent(props) {
                     <article>
                         <h2>Where the Colors are Actually Stored?</h2>
                         <p>
-                            Well, the colors are stored internally in <code>@nodestrap/colors</code> and dynamically copied into the browser&apos;s <code>:root</code> by default.
+                            Well, the colors are stored internally in <LinkColorsPage /> and dynamically copied into the browser&apos;s <code>:root</code> by default.
                             Here the actual code you can find on browser&apos;s page inspector:
                         </p>
                         <CssCode>{`
@@ -359,7 +361,7 @@ export default function MyComponent(props) {
                         <p>
                             Btw, you <strong>should not</strong> modify our <code>css variables</code> directly!
                             Otherwise any changes you&apos;ve made will be swapped out.
-                            Instead use <strong>our API</strong> in the <code>@nodestrap/colors</code> to get/set/modify the colors.
+                            Instead use <strong>our API</strong> in the <LinkColorsPage /> to get/set/modify the colors.
                             Like this:
                         </p>
                         <TypeScriptCode>{`

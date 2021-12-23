@@ -6,6 +6,9 @@ import { Section } from '../../../components/Section'
 import { TypeScriptCode } from '../../../components/Code'
 import { SpecList, DetailSpecItem } from '../../../components/SpecList'
 
+import { LinkStripoutsPage } from '../../../components/common-contents'
+
+
 
 const StripoutsPage: NextPage = () => {
     return (
@@ -20,7 +23,7 @@ const StripoutsPage: NextPage = () => {
                     <article>
                         <h1>Stripouts Utility</h1>
                         <p>
-                            <code>@nodestrap/stripouts</code> is a utility for resetting browser default style to an unstyled element.
+                            <LinkStripoutsPage /> is a utility for resetting browser default style to an unstyled element.
                         </p>
                         <p>
                             The default styles in <code>&lt;button&gt;</code>, <code>&lt;input&gt;</code>, <code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, etc are great,<br />

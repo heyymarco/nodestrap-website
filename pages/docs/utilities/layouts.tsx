@@ -5,6 +5,9 @@ import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
 import { SpecList, SimpleSpecItem } from '../../../components/SpecList'
 
+import { LinkLayoutsPage } from '../../../components/common-contents'
+
+
 
 const LayoutsPage: NextPage = () => {
     return (
@@ -19,7 +22,7 @@ const LayoutsPage: NextPage = () => {
                 <article>
                         <h1>Layouts Utility</h1>
                         <p>
-                            <code>@nodestrap/layouts</code> is a utility for creating common layouts.
+                            <LinkLayoutsPage /> is a utility for creating common layouts.
                         </p>
                         <p>
                             By centralizing the reusable codes in one place, the overall bundle size can be reduced.

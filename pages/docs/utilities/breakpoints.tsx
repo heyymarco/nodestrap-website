@@ -6,6 +6,9 @@ import { Section } from '../../../components/Section'
 import { SpecList, SimpleSpecItem } from '../../../components/SpecList'
 import { TypeScriptCode } from '../../../components/Code'
 
+import { LinkBreakpointsPage } from '../../../components/common-contents'
+
+
 
 const BreakpointsPage: NextPage = () => {
     return (
@@ -20,14 +23,14 @@ const BreakpointsPage: NextPage = () => {
                 <article>
                         <h1>Breakpoints Utility</h1>
                         <p>
-                            <code>@nodestrap/breakpoints</code> is a utility for determining which layout/style to apply based on device (viewport) width.
+                            <LinkBreakpointsPage /> is a utility for determining which layout/style to apply based on device (viewport) width.
                         </p>
                         <p>
                             You might want to create <strong>several versions of design</strong>, each of which has a specific target device such as <em>desktop version</em>, <em>tablet version</em>, <em>mobile version</em>, and so on.
                         </p>
                         <p>
-                            To make <strong>a consistent breakpoint configuration</strong> between components, here the <code>@nodestrap/breakpoints</code> comes to help.<br />
-                            <strong>Changing</strong> the configuration in <code>@nodestrap/breakpoints</code> <strong>affects all components</strong> that depend on it.
+                            To make <strong>a consistent breakpoint configuration</strong> between components, here the <LinkBreakpointsPage /> comes to help.<br />
+                            <strong>Changing</strong> the configuration in <LinkBreakpointsPage /> <strong>affects all components</strong> that depend on it.
                         </p>
                     </article>
                 </Section>
@@ -70,7 +73,7 @@ breakpoints.xxxl = null; // delete property \`xxxl\`
                     <article>
                         <h2>Consuming (getting) the Breakpoints</h2>
                         <p>
-                            Let&apos; say you want to make a custom component and need to switch some styles based on the configured breakpoints in <code>@nodestrap/breakpoints</code>.
+                            Let&apos; say you want to make a custom component and need to switch some styles based on the configured breakpoints in <LinkBreakpointsPage />.
                             You can do like this:
                         </p>
                         <TypeScriptCode>{`
@@ -160,8 +163,8 @@ export default function MyComponent(props) {
                     <article>
                         <h2>Where the Breakpoints are Actually Stored?</h2>
                         <p>
-                            Well, the breakpoints are stored internally in <code>@nodestrap/breakpoints</code> only.
-                            Unlike other utilities that use the power of <em>css variables</em>, <code>@nodestrap/breakpoints</code> is currently relies on JavaScript object for storage.
+                            Well, the breakpoints are stored internally in <LinkBreakpointsPage /> only.
+                            Unlike other utilities that use the power of <em>css variables</em>, <LinkBreakpointsPage /> is currently relies on JavaScript object for storage.
                             The <em>css variables</em> doesn&apos;t work on <code>@media</code> selector.
                             Here the actual code stored internally:
                         </p>

@@ -5,6 +5,9 @@ import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
 import { SpecList, SimpleSpecItem } from '../../../components/SpecList'
 
+import { LinkTyposPage } from '../../../components/common-contents'
+
+
 
 const TyposPage: NextPage = () => {
     return (
@@ -19,10 +22,10 @@ const TyposPage: NextPage = () => {
                     <article>
                         <h1>Typos Utility</h1>
                         <p>
-                            <code>@nodestrap/typos</code> is a utility for customizing common typography (paragraphs, headings, marks, fonts, etc) in your site&apos;s page.
+                            <LinkTyposPage /> is a utility for customizing common typography (paragraphs, headings, marks, fonts, etc) in your site&apos;s page.
                         </p>
                         <p>
-                            <strong>Changing</strong> the typography configs <strong>affects all components</strong> that depend on <code>@nodestrap/typos</code>.
+                            <strong>Changing</strong> the typography configs <strong>affects all components</strong> that depend on <LinkTyposPage />.
                         </p>
                         <p>
                             The main purpose of this utility is to create <strong>a consistent typography (text)</strong> between components.

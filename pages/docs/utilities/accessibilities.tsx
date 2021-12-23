@@ -5,6 +5,9 @@ import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
 import { SpecList, DetailSpecItem } from '../../../components/SpecList'
 
+import { LinkAccessibilitiesPage } from '../../../components/common-contents'
+
+
 
 const AccessibilitiesPage: NextPage = () => {
     return (
@@ -19,7 +22,7 @@ const AccessibilitiesPage: NextPage = () => {
                     <article>
                         <h1>Accessibilities Utility</h1>
                         <p>
-                            <code>@nodestrap/accessibilities</code> is a utility for determining the accessibility statuses of components such as <strong>enabled</strong>/<strong>disabled</strong>, <strong>readonly</strong>/<strong>editable</strong> and <strong>active</strong>/<strong>passive</strong>.
+                            <LinkAccessibilitiesPage /> is a utility for determining the accessibility statuses of components such as <strong>enabled</strong>/<strong>disabled</strong>, <strong>readonly</strong>/<strong>editable</strong> and <strong>active</strong>/<strong>passive</strong>.
                         </p>
                         <p>
                             By centralizing the reusable codes in one place, the overall bundle size can be reduced.
