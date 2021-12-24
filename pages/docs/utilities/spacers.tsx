@@ -4,9 +4,8 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 
 import { Main } from '../../../components/Main'
-import { Section } from '../../../components/Section'
 
-import { ComponentInfoProvider, LinkSpacersPage, SectionIntro } from '../../../components/common-contents'
+import { ComponentInfoProvider, LinkSpacersPage, SectionGeneral, SectionIntro } from '../../../components/common-contents'
 import { SectionDemoSpacers } from '../../../components/DemoPanel@spacers'
 import { TypeScriptCode, CssCode } from '../../../components/Code'
 
@@ -33,50 +32,45 @@ const Page: NextPage = () => {
                     </p>
                 </SectionIntro>
                 <SectionDemoSpacers />
-                <Section>
-                    <article>
-                        <h2>Defining Spacers</h2>
-                        <p>
-                            There are 8 pre-defined spacer properties:<br />
-                            {
-                                ['none', 'xxs', 'xs', 'sm', 'md', 'lg', 'xl', 'default']
-                                .flatMap((spacer, index, themes) => [
-                                    <code key={spacer}>{ spacer }</code>,
-                                    (index < (themes.length - 1)) ? ', ' : null
-                                ])
-                            }
-                        </p>
-                        <p>
-                            You can <em>add</em> or <em>modify</em> the <strong>pre-defined spacer properties</strong> <em>but</em> we advice <em>not to delete</em> them.
-                        </p>
-                        <p>
-                            Here the code for <em>adding</em> a new spacer property or <em>modifying</em> the existing ones: 
-                        </p>
-                        <TypeScriptCode>{`
+                <SectionGeneral title='Defining Spacers'>
+                    <p>
+                        There are 8 pre-defined spacer properties:<br />
+                        {
+                            ['none', 'xxs', 'xs', 'sm', 'md', 'lg', 'xl', 'default']
+                            .flatMap((spacer, index, themes) => [
+                                <code key={spacer}>{ spacer }</code>,
+                                (index < (themes.length - 1)) ? ', ' : null
+                            ])
+                        }
+                    </p>
+                    <p>
+                        You can <em>add</em> or <em>modify</em> the <strong>pre-defined spacer properties</strong> <em>but</em> we advice <em>not to delete</em> them.
+                    </p>
+                    <p>
+                        Here the code for <em>adding</em> a new spacer property or <em>modifying</em> the existing ones: 
+                    </p>
+                    <TypeScriptCode>{`
 import { spacers } from '@nodestrap/spacers'
 
 spacers.md = '1.5rem'; // set the spacer of \`md\` to 1.5 rem
 spacers.xxl = '5rem'; // add a new property \`xxl\` as 5 rem
 spacers.default = spacers.md; // set the default spacer to \`md\` (1.5 rem)
-                        `}</TypeScriptCode>
-                        <p>
-                            For deleting a specific spacer property, just assign <code>null</code> or <code>undefined</code> to the desired property:
-                        </p>
-                        <TypeScriptCode>{`
+                    `}</TypeScriptCode>
+                    <p>
+                        For deleting a specific spacer property, just assign <code>null</code> or <code>undefined</code> to the desired property:
+                    </p>
+                    <TypeScriptCode>{`
 import { spacers } from '@nodestrap/spacers'
 
 spacers.xxl = null; // delete property \`xxl\`
-                        `}</TypeScriptCode>
-                    </article>
-                </Section>
-                <Section>
-                    <article>
-                        <h2>Consuming (getting) the Spacers</h2>
-                        <p>
-                            Let&apos; say you want to make a custom component and need to get some spacers in <LinkSpacersPage /> for spacing consistency.
-                            You can do like this:
-                        </p>
-                        <TypeScriptCode>{`
+                    `}</TypeScriptCode>
+                </SectionGeneral>
+                <SectionGeneral title='Consuming (getting) the Spacers'>
+                    <p>
+                        Let&apos; say you want to make a custom component and need to get some spacers in <LinkSpacersPage /> for spacing consistency.
+                        You can do like this:
+                    </p>
+                    <TypeScriptCode>{`
 import { spacers } from '@nodestrap/spacers'
 
 export default function MyComponent(props) {
@@ -88,11 +82,11 @@ export default function MyComponent(props) {
         </div>
     )
 }
-                        `}</TypeScriptCode>
-                        <p>
-                            You can use <strong>CSS in JS</strong>, <strong>Styled Component</strong> or <strong>CSSFN</strong> to dynamically create your own css:
-                        </p>
-                        <TypeScriptCode>{`
+                    `}</TypeScriptCode>
+                    <p>
+                        You can use <strong>CSS in JS</strong>, <strong>Styled Component</strong> or <strong>CSSFN</strong> to dynamically create your own css:
+                    </p>
+                    <TypeScriptCode>{`
 import { compositionOf, layout } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
 import { spacers } from '@nodestrap/spacers'
@@ -113,17 +107,14 @@ export default function MyComponent(props) {
         </div>
     )
 }
-                        `}</TypeScriptCode>
-                    </article>
-                </Section>
-                <Section>
-                    <article>
-                        <h2>Where the Spacers are Actually Stored?</h2>
-                        <p>
-                            Well, the spacers are stored internally in <LinkSpacersPage /> and dynamically copied into the browser&apos;s <code>:root</code> by default.
-                            Here the actual code you can find on browser&apos;s page inspector:
-                        </p>
-                        <CssCode>{`
+                    `}</TypeScriptCode>
+                </SectionGeneral>
+                <SectionGeneral title='Where the Spacers are Actually Stored?'>
+                    <p>
+                        Well, the spacers are stored internally in <LinkSpacersPage /> and dynamically copied into the browser&apos;s <code>:root</code> by default.
+                        Here the actual code you can find on browser&apos;s page inspector:
+                    </p>
+                    <CssCode>{`
 :root {
     --spc-none: 0px;
     --spc-md: 1rem;
@@ -134,14 +125,14 @@ export default function MyComponent(props) {
     --spc-lg: calc( var(--spc-md) * 1.5 );
     --spc-xl: calc( var(--spc-md) * 3 );
 }
-                        `}</CssCode>
-                        <p>
-                            Btw, you <strong>should not</strong> modify our <code>css variables</code> directly!
-                            Otherwise any changes you&apos;ve made will be swapped out.
-                            Instead use <strong>our API</strong> in the <LinkSpacersPage /> to get/set/modify the spacers.
-                            Like this:
-                        </p>
-                        <TypeScriptCode>{`
+                    `}</CssCode>
+                    <p>
+                        Btw, you <strong>should not</strong> modify our <code>css variables</code> directly!
+                        Otherwise any changes you&apos;ve made will be swapped out.
+                        Instead use <strong>our API</strong> in the <LinkSpacersPage /> to get/set/modify the spacers.
+                        Like this:
+                    </p>
+                    <TypeScriptCode>{`
 import { spacers, cssDecls as spacerDecls, cssVals as spacerVals } from '@nodestrap/spacers'
 
 spacers.md = '1.5rem'; // set the --spc-md in the :root
@@ -154,14 +145,13 @@ console.log(declaration); // --spc-md
 
 const valueByVal = spacerVals.md; // get the value of --spc-md in the :root
 console.log(valueByVal); // 1.5rem
-                        `}</TypeScriptCode>
-                        <p>
-                            And you should modify the spacers <em>as soon as possible</em>, usually <strong>after</strong> the <code>import</code> statement.
-                            Most the Nodestrap components build the dynamic css at the first render and <strong>cached it</strong> for re-use.
-                            So any changes after already cached will not be affected.
-                        </p>
-                    </article>
-                </Section>
+                    `}</TypeScriptCode>
+                    <p>
+                        And you should modify the spacers <em>as soon as possible</em>, usually <strong>after</strong> the <code>import</code> statement.
+                        Most the Nodestrap components build the dynamic css at the first render and <strong>cached it</strong> for re-use.
+                        So any changes after already cached will not be affected.
+                    </p>
+                </SectionGeneral>
             </Main>
         </ComponentInfoProvider>
     )

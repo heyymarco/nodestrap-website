@@ -159,8 +159,8 @@ const useComponentInfo = () => {
 
 export interface SectionGeneralProps {
     titleTag ?: 'h1'|'h2'|'h3'|'h4'|'h5'|'h6'
-    title    ?: string|React.ReactElement
-    children ?: React.ReactNode
+    title     : string|React.ReactElement
+    children  : React.ReactNode
 }
 export const SectionGeneral = ({ titleTag = 'h2', title, children }: SectionGeneralProps) => {
     return (
