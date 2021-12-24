@@ -4,11 +4,11 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 
 import { Main } from '../../../components/Main'
-import { Section, Section2 } from '../../../components/Section'
+import { Section } from '../../../components/Section'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 import { TypeScriptCode } from '../../../components/Code'
 
-import { SectionInheritedProps, LinkActionControlPage, LinkControlPage, ParagraphDefaultValue, ParagraphGlobalConfig, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkActionControlPage, LinkControlPage, ParagraphDefaultValue, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionStates } from '../../../components/common-contents'
 
 import { DemoPanel, ResetButtonEx } from '../../../components/DemoPanel'
 import { ActionControl } from '@nodestrap/action-control'
@@ -99,81 +99,68 @@ const Page: NextPage = () => {
                     </article>
                 </Section>
                 <SectionInheritedProps component={<LinkActionControlPage />} base={<LinkControlPage />} />
-                <Section>
-                    <article>
-                        <h2>State Properties</h2>
-                        <p>
-                            There&apos;re some properties for <strong>modifying the states</strong> such as <code>press</code>.
-                        </p>
-                        <Section2>
-                            <h3><code>press</code> Property</h3>
-                            <p>
-                                A <code>press</code> property indicates the control is currently <strong>being pressed</strong> (by user).
-                            </p>
-                            <p>
-                                The options are:
-                            </p>
-                            <SpecList>
-                                <DetailSpecItem code='undefined'>
-                                    <p>
-                                        Set to this value will <strong>show</strong> the pressed indicator when the control is <strong>being pressed</strong> (by user) and <strong>hide</strong> one when it&apos;s <strong>released</strong>.
-                                    </p>
-                                    <ParagraphDefaultValue code='press' />
-                                </DetailSpecItem>
-                                <DetailSpecItem code='true'>
-                                    <p>
-                                        Set to this value <strong>always shows</strong> the pressed indicator <strong>even if</strong> the control is actually <strong>was released</strong> (by user).
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='false'>
-                                    <p>
-                                        Set to this value <strong>always hides</strong> the pressed indicator <strong>even if</strong> the control is actually <strong>being pressed</strong> (by user).
-                                    </p>
-                                </DetailSpecItem>
-                            </SpecList>
-                        </Section2>
-                    </article>
-                </Section>
-                <Section>
-                    <article>
-                        <h2>Customizing ActionControl Component</h2>
-                        <ParagraphGlobalConfig component={<LinkActionControlPage />} packageName='@nodestrap/action-control' />
+                <SectionStates>
+                    <SectionSubProperty property='press' specList={
                         <SpecList>
-                            <DetailSpecItem title='Accessibilities'>
-                                <SubSpecList>
-                                    <SimpleSpecItem>
-                                        <code>cursor</code>
-                                        <p>A <code>cursor</code> to apply.</p>
-                                    </SimpleSpecItem>
-                                </SubSpecList>
+                            <DetailSpecItem code='undefined'>
+                                <p>
+                                    Set to this value will <strong>show</strong> the pressed indicator when the control is <strong>being pressed</strong> (by user) and <strong>hide</strong> one when it&apos;s <strong>released</strong>.
+                                </p>
+                                <ParagraphDefaultValue code='press' />
                             </DetailSpecItem>
-                            <DetailSpecItem title='Animations'>
-                                <SubSpecList>
-                                    <SimpleSpecItem>
-                                        <code>filterPress</code>
-                                        <p>A <code>filter</code> to apply when the user is <strong>pressing</strong> the control and <code>{`press={undefined}`}</code> <em>-or-</em> when forced <code>{`press={true}`}</code>.</p>
-                                    </SimpleSpecItem>
-                                    <SimpleSpecItem>
-                                        <code>@keyframes press</code>
-                                        <p>A keyframes name represents <em>pressing keyframes</em>, transition from <strong>released</strong> to <strong>pressed</strong>.</p>
-                                    </SimpleSpecItem>
-                                    <SimpleSpecItem>
-                                        <code>@keyframes release</code>
-                                        <p>A keyframes name represents <em>releasing keyframes</em>, transition from <strong>pressed</strong> to <strong>released</strong>.</p>
-                                    </SimpleSpecItem>
-                                    <SimpleSpecItem>
-                                        <code>animPress</code>
-                                        <p>An animation represents <em>pressing animation</em>, transition from <strong>released</strong> to <strong>pressed</strong>.</p>
-                                    </SimpleSpecItem>
-                                    <SimpleSpecItem>
-                                        <code>animRelease</code>
-                                        <p>An animation represents <em>releasing animation</em>, transition from <strong>pressed</strong> to <strong>released</strong>.</p>
-                                    </SimpleSpecItem>
-                                </SubSpecList>
+                            <DetailSpecItem code='true'>
+                                <p>
+                                    Set to this value <strong>always shows</strong> the pressed indicator <strong>even if</strong> the control is actually <strong>was released</strong> (by user).
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='false'>
+                                <p>
+                                    Set to this value <strong>always hides</strong> the pressed indicator <strong>even if</strong> the control is actually <strong>being pressed</strong> (by user).
+                                </p>
                             </DetailSpecItem>
                         </SpecList>
-                    </article>
-                </Section>
+                    }>
+                        <p>
+                            Indicates the control is currently <strong>being pressed</strong> (by user).
+                        </p>
+                    </SectionSubProperty>
+                </SectionStates>
+                <SectionCustomizing specList={
+                    <SpecList>
+                        <DetailSpecItem title='Accessibilities'>
+                            <SubSpecList>
+                                <SimpleSpecItem>
+                                    <code>cursor</code>
+                                    <p>A <code>cursor</code> to apply.</p>
+                                </SimpleSpecItem>
+                            </SubSpecList>
+                        </DetailSpecItem>
+                        <DetailSpecItem title='Animations'>
+                            <SubSpecList>
+                                <SimpleSpecItem>
+                                    <code>filterPress</code>
+                                    <p>A <code>filter</code> to apply when the user is <strong>pressing</strong> the control and <code>{`press={undefined}`}</code> <em>-or-</em> when forced <code>{`press={true}`}</code>.</p>
+                                </SimpleSpecItem>
+                                <SimpleSpecItem>
+                                    <code>@keyframes press</code>
+                                    <p>A keyframes name represents <em>pressing keyframes</em>, transition from <strong>released</strong> to <strong>pressed</strong>.</p>
+                                </SimpleSpecItem>
+                                <SimpleSpecItem>
+                                    <code>@keyframes release</code>
+                                    <p>A keyframes name represents <em>releasing keyframes</em>, transition from <strong>pressed</strong> to <strong>released</strong>.</p>
+                                </SimpleSpecItem>
+                                <SimpleSpecItem>
+                                    <code>animPress</code>
+                                    <p>An animation represents <em>pressing animation</em>, transition from <strong>released</strong> to <strong>pressed</strong>.</p>
+                                </SimpleSpecItem>
+                                <SimpleSpecItem>
+                                    <code>animRelease</code>
+                                    <p>An animation represents <em>releasing animation</em>, transition from <strong>pressed</strong> to <strong>released</strong>.</p>
+                                </SimpleSpecItem>
+                            </SubSpecList>
+                        </DetailSpecItem>
+                    </SpecList>
+                }/>
                 <SectionDerivering>
                     <SectionOverridingDefaults>{`
 import { ActionControl } from '@nodestrap/action-control'

@@ -4,12 +4,12 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 
 import { Main } from '../../../components/Main'
-import { Section, Section2 } from '../../../components/Section'
+import { Section } from '../../../components/Section'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 import { TypeScriptCode } from '../../../components/Code'
 import { Warning } from '../../../components/Info'
 
-import { SectionInheritedProps, LinkIndicatorPage, LinkBasicPage, LinkIconPage, ParagraphGlobalConfig, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkIndicatorPage, LinkBasicPage, LinkIconPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionStates, SectionSubProperty } from '../../../components/common-contents'
 
 import { DemoPanel, ResetButtonEx } from '../../../components/DemoPanel'
 import { Indicator } from '@nodestrap/indicator'
@@ -90,152 +90,133 @@ const Page: NextPage = () => {
                     </article>
                 </Section>
                 <SectionInheritedProps component={<LinkIndicatorPage />} base={<LinkBasicPage />} />
-                <Section>
-                    <article>
-                        <h2>State Properties</h2>
-                        <p>
-                            There&apos;re some properties for <strong>modifying the states</strong> such as <code>enabled</code>, <code>active</code> and <code>readOnly</code>.
-                        </p>
-                        <Section2>
-                            <h3><code>enabled</code> Property</h3>
-                            <p>
-                                An <code>enabled</code> property influence the component <strong>functionality</strong>.
-                            </p>
-                            <p>
-                                The options are:
-                            </p>
-                            <SpecList>
-                                <DetailSpecItem code='true'>
-                                    <p>
-                                        At this state, all functionality are <strong>preserved</strong>.
-                                        You can fully interact to this component.
-                                    </p>
-                                    <p>
-                                        This is the <strong>default</strong> state if the <code>enabled</code> value is not specified.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='false'>
-                                    <p>
-                                        At this state, all/almost all functionality are <strong>disabled</strong>.
-                                        You cannot interact to this component.
-                                    </p>
-                                </DetailSpecItem>
-                            </SpecList>
-                        </Section2>
-                        <Section2>
-                            <h3><code>active</code> Property</h3>
-                            <p>
-                                An <code>active</code> property indicates the component is currently <strong>selected</strong> or <strong>on state</strong>.
-                            </p>
-                            <p>
-                                The options are:
-                            </p>
-                            <SpecList>
-                                <DetailSpecItem code='true'>
-                                    <p>
-                                        At this state, the component is currently <strong>selected</strong> or <strong>on state</strong>.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='false'>
-                                    <p>
-                                        At this state, the component is currently in <strong>normal state</strong>.
-                                    </p>
-                                    <p>
-                                        This is the <strong>default</strong> state if the <code>active</code> value is not specified.
-                                    </p>
-                                </DetailSpecItem>
-                            </SpecList>
-                        </Section2>
-                        <Section2>
-                            <h3><code>readOnly</code> Property</h3>
-                            <p>
-                                A <code>readOnly</code> property influence the component <strong>editing functionality</strong>.
-                                Similar to <code>disabled</code> but only disabling the editing functionality.
-                            </p>
-                            <p>
-                                The options are:
-                            </p>
-                            <SpecList>
-                                <DetailSpecItem code='true'>
-                                    <p>
-                                        At this state, the editing functionality is <strong>disabled</strong>.
-                                        You cannot  make any changes to this component.
-                                    </p>
-                                </DetailSpecItem>
-                                <DetailSpecItem code='false'>
-                                    <p>
-                                        At this state, all editing functionality are <strong>preserved</strong>.
-                                        You can make any changes to this component.
-                                    </p>
-                                    <p>
-                                        This is the <strong>default</strong> state if the <code>readOnly</code> value is not specified.
-                                    </p>
-                                </DetailSpecItem>
-                            </SpecList>
-                            <p></p>
-                            <Warning>
-                                <p>
-                                    By default, there is <strong>no visual appearance</strong> for indicating <code>readOnly</code> state.
-                                </p>
-                                <p>
-                                    You should add an <LinkIconPage /> or another visual appearance for indicating <code>readOnly</code> state.
-                                </p>
-                            </Warning>
-                        </Section2>
-                    </article>
-                </Section>
-                <Section>
-                    <article>
-                        <h2>Customizing Indicator Component</h2>
-                        <ParagraphGlobalConfig component={<LinkIndicatorPage />} packageName='@nodestrap/indicator' />
+                <SectionStates>
+                    <SectionSubProperty property='enabled' specList={
                         <SpecList>
-                            <DetailSpecItem title='Animations'>
-                                <SubSpecList>
-                                    <SimpleSpecItem>
-                                        <code>filterDisable</code>
-                                        <p>A <code>filter</code> to apply when <code>{`enabled={false}`}</code>.</p>
-                                    </SimpleSpecItem>
-                                    <SimpleSpecItem>
-                                        <code>filterActive</code>
-                                        <p>A <code>filter</code> to apply when <code>{`active={true}`}</code>.</p>
-                                    </SimpleSpecItem>
-                                    <SimpleSpecItem>
-                                        <code>@keyframes enable</code>
-                                        <p>A keyframes name represents <em>enabling keyframes</em>, transition from <code>{`enabled={false}`}</code> to <code>{`enabled={true}`}</code>.</p>
-                                    </SimpleSpecItem>
-                                    <SimpleSpecItem>
-                                        <code>@keyframes disable</code>
-                                        <p>A keyframes name represents <em>disabling keyframes</em>, transition from <code>{`enabled={true}`}</code> to <code>{`enabled={false}`}</code>.</p>
-                                    </SimpleSpecItem>
-                                    <SimpleSpecItem>
-                                        <code>@keyframes active</code>
-                                        <p>A keyframes name represents <em>activating keyframes</em>, transition from <code>{`active={false}`}</code> to <code>{`active={true}`}</code>.</p>
-                                    </SimpleSpecItem>
-                                    <SimpleSpecItem>
-                                        <code>@keyframes passive</code>
-                                        <p>A keyframes name represents <em>deactivating keyframes</em>, transition from <code>{`active={true}`}</code> to <code>{`active={false}`}</code>.</p>
-                                    </SimpleSpecItem>
-                                    <SimpleSpecItem>
-                                        <code>animEnable</code>
-                                        <p>An animation represents <em>enabling animation</em>, transition from <code>{`enabled={false}`}</code> to <code>{`enabled={true}`}</code>.</p>
-                                    </SimpleSpecItem>
-                                    <SimpleSpecItem>
-                                        <code>animDisable</code>
-                                        <p>An animation represents <em>disabling animation</em>, transition from <code>{`enabled={true}`}</code> to <code>{`enabled={false}`}</code>.</p>
-                                    </SimpleSpecItem>
-                                    <SimpleSpecItem>
-                                        <code>animActive</code>
-                                        <p>An animation represents <em>activating animation</em>, transition from <code>{`active={false}`}</code> to <code>{`active={true}`}</code>.</p>
-                                    </SimpleSpecItem>
-                                    <SimpleSpecItem>
-                                        <code>animPassive</code>
-                                        <p>An animation represents <em>deactivating animation</em>, transition from <code>{`active={true}`}</code> to <code>{`active={false}`}</code>.</p>
-                                    </SimpleSpecItem>
-                                </SubSpecList>
+                            <DetailSpecItem code='true'>
+                                <p>
+                                    At this state, all functionality are <strong>preserved</strong>.
+                                    You can fully interact to this component.
+                                </p>
+                                <p>
+                                    This is the <strong>default</strong> state if the <code>enabled</code> value is not specified.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='false'>
+                                <p>
+                                    At this state, all/almost all functionality are <strong>disabled</strong>.
+                                    You cannot interact to this component.
+                                </p>
                             </DetailSpecItem>
                         </SpecList>
-                    </article>
-                </Section>
+                    }>
+                        <p>
+                            Influences the component <strong>functionality</strong>.
+                        </p>
+                    </SectionSubProperty>
+                    <SectionSubProperty property='active' specList={
+                        <SpecList>
+                            <DetailSpecItem code='true'>
+                                <p>
+                                    At this state, the component is currently <strong>selected</strong> or <strong>on state</strong>.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='false'>
+                                <p>
+                                    At this state, the component is currently in <strong>normal state</strong>.
+                                </p>
+                                <p>
+                                    This is the <strong>default</strong> state if the <code>active</code> value is not specified.
+                                </p>
+                            </DetailSpecItem>
+                        </SpecList>
+                    }>
+                        <p>
+                            Indicates the component is currently <strong>selected</strong> or <strong>on state</strong>.
+                        </p>
+                    </SectionSubProperty>
+                    <SectionSubProperty property='readOnly' specList={
+                        <SpecList>
+                            <DetailSpecItem code='true'>
+                                <p>
+                                    At this state, the editing functionality is <strong>disabled</strong>.
+                                    You cannot  make any changes to this component.
+                                </p>
+                            </DetailSpecItem>
+                            <DetailSpecItem code='false'>
+                                <p>
+                                    At this state, all editing functionality are <strong>preserved</strong>.
+                                    You can make any changes to this component.
+                                </p>
+                                <p>
+                                    This is the <strong>default</strong> state if the <code>readOnly</code> value is not specified.
+                                </p>
+                            </DetailSpecItem>
+                        </SpecList>
+                    } moreInfo={
+                        <Warning>
+                            <p>
+                                By default, there is <strong>no visual appearance</strong> for indicating <code>readOnly</code> state.
+                            </p>
+                            <p>
+                                You should add an <LinkIconPage /> or another visual appearance for indicating <code>readOnly</code> state.
+                            </p>
+                        </Warning>
+                    }>
+                        <p>
+                            Influences the component <strong>editing functionality</strong>.
+                            Similar to <code>disabled</code> but only disabling the editing functionality.
+                        </p>
+                    </SectionSubProperty>
+                </SectionStates>
+                <SectionCustomizing specList={
+                    <SpecList>
+                        <DetailSpecItem title='Animations'>
+                            <SubSpecList>
+                                <SimpleSpecItem>
+                                    <code>filterDisable</code>
+                                    <p>A <code>filter</code> to apply when <code>{`enabled={false}`}</code>.</p>
+                                </SimpleSpecItem>
+                                <SimpleSpecItem>
+                                    <code>filterActive</code>
+                                    <p>A <code>filter</code> to apply when <code>{`active={true}`}</code>.</p>
+                                </SimpleSpecItem>
+                                <SimpleSpecItem>
+                                    <code>@keyframes enable</code>
+                                    <p>A keyframes name represents <em>enabling keyframes</em>, transition from <code>{`enabled={false}`}</code> to <code>{`enabled={true}`}</code>.</p>
+                                </SimpleSpecItem>
+                                <SimpleSpecItem>
+                                    <code>@keyframes disable</code>
+                                    <p>A keyframes name represents <em>disabling keyframes</em>, transition from <code>{`enabled={true}`}</code> to <code>{`enabled={false}`}</code>.</p>
+                                </SimpleSpecItem>
+                                <SimpleSpecItem>
+                                    <code>@keyframes active</code>
+                                    <p>A keyframes name represents <em>activating keyframes</em>, transition from <code>{`active={false}`}</code> to <code>{`active={true}`}</code>.</p>
+                                </SimpleSpecItem>
+                                <SimpleSpecItem>
+                                    <code>@keyframes passive</code>
+                                    <p>A keyframes name represents <em>deactivating keyframes</em>, transition from <code>{`active={true}`}</code> to <code>{`active={false}`}</code>.</p>
+                                </SimpleSpecItem>
+                                <SimpleSpecItem>
+                                    <code>animEnable</code>
+                                    <p>An animation represents <em>enabling animation</em>, transition from <code>{`enabled={false}`}</code> to <code>{`enabled={true}`}</code>.</p>
+                                </SimpleSpecItem>
+                                <SimpleSpecItem>
+                                    <code>animDisable</code>
+                                    <p>An animation represents <em>disabling animation</em>, transition from <code>{`enabled={true}`}</code> to <code>{`enabled={false}`}</code>.</p>
+                                </SimpleSpecItem>
+                                <SimpleSpecItem>
+                                    <code>animActive</code>
+                                    <p>An animation represents <em>activating animation</em>, transition from <code>{`active={false}`}</code> to <code>{`active={true}`}</code>.</p>
+                                </SimpleSpecItem>
+                                <SimpleSpecItem>
+                                    <code>animPassive</code>
+                                    <p>An animation represents <em>deactivating animation</em>, transition from <code>{`active={true}`}</code> to <code>{`active={false}`}</code>.</p>
+                                </SimpleSpecItem>
+                            </SubSpecList>
+                        </DetailSpecItem>
+                    </SpecList>
+                }/>
                 <SectionDerivering>
                     <SectionOverridingDefaults>{`
 import { Indicator } from '@nodestrap/indicator'

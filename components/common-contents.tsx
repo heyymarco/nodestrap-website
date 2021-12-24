@@ -1,9 +1,15 @@
 import Button from '@nodestrap/button'
+import { Element } from '@nodestrap/element'
 import Link from 'next/link'
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { TypeScriptCode } from './Code';
-import Section, { Section2 } from './Section';
+import { Section } from './Section';
 import { SpecListProps } from './SpecList';
+
+
+
+type SpecList  = React.ReactElement<SpecListProps, React.FunctionComponent<SpecListProps>>
+type Component = React.ReactElement<PageLinkProps, React.FunctionComponent<PageLinkProps>>
 
 
 
@@ -65,7 +71,7 @@ export const LinkIconPage            = (props: PageLinkProps) => <LinkCode text=
 
 
 export interface SeeDocumentationProps {
-    base: React.ReactElement<PageLinkProps, React.FunctionComponent<PageLinkProps>>
+    base: Component
 }
 const SeeDocumentation = ({ base : Base }: SeeDocumentationProps) => {
     const item = Base.type({});
@@ -80,8 +86,8 @@ const SeeDocumentation = ({ base : Base }: SeeDocumentationProps) => {
 }
 
 export interface SectionInheritedPropsProps {
-    component : React.ReactElement<PageLinkProps, React.FunctionComponent<PageLinkProps>>
-    base      : React.ReactElement<PageLinkProps, React.FunctionComponent<PageLinkProps>>
+    component : Component
+    base      : Component
 }
 export const SectionInheritedProps = ({component: Component, base: Base}: SectionInheritedPropsProps) => (
     <Section>
@@ -105,24 +111,12 @@ export const ParagraphDefaultValue = ({ code }: ParagraphDefaultValueProps) => (
     </p>
 )
 
-export interface ParagraphGlobalConfigProps {
-    component   : React.ReactElement<PageLinkProps, React.FunctionComponent<PageLinkProps>>
-    packageName : `@nodestrap/${string}` | (string & {})
-}
-export const ParagraphGlobalConfig = ({ component: Component, packageName }: ParagraphGlobalConfigProps) => (
-    <p>
-        There is a <strong>global configuration</strong> of { Component } you can tweak.
-        Changing the global configuration <strong>affects all</strong> { Component } and <strong>other components</strong> derived from { Component }.
-        Here several properties in <code>cssProps</code> of <code>{`import { cssProps } from ${packageName}`}</code> you can customize:
-    </p>
-)
-
 
 
 interface ComponentInfo {
     packageName : `@nodestrap/${string}` | (string & {})
-    component   : React.ReactElement<PageLinkProps, React.FunctionComponent<PageLinkProps>>
-    base        : React.ReactElement<PageLinkProps, React.FunctionComponent<PageLinkProps>>
+    component   : Component
+    base        : Component
 }
 const ComponentInfoContext = React.createContext<ComponentInfo>(/*defaultValue :*/{
     packageName : '@nodestrap/element',
@@ -139,7 +133,153 @@ export function ComponentInfoProvider(props: ComponentInfoProviderProps) {
         </ComponentInfoContext.Provider>
     );
 }
-const useComponentInfo = () => useContext(ComponentInfoContext)
+const codeOf = (component: Component) => {
+    const item = component.type({});
+    if (!React.isValidElement<React.PropsWithChildren<LinkCodeProps>>(item)) return null;
+    
+    const code = item.props.children;
+    return {
+        code: `<${code}>`,
+        name: code,
+    };
+}
+const useComponentInfo = () => {
+    const data = useContext(ComponentInfoContext);
+    return useMemo(() => ({
+        ...data,
+        ...(() => {
+            const code = codeOf(data.component);
+            return {
+                componentCode: code?.code,
+                componentName: code?.name,
+            };
+        })(),
+        ...(() => {
+            const code = codeOf(data.base);
+            return {
+                baseCode: code?.code,
+                baseName: code?.name,
+            };
+        })(),
+        // eslint-disable-next-line
+    }), [...Object.values(data)]);
+}
+
+
+
+export interface SectionVariantsProps {
+    children   ?: React.ReactNode
+}
+export const SectionVariants = ({ children }: SectionVariantsProps) => {
+    const { component } = useComponentInfo();
+    
+    return (
+        <Section>
+            <article>
+                <h2>
+                    Variant Properties
+                </h2>
+                <p>
+                    There&apos;re some properties for <strong>modifying the appearances</strong>.
+                </p>
+                <p>
+                    Those properties do not change the { component } semantically. Just for <strong>styling</strong> purpose.
+                </p>
+                
+                { children }
+            </article>
+        </Section>
+    );
+}
+
+export interface SectionStatesProps {
+    children   ?: React.ReactNode
+}
+export const SectionStates = ({ children }: SectionStatesProps) => {
+    return (
+        <Section>
+            <article>
+                <h2>
+                    State Properties
+                </h2>
+                <p>
+                    There&apos;re some properties for <strong>modifying the states</strong>.
+                </p>
+                
+                { children }
+            </article>
+        </Section>
+    );
+}
+
+export interface SectionPropertyProps {
+    headingTag ?: 'h1'|'h2'|'h3'|'h4'|'h5'|'h6'
+    property    : string|React.ReactElement
+    children   ?: React.ReactNode
+    specList   ?: SpecList
+    moreInfo   ?: React.ReactNode
+}
+export const SectionProperty = ({ headingTag = 'h2', property, specList, children, moreInfo }: SectionPropertyProps) => {
+    return (
+        <Section>
+            <article>
+                <Element tag={headingTag}>
+                    {
+                        (typeof(property) === 'string')
+                        ?
+                        <>
+                            <code>{ property }</code> Property
+                        </>
+                        :
+                        property
+                    }
+                </Element>
+                { children }
+                { specList && <>
+                    <p>
+                        The options are:
+                    </p>
+                    { specList }
+                </>}
+                { moreInfo && <><p></p>{ moreInfo }</> }
+            </article>
+        </Section>
+    );
+}
+export const SectionSubProperty = (props: SectionPropertyProps) => {
+    return (
+        <SectionProperty
+            {...props}
+            headingTag={props.headingTag ?? 'h3'}
+        />
+    );
+}
+
+
+
+export interface SectionCustomizingProps {
+    specList    : SpecList
+}
+export const SectionCustomizing = ({ specList }: SectionCustomizingProps) => {
+    const { component, componentCode, packageName } = useComponentInfo();
+    
+    return (
+        <Section>
+            <article>
+                <h2>
+                    Customizing { componentCode } Component
+                </h2>
+                <p>
+                    There is a <strong>global configuration</strong> of { component } you can tweak.
+                    Changing the global configuration <strong>affects all</strong> { component } and <strong>other components</strong> derived from { component }.
+                    Here several properties in <code>cssProps</code> of <code>{`import { cssProps } from ${packageName}`}</code> you can customize:
+                </p>
+                
+                { specList }
+            </article>
+        </Section>
+    );
+}
 
 
 
@@ -171,7 +311,7 @@ export const SectionOverridingDefaults = ({ children }: SectionOverridingDefault
     const { component } = useComponentInfo();
     
     return (
-        <Section2>
+        <Section>
             <h3>Derivering by Overriding the Default Properties</h3>
             <p>
                 This is the simples way to deriver { component }, just by <strong>changing</strong> the <strong>default values</strong>.
@@ -179,27 +319,27 @@ export const SectionOverridingDefaults = ({ children }: SectionOverridingDefault
                 Here the example:
             </p>
             <TypeScriptCode>{ children }</TypeScriptCode>
-        </Section2>
+        </Section>
     );
 }
 
 export interface SectionCustomizingCssProps {
-    specList    : React.ReactElement<SpecListProps, React.FunctionComponent<SpecListProps>>
+    specList    : SpecList
     children    : string
 }
-export const SectionCustomizingCss = ({ specList: SpecList, children }: SectionCustomizingCssProps) => {
+export const SectionCustomizingCss = ({ specList, children }: SectionCustomizingCssProps) => {
     const { component } = useComponentInfo();
     
     return (
-        <Section2>
+        <Section>
             <h3>Derivering by Customizing the CSS</h3>
             <p>
                 { component } exports <strong>some CSS</strong> that you can import into <strong>your CSS</strong>.
                 Here the exported <em>mixins</em>:
             </p>
-            { SpecList }
+            { specList }
             <p>Example of modifying the CSS:</p>
             <TypeScriptCode>{ children }</TypeScriptCode>
-        </Section2>
+        </Section>
     );
 }
