@@ -6,21 +6,13 @@ import Head from 'next/head'
 import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
-import { TypeScriptCode } from '../../../components/Code'
 
 import { SectionInheritedProps, LinkActionControlPage, LinkControlPage, ParagraphDefaultValue, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionStates } from '../../../components/common-contents'
-
-import { DemoPanel, ResetButtonEx } from '../../../components/DemoPanel'
-import { ActionControl } from '@nodestrap/action-control'
-import { ActionControlOptions, useActionControlStates } from '../../../components/DemoPanel@ActionControl'
+import { SectionDemoActionControl } from '../../../components/DemoPanel@ActionControl'
 
 
 
 const Page: NextPage = () => {
-    const states = useActionControlStates();
-    
-    
-    
     return (
         <ComponentInfoProvider packageName='@nodestrap/action-control' component={<LinkActionControlPage />} base={<LinkControlPage />}>
             <Head>
@@ -40,64 +32,7 @@ const Page: NextPage = () => {
                         </p>
                     </article>
                 </Section>
-                <Section>
-                    <article>
-                        <h2>Demonstration</h2>
-                        <p>
-                            Change some controls below!
-                            You&apos;ll see the <LinkActionControlPage /> is customizable.
-                        </p>
-                        <DemoPanel>
-                            <span>Preview</span>
-                            <ActionControl
-                                press={states.press[0]}
-                                
-                                focus={states.focus[0]}
-                                arrive={states.arrive[0]}
-
-                                enabled={states.enabled[0]}
-                                active={states.active[0]}
-                                
-                                size={states.size[0]}
-                                nude={states.nude[0]}
-                                theme={states.theme[0]}
-                                gradient={states.gradient[0]}
-                                outlined={states.outlined[0]}
-                                mild={states.mild[0]}
-                            >
-                                click me
-                            </ActionControl>
-
-                            <hr />
-                            
-                            <ActionControlOptions states={states} />
-                            
-                            <ResetButtonEx states={states} />
-
-                            <span>Code</span>
-                            <TypeScriptCode>{`
-<ActionControl
-    press={${states.press[0]}}
-    
-    focus={${states.focus[0]}}
-    arrive={${states.arrive[0]}}
-    
-    enabled={${states.enabled[0]}}
-    active={${states.active[0]}}
-    
-    size=${states.size[0] ? `'${states.size[0]}'` : '{undefined}'}
-    nude={${states.nude[0]}}
-    theme='${states.theme[0]}'
-    gradient={${states.gradient[0]}}
-    outlined={${states.outlined[0]}}
-    mild={${states.mild[0]}}
->
-    click me
-</ActionControl>
-                            `}</TypeScriptCode>
-                        </DemoPanel>
-                    </article>
-                </Section>
+                <SectionDemoActionControl />
                 <SectionInheritedProps component={<LinkActionControlPage />} base={<LinkControlPage />} />
                 <SectionStates>
                     <SectionSubProperty property='press' specList={

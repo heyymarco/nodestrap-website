@@ -6,22 +6,14 @@ import Head from 'next/head'
 import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
-import { TypeScriptCode } from '../../../components/Code'
 import { Warning } from '../../../components/Info'
 
 import { SectionInheritedProps, LinkIndicatorPage, LinkBasicPage, LinkIconPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionStates, SectionSubProperty } from '../../../components/common-contents'
-
-import { DemoPanel, ResetButtonEx } from '../../../components/DemoPanel'
-import { Indicator } from '@nodestrap/indicator'
-import { IndicatorOptions, useIndicatorStates } from '../../../components/DemoPanel@Indicator'
+import { SectionDemoIndicator } from '../../../components/DemoPanel@Indicator'
 
 
 
 const Page: NextPage = () => {
-    const states = useIndicatorStates();
-    
-    
-    
     return (
         <ComponentInfoProvider packageName='@nodestrap/indicator' component={<LinkIndicatorPage />} base={<LinkBasicPage />}>
             <Head>
@@ -41,54 +33,7 @@ const Page: NextPage = () => {
                         </p>
                     </article>
                 </Section>
-                <Section>
-                    <article>
-                        <h2>Demonstration</h2>
-                        <p>
-                            Change some controls below!
-                            You&apos;ll see the <LinkIndicatorPage /> is customizable.
-                        </p>
-                        <DemoPanel>
-                            <span>Preview</span>
-                            <Indicator
-                                enabled={states.enabled[0]}
-                                active={states.active[0]}
-                                
-                                size={states.size[0]}
-                                nude={states.nude[0]}
-                                theme={states.theme[0]}
-                                gradient={states.gradient[0]}
-                                outlined={states.outlined[0]}
-                                mild={states.mild[0]}
-                            >
-                                hello world
-                            </Indicator>
-
-                            <hr />
-                            
-                            <IndicatorOptions states={states} />
-                            
-                            <ResetButtonEx states={states} />
-
-                            <span>Code</span>
-                            <TypeScriptCode>{`
-<Indicator
-    enabled={${states.enabled[0]}}
-    active={${states.active[0]}}
-    
-    size=${states.size[0] ? `'${states.size[0]}'` : '{undefined}'}
-    nude={${states.nude[0]}}
-    theme='${states.theme[0]}'
-    gradient={${states.gradient[0]}}
-    outlined={${states.outlined[0]}}
-    mild={${states.mild[0]}}
->
-    hello world
-</Indicator>
-                            `}</TypeScriptCode>
-                        </DemoPanel>
-                    </article>
-                </Section>
+                <SectionDemoIndicator />
                 <SectionInheritedProps component={<LinkIndicatorPage />} base={<LinkBasicPage />} />
                 <SectionStates>
                     <SectionSubProperty property='enabled' specList={

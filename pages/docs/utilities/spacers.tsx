@@ -1,42 +1,19 @@
+import React from 'react'
+
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { TypeScriptCode, CssCode } from '../../../components/Code'
-import { spacers } from '@nodestrap/spacers'
-import React, { useEffect } from 'react'
+
 import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
-import { DemoPanel, ResetButtonEx } from '../../../components/DemoPanel'
-import { SpacerOptions, useSpacerStates } from '../../../components/DemoPanel@spacers'
-import { Basic } from '@nodestrap/basic'
 
 import { LinkSpacersPage } from '../../../components/common-contents'
+import { SectionDemoSpacers } from '../../../components/DemoPanel@spacers'
+import { TypeScriptCode, CssCode } from '../../../components/Code'
+
 
 
 
 const SpacersPage: NextPage = () => {
-    const states = useSpacerStates();
-    const spacer = states.spacer[0];
-
-    useEffect(() => {
-        const handler = setTimeout(() => {
-            new Promise<void>((resolve) => {
-                spacers.md  = `${spacer}rem` as any;
-                spacers.xxs = [['calc(', spacers.md, '/', 8  , ')']] as any,
-                spacers.xs  = [['calc(', spacers.md, '/', 4  , ')']] as any,
-                spacers.sm  = [['calc(', spacers.md, '/', 2  , ')']] as any,
-                spacers.lg  = [['calc(', spacers.md, '*', 1.5, ')']] as any,
-                spacers.xl  = [['calc(', spacers.md, '*', 3  , ')']] as any,
-                spacers.default = spacers.md;
-                resolve();
-            });
-        }, 10);
-
-        return () => clearTimeout(handler);
-    }, [spacer]);
-    
-
-    
-    
     return (
         <>
             <Head>
@@ -59,31 +36,7 @@ const SpacersPage: NextPage = () => {
                         </p>
                     </article>
                 </Section>
-                <Section>
-                    <article>
-                        <h2>Demonstration</h2>
-                        <p>
-                            Move the slider below!
-                            You&apos;ll see our site&apos;s margin/padding/gap are changed instantly.
-                        </p>
-                        <DemoPanel>
-                            <span>Preview</span>
-                            <Basic
-                                theme='secondary'
-                            >
-                                <Basic
-                                    theme='primary'
-                                >
-                                    hello world
-                                </Basic>
-                            </Basic>
-
-                            <SpacerOptions states={states} />
-
-                            <ResetButtonEx states={states} />
-                        </DemoPanel>
-                    </article>
-                </Section>
+                <SectionDemoSpacers />
                 <Section>
                     <article>
                         <h2>Defining Spacers</h2>

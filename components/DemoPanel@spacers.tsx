@@ -1,6 +1,13 @@
+import { useEffect } from 'react';
+
 import { cssVals as spacersVals } from '@nodestrap/spacers'
+import { useResetableState, Slider, ResetButton } from './DemoPanel'
+
 import { parseNumber } from '@nodestrap/utilities'
-import { useResetableState, Slider } from './DemoPanel'
+
+import { SectionDemo } from './common-contents';
+import { Basic } from '@nodestrap/basic'
+import { spacers } from '@nodestrap/spacers'
 
 
 
@@ -35,4 +42,52 @@ export const SpacerOptions = (props: { states: ReturnType<typeof useSpacerStates
             setValue={states.spacer[1]}
         />
     </>);
+}
+
+
+
+export const SectionDemoSpacers = () => {
+    const states = useSpacerStates();
+    const spacer = states.spacer[0];
+
+    useEffect(() => {
+        const handler = setTimeout(() => {
+            new Promise<void>((resolve) => {
+                spacers.md  = `${spacer}rem` as any;
+                spacers.xxs = [['calc(', spacers.md, '/', 8  , ')']] as any,
+                spacers.xs  = [['calc(', spacers.md, '/', 4  , ')']] as any,
+                spacers.sm  = [['calc(', spacers.md, '/', 2  , ')']] as any,
+                spacers.lg  = [['calc(', spacers.md, '*', 1.5, ')']] as any,
+                spacers.xl  = [['calc(', spacers.md, '*', 3  , ')']] as any,
+                spacers.default = spacers.md;
+                resolve();
+            });
+        }, 10);
+
+        return () => clearTimeout(handler);
+    }, [spacer]);
+
+    return (
+        <SectionDemo message={
+            <p>
+                Move some sliders below!
+                You&apos;ll see our site&apos;s margin/padding/gap are changed instantly.
+            </p>
+        }>
+            <span>Preview</span>
+            <Basic
+                theme='secondary'
+            >
+                <Basic
+                    theme='primary'
+                >
+                    hello world
+                </Basic>
+            </Basic>
+
+            <SpacerOptions states={states} />
+
+            <ResetButton states={states} />
+        </SectionDemo>
+    );
 }

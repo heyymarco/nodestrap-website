@@ -1,6 +1,13 @@
+import { useEffect } from 'react';
+
 import { cssVals as borderVals, borderRadius as radius } from '@nodestrap/borders'
+import { useResetableState, Slider, Option, ResetButton } from './DemoPanel'
+
 import { parseNumber } from '@nodestrap/utilities'
-import { useResetableState, Slider, Option } from './DemoPanel'
+
+import { SectionDemo } from './common-contents';
+import { Basic } from '@nodestrap/basic'
+import { borders, borderRadiuses as radiuses } from '@nodestrap/borders'
 
 
 
@@ -57,4 +64,58 @@ export const BorderOptions = (props: { states: ReturnType<typeof useBorderStates
             setValue={states.style[1]}
         />
     </>);
+}
+
+
+
+export const SectionDemoBorders = () => {
+    const states = useBorderStates();
+    const width  = states.width[0];
+    const style  = states.style[0];
+    const radius = states.radius[0];
+
+    useEffect(() => {
+        const handler = setTimeout(() => {
+            new Promise<void>((resolve) => {
+                borders.defaultWidth = `${width}px` as any;
+                borders.default      = [[borders.style, borders.defaultWidth, borders.color]] as any;
+                borders.style        = style as any;
+                resolve();
+            });
+        }, 10);
+
+        return () => clearTimeout(handler);
+    }, [width, style]);
+    useEffect(() => {
+        const handler = setTimeout(() => {
+            new Promise<void>((resolve) => {
+                radiuses.md          = `${radius}rem` as any;
+                resolve();
+            });
+        }, 10);
+
+        return () => clearTimeout(handler);
+    }, [radius]);
+    
+    return (
+        <SectionDemo message={
+            <p>
+                Move some sliders below!
+                You'll see our site's border is changed instantly.
+            </p>
+        }>
+            <span>Preview</span>
+            <Basic
+                theme='primary'
+            >
+                hello world
+            </Basic>
+
+            <hr />
+
+            <BorderOptions states={states} />
+
+            <ResetButton states={states} />
+        </SectionDemo>
+    );
 }

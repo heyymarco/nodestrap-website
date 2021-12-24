@@ -1,50 +1,18 @@
+import React from 'react'
+
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { TypeScriptCode, CssCode } from '../../../components/Code'
-import { borders, borderRadiuses as radiuses } from '@nodestrap/borders'
-import React, { useEffect } from 'react'
+
 import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
-import { DemoPanel, ResetButtonEx } from '../../../components/DemoPanel'
-import { BorderOptions, useBorderStates } from '../../../components/DemoPanel@borders'
-import { Basic } from '@nodestrap/basic'
 
 import { LinkBordersPage } from '../../../components/common-contents'
+import { SectionDemoBorders } from '../../../components/DemoPanel@borders'
+import { TypeScriptCode, CssCode } from '../../../components/Code'
 
 
 
 const BordersPage: NextPage = () => {
-    const states = useBorderStates();
-    const width  = states.width[0];
-    const style  = states.style[0];
-    const radius = states.radius[0];
-
-    useEffect(() => {
-        const handler = setTimeout(() => {
-            new Promise<void>((resolve) => {
-                borders.defaultWidth = `${width}px` as any;
-                borders.default      = [[borders.style, borders.defaultWidth, borders.color]] as any;
-                borders.style        = style as any;
-                resolve();
-            });
-        }, 10);
-
-        return () => clearTimeout(handler);
-    }, [width, style]);
-    useEffect(() => {
-        const handler = setTimeout(() => {
-            new Promise<void>((resolve) => {
-                radiuses.md          = `${radius}rem` as any;
-                resolve();
-            });
-        }, 10);
-
-        return () => clearTimeout(handler);
-    }, [radius]);
-    
-
-    
-    
     return (
         <>
             <Head>
@@ -67,29 +35,7 @@ const BordersPage: NextPage = () => {
                         </p>
                     </article>
                 </Section>
-                <Section>
-                    <article>
-                        <h2>Demonstration</h2>
-                        <p>
-                            Move some sliders/controls below!
-                            You&apos;ll see our site&apos;s border is changed instantly.
-                        </p>
-                        <DemoPanel>
-                            <span>Preview</span>
-                            <Basic
-                                theme='primary'
-                            >
-                                hello world
-                            </Basic>
-
-                            <hr />
-
-                            <BorderOptions states={states} />
-
-                            <ResetButtonEx states={states} />
-                        </DemoPanel>
-                    </article>
-                </Section>
+                <SectionDemoBorders />
                 <Section>
                     <article>
                         <h2>Defining Borders</h2>

@@ -1,40 +1,21 @@
+import React from 'react'
+
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { TypeScriptCode, CssCode } from '../../../components/Code'
-import { ColorPreview } from '../../../components/ColorPreview'
-import { colors, defineTheme } from '@nodestrap/colors'
-import React, { useEffect } from 'react'
+
 import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
-import { DemoPanel, ResetButtonEx } from '../../../components/DemoPanel'
-import { ColorOptions, useColorStates } from '../../../components/DemoPanel@colors'
-import Color from 'color'
-import { Basic } from '@nodestrap/basic'
 
 import { LinkColorsPage } from '../../../components/common-contents'
+import { SectionDemoColors } from '../../../components/DemoPanel@colors'
+import { TypeScriptCode, CssCode } from '../../../components/Code'
+
+import { colors } from '@nodestrap/colors'
+import { ColorPreview } from '../../../components/ColorPreview'
 
 
 
 const ColorsPage: NextPage = () => {
-    const states = useColorStates();
-    const hue = states.hue[0];
-    const sat = states.sat[0];
-    const lgt = states.lgt[0];
-
-    useEffect(() => {
-        const handler = setTimeout(() => {
-            new Promise<void>((resolve) => {
-                defineTheme('primary', Color.hsl(hue, sat, lgt));
-                resolve();
-            });
-        }, 10);
-
-        return () => clearTimeout(handler);
-    }, [hue, sat, lgt]);
-    
-
-    
-    
     return (
         <>
             <Head>
@@ -57,29 +38,7 @@ const ColorsPage: NextPage = () => {
                         </p>
                     </article>
                 </Section>
-                <Section>
-                    <article>
-                        <h2>Demonstration</h2>
-                        <p>
-                            Move some sliders below!
-                            You&apos;ll see our site&apos;s primary color is changed instantly.
-                        </p>
-                        <DemoPanel>
-                            <span>Preview</span>
-                            <Basic
-                                theme='primary'
-                            >
-                                hello world
-                            </Basic>
-
-                            <hr />
-
-                            <ColorOptions states={states} />
-
-                            <ResetButtonEx states={states} />
-                        </DemoPanel>
-                    </article>
-                </Section>
+                <SectionDemoColors />
                 <Section>
                     <article>
                         <h2>Defining Theme Colors</h2>

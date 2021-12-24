@@ -1,6 +1,10 @@
-import { useResetableState, Option } from './DemoPanel';
+import { useResetableState, Option, ResetButton } from './DemoPanel';
 import { BasicInitials, BasicOptions, useBasicStates } from './DemoPanel@Basic';
 import { Warning } from './Info';
+
+import { SectionDemo } from './common-contents';
+import { Indicator } from '@nodestrap/indicator'
+import { TypeScriptCode } from './Code';
 
 
 
@@ -60,4 +64,52 @@ export const IndicatorOptions = (props: { states: ReturnType<typeof useIndicator
             </>}
         />
     </>);
+}
+
+
+
+export const SectionDemoIndicator = () => {
+    const states = useIndicatorStates();
+    
+    return (
+        <SectionDemo>
+            <span>Preview</span>
+            <Indicator
+                enabled={states.enabled[0]}
+                active={states.active[0]}
+                
+                size={states.size[0]}
+                nude={states.nude[0]}
+                theme={states.theme[0]}
+                gradient={states.gradient[0]}
+                outlined={states.outlined[0]}
+                mild={states.mild[0]}
+            >
+                hello world
+            </Indicator>
+
+            <hr />
+            
+            <IndicatorOptions states={states} />
+            
+            <ResetButton states={states} />
+
+            <span>Code</span>
+            <TypeScriptCode>{`
+<Indicator
+    enabled={${states.enabled[0]}}
+    active={${states.active[0]}}
+    
+    size=${states.size[0] ? `'${states.size[0]}'` : '{undefined}'}
+    nude={${states.nude[0]}}
+    theme='${states.theme[0]}'
+    gradient={${states.gradient[0]}}
+    outlined={${states.outlined[0]}}
+    mild={${states.mild[0]}}
+>
+    hello world
+</Indicator>
+            `}</TypeScriptCode>
+        </SectionDemo>
+    );
 }

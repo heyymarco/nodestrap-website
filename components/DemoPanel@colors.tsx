@@ -1,7 +1,13 @@
-import { cssVals as colorVals } from '@nodestrap/colors'
-import Color from 'color'
-import { useResetableState, Slider } from './DemoPanel'
+import { useEffect } from 'react';
 
+import { cssVals as colorVals } from '@nodestrap/colors'
+import { useResetableState, Slider, ResetButton } from './DemoPanel'
+
+import Color from 'color'
+
+import { SectionDemo } from './common-contents';
+import { Basic } from '@nodestrap/basic'
+import { defineTheme } from '@nodestrap/colors'
 
 
 export const colorInitials = (() => {
@@ -62,4 +68,46 @@ export const ColorOptions = (props: { states: ReturnType<typeof useColorStates> 
             setValue={states.lgt[1]}
         />
     </>);
+}
+
+
+
+export const SectionDemoColors = () => {
+    const states = useColorStates();
+    const hue = states.hue[0];
+    const sat = states.sat[0];
+    const lgt = states.lgt[0];
+
+    useEffect(() => {
+        const handler = setTimeout(() => {
+            new Promise<void>((resolve) => {
+                defineTheme('primary', Color.hsl(hue, sat, lgt));
+                resolve();
+            });
+        }, 10);
+
+        return () => clearTimeout(handler);
+    }, [hue, sat, lgt]);
+    
+    return (
+        <SectionDemo message={
+            <p>
+                Move some sliders below!
+                You&apos;ll see our site&apos;s primary color is changed instantly.
+            </p>
+        }>
+            <span>Preview</span>
+            <Basic
+                theme='primary'
+            >
+                hello world
+            </Basic>
+
+            <hr />
+
+            <ColorOptions states={states} />
+
+            <ResetButton states={states} />
+        </SectionDemo>
+    );
 }

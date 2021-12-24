@@ -3,6 +3,7 @@ import { Element } from '@nodestrap/element'
 import Link from 'next/link'
 import React, { useContext, useMemo } from 'react';
 import { TypeScriptCode } from './Code';
+import DemoPanel from './DemoPanel';
 import { Section } from './Section';
 import { SpecListProps } from './SpecList';
 
@@ -163,6 +164,37 @@ const useComponentInfo = () => {
         })(),
         // eslint-disable-next-line
     }), [...Object.values(data)]);
+}
+
+
+
+export interface SectionDemoProps {
+    children   ?: React.ReactNode
+    message    ?: React.ReactNode
+}
+export const SectionDemo = ({ children, message }: SectionDemoProps) => {
+    const { component } = useComponentInfo();
+    
+    return (
+        <Section>
+            <article>
+                <h2>
+                    Demonstration
+                </h2>
+                {
+                    message
+                    ||
+                    <p>
+                        Change some controls below!
+                        You&apos;ll see the { component } is customizable.
+                    </p>
+                }
+                <DemoPanel>
+                    { children }
+                </DemoPanel>
+            </article>
+        </Section>
+    );
 }
 
 

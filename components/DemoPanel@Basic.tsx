@@ -1,6 +1,10 @@
 import { SizeName, ThemeName } from '@nodestrap/basic';
-import { useResetableState, Option, ThemeOption } from './DemoPanel'
+import { useResetableState, Option, ThemeOption, ResetButton } from './DemoPanel'
 import { Warning } from './Info';
+
+import { SectionDemo } from './common-contents';
+import { Basic } from '@nodestrap/basic'
+import { TypeScriptCode } from './Code';
 
 
 
@@ -91,4 +95,46 @@ export const BasicOptions = (props: { states: ReturnType<typeof useBasicStates>,
             setValue={states.mild[1]}
         />
     </>);
+}
+
+
+
+export const SectionDemoBasic = () => {
+    const states = useBasicStates();
+    
+    return (
+        <SectionDemo>
+            <span>Preview</span>
+            <Basic
+                size={states.size[0]}
+                nude={states.nude[0]}
+                theme={states.theme[0]}
+                gradient={states.gradient[0]}
+                outlined={states.outlined[0]}
+                mild={states.mild[0]}
+            >
+                hello world
+            </Basic>
+
+            <hr />
+            
+            <BasicOptions states={states} />
+            
+            <ResetButton states={states} />
+
+            <span>Code</span>
+            <TypeScriptCode>{`
+<Basic
+    size=${states.size[0] ? `'${states.size[0]}'` : '{undefined}'}
+    nude={${states.nude[0]}}
+    theme='${states.theme[0]}'
+    gradient={${states.gradient[0]}}
+    outlined={${states.outlined[0]}}
+    mild={${states.mild[0]}}
+>
+    hello world
+</Basic>
+            `}</TypeScriptCode>
+        </SectionDemo>
+    );
 }

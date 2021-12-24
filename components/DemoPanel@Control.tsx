@@ -1,5 +1,9 @@
-import { useResetableState, Option } from './DemoPanel';
+import { useResetableState, Option, ResetButton } from './DemoPanel';
 import { IndicatorInitials, IndicatorOptions, useIndicatorStates } from './DemoPanel@Indicator';
+
+import { SectionDemo } from './common-contents';
+import { Control } from '@nodestrap/control'
+import { TypeScriptCode } from './Code';
 
 
 
@@ -47,4 +51,58 @@ export const ControlOptions = (props: { states: ReturnType<typeof useControlStat
             states={states}
         />
     </>);
+}
+
+
+
+export const SectionDemoControl = () => {
+    const states = useControlStates();
+    
+    return (
+        <SectionDemo>
+            <span>Preview</span>
+            <Control
+                focus={states.focus[0]}
+                arrive={states.arrive[0]}
+
+                enabled={states.enabled[0]}
+                active={states.active[0]}
+                
+                size={states.size[0]}
+                nude={states.nude[0]}
+                theme={states.theme[0]}
+                gradient={states.gradient[0]}
+                outlined={states.outlined[0]}
+                mild={states.mild[0]}
+            >
+                hello world
+            </Control>
+
+            <hr />
+            
+            <ControlOptions states={states} />
+            
+            <ResetButton states={states} />
+
+            <span>Code</span>
+            <TypeScriptCode>{`
+<Control
+    focus={${states.focus[0]}}
+    arrive={${states.arrive[0]}}
+    
+    enabled={${states.enabled[0]}}
+    active={${states.active[0]}}
+    
+    size=${states.size[0] ? `'${states.size[0]}'` : '{undefined}'}
+    nude={${states.nude[0]}}
+    theme='${states.theme[0]}'
+    gradient={${states.gradient[0]}}
+    outlined={${states.outlined[0]}}
+    mild={${states.mild[0]}}
+>
+    hello world
+</Control>
+            `}</TypeScriptCode>
+        </SectionDemo>
+    );
 }

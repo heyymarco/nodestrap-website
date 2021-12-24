@@ -6,21 +6,13 @@ import Head from 'next/head'
 import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
-import { TypeScriptCode } from '../../../components/Code'
 
 import { SectionInheritedProps, LinkControlPage, LinkIndicatorPage, ParagraphDefaultValue, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionStates, SectionProperty } from '../../../components/common-contents'
-
-import { DemoPanel, ResetButtonEx } from '../../../components/DemoPanel'
-import { Control } from '@nodestrap/control'
-import { ControlOptions, useControlStates } from '../../../components/DemoPanel@Control'
+import { SectionDemoControl } from '../../../components/DemoPanel@Control'
 
 
 
 const Page: NextPage = () => {
-    const states = useControlStates();
-    
-    
-    
     return (
         <ComponentInfoProvider packageName='@nodestrap/control' component={<LinkControlPage />} base={<LinkIndicatorPage />}>
             <Head>
@@ -40,60 +32,7 @@ const Page: NextPage = () => {
                         </p>
                     </article>
                 </Section>
-                <Section>
-                    <article>
-                        <h2>Demonstration</h2>
-                        <p>
-                            Change some controls below!
-                            You&apos;ll see the <LinkControlPage /> is customizable.
-                        </p>
-                        <DemoPanel>
-                            <span>Preview</span>
-                            <Control
-                                focus={states.focus[0]}
-                                arrive={states.arrive[0]}
-
-                                enabled={states.enabled[0]}
-                                active={states.active[0]}
-                                
-                                size={states.size[0]}
-                                nude={states.nude[0]}
-                                theme={states.theme[0]}
-                                gradient={states.gradient[0]}
-                                outlined={states.outlined[0]}
-                                mild={states.mild[0]}
-                            >
-                                hello world
-                            </Control>
-
-                            <hr />
-                            
-                            <ControlOptions states={states} />
-                            
-                            <ResetButtonEx states={states} />
-
-                            <span>Code</span>
-                            <TypeScriptCode>{`
-<Control
-    focus={${states.focus[0]}}
-    arrive={${states.arrive[0]}}
-    
-    enabled={${states.enabled[0]}}
-    active={${states.active[0]}}
-    
-    size=${states.size[0] ? `'${states.size[0]}'` : '{undefined}'}
-    nude={${states.nude[0]}}
-    theme='${states.theme[0]}'
-    gradient={${states.gradient[0]}}
-    outlined={${states.outlined[0]}}
-    mild={${states.mild[0]}}
->
-    hello world
-</Control>
-                            `}</TypeScriptCode>
-                        </DemoPanel>
-                    </article>
-                </Section>
+                <SectionDemoControl />
                 <SectionInheritedProps component={<LinkControlPage />} base={<LinkIndicatorPage />} />
                 <SectionStates>
                     <SectionSubProperty property='focus' specList={

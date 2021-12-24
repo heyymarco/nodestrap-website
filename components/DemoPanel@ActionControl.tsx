@@ -1,5 +1,9 @@
-import { useResetableState, Option } from './DemoPanel';
+import { useResetableState, Option, ResetButton } from './DemoPanel';
 import { ControlInitials, ControlOptions, useControlStates } from './DemoPanel@Control';
+
+import { SectionDemo } from './common-contents';
+import { ActionControl } from '@nodestrap/action-control'
+import { TypeScriptCode } from './Code';
 
 
 
@@ -37,4 +41,62 @@ export const ActionControlOptions = (props: { states: ReturnType<typeof useActio
             states={states}
         />
     </>);
+}
+
+
+
+export const SectionDemoActionControl = () => {
+    const states = useActionControlStates();
+    
+    return (
+        <SectionDemo>
+            <span>Preview</span>
+            <ActionControl
+                press={states.press[0]}
+                
+                focus={states.focus[0]}
+                arrive={states.arrive[0]}
+
+                enabled={states.enabled[0]}
+                active={states.active[0]}
+                
+                size={states.size[0]}
+                nude={states.nude[0]}
+                theme={states.theme[0]}
+                gradient={states.gradient[0]}
+                outlined={states.outlined[0]}
+                mild={states.mild[0]}
+            >
+                click me
+            </ActionControl>
+
+            <hr />
+            
+            <ActionControlOptions states={states} />
+            
+            <ResetButton states={states} />
+
+            <span>Code</span>
+            <TypeScriptCode>{`
+<ActionControl
+    press={${states.press[0]}}
+
+    focus={${states.focus[0]}}
+    arrive={${states.arrive[0]}}
+
+    enabled={${states.enabled[0]}}
+    active={${states.active[0]}}
+
+    size=${states.size[0] ? `'${states.size[0]}'` : '{undefined}'}
+    nude={${states.nude[0]}}
+    theme='${states.theme[0]}'
+    gradient={${states.gradient[0]}}
+    outlined={${states.outlined[0]}}
+    mild={${states.mild[0]}}
+>
+    click me
+</ActionControl>
+            `}</TypeScriptCode>
+        </SectionDemo>
+    );
 }

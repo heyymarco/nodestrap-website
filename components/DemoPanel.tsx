@@ -148,21 +148,6 @@ export const Slider = (props: SliderProps) => {
 
 
 
-export const ResetButton = (props: ButtonIconProps) => {
-    return (<>
-        <span>Reset</span>
-        <ButtonIcon
-            {...props}
-            theme={props.theme ?? 'success'}
-            icon={props.icon ?? 'restore'}
-        >
-            { props.children ?? 'Reset to Default' }
-        </ButtonIcon>
-    </>);
-}
-
-
-
 export type ResetableState<S, P extends number|undefined = undefined> = readonly [
     S,
     React.Dispatch<S>,
@@ -188,7 +173,7 @@ export const useResetableState = <S, P extends number|undefined = undefined>(ini
 
 
 
-export const ResetButtonEx = (props: ButtonIconProps & { states: Dictionary<ResetableState<any, any>> }) => {
+export const ResetButton = (props: ButtonIconProps & { states: Dictionary<ResetableState<any, any>> }) => {
     const { states } = props;
     
     
