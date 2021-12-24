@@ -21,7 +21,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             <header>
                 <Navbar
                     theme='primary'
-                    logo={<NavbarMenu><Link href='/'><a><Icon icon='nodestrap' size='lg' /></a></Link></NavbarMenu>}
+                    logo={<NavbarMenu><Link href='/'><Icon icon='nodestrap' size='lg' /></Link></NavbarMenu>}
                 >
                     <NavbarMenu><Link href='/'>Home</Link></NavbarMenu>
                     <NavbarMenu><Link href='/docs'>Docs</Link></NavbarMenu>

@@ -4,9 +4,8 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 
 import { Main } from '../../../components/Main'
-import { Section } from '../../../components/Section'
 
-import { ComponentInfoProvider, LinkStripoutsPage, SectionIntro } from '../../../components/common-contents'
+import { ComponentInfoProvider, LinkStripoutsPage, SectionGeneral, SectionIntro } from '../../../components/common-contents'
 import { SpecList, DetailSpecItem } from '../../../components/SpecList'
 import { TypeScriptCode } from '../../../components/Code'
 
@@ -33,13 +32,11 @@ const Page: NextPage = () => {
                         Once we&apos;ve <em>un-styled</em> them, we can override ones with <em>own styles</em> without worrying about inconsistency across browsers.
                     </p>
                 </SectionIntro>
-                <Section>
-                    <article>
-                        <h2>List of Strippable Elements</h2>
-                        <SpecList>
-                            <DetailSpecItem code='stripoutLink()' excerpt='Removes browser&apos;s default style on link (anchor)'>
-                                <p>example:</p>
-                                <TypeScriptCode>{`
+                <SectionGeneral title='List of Strippable Elements'>
+                    <SpecList>
+                        <DetailSpecItem code='stripoutLink()' excerpt='Removes browser&apos;s default style on link (anchor)'>
+                            <p>example:</p>
+                            <TypeScriptCode>{`
 import { stripoutLink } from '@nodestrap/stripouts'
 import { mainComposition, imports, layout, rules, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
@@ -71,11 +68,11 @@ export default function AwesomeLink(props) {
         </a>
     );
 }
-                                `}</TypeScriptCode>
-                            </DetailSpecItem>
-                            <DetailSpecItem code='stripoutControl()' excerpt='Removes browser&apos;s default style on control (button, checkbox, etc)'>
-                                <p>example:</p>
-                                <TypeScriptCode>{`
+                            `}</TypeScriptCode>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='stripoutControl()' excerpt='Removes browser&apos;s default style on control (button, checkbox, etc)'>
+                            <p>example:</p>
+                            <TypeScriptCode>{`
 import { stripoutControl } from '@nodestrap/stripouts'
 import { mainComposition, imports, layout, rules, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
@@ -107,11 +104,11 @@ export default function AwesomeCheckbox(props) {
         <input type='checkbox' className={sheet.main} {...props} />
     );
 }
-                                `}</TypeScriptCode>
-                            </DetailSpecItem>
-                            <DetailSpecItem code='stripoutTextbox()' excerpt='Removes browser&apos;s default style on textbox (input type=&apos;text|email|search|etc&apos;)'>
-                                <p>example:</p>
-                                <TypeScriptCode>{`
+                            `}</TypeScriptCode>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='stripoutTextbox()' excerpt='Removes browser&apos;s default style on textbox (input type=&apos;text|email|search|etc&apos;)'>
+                            <p>example:</p>
+                            <TypeScriptCode>{`
 import { stripoutTextbox } from '@nodestrap/stripouts'
 import { mainComposition, imports, layout, rules, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
@@ -144,11 +141,11 @@ export default function AwesomeTextbox(props) {
         <input type='text' className={sheet.main} {...props} />
     );
 }
-                                `}</TypeScriptCode>
-                            </DetailSpecItem>
-                            <DetailSpecItem code='stripoutRange()' excerpt='Removes browser&apos;s default style on range (input type=&apos;range&apos;)'>
-                                <p>example:</p>
-                                <TypeScriptCode>{`
+                            `}</TypeScriptCode>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='stripoutRange()' excerpt='Removes browser&apos;s default style on range (input type=&apos;range&apos;)'>
+                            <p>example:</p>
+                            <TypeScriptCode>{`
 import { stripoutRange } from '@nodestrap/stripouts'
 import { mainComposition, imports, layout, children, rules, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
@@ -189,11 +186,11 @@ export default function AwesomeRange(props) {
         <input type='range' className={sheet.main} {...props} />
     );
 }
-                                `}</TypeScriptCode>
-                            </DetailSpecItem>
-                            <DetailSpecItem code='stripoutList()' excerpt='Removes browser&apos;s default style on list (ul &amp; ol)'>
-                                <p>example:</p>
-                                <TypeScriptCode>{`
+                            `}</TypeScriptCode>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='stripoutList()' excerpt='Removes browser&apos;s default style on list (ul &amp; ol)'>
+                            <p>example:</p>
+                            <TypeScriptCode>{`
 import React from 'react'
 import { stripoutList } from '@nodestrap/stripouts'
 import { mainComposition, imports, layout, children } from '@cssfn/cssfn'
@@ -227,11 +224,11 @@ export default function AwesomeList(props) {
         </ul>
     );
 }
-                                `}</TypeScriptCode>
-                            </DetailSpecItem>
-                            <DetailSpecItem code='stripoutFigure()' excerpt='Removes browser&apos;s default style on figure'>
-                                <p>example:</p>
-                                <TypeScriptCode>{`
+                            `}</TypeScriptCode>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='stripoutFigure()' excerpt='Removes browser&apos;s default style on figure'>
+                            <p>example:</p>
+                            <TypeScriptCode>{`
 import { stripoutFigure } from '@nodestrap/stripouts'
 import { mainComposition, imports, layout } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
@@ -258,11 +255,11 @@ export default function AwesomeFigure(props) {
         </figure>
     );
 }
-                                `}</TypeScriptCode>
-                            </DetailSpecItem>
-                            <DetailSpecItem code='stripoutFocusableElement()' excerpt='Removes browser&apos;s default style on focus indicator on any focusable elements'>
-                                <p>example:</p>
-                                <TypeScriptCode>{`
+                            `}</TypeScriptCode>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='stripoutFocusableElement()' excerpt='Removes browser&apos;s default style on focus indicator on any focusable elements'>
+                            <p>example:</p>
+                            <TypeScriptCode>{`
 import { stripoutFocusableElement } from '@nodestrap/stripouts'
 import { mainComposition, imports, layout, rules, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
@@ -296,11 +293,11 @@ export default function AwesomeElement(props) {
         </div>
     );
 }
-                                `}</TypeScriptCode>
-                            </DetailSpecItem>
-                            <DetailSpecItem code='stripoutScrollbar()' excerpt='Removes browser&apos;s scrollbar on any scrollable element'>
-                                <p>example:</p>
-                                <TypeScriptCode>{`
+                            `}</TypeScriptCode>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='stripoutScrollbar()' excerpt='Removes browser&apos;s scrollbar on any scrollable element'>
+                            <p>example:</p>
+                            <TypeScriptCode>{`
 import { stripoutScrollbar } from '@nodestrap/stripouts'
 import { mainComposition, imports, layout } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
@@ -328,11 +325,11 @@ export default function AwesomeContainer(props) {
         </div>
     );
 }
-                                `}</TypeScriptCode>
-                            </DetailSpecItem>
-                            <DetailSpecItem code='stripoutImage()' excerpt='Removes browser&apos;s default style on image (img)'>
-                                <p>example:</p>
-                                <TypeScriptCode>{`
+                            `}</TypeScriptCode>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='stripoutImage()' excerpt='Removes browser&apos;s default style on image (img)'>
+                            <p>example:</p>
+                            <TypeScriptCode>{`
 import { stripoutImage } from '@nodestrap/stripouts'
 import { mainComposition, imports, layout } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
@@ -357,11 +354,10 @@ export default function AwesomeImage(props) {
         <img className={sheet.main} {...props} />
     );
 }
-                                `}</TypeScriptCode>
-                            </DetailSpecItem>
-                        </SpecList>
-                    </article>
-                </Section>
+                            `}</TypeScriptCode>
+                        </DetailSpecItem>
+                    </SpecList>
+                </SectionGeneral>
             </Main>
         </ComponentInfoProvider>
     )
