@@ -29,7 +29,7 @@ const Page: NextPage = () => {
                     </p>
                 </SectionIntro>
                 <SectionDemoControl />
-                <SectionInheritedProps component={<LinkControlPage />} base={<LinkIndicatorPage />} />
+                <SectionInheritedProps />
                 <SectionStates>
                     <SectionSubProperty property='focus' specList={
                         <SpecList>

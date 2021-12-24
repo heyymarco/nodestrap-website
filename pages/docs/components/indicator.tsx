@@ -30,7 +30,7 @@ const Page: NextPage = () => {
                         </p>
                 </SectionIntro>
                 <SectionDemoIndicator />
-                <SectionInheritedProps component={<LinkIndicatorPage />} base={<LinkBasicPage />} />
+                <SectionInheritedProps />
                 <SectionStates>
                     <SectionSubProperty property='enabled' specList={
                         <SpecList>

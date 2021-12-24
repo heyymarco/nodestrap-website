@@ -42,7 +42,7 @@ const Page: NextPage = () => {
                     </p>
                 </SectionIntro>
                 <SectionDemoBasic />
-                <SectionInheritedProps component={<LinkBasicPage />} base={<LinkElementPage />} />
+                <SectionInheritedProps />
                 <SectionVariants>
                     <SectionSubProperty property='size' specList={
                         <SpecList>
