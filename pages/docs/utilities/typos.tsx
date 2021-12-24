@@ -1,37 +1,36 @@
+import React from 'react'
+
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import React, {  } from 'react'
+
 import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
+
+import { ComponentInfoProvider, LinkTyposPage, SectionIntro } from '../../../components/common-contents'
 import { SpecList, SimpleSpecItem } from '../../../components/SpecList'
 
-import { LinkTyposPage } from '../../../components/common-contents'
 
 
-
-const TyposPage: NextPage = () => {
+const Page: NextPage = () => {
     return (
-        <>
+        <ComponentInfoProvider packageName='@nodestrap/typos' packageType='utility' component={<LinkTyposPage />} base={<LinkTyposPage />}>
             <Head>
                 <title>Typos Utility</title>
                 <meta name="description" content="Using `typos` utility" />
             </Head>
 
             <Main>
-                <Section>
-                    <article>
-                        <h1>Typos Utility</h1>
-                        <p>
-                            <LinkTyposPage /> is a utility for customizing common typography (paragraphs, headings, marks, fonts, etc) in your site&apos;s page.
-                        </p>
-                        <p>
-                            <strong>Changing</strong> the typography configs <strong>affects all components</strong> that depend on <LinkTyposPage />.
-                        </p>
-                        <p>
-                            The main purpose of this utility is to create <strong>a consistent typography (text)</strong> between components.
-                        </p>
-                    </article>
-                </Section>
+                <SectionIntro>
+                    <p>
+                        <LinkTyposPage /> is a utility for customizing common typography (paragraphs, headings, marks, fonts, etc) in your site&apos;s page.
+                    </p>
+                    <p>
+                        <strong>Changing</strong> the typography configs <strong>affects all components</strong> that depend on <LinkTyposPage />.
+                    </p>
+                    <p>
+                        The main purpose of this utility is to create <strong>a consistent typography (text)</strong> between components.
+                    </p>
+                </SectionIntro>
                 <Section>
                     <article>
                         <h2>Configuring General (Primary) Typography</h2>
@@ -660,8 +659,8 @@ const TyposPage: NextPage = () => {
                     </article>
                 </Section>
             </Main>
-        </>
+        </ComponentInfoProvider>
     )
 }
 
-export default TyposPage
+export default Page

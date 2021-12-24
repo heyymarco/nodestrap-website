@@ -1,0 +1,1 @@
+add code preview on page: colors, borders, spacers

@@ -6,35 +6,32 @@ import Head from 'next/head'
 import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
 
-import { LinkBordersPage } from '../../../components/common-contents'
+import { ComponentInfoProvider, LinkBordersPage, SectionIntro } from '../../../components/common-contents'
 import { SectionDemoBorders } from '../../../components/DemoPanel@borders'
 import { TypeScriptCode, CssCode } from '../../../components/Code'
 
 
 
-const BordersPage: NextPage = () => {
+const Page: NextPage = () => {
     return (
-        <>
+        <ComponentInfoProvider packageName='@nodestrap/borders' packageType='utility' component={<LinkBordersPage />} base={<LinkBordersPage />}>
             <Head>
                 <title>Borders Utility</title>
                 <meta name="description" content="Configuring `borders` utility" />
             </Head>
 
             <Main>
-                <Section>
-                    <article>
-                        <h1>Borders Utility</h1>
-                        <p>
-                            <LinkBordersPage /> is a border (stroke) utility that is shared across other components.
-                        </p>
-                        <p>
-                            <strong>Changing</strong> the borders <strong>affects all components</strong> that depend on <LinkBordersPage />.
-                        </p>
-                        <p>
-                            The main purpose of this utility is to create <strong>a consistent border (stroke)</strong> between components.
-                        </p>
-                    </article>
-                </Section>
+                <SectionIntro>
+                    <p>
+                        <LinkBordersPage /> is a border (stroke) utility that is shared across other components.
+                    </p>
+                    <p>
+                        <strong>Changing</strong> the borders <strong>affects all components</strong> that depend on <LinkBordersPage />.
+                    </p>
+                    <p>
+                        The main purpose of this utility is to create <strong>a consistent border (stroke)</strong> between components.
+                    </p>
+                </SectionIntro>
                 <SectionDemoBorders />
                 <Section>
                     <article>
@@ -202,8 +199,8 @@ console.log(valueByVal); // 3px
                     </article>
                 </Section>
             </Main>
-        </>
+        </ComponentInfoProvider>
     )
 }
 
-export default BordersPage
+export default Page

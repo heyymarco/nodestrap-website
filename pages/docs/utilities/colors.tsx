@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
 
-import { LinkColorsPage } from '../../../components/common-contents'
+import { ComponentInfoProvider, LinkColorsPage, SectionIntro } from '../../../components/common-contents'
 import { SectionDemoColors } from '../../../components/DemoPanel@colors'
 import { TypeScriptCode, CssCode } from '../../../components/Code'
 
@@ -15,29 +15,26 @@ import { ColorPreview } from '../../../components/ColorPreview'
 
 
 
-const ColorsPage: NextPage = () => {
+const Page: NextPage = () => {
     return (
-        <>
+        <ComponentInfoProvider packageName='@nodestrap/colors' packageType='utility' component={<LinkColorsPage />} base={<LinkColorsPage />}>
             <Head>
                 <title>Colors Utility</title>
                 <meta name="description" content="Configuring `colors` utility" />
             </Head>
 
             <Main>
-                <Section>
-                    <article>
-                        <h1>Colors Utility</h1>
-                        <p>
-                            <LinkColorsPage /> is a color utility that is shared across other components.
-                        </p>
-                        <p>
-                            <strong>Changing</strong> the colors <strong>affects all components</strong> that depend on <LinkColorsPage />.
-                        </p>
-                        <p>
-                            The main purpose of this utility is to create <strong>a consistent theme colors</strong> between components.
-                        </p>
-                    </article>
-                </Section>
+                <SectionIntro>
+                    <p>
+                        <LinkColorsPage /> is a color utility that is shared across other components.
+                    </p>
+                    <p>
+                        <strong>Changing</strong> the colors <strong>affects all components</strong> that depend on <LinkColorsPage />.
+                    </p>
+                    <p>
+                        The main purpose of this utility is to create <strong>a consistent theme colors</strong> between components.
+                    </p>
+                </SectionIntro>
                 <SectionDemoColors />
                 <Section>
                     <article>
@@ -345,8 +342,8 @@ console.log(valueByVal); // #0000ff
                     </article>
                 </Section>
             </Main>
-        </>
+        </ComponentInfoProvider>
     )
 }
 
-export default ColorsPage
+export default Page

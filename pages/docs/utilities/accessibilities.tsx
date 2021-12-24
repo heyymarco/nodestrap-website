@@ -1,34 +1,33 @@
+import React from 'react'
+
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import React, {  } from 'react'
+
 import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
+
+import { ComponentInfoProvider, LinkAccessibilitiesPage, SectionIntro } from '../../../components/common-contents'
 import { SpecList, DetailSpecItem } from '../../../components/SpecList'
 
-import { LinkAccessibilitiesPage } from '../../../components/common-contents'
 
 
-
-const AccessibilitiesPage: NextPage = () => {
+const Page: NextPage = () => {
     return (
-        <>
+        <ComponentInfoProvider packageName='@nodestrap/accessibilities' packageType='utility' component={<LinkAccessibilitiesPage />} base={<LinkAccessibilitiesPage />}>
             <Head>
                 <title>Accessibilities Utility</title>
                 <meta name="description" content="Using `accessibilities` utility" />
             </Head>
 
             <Main>
-                <Section>
-                    <article>
-                        <h1>Accessibilities Utility</h1>
-                        <p>
-                            <LinkAccessibilitiesPage /> is a utility for determining the accessibility statuses of components such as <strong>enabled</strong>/<strong>disabled</strong>, <strong>readonly</strong>/<strong>editable</strong> and <strong>active</strong>/<strong>passive</strong>.
-                        </p>
-                        <p>
-                            By centralizing the reusable codes in one place, the overall bundle size can be reduced.
-                        </p>
-                    </article>
-                </Section>
+                <SectionIntro>
+                    <p>
+                        <LinkAccessibilitiesPage /> is a utility for determining the accessibility statuses of components such as <strong>enabled</strong>/<strong>disabled</strong>, <strong>readonly</strong>/<strong>editable</strong> and <strong>active</strong>/<strong>passive</strong>.
+                    </p>
+                    <p>
+                        By centralizing the reusable codes in one place, the overall bundle size can be reduced.
+                    </p>
+                </SectionIntro>
                 <Section>
                     <article>
                         <h2>Using the Accessibilities</h2>
@@ -123,8 +122,8 @@ const AccessibilitiesPage: NextPage = () => {
                     </article>
                 </Section>
             </Main>
-        </>
+        </ComponentInfoProvider>
     )
 }
 
-export default AccessibilitiesPage
+export default Page

@@ -1,39 +1,38 @@
+import React from 'react'
+
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import React, {  } from 'react'
+
 import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
-import { TypeScriptCode } from '../../../components/Code'
+
+import { ComponentInfoProvider, LinkStripoutsPage, SectionIntro } from '../../../components/common-contents'
 import { SpecList, DetailSpecItem } from '../../../components/SpecList'
-
-import { LinkStripoutsPage } from '../../../components/common-contents'
-
+import { TypeScriptCode } from '../../../components/Code'
 
 
-const StripoutsPage: NextPage = () => {
+
+const Page: NextPage = () => {
     return (
-        <>
+        <ComponentInfoProvider packageName='@nodestrap/stripouts' packageType='utility' component={<LinkStripoutsPage />} base={<LinkStripoutsPage />}>
             <Head>
                 <title>Stripouts Utility</title>
                 <meta name="description" content="Using `stripouts` utility" />
             </Head>
 
             <Main>
-                <Section>
-                    <article>
-                        <h1>Stripouts Utility</h1>
-                        <p>
-                            <LinkStripoutsPage /> is a utility for resetting browser default style to an unstyled element.
-                        </p>
-                        <p>
-                            The default styles in <code>&lt;button&gt;</code>, <code>&lt;input&gt;</code>, <code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, etc are great,<br />
-                            but in some cases we need to <em>un-style</em> them as something like an unstyled <code>&lt;div&gt;</code>.
-                        </p>
-                        <p>
-                            Once we&apos;ve <em>un-styled</em> them, we can override ones with <em>own styles</em> without worrying about inconsistency across browsers.
-                        </p>
-                    </article>
-                </Section>
+                <SectionIntro>
+                    <p>
+                        <LinkStripoutsPage /> is a utility for resetting browser default style to an unstyled element.
+                    </p>
+                    <p>
+                        The default styles in <code>&lt;button&gt;</code>, <code>&lt;input&gt;</code>, <code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, etc are great,<br />
+                        but in some cases we need to <em>un-style</em> them as something like an unstyled <code>&lt;div&gt;</code>.
+                    </p>
+                    <p>
+                        Once we&apos;ve <em>un-styled</em> them, we can override ones with <em>own styles</em> without worrying about inconsistency across browsers.
+                    </p>
+                </SectionIntro>
                 <Section>
                     <article>
                         <h2>List of Strippable Elements</h2>
@@ -364,8 +363,8 @@ export default function AwesomeImage(props) {
                     </article>
                 </Section>
             </Main>
-        </>
+        </ComponentInfoProvider>
     )
 }
 
-export default StripoutsPage
+export default Page

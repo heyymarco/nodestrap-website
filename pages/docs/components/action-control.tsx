@@ -4,10 +4,9 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 
 import { Main } from '../../../components/Main'
-import { Section } from '../../../components/Section'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
-import { SectionInheritedProps, LinkActionControlPage, LinkControlPage, ParagraphDefaultValue, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionStates } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkActionControlPage, LinkControlPage, ParagraphDefaultValue, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionStates, SectionIntro } from '../../../components/common-contents'
 import { SectionDemoActionControl } from '../../../components/DemoPanel@ActionControl'
 
 
@@ -21,17 +20,14 @@ const Page: NextPage = () => {
             </Head>
 
             <Main>
-                <Section>
-                    <article>
-                        <h1>ActionControl Component</h1>
-                        <p>
-                            <LinkActionControlPage /> is an <strong>abstract</strong> component of <strong>clickable</strong> component. It has some control indicators such as <strong>press</strong>/<strong>release</strong> and inherited indicators from <LinkControlPage />.
-                        </p>
-                        <p>
-                            In <em>most cases</em>, you should <strong>not use </strong>this component <strong>directly</strong>, instead create your own component by derivering <LinkActionControlPage />.
-                        </p>
-                    </article>
-                </Section>
+                <SectionIntro>
+                    <p>
+                        <LinkActionControlPage /> is an <strong>abstract</strong> component of <strong>clickable</strong> component. It has some control indicators such as <strong>press</strong>/<strong>release</strong> and inherited indicators from <LinkControlPage />.
+                    </p>
+                    <p>
+                        In <em>most cases</em>, you should <strong>not use </strong>this component <strong>directly</strong>, instead create your own component by derivering <LinkActionControlPage />.
+                    </p>
+                </SectionIntro>
                 <SectionDemoActionControl />
                 <SectionInheritedProps component={<LinkActionControlPage />} base={<LinkControlPage />} />
                 <SectionStates>

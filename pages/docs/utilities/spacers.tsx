@@ -6,36 +6,32 @@ import Head from 'next/head'
 import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
 
-import { LinkSpacersPage } from '../../../components/common-contents'
+import { ComponentInfoProvider, LinkSpacersPage, SectionIntro } from '../../../components/common-contents'
 import { SectionDemoSpacers } from '../../../components/DemoPanel@spacers'
 import { TypeScriptCode, CssCode } from '../../../components/Code'
 
 
 
-
-const SpacersPage: NextPage = () => {
+const Page: NextPage = () => {
     return (
-        <>
+        <ComponentInfoProvider packageName='@nodestrap/spacers' packageType='utility' component={<LinkSpacersPage />} base={<LinkSpacersPage />}>
             <Head>
                 <title>Spacers Utility</title>
                 <meta name="description" content="Configuring `spacers` utility" />
             </Head>
 
             <Main>
-                <Section>
-                    <article>
-                        <h1>Spacers Utility</h1>
-                        <p>
-                            <LinkSpacersPage /> is a spacer utility that is shared across other components.
-                        </p>
-                        <p>
-                            <strong>Changing</strong> the spacers <strong>affects all components</strong> that depend on <LinkSpacersPage />.
-                        </p>
-                        <p>
-                            The main purpose of this utility is to create <strong>a consistent spacer (margin/padding/gap/etc)</strong> between components.
-                        </p>
-                    </article>
-                </Section>
+                <SectionIntro>
+                    <p>
+                        <LinkSpacersPage /> is a spacer utility that is shared across other components.
+                    </p>
+                    <p>
+                        <strong>Changing</strong> the spacers <strong>affects all components</strong> that depend on <LinkSpacersPage />.
+                    </p>
+                    <p>
+                        The main purpose of this utility is to create <strong>a consistent spacer (margin/padding/gap/etc)</strong> between components.
+                    </p>
+                </SectionIntro>
                 <SectionDemoSpacers />
                 <Section>
                     <article>
@@ -167,8 +163,8 @@ console.log(valueByVal); // 1.5rem
                     </article>
                 </Section>
             </Main>
-        </>
+        </ComponentInfoProvider>
     )
 }
 
-export default SpacersPage
+export default Page

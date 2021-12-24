@@ -4,10 +4,9 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 
 import { Main } from '../../../components/Main'
-import { Section } from '../../../components/Section'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
-import { SectionInheritedProps, LinkControlPage, LinkIndicatorPage, ParagraphDefaultValue, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionStates, SectionProperty } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkControlPage, LinkIndicatorPage, ParagraphDefaultValue, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionStates, SectionProperty, SectionIntro } from '../../../components/common-contents'
 import { SectionDemoControl } from '../../../components/DemoPanel@Control'
 
 
@@ -21,17 +20,14 @@ const Page: NextPage = () => {
             </Head>
 
             <Main>
-                <Section>
-                    <article>
-                        <h1>Control Component</h1>
-                        <p>
-                            <LinkControlPage /> is an <strong>abstract</strong> component of <strong>controllable</strong> component. It has some control indicators such as <strong>focus</strong>/<strong>blur</strong> and <strong>arrive</strong>/<strong>leave</strong>.
-                        </p>
-                        <p>
-                            In <em>most cases</em>, you should <strong>not use </strong>this component <strong>directly</strong>, instead create your own component by derivering <LinkControlPage />.
-                        </p>
-                    </article>
-                </Section>
+                <SectionIntro>
+                    <p>
+                        <LinkControlPage /> is an <strong>abstract</strong> component of <strong>controllable</strong> component. It has some control indicators such as <strong>focus</strong>/<strong>blur</strong> and <strong>arrive</strong>/<strong>leave</strong>.
+                    </p>
+                    <p>
+                        In <em>most cases</em>, you should <strong>not use </strong>this component <strong>directly</strong>, instead create your own component by derivering <LinkControlPage />.
+                    </p>
+                </SectionIntro>
                 <SectionDemoControl />
                 <SectionInheritedProps component={<LinkControlPage />} base={<LinkIndicatorPage />} />
                 <SectionStates>

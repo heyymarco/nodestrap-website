@@ -1,34 +1,33 @@
+import React from 'react'
+
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import React, {  } from 'react'
+
 import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
+
+import { ComponentInfoProvider, LinkHooksPage, SectionIntro } from '../../../components/common-contents'
 import { SpecList, DetailSpecItem } from '../../../components/SpecList'
 
-import { LinkHooksPage } from '../../../components/common-contents'
 
 
-
-const HooksPage: NextPage = () => {
+const Page: NextPage = () => {
     return (
-        <>
+        <ComponentInfoProvider packageName='@nodestrap/hooks' packageType='utility' component={<LinkHooksPage />} base={<LinkHooksPage />}>
             <Head>
                 <title>Hooks Utility</title>
                 <meta name="description" content="Using `hooks` utility" />
             </Head>
 
             <Main>
-                <Section>
-                <article>
-                        <h1>Hooks Utility</h1>
-                        <p>
-                            <LinkHooksPage /> is a utility contains common react hooks.
-                        </p>
-                        <p>
-                            By centralizing the reusable codes in one place, the overall bundle size can be reduced.
-                        </p>
-                    </article>
-                </Section>
+                <SectionIntro>
+                    <p>
+                        <LinkHooksPage /> is a utility contains common react hooks.
+                    </p>
+                    <p>
+                        By centralizing the reusable codes in one place, the overall bundle size can be reduced.
+                    </p>
+                </SectionIntro>
                 <Section>
                     <article>
                         <h2>Using the Hooks</h2>
@@ -53,8 +52,8 @@ const HooksPage: NextPage = () => {
                     </article>
                 </Section>
             </Main>
-        </>
+        </ComponentInfoProvider>
     )
 }
 
-export default HooksPage
+export default Page

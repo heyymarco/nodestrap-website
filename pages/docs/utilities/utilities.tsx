@@ -1,34 +1,33 @@
+import React from 'react'
+
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import React, {  } from 'react'
+
 import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
+
+import { ComponentInfoProvider, LinkUtilitiesPage, SectionIntro } from '../../../components/common-contents'
 import { SpecList, DetailSpecItem } from '../../../components/SpecList'
 
-import { LinkUtilitiesPage } from '../../../components/common-contents'
 
 
-
-const UtilitiesPage: NextPage = () => {
+const Page: NextPage = () => {
     return (
-        <>
+        <ComponentInfoProvider packageName='@nodestrap/utilities' packageType='utility' component={<LinkUtilitiesPage />} base={<LinkUtilitiesPage />}>
             <Head>
                 <title>Utilities</title>
                 <meta name="description" content="Using `utilities`" />
             </Head>
 
             <Main>
-                <Section>
-                <article>
-                        <h1>Utilities</h1>
-                        <p>
-                            <LinkUtilitiesPage /> is a utility contains common utility functions.
-                        </p>
-                        <p>
-                            By centralizing the reusable codes in one place, the overall bundle size can be reduced.
-                        </p>
-                    </article>
-                </Section>
+                <SectionIntro>
+                    <p>
+                        <LinkUtilitiesPage /> is a utility contains common utility functions.
+                    </p>
+                    <p>
+                        By centralizing the reusable codes in one place, the overall bundle size can be reduced.
+                    </p>
+                </SectionIntro>
                 <Section>
                     <article>
                         <h2>Using the Utilities</h2>
@@ -60,8 +59,8 @@ const UtilitiesPage: NextPage = () => {
                     </article>
                 </Section>
             </Main>
-        </>
+        </ComponentInfoProvider>
     )
 }
 
-export default UtilitiesPage
+export default Page

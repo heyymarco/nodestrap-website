@@ -1,39 +1,38 @@
+import React from 'react'
+
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import React, {  } from 'react'
+
 import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
+
+import { ComponentInfoProvider, LinkBreakpointsPage, SectionIntro } from '../../../components/common-contents'
 import { SpecList, SimpleSpecItem } from '../../../components/SpecList'
 import { TypeScriptCode } from '../../../components/Code'
 
-import { LinkBreakpointsPage } from '../../../components/common-contents'
 
 
-
-const BreakpointsPage: NextPage = () => {
+const Page: NextPage = () => {
     return (
-        <>
+        <ComponentInfoProvider packageName='@nodestrap/spacers' packageType='utility' component={<LinkBreakpointsPage />} base={<LinkBreakpointsPage />}>
             <Head>
                 <title>Breakpoints Utility</title>
                 <meta name="description" content="Using `breakpoints` utility" />
             </Head>
 
             <Main>
-                <Section>
-                <article>
-                        <h1>Breakpoints Utility</h1>
-                        <p>
-                            <LinkBreakpointsPage /> is a utility for determining which layout/style to apply based on device (viewport) width.
-                        </p>
-                        <p>
-                            You might want to create <strong>several versions of design</strong>, each of which has a specific target device such as <em>desktop version</em>, <em>tablet version</em>, <em>mobile version</em>, and so on.
-                        </p>
-                        <p>
-                            To make <strong>a consistent breakpoint configuration</strong> between components, here the <LinkBreakpointsPage /> comes to help.<br />
-                            <strong>Changing</strong> the configuration in <LinkBreakpointsPage /> <strong>affects all components</strong> that depend on it.
-                        </p>
-                    </article>
-                </Section>
+                <SectionIntro>
+                    <p>
+                        <LinkBreakpointsPage /> is a utility for determining which layout/style to apply based on device (viewport) width.
+                    </p>
+                    <p>
+                        You might want to create <strong>several versions of design</strong>, each of which has a specific target device such as <em>desktop version</em>, <em>tablet version</em>, <em>mobile version</em>, and so on.
+                    </p>
+                    <p>
+                        To make <strong>a consistent breakpoint configuration</strong> between components, here the <LinkBreakpointsPage /> comes to help.<br />
+                        <strong>Changing</strong> the configuration in <LinkBreakpointsPage /> <strong>affects all components</strong> that depend on it.
+                    </p>
+                </SectionIntro>
                 <Section>
                     <article>
                         <h2>Defining Breakpoints</h2>
@@ -186,8 +185,8 @@ export const breakpoints = {
                     </article>
                 </Section>
             </Main>
-        </>
+        </ComponentInfoProvider>
     )
 }
 
-export default BreakpointsPage
+export default Page

@@ -1,34 +1,33 @@
+import React from 'react'
+
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import React, {  } from 'react'
+
 import { Main } from '../../../components/Main'
 import { Section } from '../../../components/Section'
+
+import { ComponentInfoProvider, LinkValidationsPage, SectionIntro } from '../../../components/common-contents'
 import { SpecList, DetailSpecItem } from '../../../components/SpecList'
 
-import { LinkValidationsPage } from '../../../components/common-contents'
 
 
-
-const ValidationsPage: NextPage = () => {
+const Page: NextPage = () => {
     return (
-        <>
+        <ComponentInfoProvider packageName='@nodestrap/validations' packageType='utility' component={<LinkValidationsPage />} base={<LinkValidationsPage />}>
             <Head>
                 <title>Validations Utility</title>
                 <meta name="description" content="Using `validations` utility" />
             </Head>
 
             <Main>
-                <Section>
-                    <article>
-                        <h1>Validations Utility</h1>
-                        <p>
-                            <LinkValidationsPage /> is a utility for determining the validation statuses of components such as <strong>enableValidation</strong> and <strong>valid</strong>/<strong>invalid</strong>.
-                        </p>
-                        <p>
-                            By centralizing the reusable codes in one place, the overall bundle size can be reduced.
-                        </p>
-                    </article>
-                </Section>
+                <SectionIntro>
+                    <p>
+                        <LinkValidationsPage /> is a utility for determining the validation statuses of components such as <strong>enableValidation</strong> and <strong>valid</strong>/<strong>invalid</strong>.
+                    </p>
+                    <p>
+                        By centralizing the reusable codes in one place, the overall bundle size can be reduced.
+                    </p>
+                </SectionIntro>
                 <Section>
                     <article>
                         <h2>Using the Validations</h2>
@@ -85,8 +84,8 @@ const ValidationsPage: NextPage = () => {
                     </article>
                 </Section>
             </Main>
-        </>
+        </ComponentInfoProvider>
     )
 }
 
-export default ValidationsPage
+export default Page

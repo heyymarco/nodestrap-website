@@ -4,11 +4,10 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 
 import { Main } from '../../../components/Main'
-import { Section } from '../../../components/Section'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 import { Warning } from '../../../components/Info'
 
-import { SectionInheritedProps, LinkIndicatorPage, LinkBasicPage, LinkIconPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionStates, SectionSubProperty } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkIndicatorPage, LinkBasicPage, LinkIconPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionStates, SectionSubProperty, SectionIntro } from '../../../components/common-contents'
 import { SectionDemoIndicator } from '../../../components/DemoPanel@Indicator'
 
 
@@ -22,17 +21,14 @@ const Page: NextPage = () => {
             </Head>
 
             <Main>
-                <Section>
-                    <article>
-                        <h1>Indicator Component</h1>
+                <SectionIntro>
                         <p>
                             <LinkIndicatorPage /> is an <strong>abstract</strong> component for <strong>displaying indications</strong> such as <strong>enabled</strong>/<strong>disabled</strong> and <strong>active</strong>/<strong>passive</strong>.
                         </p>
                         <p>
                             In <em>most cases</em>, you should <strong>not use </strong>this component <strong>directly</strong>, instead create your own component by derivering <LinkIndicatorPage />.
                         </p>
-                    </article>
-                </Section>
+                </SectionIntro>
                 <SectionDemoIndicator />
                 <SectionInheritedProps component={<LinkIndicatorPage />} base={<LinkBasicPage />} />
                 <SectionStates>

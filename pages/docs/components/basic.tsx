@@ -4,11 +4,10 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 
 import { Main } from '../../../components/Main'
-import { Section } from '../../../components/Section'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 import { Warning } from '../../../components/Info'
 
-import { SectionInheritedProps, LinkBasicPage, LinkElementPage, LinkColorsPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionSubProperty } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkBasicPage, LinkElementPage, LinkColorsPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionSubProperty, SectionIntro } from '../../../components/common-contents'
 import { SectionDemoBasic } from '../../../components/DemoPanel@Basic'
 
 
@@ -33,18 +32,15 @@ const Page: NextPage = () => {
             </Head>
 
             <Main>
-                <Section>
-                    <article>
-                        <h1>Basic Component</h1>
-                        <p>
-                            <LinkBasicPage /> is the most basic component in Nodestrap components after the <LinkElementPage />.
-                            It provides the basic styling and some basic essentials.
-                        </p>
-                        <p>
-                            Unlike <LinkElementPage />, <LinkBasicPage /> has a default style that you can see visually.
-                        </p>
-                    </article>
-                </Section>
+                <SectionIntro>
+                    <p>
+                        <LinkBasicPage /> is the most basic component in Nodestrap components after the <LinkElementPage />.
+                        It provides the basic styling and some basic essentials.
+                    </p>
+                    <p>
+                        Unlike <LinkElementPage />, <LinkBasicPage /> has a default style that you can see visually.
+                    </p>
+                </SectionIntro>
                 <SectionDemoBasic />
                 <SectionInheritedProps component={<LinkBasicPage />} base={<LinkElementPage />} />
                 <SectionVariants>

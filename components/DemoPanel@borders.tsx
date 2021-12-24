@@ -101,7 +101,7 @@ export const SectionDemoBorders = () => {
         <SectionDemo message={
             <p>
                 Move some sliders below!
-                You'll see our site's border is changed instantly.
+                You&apos;ll see our site&apos;s border is changed instantly.
             </p>
         }>
             <span>Preview</span>

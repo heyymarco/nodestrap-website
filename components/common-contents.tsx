@@ -115,12 +115,16 @@ export const ParagraphDefaultValue = ({ code }: ParagraphDefaultValueProps) => (
 
 
 interface ComponentInfo {
-    packageName : `@nodestrap/${string}` | (string & {})
-    component   : Component
-    base        : Component
+    packageName  : `@nodestrap/${string}` | (string & {})
+    packageType ?: 'component'|'utility'
+
+    component    : Component
+    base         : Component
 }
-const ComponentInfoContext = React.createContext<ComponentInfo>(/*defaultValue :*/{
+const ComponentInfoContext = React.createContext<Required<ComponentInfo>>(/*defaultValue :*/{
     packageName : '@nodestrap/element',
+    packageType        : 'component',
+
     component   : <LinkElementPage />,
     base        : <LinkElementPage />,
 });
@@ -129,7 +133,7 @@ export interface ComponentInfoProviderProps extends ComponentInfo {
 }
 export function ComponentInfoProvider(props: ComponentInfoProviderProps) {
     return (
-        <ComponentInfoContext.Provider value={props}>
+        <ComponentInfoContext.Provider value={{ ...props, packageType: (props.packageType ?? 'component') }}>
             { props.children }
         </ComponentInfoContext.Provider>
     );
@@ -164,6 +168,34 @@ const useComponentInfo = () => {
         })(),
         // eslint-disable-next-line
     }), [...Object.values(data)]);
+}
+
+
+
+export interface SectionIntroProps {
+    children   ?: React.ReactNode
+}
+export const SectionIntro = ({ children }: SectionIntroProps) => {
+    const { component, packageType } = useComponentInfo();
+    
+    return (
+        <Section>
+            <article>
+                <h1>
+                    { component }
+                    {(() => {
+                        switch (packageType) {
+                            case 'utility'  : return ' Utility';
+                            case 'component': return ' Component';
+                            default:          return null;
+                        } // switch
+                    })()}
+                </h1>
+
+                { children }
+            </article>
+        </Section>
+    );
 }
 
 

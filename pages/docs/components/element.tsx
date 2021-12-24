@@ -1,11 +1,13 @@
+import React, {  } from 'react'
+
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import React, {  } from 'react'
+
 import { Main } from '../../../components/Main'
-import { Section } from '../../../components/Section'
-import { TypeScriptCode } from '../../../components/Code'
 import { Tips, Warning } from '../../../components/Info'
-import { ComponentInfoProvider, LinkElementPage, SectionProperty, SectionSubProperty } from '../../../components/common-contents'
+import { TypeScriptCode } from '../../../components/Code'
+
+import { ComponentInfoProvider, LinkElementPage, SectionIntro, SectionProperty, SectionSubProperty } from '../../../components/common-contents'
 
 
 
@@ -47,7 +49,7 @@ const WarnForSemanticTag = () => (
     </Warning>
 );
 
-const ElementCode = () => <code>&lt;Element&gt;</code>;
+
 
 const Page: NextPage = () => {
     return (
@@ -58,22 +60,19 @@ const Page: NextPage = () => {
             </Head>
 
             <Main>
-                <Section>
-                    <article>
-                        <h1>Element Component</h1>
-                        <p>
-                            <ElementCode /> is the most basic component in Nodestrap components.
-                            It provides the semantic functionality and some basic essentials.
-                        </p>
-                    </article>
-                </Section>
+                <SectionIntro>
+                    <p>
+                        <LinkElementPage /> is the most basic component in Nodestrap components.
+                        It provides the semantic functionality and some basic essentials.
+                    </p>
+                </SectionIntro>
                 <SectionProperty property={<>Semantic Properties</>}>
                     <p>
                         There&apos;re some properties for controlling the semantic such as <code>role</code>, <code>tag</code>, <code>semanticRole</code>, and <code>semanticTag</code>.
                     </p>
                     <SectionSubProperty property='role'>
                         <p>
-                            A <code>role</code> property controls the <strong>role property</strong> of rendered <ElementCode />.
+                            Controls the <strong>role property</strong> of rendered <LinkElementPage />.
                         </p>
                         <p>
                             If the <code>role</code> value is not defined (or <code>undefined</code>), then fallbacks using a value in <code>semanticRole</code> (we&apos;ll choose the best one) and
@@ -98,7 +97,7 @@ const Page: NextPage = () => {
                     </SectionSubProperty>
                     <SectionSubProperty property='tag'>
                         <p>
-                            A <code>tag</code> property controls the <strong>tag name</strong> of rendered <ElementCode />.
+                            Controls the <strong>tag name</strong> of rendered <LinkElementPage />.
                         </p>
                         <p>
                             If the <code>tag</code> value is not defined (or <code>undefined</code>), then fallbacks using a value in <code>semanticTag</code> (we&apos;ll choose the best one) and
@@ -120,7 +119,7 @@ const Page: NextPage = () => {
                     </SectionSubProperty>
                     <SectionSubProperty property='semanticRole'>
                         <p>
-                            A <code>semanticRole</code> property defines the <strong>preferred role(s)</strong>.
+                            Defines the <strong>preferred role(s)</strong>.
                             The value can be singular or list (an array).
                         </p>
                         <p>
@@ -150,7 +149,7 @@ const Page: NextPage = () => {
                     </SectionSubProperty>
                     <SectionSubProperty property='semanticTag'>
                         <p>
-                            A <code>semanticTag</code> property defines the <strong>preferred semantic tag(s)</strong>.
+                            Defines the <strong>preferred semantic tag(s)</strong>.
                             The value can be singular or list (an array).
                         </p>
                         <p>
@@ -191,7 +190,7 @@ const Page: NextPage = () => {
                 </SectionProperty>
                 <SectionProperty property='elmRef'>
                     <p>
-                        An <code>elmRef</code> property exposes the <strong>reference of rendered element</strong> in <strong>DOM</strong>.
+                        Exposes the <strong>reference of rendered element</strong> in <strong>DOM</strong>.
                     </p>
                     <p>
                         Similar to <code>ref</code> in <strong>DOM element</strong> or <strong>class component</strong>, but
@@ -228,7 +227,7 @@ export function CustomTextEditor(props) {
                 </SectionProperty>
                 <SectionProperty property='style'>
                     <p>
-                        A <code>style</code> property defines an <strong>inline styleSheet</strong> within the rendered element.
+                        Defines an <strong>inline styleSheet</strong> within the rendered element.
                     </p>
                     <p>
                         Example:
@@ -253,7 +252,7 @@ export function CustomTextEditor(props) {
                 </SectionProperty>
                 <SectionProperty property='id'>
                     <p>
-                        An <code>id</code> property defines an <strong>unique identifier</strong> of the rendered element.
+                        Defines an <strong>unique identifier</strong> of the rendered element.
                     </p>
                     <p>
                         Example:
@@ -352,7 +351,7 @@ export function CustomTextEditor(props) {
                     </SectionSubProperty>
                     <SectionSubProperty property='classes'>
                         <p>
-                            A <code>classes</code> property defines the <strong>additional</strong> generic class(es) (an <code>array</code>) to attach.
+                            Defines the <strong>additional</strong> generic class(es) (an <code>array</code>) to attach.
                             This is the <strong>last choice</strong> if you don&apos;t have any idea to classify the classes.
                         </p>
                         <p>
@@ -379,7 +378,7 @@ export function CustomTextEditor(props) {
                 <SectionProperty property={<><code>aria-**</code> Properties</>}>
                     <p>
                         Any properties starting with <code>aria-**</code> will be <strong>rendered directly</strong>.
-                        Fell free to place any <code>aria-**</code> to the <ElementCode />.
+                        Fell free to place any <code>aria-**</code> to the <LinkElementPage />.
                     </p>
                     <p>
                         Example:
@@ -401,7 +400,7 @@ export function CustomTextEditor(props) {
                 <SectionProperty property={<><code>on**</code> Properties</>}>
                     <p>
                         Any properties starting with <code>on**</code> will be treated as <strong>an usual React event</strong>.
-                        Fell free to put any <code>on**</code> to the <ElementCode />.
+                        Fell free to put any <code>on**</code> to the <LinkElementPage />.
                     </p>
                     <p>
                         Example:
@@ -415,7 +414,7 @@ export function CustomTextEditor(props) {
                 <SectionProperty property={<><strong>DOM</strong> Properties</>}>
                     <p>
                         Any <strong>DOM</strong> properties will be <strong>rendered directly</strong>.
-                        Fell free to place any <code>DOM properties</code> to the <ElementCode />.
+                        Fell free to place any <code>DOM properties</code> to the <LinkElementPage />.
                     </p>
                     <p>
                         Here the list of recognized <strong>DOM properties</strong>:<br />
