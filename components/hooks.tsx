@@ -1,9 +1,24 @@
-import { useRef, useState } from 'react'
-import { StyleSheet, createSheet, globalDef, atRoot, vars } from '@cssfn/cssfn'
-import type { Cust } from '@cssfn/css-types'
-import { useIsomorphicLayoutEffect } from '@nodestrap/hooks'
+import {
+    useRef,
+    useReducer,
+}                           from 'react'         // base technology of our nodestrap components
+
+// cssfn:
+import type {
+    Cust,
+}                           from '@cssfn/css-types'   // ts defs support for cssfn
+import {
+    StyleSheet, createSheet, globalDef, atRoot, vars,
+}                           from '@cssfn/cssfn'       // cssfn core
+
+// nodestrap utilities:
+import {
+    useIsomorphicLayoutEffect,
+}                           from '@nodestrap/hooks'
 
 
+
+// types:
 
 export type BoxOptions = 'border-box' | 'content-box'
 export interface SizeOptions {
@@ -14,27 +29,40 @@ const defaultWindowSizeOptions  : SizeOptions = { box: 'content-box' };
 
 
 
+// hooks:
+
+type Size = { width: number, height: number }
+const reducerHandler = (size: Partial<Size>, newSize: Size): Partial<Size> => {
+    if ((newSize.width === size.width) && (newSize.height === size.height)) return size; // no diff => no changes needed
+    
+    return newSize;
+}
+const useSizeState = (initial?: () => Partial<Size>|undefined) => !initial ? useReducer(reducerHandler, {}) : useReducer(reducerHandler, {}, () => initial() ?? {});
+
+
+
 export type OnElementResizeCallback = (elm: HTMLElement) => void
 export const useElementOnResize = (callback: OnElementResizeCallback, options = defaultElementSizeOptions) => {
-    const [elmRef, setElmRef] = useState<HTMLElement | null>(null);
+    const elmRef = useRef<HTMLElement>(null);
     
     
     
     useIsomorphicLayoutEffect(() => {
-        if (!elmRef) return;
+        const elm = elmRef.current;
+        if (!elm) return;
         
         
         
         // handlers:
         const handleResize = () => {
-            callback(elmRef);
+            callback(elm);
         }
         
         
         
         // setups:
         const observer = new ResizeObserver(handleResize);
-        observer.observe(elmRef, options);
+        observer.observe(elm, options);
         
         
         
@@ -42,30 +70,31 @@ export const useElementOnResize = (callback: OnElementResizeCallback, options = 
         return () => {
             observer.disconnect();
         };
-    }, [elmRef]);
+    }, []);
     
     
     
-    return setElmRef;
-}
+    return elmRef;
+};
 
 export const useElementSize = (options = defaultElementSizeOptions) => {
     const borderBox = (options.box === 'border-box');
     
-    const [elmWidth,  setElmWidth ] = useState<number|null>(null);
-    const [elmHeight, setElmHeight] = useState<number|null>(null);
+    const [elmSize, setElmSize] = useSizeState();
     
     
     
-    const setElmRef = useElementOnResize((elm) => {
-        setElmWidth(borderBox  ? elm.offsetWidth  : elm.clientWidth);
-        setElmHeight(borderBox ? elm.offsetHeight : elm.clientHeight);
+    const elmRef = useElementOnResize((elm) => {
+        setElmSize({
+            width  : (borderBox ? elm.offsetWidth  : elm.clientWidth),
+            height : (borderBox ? elm.offsetHeight : elm.clientHeight),
+        });
     }, options);
     
     
     
-    return [elmWidth, elmHeight, setElmRef] as const;
-}
+    return [elmSize?.width ?? null, elmSize?.height ?? null, elmRef] as const;
+};
 
 export interface CssSizeOptions extends Partial<SizeOptions> {
     varWidth  ?: Cust.Decl
@@ -135,7 +164,7 @@ export const useElementCssSize = (options: CssSizeOptions) => {
     
     
     return setElmRef;
-}
+};
 
 
 
@@ -163,31 +192,33 @@ export const useWindowOnResize = (callback: OnWindowResizeCallback) => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
-}
+};
 
 export const useWindowSize = (options = defaultWindowSizeOptions) => {
     const borderBox = (options.box === 'border-box');
     
-    const [windowWidth,  setWindowWidth ] = useState<number|null>(() => {
-        if (typeof(window) === 'undefined') return null;
-        return (borderBox  ? window.outerWidth  : window.innerWidth);
-    });
-    const [windowHeight, setWindowHeight] = useState<number|null>(() => {
-        if (typeof(window) === 'undefined') return null;
-        return (borderBox  ? window.outerHeight  : window.innerHeight);
+    const [windowSize, setWindowSize] = useSizeState(() => {
+        if (typeof(window) === 'undefined') return undefined;
+        
+        return {
+            width  : (borderBox ? window.outerWidth  : window.innerWidth),
+            height : (borderBox ? window.outerHeight : window.innerHeight),
+        };
     });
     
     
     
     useWindowOnResize((window) => {
-        setWindowWidth(borderBox  ? window.outerWidth  : window.innerWidth);
-        setWindowHeight(borderBox ? window.outerHeight : window.innerHeight);
+        setWindowSize({
+            width  : (borderBox ? window.outerWidth  : window.innerWidth),
+            height : (borderBox ? window.outerHeight : window.innerHeight),
+        });
     });
     
     
     
-    return [windowWidth, windowHeight] as const;
-}
+    return [windowSize?.width ?? null, windowSize?.height ?? null] as const;
+};
 
 export const useWindowCssSize = (options: CssSizeOptions) => {
     const [windowWidth, windowHeight] = useWindowSize({...defaultWindowSizeOptions, ...options});
@@ -249,4 +280,4 @@ export const useWindowCssSize = (options: CssSizeOptions) => {
             sheetHeight.current?.detach();
         };
     }, [windowHeight]);
-}
+};
