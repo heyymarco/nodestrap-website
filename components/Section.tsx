@@ -1,5 +1,8 @@
 // nodestrap components:
 import {
+    Element,
+}                           from '@nodestrap/element'
+import {
     // react components:
     ContainerProps,
     Container,
@@ -7,9 +10,9 @@ import {
 
 
 
-export interface SectionProps extends ContainerProps {
+export interface GenericSectionProps extends ContainerProps {
 }
-export function Section(props: SectionProps) {
+export function GenericSection(props: GenericSectionProps) {
     return (
         <Container
             {...props}
@@ -21,4 +24,48 @@ export function Section(props: SectionProps) {
         />
     );
 }
-export default Section;
+export default GenericSection;
+
+
+
+
+export interface SectionProps extends GenericSectionProps {
+    titleTag ?: 'h1'|'h2'|'h3'|'h4'|'h5'|'h6'
+    title    ?: string|React.ReactElement
+    children  : React.ReactNode
+}
+export const Section = (props: SectionProps) => {
+    const { titleTag = 'h2', title, children, ...restProps} = props;
+    
+    
+    
+    return (
+        <GenericSection {...restProps}>
+            <article>
+                {title && <Element tag={titleTag}>
+                    { title }
+                </Element>}
+
+                { children }
+            </article>
+        </GenericSection>
+    );
+}
+
+export const MainSection = (props: SectionProps) => {
+    return (
+        <Section
+            {...props}
+            titleTag={props.titleTag ?? 'h1'}
+        />
+    );
+}
+
+export const SubSection = (props: SectionProps) => {
+    return (
+        <Section
+            {...props}
+            titleTag={props.titleTag ?? 'h3'}
+        />
+    );
+}

@@ -1,5 +1,4 @@
 import Button from '@nodestrap/button'
-import { Element } from '@nodestrap/element'
 import Link from 'next/link'
 import React, { useContext, useMemo } from 'react';
 import { TypeScriptCode } from './Code';
@@ -164,14 +163,11 @@ export interface SectionGeneralProps {
 }
 export const SectionGeneral = ({ titleTag = 'h2', title, children }: SectionGeneralProps) => {
     return (
-        <Section>
-            <article>
-                <Element tag={titleTag}>
-                    { title }
-                </Element>
-                
-                { children }
-            </article>
+        <Section
+            titleTag={titleTag}
+            title={title}
+        >
+            { children }
         </Section>
     );
 }

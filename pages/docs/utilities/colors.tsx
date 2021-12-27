@@ -3,8 +3,6 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { Main } from '../../../components/Main'
-
 import { ComponentInfoProvider, LinkColorsPage, SectionGeneral, SectionIntro } from '../../../components/common-contents'
 import { SectionDemoColors } from '../../../components/DemoPanel@colors'
 import { TypeScriptCode, CssCode } from '../../../components/Code'
@@ -22,92 +20,91 @@ const Page: NextPage = () => {
                 <meta name="description" content="Configuring `colors` utility" />
             </Head>
 
-            <Main>
-                <SectionIntro>
-                    <p>
-                        <LinkColorsPage /> is a color utility that is shared across other components.
-                    </p>
-                    <p>
-                        <strong>Changing</strong> the colors <strong>affects all components</strong> that depend on <LinkColorsPage />.
-                    </p>
-                    <p>
-                        The main purpose of this utility is to create <strong>a consistent theme colors</strong> between components.
-                    </p>
-                </SectionIntro>
-                <SectionDemoColors />
-                <SectionGeneral title='Defining Theme Colors'>
-                    <p>
-                        There are 8 pre-defined theme colors:<br />
-                        {
-                            ['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'light', 'dark']
-                            .flatMap((theme, index, themes) => [
-                                <ColorPreview key={theme} name={theme} value={(colors as any)[theme]} />,
-                                (index < (themes.length - 1)) ? ', ' : null
-                            ])
-                        }
-                    </p>
-                    <p>
-                        You can <em>add</em> or <em>modify</em> the <strong>pre-defined theme colors</strong> <em>but</em> we advice <em>not to delete</em> them.
-                    </p>
-                    <p>
-                        Because the absence of color function <code>color-mod()</code> in the css, so we create a JavaScript function <code>defineTheme()</code>.
-                    </p>
-                    <p>
-                        Here the code for <em>adding</em> a new theme color or <em>modifying</em> the existing ones: 
-                    </p>
-                    <TypeScriptCode>{`
+            <SectionIntro>
+                <p>
+                    <LinkColorsPage /> is a color utility that is shared across other components.
+                </p>
+                <p>
+                    <strong>Changing</strong> the colors <strong>affects all components</strong> that depend on <LinkColorsPage />.
+                </p>
+                <p>
+                    The main purpose of this utility is to create <strong>a consistent theme colors</strong> between components.
+                </p>
+            </SectionIntro>
+            <SectionDemoColors />
+            <SectionGeneral title='Defining Theme Colors'>
+                <p>
+                    There are 8 pre-defined theme colors:<br />
+                    {
+                        ['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'light', 'dark']
+                        .flatMap((theme, index, themes) => [
+                            <ColorPreview key={theme} name={theme} value={(colors as any)[theme]} />,
+                            (index < (themes.length - 1)) ? ', ' : null
+                        ])
+                    }
+                </p>
+                <p>
+                    You can <em>add</em> or <em>modify</em> the <strong>pre-defined theme colors</strong> <em>but</em> we advice <em>not to delete</em> them.
+                </p>
+                <p>
+                    Because the absence of color function <code>color-mod()</code> in the css, so we create a JavaScript function <code>defineTheme()</code>.
+                </p>
+                <p>
+                    Here the code for <em>adding</em> a new theme color or <em>modifying</em> the existing ones: 
+                </p>
+                <TypeScriptCode>{`
 import { defineTheme } from '@nodestrap/colors'
 
 defineTheme('primary', '#0000ff'); // set \`primary\` color to rgb blue (pure blue)
 defineTheme('cool', '#00ff00'); // add \`cool\` color to green
-                    `}</TypeScriptCode>
-                    <p>
-                        For deleting a specific theme color, just pass <code>null</code> or <code>undefined</code> to the second parameter:
-                    </p>
-                    <TypeScriptCode>{`
+                `}</TypeScriptCode>
+                <p>
+                    For deleting a specific theme color, just pass <code>null</code> or <code>undefined</code> to the second parameter:
+                </p>
+                <TypeScriptCode>{`
 import { defineTheme } from '@nodestrap/colors'
 
 defineTheme('cool', null); // delete cool color
-                    `}</TypeScriptCode>
-                    <p>
-                        When you define a theme color through <code>defineTheme()</code>, let&apos;s say <code>primary</code> color, 1 primary color and 4 sub primary colors are created:
-                    </p>
-                    <ol>
-                        <li>
-                            <p>
-                                <ColorPreview name={'primary'} value={colors.primary} /> - the exact color you have set.<br />
-                                Usually used for background color and icon color.
-                            </p>
-                        </li>
-                        <li>
-                            <p>
-                                <ColorPreview name={'primaryText'} value={colors.primaryText} /> - the foreground color against <ColorPreview name='primary' value={colors.primary} />, might be <ColorPreview name='dark' value={colors.dark} /> or <ColorPreview name='light' value={colors.light} />.<br />
-                                Usually used for foreground (text) color and horizontal line.
-                            </p>
-                        </li>
-                        <li>
-                            <p>
-                                <ColorPreview name={'primaryThin'} value={colors.primaryThin} /> - the semi transparent version of <ColorPreview name='primary' value={colors.primary} />, driven by <code>config.thinLevel</code>.<br />
-                                Usually used for focus ring indicator.
-                            </p>
-                        </li>
-                        <li>
-                            <p>
-                                <ColorPreview name={'primaryMild'} value={colors.primaryMild} /> - the mild (mixed with <ColorPreview value={colors.backg} /> <code>backg</code>) version of <ColorPreview name='primary' value={colors.primary} />, driven by <code>config.mildLevel</code>.<br />
-                                Usually used for background color of article.
-                            </p>
-                        </li>
-                        <li>
-                            <p>
-                                <ColorPreview name={'primaryBold'} value={colors.primaryBold} /> - the bold (mixed with <ColorPreview value={colors.foreg} /> <code>foreg</code>) version of <ColorPreview name='primary' value={colors.primary} />, driven by <code>config.boldLevel</code>.<br />
-                                Usually used for border color and separator.
-                            </p>
-                        </li>
-                    </ol>
-                    <p>
-                        There are some config you can tweak for producing the <em>sub theme colors</em>:
-                    </p>
-                    <TypeScriptCode>{`
+                `}</TypeScriptCode>
+                <p>
+                    When you define a theme color through <code>defineTheme()</code>, let&apos;s say <code>primary</code> color, 1 primary color and 4 sub primary colors are created:
+                </p>
+                <ol>
+                    <li>
+                        <p>
+                            <ColorPreview name={'primary'} value={colors.primary} /> - the exact color you have set.<br />
+                            Usually used for background color and icon color.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <ColorPreview name={'primaryText'} value={colors.primaryText} /> - the foreground color against <ColorPreview name='primary' value={colors.primary} />, might be <ColorPreview name='dark' value={colors.dark} /> or <ColorPreview name='light' value={colors.light} />.<br />
+                            Usually used for foreground (text) color and horizontal line.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <ColorPreview name={'primaryThin'} value={colors.primaryThin} /> - the semi transparent version of <ColorPreview name='primary' value={colors.primary} />, driven by <code>config.thinLevel</code>.<br />
+                            Usually used for focus ring indicator.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <ColorPreview name={'primaryMild'} value={colors.primaryMild} /> - the mild (mixed with <ColorPreview value={colors.backg} /> <code>backg</code>) version of <ColorPreview name='primary' value={colors.primary} />, driven by <code>config.mildLevel</code>.<br />
+                            Usually used for background color of article.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <ColorPreview name={'primaryBold'} value={colors.primaryBold} /> - the bold (mixed with <ColorPreview value={colors.foreg} /> <code>foreg</code>) version of <ColorPreview name='primary' value={colors.primary} />, driven by <code>config.boldLevel</code>.<br />
+                            Usually used for border color and separator.
+                        </p>
+                    </li>
+                </ol>
+                <p>
+                    There are some config you can tweak for producing the <em>sub theme colors</em>:
+                </p>
+                <TypeScriptCode>{`
 import { config, defineTheme } from '@nodestrap/colors'
 
 config.thinLevel = 0.5; // 0.0 = full transparent, 1.0 = full opaque
@@ -115,77 +112,77 @@ config.mildLevel = 0.8; // 0.0 = same as base color, 1.0 = same as colors.backg
 config.boldLevel = 0.8; // 0.0 = same as base color, 1.0 = same as colors.foreg
 
 defineTheme('primary', '#0000ff');
-                    `}</TypeScriptCode>
-                    <p>
-                        The <code>config</code> are live!
-                        Any changes before/after calling the <code>defineTheme()</code> will be applied to corresponding <em>base color</em>.
-                    </p>
-                </SectionGeneral>
-                <SectionGeneral title='Defining Background Color'>
-                    <p>
-                        This color defines the common background color of your site.
-                        Set to light color for making light theme, or dark color for dark theme (night mode).
-                    </p>
-                    <p>
-                        We advice set to <strong>high light</strong> (near white) or <strong>high dark</strong> (near black), but <strong>don&apos;t set to near gray</strong>.
-                        Because the gray color makes confusing to determie the foreground (text) color.
-                        Usually the text color will be dark on the light background and will be light on the dark background.
-                    </p>
-                    <p>
-                        Here the code for <em>modifying</em> the background color: 
-                    </p>
-                    <TypeScriptCode>{`
+                `}</TypeScriptCode>
+                <p>
+                    The <code>config</code> are live!
+                    Any changes before/after calling the <code>defineTheme()</code> will be applied to corresponding <em>base color</em>.
+                </p>
+            </SectionGeneral>
+            <SectionGeneral title='Defining Background Color'>
+                <p>
+                    This color defines the common background color of your site.
+                    Set to light color for making light theme, or dark color for dark theme (night mode).
+                </p>
+                <p>
+                    We advice set to <strong>high light</strong> (near white) or <strong>high dark</strong> (near black), but <strong>don&apos;t set to near gray</strong>.
+                    Because the gray color makes confusing to determie the foreground (text) color.
+                    Usually the text color will be dark on the light background and will be light on the dark background.
+                </p>
+                <p>
+                    Here the code for <em>modifying</em> the background color: 
+                </p>
+                <TypeScriptCode>{`
 import { defineBackg } from '@nodestrap/colors'
 
 defineBackg('#000000'); // set \`background\` color to black and the foreground color will be determined automatically
-                    `}</TypeScriptCode>
-                    <p>
-                        Setting the <code>defineBackg()</code> will automatically set the foreground color to <ColorPreview name='dark' value={colors.dark} /> or <ColorPreview name='light' value={colors.light} /> (making as contrast as possible).
-                        But if you don&apos;t want to set the foreground automatically, pass <code>false</code> to the second argument:
-                    </p>
-                    <TypeScriptCode>{`
+                `}</TypeScriptCode>
+                <p>
+                    Setting the <code>defineBackg()</code> will automatically set the foreground color to <ColorPreview name='dark' value={colors.dark} /> or <ColorPreview name='light' value={colors.light} /> (making as contrast as possible).
+                    But if you don&apos;t want to set the foreground automatically, pass <code>false</code> to the second argument:
+                </p>
+                <TypeScriptCode>{`
 import { defineBackg } from '@nodestrap/colors'
 
 defineBackg('#000000', false); // set \`background\` color to black and don't modify the foreground color automatically
-                    `}</TypeScriptCode>
-                    <p>
-                        You can also set the <ColorPreview name='dark' value={colors.dark} /> and <ColorPreview name='light' value={colors.light} /> color by this code:
-                    </p>
-                    <TypeScriptCode>{`
+                `}</TypeScriptCode>
+                <p>
+                    You can also set the <ColorPreview name='dark' value={colors.dark} /> and <ColorPreview name='light' value={colors.light} /> color by this code:
+                </p>
+                <TypeScriptCode>{`
 import { colors } from '@nodestrap/colors'
 
 colors.dark = '#000000' // set \`dark\` color to black
 colors.light = '#ffffff' // set \`light\` color to white
-                    `}</TypeScriptCode>
-                </SectionGeneral>
-                <SectionGeneral title='Defining Foreground (Text) Color'>
-                    <p>
-                        This color defines the common foreground (text) color of your site.
-                        You <em>might not need</em> to use this function because setting the <code>defineBackg()</code> will automatically set the foreground color to <ColorPreview name='dark' value={colors.dark} /> or <ColorPreview name='light' value={colors.light} /> for you.
-                        But in some case you might need <code>defineForeg()</code> to control manually.
-                    </p>
-                    <TypeScriptCode>{`
+                `}</TypeScriptCode>
+            </SectionGeneral>
+            <SectionGeneral title='Defining Foreground (Text) Color'>
+                <p>
+                    This color defines the common foreground (text) color of your site.
+                    You <em>might not need</em> to use this function because setting the <code>defineBackg()</code> will automatically set the foreground color to <ColorPreview name='dark' value={colors.dark} /> or <ColorPreview name='light' value={colors.light} /> for you.
+                    But in some case you might need <code>defineForeg()</code> to control manually.
+                </p>
+                <TypeScriptCode>{`
 import { defineForeg } from '@nodestrap/colors'
 
 defineForeg('#0000aa'); // set \`foreground\` color to dark blue
-                    `}</TypeScriptCode>
-                    <p>
-                        But instad of setting the foreground color manually, it&apos; better to set the <ColorPreview name='dark' value={colors.dark} /> and <ColorPreview name='light' value={colors.light} /> color
-                        and let&apos; the system to choose between the two:
-                    </p>
-                    <TypeScriptCode>{`
+                `}</TypeScriptCode>
+                <p>
+                    But instad of setting the foreground color manually, it&apos; better to set the <ColorPreview name='dark' value={colors.dark} /> and <ColorPreview name='light' value={colors.light} /> color
+                    and let&apos; the system to choose between the two:
+                </p>
+                <TypeScriptCode>{`
 import { colors } from '@nodestrap/colors'
 
 colors.dark = '#0000aa' // set \`dark\` color to dark blue
 colors.light = '#aaaaff' // set \`light\` color to light blue
-                    `}</TypeScriptCode>
-                </SectionGeneral>
-                <SectionGeneral title='Consuming (getting) the Colors'>
-                    <p>
-                        Let&apos; say you want to make a custom component and need to get some colors in <LinkColorsPage /> for color consistency.
-                        You can do like this:
-                    </p>
-                    <TypeScriptCode>{`
+                `}</TypeScriptCode>
+            </SectionGeneral>
+            <SectionGeneral title='Consuming (getting) the Colors'>
+                <p>
+                    Let&apos; say you want to make a custom component and need to get some colors in <LinkColorsPage /> for color consistency.
+                    You can do like this:
+                </p>
+                <TypeScriptCode>{`
 import { colors } from '@nodestrap/colors'
 
 export default function MyComponent(props) {
@@ -199,11 +196,11 @@ export default function MyComponent(props) {
         </div>
     )
 }
-                    `}</TypeScriptCode>
-                    <p>
-                        You can use <strong>CSS in JS</strong>, <strong>Styled Component</strong> or <strong>CSSFN</strong> to dynamically create your own css:
-                    </p>
-                    <TypeScriptCode>{`
+                `}</TypeScriptCode>
+                <p>
+                    You can use <strong>CSS in JS</strong>, <strong>Styled Component</strong> or <strong>CSSFN</strong> to dynamically create your own css:
+                </p>
+                <TypeScriptCode>{`
 import { compositionOf, layout } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
 import { colors } from '@nodestrap/colors'
@@ -226,14 +223,14 @@ export default function MyComponent(props) {
         </div>
     )
 }
-                    `}</TypeScriptCode>
-                </SectionGeneral>
-                <SectionGeneral title='Where the Colors are Actually Stored?'>
-                    <p>
-                        Well, the colors are stored internally in <LinkColorsPage /> and dynamically copied into the browser&apos;s <code>:root</code> by default.
-                        Here the actual code you can find on browser&apos;s page inspector:
-                    </p>
-                    <CssCode>{`
+                `}</TypeScriptCode>
+            </SectionGeneral>
+            <SectionGeneral title='Where the Colors are Actually Stored?'>
+                <p>
+                    Well, the colors are stored internally in <LinkColorsPage /> and dynamically copied into the browser&apos;s <code>:root</code> by default.
+                    Here the actual code you can find on browser&apos;s page inspector:
+                </p>
+                <CssCode>{`
 :root {
     --col-blue: #0D6EFD;
     --col-indigo: #6610F2;
@@ -298,14 +295,14 @@ export default function MyComponent(props) {
     --col-lightBold: #4C4F53;
     --col-darkBold: var(--col-dark);
 }
-                    `}</CssCode>
-                    <p>
-                        Btw, you <strong>should not</strong> modify our <code>css variables</code> directly!
-                        Otherwise any changes you&apos;ve made will be swapped out.
-                        Instead use <strong>our API</strong> in the <LinkColorsPage /> to get/set/modify the colors.
-                        Like this:
-                    </p>
-                    <TypeScriptCode>{`
+                `}</CssCode>
+                <p>
+                    Btw, you <strong>should not</strong> modify our <code>css variables</code> directly!
+                    Otherwise any changes you&apos;ve made will be swapped out.
+                    Instead use <strong>our API</strong> in the <LinkColorsPage /> to get/set/modify the colors.
+                    Like this:
+                </p>
+                <TypeScriptCode>{`
 import { colors, cssDecls as colorDecls, cssVals as colorVals } from '@nodestrap/colors'
 
 colors.primary = '#0000ff'; // set the --col-primary in the :root
@@ -318,16 +315,15 @@ console.log(declaration); // --col-primary
 
 const valueByVal = colors.primary // get the value of --col-primary in the :root
 console.log(valueByVal); // #0000ff
-                    `}</TypeScriptCode>
-                    <p>
-                        And you should modify the colors <em>as soon as possible</em>, usually <strong>after</strong> the <code>import</code> statement.
-                        Most the Nodestrap components build the dynamic css at the first render and <strong>cached it</strong> for re-use.
-                        So any changes after already cached will not be affected.
-                    </p>
-                </SectionGeneral>
-            </Main>
+                `}</TypeScriptCode>
+                <p>
+                    And you should modify the colors <em>as soon as possible</em>, usually <strong>after</strong> the <code>import</code> statement.
+                    Most the Nodestrap components build the dynamic css at the first render and <strong>cached it</strong> for re-use.
+                    So any changes after already cached will not be affected.
+                </p>
+            </SectionGeneral>
         </ComponentInfoProvider>
-    )
+    );
 }
 
 export default Page

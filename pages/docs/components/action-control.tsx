@@ -3,7 +3,6 @@ import React, {  } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { Main } from '../../../components/Main'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { SectionInheritedProps, LinkActionControlPage, LinkControlPage, ParagraphDefaultValue, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionStates, SectionIntro } from '../../../components/common-contents'
@@ -19,81 +18,80 @@ const Page: NextPage = () => {
                 <meta name="description" content="Using <ActionControl> component" />
             </Head>
 
-            <Main>
-                <SectionIntro>
-                    <p>
-                        <LinkActionControlPage /> is an <strong>abstract</strong> component of <strong>clickable</strong> component. It has some control indicators such as <strong>press</strong>/<strong>release</strong> and inherited indicators from <LinkControlPage />.
-                    </p>
-                    <p>
-                        In <em>most cases</em>, you should <strong>not use </strong>this component <strong>directly</strong>, instead create your own component by derivering <LinkActionControlPage />.
-                    </p>
-                </SectionIntro>
-                <SectionDemoActionControl />
-                <SectionInheritedProps />
-                <SectionStates>
-                    <SectionSubProperty property='press' specList={
-                        <SpecList>
-                            <DetailSpecItem code='undefined'>
-                                <p>
-                                    Set to this value will <strong>show</strong> the pressed indicator when the control is <strong>being pressed</strong> (by user) and <strong>hide</strong> one when it&apos;s <strong>released</strong>.
-                                </p>
-                                <ParagraphDefaultValue code='press' />
-                            </DetailSpecItem>
-                            <DetailSpecItem code='true'>
-                                <p>
-                                    Set to this value <strong>always shows</strong> the pressed indicator <strong>even if</strong> the control is actually <strong>was released</strong> (by user).
-                                </p>
-                            </DetailSpecItem>
-                            <DetailSpecItem code='false'>
-                                <p>
-                                    Set to this value <strong>always hides</strong> the pressed indicator <strong>even if</strong> the control is actually <strong>being pressed</strong> (by user).
-                                </p>
-                            </DetailSpecItem>
-                        </SpecList>
-                    }>
-                        <p>
-                            Indicates the control is currently <strong>being pressed</strong> (by user).
-                        </p>
-                    </SectionSubProperty>
-                </SectionStates>
-                <SectionCustomizing specList={
+            <SectionIntro>
+                <p>
+                    <LinkActionControlPage /> is an <strong>abstract</strong> component of <strong>clickable</strong> component. It has some control indicators such as <strong>press</strong>/<strong>release</strong> and inherited indicators from <LinkControlPage />.
+                </p>
+                <p>
+                    In <em>most cases</em>, you should <strong>not use </strong>this component <strong>directly</strong>, instead create your own component by derivering <LinkActionControlPage />.
+                </p>
+            </SectionIntro>
+            <SectionDemoActionControl />
+            <SectionInheritedProps />
+            <SectionStates>
+                <SectionSubProperty property='press' specList={
                     <SpecList>
-                        <DetailSpecItem title='Accessibilities'>
-                            <SubSpecList>
-                                <SimpleSpecItem>
-                                    <code>cursor</code>
-                                    <p>A <code>cursor</code> to apply.</p>
-                                </SimpleSpecItem>
-                            </SubSpecList>
+                        <DetailSpecItem code='undefined'>
+                            <p>
+                                Set to this value will <strong>show</strong> the pressed indicator when the control is <strong>being pressed</strong> (by user) and <strong>hide</strong> one when it&apos;s <strong>released</strong>.
+                            </p>
+                            <ParagraphDefaultValue code='press' />
                         </DetailSpecItem>
-                        <DetailSpecItem title='Animations'>
-                            <SubSpecList>
-                                <SimpleSpecItem>
-                                    <code>filterPress</code>
-                                    <p>A <code>filter</code> to apply when the user is <strong>pressing</strong> the control and <code>{`press={undefined}`}</code> <em>-or-</em> when forced <code>{`press={true}`}</code>.</p>
-                                </SimpleSpecItem>
-                                <SimpleSpecItem>
-                                    <code>@keyframes press</code>
-                                    <p>A keyframes name represents <em>pressing keyframes</em>, transition from <strong>released</strong> to <strong>pressed</strong>.</p>
-                                </SimpleSpecItem>
-                                <SimpleSpecItem>
-                                    <code>@keyframes release</code>
-                                    <p>A keyframes name represents <em>releasing keyframes</em>, transition from <strong>pressed</strong> to <strong>released</strong>.</p>
-                                </SimpleSpecItem>
-                                <SimpleSpecItem>
-                                    <code>animPress</code>
-                                    <p>An animation represents <em>pressing animation</em>, transition from <strong>released</strong> to <strong>pressed</strong>.</p>
-                                </SimpleSpecItem>
-                                <SimpleSpecItem>
-                                    <code>animRelease</code>
-                                    <p>An animation represents <em>releasing animation</em>, transition from <strong>pressed</strong> to <strong>released</strong>.</p>
-                                </SimpleSpecItem>
-                            </SubSpecList>
+                        <DetailSpecItem code='true'>
+                            <p>
+                                Set to this value <strong>always shows</strong> the pressed indicator <strong>even if</strong> the control is actually <strong>was released</strong> (by user).
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='false'>
+                            <p>
+                                Set to this value <strong>always hides</strong> the pressed indicator <strong>even if</strong> the control is actually <strong>being pressed</strong> (by user).
+                            </p>
                         </DetailSpecItem>
                     </SpecList>
-                }/>
-                <SectionDerivering>
-                    <SectionOverridingDefaults>{`
+                }>
+                    <p>
+                        Indicates the control is currently <strong>being pressed</strong> (by user).
+                    </p>
+                </SectionSubProperty>
+            </SectionStates>
+            <SectionCustomizing specList={
+                <SpecList>
+                    <DetailSpecItem title='Accessibilities'>
+                        <SubSpecList>
+                            <SimpleSpecItem>
+                                <code>cursor</code>
+                                <p>A <code>cursor</code> to apply.</p>
+                            </SimpleSpecItem>
+                        </SubSpecList>
+                    </DetailSpecItem>
+                    <DetailSpecItem title='Animations'>
+                        <SubSpecList>
+                            <SimpleSpecItem>
+                                <code>filterPress</code>
+                                <p>A <code>filter</code> to apply when the user is <strong>pressing</strong> the control and <code>{`press={undefined}`}</code> <em>-or-</em> when forced <code>{`press={true}`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>@keyframes press</code>
+                                <p>A keyframes name represents <em>pressing keyframes</em>, transition from <strong>released</strong> to <strong>pressed</strong>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>@keyframes release</code>
+                                <p>A keyframes name represents <em>releasing keyframes</em>, transition from <strong>pressed</strong> to <strong>released</strong>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>animPress</code>
+                                <p>An animation represents <em>pressing animation</em>, transition from <strong>released</strong> to <strong>pressed</strong>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>animRelease</code>
+                                <p>An animation represents <em>releasing animation</em>, transition from <strong>pressed</strong> to <strong>released</strong>.</p>
+                            </SimpleSpecItem>
+                        </SubSpecList>
+                    </DetailSpecItem>
+                </SpecList>
+            }/>
+            <SectionDerivering>
+                <SectionOverridingDefaults>{`
 import { ActionControl } from '@nodestrap/action-control'
 
 export default function CoolButton(props) {
@@ -115,66 +113,66 @@ export default function CoolButton(props) {
         </ActionControl>
     );
 }
-                    `}</SectionOverridingDefaults>
+                `}</SectionOverridingDefaults>
 
-                    <SectionCustomizingCss specList={
-                        <SpecList>
-                            <DetailSpecItem code='usesActionControlLayout()'>
-                                <p>
-                                    Returns a <code>StyleCollection</code> object represents a complete <LinkActionControlPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
-                                </p>
-                            </DetailSpecItem>
-                            <DetailSpecItem code='usesActionControlVariants()'>
-                                <p>
-                                    Returns a <code>StyleCollection</code> object represents the <strong>variants</strong> of <LinkActionControlPage /> such as:<br />
-                                    <code>SizeVariant</code> and <strong>all variants</strong> inherited from <LinkControlPage />.
-                                </p>
-                            </DetailSpecItem>
-                            <DetailSpecItem code='usesActionControlStates()'>
-                                <p>
-                                    Returns a <code>StyleCollection</code> object represents the <strong>states</strong> of <LinkActionControlPage /> such as:<br />
-                                    <strong>press</strong>/<strong>release</strong>, and <strong>all states</strong> inherited from <LinkControlPage />.
-                                </p>
-                            </DetailSpecItem>
+                <SectionCustomizingCss specList={
+                    <SpecList>
+                        <DetailSpecItem code='usesActionControlLayout()'>
+                            <p>
+                                Returns a <code>StyleCollection</code> object represents a complete <LinkActionControlPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='usesActionControlVariants()'>
+                            <p>
+                                Returns a <code>StyleCollection</code> object represents the <strong>variants</strong> of <LinkActionControlPage /> such as:<br />
+                                <code>SizeVariant</code> and <strong>all variants</strong> inherited from <LinkControlPage />.
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='usesActionControlStates()'>
+                            <p>
+                                Returns a <code>StyleCollection</code> object represents the <strong>states</strong> of <LinkActionControlPage /> such as:<br />
+                                <strong>press</strong>/<strong>release</strong>, and <strong>all states</strong> inherited from <LinkControlPage />.
+                            </p>
+                        </DetailSpecItem>
 
 
-                            <DetailSpecItem code='isPressed(styles)'>
-                                <p>
-                                    Applies the specified <code>styles</code> when current component is <strong>fully pressed</strong>.
-                                </p>
-                            </DetailSpecItem>
-                            <DetailSpecItem code='isPressing(styles)'>
-                                <p>
-                                    Applies the specified <code>styles</code> when current component is <strong>being pressed</strong>.
-                                </p>
-                            </DetailSpecItem>
-                            <DetailSpecItem code='isReleasing(styles)'>
-                                <p>
-                                    Applies the specified <code>styles</code> when current component is <strong>being released</strong>.
-                                </p>
-                            </DetailSpecItem>
-                            <DetailSpecItem code='isReleased(styles)'>
-                                <p>
-                                    Applies the specified <code>styles</code> when current component is <strong>fully released</strong>.
-                                </p>
-                            </DetailSpecItem>
-                            <DetailSpecItem code='isPress(styles)'>
-                                <p>
-                                    Applies the specified <code>styles</code> when current component is <strong>being/fully pressed</strong>.
-                                </p>
-                            </DetailSpecItem>
-                            <DetailSpecItem code='isRelease(styles)'>
-                                <p>
-                                    Applies the specified <code>styles</code> when current component is <strong>being/fully released</strong>.
-                                </p>
-                            </DetailSpecItem>
-                            <DetailSpecItem code='isPressReleasing(styles)'>
-                                <p>
-                                    Applies the specified <code>styles</code> when current component is <strong>being/fully pressed</strong> or <strong>being released</strong>.
-                                </p>
-                            </DetailSpecItem>
-                        </SpecList>
-                    }>{`
+                        <DetailSpecItem code='isPressed(styles)'>
+                            <p>
+                                Applies the specified <code>styles</code> when current component is <strong>fully pressed</strong>.
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='isPressing(styles)'>
+                            <p>
+                                Applies the specified <code>styles</code> when current component is <strong>being pressed</strong>.
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='isReleasing(styles)'>
+                            <p>
+                                Applies the specified <code>styles</code> when current component is <strong>being released</strong>.
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='isReleased(styles)'>
+                            <p>
+                                Applies the specified <code>styles</code> when current component is <strong>fully released</strong>.
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='isPress(styles)'>
+                            <p>
+                                Applies the specified <code>styles</code> when current component is <strong>being/fully pressed</strong>.
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='isRelease(styles)'>
+                            <p>
+                                Applies the specified <code>styles</code> when current component is <strong>being/fully released</strong>.
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='isPressReleasing(styles)'>
+                            <p>
+                                Applies the specified <code>styles</code> when current component is <strong>being/fully pressed</strong> or <strong>being released</strong>.
+                            </p>
+                        </DetailSpecItem>
+                    </SpecList>
+                }>{`
 import { mainComposition, layout, imports, variants, states, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
 import { ActionControl, usesActionControlLayout, usesActionControlVariants, usesActionControlStates, isPress } from '@nodestrap/action-control'
@@ -232,11 +230,10 @@ export default function CoolButton(props) {
         </ActionControl>
     )
 }
-                    `}</SectionCustomizingCss>
-                </SectionDerivering>
-            </Main>
+                `}</SectionCustomizingCss>
+            </SectionDerivering>
         </ComponentInfoProvider>
-    )
+    );
 }
 
 export default Page
