@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { siteVarDecls } from '../website.config';
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
@@ -6,7 +5,7 @@ import Link from 'next/link'
 import { Navbar, NavbarMenu } from '@nodestrap/navbar';
 import { Icon, config as iconConfig } from '@nodestrap/icon'
 import { ButtonIcon as Button } from '@nodestrap/button-icon'
-import { useElementCssSize } from '../components/hooks';
+import { useElementCssSize, useWindowCssSize } from '../components/hooks';
 import { Section } from '../components/Section';
 
 iconConfig.img.files.push('nodestrap.svg');
@@ -16,10 +15,7 @@ iconConfig.img.files.push('nodestrap.svg');
 function MyApp({ Component, pageProps }: AppProps) {
     const setHeaderRef = useElementCssSize({ varHeight: siteVarDecls.headerHeight });
     const setFooterRef = useElementCssSize({ varHeight: siteVarDecls.footerHeight });
-    const setBodyRef   = useElementCssSize({ varHeight: siteVarDecls.bodyHeight   });
-    useEffect(() => {
-        setBodyRef(window.document.documentElement)
-    }, [setBodyRef]);
+    useWindowCssSize({ varHeight: siteVarDecls.windowHeight });
 
 
     

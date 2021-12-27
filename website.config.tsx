@@ -7,7 +7,7 @@ import Color from 'color'
 
 
 interface SiteVars {
-    bodyHeight     : any
+    windowHeight   : any
     headerHeight   : any
     footerHeight   : any
     viewportHeight : any
@@ -57,7 +57,7 @@ createSheet(() => [
 
         atRoot([
             vars({
-                [siteVarDecls.viewportHeight] : `calc(${siteVars.bodyHeight} - ${siteVars.headerHeight})`,
+                [siteVarDecls.viewportHeight] : `calc(${siteVars.windowHeight} - ${siteVars.headerHeight})`,
             }),
         ]),
     ]),
