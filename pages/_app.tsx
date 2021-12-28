@@ -5,28 +5,22 @@ import Link from 'next/link'
 import { Navbar, NavbarMenu } from '@nodestrap/navbar';
 import { Icon, config as iconConfig } from '@nodestrap/icon'
 import { ButtonIcon as Button } from '@nodestrap/button-icon'
-import { useElementCssSize, useWindowCssSize } from '../components/hooks';
+import { useElementCssSize, UseWindowCssSize } from '../components/dimensions';
 import { Section } from '../components/Section';
+import { useMemo } from 'react';
 
 iconConfig.img.files.push('nodestrap.svg');
 
 
 
-function MyApp({ Component, pageProps }: AppProps) {
+function Header() {
     const setHeaderRef = useElementCssSize({ varHeight: siteVarDecls.headerHeight });
-    const setFooterRef = useElementCssSize({ varHeight: siteVarDecls.footerHeight });
-    useWindowCssSize({ varHeight: siteVarDecls.windowHeight });
-
-
     
-    const Outlet = Component;
+    
+    
     return (
-        <>
-            <Head>
-                <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-            </Head>
-            
-            <header ref={setHeaderRef}>
+        <header ref={setHeaderRef}>
+            {useMemo(() => (
                 <Navbar
                     theme='primary'
                     // eslint-disable-next-line
@@ -39,27 +33,50 @@ function MyApp({ Component, pageProps }: AppProps) {
                     <NavbarMenu href='https://github.com/nodestrap' target='_blank'>GitHub</NavbarMenu>
                     <NavbarMenu href='https://www.npmjs.com/org/nodestrap' target='_blank'>NPM</NavbarMenu>
                 </Navbar>
-            </header>
-            
-            <main>
-                <Outlet {...pageProps} />
-            </main>
-            
-            <footer ref={setFooterRef}>
-                <Section titleTag='h5' title='Support Us' theme='primary'>
-                    <p>
-                        Nodestrap is open source project (ISC-licensed).
-                        It&apos;s created and maintained by single person: <Button btnStyle='link' theme='primary' href='https://www.instagram.com/heyyy.marco/' target='_blank'>Hey Marco</Button>.
-                    </p>
-                    <p>
-                        If you feel our lib is useful for your projects,<br />
-                        please make a donation to avoid our project from extinction.
-                    </p>
-                    <Button icon='volunteer_activism' theme='primary' href='https://ko-fi.com/heymarco' target='_blank'>Make a donation</Button>
-                </Section>
-            </footer>
-        </>
+            ), [])}
+        </header>
     );
+}
+
+function Footer() {
+    const setFooterRef = useElementCssSize({ varHeight: siteVarDecls.footerHeight });
+    
+    
+    
+    return (
+        <footer ref={setFooterRef}>
+            <Section titleTag='h5' title='Support Us' theme='primary'>
+                <p>
+                    Nodestrap is open source project (ISC-licensed).
+                    It&apos;s created and maintained by single person: <Button btnStyle='link' theme='primary' href='https://www.instagram.com/heyyy.marco/' target='_blank'>Hey Marco</Button>.
+                </p>
+                <p>
+                    If you feel our lib is useful for your projects,<br />
+                    please make a donation to avoid our project from extinction.
+                </p>
+                <Button icon='volunteer_activism' theme='primary' href='https://ko-fi.com/heymarco' target='_blank'>Make a donation</Button>
+            </Section>
+        </footer>
+    );
+}
+
+function MyApp({ Component, pageProps }: AppProps) {
+    const Outlet = Component;
+    return (<>
+        <UseWindowCssSize options={{ varHeight: siteVarDecls.windowHeight }} />
+        
+        <Head>
+            <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+        </Head>
+        
+        <Header />
+        
+        <main>
+            <Outlet {...pageProps} />
+        </main>
+        
+        <Footer />
+    </>);
 }
 
 export default MyApp

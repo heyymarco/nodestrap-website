@@ -18,12 +18,13 @@ import {
 import {
     // utilities:
     setRef,
+    parseNumber,
 }                           from '@nodestrap/utilities'
 import {
     // hooks:
     SizeOptions,
     useElementSize as _useElementSize, // avoids eslint check
-}                           from './hooks'
+}                           from './dimensions'
 
 
 
@@ -53,9 +54,28 @@ export const useResponsiveCurrentFallback = <TFallback extends {} = any>() => {
 
 
 
+// utilities:
+
+const someOverflowedDescendant = (maxRight: number|null, maxBottom: number|null, parent: Element): boolean => {
+    if (Array.from(parent.children).some((child) => {
+        const { right: childRight, bottom: childBottom } = child.getBoundingClientRect();
+        if (
+            ((maxRight  !== null) && ((childRight  - maxRight ) > -0.6))
+            ||
+            ((maxBottom !== null) && ((childBottom - maxBottom) > -0.6))
+        ) return true; // found
+        
+        return someOverflowedDescendant(maxRight, maxBottom, child); // nested search
+    })) return true; // found
+    
+    return false; // not found
+};
+
+
+
 // caches:
 
-const elementSizeOptions : SizeOptions = { box: 'content-box' }
+const elementSizeOptions : SizeOptions = { box: 'content-box' };
 
 
 
@@ -89,20 +109,19 @@ export function ResponsiveProvider<TFallback>(props: ResponsiveProviderProps<TFa
     
     const childrenAbs       = (typeof(children) !== 'function') ? children : children(currentFallback);
     const childrenWithSizes = Children.toArray(childrenAbs).map((child) => {
-        const isElement                              = isValidElement(child);
+        const isElement                = isValidElement(child);
         if (!isElement) return {
-            child  : child,
-            ref    : null,
-            width  : null,
-            height : null,
+            child : child,
+            ref   : null,
+            size  : null,
         };
         
         
         
-        const childRef                               = _useRef<HTMLElement>(null);
-        const [childWidth, childHeight, setChildRef] = _useElementSize(elementSizeOptions);
-        const refName                                = (typeof(child.type) !== 'function') ? 'ref' : 'outerRef';
-        const mutatedChild                           = cloneElement(child, {
+        const childRef                 = _useRef<HTMLElement>(null);
+        const [childSize, setChildRef] = _useElementSize(elementSizeOptions);
+        const refName                  = (typeof(child.type) !== 'function') ? 'ref' : 'outerRef';
+        const mutatedChild             = cloneElement(child, {
             [refName]: (elm: HTMLElement) => {
                 setRef((child as any)[refName], elm);
                 
@@ -112,13 +131,12 @@ export function ResponsiveProvider<TFallback>(props: ResponsiveProviderProps<TFa
         });
         
         return {
-            child  : mutatedChild,
-            ref    : childRef,
-            width  : childWidth,
-            height : childHeight,
+            child : mutatedChild,
+            ref   : childRef,
+            size  : childSize,
         };
     });
-    const sizes = childrenWithSizes.flatMap((childWithSize) => [childWithSize.width, childWithSize.height]);
+    const sizes = childrenWithSizes.map((childWithSize) => childWithSize.size).filter((size): size is NonNullable<typeof size> => !!size);
     
     
     
@@ -137,14 +155,20 @@ export function ResponsiveProvider<TFallback>(props: ResponsiveProviderProps<TFa
         
         
         
-        const hasOverflowed = childrenWithSizes.some((childWithSize) => {
+        const hasOverflowed = childrenWithSizes.some((childWithSize): boolean => {
             const {
                 ref,
+                size,
+            } = childWithSize;
+            const elm = ref?.current;
+            if (!elm)                  return false; // ignore non-element-child or not-already-referenced-child
+            if (!size)                 return false; // ignore non-element-child
+            
+            const {
                 width  : clientWidth,
                 height : clientHeight,
-            } = childWithSize;
-            if (!ref?.current)         return false; // ignore non-element-child or not-already-referenced-child
-            if (clientWidth === null)  return false; // ignore not-already-calculated-child
+            } = size;
+            if (clientWidth  === null) return false; // ignore not-already-calculated-child
             if (clientHeight === null) return false; // ignore not-already-calculated-child
             
             
@@ -152,15 +176,27 @@ export function ResponsiveProvider<TFallback>(props: ResponsiveProviderProps<TFa
             const {
                 scrollWidth,
                 scrollHeight
-            } = ref.current;
+            } = elm;
             
             
             
-            return (
-                (scrollWidth > clientWidth)
+            if (
+                (scrollWidth  > clientWidth ) // horz scrollbar detected
                 ||
-                (scrollHeight > clientHeight)
-            );
+                (scrollHeight > clientHeight) // vert scrollbar detected
+            ) return true;
+            
+            
+            
+            const { right: elmRight, bottom: elmBottom } = elm.getBoundingClientRect();
+            const { paddingInlineEnd, paddingBlockEnd  } = getComputedStyle(elm);
+            const marginRight  = (parseNumber(paddingInlineEnd) ?? 0);
+            const marginBottom = (parseNumber(paddingBlockEnd)  ?? 0);
+            const maxRight  = marginRight  ? (elmRight  - marginRight)  : null;
+            const maxBottom = marginBottom ? (elmBottom - marginBottom) : null;
+            if ((maxRight === null) && (maxBottom === null)) return false;
+            
+            return someOverflowedDescendant(maxRight, maxBottom, elm);
         });
         if (hasOverflowed) setCurrentFallbackIndex(currentFallbackIndex + 1);
     }, [currentFallbackIndex, maxFallbackIndex, ...sizes]);
