@@ -1,7 +1,10 @@
 // react:
-import React, {
+import {
+    default as React,
     useState,
     useRef as _useRef, // avoids eslint check
+    createContext,
+    useContext,
     
     Children,
     isValidElement,
@@ -24,7 +27,34 @@ import {
 
 
 
+// contexts:
+
+export interface Responsive<TFallback> {
+    currentFallback : TFallback
+}
+
+/**
+ * A react context for responsive stuff.
+ */
+export const Context = createContext<Responsive<any>>(/*defaultValue :*/{
+    currentFallback : undefined,
+});
+Context.displayName  = 'Responsive';
+
+
+
+// hooks:
+
+export const useResponsiveCurrentFallback = <TFallback extends {} = any>() => {
+    // contexts:
+    const responsiveContext = useContext(Context);
+    return responsiveContext.currentFallback as TFallback;
+};
+
+
+
 // caches:
+
 const elementSizeOptions : SizeOptions = { box: 'content-box' }
 
 
@@ -32,11 +62,11 @@ const elementSizeOptions : SizeOptions = { box: 'content-box' }
 // react components:
 
 export type Fallbacks<T> = T[] & { 0: T }
-export interface ResponsiveBoundaryProps<TFallback> {
+export interface ResponsiveProviderProps<TFallback> {
     fallbacks : Fallbacks<TFallback>
-    children  : (fallback: TFallback) => React.ReactNode
+    children  : React.ReactNode | ((fallback: TFallback) => React.ReactNode)
 }
-export function ResponsiveBoundary<TFallback>(props: ResponsiveBoundaryProps<TFallback>) {
+export function ResponsiveProvider<TFallback>(props: ResponsiveProviderProps<TFallback>) {
     // rest props:
     const {
         fallbacks,
@@ -57,20 +87,29 @@ export function ResponsiveBoundary<TFallback>(props: ResponsiveBoundaryProps<TFa
     const maxFallbackIndex  = (fallbacks.length - 1);
     const currentFallback   = (currentFallbackIndex <= maxFallbackIndex) ? fallbacks[currentFallbackIndex] : fallbacks[maxFallbackIndex];
     
-    const childrenWithSizes = Children.toArray(children(currentFallback)).map((child) => {
+    const childrenAbs       = (typeof(children) !== 'function') ? children : children(currentFallback);
+    const childrenWithSizes = Children.toArray(childrenAbs).map((child) => {
         const isElement                              = isValidElement(child);
-        const childRef                               = !isElement ? null : _useRef<HTMLElement>(null);
-        const [childWidth, childHeight, setChildRef] = !isElement ? [null, null, null] : _useElementSize(elementSizeOptions);
-        const mutatedChild                           = !isElement ? child : (() => {
-            return cloneElement(child, {
-                ref: (elm: HTMLElement) => {
-                    setRef((child as any).ref, elm);
-                    
-                    setRef(childRef, elm);
-                    setRef(setChildRef, elm);
-                },
-            });
-        })();
+        if (!isElement) return {
+            child  : child,
+            ref    : null,
+            width  : null,
+            height : null,
+        };
+        
+        
+        
+        const childRef                               = _useRef<HTMLElement>(null);
+        const [childWidth, childHeight, setChildRef] = _useElementSize(elementSizeOptions);
+        const refName                                = (typeof(child.type) !== 'function') ? 'ref' : 'outerRef';
+        const mutatedChild                           = cloneElement(child, {
+            [refName]: (elm: HTMLElement) => {
+                setRef((child as any)[refName], elm);
+                
+                setRef(childRef               , elm);
+                setRef(setChildRef            , elm);
+            },
+        });
         
         return {
             child  : mutatedChild,
@@ -130,8 +169,9 @@ export function ResponsiveBoundary<TFallback>(props: ResponsiveBoundaryProps<TFa
     
     // jsx:
     return (
-        <>
+        <Context.Provider value={{ currentFallback }}>
             { childrenWithSizes.map((childWithSize) => childWithSize.child) }
-        </>
+        </Context.Provider>
     );
 }
+export { ResponsiveProvider as default }

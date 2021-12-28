@@ -4,23 +4,29 @@ import styles from './DemoPanel.module.scss'
 import { Group } from '@nodestrap/group'
 import { Radio } from '@nodestrap/radio'
 import { Range } from '@nodestrap/range'
-import { ThemeName } from '@nodestrap/basic'
+import type { OrientationName, ThemeName } from '@nodestrap/basic'
 import { useRef, useState } from 'react'
 import type { Dictionary } from '@cssfn/types'
+import { ResponsiveProvider, useResponsiveCurrentFallback } from './responsive'
 
 
 
 
+export type Fallback = OrientationName
 export const DemoPanel = (props: ContentProps) => {
     return (
-        <Content
-            {...props}
-            classes={[...(props.classes ?? []),
-                styles.panel,
-            ]}
+        <ResponsiveProvider<Fallback>
+            fallbacks={['inline', 'block']}
         >
-            { props.children }
-        </Content>
+            <Content
+                {...props}
+                classes={[...(props.classes ?? []),
+                    styles.panel,
+                ]}
+            >
+                { props.children }
+            </Content>
+        </ResponsiveProvider>
     );
 }
 export default DemoPanel;
@@ -41,11 +47,15 @@ export const Option = (props: OptionProps) => {
         setValue,
     } = props;
     
+    const currentFallback = useResponsiveCurrentFallback<Fallback>();
+    
     
     
     return (<>
         <span>{ name }</span>
-        <Group>
+        <Group
+            orientation={currentFallback}
+        >
             {
                 options
                 .map((option, index) =>
@@ -82,11 +92,15 @@ export const ThemeOption = (props: ThemeOptionProps) => {
         setValue,
     } = props;
     
+    const currentFallback = useResponsiveCurrentFallback<Fallback>();
+    
     
     
     return (<>
         <span>{ name ?? 'theme' }</span>
-        <Group>
+        <Group
+            orientation={currentFallback}
+        >
             {
                 [...(addUnset ? [undefined] : []), 'primary', 'secondary', 'success', 'info', 'warning', 'danger', 'light', 'dark']
                 .map((option, index) =>
