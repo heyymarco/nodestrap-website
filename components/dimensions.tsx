@@ -1,7 +1,6 @@
 // react:
 import {
     useRef,
-    useEffect,
     useReducer as _useReducer,
 }                           from 'react'         // base technology of our nodestrap components
 
@@ -45,7 +44,7 @@ const defaultWindowSizeOptions  : SizeOptions = { box: 'content-box' };
 
 export type Size        = { width: number, height: number }
 export type Nullable<T> = { [key in keyof T] : T[key] | null }
-export type Mutable<T>  = { -readonly [key in keyof T]: T[key] }
+export type Mutable<T>  = { -readonly [key in keyof T] : T[key] }
 
 
 
@@ -55,13 +54,13 @@ const reducerHandler = (size: Nullable<Size>, newSize: Size): Nullable<Size> => 
     
     return newSize;
 };
-const useSizeState = (initial?: () => Nullable<Size>|null) => !initial ? _useReducer(reducerHandler, { width: null, height: null }) : _useReducer(reducerHandler, { width: null, height: null }, () => initial() ?? { width: null, height: null });
+const useSizeState = (initial?: () => Size|null) => !initial ? _useReducer(reducerHandler, { width: null, height: null }) : _useReducer(reducerHandler, { width: null, height: null }, () => initial() ?? { width: null, height: null });
 
 const useCssSize = (size: Readonly<Nullable<Size>>, options: CssSizeOptions) => {
     const { varWidth, varHeight } = options;
     const sheet = useRef<StyleSheet | null>(null);
     
-    useEffect(() => {
+    useIsomorphicLayoutEffect(() => {
         const { width, height } = size;
         const hasWidth  = ((width  !== null) && varWidth );
         const hasHeight = ((height !== null) && varHeight)
@@ -133,7 +132,7 @@ export const useElementOnResize = (callback: OnElementResizeCallback, options = 
 };
 
 export const useElementSize = (options = defaultElementSizeOptions) => {
-    const borderBox = (options.box === 'border-box');
+    const isBorderBox = (options.box === 'border-box');
     
     const [size, setSize] = useSizeState();
     
@@ -141,8 +140,8 @@ export const useElementSize = (options = defaultElementSizeOptions) => {
     
     const elmRef = useElementOnResize((elm) => {
         setSize({
-            width  : (borderBox ? elm.offsetWidth  : elm.clientWidth ),
-            height : (borderBox ? elm.offsetHeight : elm.clientHeight),
+            width  : (isBorderBox ? elm.offsetWidth  : elm.clientWidth ),
+            height : (isBorderBox ? elm.offsetHeight : elm.clientHeight),
         });
     }, options);
     
@@ -193,14 +192,14 @@ export const useWindowOnResize = (callback: OnWindowResizeCallback) => {
 };
 
 export const useWindowSize = (options = defaultWindowSizeOptions) => {
-    const borderBox = (options.box === 'border-box');
+    const isBorderBox = (options.box === 'border-box');
     
     const [size, setSize] = useSizeState((): Size|null => {
         if (typeof(window) === 'undefined') return null;
         
         return {
-            width  : (borderBox ? window.outerWidth  : window.innerWidth ),
-            height : (borderBox ? window.outerHeight : window.innerHeight),
+            width  : (isBorderBox ? window.outerWidth  : window.innerWidth ),
+            height : (isBorderBox ? window.outerHeight : window.innerHeight),
         };
     });
     
@@ -208,8 +207,8 @@ export const useWindowSize = (options = defaultWindowSizeOptions) => {
     
     useWindowOnResize((window) => {
         setSize({
-            width  : (borderBox ? window.outerWidth  : window.innerWidth ),
-            height : (borderBox ? window.outerHeight : window.innerHeight),
+            width  : (isBorderBox ? window.outerWidth  : window.innerWidth ),
+            height : (isBorderBox ? window.outerHeight : window.innerHeight),
         });
     });
     
