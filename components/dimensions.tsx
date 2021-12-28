@@ -1,7 +1,8 @@
 // react:
 import {
     useRef,
-    useMemo as _useMemo,
+    useEffect,
+    useReducer as _useReducer,
 }                           from 'react'         // base technology of our nodestrap components
 
 // cssfn:
@@ -49,25 +50,19 @@ export type Mutable<T>  = { -readonly [key in keyof T]: T[key] }
 
 
 // internal hooks:
-
-function useSizeRef()                          : Readonly<Nullable<Size>>
-function useSizeRef(initial?: () => Size|null) : Readonly<Size>
-function useSizeRef(initial?: () => Size|null) {
-    return (
-        initial
-        ?
-        _useMemo<Readonly<Nullable<Size>>>(() => initial() ?? ({ width: null, height: null }), [])
-        :
-        _useMemo<Readonly<Nullable<Size>>>(() => ({ width: null, height: null }), [])
-    );
-}
+const reducerHandler = (size: Nullable<Size>, newSize: Size): Nullable<Size> => {
+    if ((newSize.width === size.width) && (newSize.height === size.height)) return size; // no diff => no changes needed
+    
+    return newSize;
+};
+const useSizeState = (initial?: () => Nullable<Size>|null) => !initial ? _useReducer(reducerHandler, { width: null, height: null }) : _useReducer(reducerHandler, { width: null, height: null }, () => initial() ?? { width: null, height: null });
 
 const useCssSize = (size: Readonly<Nullable<Size>>, options: CssSizeOptions) => {
-    const { width   , height    } = size;
     const { varWidth, varHeight } = options;
     const sheet = useRef<StyleSheet | null>(null);
     
-    useIsomorphicLayoutEffect(() => {
+    useEffect(() => {
+        const { width, height } = size;
         const hasWidth  = ((width  !== null) && varWidth );
         const hasHeight = ((height !== null) && varHeight)
         if (!hasWidth && !hasHeight) return;
@@ -94,7 +89,7 @@ const useCssSize = (size: Readonly<Nullable<Size>>, options: CssSizeOptions) => 
         return () => {
             sheet.current?.detach();
         };
-    }, [width, height, varWidth, varHeight]);
+    }, [size, varWidth, varHeight]);
 };
 
 
@@ -140,18 +135,20 @@ export const useElementOnResize = (callback: OnElementResizeCallback, options = 
 export const useElementSize = (options = defaultElementSizeOptions) => {
     const borderBox = (options.box === 'border-box');
     
-    const sizeRef = useSizeRef();
+    const [size, setSize] = useSizeState();
     
     
     
     const elmRef = useElementOnResize((elm) => {
-        (sizeRef as Mutable<typeof sizeRef>).width  = (borderBox ? elm.offsetWidth  : elm.clientWidth);
-        (sizeRef as Mutable<typeof sizeRef>).height = (borderBox ? elm.offsetHeight : elm.clientHeight);
+        setSize({
+            width  : (borderBox ? elm.offsetWidth  : elm.clientWidth ),
+            height : (borderBox ? elm.offsetHeight : elm.clientHeight),
+        });
     }, options);
     
     
     
-    return [sizeRef, elmRef] as const;
+    return [size, elmRef] as const;
 };
 
 export interface CssSizeOptions extends Partial<SizeOptions> {
@@ -198,11 +195,11 @@ export const useWindowOnResize = (callback: OnWindowResizeCallback) => {
 export const useWindowSize = (options = defaultWindowSizeOptions) => {
     const borderBox = (options.box === 'border-box');
     
-    const sizeRef = useSizeRef((): Size|null => {
+    const [size, setSize] = useSizeState((): Size|null => {
         if (typeof(window) === 'undefined') return null;
         
         return {
-            width  : (borderBox ? window.outerWidth  : window.innerWidth),
+            width  : (borderBox ? window.outerWidth  : window.innerWidth ),
             height : (borderBox ? window.outerHeight : window.innerHeight),
         };
     });
@@ -210,16 +207,33 @@ export const useWindowSize = (options = defaultWindowSizeOptions) => {
     
     
     useWindowOnResize((window) => {
-        (sizeRef as Mutable<typeof sizeRef>).width  = (borderBox ? window.outerWidth  : window.innerWidth);
-        (sizeRef as Mutable<typeof sizeRef>).height = (borderBox ? window.outerHeight : window.innerHeight);
+        setSize({
+            width  : (borderBox ? window.outerWidth  : window.innerWidth ),
+            height : (borderBox ? window.outerHeight : window.innerHeight),
+        });
     });
     
     
     
-    return sizeRef;
+    return size;
 };
 
 export const useWindowCssSize = (options: CssSizeOptions) => {
     const size = useWindowSize({...defaultWindowSizeOptions, ...options});
     useCssSize(size, options);
 };
+
+
+
+export interface UseWindowCssSizeProps {
+    options: CssSizeOptions
+}
+export function UseWindowCssSize(props: UseWindowCssSizeProps) {
+    // hooks:
+    useWindowCssSize(props.options);
+    
+    
+    
+    // jsx:
+    return <></>;
+}
