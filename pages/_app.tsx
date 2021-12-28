@@ -29,6 +29,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             <header ref={setHeaderRef}>
                 <Navbar
                     theme='primary'
+                    // eslint-disable-next-line
                     logo={<NavbarMenu><Link href='/'><Icon icon='nodestrap' size='lg' /></Link></NavbarMenu>}
                 >
                     <NavbarMenu><Link href='/'>Home</Link></NavbarMenu>

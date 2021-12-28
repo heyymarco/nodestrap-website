@@ -1,6 +1,6 @@
 import {
     useRef,
-    useReducer,
+    useReducer as _useReducer,
 }                           from 'react'         // base technology of our nodestrap components
 
 // cssfn:
@@ -37,7 +37,7 @@ const reducerHandler = (size: Partial<Size>, newSize: Size): Partial<Size> => {
     
     return newSize;
 }
-const useSizeState = (initial?: () => Partial<Size>|undefined) => !initial ? useReducer(reducerHandler, {}) : useReducer(reducerHandler, {}, () => initial() ?? {});
+const useSizeState = (initial?: () => Partial<Size>|undefined) => !initial ? _useReducer(reducerHandler, {}) : _useReducer(reducerHandler, {}, () => initial() ?? {});
 
 
 
