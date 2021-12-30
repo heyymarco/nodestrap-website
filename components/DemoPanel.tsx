@@ -7,8 +7,7 @@ import { Range } from '@nodestrap/range'
 import type { OrientationName, ThemeName } from '@nodestrap/basic'
 import { useRef, useState } from 'react'
 import type { Dictionary } from '@cssfn/types'
-import { ResponsiveProvider, useResponsiveCurrentFallback } from './responsive'
-
+import { ResponsiveProvider, useResponsiveCurrentFallback } from '@nodestrap/responsive'
 
 
 

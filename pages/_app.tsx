@@ -3,13 +3,10 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import Link from 'next/link'
 import { Navbar, NavbarMenu } from '@nodestrap/navbar';
-import { Icon, config as iconConfig } from '@nodestrap/icon'
+import { Icon } from '@nodestrap/icon'
 import { ButtonIcon as Button } from '@nodestrap/button-icon'
-import { useElementCssSize, UseWindowCssSize } from '../components/dimensions';
+import { useElementCssSize, UseWindowCssSize } from '@nodestrap/dimensions';
 import { Section } from '../components/Section';
-import { useMemo } from 'react';
-
-iconConfig.img.files.push('nodestrap.svg');
 
 
 
@@ -20,20 +17,18 @@ function Header() {
     
     return (
         <header ref={setHeaderRef}>
-            {useMemo(() => (
-                <Navbar
-                    theme='primary'
-                    // eslint-disable-next-line
-                    logo={<NavbarMenu><Link href='/'><Icon icon='nodestrap' size='lg' /></Link></NavbarMenu>}
-                >
-                    <NavbarMenu><Link href='/'>Home</Link></NavbarMenu>
-                    <NavbarMenu><Link href='/docs'>Docs</Link></NavbarMenu>
-                    <NavbarMenu><Link href='/download'>Download</Link></NavbarMenu>
-                    <NavbarMenu><Link href='/about'>About</Link></NavbarMenu>
-                    <NavbarMenu href='https://github.com/nodestrap' target='_blank'>GitHub</NavbarMenu>
-                    <NavbarMenu href='https://www.npmjs.com/org/nodestrap' target='_blank'>NPM</NavbarMenu>
-                </Navbar>
-            ), [])}
+            <Navbar
+                theme='primary'
+                // eslint-disable-next-line
+                logo={<NavbarMenu><Link href='/'><Icon icon='nodestrap' size='lg' /></Link></NavbarMenu>}
+            >
+                <NavbarMenu><Link href='/'>Home</Link></NavbarMenu>
+                <NavbarMenu><Link href='/docs'>Docs</Link></NavbarMenu>
+                <NavbarMenu><Link href='/download'>Download</Link></NavbarMenu>
+                <NavbarMenu><Link href='/about'>About</Link></NavbarMenu>
+                <NavbarMenu href='https://github.com/nodestrap' target='_blank'>GitHub</NavbarMenu>
+                <NavbarMenu href='https://www.npmjs.com/org/nodestrap' target='_blank'>NPM</NavbarMenu>
+            </Navbar>
         </header>
     );
 }

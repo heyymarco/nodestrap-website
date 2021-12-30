@@ -8,7 +8,7 @@ import { Warning } from '../../../components/Info'
 
 import { SectionInheritedProps, LinkIndicatorPage, LinkBasicPage, LinkIconPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionStates, SectionSubProperty, SectionIntro } from '../../../components/common-contents'
 import { SectionDemoIndicator } from '../../../components/DemoPanel@Indicator'
-import { ResponsiveProvider } from '../../../components/responsive'
+import { ResponsiveProvider } from '@nodestrap/responsive'
 
 
 
