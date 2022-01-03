@@ -24,7 +24,7 @@ const WarnNotImplementExited = () => (
 
 const Page: NextPage = () => {
     return (
-        <ComponentInfoProvider packageName='@nodestrap/basic' component={<LinkBasicPage />} base={<LinkElementPage />}>
+        <ComponentInfoProvider packageName='@nodestrap/basic' component={<LinkBasicPage />} bases={<LinkElementPage />}>
             <Head>
                 <title>Basic Component</title>
                 <meta name="description" content="Using <Basic> component" />

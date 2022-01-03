@@ -10,7 +10,7 @@ import { SpecList, DetailSpecItem } from '../../../components/SpecList'
 
 const Page: NextPage = () => {
     return (
-        <ComponentInfoProvider packageName='@nodestrap/hooks' packageType='utility' component={<LinkHooksPage />} base={<LinkHooksPage />}>
+        <ComponentInfoProvider packageName='@nodestrap/hooks' packageType='utility' component={<LinkHooksPage />} bases={<LinkHooksPage />}>
             <Head>
                 <title>Hooks Utility</title>
                 <meta name="description" content="Using `hooks` utility" />

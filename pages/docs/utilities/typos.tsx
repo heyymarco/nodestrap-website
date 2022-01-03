@@ -10,7 +10,7 @@ import { SpecList, SimpleSpecItem } from '../../../components/SpecList'
 
 const Page: NextPage = () => {
     return (
-        <ComponentInfoProvider packageName='@nodestrap/typos' packageType='utility' component={<LinkTyposPage />} base={<LinkTyposPage />}>
+        <ComponentInfoProvider packageName='@nodestrap/typos' packageType='utility' component={<LinkTyposPage />} bases={<LinkTyposPage />}>
             <Head>
                 <title>Typos Utility</title>
                 <meta name="description" content="Using `typos` utility" />

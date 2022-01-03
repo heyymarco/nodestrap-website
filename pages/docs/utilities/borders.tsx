@@ -11,7 +11,7 @@ import { TypeScriptCode, CssCode } from '../../../components/Code'
 
 const Page: NextPage = () => {
     return (
-        <ComponentInfoProvider packageName='@nodestrap/borders' packageType='utility' component={<LinkBordersPage />} base={<LinkBordersPage />}>
+        <ComponentInfoProvider packageName='@nodestrap/borders' packageType='utility' component={<LinkBordersPage />} bases={<LinkBordersPage />}>
             <Head>
                 <title>Borders Utility</title>
                 <meta name="description" content="Configuring `borders` utility" />

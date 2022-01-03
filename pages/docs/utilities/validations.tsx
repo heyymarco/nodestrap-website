@@ -10,7 +10,7 @@ import { SpecList, DetailSpecItem } from '../../../components/SpecList'
 
 const Page: NextPage = () => {
     return (
-        <ComponentInfoProvider packageName='@nodestrap/validations' packageType='utility' component={<LinkValidationsPage />} base={<LinkValidationsPage />}>
+        <ComponentInfoProvider packageName='@nodestrap/validations' packageType='utility' component={<LinkValidationsPage />} bases={<LinkValidationsPage />}>
             <Head>
                 <title>Validations Utility</title>
                 <meta name="description" content="Using `validations` utility" />

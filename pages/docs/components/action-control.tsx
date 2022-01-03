@@ -12,7 +12,7 @@ import { SectionDemoActionControl } from '../../../components/DemoPanel@ActionCo
 
 const Page: NextPage = () => {
     return (
-        <ComponentInfoProvider packageName='@nodestrap/action-control' component={<LinkActionControlPage />} base={<LinkControlPage />}>
+        <ComponentInfoProvider packageName='@nodestrap/action-control' component={<LinkActionControlPage />} bases={<LinkControlPage />}>
             <Head>
                 <title>ActionControl Component</title>
                 <meta name="description" content="Using <ActionControl> component" />
@@ -60,7 +60,7 @@ const Page: NextPage = () => {
                         <SubSpecList>
                             <SimpleSpecItem>
                                 <code>cursor</code>
-                                <p>A <code>cursor</code> to apply.</p>
+                                <p>A default <code>cursor</code> to apply.</p>
                             </SimpleSpecItem>
                         </SubSpecList>
                     </DetailSpecItem>

@@ -13,7 +13,7 @@ import { Warning } from '../../../components/Info'
 
 const Page: NextPage = () => {
     return (
-        <ComponentInfoProvider packageName='@nodestrap/editable-text-control' component={<LinkEditableTextControlPage />} base={<LinkEditableControlPage />}>
+        <ComponentInfoProvider packageName='@nodestrap/editable-text-control' component={<LinkEditableTextControlPage />} bases={<LinkEditableControlPage />}>
             <Head>
                 <title>EditableTextControl Component</title>
                 <meta name="description" content="Using <EditableTextControl> component" />
@@ -101,7 +101,7 @@ const Page: NextPage = () => {
                         </p>
                     </Warning>
                 }>{`
-import { EditableTextControl } from '@nodestrap/editable-control'
+import { EditableTextControl } from '@nodestrap/editable-text-control'
 
 export default function TextEditor(props) {
     return (
@@ -135,6 +135,8 @@ export default function TextEditor(props) {
                         <DetailSpecItem code='usesEditableTextControlStates()'>
                             <p>
                                 Returns a <code>StyleCollection</code> object represents the <strong>states</strong> of <LinkEditableTextControlPage />.
+                            </p>
+                            <p>
                                 Currently the states are equivalent to <LinkEditableControlPage />&apos;s states.
                             </p>
                         </DetailSpecItem>

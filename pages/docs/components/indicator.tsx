@@ -13,7 +13,7 @@ import { SectionDemoIndicator } from '../../../components/DemoPanel@Indicator'
 
 const Page: NextPage = () => {
     return (
-        <ComponentInfoProvider packageName='@nodestrap/indicator' component={<LinkIndicatorPage />} base={<LinkBasicPage />}>
+        <ComponentInfoProvider packageName='@nodestrap/indicator' component={<LinkIndicatorPage />} bases={<LinkBasicPage />}>
             <Head>
                 <title>Indicator Component</title>
                 <meta name="description" content="Using <Indicator> component" />

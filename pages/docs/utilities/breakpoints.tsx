@@ -11,7 +11,7 @@ import { TypeScriptCode } from '../../../components/Code'
 
 const Page: NextPage = () => {
     return (
-        <ComponentInfoProvider packageName='@nodestrap/spacers' packageType='utility' component={<LinkBreakpointsPage />} base={<LinkBreakpointsPage />}>
+        <ComponentInfoProvider packageName='@nodestrap/spacers' packageType='utility' component={<LinkBreakpointsPage />} bases={<LinkBreakpointsPage />}>
             <Head>
                 <title>Breakpoints Utility</title>
                 <meta name="description" content="Using `breakpoints` utility" />

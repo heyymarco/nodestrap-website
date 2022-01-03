@@ -79,21 +79,38 @@ export const ExternalLink                  = ({ href, children }: ExternalLinkPr
 
 
 
+export interface CommaSeparatedProps {
+    components: Component|Component[]
+}
+export const CommaSeparated = ({components}: CommaSeparatedProps) => (<>{
+    [components].flat().map((component, index, {length}) => (
+        <React.Fragment key={index}>
+            { component }
+            { (index < (length - 1)) ? ((index === (length - 2)) ? ' and ' : ', ') : undefined }
+        </React.Fragment>
+    ))
+}</>);
+
+
 
 interface SeeDocumentationProps {
-    base: Component
+    component: Component
 }
-const SeeDocumentation = ({ base : Base }: SeeDocumentationProps) => {
-    const item = Base.type({});
+const SeeDocumentation = ({ component : Component }: SeeDocumentationProps) => {
+    const item = Component.type({});
     if (!React.isValidElement<React.PropsWithChildren<LinkCodeProps>>(item)) return null;
     
     const code = item.props.children;
     return (
-        <Base.type>
+        <Component.type>
             see the documentation of &lt;{ code }&gt; here
-        </Base.type>
+        </Component.type>
     );
 }
+interface SeeDocumentationsProps {
+    components: Component|Component[]
+}
+const SeeDocumentations = ({ components }: SeeDocumentationsProps) => <CommaSeparated components={[components].flat().map((component, index) => <SeeDocumentation key={index} component={component} />)} />
 
 
 
@@ -113,14 +130,14 @@ interface ComponentInfo {
     packageType ?: 'component'|'utility'
 
     component    : Component
-    base         : Component
+    bases        : Component|Component[]
 }
 const ComponentInfoContext = React.createContext<Required<ComponentInfo>>(/*defaultValue :*/{
     packageName : '@nodestrap/element',
     packageType        : 'component',
 
     component   : <LinkElementPage />,
-    base        : <LinkElementPage />,
+    bases       : <LinkElementPage />,
 });
 export interface ComponentInfoProviderProps extends ComponentInfo {
     children   ?: React.ReactNode
@@ -142,7 +159,7 @@ const codeOf = (component: Component) => {
         name: code,
     };
 }
-const useComponentInfo = () => {
+export const useComponentInfo = () => {
     const data = useContext(ComponentInfoContext);
     return useMemo(() => ({
         ...data,
@@ -154,10 +171,10 @@ const useComponentInfo = () => {
             };
         })(),
         ...(() => {
-            const code = codeOf(data.base);
+            const codes = [data.bases].flat().map((base) => codeOf(base));
             return {
-                baseCode: code?.code,
-                baseName: code?.name,
+                baseCodes: codes.map((code) => code?.code),
+                baseNames: codes.map((code) => code?.name),
             };
         })(),
         // eslint-disable-next-line
@@ -240,16 +257,19 @@ export const SectionDemo = ({ children, message }: SectionDemoProps) => {
 
 
 export const SectionInheritedProps = () => {
-    const { component, base } = useComponentInfo();
+    const { component, bases } = useComponentInfo();
     
+    
+    const basesJsx = <CommaSeparated components={bases} />
+    const linksJsx = <SeeDocumentations components={bases} />
     return (
         <SectionGeneral
             title='Inherited Properties'
         >
             <p>
-                Because { component } is made from { base },
-                so all properties from { base } are inherited.<br />
-                You can <SeeDocumentation base={base} />.
+                Because { component } is made from { basesJsx },
+                so all properties from { basesJsx } are inherited.<br />
+                You can { linksJsx }.
             </p>
         </SectionGeneral>
     );
@@ -343,12 +363,12 @@ export interface SectionCustomizingProps {
     specList    : SpecList
 }
 export const SectionCustomizing = ({ specList }: SectionCustomizingProps) => {
-    const { component, componentCode, packageName } = useComponentInfo();
+    const { component, packageName } = useComponentInfo();
     
     return (
         <SectionGeneral
             title={<>
-                Customizing { componentCode } Component
+                Customizing { component } Component
             </>}
         >
             <p>
@@ -368,12 +388,12 @@ export interface SectionDeriveringProps {
     children   ?: React.ReactNode
 }
 export const SectionDerivering = ({ children }: SectionDeriveringProps) => {
-    const { component, componentCode } = useComponentInfo();
+    const { component } = useComponentInfo();
     
     return (
         <SectionGeneral
             title={<>
-                Derivering { componentCode } Component
+                Derivering { component } Component
             </>}
         >
             <p>

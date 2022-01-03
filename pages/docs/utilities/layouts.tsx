@@ -10,7 +10,7 @@ import { SpecList, SimpleSpecItem } from '../../../components/SpecList'
 
 const Page: NextPage = () => {
     return (
-        <ComponentInfoProvider packageName='@nodestrap/layouts' packageType='utility' component={<LinkLayoutsPage />} base={<LinkLayoutsPage />}>
+        <ComponentInfoProvider packageName='@nodestrap/layouts' packageType='utility' component={<LinkLayoutsPage />} bases={<LinkLayoutsPage />}>
             <Head>
                 <title>Layouts Utility</title>
                 <meta name="description" content="Using `layouts` utility" />

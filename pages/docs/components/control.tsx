@@ -12,7 +12,7 @@ import { SectionDemoControl } from '../../../components/DemoPanel@Control'
 
 const Page: NextPage = () => {
     return (
-        <ComponentInfoProvider packageName='@nodestrap/control' component={<LinkControlPage />} base={<LinkIndicatorPage />}>
+        <ComponentInfoProvider packageName='@nodestrap/control' component={<LinkControlPage />} bases={<LinkIndicatorPage />}>
             <Head>
                 <title>Control Component</title>
                 <meta name="description" content="Using <Control> component" />

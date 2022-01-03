@@ -12,7 +12,7 @@ import { SectionDemoEditableControl } from '../../../components/DemoPanel@Editab
 
 const Page: NextPage = () => {
     return (
-        <ComponentInfoProvider packageName='@nodestrap/editable-control' component={<LinkEditableControlPage />} base={<LinkControlPage />}>
+        <ComponentInfoProvider packageName='@nodestrap/editable-control' component={<LinkEditableControlPage />} bases={<LinkControlPage />}>
             <Head>
                 <title>EditableControl Component</title>
                 <meta name="description" content="Using <EditableControl> component" />

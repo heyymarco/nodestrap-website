@@ -11,7 +11,7 @@ import { TypeScriptCode, CssCode } from '../../../components/Code'
 
 const Page: NextPage = () => {
     return (
-        <ComponentInfoProvider packageName='@nodestrap/spacers' packageType='utility' component={<LinkSpacersPage />} base={<LinkSpacersPage />}>
+        <ComponentInfoProvider packageName='@nodestrap/spacers' packageType='utility' component={<LinkSpacersPage />} bases={<LinkSpacersPage />}>
             <Head>
                 <title>Spacers Utility</title>
                 <meta name="description" content="Configuring `spacers` utility" />

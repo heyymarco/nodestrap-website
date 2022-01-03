@@ -52,7 +52,7 @@ const WarnForSemanticTag = () => (
 
 const Page: NextPage = () => {
     return (
-        <ComponentInfoProvider packageName='@nodestrap/element' component={<LinkElementPage />} base={<LinkElementPage />}>
+        <ComponentInfoProvider packageName='@nodestrap/element' component={<LinkElementPage />} bases={<LinkElementPage />}>
             <Head>
                 <title>Element Component</title>
                 <meta name="description" content="Using <Element> component" />

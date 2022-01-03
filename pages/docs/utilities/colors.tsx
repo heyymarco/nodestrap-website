@@ -14,7 +14,7 @@ import { ColorPreview } from '../../../components/ColorPreview'
 
 const Page: NextPage = () => {
     return (
-        <ComponentInfoProvider packageName='@nodestrap/colors' packageType='utility' component={<LinkColorsPage />} base={<LinkColorsPage />}>
+        <ComponentInfoProvider packageName='@nodestrap/colors' packageType='utility' component={<LinkColorsPage />} bases={<LinkColorsPage />}>
             <Head>
                 <title>Colors Utility</title>
                 <meta name="description" content="Configuring `colors` utility" />

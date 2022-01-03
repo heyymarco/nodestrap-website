@@ -11,7 +11,7 @@ import { TypeScriptCode } from '../../../components/Code'
 
 const Page: NextPage = () => {
     return (
-        <ComponentInfoProvider packageName='@nodestrap/stripouts' packageType='utility' component={<LinkStripoutsPage />} base={<LinkStripoutsPage />}>
+        <ComponentInfoProvider packageName='@nodestrap/stripouts' packageType='utility' component={<LinkStripoutsPage />} bases={<LinkStripoutsPage />}>
             <Head>
                 <title>Stripouts Utility</title>
                 <meta name="description" content="Using `stripouts` utility" />
