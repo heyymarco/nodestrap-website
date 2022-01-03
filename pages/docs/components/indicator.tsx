@@ -200,74 +200,74 @@ export default function OnOffIndicator(props) {
 
                         <DetailSpecItem code='isEnabled(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>fully enabled</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>fully enabled</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isEnabling(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>being enabled</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>being enabled</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isDisabling(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>being disabled</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>being disabled</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isDisabled(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>fully disabled</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>fully disabled</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isEnable(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>being/fully enabled</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>being/fully enabled</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isDisable(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>being/fully disabled</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>being/fully disabled</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isEnablingDisable(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>being enabled</strong> or <strong>being/fully disabled</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>being enabled</strong> or <strong>being/fully disabled</strong>.
                             </p>
                         </DetailSpecItem>
 
 
                         <DetailSpecItem code='isActived(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>fully activated</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>fully activated</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isActivating(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>being activated</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>being activated</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isPassivating(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>being deactivated</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>being deactivated</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isPassived(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>fully deactivated</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>fully deactivated</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isActive(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>being/fully activated</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>being/fully activated</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isPassive(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>being/fully deactivated</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>being/fully deactivated</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isActivePassivating(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>being/fully activated</strong> or <strong>being deactivated</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>being/fully activated</strong> or <strong>being deactivated</strong>.
                             </p>
                         </DetailSpecItem>
                     </SpecList>

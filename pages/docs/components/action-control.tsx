@@ -20,7 +20,7 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    <LinkActionControlPage /> is an <strong>abstract</strong> component of <strong>clickable</strong> component. It has some control indicators such as <strong>press</strong>/<strong>release</strong> and inherited indicators from <LinkControlPage />.
+                    <LinkActionControlPage /> is an <strong>abstract</strong> component of <strong>clickable component</strong>. It has some control indicators such as <strong>press</strong>/<strong>release</strong> and inherited indicators from <LinkControlPage />.
                 </p>
                 <p>
                     In <em>most cases</em>, you should <strong>not use </strong>this component <strong>directly</strong>, instead create your own component by derivering <LinkActionControlPage />.
@@ -138,37 +138,37 @@ export default function CoolButton(props) {
 
                         <DetailSpecItem code='isPressed(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>fully pressed</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>fully pressed</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isPressing(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>being pressed</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>being pressed</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isReleasing(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>being released</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>being released</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isReleased(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>fully released</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>fully released</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isPress(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>being/fully pressed</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>being/fully pressed</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isRelease(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>being/fully released</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>being/fully released</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isPressReleasing(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>being/fully pressed</strong> or <strong>being released</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>being/fully pressed</strong> or <strong>being released</strong>.
                             </p>
                         </DetailSpecItem>
                     </SpecList>

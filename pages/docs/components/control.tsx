@@ -20,7 +20,7 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    <LinkControlPage /> is an <strong>abstract</strong> component of <strong>controllable</strong> component. It has some control indicators such as <strong>focus</strong>/<strong>blur</strong> and <strong>arrive</strong>/<strong>leave</strong>.
+                    <LinkControlPage /> is an <strong>abstract</strong> component of <strong>controllable component</strong>. It has some control indicators such as <strong>focus</strong>/<strong>blur</strong> and <strong>arrive</strong>/<strong>leave</strong>.
                 </p>
                 <p>
                     In <em>most cases</em>, you should <strong>not use </strong>this component <strong>directly</strong>, instead create your own component by derivering <LinkControlPage />.
@@ -198,74 +198,74 @@ export default function JoystickControl(props) {
 
                         <DetailSpecItem code='isFocused(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>fully focused</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>fully focused</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isFocusing(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>being focused</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>being focused</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isBlurring(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>being blurred</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>being blurred</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isBlurred(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>fully blurred</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>fully blurred</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isFocus(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>being/fully focused</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>being/fully focused</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isBlur(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>being/fully blurred</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>being/fully blurred</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isFocusBlurring(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>being/fully focused</strong> or <strong>being blurred</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>being/fully focused</strong> or <strong>being blurred</strong>.
                             </p>
                         </DetailSpecItem>
 
 
                         <DetailSpecItem code='isArrived(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>fully arrived</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>fully arrived</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isArriving(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>being arrived</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>being arrived</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isLeaving(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>being left</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>being left</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isLeft(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>fully left</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>fully left</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isArrive(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>being/fully arrived</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>being/fully arrived</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isLeave(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>being/fully left</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>being/fully left</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isArriveLeaving(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>being/fully arrived</strong> or <strong>being left</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>being/fully arrived</strong> or <strong>being left</strong>.
                             </p>
                         </DetailSpecItem>
                     </SpecList>

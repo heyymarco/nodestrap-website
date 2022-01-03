@@ -20,7 +20,7 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    <LinkEditableControlPage /> is an <strong>abstract</strong> component of <strong>editable</strong> component with <strong>validation</strong>. It has some validation indicators such as <strong>valid</strong>/<strong>invalid</strong>/<strong>uncheck</strong> and inherited indicators from <LinkControlPage />.
+                    <LinkEditableControlPage /> is an <strong>abstract</strong> component of <strong>editable component</strong> with <strong>validation</strong>. It has some validation indicators such as <strong>valid</strong>/<strong>invalid</strong>/<strong>uncheck</strong> and inherited indicators from <LinkControlPage />.
                 </p>
                 <p>
                     In <em>most cases</em>, you should <strong>not use </strong>this component <strong>directly</strong>, instead create your own component by derivering <LinkEditableControlPage />.
@@ -344,70 +344,70 @@ export default function TextEditor(props) {
 
                         <DetailSpecItem code='isValided(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>fully valided</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>fully valided</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isValidating(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>being valided</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>being valided</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isUnvalidating(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>being un-valided</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>being un-valided</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isUnvalided(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>fully un-valided</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>fully un-valided</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isValid(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>being/fully valided</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>being/fully valided</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isUnvalid(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>being/fully un-valided</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>being/fully un-valided</strong>.
                             </p>
                         </DetailSpecItem>
 
 
                         <DetailSpecItem code='isInvalided(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>fully invalided</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>fully invalided</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isInvalidating(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>being invalided</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>being invalided</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isUninvalidating(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>being un-invalided</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>being un-invalided</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isUninvalided(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>fully un-invalided</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>fully un-invalided</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isInvalid(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>being/fully invalided</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>being/fully invalided</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='isUninvalid(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component is <strong>being/fully un-invalided</strong>.
+                                Applies the specified <code>styles</code> when the current component is <strong>being/fully un-invalided</strong>.
                             </p>
                         </DetailSpecItem>
 
                         <DetailSpecItem code='isNoValidation(styles)'>
                             <p>
-                                Applies the specified <code>styles</code> when current component has <strong>no validation</strong> applied.<br />
+                                Applies the specified <code>styles</code> when the current component has <strong>no validation</strong> applied.<br />
                                 Neither <strong>valid</strong> nor <strong>invalid</strong>.
                             </p>
                         </DetailSpecItem>

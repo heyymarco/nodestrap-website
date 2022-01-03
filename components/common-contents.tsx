@@ -66,6 +66,7 @@ export const LinkIndicatorPage             = (props: PageLinkProps) => <LinkCode
 export const LinkControlPage               = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/control'>Control</LinkCode>
 export const LinkActionControlPage         = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/action-control'>ActionControl</LinkCode>
 export const LinkEditableControlPage       = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/editable-control'>EditableControl</LinkCode>
+export const LinkEditableTextControlPage   = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/editable-text-control'>EditableTextControl</LinkCode>
 export const LinkEditableActionControlPage = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/editable-action-control'>EditableActionControl</LinkCode>
 
 export const LinkIconPage                  = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/icon'>Icon</LinkCode>
@@ -387,8 +388,9 @@ export const SectionDerivering = ({ children }: SectionDeriveringProps) => {
 
 export interface SectionOverridingDefaultsProps {
     children    : string
+    moreInfo   ?: React.ReactNode
 }
-export const SectionOverridingDefaults = ({ children }: SectionOverridingDefaultsProps) => {
+export const SectionOverridingDefaults = ({ children, moreInfo }: SectionOverridingDefaultsProps) => {
     const { component } = useComponentInfo();
     
     return (
@@ -402,6 +404,7 @@ export const SectionOverridingDefaults = ({ children }: SectionOverridingDefault
                 Here the example:
             </p>
             <TypeScriptCode>{ children }</TypeScriptCode>
+            { moreInfo && <><p></p>{ moreInfo }</> }
         </SectionGeneral>
     );
 }
@@ -409,8 +412,9 @@ export const SectionOverridingDefaults = ({ children }: SectionOverridingDefault
 export interface SectionCustomizingCssProps {
     specList    : SpecList
     children    : string
+    moreInfo   ?: React.ReactNode
 }
-export const SectionCustomizingCss = ({ specList, children }: SectionCustomizingCssProps) => {
+export const SectionCustomizingCss = ({ specList, children, moreInfo }: SectionCustomizingCssProps) => {
     const { component } = useComponentInfo();
     
     return (
@@ -426,6 +430,7 @@ export const SectionCustomizingCss = ({ specList, children }: SectionCustomizing
             
             <p>Example of modifying the CSS:</p>
             <TypeScriptCode>{ children }</TypeScriptCode>
+            { moreInfo && <><p></p>{ moreInfo }</> }
         </SectionGeneral>
     );
 }
