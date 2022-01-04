@@ -3,6 +3,7 @@ import Link from 'next/link'
 import React, { useContext, useMemo } from 'react';
 import { TypeScriptCode } from './Code';
 import DemoPanel from './DemoPanel';
+import Detail from './Detail';
 import { Section } from './Section';
 import { SpecListProps } from './SpecList';
 
@@ -62,12 +63,18 @@ export const LinkValidationsPage           = (props: PageLinkProps) => <LinkCode
 
 export const LinkElementPage               = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/element'>Element</LinkCode>
 export const LinkBasicPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/basic'>Basic</LinkCode>
+export const LinkUsesBasicLayoutPage       = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/basic'><code>usesBasicLayout()</code></LinkCode>
+export const LinkUsesBasicVariantsPage     = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/basic'><code>usesBasicVariants()</code></LinkCode>
+
 export const LinkIndicatorPage             = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/indicator'>Indicator</LinkCode>
 export const LinkControlPage               = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/control'>Control</LinkCode>
 export const LinkActionControlPage         = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/action-control'>ActionControl</LinkCode>
 export const LinkEditableControlPage       = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/editable-control'>EditableControl</LinkCode>
 export const LinkEditableTextControlPage   = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/editable-text-control'>EditableTextControl</LinkCode>
 export const LinkEditableActionControlPage = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/editable-action-control'>EditableActionControl</LinkCode>
+
+export const LinkContentPage               = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/content'>Content</LinkCode>
+export const LinkContainerPage             = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/container'>Container</LinkCode>
 
 export const LinkIconPage                  = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/icon'>Icon</LinkCode>
 
@@ -239,17 +246,25 @@ export const SectionDemo = ({ children, message }: SectionDemoProps) => {
         <SectionGeneral
             title='Demonstration'
         >
-            {
-                message
-                ||
-                <p>
-                    Change some controls below!
-                    You&apos;ll see the { component } is customizable.
-                </p>
-            }
-            <DemoPanel>
-                { children }
-            </DemoPanel>
+            <Detail
+                label='Show demonstration panel'
+                theme='primary'
+                mild={true}
+                lazy={true}
+                detailStyle='content'
+            >
+                {
+                    message
+                    ||
+                    <p>
+                        Change some controls below!
+                        You&apos;ll see the { component } is customizable.
+                    </p>
+                }
+                <DemoPanel classes={['media']}>
+                    { children }
+                </DemoPanel>
+            </Detail>
         </SectionGeneral>
     );
 }

@@ -167,7 +167,7 @@ const Page: NextPage = () => {
                             </SimpleSpecItem>
                         </SubSpecList>
                     </DetailSpecItem>
-                    <DetailSpecItem title='Spacing'>
+                    <DetailSpecItem title='Spacings'>
                         <SubSpecList>
                             <SimpleSpecItem>
                                 <code>paddingInline</code>

@@ -8,7 +8,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@nodestrap/accordion": "^4.0.3",
+    "@loadable/component": "^5.15.2",
+    "@nodestrap/accordion": "^4.0.4",
     "@nodestrap/alert": "^4.0.3",
     "@nodestrap/badge": "^4.0.3",
     "@nodestrap/basic": "^4.0.5",
@@ -34,6 +35,7 @@
     "sass": "^1.45.1"
   },
   "devDependencies": {
+    "@types/loadable__component": "^5.13.4",
     "@types/node": "16.11.13",
     "@types/react": "17.0.38",
     "@types/react-syntax-highlighter": "^13.5.2",
