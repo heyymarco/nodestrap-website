@@ -4,10 +4,8 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
-import { Warning } from '../../../components/Info'
 
-import { SectionInheritedProps, LinkContentPage, LinkBasicPage, LinkIconPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionStates, SectionSubProperty, SectionIntro, LinkUsesBasicLayoutPage, LinkUsesBasicVariantsPage, CommaSeparated, SectionDemo } from '../../../components/common-contents'
-// import { SectionDemoContent } from '../../../components/DemoPanel@Content'
+import { SectionInheritedProps, LinkContentPage, LinkBasicPage, LinkIconPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionStates, SectionSubProperty, SectionIntro, LinkUsesBasicLayoutPage, LinkUsesBasicVariantsPage, CommaSeparated, SectionDemo, BusyBar } from '../../../components/common-contents'
 
 import loadable from '@loadable/component'
 const SectionDemoContentLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Content' */'../../../components/DemoPanel@Content'))
@@ -31,7 +29,7 @@ const Page: NextPage = () => {
                     </p>
             </SectionIntro>
             <SectionDemo>
-                <SectionDemoContentLazy />
+                <SectionDemoContentLazy fallback={<BusyBar />} />
             </SectionDemo>
             <SectionInheritedProps />
             <SectionCustomizing specList={

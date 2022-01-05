@@ -12,7 +12,8 @@
     justify-content: left;
     align-items: center;
 }
-.panel:nth-child(n)>hr {
+.panel:nth-child(n)>hr,
+.panel:nth-child(n)>[class~='busy'] {
     grid-column-start: 1;
     grid-column-end: -1;
 }

@@ -6,6 +6,7 @@ import DemoPanel from './DemoPanel';
 import Detail from './Detail';
 import { Section } from './Section';
 import { SpecListProps } from './SpecList';
+import { Progress, ProgressBar } from '@nodestrap/progress'
 
 
 
@@ -467,5 +468,14 @@ export const SectionCustomizingCss = ({ specList, children, moreInfo }: SectionC
             <TypeScriptCode>{ children }</TypeScriptCode>
             { moreInfo && <><p></p>{ moreInfo }</> }
         </SectionGeneral>
+    );
+}
+
+
+export const BusyBar = () => {
+    return (
+        <Progress classes={['busy']}>
+            <ProgressBar value={100} progressBarStyle={['striped', 'running']} />
+        </Progress>
     );
 }
