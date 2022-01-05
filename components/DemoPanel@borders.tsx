@@ -5,7 +5,6 @@ import { useResetableState, Slider, Option, ResetButton } from './DemoPanel'
 
 import { parseNumber } from '@nodestrap/utilities'
 
-import { SectionDemo } from './common-contents';
 import { Basic } from '@nodestrap/basic'
 import { borders, borderRadiuses as radiuses } from '@nodestrap/borders'
 
@@ -68,7 +67,7 @@ export const BorderOptions = (props: { states: ReturnType<typeof useBorderStates
 
 
 
-export const SectionDemoBorders = () => {
+export const DemoBorders = () => {
     const states = useBorderStates();
     const width  = states.width[0];
     const style  = states.style[0];
@@ -98,12 +97,7 @@ export const SectionDemoBorders = () => {
     }, [radius]);
     
     return (
-        <SectionDemo message={
-            <p>
-                Move some sliders below!
-                You&apos;ll see our site&apos;s border is changed instantly.
-            </p>
-        }>
+        <>
             <span>Preview</span>
             <Basic
                 theme='primary'
@@ -116,6 +110,7 @@ export const SectionDemoBorders = () => {
             <BorderOptions states={states} />
 
             <ResetButton states={states} />
-        </SectionDemo>
+        </>
     );
 }
+export { DemoBorders as default }

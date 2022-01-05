@@ -6,8 +6,10 @@ import Head from 'next/head'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 import { Warning } from '../../../components/Info'
 
-import { SectionInheritedProps, LinkIndicatorPage, LinkBasicPage, LinkIconPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionStates, SectionSubProperty, SectionIntro } from '../../../components/common-contents'
-import { SectionDemoIndicator } from '../../../components/DemoPanel@Indicator'
+import { SectionInheritedProps, LinkIndicatorPage, LinkBasicPage, LinkIconPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionStates, SectionSubProperty, SectionIntro, SectionDemo, BusyBar } from '../../../components/common-contents'
+
+import loadable from '@loadable/component'
+const DemoIndicatorLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Indicator' */'../../../components/DemoPanel@Indicator'))
 
 
 
@@ -27,7 +29,9 @@ const Page: NextPage = () => {
                         In <em>most cases</em>, you should <strong>not use </strong>this component <strong>directly</strong>, instead create your own component by derivering <LinkIndicatorPage />.
                     </p>
             </SectionIntro>
-            <SectionDemoIndicator />
+            <SectionDemo>
+                <DemoIndicatorLazy fallback={<BusyBar />} />
+            </SectionDemo>
             <SectionInheritedProps />
             <SectionStates>
                 <SectionSubProperty property='enabled' specList={

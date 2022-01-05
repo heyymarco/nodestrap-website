@@ -2,7 +2,6 @@ import { useResetableState, Option, ResetButton } from './DemoPanel';
 import { BasicInitials, BasicOptions, useBasicStates } from './DemoPanel@Basic';
 import { Warning } from './Info';
 
-import { SectionDemo } from './common-contents';
 import { Indicator } from '@nodestrap/indicator'
 import { TypeScriptCode } from './Code';
 
@@ -68,11 +67,11 @@ export const IndicatorOptions = (props: { states: ReturnType<typeof useIndicator
 
 
 
-export const SectionDemoIndicator = () => {
+export const DemoIndicator = () => {
     const states = useIndicatorStates();
     
     return (
-        <SectionDemo>
+        <>
             <span>Preview</span>
             <Indicator
                 enabled={states.enabled[0]}
@@ -110,6 +109,7 @@ export const SectionDemoIndicator = () => {
     hello world
 </Indicator>
             `}</TypeScriptCode>
-        </SectionDemo>
+        </>
     );
 }
+export { DemoIndicator as default }

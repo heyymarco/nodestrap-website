@@ -5,8 +5,10 @@ import Head from 'next/head'
 
 import { SpecList, DetailSpecItem } from '../../../components/SpecList'
 
-import { SectionInheritedProps, LinkEditableActionControlPage, LinkEditableControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionIntro, SectionGeneral, LinkActionControlPage, useComponentInfo, CommaSeparated } from '../../../components/common-contents'
-import { SectionDemoEditableActionControl } from '../../../components/DemoPanel@EditableActionControl'
+import { SectionInheritedProps, LinkEditableActionControlPage, LinkEditableControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionIntro, SectionGeneral, LinkActionControlPage, useComponentInfo, CommaSeparated, SectionDemo, BusyBar } from '../../../components/common-contents'
+
+import loadable from '@loadable/component'
+const DemoEditableActionControlLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@EditableActionControl' */'../../../components/DemoPanel@EditableActionControl'))
 
 
 
@@ -45,7 +47,9 @@ const Page: NextPage = () => {
                     In <em>most cases</em>, you should <strong>not use </strong>this component <strong>directly</strong>, instead create your own component by derivering <LinkEditableActionControlPage />.
                 </p>
             </SectionIntro>
-            <SectionDemoEditableActionControl />
+            <SectionDemo>
+                <DemoEditableActionControlLazy fallback={<BusyBar />} />
+            </SectionDemo>
             <SectionInheritedProps />
             <SectionCustomizing />
             <SectionDerivering>

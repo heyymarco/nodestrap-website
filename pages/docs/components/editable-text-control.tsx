@@ -5,9 +5,11 @@ import Head from 'next/head'
 
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
-import { SectionInheritedProps, LinkEditableTextControlPage, LinkEditableControlPage, ParagraphDefaultValue, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionStates, SectionIntro, LinkAccessibilitiesPage, LinkValidationProviderPage, SectionGeneral, ExternalLink, SectionProperty } from '../../../components/common-contents'
-import { SectionDemoEditableTextControl } from '../../../components/DemoPanel@EditableTextControl'
+import { SectionInheritedProps, LinkEditableTextControlPage, LinkEditableControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionIntro, SectionGeneral, ExternalLink, SectionDemo, BusyBar } from '../../../components/common-contents'
 import { Warning } from '../../../components/Info'
+
+import loadable from '@loadable/component'
+const DemoEditableTextControlLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@EditableTextControl' */'../../../components/DemoPanel@EditableTextControl'))
 
 
 
@@ -27,7 +29,9 @@ const Page: NextPage = () => {
                     In <em>most cases</em>, you should <strong>not use </strong>this component <strong>directly</strong>, instead create your own component by derivering <LinkEditableTextControlPage />.
                 </p>
             </SectionIntro>
-            <SectionDemoEditableTextControl />
+            <SectionDemo>
+                <DemoEditableTextControlLazy fallback={<BusyBar />} />
+            </SectionDemo>
             <SectionInheritedProps />
             <SectionGeneral title='Validation Properties'>
                 <SectionSubProperty property='minLength'>

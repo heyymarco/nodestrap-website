@@ -5,8 +5,10 @@ import Head from 'next/head'
 
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
-import { SectionInheritedProps, LinkActionControlPage, LinkControlPage, ParagraphDefaultValue, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionStates, SectionIntro } from '../../../components/common-contents'
-import { SectionDemoActionControl } from '../../../components/DemoPanel@ActionControl'
+import { SectionInheritedProps, LinkActionControlPage, LinkControlPage, ParagraphDefaultValue, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionStates, SectionIntro, SectionDemo, BusyBar } from '../../../components/common-contents'
+
+import loadable from '@loadable/component'
+const DemoActionControlLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@ActionControl' */'../../../components/DemoPanel@ActionControl'))
 
 
 
@@ -26,7 +28,9 @@ const Page: NextPage = () => {
                     In <em>most cases</em>, you should <strong>not use </strong>this component <strong>directly</strong>, instead create your own component by derivering <LinkActionControlPage />.
                 </p>
             </SectionIntro>
-            <SectionDemoActionControl />
+            <SectionDemo>
+                <DemoActionControlLazy fallback={<BusyBar />} />
+            </SectionDemo>
             <SectionInheritedProps />
             <SectionStates>
                 <SectionSubProperty property='press' specList={

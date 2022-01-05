@@ -1,7 +1,6 @@
 import { useResetableState, Option, ResetButton } from './DemoPanel';
 import { IndicatorInitials, IndicatorOptions, useIndicatorStates } from './DemoPanel@Indicator';
 
-import { SectionDemo } from './common-contents';
 import { Control } from '@nodestrap/control'
 import { TypeScriptCode } from './Code';
 
@@ -55,11 +54,11 @@ export const ControlOptions = (props: { states: ReturnType<typeof useControlStat
 
 
 
-export const SectionDemoControl = () => {
+export const DemoControl = () => {
     const states = useControlStates();
     
     return (
-        <SectionDemo>
+        <>
             <span>Preview</span>
             <Control
                 focus={states.focus[0]}
@@ -103,6 +102,7 @@ export const SectionDemoControl = () => {
     hello world
 </Control>
             `}</TypeScriptCode>
-        </SectionDemo>
+        </>
     );
 }
+export { DemoControl as default }

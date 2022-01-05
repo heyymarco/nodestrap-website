@@ -3,9 +3,11 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { ComponentInfoProvider, LinkBordersPage, SectionGeneral, SectionIntro } from '../../../components/common-contents'
-import { SectionDemoBorders } from '../../../components/DemoPanel@borders'
+import { BusyBar, ComponentInfoProvider, LinkBordersPage, SectionDemo, SectionGeneral, SectionIntro } from '../../../components/common-contents'
 import { TypeScriptCode, CssCode } from '../../../components/Code'
+
+import loadable from '@loadable/component'
+const DemoBordersLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@borders' */'../../../components/DemoPanel@borders'))
 
 
 
@@ -28,7 +30,14 @@ const Page: NextPage = () => {
                     The main purpose of this utility is to create <strong>a consistent border (stroke)</strong> between components.
                 </p>
             </SectionIntro>
-            <SectionDemoBorders />
+            <SectionDemo message={
+                <p>
+                    Move some sliders below!
+                    You&apos;ll see our site&apos;s border is changed instantly.
+                </p>
+            }>
+                <DemoBordersLazy fallback={<BusyBar />} />
+            </SectionDemo>
             <SectionGeneral title='Defining Borders'>
                 <p>
                     There are 8 pre-defined border properties:<br />

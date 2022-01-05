@@ -2,7 +2,6 @@ import { useResetableState, Option, ResetButton } from './DemoPanel';
 import { EditableControlInitials, EditableControlOptions, useEditableControlStates } from './DemoPanel@EditableControl';
 import { ActionControlInitials, useActionControlStates } from './DemoPanel@ActionControl';
 
-import { SectionDemo } from './common-contents';
 import { EditableActionControl } from '@nodestrap/editable-action-control'
 import { TypeScriptCode } from './Code';
 
@@ -43,11 +42,11 @@ export const EditableActionControlOptions = (props: { states: ReturnType<typeof 
 
 
 
-export const SectionDemoEditableActionControl = () => {
+export const DemoEditableActionControl = () => {
     const states = useEditableActionControlStates();
     
     return (
-        <SectionDemo>
+        <>
             <span>Preview</span>
             <EditableActionControl
                 press={states.press[0]}
@@ -99,6 +98,7 @@ export const SectionDemoEditableActionControl = () => {
     click me
 </EditableActionControl>
             `}</TypeScriptCode>
-        </SectionDemo>
+        </>
     );
 }
+export { DemoEditableActionControl as default }

@@ -6,8 +6,10 @@ import Head from 'next/head'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 import { Warning } from '../../../components/Info'
 
-import { SectionInheritedProps, LinkBasicPage, LinkElementPage, LinkColorsPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionSubProperty, SectionIntro } from '../../../components/common-contents'
-import { SectionDemoBasic } from '../../../components/DemoPanel@Basic'
+import { SectionInheritedProps, LinkBasicPage, LinkElementPage, LinkColorsPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionSubProperty, SectionIntro, SectionDemo, BusyBar } from '../../../components/common-contents'
+
+import loadable from '@loadable/component'
+const DemoBasicLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Basic' */'../../../components/DemoPanel@Basic'))
 
 
 
@@ -39,7 +41,9 @@ const Page: NextPage = () => {
                     Unlike <LinkElementPage />, <LinkBasicPage /> has a default style that you can see visually.
                 </p>
             </SectionIntro>
-            <SectionDemoBasic />
+            <SectionDemo>
+                <DemoBasicLazy fallback={<BusyBar />} />
+            </SectionDemo>
             <SectionInheritedProps />
             <SectionVariants>
                 <SectionSubProperty property='size' specList={

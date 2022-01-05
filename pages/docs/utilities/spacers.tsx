@@ -3,9 +3,11 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { ComponentInfoProvider, LinkSpacersPage, SectionGeneral, SectionIntro } from '../../../components/common-contents'
-import { SectionDemoSpacers } from '../../../components/DemoPanel@spacers'
+import { BusyBar, ComponentInfoProvider, LinkSpacersPage, SectionDemo, SectionGeneral, SectionIntro } from '../../../components/common-contents'
 import { TypeScriptCode, CssCode } from '../../../components/Code'
+
+import loadable from '@loadable/component'
+const DemoSpacersLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@spacers' */'../../../components/DemoPanel@spacers'))
 
 
 
@@ -28,7 +30,14 @@ const Page: NextPage = () => {
                     The main purpose of this utility is to create <strong>a consistent spacer (margin/padding/gap/etc)</strong> between components.
                 </p>
             </SectionIntro>
-            <SectionDemoSpacers />
+            <SectionDemo message={
+                <p>
+                    Move some sliders below!
+                    You&apos;ll see our site&apos;s margin/padding/gap are changed instantly.
+                </p>
+            }>
+                <DemoSpacersLazy fallback={<BusyBar />} />
+            </SectionDemo>
             <SectionGeneral title='Defining Spacers'>
                 <p>
                     There are 8 pre-defined spacer properties:<br />

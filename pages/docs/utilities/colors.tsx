@@ -3,12 +3,14 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { ComponentInfoProvider, LinkColorsPage, SectionGeneral, SectionIntro } from '../../../components/common-contents'
-import { SectionDemoColors } from '../../../components/DemoPanel@colors'
+import { BusyBar, ComponentInfoProvider, LinkColorsPage, SectionDemo, SectionGeneral, SectionIntro } from '../../../components/common-contents'
 import { TypeScriptCode, CssCode } from '../../../components/Code'
 
 import { colors } from '@nodestrap/colors'
 import { ColorPreview } from '../../../components/ColorPreview'
+
+import loadable from '@loadable/component'
+const DemoColorsLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@colors' */'../../../components/DemoPanel@colors'))
 
 
 
@@ -31,7 +33,14 @@ const Page: NextPage = () => {
                     The main purpose of this utility is to create <strong>a consistent theme colors</strong> between components.
                 </p>
             </SectionIntro>
-            <SectionDemoColors />
+            <SectionDemo message={
+                <p>
+                    Move some sliders below!
+                    You&apos;ll see our site&apos;s primary color is changed instantly.
+                </p>
+            }>
+                <DemoColorsLazy fallback={<BusyBar />} />
+            </SectionDemo>
             <SectionGeneral title='Defining Theme Colors'>
                 <p>
                     There are 8 pre-defined theme colors:<br />

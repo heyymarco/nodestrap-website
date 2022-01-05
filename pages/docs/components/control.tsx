@@ -5,8 +5,10 @@ import Head from 'next/head'
 
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
-import { SectionInheritedProps, LinkControlPage, LinkIndicatorPage, ParagraphDefaultValue, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionStates, SectionProperty, SectionIntro } from '../../../components/common-contents'
-import { SectionDemoControl } from '../../../components/DemoPanel@Control'
+import { SectionInheritedProps, LinkControlPage, LinkIndicatorPage, ParagraphDefaultValue, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionStates, SectionProperty, SectionIntro, SectionDemo, BusyBar } from '../../../components/common-contents'
+
+import loadable from '@loadable/component'
+const DemoControlLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Control' */'../../../components/DemoPanel@Control'))
 
 
 
@@ -26,7 +28,9 @@ const Page: NextPage = () => {
                     In <em>most cases</em>, you should <strong>not use </strong>this component <strong>directly</strong>, instead create your own component by derivering <LinkControlPage />.
                 </p>
             </SectionIntro>
-            <SectionDemoControl />
+            <SectionDemo>
+                <DemoControlLazy fallback={<BusyBar />} />
+            </SectionDemo>
             <SectionInheritedProps />
             <SectionStates>
                 <SectionSubProperty property='focus' specList={

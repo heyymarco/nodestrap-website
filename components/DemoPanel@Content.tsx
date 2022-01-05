@@ -1,7 +1,6 @@
 import { useResetableState, Option, ResetButton } from './DemoPanel';
 import { BasicInitials, BasicOptions, useBasicStates } from './DemoPanel@Basic';
 
-import { SectionDemo } from './common-contents';
 import { Content } from '@nodestrap/content'
 import { TypeScriptCode } from './Code';
 
@@ -35,7 +34,7 @@ export const ContentOptions = (props: { states: ReturnType<typeof useContentStat
 
 
 
-export const SectionDemoContent = () => {
+export const DemoContent = () => {
     const states = useContentStates();
     
     return (
@@ -74,4 +73,4 @@ export const SectionDemoContent = () => {
         </>
     );
 }
-export { SectionDemoContent as default }
+export { DemoContent as default }

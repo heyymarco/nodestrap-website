@@ -1,7 +1,6 @@
 import { useResetableState, Option, ResetButton } from './DemoPanel';
 import { EditableControlInitials, EditableControlOptions, useEditableControlStates } from './DemoPanel@EditableControl';
 
-import { SectionDemo } from './common-contents';
 import { EditableTextControl } from '@nodestrap/editable-text-control'
 import { TypeScriptCode } from './Code';
 
@@ -34,11 +33,11 @@ export const EditableTextControlOptions = (props: { states: ReturnType<typeof us
 
 
 
-export const SectionDemoEditableTextControl = () => {
+export const DemoEditableTextControl = () => {
     const states = useEditableTextControlStates();
     
     return (
-        <SectionDemo>
+        <>
             <span>Preview</span>
             <EditableTextControl
                 isValid={states.isValid[0]}
@@ -90,6 +89,7 @@ export const SectionDemoEditableTextControl = () => {
     edit me
 </EditableTextControl>
             `}</TypeScriptCode>
-        </SectionDemo>
+        </>
     );
 }
+export { DemoEditableTextControl as default }

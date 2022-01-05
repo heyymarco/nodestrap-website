@@ -5,10 +5,10 @@ import Head from 'next/head'
 
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
-import { SectionInheritedProps, LinkContentPage, LinkBasicPage, LinkIconPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionStates, SectionSubProperty, SectionIntro, LinkUsesBasicLayoutPage, LinkUsesBasicVariantsPage, CommaSeparated, SectionDemo, BusyBar } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkContentPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, LinkUsesBasicLayoutPage, LinkUsesBasicVariantsPage, CommaSeparated, SectionDemo, BusyBar } from '../../../components/common-contents'
 
 import loadable from '@loadable/component'
-const SectionDemoContentLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Content' */'../../../components/DemoPanel@Content'))
+const DemoContentLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Content' */'../../../components/DemoPanel@Content'))
 
 
 
@@ -29,7 +29,7 @@ const Page: NextPage = () => {
                     </p>
             </SectionIntro>
             <SectionDemo>
-                <SectionDemoContentLazy fallback={<BusyBar />} />
+                <DemoContentLazy fallback={<BusyBar />} />
             </SectionDemo>
             <SectionInheritedProps />
             <SectionCustomizing specList={
@@ -135,7 +135,7 @@ export default function CoolArticle(props) {
                                 Returns a <code>StyleCollection</code> object represents the <strong>style</strong> &amp; <strong>layout</strong> of <strong>each</strong> individual <strong>media content</strong>.
                             </p>
                             <p>
-                                The <strong>media content</strong> are: <CommaSeparated components={['figure', 'img', 'svg', 'video', '.media'].map((item) => <code>{ item.startsWith('.') ? item : `<${item}>` }</code>)} />.
+                                The <strong>media content</strong> are: <CommaSeparated components={['figure', 'img', 'svg', 'video', '.media'].map((item, index) => <code key={index}>{ item.startsWith('.') ? item : `<${item}>` }</code>)} />.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesContentMedia()'>

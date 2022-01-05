@@ -1,7 +1,6 @@
 import { useResetableState, Option, ResetButton } from './DemoPanel';
 import { ControlInitials, ControlOptions, useControlStates } from './DemoPanel@Control';
 
-import { SectionDemo } from './common-contents';
 import { ActionControl } from '@nodestrap/action-control'
 import { TypeScriptCode } from './Code';
 
@@ -45,11 +44,11 @@ export const ActionControlOptions = (props: { states: ReturnType<typeof useActio
 
 
 
-export const SectionDemoActionControl = () => {
+export const DemoActionControl = () => {
     const states = useActionControlStates();
     
     return (
-        <SectionDemo>
+        <>
             <span>Preview</span>
             <ActionControl
                 press={states.press[0]}
@@ -97,6 +96,7 @@ export const SectionDemoActionControl = () => {
     click me
 </ActionControl>
             `}</TypeScriptCode>
-        </SectionDemo>
+        </>
     );
 }
+export { DemoActionControl as default }

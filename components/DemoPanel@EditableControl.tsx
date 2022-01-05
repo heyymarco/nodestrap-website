@@ -1,7 +1,6 @@
 import { useResetableState, Option, ResetButton } from './DemoPanel';
 import { ControlInitials, ControlOptions, useControlStates } from './DemoPanel@Control';
 
-import { SectionDemo } from './common-contents';
 import { EditableControl } from '@nodestrap/editable-control'
 import { TypeScriptCode } from './Code';
 
@@ -45,11 +44,11 @@ export const EditableControlOptions = (props: { states: ReturnType<typeof useEdi
 
 
 
-export const SectionDemoEditableControl = () => {
+export const DemoEditableControl = () => {
     const states = useEditableControlStates();
     
     return (
-        <SectionDemo>
+        <>
             <span>Preview</span>
             <EditableControl
                 isValid={states.isValid[0]}
@@ -101,6 +100,7 @@ export const SectionDemoEditableControl = () => {
     edit me
 </EditableControl>
             `}</TypeScriptCode>
-        </SectionDemo>
+        </>
     );
 }
+export { DemoEditableControl as default }

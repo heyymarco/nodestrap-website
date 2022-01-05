@@ -2,7 +2,6 @@ import { SizeName, ThemeName } from '@nodestrap/basic';
 import { useResetableState, Option, ThemeOption, ResetButton } from './DemoPanel'
 import { Warning } from './Info';
 
-import { SectionDemo } from './common-contents';
 import { Basic } from '@nodestrap/basic'
 import { TypeScriptCode } from './Code';
 
@@ -99,11 +98,11 @@ export const BasicOptions = (props: { states: ReturnType<typeof useBasicStates>,
 
 
 
-export const SectionDemoBasic = () => {
+export const DemoBasic = () => {
     const states = useBasicStates();
     
     return (
-        <SectionDemo>
+        <>
             <span>Preview</span>
             <Basic
                 size={states.size[0]}
@@ -135,6 +134,7 @@ export const SectionDemoBasic = () => {
     hello world
 </Basic>
             `}</TypeScriptCode>
-        </SectionDemo>
+        </>
     );
 }
+export { DemoBasic as default }

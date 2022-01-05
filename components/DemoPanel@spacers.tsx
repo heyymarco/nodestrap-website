@@ -5,7 +5,6 @@ import { useResetableState, Slider, ResetButton } from './DemoPanel'
 
 import { parseNumber } from '@nodestrap/utilities'
 
-import { SectionDemo } from './common-contents';
 import { Basic } from '@nodestrap/basic'
 import { spacers } from '@nodestrap/spacers'
 
@@ -46,7 +45,7 @@ export const SpacerOptions = (props: { states: ReturnType<typeof useSpacerStates
 
 
 
-export const SectionDemoSpacers = () => {
+export const DemoSpacers = () => {
     const states = useSpacerStates();
     const spacer = states.spacer[0];
 
@@ -68,12 +67,7 @@ export const SectionDemoSpacers = () => {
     }, [spacer]);
 
     return (
-        <SectionDemo message={
-            <p>
-                Move some sliders below!
-                You&apos;ll see our site&apos;s margin/padding/gap are changed instantly.
-            </p>
-        }>
+        <>
             <span>Preview</span>
             <Basic
                 theme='secondary'
@@ -88,6 +82,7 @@ export const SectionDemoSpacers = () => {
             <SpacerOptions states={states} />
 
             <ResetButton states={states} />
-        </SectionDemo>
+        </>
     );
 }
+export { DemoSpacers as default }
