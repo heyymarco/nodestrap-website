@@ -55,6 +55,12 @@ createSheet(() => [
             }),
         ]),
 
+        rule('.siteNavbar', [
+            layout({
+                minBlockSize: '60px',
+            }),
+        ]),
+
         atRoot([
             vars({
                 [siteVarDecls.viewportHeight] : `calc(${siteVars.windowHeight} - ${siteVars.headerHeight})`,

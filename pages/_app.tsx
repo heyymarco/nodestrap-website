@@ -1,12 +1,13 @@
 import { siteVarDecls } from '../website.config';
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
-import Link from 'next/link'
-import { Navbar, NavbarMenu } from '@nodestrap/navbar';
-import { Icon } from '@nodestrap/icon'
 import { ButtonIcon as Button } from '@nodestrap/button-icon'
 import { useElementCssSize, UseWindowCssSize } from '@nodestrap/dimensions';
 import { Section } from '../components/Section';
+
+import loadable from '@loadable/component'
+import Container from '@nodestrap/container';
+const SiteNavbarLazy = loadable(() => import(/* webpackChunkName: 'SiteNavbar' */'../components/SiteNavbar'))
 
 
 
@@ -17,18 +18,13 @@ function Header() {
     
     return (
         <header ref={setHeaderRef}>
-            <Navbar
-                theme='primary'
-                // eslint-disable-next-line
-                logo={<NavbarMenu><Link href='/'><Icon icon='nodestrap' size='lg' /></Link></NavbarMenu>}
-            >
-                <NavbarMenu><Link href='/'>Home</Link></NavbarMenu>
-                <NavbarMenu><Link href='/docs'>Docs</Link></NavbarMenu>
-                <NavbarMenu><Link href='/download'>Download</Link></NavbarMenu>
-                <NavbarMenu><Link href='/about'>About</Link></NavbarMenu>
-                <NavbarMenu href='https://github.com/nodestrap' target='_blank'>GitHub</NavbarMenu>
-                <NavbarMenu href='https://www.npmjs.com/org/nodestrap' target='_blank'>NPM</NavbarMenu>
-            </Navbar>
+            <SiteNavbarLazy fallback={
+                <Container
+                    classes={['siteNavbar']}
+                    theme='primary'
+                    mild={false}
+                />
+            } />
         </header>
     );
 }
