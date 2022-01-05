@@ -13,16 +13,22 @@ export interface CodeHighlighterProps {
     // code:
     language ?: string
     children ?: string
+    
+    classes  ?: string[]
 }
-export default function CodeHighlighter({language, children: code}: CodeHighlighterProps) {
+export default function CodeHighlighter({language, children: code, classes}: CodeHighlighterProps) {
+    const className = (classes ?? []).join(' ');
+
     return useMemo(() => (
         <SyntaxHighlighter
             language={language}
             
             
             // style={dark}
+            customStyle={{ margin: null }}
+            className={className}
         >
             { code?.trim() }
         </SyntaxHighlighter>
-    ), [language, code]);
+    ), [language, code, className]);
 }

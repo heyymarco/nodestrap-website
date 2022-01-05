@@ -263,9 +263,11 @@ export const SectionDemo = ({ children, message }: SectionDemoProps) => {
         >
             <Detail
                 label='Show demonstration panel'
+                
                 theme='primary'
                 mild={true}
                 lazy={true}
+                
                 detailStyle='content'
             >
                 {

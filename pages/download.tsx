@@ -30,20 +30,20 @@ const Download: NextPage = () => {
                 For example: you need our <code>&lt;Button&gt;</code> and <code>&lt;Navbar&gt;</code>.<br />
                 Just install:<br /><code>npm i @nodestrap/button</code><br />and<br /><code>npm i @nodestrap/navbar</code>
             </p>
-            <BashCode>{`
+            <BashCode collapsable={false}>{`
 npm i @nodestrap/button @nodestrap/navbar
             `}</BashCode>
             <p>
                 Then import them into your desired page:
             </p>
-            <TypeScriptCode>{`
+            <TypeScriptCode collapsable={false}>{`
 import { Button } from '@nodestrap/button'
 import { Navbar, NavbarMenu } from '@nodestrap/navbar'
             `}</TypeScriptCode>
             <p>
                 And finally use it:
             </p>
-            <TypeScriptCode>{`
+            <TypeScriptCode collapsable={false}>{`
 export default function MyPage() {
     return (
         <div>

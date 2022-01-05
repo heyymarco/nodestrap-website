@@ -20,11 +20,11 @@ function Header() {
     return (
         <header ref={setHeaderRef}>
             <SiteNavbarLazy fallback={
-                <Container
-                    classes={['siteNavbar']}
-                    theme='primary'
-                    mild={false}
-                />
+            <Container
+                classes={['siteNavbar', 'lazy']}
+                theme='primary'
+                mild={false}
+            />
             } />
         </header>
     );

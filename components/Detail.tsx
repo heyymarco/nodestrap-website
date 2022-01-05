@@ -294,6 +294,10 @@ export function Detail<TElement extends HTMLElement = HTMLElement>(props: Detail
                 {...props}
                 
                 
+                // accessibilities:
+                inheritActive={props.inheritActive ?? false} // change default value to `false` because there are no <List> container
+                
+                
                 // popups:
                 lazy={props.lazy}
             />

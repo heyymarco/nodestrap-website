@@ -8,6 +8,9 @@ a {
 }
 
 .siteNavbar {
-    box-sizing: border-box;
-    min-block-size: 60px !important;
+    &[class~='lazy'] {
+        box-sizing: border-box;
+        min-block-size: 60px !important;
+        padding-block: 0px !important;
+    }
 }
