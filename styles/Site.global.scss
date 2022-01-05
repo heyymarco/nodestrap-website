@@ -8,5 +8,6 @@ a {
 }
 
 .siteNavbar {
-    min-block-size: 60px;
+    box-sizing: border-box;
+    min-block-size: 60px !important;
 }

@@ -5,9 +5,9 @@ import Head from 'next/head'
 import { ButtonIcon as Button } from '@nodestrap/button-icon'
 import { useElementCssSize, UseWindowCssSize } from '@nodestrap/dimensions';
 import { Section } from '../components/Section';
+import Container from '@nodestrap/container';
 
 import loadable from '@loadable/component'
-import Container from '@nodestrap/container';
 const SiteNavbarLazy = loadable(() => import(/* webpackChunkName: 'SiteNavbar' */'../components/SiteNavbar'))
 
 

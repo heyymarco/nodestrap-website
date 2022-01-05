@@ -488,7 +488,7 @@ export const SectionCustomizingCss = ({ specList, children, moreInfo }: SectionC
 
 export const BusyBar = () => {
     return (
-        <Progress classes={['busy']}>
+        <Progress classes={['busy']} theme='primary'>
             <ProgressBar value={100} progressBarStyle={['striped', 'running']} />
         </Progress>
     );
