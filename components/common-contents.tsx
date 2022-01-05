@@ -7,6 +7,7 @@ import Detail from './Detail';
 import { Section } from './Section';
 import { SpecListProps } from './SpecList';
 import { Progress, ProgressBar } from '@nodestrap/progress'
+import { useCurrentActive } from '@nodestrap/nav-button';
 
 
 
@@ -21,28 +22,41 @@ const Code = (props: CodeProps) => <code>{ props.children }</code>
 type LinkProps = React.PropsWithChildren<{ href: string }>
 
 type LinkCodeProps = LinkProps & CodeProps & { text?: React.ReactNode }
-const LinkCode = (props: LinkCodeProps) => {
-    if (props.text) return (
+const LinkButton = (props: LinkCodeProps) => {
+    return (
         <Button theme='primary' btnStyle='link'>
             <Link {...props}>
                 { props.text }
             </Link>
         </Button>
     );
+}
+const LinkCodeInternal = (props: React.PropsWithChildren<{ currentComponent: React.ReactNode }>) => {
+    const activeDn = useCurrentActive(props);
+    if (activeDn) return (<>{ props.currentComponent }</>);
+    
+    return (<>{ props.children }</>);
+}
+const LinkCode = (props: LinkCodeProps) => {
+    if (props.text) return <LinkButton {...props} />;
+    
+    const children = (
+        (typeof(props.children) === 'string')
+        ?
+        <Code {...props}>
+            &lt;{ props.children }&gt;
+        </Code>
+        :
+        props.children
+    );
     return (
-        <Link {...props}>
-            <a>
-                {
-                    (typeof(props.children) === 'string')
-                    ?
-                    <Code {...props}>
-                        &lt;{ props.children }&gt;
-                    </Code>
-                    :
-                    props.children
-                }
-            </a>
-        </Link>
+        <LinkCodeInternal currentComponent={children}>
+            <Link {...props}>
+                <a>
+                    { children }
+                </a>
+            </Link>
+        </LinkCodeInternal>
     );
 }
 
