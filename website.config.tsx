@@ -43,24 +43,6 @@ createSheet(() => [
             }),
         ]),
 
-        rule('a', [
-            layout({
-                color          : 'inherit',
-                textDecoration : 'none',
-            }),
-        ]),
-        rule(':is(h1, h2, h3, h4, h5, h6) code', [
-            layout({
-                fontSize: 'inherit',
-            }),
-        ]),
-
-        rule('.siteNavbar', [
-            layout({
-                minBlockSize: '60px',
-            }),
-        ]),
-
         atRoot([
             vars({
                 [siteVarDecls.viewportHeight] : `calc(${siteVars.windowHeight} - ${siteVars.headerHeight})`,

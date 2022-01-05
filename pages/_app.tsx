@@ -1,3 +1,4 @@
+import '../styles/Site.global.scss'
 import { siteVarDecls } from '../website.config';
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
