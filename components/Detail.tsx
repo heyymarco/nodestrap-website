@@ -69,13 +69,12 @@ import {
 import {
     // hooks:
     usesBorderAsContainer,
-    
-    
-    
+}                           from '@nodestrap/container'
+import {
     // styles:
-    usesContentMedia,
     usesContentBasicLayout,
     usesContentBasicVariants,
+    usesContentChildren,
 }                           from '@nodestrap/content'
 import {
     // general types:
@@ -201,11 +200,11 @@ export const usesDetailVariants = () => {
                     // children:
                     ...children('*', [
                         imports([
-                            // media:
-                            usesContentMedia(),
-                            
                             // layouts:
                             usesContentBasicLayout(),
+                            
+                            // children:
+                            usesContentChildren(),
                         ]),
                     ]),
                 }),

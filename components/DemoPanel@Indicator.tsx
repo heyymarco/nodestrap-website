@@ -94,7 +94,7 @@ export const DemoIndicator = () => {
             <ResetButton states={states} />
 
             <span>Code</span>
-            <TypeScriptCode>{`
+            <TypeScriptCode collapsable={false}>{`
 <Indicator
     enabled={${states.enabled[0]}}
     active={${states.active[0]}}

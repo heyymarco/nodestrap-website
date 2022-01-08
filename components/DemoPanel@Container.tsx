@@ -1,18 +1,18 @@
 import { useResetableState, Option, ResetButton } from './DemoPanel';
 import { BasicInitials, BasicOptions, useBasicStates } from './DemoPanel@Basic';
 
-import { Content } from '@nodestrap/content'
+import { Container } from '@nodestrap/container'
 import { TypeScriptCode } from './Code';
 
 
 
-export const contentInitials = {
+export const containerInitials = {
     mild     : true,
 };
-export type ContentInitials = typeof contentInitials & Partial<BasicInitials>
-export const useContentStates = (initials ?: Partial<ContentInitials>) => {
-    const initials2 : ContentInitials = {
-        ...contentInitials,
+export type ContainerInitials = typeof containerInitials & Partial<BasicInitials>
+export const useContainerStates = (initials ?: Partial<ContainerInitials>) => {
+    const initials2 : ContainerInitials = {
+        ...containerInitials,
         ...initials
     };
 
@@ -20,7 +20,7 @@ export const useContentStates = (initials ?: Partial<ContentInitials>) => {
         ...useBasicStates(initials2),
     }
 }
-export const ContentOptions = (props: { states: ReturnType<typeof useContentStates> }) => {
+export const ContainerOptions = (props: { states: ReturnType<typeof useContainerStates> }) => {
     const { states } = props;
     
     
@@ -34,13 +34,13 @@ export const ContentOptions = (props: { states: ReturnType<typeof useContentStat
 
 
 
-export const DemoContent = () => {
-    const states = useContentStates();
+export const DemoContainer = () => {
+    const states = useContainerStates();
     
     return (
         <>
             <span>Preview</span>
-            <Content
+            <Container
                 size={states.size[0]}
                 nude={states.nude[0]}
                 theme={states.theme[0]}
@@ -48,18 +48,20 @@ export const DemoContent = () => {
                 outlined={states.outlined[0]}
                 mild={states.mild[0]}
             >
-                hello world
-            </Content>
+                <div style={{ background: 'yellow' }}>
+                    hello world
+                </div>
+            </Container>
 
             <hr />
             
-            <ContentOptions states={states} />
+            <ContainerOptions states={states} />
             
             <ResetButton states={states} />
 
             <span>Code</span>
             <TypeScriptCode collapsable={false}>{`
-<Content
+<Container
     size=${states.size[0] ? `'${states.size[0]}'` : '{undefined}'}
     nude={${states.nude[0]}}
     theme='${states.theme[0]}'
@@ -67,10 +69,12 @@ export const DemoContent = () => {
     outlined={${states.outlined[0]}}
     mild={${states.mild[0]}}
 >
-    hello world
-</Content>
+    <div style={{ background: 'yellow' }}>
+        hello world
+    </div>
+</Container>
             `}</TypeScriptCode>
         </>
     );
 }
-export { DemoContent as default }
+export { DemoContainer as default }

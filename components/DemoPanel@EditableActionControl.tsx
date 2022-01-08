@@ -76,7 +76,7 @@ export const DemoEditableActionControl = () => {
             <ResetButton states={states} />
 
             <span>Code</span>
-            <TypeScriptCode>{`
+            <TypeScriptCode collapsable={false}>{`
 <EditableActionControl
     press={${states.press[0]}}
 

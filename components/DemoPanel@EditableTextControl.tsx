@@ -67,7 +67,7 @@ export const DemoEditableTextControl = () => {
             <ResetButton states={states} />
 
             <span>Code</span>
-            <TypeScriptCode>{`
+            <TypeScriptCode collapsable={false}>{`
 <EditableTextControl
     isValid={${states.isValid[0]}}
 

@@ -88,10 +88,15 @@ export const LinkEditableControlPage       = (props: PageLinkProps) => <LinkCode
 export const LinkEditableTextControlPage   = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/editable-text-control'>EditableTextControl</LinkCode>
 export const LinkEditableActionControlPage = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/editable-action-control'>EditableActionControl</LinkCode>
 
-export const LinkContentPage               = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/content'>Content</LinkCode>
 export const LinkContainerPage             = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/container'>Container</LinkCode>
+export const LinkContentPage               = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/content'>Content</LinkCode>
 
 export const LinkIconPage                  = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/icon'>Icon</LinkCode>
+
+export const LinkCardPage                  = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/card'>Card</LinkCode>
+export const LinkGroupPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/group'>Group</LinkCode>
+
+
 
 export interface ExternalLinkProps {
     href      : string
@@ -456,6 +461,7 @@ export const SectionOverridingDefaults = ({ children, moreInfo }: SectionOverrid
                 Here the example:
             </p>
             <TypeScriptCode>{ children }</TypeScriptCode>
+            
             { moreInfo && <><p></p>{ moreInfo }</> }
         </SectionGeneral>
     );
@@ -482,6 +488,38 @@ export const SectionCustomizingCss = ({ specList, children, moreInfo }: SectionC
             
             <p>Example of modifying the CSS:</p>
             <TypeScriptCode>{ children }</TypeScriptCode>
+            
+            { moreInfo && <><p></p>{ moreInfo }</> }
+        </SectionGeneral>
+    );
+}
+
+export interface SectionMoreCustomizingCssProps {
+    specList    : SpecList
+    moreInfo   ?: React.ReactNode
+}
+export const SectionMoreCustomizingCss = ({ specList, moreInfo }: SectionMoreCustomizingCssProps) => {
+    const { component } = useComponentInfo();
+    
+    return (
+        <SectionGeneral
+            titleTag='h3'
+            title='Advanced CSS Customization'
+        >
+            <p>
+                There are some <strong>css hooks</strong> for making <em>CSS in JS</em> more powerful.
+            </p>
+            <p>
+                Our <strong>css hooks</strong> always start with <code>uses</code> - to avoid collision with <strong>React hooks</strong>.
+                Unlike <em>React hooks</em>, the <strong>css hooks</strong> can be called <strong>conditionally</strong>.
+                Conditional calls are useful for making <em>CSS in JS</em> <strong>lazily</strong> (only defined but <strong>not yet</strong> executed).
+            </p>
+            <p>
+                { component } exports <strong>some CSS hooks</strong> that you can import into <strong>your CSS</strong>.
+                Here the exported <em>css hooks</em>:
+            </p>
+            { specList }
+            
             { moreInfo && <><p></p>{ moreInfo }</> }
         </SectionGeneral>
     );

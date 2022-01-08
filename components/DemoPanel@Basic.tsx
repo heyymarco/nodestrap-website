@@ -122,7 +122,7 @@ export const DemoBasic = () => {
             <ResetButton states={states} />
 
             <span>Code</span>
-            <TypeScriptCode>{`
+            <TypeScriptCode collapsable={false}>{`
 <Basic
     size=${states.size[0] ? `'${states.size[0]}'` : '{undefined}'}
     nude={${states.nude[0]}}

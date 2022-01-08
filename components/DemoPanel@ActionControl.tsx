@@ -76,7 +76,7 @@ export const DemoActionControl = () => {
             <ResetButton states={states} />
 
             <span>Code</span>
-            <TypeScriptCode>{`
+            <TypeScriptCode collapsable={false}>{`
 <ActionControl
     press={${states.press[0]}}
 

@@ -84,7 +84,7 @@ export const DemoControl = () => {
             <ResetButton states={states} />
 
             <span>Code</span>
-            <TypeScriptCode>{`
+            <TypeScriptCode collapsable={false}>{`
 <Control
     focus={${states.focus[0]}}
     arrive={${states.arrive[0]}}
