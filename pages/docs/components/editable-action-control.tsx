@@ -118,20 +118,23 @@ const useAcceptButtonSheet = createUseSheet(() => [
             // then overwrite with your style:
             display : 'inline-block',
             /* ... */
-        }),
-        states([
-            isValid({
-                // define the style at 'being/fully valided' state:
-                color: 'darkgreen',
+            
+            ...states([
+                isValid({
+                    // define the style at 'being/fully valided' state:
+                    color: 'darkgreen',
+                    /* ... */
+                }),
+                isInvalid({
+                    // define the style at 'being/fully invalided' state:
+                    color: 'darkred',
+                    /* ... */
+                }),
                 /* ... */
-            }),
-            isInvalid({
-                // define the style at 'being/fully invalided' state:
-                color: 'darkred',
-                /* ... */
-            }),
+            ]),
+            
             /* ... */
-        ]),
+        }),
     ),
 ]);
 

@@ -54,7 +54,7 @@ const Page: NextPage = () => {
                     <SubSection>
                         <p>
                             To make the child element(s) <strong>fill</strong> the entire <LinkContainerPage />&apos;s width,
-                            add <code>fill</code> class (or <code>className='fill'</code> in React) to the desired children.
+                            add <code>fill</code> class (or <code>{`className='fill'`}</code> in React) to the desired children.
                         </p>
                         <p>
                             This is useful if you want to make a <strong>full width page section</strong> - usually with background image such as <strong>hero section</strong>.
@@ -67,13 +67,13 @@ const Page: NextPage = () => {
                                 The first child
                             </section>
                             <section style={{ background: '#FFFF00' }} className='fill'>
-                                The second child applied <code>className='fill'</code>
+                                The second child applied <code>{`className='fill'`}</code>
                             </section>
                             <section style={{ background: '#90EE90' }}>
                                 The third child
                             </section>
                             <section style={{ background: '#E9967A' }} className='fill'>
-                                The fourth child applied <code>className='fill'</code>
+                                The fourth child applied <code>{`className='fill'`}</code>
                             </section>
                             <section style={{ background: '#D2B48C' }}>
                                 The fifth child
@@ -110,7 +110,7 @@ const Page: NextPage = () => {
                         </p>
                         <Container theme='primary'>
                             <section style={{ background: '#FFC0CB' }} className='fill'>
-                                The first child applied <code>className='fill'</code>
+                                The first child applied <code>{`className='fill'`}</code>
                             </section>
                             <section style={{ background: '#FFFF00' }}>
                                 The second child
@@ -122,7 +122,7 @@ const Page: NextPage = () => {
                                 The fourth child
                             </section>
                             <section style={{ background: '#D2B48C' }} className='fill'>
-                                The fifth child applied <code>className='fill'</code>
+                                The fifth child applied <code>{`className='fill'`}</code>
                             </section>
                         </Container>
                         <p></p>
@@ -151,7 +151,7 @@ const Page: NextPage = () => {
                     <SubSection>
                         <p>
                             To make the child element(s) <strong>fill</strong> the entire <LinkContainerPage />&apos;s width and <strong>take over</strong> <LinkContainerPage />&apos;s padding,
-                            add <code>fill-self</code> class (or <code>className='fill-self'</code> in React) to the desired children.
+                            add <code>fill-self</code> class (or <code>{`className='fill-self'`}</code> in React) to the desired children.
                         </p>
                         <p>
                             This is useful if you want to make a <strong>page section with lot of paragraphs/articles</strong>, so the paddings (surrounding space) should be preserved.
@@ -164,13 +164,13 @@ const Page: NextPage = () => {
                                 The first child
                             </section>
                             <section style={{ background: '#FFFF00' }} className='fill-self'>
-                                The second child applied <code>className='fill-self'</code>
+                                The second child applied <code>{`className='fill-self'`}</code>
                             </section>
                             <section style={{ background: '#90EE90' }}>
                                 The third child
                             </section>
                             <section style={{ background: '#E9967A' }} className='fill-self'>
-                                The fourth child applied <code>className='fill-self'</code>
+                                The fourth child applied <code>{`className='fill-self'`}</code>
                             </section>
                             <section style={{ background: '#D2B48C' }}>
                                 The fifth child
@@ -207,7 +207,7 @@ const Page: NextPage = () => {
                         </p>
                         <Container theme='primary'>
                             <section style={{ background: '#FFC0CB' }} className='fill-self'>
-                                The first child <code>className='fill-self'</code>
+                                The first child <code>{`className='fill-self'`}</code>
                             </section>
                             <section style={{ background: '#FFFF00' }}>
                                 The second child applied
@@ -219,7 +219,7 @@ const Page: NextPage = () => {
                                 The fourth child applied
                             </section>
                             <section style={{ background: '#D2B48C' }} className='fill-self'>
-                                The fifth child <code>className='fill-self'</code>
+                                The fifth child <code>{`className='fill-self'`}</code>
                             </section>
                         </Container>
                         <p></p>

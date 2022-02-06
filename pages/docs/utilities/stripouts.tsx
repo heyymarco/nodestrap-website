@@ -35,7 +35,7 @@ const Page: NextPage = () => {
                         <p>example:</p>
                         <TypeScriptCode>{`
 import { stripoutLink } from '@nodestrap/stripouts'
-import { mainComposition, imports, layout, rules, rule } from '@cssfn/cssfn'
+import { mainComposition, imports, layout, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
 
 const useAwesomeLinkSheet = createUseSheet(() => [
@@ -46,12 +46,10 @@ const useAwesomeLinkSheet = createUseSheet(() => [
         style({
             display : 'inline',
             color   : 'red',
-        }),
-        rules([
-            rule([':hover', ':active'], {
+            ...rule([':hover', ':active'], {
                 color: 'darkred',
             }),
-        ]),
+        }),
     )
 ]);
 
@@ -69,7 +67,7 @@ export default function AwesomeLink(props) {
                         <p>example:</p>
                         <TypeScriptCode>{`
 import { stripoutControl } from '@nodestrap/stripouts'
-import { mainComposition, imports, layout, rules, rule } from '@cssfn/cssfn'
+import { mainComposition, imports, layout, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
 
 const useAwesomeCheckboxSheet = createUseSheet(() => [
@@ -82,12 +80,10 @@ const useAwesomeCheckboxSheet = createUseSheet(() => [
             width      : '30px',
             height     : '30px',
             background : 'lightblue',
-        }),
-        rules([
-            rule(':checked', {
+            ...rule(':checked', {
                 background : 'darkblue',
             }),
-        ]),
+        }),
     )
 ]);
 
@@ -103,7 +99,7 @@ export default function AwesomeCheckbox(props) {
                         <p>example:</p>
                         <TypeScriptCode>{`
 import { stripoutTextbox } from '@nodestrap/stripouts'
-import { mainComposition, imports, layout, rules, rule } from '@cssfn/cssfn'
+import { mainComposition, imports, layout, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
 
 const useAwesomeTextboxSheet = createUseSheet(() => [
@@ -116,13 +112,11 @@ const useAwesomeTextboxSheet = createUseSheet(() => [
             width      : '200px',
             height     : '30px',
             background : 'lightblue',
-            textAlign  : 'left',
-        }),
-        rules([
-            rule([':hover', ':focus'], {
+            ...rule([':hover', ':focus'], {
                 background : 'skyblue',
             }),
-        ]),
+            textAlign  : 'left',
+        }),
     )
 ]);
 
@@ -151,6 +145,9 @@ const useAwesomeRangeSheet = createUseSheet(() => [
             width      : '200px',
             height     : '30px',
             background : 'lightblue',
+            ...rule([':hover', ':focus'], {
+                background : 'skyblue',
+            }),
 
             ...children(['::-webkit-slider-thumb', '::-moz-range-thumb', '::-ms-thumb'], {
                 display    : 'block',
@@ -159,11 +156,6 @@ const useAwesomeRangeSheet = createUseSheet(() => [
                 background : 'darkblue',
             }, { groupSelectors: false }), // any invalid selector does not cause the whole selectors to fail
         }),
-        rules([
-            rule([':hover', ':focus'], {
-                background : 'skyblue',
-            }),
-        ]),
     )
 ]);
 
@@ -259,12 +251,10 @@ const useAwesomeElementSheet = createUseSheet(() => [
             width      : '100px',
             height     : '50px',
             background : 'lightblue',
-        }),
-        rules([
-            rule(':focus', {
+            ...rule(':focus', {
                 background : 'darkblue',
             }),
-        ]),
+        }),
     )
 ]);
 
