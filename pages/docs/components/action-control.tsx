@@ -123,18 +123,18 @@ export default function CoolButton(props) {
                     <SpecList>
                         <DetailSpecItem code='usesActionControlLayout()'>
                             <p>
-                                Returns a <code>StyleCollection</code> object represents a complete <LinkActionControlPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
+                                Returns a <code>Rule</code> object represents a complete <LinkActionControlPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesActionControlVariants()'>
                             <p>
-                                Returns a <code>StyleCollection</code> object represents the <strong>variants</strong> of <LinkActionControlPage /> such as:<br />
+                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <LinkActionControlPage /> such as:<br />
                                 <code>SizeVariant</code> and <strong>all variants</strong> inherited from <LinkControlPage />.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesActionControlStates()'>
                             <p>
-                                Returns a <code>StyleCollection</code> object represents the <strong>states</strong> of <LinkActionControlPage /> such as:<br />
+                                Returns a <code>Rule</code> object represents the <strong>states</strong> of <LinkActionControlPage /> such as:<br />
                                 <strong>press</strong>/<strong>release</strong>, and <strong>all states</strong> inherited from <LinkControlPage />.
                             </p>
                         </DetailSpecItem>
@@ -177,53 +177,50 @@ export default function CoolButton(props) {
                         </DetailSpecItem>
                     </SpecList>
                 }>{`
-import { mainComposition, layout, imports, variants, states, rule } from '@cssfn/cssfn'
+import { mainComposition, style, imports, variants, states, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
 import { ActionControl, usesActionControlLayout, usesActionControlVariants, usesActionControlStates, isPress } from '@nodestrap/action-control'
 
 const useCoolButtonSheet = createUseSheet(() => [
-    mainComposition([
+    mainComposition(
         imports([
             // import some stuff from <ActionControl>:
             usesActionControlLayout(),
             usesActionControlVariants(),
             usesActionControlStates(),
         ]),
-        layout({
+        style({
             // then overwrite with your style:
             display : 'inline-block',
             margin  : '1em',
             /* ... */
-        }),
-        variants([
-            rule('.big', [
-                layout({
+            
+            ...variants([
+                rule('.big', {
                     // define the style at 'big' variant:
                     fontSize: 'xx-large',
                     /* ... */
                 }),
-            ]),
-            rule('.dark', [
-                layout({
+                rule('.dark', {
                     // define the style at 'dark' variant:
                     background-color : 'black',
                     color            : 'white',
                     /* ... */
                 }),
+                /* ... */
             ]),
-            /* ... */
-        ]),
-        states([
-            isPress([
-                layout({
+            ...states([
+                isPress({
                     // define the style at 'being/fully pressed' state:
                     background-color: 'red',
                     /* ... */
                 }),
+                /* ... */
             ]),
+            
             /* ... */
-        ]),
-    ]),
+        }),
+    ),
 ]);
 
 export default function CoolButton(props) {

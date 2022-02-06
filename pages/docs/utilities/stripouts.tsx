@@ -39,22 +39,20 @@ import { mainComposition, imports, layout, rules, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
 
 const useAwesomeLinkSheet = createUseSheet(() => [
-    mainComposition([
+    mainComposition(
         imports([
             stripoutLink(),
         ]),
-        layout({
+        style({
             display : 'inline',
             color   : 'red',
         }),
         rules([
-            rule([':hover', ':active'], [
-                layout({
-                    color: 'darkred',
-                }),
-            ]),
+            rule([':hover', ':active'], {
+                color: 'darkred',
+            }),
         ]),
-    ])
+    )
 ]);
 
 export default function AwesomeLink(props) {
@@ -75,24 +73,22 @@ import { mainComposition, imports, layout, rules, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
 
 const useAwesomeCheckboxSheet = createUseSheet(() => [
-    mainComposition([
+    mainComposition(
         imports([
             stripoutControl(),
         ]),
-        layout({
+        style({
             display    : 'inline-block',
             width      : '30px',
             height     : '30px',
             background : 'lightblue',
         }),
         rules([
-            rule(':checked', [
-                layout({
-                    background : 'darkblue',
-                }),
-            ]),
+            rule(':checked', {
+                background : 'darkblue',
+            }),
         ]),
-    ])
+    )
 ]);
 
 export default function AwesomeCheckbox(props) {
@@ -111,11 +107,11 @@ import { mainComposition, imports, layout, rules, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
 
 const useAwesomeTextboxSheet = createUseSheet(() => [
-    mainComposition([
+    mainComposition(
         imports([
             stripoutTextbox(),
         ]),
-        layout({
+        style({
             display    : 'inline-block',
             width      : '200px',
             height     : '30px',
@@ -123,13 +119,11 @@ const useAwesomeTextboxSheet = createUseSheet(() => [
             textAlign  : 'left',
         }),
         rules([
-            rule([':hover', ':focus'], [
-                layout({
-                    background : 'skyblue',
-                }),
-            ]),
+            rule([':hover', ':focus'], {
+                background : 'skyblue',
+            }),
         ]),
-    ])
+    )
 ]);
 
 export default function AwesomeTextbox(props) {
@@ -148,33 +142,29 @@ import { mainComposition, imports, layout, children, rules, rule } from '@cssfn/
 import { createUseSheet } from '@cssfn/react-cssfn'
 
 const useAwesomeRangeSheet = createUseSheet(() => [
-    mainComposition([
+    mainComposition(
         imports([
             stripoutRange(),
         ]),
-        layout({
+        style({
             display    : 'inline-block',
             width      : '200px',
             height     : '30px',
             background : 'lightblue',
 
-            ...children(['::-webkit-slider-thumb', '::-moz-range-thumb', '::-ms-thumb'], [
-                layout({
-                    display    : 'block',
-                    width      : '25px',
-                    height     : '25px',
-                    background : 'darkblue',
-                }),
-            ], { groupSelectors: false }), // any invalid selector does not cause the whole selectors to fail
+            ...children(['::-webkit-slider-thumb', '::-moz-range-thumb', '::-ms-thumb'], {
+                display    : 'block',
+                width      : '25px',
+                height     : '25px',
+                background : 'darkblue',
+            }, { groupSelectors: false }), // any invalid selector does not cause the whole selectors to fail
         }),
         rules([
-            rule([':hover', ':focus'], [
-                layout({
-                    background : 'skyblue',
-                }),
-            ]),
+            rule([':hover', ':focus'], {
+                background : 'skyblue',
+            }),
         ]),
-    ])
+    )
 ]);
 
 export default function AwesomeRange(props) {
@@ -194,23 +184,21 @@ import { mainComposition, imports, layout, children } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
 
 const useAwesomeListSheet = createUseSheet(() => [
-    mainComposition([
+    mainComposition(
         imports([
             stripoutList(),
         ]),
-        layout({
+        style({
             display     : 'block',
             background  : 'lightblue',
             paddingLeft : '30px',
 
-            ...children('li', [
-                layout({
-                    display    : 'block',
-                    border     : [['solid', '1px', 'darkblue']],
-                }),
-            ]),
+            ...children('li', {
+                display    : 'block',
+                border     : [['solid', '1px', 'darkblue']],
+            }),
         }),
-    ])
+    )
 ]);
 
 export default function AwesomeList(props) {
@@ -231,17 +219,17 @@ import { mainComposition, imports, layout } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
 
 const useAwesomeFigureSheet = createUseSheet(() => [
-    mainComposition([
+    mainComposition(
         imports([
             stripoutFigure(),
         ]),
-        layout({
+        style({
             display    : 'block',
             background : 'lightblue',
             border     : [['solid', '1px', 'darkblue']],
             padding    : '10px',
         }),
-    ])
+    )
 ]);
 
 export default function AwesomeFigure(props) {
@@ -262,24 +250,22 @@ import { mainComposition, imports, layout, rules, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
 
 const useAwesomeElementSheet = createUseSheet(() => [
-    mainComposition([
+    mainComposition(
         imports([
             stripoutFocusableElement(),
         ]),
-        layout({
+        style({
             display    : 'inline-block',
             width      : '100px',
             height     : '50px',
             background : 'lightblue',
         }),
         rules([
-            rule(':focus', [
-                layout({
-                    background : 'darkblue',
-                }),
-            ]),
+            rule(':focus', {
+                background : 'darkblue',
+            }),
         ]),
-    ])
+    )
 ]);
 
 export default function AwesomeElement(props) {
@@ -300,18 +286,18 @@ import { mainComposition, imports, layout } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
 
 const useAwesomeContainerSheet = createUseSheet(() => [
-    mainComposition([
+    mainComposition(
         imports([
             stripoutScrollbar(),
         ]),
-        layout({
+        style({
             display    : 'inline-block',
             width      : '500px',
             height     : '300px',
             background : 'lightblue',
             overflow   : 'scroll',
         }),
-    ])
+    )
 ]);
 
 export default function AwesomeContainer(props) {
@@ -332,17 +318,17 @@ import { mainComposition, imports, layout } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
 
 const useAwesomeImageSheet = createUseSheet(() => [
-    mainComposition([
+    mainComposition(
         imports([
             stripoutImage(),
         ]),
-        layout({
+        style({
             display : 'inline-block',
             width   : '100px',
             height  : '100px',
             border  : [['solid', '1px', 'darkblue']],
         }),
-    ])
+    )
 ]);
 
 export default function AwesomeImage(props) {

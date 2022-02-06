@@ -1,5 +1,5 @@
 import { config as iconConfig } from '@nodestrap/icon'
-import { createSheet, globalDef, rules, rule, atRoot, fontFace, layout, vars } from '@cssfn/cssfn'
+import { createSheet, globalDef, rules, rule, atRoot, fontFace, vars } from '@cssfn/cssfn'
 import { createCssVar } from '@cssfn/css-var'
 import { colors, defineTheme, defineForeg } from '@nodestrap/colors'
 import Color from 'color'
@@ -18,30 +18,22 @@ export const [siteVars, siteVarDecls] = createCssVar<SiteVars>({ minify: false }
 
 createSheet(() => [
     globalDef([
-        rule('*', [
-            layout({
-                boxSizing : 'border-box',
-            }),
-        ]),
+        rule('*', {
+            boxSizing : 'border-box',
+        }),
         
-        rule('html', [
-            layout({
-                blockSize: '100%',
-            }),
-        ]),
-        rule(['html', 'body'], [
-            layout({
-                padding : '0px',
-                margin  : '0px',
-            }),
-        ]),
-        rule('body>*>header', [
-            layout({
-                zIndex          : 1020,
-                position        : 'sticky',
-                insetBlockStart : '0px',
-            }),
-        ]),
+        rule('html', {
+            blockSize: '100%',
+        }),
+        rule(['html', 'body'], {
+            padding : '0px',
+            margin  : '0px',
+        }),
+        rule('body>*>header', {
+            zIndex          : 1020,
+            position        : 'sticky',
+            insetBlockStart : '0px',
+        }),
 
         atRoot([
             vars({

@@ -301,53 +301,52 @@ export default function SiteSidebar(props) {
                     <SpecList>
                         <DetailSpecItem code='usesBasicLayout()'>
                             <p>
-                                Returns a <code>StyleCollection</code> object represents a complete <LinkBasicPage /> <strong>layout</strong> except its <strong>variants</strong>.
+                                Returns a <code>Rule</code> object represents a complete <LinkBasicPage /> <strong>layout</strong> except its <strong>variants</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesBasicVariants()'>
                             <p>
-                                Returns a <code>StyleCollection</code> object represents the <strong>variants</strong> of <LinkBasicPage /> such as:<br />
+                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <LinkBasicPage /> such as:<br />
                                 <code>SizeVariant</code>, <code>NudeVariant</code>, <code>ThemeVariant</code>, <code>GradientVariant</code>, <code>OutlinedVariant</code>, and <code>MildVariant</code>.
                             </p>
                         </DetailSpecItem>
                     </SpecList>
                 }>{`
-import { mainComposition, layout, imports, variants, rule } from '@cssfn/cssfn'
+import { mainComposition, style, imports, variants, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
 import { Basic, usesBasicLayout, usesBasicVariants } from '@nodestrap/basic'
 
 const useCustomComponentSheet = createUseSheet(() => [
-    mainComposition([
+    mainComposition(
         imports([
             // import some stuff from <Basic>:
             usesBasicLayout(),
             usesBasicVariants(),
         ]),
-        layout({
+        style({
             // then overwrite with your style:
             display : 'inline-block',
             margin  : '1em',
             /* ... */
-        }),
-        variants([
-            rule('.big', [
-                layout({
+            
+            ...variants([
+                rule('.big', {
                     // define the style at 'big' variant:
                     fontSize: 'xx-large',
                     /* ... */
                 }),
-            ]),
-            rule('.dark', [
-                layout({
+                rule('.dark', {
                     // define the style at 'dark' variant:
                     background-color : 'black',
                     color            : 'white',
                     /* ... */
                 }),
+                /* ... */
             ]),
+            
             /* ... */
-        ]),
-    ]),
+        }),
+    ),
 ]);
 
 export default function CustomComponent(props) {

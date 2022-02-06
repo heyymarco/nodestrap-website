@@ -6,21 +6,25 @@ import {
 // cssfn:
 import {
     // compositions:
-    composition,
     mainComposition,
+    
+    
+    
+    // styles:
+    style,
+    vars,
     imports,
     
     
     
-    // layouts:
-    layout,
-    children,
-    
-    
-    
     // rules:
-    variants,
     rule,
+    variants,
+    
+    
+    
+    //combinators:
+    children,
 }                           from '@cssfn/cssfn'       // cssfn core
 import {
     // hooks:
@@ -130,8 +134,8 @@ export const usesDetailLayout = (options?: OrientationRuleOptions) => {
     
     
     
-    return composition([
-        imports([
+    return style({
+        ...imports([
             // colors:
             border(),
             
@@ -140,7 +144,19 @@ export const usesDetailLayout = (options?: OrientationRuleOptions) => {
             borderRadius(),
             usesBorderAsContainer(options), // make a nicely rounded corners
         ]),
-        layout({
+        ...style({
+            // layouts:
+            ...rule(orientationBlockSelector,  { // block
+                display           : 'flex',        // use block flexbox, so it takes the entire parent's width
+                flexDirection     : 'column',      // items are stacked vertically
+            }),
+            ...rule(orientationInlineSelector, { // inline
+                display           : 'inline-flex', // use inline flexbox, so it takes the width & height as needed
+                flexDirection     : 'row',         // items are stacked horizontally
+            }),
+            
+            
+            
             // customize:
             ...usesGeneralProps(cssProps), // apply general cssProps
             
@@ -150,71 +166,52 @@ export const usesDetailLayout = (options?: OrientationRuleOptions) => {
             ...expandBorderStroke(), // expand borderStroke css vars
             ...expandBorderRadius(), // expand borderRadius css vars
         }),
-        variants([
-            /* the orientation variants are part of the layout, because without these variants the layout is broken */
-            rule(orientationBlockSelector,  [ // block
-                layout({
-                    // layouts:
-                    display           : 'flex',        // use block flexbox, so it takes the entire parent's width
-                    flexDirection     : 'column',      // items are stacked vertically
-                }),
-            ]),
-            rule(orientationInlineSelector, [ // inline
-                layout({
-                    // layouts:
-                    display           : 'inline-flex', // use inline flexbox, so it takes the width & height as needed
-                    flexDirection     : 'row',         // items are stacked horizontally
-                }),
-            ]),
-        ]),
-    ]);
+    });
 };
 export const usesDetailVariants = () => {
     // dependencies:
     
     // layouts:
-    const [sizes] = usesSizeVariant((sizeName) => composition([
-        layout({
-            // overwrites propName = propName{SizeName}:
-            ...overwriteProps(cssDecls, usesSuffixedProps(cssProps, sizeName)),
-        }),
-    ]));
+    const [sizes] = usesSizeVariant((sizeName) => style({
+        // overwrites propName = propName{SizeName}:
+        ...overwriteProps(cssDecls, usesSuffixedProps(cssProps, sizeName)),
+    }));
     
     
     
-    return composition([
-        imports([
+    return style({
+        ...imports([
             // variants:
             usesBasicVariants(),
             
             // layouts:
             sizes(),
         ]),
-        variants([
-            rule('.content', [ // content
-                imports([
+        ...variants([
+            rule('.content', { // content
+                ...imports([
                     // variants:
                     usesContentBasicVariants(),
                 ]),
-                layout({
+                ...style({
                     // children:
-                    ...children('*', [
-                        imports([
+                    ...children('*', {
+                        ...imports([
                             // layouts:
                             usesContentBasicLayout(),
                             
                             // children:
                             usesContentChildren(),
                         ]),
-                    ]),
+                    }),
                 }),
-            ]),
+            }),
         ]),
-    ]);
+    });
 };
 
 export const useDetailSheet = createUseSheet(() => [
-    mainComposition([
+    mainComposition(
         imports([
             // layouts:
             usesDetailLayout(),
@@ -222,7 +219,7 @@ export const useDetailSheet = createUseSheet(() => [
             // variants:
             usesDetailVariants(),
         ]),
-    ]),
+    ),
 ], /*sheetId :*/'sbxf5u9ilo'); // an unique salt for SSR support, ensures the server-side & client-side have the same generated class names
 
 

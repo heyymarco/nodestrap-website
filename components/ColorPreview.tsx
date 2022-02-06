@@ -1,15 +1,14 @@
 // cssfn:
 import {
     // compositions:
-    composition,
     mainComposition,
-    imports,
     
     
     
-    // layouts:
-    layout,
+    // styles:
+    style,
     vars,
+    imports,
 }                           from '@cssfn/cssfn'       // cssfn core
 import {
     // hooks:
@@ -57,12 +56,12 @@ export const usesColorPreviewLayout = () => {
     
     
     
-    return composition([
-        imports([
+    return style({
+        ...imports([
             // layouts:
             usesBadgeLayout(),
         ]),
-        layout({
+        ...style({
             // borders:
             [borderRadiusDecls.borderStartStartRadius] : '0.6em',
             [borderRadiusDecls.borderStartEndRadius  ] : '0.6em',
@@ -75,18 +74,18 @@ export const usesColorPreviewLayout = () => {
             [paddingDecls.paddingInline] : '0px', // discard padding
             [paddingDecls.paddingBlock ] : '0px', // discard padding
         }),
-        vars({
+        ...vars({
             [backgDecls.backgCol] : colorPreviewRefs.color,
         }),
-    ]);
+    });
 };
 export const useColorPreviewSheet = createUseSheet(() => [
-    mainComposition([
+    mainComposition(
         imports([
             // layouts:
             usesColorPreviewLayout(),
         ]),
-    ]),
+    ),
 ], /*sheetId :*/'z6dy6e24h4'); // an unique salt for SSR support, ensures the server-side & client-side have the same generated class names
 
 

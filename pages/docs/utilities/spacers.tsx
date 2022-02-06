@@ -90,7 +90,7 @@ export default function MyComponent(props) {
 }
                 `}</TypeScriptCode>
                 <p>
-                    You can use <strong>CSS in JS</strong>, <strong>Styled Component</strong> or <strong>CSSFN</strong> to dynamically create your own css:
+                    You can use <strong>CSS in JS</strong>, <strong>Styled Component</strong> or <strong>cssfn</strong> to dynamically create your own css:
                 </p>
                 <TypeScriptCode>{`
 import { compositionOf, layout } from '@cssfn/cssfn'
@@ -98,11 +98,11 @@ import { createUseSheet } from '@cssfn/react-cssfn'
 import { spacers } from '@nodestrap/spacers'
 
 const useMySheet = createUseSheet(() => [
-    compositionOf('myClass1', [
-        layout({
+    compositionOf('myClass1',
+        style({
             padding : spacers.default,
         }),
-    ])
+    )
 ]);
 
 export default function MyComponent(props) {

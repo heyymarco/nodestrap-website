@@ -127,18 +127,18 @@ export default function TextEditor(props) {
                     <SpecList>
                         <DetailSpecItem code='usesEditableTextControlLayout()'>
                             <p>
-                                Returns a <code>StyleCollection</code> object represents a complete <LinkEditableTextControlPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
+                                Returns a <code>Rule</code> object represents a complete <LinkEditableTextControlPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesEditableTextControlVariants()'>
                             <p>
-                                Returns a <code>StyleCollection</code> object represents the <strong>variants</strong> of <LinkEditableTextControlPage /> such as:<br />
+                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <LinkEditableTextControlPage /> such as:<br />
                                 <code>SizeVariant</code> and <strong>all variants</strong> inherited from <LinkEditableControlPage />.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesEditableTextControlStates()'>
                             <p>
-                                Returns a <code>StyleCollection</code> object represents the <strong>states</strong> of <LinkEditableTextControlPage />.
+                                Returns a <code>Rule</code> object represents the <strong>states</strong> of <LinkEditableTextControlPage />.
                             </p>
                             <p>
                                 Currently the states are equivalent to <LinkEditableControlPage />&apos;s states.
@@ -150,7 +150,7 @@ export default function TextEditor(props) {
                         The code above is the <em>simplified version</em> of <ExternalLink href='https://github.com/nodestrap/input'>@nodestrap/input</ExternalLink>
                     </p>
                 }>{`
-import { mainComposition, layout, imports, variants, states, rule, children } from '@cssfn/cssfn'
+import { mainComposition, style, imports, variants, states, rule, children } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
 import { usesPadding } from '@nodestrap/basic'
 import { isValid, isInvalid } from '@nodestrap/editable-control'
@@ -158,14 +158,14 @@ import { stripoutTextbox } from '@nodestrap/stripouts'
 import { EditableTextControl, usesEditableTextControlLayout, usesEditableTextControlVariants, usesEditableTextControlStates } from '@nodestrap/editable-text-control'
 
 const useTextEditorSheet = createUseSheet(() => [
-    mainComposition([
+    mainComposition(
         imports([
             // import some stuff from <EditableTextControl>:
             usesEditableTextControlLayout(),
             usesEditableTextControlVariants(),
             usesEditableTextControlStates(),
         ]),
-        layout({
+        style({
             // then overwrite with your style:
             display        : 'flex',
             flexDirection  : 'row',
@@ -177,11 +177,11 @@ const useTextEditorSheet = createUseSheet(() => [
             ...children(['input', 'textarea'], () => {
                 const [, paddingRefs] = usesPadding();
                 
-                return composition([
-                    imports([
+                return style({
+                    ...imports([
                         stripoutTextbox(), // clear browser's default styles
                     ]),
-                    layout({
+                    ...style({
                         display    : 'block',
                         flex       : [[1, 1, '100%']],
                         alignSelf  : 'stretch',
@@ -193,27 +193,23 @@ const useTextEditorSheet = createUseSheet(() => [
                         paddingInline : paddingRefs.paddingInline,
                         paddingBlock  : paddingRefs.paddingBlock,
                     }),
-                ]);
+                });
             }),
         }),
         states([
-            isValid([
-                layout({
-                    // define the style at 'being/fully valided' state:
-                    color: 'darkgreen',
-                    /* ... */
-                }),
-            ]),
-            isInvalid([
-                layout({
-                    // define the style at 'being/fully invalided' state:
-                    color: 'darkred',
-                    /* ... */
-                }),
-            ]),
+            isValid({
+                // define the style at 'being/fully valided' state:
+                color: 'darkgreen',
+                /* ... */
+            }),
+            isInvalid({
+                // define the style at 'being/fully invalided' state:
+                color: 'darkred',
+                /* ... */
+            }),
             /* ... */
         ]),
-    ]),
+    ),
 ]);
 
 export default function TextEditor(props) {

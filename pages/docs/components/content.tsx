@@ -98,7 +98,7 @@ export default function CoolArticle(props) {
                     <SpecList>
                         <DetailSpecItem code='usesContentBasicLayout()'>
                             <p>
-                                Returns a <code>StyleCollection</code> object represents a complete <LinkContentPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>excluding layout</strong> from <LinkUsesBasicLayoutPage />.
+                                Returns a <code>Rule</code> object represents a complete <LinkContentPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>excluding layout</strong> from <LinkUsesBasicLayoutPage />.
                             </p>
                             <p>
                                 Equivalent to <code>usesContentLayout()</code> <strong>minus</strong> <LinkUsesBasicLayoutPage />.
@@ -106,7 +106,7 @@ export default function CoolArticle(props) {
                         </DetailSpecItem>
                         <DetailSpecItem code='usesContentBasicVariants()'>
                             <p>
-                                Returns a <code>StyleCollection</code> object represents the <strong>variants</strong> of <LinkContentPage /> but <strong>excluding variants</strong> from <LinkUsesBasicVariantsPage />.
+                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <LinkContentPage /> but <strong>excluding variants</strong> from <LinkUsesBasicVariantsPage />.
                             </p>
                             <p>
                                 Equivalent to <code>usesContentVariants()</code> <strong>minus</strong> <LinkUsesBasicVariantsPage />.
@@ -115,7 +115,7 @@ export default function CoolArticle(props) {
                         
                         <DetailSpecItem code='usesContentLayout()'>
                             <p>
-                                Returns a <code>StyleCollection</code> object represents a complete <LinkContentPage /> <strong>layout</strong> except its <strong>variants</strong>.
+                                Returns a <code>Rule</code> object represents a complete <LinkContentPage /> <strong>layout</strong> except its <strong>variants</strong>.
                             </p>
                             <p>
                                 Equivalent to <code>usesContentBasicLayout()</code> <strong>plus</strong> <LinkUsesBasicLayoutPage />.
@@ -123,7 +123,7 @@ export default function CoolArticle(props) {
                         </DetailSpecItem>
                         <DetailSpecItem code='usesContentVariants()'>
                             <p>
-                                Returns a <code>StyleCollection</code> object represents the <strong>variants</strong> of <LinkContentPage /> such as:<br />
+                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <LinkContentPage /> such as:<br />
                                 <code>SizeVariant</code> and <strong>all variants</strong> inherited from <LinkBasicPage />.
                             </p>
                             <p>
@@ -134,7 +134,7 @@ export default function CoolArticle(props) {
 
                         <DetailSpecItem code='usesContentMediaLayout()'>
                             <p>
-                                Returns a <code>StyleCollection</code> object represents the <strong>style</strong> &amp; <strong>layout</strong> of <strong>each</strong> individual <strong>media content</strong>.
+                                Returns a <code>Rule</code> object represents the <strong>style</strong> &amp; <strong>layout</strong> of <strong>each</strong> individual <strong>media content</strong>.
                             </p>
                             <p>
                                 The <strong>media content</strong> are: <CommaSeparated components={['figure', 'img', 'svg', 'video', '.media'].map((item, index) => <code key={index}>{ item.startsWith('.') ? item : `<${item}>` }</code>)} />.
@@ -142,7 +142,7 @@ export default function CoolArticle(props) {
                         </DetailSpecItem>
                         <DetailSpecItem code='usesContentMedia()'>
                             <p>
-                                Returns a <code>StyleCollection</code> object represents the <strong>style</strong> &amp; <strong>layout</strong> of <strong>overall</strong> the composition of <strong>media content(s)</strong> and <strong>link(s)</strong>.
+                                Returns a <code>Rule</code> object represents the <strong>style</strong> &amp; <strong>layout</strong> of <strong>overall</strong> the composition of <strong>media content(s)</strong> and <strong>link(s)</strong>.
                             </p>
                             <p>
                                 This is the <strong>style</strong> of the <strong>children</strong> inside the <LinkContentPage />.
@@ -150,43 +150,42 @@ export default function CoolArticle(props) {
                         </DetailSpecItem>
                     </SpecList>
                 }>{`
-import { mainComposition, layout, imports, variants, rule } from '@cssfn/cssfn'
+import { mainComposition, style, imports, variants, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
 import { Content, usesContentLayout, usesContentVariants, usesContentStates } from '@nodestrap/content'
 
 const useCoolArticleSheet = createUseSheet(() => [
-    mainComposition([
+    mainComposition(
         imports([
             // import some stuff from <Content>:
             usesContentLayout(),
             usesContentVariants(),
             usesContentStates(),
         ]),
-        layout({
+        style({
             // then overwrite with your style:
             display : 'inline-block',
             margin  : '1em',
             /* ... */
-        }),
-        variants([
-            rule('.big', [
-                layout({
+            
+            ...variants([
+                rule('.big', {
                     // define the style at 'big' variant:
                     fontSize: 'xx-large',
                     /* ... */
                 }),
-            ]),
-            rule('.dark', [
-                layout({
+                rule('.dark', {
                     // define the style at 'dark' variant:
                     background-color : 'black',
                     color            : 'white',
                     /* ... */
                 }),
+                /* ... */
             ]),
+            
             /* ... */
-        ]),
-    ]),
+        }),
+    ),
 ]);
 
 export default function CustomComponent(props) {

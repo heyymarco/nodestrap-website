@@ -185,18 +185,18 @@ export default function OnOffIndicator(props) {
                     <SpecList>
                         <DetailSpecItem code='usesIndicatorLayout()'>
                             <p>
-                                Returns a <code>StyleCollection</code> object represents a complete <LinkIndicatorPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
+                                Returns a <code>Rule</code> object represents a complete <LinkIndicatorPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesIndicatorVariants()'>
                             <p>
-                                Returns a <code>StyleCollection</code> object represents the <strong>variants</strong> of <LinkIndicatorPage /> such as:<br />
+                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <LinkIndicatorPage /> such as:<br />
                                 <code>SizeVariant</code> and <strong>all variants</strong> inherited from <LinkBasicPage />.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesIndicatorStates()'>
                             <p>
-                                Returns a <code>StyleCollection</code> object represents the <strong>states</strong> of <LinkIndicatorPage /> such as:<br />
+                                Returns a <code>Rule</code> object represents the <strong>states</strong> of <LinkIndicatorPage /> such as:<br />
                                 <strong>enabled</strong>/<strong>disabled</strong> and <strong>active</strong>/<strong>passive</strong>.
                             </p>
                         </DetailSpecItem>
@@ -276,60 +276,55 @@ export default function OnOffIndicator(props) {
                         </DetailSpecItem>
                     </SpecList>
                 }>{`
-import { mainComposition, layout, imports, variants, states, rule } from '@cssfn/cssfn'
+import { mainComposition, style, imports, variants, states, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
 import { Indicator, usesIndicatorLayout, usesIndicatorVariants, usesIndicatorStates, isDisable, isActive } from '@nodestrap/indicator'
 
 const useCustomComponentSheet = createUseSheet(() => [
-    mainComposition([
+    mainComposition(
         imports([
             // import some stuff from <Indicator>:
             usesIndicatorLayout(),
             usesIndicatorVariants(),
             usesIndicatorStates(),
         ]),
-        layout({
+        style({
             // then overwrite with your style:
             display : 'inline-block',
             margin  : '1em',
             /* ... */
-        }),
-        variants([
-            rule('.big', [
-                layout({
+            
+            ...variants([
+                rule('.big', {
                     // define the style at 'big' variant:
                     fontSize: 'xx-large',
                     /* ... */
                 }),
-            ]),
-            rule('.dark', [
-                layout({
+                rule('.dark', {
                     // define the style at 'dark' variant:
                     background-color : 'black',
                     color            : 'white',
                     /* ... */
                 }),
+                /* ... */
             ]),
-            /* ... */
-        ]),
-        states([
-            isDisable([
-                layout({
+            ...states([
+                isDisable({
                     // define the style at 'being/fully disabled' state:
                     background-color: 'gray',
                     /* ... */
                 }),
-            ]),
-            isActive([
-                layout({
+                isActive({
                     // define the style at 'being/fully active' state:
                     background-color: 'red',
                     /* ... */
                 }),
+                /* ... */
             ]),
+            
             /* ... */
-        ]),
-    ]),
+        }),
+    ),
 ]);
 
 export default function CustomComponent(props) {

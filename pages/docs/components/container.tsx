@@ -344,18 +344,18 @@ export default function SiteSection(props) {
                     <SpecList>
                         <DetailSpecItem code='usesContainerLayout()'>
                             <p>
-                                Returns a <code>StyleCollection</code> object represents a complete <LinkContainerPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>children</strong>.
+                                Returns a <code>Rule</code> object represents a complete <LinkContainerPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>children</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesContainerVariants()'>
                             <p>
-                                Returns a <code>StyleCollection</code> object represents the <strong>variants</strong> of <LinkContainerPage /> such as:<br />
+                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <LinkContainerPage /> such as:<br />
                                 <code>SizeVariant</code> and <strong>all variants</strong> inherited from <LinkBasicPage />.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesContainerChildren()'>
                             <p>
-                                Returns a <code>StyleCollection</code> object represents the style of <LinkContainerPage />&apos;s <strong>children</strong>.
+                                Returns a <code>Rule</code> object represents the style of <LinkContainerPage />&apos;s <strong>children</strong>.
                             </p>
                             <p>
                                 Currently the returning <strong>style</strong> is <strong>equivalent</strong> to the return of <code>usesContainerChildrenFill()</code>.
@@ -363,7 +363,7 @@ export default function SiteSection(props) {
                         </DetailSpecItem>
                         <DetailSpecItem code='usesContainerChildrenFill()'>
                             <p>
-                                Returns a <code>StyleCollection</code> object represents the style of <LinkContainerPage />&apos;s <strong>children</strong> <em>when</em> its <code>class</code> contains <code>fill</code> or <code>fill-self</code>.
+                                Returns a <code>Rule</code> object represents the style of <LinkContainerPage />&apos;s <strong>children</strong> <em>when</em> its <code>class</code> contains <code>fill</code> or <code>fill-self</code>.
                             </p>
                             <p>
                                 When <code>fill</code> class is applied, the corresponding child&apos;s <strong>width</strong> will <strong>expand</strong> to <strong>container&apos;s client width</strong> (including the container&apos;s <strong>padding</strong>), and
@@ -380,7 +380,7 @@ export default function SiteSection(props) {
                         
                         <DetailSpecItem code='usesResponsiveContainerLayout()'>
                             <p>
-                                Returns a <code>StyleCollection</code> object represents a <strong>responsive paddings</strong> based on <strong>browser&apos;s width</strong>.
+                                Returns a <code>Rule</code> object represents a <strong>responsive paddings</strong> based on <strong>browser&apos;s width</strong>.
                             </p>
                             <p>
                                 The width of <strong>padding inline (left &amp; right)</strong> and <strong>padding block (top &amp; bottom)</strong> are <strong>stepped expanding</strong> as the <strong>browser&apos;s width</strong> expands.
@@ -396,49 +396,44 @@ export default function SiteSection(props) {
                         </DetailSpecItem>
                     </SpecList>
                 }>{`
-import { mainComposition, layout, imports, variants, children } from '@cssfn/cssfn'
+import { mainComposition, style, imports, variants, children } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
 import { isScreenWidthAtLeast } from '@nodestrap/breakpoints'
 import { Container, usesContainerLayout, usesContainerVariants, usesContainerChildren } from '@nodestrap/container'
 
 const useSiteSectionSheet = createUseSheet(() => [
-    mainComposition([
+    mainComposition(
         imports([
             // import some stuff from <Container>:
             usesContainerLayout(),
             usesContainerVariants(),
             usesContainerChildren(),
         ]),
-        layout({
+        style({
             // then overwrite with your style:
             display       : 'flex',
             flexDirection : 'column',
             /* ... */
-            ...children('article', [
-                layout({
-                    /* ... */
-                }),
-            ]),
+            ...children('article', {
+                /* ... */
+            }),
+            /* ... */
+            
+            fontSize: 'medium',
+            ...isScreenWidthAtLeast('sm', {
+                // define the style at screen 'sm':
+                fontSize: 'small',
+                /* ... */
+            }),
+            ...isScreenWidthAtLeast('lg', {
+                // define the style at screen 'lg':
+                fontSize: 'large',
+                /* ... */
+            }),
+            
             /* ... */
         }),
-        variants([
-            isScreenWidthAtLeast('md', [
-                layout({
-                    // define the style at screen 'md':
-                    fontSize: 'large',
-                    /* ... */
-                }),
-            ]),
-            isScreenWidthAtLeast('lg', [
-                layout({
-                    // define the style at screen 'lg':
-                    fontSize: 'x-large',
-                    /* ... */
-                }),
-            ]),
-            /* ... */
-        ]),
-    ]),
+    ),
 ]);
 
 export default function SiteSection(props) {
@@ -461,10 +456,10 @@ export default function SiteSection(props) {
                                 Returns a <strong>triplet</strong> object represents a <strong>border width</strong>, <strong>border radiuses</strong> and <strong>paddings</strong> of the corresponding <strong>container</strong> element.
                             </p>
                             <p>
-                                The <strong>first item</strong> of the <strong>triplet</strong> is a <code>StyleCollection</code> object represents the <strong>style</strong> to be applied to the desired element <strong>as container</strong>.
+                                The <strong>first item</strong> of the <strong>triplet</strong> is a <code>Rule</code> object represents the <strong>style</strong> to be applied to the desired element <strong>as container</strong>.
                             </p>
                             <p>
-                                By applying the <code>StyleCollection</code> above, the <strong>border width</strong>, <strong>border radiuses</strong> and <strong>paddings</strong> of the corresponding <strong>container</strong> are <strong>managed by Nodestrap</strong>.
+                                By applying the <code>Rule</code> above, the <strong>border width</strong>, <strong>border radiuses</strong> and <strong>paddings</strong> of the corresponding <strong>container</strong> are <strong>managed by Nodestrap</strong>.
                                 For example if the container&apos;s <strong>child</strong> want to <strong>fill</strong> the entire/partial of <code>container&apos;s client area</code> (including the container&apos;s <strong>padding</strong>),
                                 the child&apos; <strong>border radiuses</strong> and <strong>negative margins</strong> can be <strong>easily calculated</strong> so that the child can <strong>fit into</strong> the container accurately.
                             </p>
@@ -550,7 +545,7 @@ so to reduce the **imperfection** we added an extra 0.5px
                         </DetailSpecItem>
                         <DetailSpecItem code='usesBorderAsSeparatorBlock()'>
                             <p>
-                                Returns a <code>StyleCollection</code> object to exploit the <strong>border top</strong> and/or <strong>border bottom</strong> in a <em>smart way</em> so that the borders appear like <strong>separators between siblings</strong>.
+                                Returns a <code>Rule</code> object to exploit the <strong>border top</strong> and/or <strong>border bottom</strong> in a <em>smart way</em> so that the borders appear like <strong>separators between siblings</strong>.
                             </p>
                             <p>
                                 The <strong>border left</strong> and <strong>border right</strong> are <strong>always removed</strong> because the siblings are assumed to <strong>stack vertically</strong>.
@@ -566,7 +561,7 @@ so to reduce the **imperfection** we added an extra 0.5px
                         </DetailSpecItem>
                         <DetailSpecItem code='usesBorderAsSeparatorInline()'>
                             <p>
-                                Returns a <code>StyleCollection</code> object to exploit the <strong>border left</strong> and/or <strong>border right</strong> in a <em>smart way</em> so that the borders appear like <strong>separators between siblings</strong>.
+                                Returns a <code>Rule</code> object to exploit the <strong>border left</strong> and/or <strong>border right</strong> in a <em>smart way</em> so that the borders appear like <strong>separators between siblings</strong>.
                             </p>
                             <p>
                                 The <strong>border top</strong> and <strong>border bottom</strong> are <strong>always removed</strong> because the siblings are assumed to <strong>stack horizontally</strong>.

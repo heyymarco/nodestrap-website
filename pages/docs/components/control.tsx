@@ -183,18 +183,18 @@ export default function JoystickControl(props) {
                     <SpecList>
                         <DetailSpecItem code='usesControlLayout()'>
                             <p>
-                                Returns a <code>StyleCollection</code> object represents a complete <LinkControlPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
+                                Returns a <code>Rule</code> object represents a complete <LinkControlPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesControlVariants()'>
                             <p>
-                                Returns a <code>StyleCollection</code> object represents the <strong>variants</strong> of <LinkControlPage /> such as:<br />
+                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <LinkControlPage /> such as:<br />
                                 <code>SizeVariant</code> and <strong>all variants</strong> inherited from <LinkIndicatorPage />.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesControlStates()'>
                             <p>
-                                Returns a <code>StyleCollection</code> object represents the <strong>states</strong> of <LinkControlPage /> such as:<br />
+                                Returns a <code>Rule</code> object represents the <strong>states</strong> of <LinkControlPage /> such as:<br />
                                 <strong>focus</strong>/<strong>blur</strong>, <strong>arrive</strong>/<strong>leave</strong>, and <strong>all states</strong> inherited from <LinkIndicatorPage />.
                             </p>
                         </DetailSpecItem>
@@ -274,60 +274,55 @@ export default function JoystickControl(props) {
                         </DetailSpecItem>
                     </SpecList>
                 }>{`
-import { mainComposition, layout, imports, variants, states, rule } from '@cssfn/cssfn'
+import { mainComposition, style, imports, variants, states, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
 import { Control, usesControlLayout, usesControlVariants, usesControlStates, isFocus, isArrive } from '@nodestrap/control'
 
 const useJoystickControlSheet = createUseSheet(() => [
-    mainComposition([
+    mainComposition(
         imports([
             // import some stuff from <Control>:
             usesControlLayout(),
             usesControlVariants(),
             usesControlStates(),
         ]),
-        layout({
+        style({
             // then overwrite with your style:
             display : 'inline-block',
             margin  : '1em',
             /* ... */
-        }),
-        variants([
-            rule('.big', [
-                layout({
+            
+            ...variants([
+                rule('.big', {
                     // define the style at 'big' variant:
                     fontSize: 'xx-large',
                     /* ... */
                 }),
-            ]),
-            rule('.dark', [
-                layout({
+                rule('.dark', {
                     // define the style at 'dark' variant:
                     background-color : 'black',
                     color            : 'white',
                     /* ... */
                 }),
+                /* ... */
             ]),
-            /* ... */
-        ]),
-        states([
-            isFocus([
-                layout({
+            ...states([
+                isFocus({
                     // define the style at 'being/fully focus' state:
                     border-color: 'red',
                     /* ... */
                 }),
-            ]),
-            isArrive([
-                layout({
+                isArrive({
                     // define the style at 'being/fully arrrive' state:
                     background-color: 'pink',
                     /* ... */
                 }),
+                /* ... */
             ]),
+            
             /* ... */
-        ]),
-    ]),
+        }),
+    ),
 ]);
 
 export default function JoystickControl(props) {

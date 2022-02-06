@@ -77,7 +77,7 @@ export default function AcceptButton(props) {
                     <SpecList>
                         <DetailSpecItem code='usesEditableActionControlLayout()'>
                             <p>
-                                Returns a <code>StyleCollection</code> object represents a complete <LinkEditableActionControlPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
+                                Returns a <code>Rule</code> object represents a complete <LinkEditableActionControlPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
                             </p>
                             <p>
                                 Currently the layout is the combination of <LinkEditableControlPage />&apos;s layout and <LinkActionControlPage />&apos;s layout.
@@ -85,7 +85,7 @@ export default function AcceptButton(props) {
                         </DetailSpecItem>
                         <DetailSpecItem code='usesEditableActionControlVariants()'>
                             <p>
-                                Returns a <code>StyleCollection</code> object represents the <strong>variants</strong> of <LinkEditableActionControlPage />.
+                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <LinkEditableActionControlPage />.
                             </p>
                             <p>
                                 Currently the variants are the combination of <LinkEditableControlPage />&apos;s variants and <LinkActionControlPage />&apos;s variants.
@@ -93,7 +93,7 @@ export default function AcceptButton(props) {
                         </DetailSpecItem>
                         <DetailSpecItem code='usesEditableActionControlStates()'>
                             <p>
-                                Returns a <code>StyleCollection</code> object represents the <strong>states</strong> of <LinkEditableActionControlPage />.
+                                Returns a <code>Rule</code> object represents the <strong>states</strong> of <LinkEditableActionControlPage />.
                             </p>
                             <p>
                                 Currently the states are the combination of <LinkEditableControlPage />&apos;s states and <LinkActionControlPage />&apos;s states.
@@ -101,42 +101,38 @@ export default function AcceptButton(props) {
                         </DetailSpecItem>
                     </SpecList>
                 }>{`
-import { mainComposition, layout, imports, variants, states, rule } from '@cssfn/cssfn'
+import { mainComposition, style, imports, variants, states, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
 import { isValid, isInvalid } from '@nodestrap/editable-control'
 import { EditableActionControl, usesEditableActionControlLayout, usesEditableActionControlVariants, usesEditableActionControlStates } from '@nodestrap/editable-action-control'
 
 const useAcceptButtonSheet = createUseSheet(() => [
-    mainComposition([
+    mainComposition(
         imports([
             // import some stuff from <EditableActionControl>:
             usesEditableActionControlLayout(),
             usesEditableActionControlVariants(),
             usesEditableActionControlStates(),
         ]),
-        layout({
+        style({
             // then overwrite with your style:
             display : 'inline-block',
             /* ... */
         }),
         states([
-            isValid([
-                layout({
-                    // define the style at 'being/fully valided' state:
-                    color: 'darkgreen',
-                    /* ... */
-                }),
-            ]),
-            isInvalid([
-                layout({
-                    // define the style at 'being/fully invalided' state:
-                    color: 'darkred',
-                    /* ... */
-                }),
-            ]),
+            isValid({
+                // define the style at 'being/fully valided' state:
+                color: 'darkgreen',
+                /* ... */
+            }),
+            isInvalid({
+                // define the style at 'being/fully invalided' state:
+                color: 'darkred',
+                /* ... */
+            }),
             /* ... */
         ]),
-    ]),
+    ),
 ]);
 
 export default function AcceptButton(props) {

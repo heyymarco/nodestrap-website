@@ -67,13 +67,13 @@ breakpoints.xxxl = null; // delete property \`xxxl\`
                     You can do like this:
                 </p>
                 <TypeScriptCode>{`
-import { compositionOf, layout, variants } from '@cssfn/cssfn'
+import { compositionOf, layout } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
-import { breakpoints, isScreenWidthAtLeast } from '@nodestrap/breakpoints'
+import { isScreenWidthAtLeast } from '@nodestrap/breakpoints'
 
 const useMySheet = createUseSheet(() => [
-    compositionOf('myClass1', [
-        layout({
+    compositionOf('myClass1',
+        style({
             /* the default layout */
             display             : 'grid',
             gridTemplateColumns : [['1fr', '1fr']],
@@ -83,38 +83,32 @@ const useMySheet = createUseSheet(() => [
                 '"poster form"',
                 '"...... ...."',
             ]],
+            ...isScreenWidthAtLeast('lg', {
+                /* the layout for 'lg' screen */
+                display             : 'grid',
+                gridTemplateColumns : [['3fr', '1fr']],
+                gridTemplateRows    : [['40px', '1fr', 'min-content', '40px']],
+                gridTemplateAreas   : [[
+                    '"...... ...."',
+                    '"poster form"',
+                    '"foot   foot"',
+                    '"...... ...."',
+                ]],
+            }),
+            ...isScreenWidthAtLeast('xl', {
+                /* the layout for 'xl' screen */
+                display             : 'grid',
+                gridTemplateColumns : [['4fr', '1fr']],
+                gridTemplateRows    : [['50px', '1fr', 'min-content', '50px']],
+                gridTemplateAreas   : [[
+                    '"...... ...."',
+                    '"poster form"',
+                    '"foot   foot"',
+                    '"...... ...."',
+                ]],
+            }),
         }),
-        variants([
-            !!breakpoints.lg && isScreenWidthAtLeast('lg', [
-                layout({
-                    /* the layout for 'lg' screen */
-                    display             : 'grid',
-                    gridTemplateColumns : [['3fr', '1fr']],
-                    gridTemplateRows    : [['40px', '1fr', 'min-content', '40px']],
-                    gridTemplateAreas   : [[
-                        '"...... ...."',
-                        '"poster form"',
-                        '"foot   foot"',
-                        '"...... ...."',
-                    ]],
-                }),
-            ]),
-            !!breakpoints.xl && isScreenWidthAtLeast('xl', [
-                layout({
-                    /* the layout for 'xl' screen */
-                    display             : 'grid',
-                    gridTemplateColumns : [['4fr', '1fr']],
-                    gridTemplateRows    : [['50px', '1fr', 'min-content', '50px']],
-                    gridTemplateAreas   : [[
-                        '"...... ...."',
-                        '"poster form"',
-                        '"foot   foot"',
-                        '"...... ...."',
-                    ]],
-                }),
-            ]),
-        ]),
-    ]),
+    ),
 ]);
 
 export default function MyComponent(props) {

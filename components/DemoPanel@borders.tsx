@@ -77,7 +77,6 @@ export const DemoBorders = () => {
         const handler = setTimeout(() => {
             new Promise<void>((resolve) => {
                 borders.defaultWidth = `${width}px` as any;
-                borders.default      = [[borders.style, borders.defaultWidth, borders.color]] as any;
                 borders.style        = style as any;
                 resolve();
             });

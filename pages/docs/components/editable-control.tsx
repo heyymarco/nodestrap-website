@@ -329,18 +329,18 @@ export default function TextEditor(props) {
                     <SpecList>
                         <DetailSpecItem code='usesEditableControlLayout()'>
                             <p>
-                                Returns a <code>StyleCollection</code> object represents a complete <LinkEditableControlPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
+                                Returns a <code>Rule</code> object represents a complete <LinkEditableControlPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesEditableControlVariants()'>
                             <p>
-                                Returns a <code>StyleCollection</code> object represents the <strong>variants</strong> of <LinkEditableControlPage /> such as:<br />
+                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <LinkEditableControlPage /> such as:<br />
                                 <code>SizeVariant</code> and <strong>all variants</strong> inherited from <LinkControlPage />.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesEditableControlStates()'>
                             <p>
-                                Returns a <code>StyleCollection</code> object represents the <strong>states</strong> of <LinkEditableControlPage /> such as:<br />
+                                Returns a <code>Rule</code> object represents the <strong>states</strong> of <LinkEditableControlPage /> such as:<br />
                                 <strong>valid</strong>/<strong>un-valid</strong>/<strong>invalid</strong>/<strong>un-invalid</strong>, and <strong>all states</strong> inherited from <LinkControlPage />.
                             </p>
                         </DetailSpecItem>
@@ -417,60 +417,55 @@ export default function TextEditor(props) {
                         </DetailSpecItem>
                     </SpecList>
                 }>{`
-import { mainComposition, layout, imports, variants, states, rule } from '@cssfn/cssfn'
+import { mainComposition, style, imports, variants, states, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
 import { EditableControl, usesEditableControlLayout, usesEditableControlVariants, usesEditableControlStates, isValid, isInvalid } from '@nodestrap/editable-control'
 
 const useTextEditorSheet = createUseSheet(() => [
-    mainComposition([
+    mainComposition(
         imports([
             // import some stuff from <EditableControl>:
             usesEditableControlLayout(),
             usesEditableControlVariants(),
             usesEditableControlStates(),
         ]),
-        layout({
+        style({
             // then overwrite with your style:
             display : 'inline-block',
             margin  : '1em',
             /* ... */
-        }),
-        variants([
-            rule('.big', [
-                layout({
+            
+            ...variants([
+                rule('.big', {
                     // define the style at 'big' variant:
                     fontSize: 'xx-large',
                     /* ... */
                 }),
-            ]),
-            rule('.dark', [
-                layout({
+                rule('.dark', {
                     // define the style at 'dark' variant:
                     background-color : 'black',
                     color            : 'white',
                     /* ... */
                 }),
+                /* ... */
             ]),
-            /* ... */
-        ]),
-        states([
-            isValid([
-                layout({
+            ...states([
+                isValid({
                     // define the style at 'being/fully valided' state:
                     background-color: 'green',
                     /* ... */
                 }),
-            ]),
-            isInvalid([
-                layout({
+                isInvalid({
                     // define the style at 'being/fully invalided' state:
                     background-color: 'red',
                     /* ... */
                 }),
+                /* ... */
             ]),
+            
             /* ... */
-        ]),
-    ]),
+        }),
+    ),
 ]);
 
 export default function TextEditor(props) {
