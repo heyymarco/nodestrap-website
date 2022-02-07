@@ -5,12 +5,18 @@ import Head from 'next/head'
 
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
-import { SectionInheritedProps, LinkContentPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, LinkUsesBasicLayoutPage, LinkUsesBasicVariantsPage, CommaSeparated, SectionDemo, BusyBar, SectionMoreCustomizingCss, LinkGroupPage, LinkCardPage } from '../../../components/common-contents'
+import { Section, SubSection } from '../../../components/Section'
+import { SectionInheritedProps, LinkContentPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, LinkUsesBasicLayoutPage, LinkUsesBasicVariantsPage, CommaSeparated, SectionDemo, BusyBar, SectionMoreCustomizingCss, LinkGroupPage, LinkCardPage, LinkButtonPage } from '../../../components/common-contents'
 
 import loadable from '@loadable/component'
 import { TypeScriptCode } from '../../../components/Code'
 import { Warning } from '../../../components/Info'
 const DemoContentLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Content' */'../../../components/DemoPanel@Content'))
+
+import { Content } from '@nodestrap/content'
+import { Carousel } from '@nodestrap/carousel'
+import { Basic } from '@nodestrap/basic'
+import { Button } from '@nodestrap/button'
 
 
 
@@ -23,16 +29,255 @@ const Page: NextPage = () => {
             </Head>
 
             <SectionIntro>
-                    <p>
-                        <LinkContentPage /> is an <strong>abstract</strong> component for <strong>displaying indications</strong> such as <strong>enabled</strong>/<strong>disabled</strong> and <strong>active</strong>/<strong>passive</strong>.
-                    </p>
-                    <p>
-                        In <em>most cases</em>, you should <strong>not use </strong>this component <strong>directly</strong>, instead create your own component by derivering <LinkContentPage />.
-                    </p>
+                <p>
+                    <LinkContentPage /> is a presentation component for displaying contents such as paragraphs, images, vidoes, and/or mixed with another components.
+                </p>
             </SectionIntro>
             <SectionDemo>
                 <DemoContentLazy fallback={<BusyBar />} />
             </SectionDemo>
+            <Section title='Images &amp; Media'>
+                <p>
+                    Media elements such as <code>{`<img>`}</code>, <code>{`<img>`}</code>, <code>{`<svg>`}</code>, <code>{`<video>`}</code>, <code>{`<figure>`}</code>, and <code>{`.media`}</code> are styled to be full width inside <LinkContentPage />, including <LinkContentPage />&apos;s paddings.
+                </p>
+                <p>
+                    Here the demonstration:
+                </p>
+                <Content theme='primary'>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                    </p>
+                    <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                    </p>
+                    <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                    </p>
+                </Content>
+                <p></p>
+                <TypeScriptCode>{`
+<Content theme='primary'>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+    </p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+    </p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+    </p>
+</Content>
+                `}</TypeScriptCode>
+                
+                <SubSection title='Images &amp; Media at the Beginning and End'>
+                    <p>
+                        If the media position is at the first or the last, at the corners, the media (image) are bit clipped by <LinkContentPage />&apos;s border radius.
+                    </p>
+                    <p>
+                        Here the demonstration:
+                    </p>
+                    <Content theme='secondary' size='lg'>
+                        <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                        </p>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                        </p>
+                        <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+                    </Content>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Content theme='secondary' size='lg'>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+    </p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+</Content>
+                    `}</TypeScriptCode>
+                </SubSection>
+                <SubSection title='The Sequence of Images &amp; Media'>
+                    <p>
+                        If there are multiple images in a sequence (without being inserted by another types), the images are joined with borders.
+                    </p>
+                    <Content theme='primary'>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                        </p>
+                        <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+                        <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+                        <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                        </p>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                        </p>
+                    </Content>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Content theme='primary'>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+    </p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+    <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+    <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+    </p>
+</Content>
+                    `}</TypeScriptCode>
+                </SubSection>
+                <SubSection title='Custom Media'>
+                    <p>
+                        If you need a custom element to be treated as media, add <code>media</code> class to the desired element.<br />
+                        Set <code>{`classes={['boo', 'media', 'foo']}`}</code> for Nodestrap component -or- <code>{`className='boo media foo'`}</code> for regular component.
+                    </p>
+                    <Content theme='primary'>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                        </p>
+                        <Carousel classes={['media']}>
+                            <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+                            <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+                            <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+                        </Carousel>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                        </p>
+                        <Basic theme='success' classes={['media']} style={{ textAlign: 'center' }}>
+                            <p>
+                                hello world!
+                            </p>
+                        </Basic>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                        </p>
+                    </Content>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Content theme='primary'>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+    </p>
+    <Carousel classes={['media']}>
+        <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+        <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+        <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+    </Carousel>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+    </p>
+    <Basic theme='success' classes={['media']} style={{ textAlign: 'center' }}>
+        <p>
+            hello world!
+        </p>
+    </Basic>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+    </p>
+</Content>
+                    `}</TypeScriptCode>
+                </SubSection>
+            </Section>
+            <Section title='Links'>
+                <p>
+                    Link elements such as <code>{`<a>`}</code> and <code>{`.link`}</code> are styled and automatically get separated from each other.
+                </p>
+                <p>
+                    Here the demonstration:
+                </p>
+                <Content theme='primary'>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                    </p>
+                    <a href='#'>Link 1</a>
+                    <a href='#'>Link 2</a>
+                    <a href='#'>Link 3</a>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                    </p>
+                </Content>
+                <p></p>
+                <TypeScriptCode>{`
+<Content theme='primary'>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+    </p>
+    <a href='#'>Link 1</a>
+    <a href='#'>Link 2</a>
+    <a href='#'>Link 3</a>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+    </p>
+</Content>
+                `}</TypeScriptCode>
+                
+                <SubSection title='Custom Link'>
+                    <p>
+                        If you need a custom element to be treated as link, add <code>link</code> class to the desired element.<br />
+                        Set <code>{`classes={['boo', 'link', 'foo']}`}</code> for Nodestrap component -or- <code>{`className='boo link foo'`}</code> for regular component.
+                    </p>
+                    <p>
+                        For <LinkButtonPage /> component, just set <code>{`btnStyle='link'`}</code>.
+                        The <code>link</code> class will be automatically added for you.
+                    </p>
+                    <p>
+                        Here the demonstration:
+                    </p>
+                    <Content theme='primary'>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                        </p>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                        </p>
+                        <a href='#'>Link 1</a>
+                        <span className='link'>Link 2</span>
+                        <Button btnStyle='link' onClick={() => alert('hello world')}>Link 3</Button>
+                        <Button btnStyle='link' href='#'>Link 4</Button>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                        </p>
+                    </Content>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Content theme='primary'>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+    </p>
+    <a href='#'>Link 1</a>
+    <span className='link'>Link 2</span>
+    <Button btnStyle='link' onClick={() => alert('hello world')}>Link 3</Button>
+    <Button btnStyle='link' href='#'>Link 4</Button>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+    </p>
+</Content>
+                    `}</TypeScriptCode>
+                </SubSection>
+            </Section>
             <SectionInheritedProps />
             <SectionCustomizing specList={
                 <SpecList>
@@ -104,21 +349,21 @@ export default function CoolArticle(props) {
                                 Equivalent to <code>usesContentLayout()</code> <strong>minus</strong> <LinkUsesBasicLayoutPage />.
                             </p>
                         </DetailSpecItem>
+                        <DetailSpecItem code='usesContentLayout()'>
+                            <p>
+                                Returns a <code>Rule</code> object represents a complete <LinkContentPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>children</strong>.
+                            </p>
+                            <p>
+                                Equivalent to <code>usesContentBasicLayout()</code> <strong>plus</strong> <LinkUsesBasicLayoutPage />.
+                            </p>
+                        </DetailSpecItem>
+                        
                         <DetailSpecItem code='usesContentBasicVariants()'>
                             <p>
                                 Returns a <code>Rule</code> object represents the <strong>variants</strong> of <LinkContentPage /> but <strong>excluding variants</strong> from <LinkUsesBasicVariantsPage />.
                             </p>
                             <p>
                                 Equivalent to <code>usesContentVariants()</code> <strong>minus</strong> <LinkUsesBasicVariantsPage />.
-                            </p>
-                        </DetailSpecItem>
-                        
-                        <DetailSpecItem code='usesContentLayout()'>
-                            <p>
-                                Returns a <code>Rule</code> object represents a complete <LinkContentPage /> <strong>layout</strong> except its <strong>variants</strong>.
-                            </p>
-                            <p>
-                                Equivalent to <code>usesContentBasicLayout()</code> <strong>plus</strong> <LinkUsesBasicLayoutPage />.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesContentVariants()'>
@@ -130,29 +375,44 @@ export default function CoolArticle(props) {
                                 Equivalent to <code>usesContentBasicVariants()</code> <strong>plus</strong> <LinkUsesBasicVariantsPage />.
                             </p>
                         </DetailSpecItem>
-
-
-                        <DetailSpecItem code='usesContentMediaLayout()'>
+                        
+                        <DetailSpecItem code='usesContentChildrenFill()'>
                             <p>
-                                Returns a <code>Rule</code> object represents the <strong>style</strong> &amp; <strong>layout</strong> of <strong>each</strong> individual <strong>media content</strong>.
-                            </p>
-                            <p>
-                                The <strong>media content</strong> are: <CommaSeparated components={['figure', 'img', 'svg', 'video', '.media'].map((item, index) => <code key={index}>{ item.startsWith('.') ? item : `<${item}>` }</code>)} />.
+                                Returns a <code>Rule</code> object represents the <strong>style</strong> &amp; <strong>layout</strong> to make the <strong>media(s)</strong> expands to <LinkContentPage />&apos;s edges.
                             </p>
                         </DetailSpecItem>
-                        <DetailSpecItem code='usesContentMedia()'>
+                        <DetailSpecItem code='usesContentChildrenMedia()'>
                             <p>
-                                Returns a <code>Rule</code> object represents the <strong>style</strong> &amp; <strong>layout</strong> of <strong>overall</strong> the composition of <strong>media content(s)</strong> and <strong>link(s)</strong>.
+                                Returns a <code>Rule</code> object represents the <strong>style</strong> &amp; <strong>layout</strong> of <strong>media(s)</strong>.
+                            </p>
+                            <p>
+                                The <strong>media</strong> are: <CommaSeparated components={['figure', 'img', 'svg', 'video', '.media'].map((item, index) => <code key={index}>{ item.startsWith('.') ? item : `<${item}>` }</code>)} />.
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='usesContentChildrenLinks()'>
+                            <p>
+                                Returns a <code>Rule</code> object represents the <strong>style</strong> &amp; <strong>layout</strong> of <strong>link(s)</strong>.
+                            </p>
+                            <p>
+                                The <strong>links</strong> are: <CommaSeparated components={['a', '.link'].map((item, index) => <code key={index}>{ item.startsWith('.') ? item : `<${item}>` }</code>)} />.
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='usesContentChildren()'>
+                            <p>
+                                Returns a <code>Rule</code> object represents the <strong>style</strong> &amp; <strong>layout</strong> of <strong>media(s)</strong> and <strong>link(s)</strong>.
                             </p>
                             <p>
                                 This is the <strong>style</strong> of the <strong>children</strong> inside the <LinkContentPage />.
+                            </p>
+                            <p>
+                                Equivalent to <code>usesContentChildrenFill()</code> <strong>plus</strong> <code>usesContentChildrenMedia()</code> <strong>plus</strong> <code>usesContentChildrenLinks()</code>.
                             </p>
                         </DetailSpecItem>
                     </SpecList>
                 }>{`
 import { mainComposition, style, imports, variants, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
-import { Content, usesContentLayout, usesContentVariants, usesContentStates } from '@nodestrap/content'
+import { Content, usesContentLayout, usesContentVariants, usesContentChildren } from '@nodestrap/content'
 
 const useCoolArticleSheet = createUseSheet(() => [
     mainComposition(
@@ -160,7 +420,7 @@ const useCoolArticleSheet = createUseSheet(() => [
             // import some stuff from <Content>:
             usesContentLayout(),
             usesContentVariants(),
-            usesContentStates(),
+            usesContentChildren(),
         ]),
         style({
             // then overwrite with your style:

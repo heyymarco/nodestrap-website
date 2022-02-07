@@ -92,6 +92,7 @@ export const LinkContainerPage             = (props: PageLinkProps) => <LinkCode
 export const LinkContentPage               = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/content'>Content</LinkCode>
 
 export const LinkIconPage                  = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/icon'>Icon</LinkCode>
+export const LinkButtonPage                = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/button'>Button</LinkCode>
 
 export const LinkCardPage                  = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/card'>Card</LinkCode>
 export const LinkGroupPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/group'>Group</LinkCode>
