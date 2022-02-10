@@ -20,6 +20,11 @@ import { Button } from '@nodestrap/button'
 
 
 
+const MediaList = (props: { includeCustom ?: boolean }) => <CommaSeparated components={['figure', 'img', 'svg', 'video', 'picture', 'embed', 'object', ...(props.includeCustom ? ['.media'] : [])].map((item, index) => <code key={index}>{ item.startsWith('.') ? item : `<${item}>` }</code>)} />;
+const LinkList  = (props: { includeCustom ?: boolean }) => <CommaSeparated components={['a', ...(props.includeCustom ? ['.link'] : [])].map((item, index) => <code key={index}>{ item.startsWith('.') ? item : `<${item}>` }</code>)} />;
+
+
+
 const Page: NextPage = () => {
     return (
         <ComponentInfoProvider packageName='@nodestrap/content' component={<LinkContentPage />} bases={<LinkBasicPage />}>
@@ -38,7 +43,7 @@ const Page: NextPage = () => {
             </SectionDemo>
             <Section title='Images &amp; Media'>
                 <p>
-                    Media elements such as <code>{`<img>`}</code>, <code>{`<img>`}</code>, <code>{`<svg>`}</code>, <code>{`<video>`}</code>, <code>{`<figure>`}</code>, and <code>{`.media`}</code> are styled to be full width inside <LinkContentPage />, including <LinkContentPage />&apos;s paddings.
+                    Media elements such as  <MediaList includeCustom={true} /> are <strong>styled to full width</strong> inside <LinkContentPage />, ignoring <LinkContentPage />&apos;s paddings.
                 </p>
                 <p>
                     Here the demonstration:
@@ -106,7 +111,7 @@ const Page: NextPage = () => {
                 </SubSection>
                 <SubSection title='The Sequence of Images &amp; Media'>
                     <p>
-                        If there are multiple images in a sequence (without being inserted by another types), the images are joined with borders.
+                        If there are multiple images in a sequence (without being inserted by another types), the images are joined together with borders as separator.
                     </p>
                     <Content theme='primary'>
                         <p>
@@ -145,6 +150,17 @@ const Page: NextPage = () => {
                         If you need a custom element to be treated as media, add <code>media</code> class to the desired element.<br />
                         Set <code>{`classes={['boo', 'media', 'foo']}`}</code> for Nodestrap component -or- <code>{`className='boo media foo'`}</code> for regular component.
                     </p>
+                    <Warning>
+                        <p>
+                            The <code>display</code> property of the custom media need to have <strong>block flow layout</strong> (<code>block</code>, <code>flex</code>, <code>grid</code>).<br />
+                            If the display property is <strong>inline flow layout</strong> (<code>inline</code>, <code>inline-flex</code>, <code>inline-grid</code>), an <strong>unexpected</strong> <code>margin-block-start</code> may occur, if <code>padding-block-start</code> is less than <code>margin-block-start</code>.
+                        </p>
+                        <p>
+                            We use a <strong>negative <code>margin-block-start</code></strong> to cancel out the previous <code>margin-block-end</code>.<br />
+                            We may change the better algorithm in the future to fix this issue.
+                        </p>
+                    </Warning>
+                    <p></p>
                     <Content theme='primary'>
                         <p>
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
@@ -191,11 +207,60 @@ const Page: NextPage = () => {
 </Content>
                     `}</TypeScriptCode>
                 </SubSection>
+                <SubSection title='Excluding Media'>
+                    <p>
+                        Sometimes we need to put a media (<MediaList />) <strong>but not</strong> styled to full width.
+                        For example an emoji of <code>{`<img>`}</code>.
+                    </p>
+                    <p>
+                        Add <code>not-media</code> class to the desired element.<br />
+                        Set <code>{`classes={['boo', 'not-media', 'foo']}`}</code> for Nodestrap component -or- <code>{`className='boo not-media foo'`}</code> for regular component.{' '}
+                        <strong>No style are injected</strong> into that component, thus you should implement your own style for making good looking.
+                    </p>
+                    <Content theme='primary'>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                        </p>
+                        <img alt='lorem image' src='/images/lorem-image-1.svg' className='not-media' style={{ height: '150px' }} />
+                        <img alt='lorem image' src='/images/lorem-image-1.svg' className='not-media' style={{ height: '150px' }} />
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                        </p>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                        </p>
+                    </Content>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Content theme='primary'>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+    </p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' className='not-media' style={{ height: '150px' }} />
+    <img alt='lorem image' src='/images/lorem-image-1.svg' className='not-media' style={{ height: '150px' }} />
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+    </p>
+</Content>
+                    `}</TypeScriptCode>
+                </SubSection>
             </Section>
             <Section title='Links'>
                 <p>
-                    Link elements such as <code>{`<a>`}</code> and <code>{`.link`}</code> are styled and automatically get separated from each other.
+                    Link elements such as <LinkList includeCustom={true} /> are styled and automatically get separated from each other.
                 </p>
+                <Warning>
+                    <p>
+                        Actually we don&apos;t style the link elements, instead we mutate them with <LinkButtonPage><code>{`<Button btnStyle='link'>`}</code></LinkButtonPage> and styled them for adding margin.
+                    </p>
+                    <p>
+                        If the link elements are <strong>function component</strong> or <strong>class component</strong>, we don&apos;t mutate them.
+                    </p>
+                </Warning>
+                <p></p>
                 <p>
                     Here the demonstration:
                 </p>
@@ -250,10 +315,10 @@ const Page: NextPage = () => {
                         <p>
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
                         </p>
-                        <a href='#'>Link 1</a>
-                        <span className='link'>Link 2</span>
-                        <Button btnStyle='link' onClick={() => alert('hello world')}>Link 3</Button>
-                        <Button btnStyle='link' href='#'>Link 4</Button>
+                        <Button btnStyle='link' href='#'>Link 1</Button>
+                        <Button btnStyle='link' onClick={() => alert('hello world')}>Link 2</Button>
+                        <div className='link'>Link 3</div>
+                        <span className='link'>Link 4</span>
                         <p>
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
                         </p>
@@ -267,10 +332,52 @@ const Page: NextPage = () => {
     <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
     </p>
-    <a href='#'>Link 1</a>
-    <span className='link'>Link 2</span>
-    <Button btnStyle='link' onClick={() => alert('hello world')}>Link 3</Button>
-    <Button btnStyle='link' href='#'>Link 4</Button>
+    <Button btnStyle='link' href='#'>Link 1</Button>
+    <Button btnStyle='link' onClick={() => alert('hello world')}>Link 2</Button>
+    <div className='link'>Link 3</div>
+    <span className='link'>Link 4</span>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+    </p>
+</Content>
+                    `}</TypeScriptCode>
+                </SubSection>
+                <SubSection title='Excluding Links'>
+                    <p>
+                        Sometimes we need to put a link (<LinkList />) <strong>but not</strong> styled to full width.
+                        For example a custom button of <code>{`<a>`}</code>.
+                    </p>
+                    <p>
+                        Add <code>not-link</code> class to the desired element.<br />
+                        Set <code>{`classes={['boo', 'not-link', 'foo']}`}</code> for Nodestrap component -or- <code>{`className='boo not-link foo'`}</code> for regular component.{' '}
+                        <strong>No style are injected</strong> into that component, thus you should implement your own style for making good looking.
+                    </p>
+                    <Content theme='primary'>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                        </p>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                        </p>
+                        <a href='#' className='not-link'>Link 1</a>
+                        <a href='#' className='not-link'>Link 2</a>
+                        <a href='#' className='not-link'>Link 3</a>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                        </p>
+                    </Content>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Content theme='primary'>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+    </p>
+    <a href='#' className='not-link'>Link 1</a>
+    <a href='#' className='not-link'>Link 2</a>
+    <a href='#' className='not-link'>Link 3</a>
     <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
     </p>
@@ -386,7 +493,7 @@ export default function CoolArticle(props) {
                                 Returns a <code>Rule</code> object represents the <strong>style</strong> &amp; <strong>layout</strong> of <strong>media(s)</strong>.
                             </p>
                             <p>
-                                The <strong>media</strong> are: <CommaSeparated components={['figure', 'img', 'svg', 'video', '.media'].map((item, index) => <code key={index}>{ item.startsWith('.') ? item : `<${item}>` }</code>)} />.
+                                The <strong>media</strong> are: <MediaList includeCustom={true}/>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesContentChildrenLinks()'>
@@ -394,7 +501,7 @@ export default function CoolArticle(props) {
                                 Returns a <code>Rule</code> object represents the <strong>style</strong> &amp; <strong>layout</strong> of <strong>link(s)</strong>.
                             </p>
                             <p>
-                                The <strong>links</strong> are: <CommaSeparated components={['a', '.link'].map((item, index) => <code key={index}>{ item.startsWith('.') ? item : `<${item}>` }</code>)} />.
+                                The <strong>links</strong> are: <LinkList includeCustom={true}/>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesContentChildren()'>

@@ -38,16 +38,22 @@ const LinkCodeInternal = (props: React.PropsWithChildren<{ currentComponent: Rea
     return (<>{ props.children }</>);
 }
 const LinkCode = (props: LinkCodeProps) => {
-    if (props.text) return <LinkButton {...props} />;
+    let propsChildren = props.children;
+
+    if (props.text) {
+        if (!(React.isValidElement(props.text) && (props.text.type === 'code'))) return <LinkButton {...props} />;
+        
+        propsChildren = props.text;
+    } // if
     
     const children = (
-        (typeof(props.children) === 'string')
+        (typeof(propsChildren) === 'string')
         ?
         <Code {...props}>
-            &lt;{ props.children }&gt;
+            &lt;{ propsChildren }&gt;
         </Code>
         :
-        props.children
+        propsChildren
     );
     return (
         <LinkCodeInternal currentComponent={children}>

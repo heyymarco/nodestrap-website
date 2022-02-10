@@ -200,7 +200,7 @@ const Page: NextPage = () => {
                     <SubSection>
                         <p>
                             When the child is located at the <strong>top</strong> or <strong>bottom</strong>,
-                            the <code>fill</code> class also <strong>takes over</strong> the <strong>padding top</strong> or <strong>padding bottom</strong> of the <LinkContainerPage />.
+                            the <code>fill-self</code> class also <strong>takes over</strong> the <strong>padding top</strong> or <strong>padding bottom</strong> of the <LinkContainerPage />.
                         </p>
                         <p>
                             Here the demonstration:
@@ -366,7 +366,7 @@ export default function SiteSection(props) {
                                 Returns a <code>Rule</code> object represents the style of <LinkContainerPage />&apos;s <strong>children</strong> <em>when</em> its <code>class</code> contains <code>fill</code> or <code>fill-self</code>.
                             </p>
                             <p>
-                                When <code>fill</code> class is applied, the corresponding child&apos;s <strong>width</strong> will <strong>expand</strong> to <strong>container&apos;s client width</strong> (including the container&apos;s <strong>padding</strong>), and
+                                When <code>fill</code> class is applied, the corresponding child&apos;s <strong>width</strong> will <strong>expand</strong> to <strong>container&apos;s client width</strong> (ignoring the <LinkContainerPage />&apos;s <strong>padding</strong>), and
                                 the <strong>top</strong> will <strong>expand</strong> to <strong>container&apos;s client top</strong> - when it&apos;s <strong>the first child</strong>, and
                                 the <strong>bottom</strong> will <strong>expand</strong> to <strong>container&apos;s client bottom</strong> - when it&apos;s <strong>the last child</strong>.
                             </p>
@@ -460,7 +460,7 @@ export default function SiteSection(props) {
                             </p>
                             <p>
                                 By applying the <code>Rule</code> above, the <strong>border width</strong>, <strong>border radiuses</strong> and <strong>paddings</strong> of the corresponding <strong>container</strong> are <strong>managed by Nodestrap</strong>.
-                                For example if the container&apos;s <strong>child</strong> want to <strong>fill</strong> the entire/partial of <code>container&apos;s client area</code> (including the container&apos;s <strong>padding</strong>),
+                                For example if the container&apos;s <strong>child</strong> want to <strong>fill</strong> the entire/partial of <code>container&apos;s client area</code> (ignoring the <LinkContainerPage />&apos;s <strong>padding</strong>),
                                 the child&apos; <strong>border radiuses</strong> and <strong>negative margins</strong> can be <strong>easily calculated</strong> so that the child can <strong>fit into</strong> the container accurately.
                             </p>
                             <p>
