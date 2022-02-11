@@ -97,6 +97,8 @@ export const LinkEditableActionControlPage = (props: PageLinkProps) => <LinkCode
 export const LinkContainerPage             = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/container'>Container</LinkCode>
 export const LinkContentPage               = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/content'>Content</LinkCode>
 
+export const LinkVisuallyHiddenPage        = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/visually-hidden'>VisuallyHidden</LinkCode>
+
 export const LinkIconPage                  = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/icon'>Icon</LinkCode>
 export const LinkButtonPage                = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/button'>Button</LinkCode>
 
