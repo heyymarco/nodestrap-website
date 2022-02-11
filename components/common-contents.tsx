@@ -475,7 +475,7 @@ export const SectionOverridingDefaults = ({ children, moreInfo }: SectionOverrid
 }
 
 export interface SectionCustomizingCssProps {
-    specList    : SpecList
+    specList   ?: SpecList
     children    : string
     moreInfo   ?: React.ReactNode
 }
@@ -485,15 +485,17 @@ export const SectionCustomizingCss = ({ specList, children, moreInfo }: SectionC
     return (
         <SectionGeneral
             titleTag='h3'
-            title='Derivering by Customizing the CSS'
+            title={`Derivering by ${specList ? 'Customizing the' : 'Adding a'} CSS`}
         >
-            <p>
-                { component } exports <strong>some CSS</strong> that you can import into <strong>your CSS</strong>.
-                Here the exported <em>mixins</em>:
-            </p>
-            { specList }
+            {specList && <>
+                <p>
+                    { component } exports <strong>some CSS</strong> that you can import into <strong>your CSS</strong>.
+                    Here the exported <em>mixins</em>:
+                </p>
+                { specList }
+            </>}
             
-            <p>Example of modifying the CSS:</p>
+            <p>Example of {specList ? 'modifying the' : 'adding a'} CSS:</p>
             <TypeScriptCode>{ children }</TypeScriptCode>
             
             { moreInfo && <><p></p>{ moreInfo }</> }

@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { Tips, Warning } from '../../../components/Info'
 import { TypeScriptCode } from '../../../components/Code'
 
-import { ComponentInfoProvider, LinkElementPage, SectionIntro, SectionProperty, SectionSubProperty } from '../../../components/common-contents'
+import { ComponentInfoProvider, LinkElementPage, SectionCustomizingCss, SectionDerivering, SectionIntro, SectionOverridingDefaults, SectionProperty, SectionSubProperty } from '../../../components/common-contents'
 
 
 
@@ -205,7 +205,7 @@ const Page: NextPage = () => {
                     <p>
                         If you <strong>create a component</strong> that has <strong>multiple elements</strong>, please
                         choose the <strong>most functional</strong> element for the <code>elmRef</code>, or
-                        select the <strong>most outer</strong> element for the <code>elmRef</code>.
+                        select the <strong>most outer</strong> if you have no idea.
                         Example:
                     </p>
                     <TypeScriptCode>{`
@@ -221,6 +221,42 @@ export function CustomTextEditor(props) {
                     <p>
                         You can define <strong>another ***Ref</strong> such as <code>fooRef</code>, <code>booRef</code>, <code>editorRef</code>, <code>mainRef</code>, <code>outerRef</code>, etc, if you need to expose <strong>multiple</strong> elements.
                     </p>
+                </Tips>
+            </SectionProperty>
+            <SectionProperty property='outerRef'>
+                <p>
+                    Exposes the <strong>reference of outer rendered element</strong> in <strong>DOM</strong>.
+                </p>
+                <p>
+                    Similar to <code>elmRef</code> but pointed to the <strong>most outer element</strong> in <strong>DOM</strong>.
+                </p>
+                <Tips>
+                    <p>
+                        If you <strong>create a component</strong> that has <strong>singular element</strong>,
+                        the <code>outerRef</code> and <code>elmRef</code> are pointed to the same element.
+                    </p>
+                    <p>
+                        If you <strong>create a component</strong> that has <strong>multiple elements</strong>,
+                        the <code>outerRef</code> is <strong>always</strong> pointed to the <strong>most outer element</strong> and
+                        the <code>elmRef</code> is <strong>might</strong> pointed to the same element or pointed to the <strong>most functional</strong> element.
+                    </p>
+                    <TypeScriptCode>{`
+import { setRef } from '@nodestrap/utilities'
+
+export function CustomSidebar(props) {
+    return (
+        <aside
+            className='sidebar'
+            ref={(elm) => {
+                setRef(props.outerRef, elm);
+                setRef(props.elmRef  , elm);
+            }}
+        >
+            { props.children }
+        </aside>
+    );
+}
+                    `}</TypeScriptCode>
                 </Tips>
             </SectionProperty>
             <SectionProperty property='style'>
@@ -578,6 +614,85 @@ export function CustomTextEditor(props) {
 </a>
                 `}</TypeScriptCode>
             </SectionProperty>
+            <SectionDerivering>
+                <SectionOverridingDefaults>{`
+import { Element } from '@nodestrap/element'
+
+export default function SiteSidebar(props) {
+    return (
+        <Element
+            {...props} // preserves other properties
+
+            semanticRole={props.semanticRole ?? 'complementary'} // override default value of semanticRole to 'complementary'
+            semantictag={props.semanticTag ?? 'aside'}           // override default value of semanticTag  to 'aside'
+        >
+            { props.children }
+        </Element>
+    );
+}
+                `}</SectionOverridingDefaults>
+
+                <SectionCustomizingCss>{`
+import React from 'react'
+import { mainComposition, style, variants, rule } from '@cssfn/cssfn'
+import { createUseSheet } from '@cssfn/react-cssfn'
+import { Element } from '@nodestrap/element'
+
+const useCustomComponentSheet = createUseSheet(() => [
+    mainComposition(
+        style({
+            // define your style:
+            display : 'inline-block',
+            margin  : '1em',
+            /* ... */
+            
+            ...variants([
+                rule('.big', {
+                    // define the style at 'big' variant:
+                    fontSize: 'xx-large',
+                    /* ... */
+                }),
+                rule('.dark', {
+                    // define the style at 'dark' variant:
+                    background-color : 'black',
+                    color            : 'white',
+                    /* ... */
+                }),
+                /* ... */
+            ]),
+            
+            /* ... */
+        }),
+    ),
+]);
+
+export interface CustomComponentProps {
+    big  ?: boolean
+    dark ?: boolean
+}
+export default function CustomComponent(props: React.PropsWithChildren<CustomComponentProps>) {
+    const sheet = useCustomComponentSheet();
+    
+    // defaults:
+    const isBig  = props.big  ?? false;
+    const isDark = props.dark ?? true;
+    
+    return (
+        <Element
+            {...props}
+            
+            mainClass={sheet.main}
+            variantClasses={[...(props.variantClasses ?? []),
+                isBig ?  'big'  : null,
+                isDark ? 'dark' : null,
+            ]}
+        >
+            { props.children }
+        </Element>
+    )
+}
+                `}</SectionCustomizingCss>
+            </SectionDerivering>
         </ComponentInfoProvider>
     );
 }
