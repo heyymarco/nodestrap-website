@@ -1,6 +1,30 @@
+// cssfn:
+import {
+    // compositions:
+    mainComposition,
+    
+    
+    
+    // styles:
+    style,
+    
+    
+    
+    // rules:
+    rule,
+    
+    
+    
+    //combinators:
+    children,
+}                           from '@cssfn/cssfn'       // cssfn core
+import {
+    // hooks:
+    createUseSheet,
+}                           from '@cssfn/react-cssfn' // cssfn for react
+
 import { ContentProps, Content } from '@nodestrap/content'
 import { ButtonIconProps, ButtonIcon } from '@nodestrap/button-icon'
-import styles from './DemoPanel.module.scss'
 import { Group, GroupProps } from '@nodestrap/group'
 import { Radio } from '@nodestrap/radio'
 import { Range } from '@nodestrap/range'
@@ -11,8 +35,38 @@ import { ResponsiveProvider, useResponsiveCurrentFallback } from '@nodestrap/res
 
 
 
+export const useDemoPanelSheet = createUseSheet(() => [
+    mainComposition(
+        rule('&&', { // makes `.DemoPanel` is more specific than `.Content`
+            ...style({
+                display             : [['grid'], '!important'],
+                gridTemplateColumns : [['max-content', '1fr']],
+                gridAutoFlow        : 'row',
+                gridAutoRows        : 'auto',
+                gap                 : '1em',
+                
+                background          : 'linear-gradient(90deg, #eeeeee, #aaaaaa)',
+                
+                ...children(['span:not(:nth-child(2))', 'code'], {
+                    display        : 'flex',
+                    justifyContent : 'left',
+                    alignItems     : 'center',
+                }),
+                ...children(['hr', '.busy'], {
+                    gridColumnStart : 1,
+                    gridColumnEnd   : -1,
+                }),
+            }),
+        }),
+    ),
+], /*sheetId :*/'s8amjun6ag'); // an unique salt for SSR support, ensures the server-side & client-side have the same generated class names
+
+
+
 export type Fallback = OrientationName
 export const DemoPanel = (props: ContentProps) => {
+    const sheet = useDemoPanelSheet();
+    
     return (
         <ResponsiveProvider<Fallback>
             fallbacks={['inline', 'block']}
@@ -20,7 +74,7 @@ export const DemoPanel = (props: ContentProps) => {
             <Content
                 {...props}
                 classes={[...(props.classes ?? []),
-                    styles.panel,
+                    sheet.main,
                 ]}
             >
                 { props.children }
