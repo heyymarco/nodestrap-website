@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 // cssfn:
 import {
@@ -26,16 +26,20 @@ import {
     createUseSheet,
 }                           from '@cssfn/react-cssfn' // cssfn for react
 
+import { ThemeOption } from './DemoPanel';
+
 import spacers from '@nodestrap/spacers'
 import Card from '@nodestrap/card';
-import { ThemeName, usesBackg } from '@nodestrap/basic'
+import { OrientationName, ThemeName, usesBackg } from '@nodestrap/basic'
 import { ResponsiveProvider } from '@nodestrap/responsive'
-
-
-import { Icon } from '@nodestrap/icon'
+import { Icon, cssProps as iconCssProps } from '@nodestrap/icon'
 import iconFonts from '@nodestrap/icon/dist/Icon-font-material'
 import { Nav, NavItem, NextItem, PrevItem } from '@nodestrap/nav'
-import { ThemeOption } from './DemoPanel';
+import Group from '@nodestrap/group';
+import { Search } from '@nodestrap/input';
+import { Label } from '@nodestrap/label';
+import { Element } from '@nodestrap/element';
+import { ButtonIcon } from '@nodestrap/button-icon';
 
 
 
@@ -54,9 +58,9 @@ export const useDemoIconGallerySheet = createUseSheet(() => {
                         alignItems    : 'center',
                         
                         gap           : spacers.default,
-
+                        
                         filter        : [['contrast(80%)']],
-
+                        
                         ...children('.limiter', {
                             display       : 'flex',
                             flexDirection : 'column',
@@ -64,6 +68,21 @@ export const useDemoIconGallerySheet = createUseSheet(() => {
                             maxInlineSize : '100%',
                             
                             alignSelf     : 'stretch',
+                            
+                            ...children(['.flow'], {
+                                display   : 'flex',
+                                ...rule('.block', {
+                                    flexDirection : 'column',
+                                }),
+                                ...rule('.inline', {
+                                    flexDirection : 'row',
+                                }),
+                                gap       : spacers.default,
+                                
+                                ...children('*>*:first-child', {
+                                    flex: [[0, 0, 'auto']],
+                                }),
+                            }),
                         }),
                     }),
                     
@@ -72,7 +91,7 @@ export const useDemoIconGallerySheet = createUseSheet(() => {
                         gridAutoFlow          : 'row',
                         gridTemplateColumns   : 'repeat(auto-fill, minmax(100px, 1fr))',
                         gridAutoRows          : 'max-content',
-
+                        
                         justifyItems          : 'stretch', // give each item maximum allowed width
                         justifyContent        : 'center',  // if the items are too few, center whole items horizontally
                         
@@ -92,6 +111,7 @@ export const useDemoIconGallerySheet = createUseSheet(() => {
                             ],
                             
                             ...children(':first-child', {
+                                blockSize     : iconCssProps.sizeMd,
                                 aspectRatio   : 1/1,
                             }),
                             
@@ -130,7 +150,7 @@ export const useDemoIconGallerySheet = createUseSheet(() => {
 
 
 
-const iconSets = [
+const alliIconSets = [
     'instagram',
     'whatsapp',
     'close',
@@ -150,16 +170,50 @@ export const DemoIconGallery = () => {
     
     
     
+    const [theme , setTheme ] = useState<ThemeName|undefined>('primary');
+    const [search, setSearch] = useState<string>('');
+    const searchRef           = useRef<HTMLInputElement>(null);
+    
+    
+    
+    const hasSearch = !!search && !!search.trim();
+    const filteredIconSets = (hasSearch && search.trim()) ? (() => {
+        const filter = search.trim().toLowerCase();
+        return alliIconSets.filter((icon) => icon.toLowerCase().includes(filter));
+    })() : alliIconSets;
     const itemsPerPage = 100;
     const [page, setPage] = useState<number>(0);
-    const maxPageIndex = Math.ceil(iconSets.length / itemsPerPage) - 1;
+    const maxPageIndex = Math.ceil(filteredIconSets.length / itemsPerPage) - 1;
+    if ((maxPageIndex >= 0) && (page > maxPageIndex)) setPage(0);
     
     
     
-    const [theme, setTheme] = useState<ThemeName|undefined>('primary')
-    
-    
-    
+    const pageOptions = (
+        <ResponsiveProvider<OrientationName> fallbacks={['inline', 'block']}>{(orientation) => (
+            <div className='limiter'>
+                <Element classes={['flow', orientation]}>
+                    <Group orientation='inline' size='sm'>
+                        <Label theme='secondary' mild={true}>
+                            <Icon icon='color_lens' />
+                        </Label>
+                        <ThemeOption orientation='inline' name='' showName={false} size='sm' value={theme} setValue={setTheme} />
+                    </Group>
+                    <Group orientation='inline' size='sm'>
+                        {
+                            hasSearch
+                            ?
+                            <ButtonIcon theme='secondary' mild={true} icon='clear' onClick={() => { setSearch(''); searchRef.current?.focus(); }} />
+                            :
+                            <Label theme='secondary' mild={true}>
+                                <Icon icon='search' />
+                            </Label>
+                        }
+                        <Search elmRef={searchRef} enableValidation={false} placeholder='search' value={search} onChange={(e) => setSearch(e.currentTarget.value)} />
+                    </Group>
+                </Element>
+            </div>
+        )}</ResponsiveProvider>
+    );
     const pageNav = (
         <ResponsiveProvider fallbacks={[null, 9, 5]}>{(limit) => (
             <div className='limiter'>
@@ -214,14 +268,14 @@ export const DemoIconGallery = () => {
             
             header={
                 <>
-                    <ThemeOption name='' showName={false} size='sm' value={theme} setValue={setTheme} />
+                    {pageOptions}
                     {pageNav}
                 </>
             }
             footer={pageNav}
         >
             {
-                iconSets
+                filteredIconSets
                 .slice((page * itemsPerPage), (page * itemsPerPage) + itemsPerPage)
                 .map((iconName, index) =>
                     <span key={index}>

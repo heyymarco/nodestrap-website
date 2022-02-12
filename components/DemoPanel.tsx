@@ -55,9 +55,9 @@ export const Option = (props: OptionProps) => {
     return (<>
         {name && <span>{ name }</span>}
         <Group
-            {...groupProps}
-            
             orientation={currentFallback}
+            
+            {...groupProps}
         >
             {
                 options
@@ -106,9 +106,9 @@ export const ThemeOption = (props: ThemeOptionProps) => {
     return (<>
         {name && <span>{ name }</span>}
         <Group
-            {...groupProps}
-            
             orientation={currentFallback}
+            
+            {...groupProps}
         >
             {
                 [...(addUnset ? [undefined] : []), 'primary', 'secondary', 'success', 'info', 'warning', 'danger', 'light', 'dark']
