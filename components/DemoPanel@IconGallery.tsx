@@ -34,12 +34,13 @@ import { OrientationName, ThemeName, usesBackg } from '@nodestrap/basic'
 import { ResponsiveProvider } from '@nodestrap/responsive'
 import { Icon, cssProps as iconCssProps } from '@nodestrap/icon'
 import iconFonts from '@nodestrap/icon/dist/Icon-font-material'
-import { Nav, NavItem, NextItem, PrevItem } from '@nodestrap/nav'
+import { NavItem, NextItem, PrevItem } from '@nodestrap/nav'
 import Group from '@nodestrap/group';
 import { Search } from '@nodestrap/input';
 import { Label } from '@nodestrap/label';
 import { Element } from '@nodestrap/element';
 import { ButtonIcon } from '@nodestrap/button-icon';
+import { Pagination } from './Pagination';
 
 
 
@@ -217,34 +218,25 @@ export const DemoIconGallery = () => {
     const pageNav = (
         <ResponsiveProvider fallbacks={[null, 9, 5]}>{(limit) => (
             <div className='limiter'>
-                <Nav theme={theme} size='sm'>
-                    <PrevItem
-                        onClick={() => setPage(0)}
-                    />
+                <Pagination
+                    theme={theme}
+                    size='sm'
+                    
+                    itemsLimit={limit}
+                    prevItems={
+                        <PrevItem
+                            onClick={() => setPage(0)}
+                        />
+                    }
+                    nextItems={
+                        <NextItem
+                            onClick={() => setPage(maxPageIndex)}
+                        />
+                    }
+                >
                     {
-                        ((): number[] => {
-                            if (limit === null) return (
-                                [...Array(maxPageIndex + 1)]
-                                .map((value, counter) => counter)
-                            );
-                            
-                            
-                            const rangeLeft   = Math.floor((limit - 1) / 2);
-                            const rangeRight  = Math.ceil((limit - 1) / 2);
-                            const limitLeft   = page - rangeLeft;
-                            const limitRight  = page + rangeRight;
-                            
-                            const restLeft    = (limitLeft  < 0           ) ? -limitLeft                  : 0;
-                            const restRight   = (limitRight > maxPageIndex) ? (limitRight - maxPageIndex) : 0;
-                            
-                            const indexLeft   = Math.max(0, limitLeft - restRight);
-                            const indexRight  = Math.min(maxPageIndex, limitRight + restLeft);
-                            
-                            return (
-                                [...Array(indexRight - indexLeft + 1)]
-                                .map((value, counter) => counter + indexLeft)
-                            );
-                        })()
+                        [...Array(maxPageIndex + 1)]
+                        .map((value, counter) => counter)
                         .map((counter) => (
                             <NavItem
                                 key={counter}
@@ -253,10 +245,7 @@ export const DemoIconGallery = () => {
                             >{counter + 1}</NavItem>
                         ))
                     }
-                    <NextItem
-                        onClick={() => setPage(maxPageIndex)}
-                    />
-                </Nav>
+                </Pagination>
             </div>
         )}</ResponsiveProvider>
     );
