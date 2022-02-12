@@ -5,7 +5,7 @@ import Head from 'next/head'
 
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
-import { SectionInheritedProps, LinkActionControlPage, LinkControlPage, ParagraphDefaultValue, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionStates, SectionIntro, SectionDemo, BusyBar } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkActionControlPage, LinkControlPage, ParagraphDefaultValue, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent } from '../../../components/common-contents'
 
 import loadable from '@loadable/component'
 const DemoActionControlLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@ActionControl' */'../../../components/DemoPanel@ActionControl'))
@@ -22,10 +22,10 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    <LinkActionControlPage /> is an <strong>abstract</strong> component of <strong>clickable component</strong>. It has some control indicators such as <strong>press</strong>/<strong>release</strong> and inherited indicators from <LinkControlPage />.
+                    <CurrentComponent /> is an <strong>abstract</strong> component of <strong>clickable component</strong>. It has some control indicators such as <strong>press</strong>/<strong>release</strong> and inherited indicators from <LinkControlPage />.
                 </p>
                 <p>
-                    In <em>most cases</em>, you should <strong>not use </strong>this component <strong>directly</strong>, instead create your own component by derivering <LinkActionControlPage />.
+                    In <em>most cases</em>, you should <strong>not use </strong>this component <strong>directly</strong>, instead create your own component by derivering <CurrentComponent />.
                 </p>
             </SectionIntro>
             <SectionDemo>
@@ -123,18 +123,18 @@ export default function CoolButton(props) {
                     <SpecList>
                         <DetailSpecItem code='usesActionControlLayout()'>
                             <p>
-                                Returns a <code>Rule</code> object represents a complete <LinkActionControlPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
+                                Returns a <code>Rule</code> object represents a complete <CurrentComponent /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesActionControlVariants()'>
                             <p>
-                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <LinkActionControlPage /> such as:<br />
+                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentComponent /> such as:<br />
                                 <code>SizeVariant</code> and <strong>all variants</strong> inherited from <LinkControlPage />.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesActionControlStates()'>
                             <p>
-                                Returns a <code>Rule</code> object represents the <strong>states</strong> of <LinkActionControlPage /> such as:<br />
+                                Returns a <code>Rule</code> object represents the <strong>states</strong> of <CurrentComponent /> such as:<br />
                                 <strong>press</strong>/<strong>release</strong>, and <strong>all states</strong> inherited from <LinkControlPage />.
                             </p>
                         </DetailSpecItem>

@@ -3,7 +3,7 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { ComponentInfoProvider, LinkUtilitiesPage, SectionGeneral, SectionIntro } from '../../../components/common-contents'
+import { ComponentInfoProvider, CurrentComponent, LinkUtilitiesPage, SectionGeneral, SectionIntro } from '../../../components/common-contents'
 import { SpecList, DetailSpecItem } from '../../../components/SpecList'
 
 
@@ -18,7 +18,7 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    <LinkUtilitiesPage /> is a utility contains common utility functions.
+                    <CurrentComponent /> is a utility contains common utility functions.
                 </p>
                 <p>
                     By centralizing the reusable codes in one place, the overall bundle size can be reduced.

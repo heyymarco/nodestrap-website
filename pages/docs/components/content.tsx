@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Section, SubSection } from '../../../components/Section'
-import { SectionInheritedProps, LinkContentPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, LinkUsesBasicLayoutPage, LinkUsesBasicVariantsPage, CommaSeparated, SectionDemo, BusyBar, SectionMoreCustomizingCss, LinkGroupPage, LinkCardPage, LinkButtonPage } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkContentPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, LinkUsesBasicLayoutPage, LinkUsesBasicVariantsPage, CommaSeparated, SectionDemo, BusyBar, SectionMoreCustomizingCss, LinkGroupPage, LinkCardPage, LinkButtonPage, CurrentComponent } from '../../../components/common-contents'
 
 import loadable from '@loadable/component'
 import { TypeScriptCode } from '../../../components/Code'
@@ -35,7 +35,7 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    <LinkContentPage /> is a presentation component for displaying contents such as paragraphs, images, vidoes, and/or mixed with another components.
+                    <CurrentComponent /> is a presentation component for displaying contents such as paragraphs, images, vidoes, and/or mixed with another components.
                 </p>
             </SectionIntro>
             <SectionDemo>
@@ -43,7 +43,7 @@ const Page: NextPage = () => {
             </SectionDemo>
             <Section title='Images &amp; Media'>
                 <p>
-                    Media elements such as  <MediaList includeCustom={true} /> are <strong>styled to full width</strong> inside <LinkContentPage />, ignoring <LinkContentPage />&apos;s paddings.
+                    Media elements such as  <MediaList includeCustom={true} /> are <strong>styled to full width</strong> inside <CurrentComponent />, ignoring <CurrentComponent />&apos;s paddings.
                 </p>
                 <p>
                     Here the demonstration:
@@ -80,7 +80,7 @@ const Page: NextPage = () => {
                 
                 <SubSection title='Images &amp; Media at the Beginning and End'>
                     <p>
-                        If the media position is at the first or the last, at the corners, the media (image) are bit clipped by <LinkContentPage />&apos;s border radius.
+                        If the media position is at the first or the last, at the corners, the media (image) are bit clipped by <CurrentComponent />&apos;s border radius.
                     </p>
                     <p>
                         Here the demonstration:
@@ -450,7 +450,7 @@ export default function CoolArticle(props) {
                     <SpecList>
                         <DetailSpecItem code='usesContentBasicLayout()'>
                             <p>
-                                Returns a <code>Rule</code> object represents a complete <LinkContentPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>excluding layout</strong> from <LinkUsesBasicLayoutPage />.
+                                Returns a <code>Rule</code> object represents a complete <CurrentComponent /> <strong>layout</strong> except its <strong>variants</strong> and <strong>excluding layout</strong> from <LinkUsesBasicLayoutPage />.
                             </p>
                             <p>
                                 Equivalent to <code>usesContentLayout()</code> <strong>minus</strong> <LinkUsesBasicLayoutPage />.
@@ -458,7 +458,7 @@ export default function CoolArticle(props) {
                         </DetailSpecItem>
                         <DetailSpecItem code='usesContentLayout()'>
                             <p>
-                                Returns a <code>Rule</code> object represents a complete <LinkContentPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>children</strong>.
+                                Returns a <code>Rule</code> object represents a complete <CurrentComponent /> <strong>layout</strong> except its <strong>variants</strong> and <strong>children</strong>.
                             </p>
                             <p>
                                 Equivalent to <code>usesContentBasicLayout()</code> <strong>plus</strong> <LinkUsesBasicLayoutPage />.
@@ -467,7 +467,7 @@ export default function CoolArticle(props) {
                         
                         <DetailSpecItem code='usesContentBasicVariants()'>
                             <p>
-                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <LinkContentPage /> but <strong>excluding variants</strong> from <LinkUsesBasicVariantsPage />.
+                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentComponent /> but <strong>excluding variants</strong> from <LinkUsesBasicVariantsPage />.
                             </p>
                             <p>
                                 Equivalent to <code>usesContentVariants()</code> <strong>minus</strong> <LinkUsesBasicVariantsPage />.
@@ -475,7 +475,7 @@ export default function CoolArticle(props) {
                         </DetailSpecItem>
                         <DetailSpecItem code='usesContentVariants()'>
                             <p>
-                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <LinkContentPage /> such as:<br />
+                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentComponent /> such as:<br />
                                 <code>SizeVariant</code> and <strong>all variants</strong> inherited from <LinkBasicPage />.
                             </p>
                             <p>
@@ -485,7 +485,7 @@ export default function CoolArticle(props) {
                         
                         <DetailSpecItem code='usesContentChildrenFill()'>
                             <p>
-                                Returns a <code>Rule</code> object represents the <strong>style</strong> &amp; <strong>layout</strong> to make the <strong>media(s)</strong> expands to <LinkContentPage />&apos;s edges.
+                                Returns a <code>Rule</code> object represents the <strong>style</strong> &amp; <strong>layout</strong> to make the <strong>media(s)</strong> expands to <CurrentComponent />&apos;s edges.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesContentChildrenMedia()'>
@@ -509,7 +509,7 @@ export default function CoolArticle(props) {
                                 Returns a <code>Rule</code> object represents the <strong>style</strong> &amp; <strong>layout</strong> of <strong>media(s)</strong> and <strong>link(s)</strong>.
                             </p>
                             <p>
-                                This is the <strong>style</strong> of the <strong>children</strong> inside the <LinkContentPage />.
+                                This is the <strong>style</strong> of the <strong>children</strong> inside the <CurrentComponent />.
                             </p>
                             <p>
                                 Equivalent to <code>usesContentChildrenFill()</code> <strong>plus</strong> <code>usesContentChildrenMedia()</code> <strong>plus</strong> <code>usesContentChildrenLinks()</code>.

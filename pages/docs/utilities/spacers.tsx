@@ -3,7 +3,7 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { BusyBar, ComponentInfoProvider, LinkSpacersPage, SectionDemo, SectionGeneral, SectionIntro } from '../../../components/common-contents'
+import { BusyBar, ComponentInfoProvider, CurrentComponent, LinkSpacersPage, SectionDemo, SectionGeneral, SectionIntro } from '../../../components/common-contents'
 import { TypeScriptCode, CssCode } from '../../../components/Code'
 
 import loadable from '@loadable/component'
@@ -21,10 +21,10 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    <LinkSpacersPage /> is a spacer utility that is shared across other components.
+                    <CurrentComponent /> is a spacer utility that is shared across other components.
                 </p>
                 <p>
-                    <strong>Changing</strong> the spacers <strong>affects all components</strong> that depend on <LinkSpacersPage />.
+                    <strong>Changing</strong> the spacers <strong>affects all components</strong> that depend on <CurrentComponent />.
                 </p>
                 <p>
                     The main purpose of this utility is to create <strong>a consistent spacer (margin/padding/gap/etc)</strong> between components.
@@ -73,7 +73,7 @@ spacers.xxl = null; // delete property \`xxl\`
             </SectionGeneral>
             <SectionGeneral title='Consuming (getting) the Spacers'>
                 <p>
-                    Let&apos; say you want to make a custom component and need to get some spacers in <LinkSpacersPage /> for spacing consistency.
+                    Let&apos; say you want to make a custom component and need to get some spacers in <CurrentComponent /> for spacing consistency.
                     You can do like this:
                 </p>
                 <TypeScriptCode>{`
@@ -117,7 +117,7 @@ export default function MyComponent(props) {
             </SectionGeneral>
             <SectionGeneral title='Where the Spacers are Actually Stored?'>
                 <p>
-                    Well, the spacers are stored internally in <LinkSpacersPage /> and dynamically copied into the browser&apos;s <code>:root</code> by default.
+                    Well, the spacers are stored internally in <CurrentComponent /> and dynamically copied into the browser&apos;s <code>:root</code> by default.
                     Here the actual code you can find on browser&apos;s page inspector:
                 </p>
                 <CssCode>{`
@@ -135,7 +135,7 @@ export default function MyComponent(props) {
                 <p>
                     Btw, you <strong>should not</strong> modify our <code>css variables</code> directly!
                     Otherwise any changes you&apos;ve made will be swapped out.
-                    Instead use <strong>our API</strong> in the <LinkSpacersPage /> to get/set/modify the spacers.
+                    Instead use <strong>our API</strong> in the <CurrentComponent /> to get/set/modify the spacers.
                     Like this:
                 </p>
                 <TypeScriptCode>{`

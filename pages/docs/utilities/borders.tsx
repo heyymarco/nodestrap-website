@@ -3,7 +3,7 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { BusyBar, ComponentInfoProvider, LinkBordersPage, SectionDemo, SectionGeneral, SectionIntro } from '../../../components/common-contents'
+import { BusyBar, ComponentInfoProvider, CurrentComponent, LinkBordersPage, SectionDemo, SectionGeneral, SectionIntro } from '../../../components/common-contents'
 import { TypeScriptCode, CssCode } from '../../../components/Code'
 
 import loadable from '@loadable/component'
@@ -21,10 +21,10 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    <LinkBordersPage /> is a border (stroke) utility that is shared across other components.
+                    <CurrentComponent /> is a border (stroke) utility that is shared across other components.
                 </p>
                 <p>
-                    <strong>Changing</strong> the borders <strong>affects all components</strong> that depend on <LinkBordersPage />.
+                    <strong>Changing</strong> the borders <strong>affects all components</strong> that depend on <CurrentComponent />.
                 </p>
                 <p>
                     The main purpose of this utility is to create <strong>a consistent border (stroke)</strong> between components.
@@ -90,7 +90,7 @@ borderRadiuses.xxl = null; // delete property \`xxl\`
             </SectionGeneral>
             <SectionGeneral title='Consuming (getting) the Borders'>
                 <p>
-                    Let&apos; say you want to make a custom component and need to get some borders in <LinkBordersPage /> for border consistency.
+                    Let&apos; say you want to make a custom component and need to get some borders in <CurrentComponent /> for border consistency.
                     You can do like this:
                 </p>
                 <TypeScriptCode>{`
@@ -144,7 +144,7 @@ export default function MyComponent(props) {
             </SectionGeneral>
             <SectionGeneral title='Where the Borders are Actually Stored?'>
                 <p>
-                    Well, the borders are stored internally in <LinkBordersPage /> and dynamically copied into the browser&apos;s <code>:root</code> by default.
+                    Well, the borders are stored internally in <CurrentComponent /> and dynamically copied into the browser&apos;s <code>:root</code> by default.
                     Here the actual code you can find on browser&apos;s page inspector:
                 </p>
                 <CssCode>{`
@@ -171,7 +171,7 @@ export default function MyComponent(props) {
                 <p>
                     Btw, you <strong>should not</strong> modify our <code>css variables</code> directly!
                     Otherwise any changes you&apos;ve made will be swapped out.
-                    Instead use <strong>our API</strong> in the <LinkBordersPage /> to get/set/modify the borders.
+                    Instead use <strong>our API</strong> in the <CurrentComponent /> to get/set/modify the borders.
                     Like this:
                 </p>
                 <TypeScriptCode>{`

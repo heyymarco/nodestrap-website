@@ -3,7 +3,7 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { ComponentInfoProvider, LinkBreakpointsPage, SectionGeneral, SectionIntro } from '../../../components/common-contents'
+import { ComponentInfoProvider, CurrentComponent, LinkBreakpointsPage, SectionGeneral, SectionIntro } from '../../../components/common-contents'
 import { SpecList, SimpleSpecItem } from '../../../components/SpecList'
 import { TypeScriptCode } from '../../../components/Code'
 
@@ -19,14 +19,14 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    <LinkBreakpointsPage /> is a utility for determining which layout/style to apply based on device (viewport) width.
+                    <CurrentComponent /> is a utility for determining which layout/style to apply based on device (viewport) width.
                 </p>
                 <p>
                     You might want to create <strong>several versions of design</strong>, each of which has a specific target device such as <em>desktop version</em>, <em>tablet version</em>, <em>mobile version</em>, and so on.
                 </p>
                 <p>
-                    To make <strong>a consistent breakpoint configuration</strong> between components, here the <LinkBreakpointsPage /> comes to help.<br />
-                    <strong>Changing</strong> the configuration in <LinkBreakpointsPage /> <strong>affects all components</strong> that depend on it.
+                    To make <strong>a consistent breakpoint configuration</strong> between components, here the <CurrentComponent /> comes to help.<br />
+                    <strong>Changing</strong> the configuration in <CurrentComponent /> <strong>affects all components</strong> that depend on it.
                 </p>
             </SectionIntro>
             <SectionGeneral title='Defining Breakpoints'>
@@ -63,7 +63,7 @@ breakpoints.xxxl = null; // delete property \`xxxl\`
             </SectionGeneral>
             <SectionGeneral title='Consuming (getting) the Breakpoints'>
                 <p>
-                    Let&apos; say you want to make a custom component and need to switch some styles based on the configured breakpoints in <LinkBreakpointsPage />.
+                    Let&apos; say you want to make a custom component and need to switch some styles based on the configured breakpoints in <CurrentComponent />.
                     You can do like this:
                 </p>
                 <TypeScriptCode>{`
@@ -144,8 +144,8 @@ export default function MyComponent(props) {
             </SectionGeneral>
             <SectionGeneral title='Where the Breakpoints are Actually Stored?'>
                 <p>
-                    Well, the breakpoints are stored internally in <LinkBreakpointsPage /> only.
-                    Unlike other utilities that use the power of <em>css variables</em>, <LinkBreakpointsPage /> is currently relies on JavaScript object for storage.
+                    Well, the breakpoints are stored internally in <CurrentComponent /> only.
+                    Unlike other utilities that use the power of <em>css variables</em>, <CurrentComponent /> is currently relies on JavaScript object for storage.
                     The <em>css variables</em> doesn&apos;t work on <code>@media</code> selector.
                     Here the actual code stored internally:
                 </p>

@@ -3,7 +3,7 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { ComponentInfoProvider, LinkValidationsPage, SectionGeneral, SectionIntro } from '../../../components/common-contents'
+import { ComponentInfoProvider, CurrentComponent, LinkValidationsPage, SectionGeneral, SectionIntro } from '../../../components/common-contents'
 import { SpecList, DetailSpecItem } from '../../../components/SpecList'
 
 
@@ -18,7 +18,7 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    <LinkValidationsPage /> is a utility for determining the validation statuses of components such as <strong>enableValidation</strong> and <strong>valid</strong>/<strong>invalid</strong>.
+                    <CurrentComponent /> is a utility for determining the validation statuses of components such as <strong>enableValidation</strong> and <strong>valid</strong>/<strong>invalid</strong>.
                 </p>
                 <p>
                     By centralizing the reusable codes in one place, the overall bundle size can be reduced.

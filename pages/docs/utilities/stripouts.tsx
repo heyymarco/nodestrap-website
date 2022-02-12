@@ -3,7 +3,7 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { ComponentInfoProvider, LinkStripoutsPage, SectionGeneral, SectionIntro } from '../../../components/common-contents'
+import { ComponentInfoProvider, CurrentComponent, LinkStripoutsPage, SectionGeneral, SectionIntro } from '../../../components/common-contents'
 import { SpecList, DetailSpecItem } from '../../../components/SpecList'
 import { TypeScriptCode } from '../../../components/Code'
 
@@ -19,7 +19,7 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    <LinkStripoutsPage /> is a utility for resetting browser default style to an unstyled element.
+                    <CurrentComponent /> is a utility for resetting browser default style to an unstyled element.
                 </p>
                 <p>
                     The default styles in <code>&lt;button&gt;</code>, <code>&lt;input&gt;</code>, <code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, etc are great,<br />

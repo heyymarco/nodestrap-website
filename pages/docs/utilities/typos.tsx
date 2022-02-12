@@ -3,7 +3,7 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { ComponentInfoProvider, LinkTyposPage, SectionGeneral, SectionIntro } from '../../../components/common-contents'
+import { ComponentInfoProvider, CurrentComponent, LinkTyposPage, SectionGeneral, SectionIntro } from '../../../components/common-contents'
 import { SpecList, SimpleSpecItem } from '../../../components/SpecList'
 
 
@@ -18,10 +18,10 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    <LinkTyposPage /> is a utility for customizing common typography (paragraphs, headings, marks, fonts, etc) in your site&apos;s page.
+                    <CurrentComponent /> is a utility for customizing common typography (paragraphs, headings, marks, fonts, etc) in your site&apos;s page.
                 </p>
                 <p>
-                    <strong>Changing</strong> the typography configs <strong>affects all components</strong> that depend on <LinkTyposPage />.
+                    <strong>Changing</strong> the typography configs <strong>affects all components</strong> that depend on <CurrentComponent />.
                 </p>
                 <p>
                     The main purpose of this utility is to create <strong>a consistent typography (text)</strong> between components.

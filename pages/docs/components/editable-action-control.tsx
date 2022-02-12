@@ -5,7 +5,7 @@ import Head from 'next/head'
 
 import { SpecList, DetailSpecItem } from '../../../components/SpecList'
 
-import { SectionInheritedProps, LinkEditableActionControlPage, LinkEditableControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionIntro, SectionGeneral, LinkActionControlPage, useComponentInfo, CommaSeparated, SectionDemo, BusyBar } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkEditableActionControlPage, LinkEditableControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionIntro, SectionGeneral, LinkActionControlPage, useComponentInfo, CommaSeparated, SectionDemo, BusyBar, CurrentComponent } from '../../../components/common-contents'
 
 import loadable from '@loadable/component'
 const DemoEditableActionControlLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@EditableActionControl' */'../../../components/DemoPanel@EditableActionControl'))
@@ -39,12 +39,12 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    <LinkEditableActionControlPage /> is an <strong>abstract</strong> component of <strong>clickable &amp; editable component</strong> with <strong>validation</strong>.
+                    <CurrentComponent /> is an <strong>abstract</strong> component of <strong>clickable &amp; editable component</strong> with <strong>validation</strong>.
                     It has some validation indicators such as <strong>valid</strong>/<strong>invalid</strong>/<strong>uncheck</strong> that are inherited from <LinkEditableControlPage />.
                     It also has some control indicators such as <strong>press</strong>/<strong>release</strong> that are inherited from <LinkActionControlPage />.
                 </p>
                 <p>
-                    In <em>most cases</em>, you should <strong>not use </strong>this component <strong>directly</strong>, instead create your own component by derivering <LinkEditableActionControlPage />.
+                    In <em>most cases</em>, you should <strong>not use </strong>this component <strong>directly</strong>, instead create your own component by derivering <CurrentComponent />.
                 </p>
             </SectionIntro>
             <SectionDemo>
@@ -77,7 +77,7 @@ export default function AcceptButton(props) {
                     <SpecList>
                         <DetailSpecItem code='usesEditableActionControlLayout()'>
                             <p>
-                                Returns a <code>Rule</code> object represents a complete <LinkEditableActionControlPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
+                                Returns a <code>Rule</code> object represents a complete <CurrentComponent /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
                             </p>
                             <p>
                                 Currently the layout is the combination of <LinkEditableControlPage />&apos;s layout and <LinkActionControlPage />&apos;s layout.
@@ -85,7 +85,7 @@ export default function AcceptButton(props) {
                         </DetailSpecItem>
                         <DetailSpecItem code='usesEditableActionControlVariants()'>
                             <p>
-                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <LinkEditableActionControlPage />.
+                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentComponent />.
                             </p>
                             <p>
                                 Currently the variants are the combination of <LinkEditableControlPage />&apos;s variants and <LinkActionControlPage />&apos;s variants.
@@ -93,7 +93,7 @@ export default function AcceptButton(props) {
                         </DetailSpecItem>
                         <DetailSpecItem code='usesEditableActionControlStates()'>
                             <p>
-                                Returns a <code>Rule</code> object represents the <strong>states</strong> of <LinkEditableActionControlPage />.
+                                Returns a <code>Rule</code> object represents the <strong>states</strong> of <CurrentComponent />.
                             </p>
                             <p>
                                 Currently the states are the combination of <LinkEditableControlPage />&apos;s states and <LinkActionControlPage />&apos;s states.

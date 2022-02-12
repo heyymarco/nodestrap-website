@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 import { Warning } from '../../../components/Info'
 
-import { SectionInheritedProps, LinkIndicatorPage, LinkBasicPage, LinkIconPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionStates, SectionSubProperty, SectionIntro, SectionDemo, BusyBar } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkIndicatorPage, LinkBasicPage, LinkIconPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionStates, SectionSubProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent } from '../../../components/common-contents'
 
 import loadable from '@loadable/component'
 const DemoIndicatorLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Indicator' */'../../../components/DemoPanel@Indicator'))
@@ -23,10 +23,10 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                     <p>
-                        <LinkIndicatorPage /> is an <strong>abstract</strong> component for <strong>displaying indications</strong> such as <strong>enabled</strong>/<strong>disabled</strong> and <strong>active</strong>/<strong>passive</strong>.
+                        <CurrentComponent /> is an <strong>abstract</strong> component for <strong>displaying indications</strong> such as <strong>enabled</strong>/<strong>disabled</strong> and <strong>active</strong>/<strong>passive</strong>.
                     </p>
                     <p>
-                        In <em>most cases</em>, you should <strong>not use </strong>this component <strong>directly</strong>, instead create your own component by derivering <LinkIndicatorPage />.
+                        In <em>most cases</em>, you should <strong>not use </strong>this component <strong>directly</strong>, instead create your own component by derivering <CurrentComponent />.
                     </p>
             </SectionIntro>
             <SectionDemo>
@@ -185,18 +185,18 @@ export default function OnOffIndicator(props) {
                     <SpecList>
                         <DetailSpecItem code='usesIndicatorLayout()'>
                             <p>
-                                Returns a <code>Rule</code> object represents a complete <LinkIndicatorPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
+                                Returns a <code>Rule</code> object represents a complete <CurrentComponent /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesIndicatorVariants()'>
                             <p>
-                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <LinkIndicatorPage /> such as:<br />
+                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentComponent /> such as:<br />
                                 <code>SizeVariant</code> and <strong>all variants</strong> inherited from <LinkBasicPage />.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesIndicatorStates()'>
                             <p>
-                                Returns a <code>Rule</code> object represents the <strong>states</strong> of <LinkIndicatorPage /> such as:<br />
+                                Returns a <code>Rule</code> object represents the <strong>states</strong> of <CurrentComponent /> such as:<br />
                                 <strong>enabled</strong>/<strong>disabled</strong> and <strong>active</strong>/<strong>passive</strong>.
                             </p>
                         </DetailSpecItem>

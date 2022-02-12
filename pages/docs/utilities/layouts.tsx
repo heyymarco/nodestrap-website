@@ -3,7 +3,7 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { ComponentInfoProvider, LinkLayoutsPage, SectionGeneral, SectionIntro } from '../../../components/common-contents'
+import { ComponentInfoProvider, CurrentComponent, LinkLayoutsPage, SectionGeneral, SectionIntro } from '../../../components/common-contents'
 import { SpecList, SimpleSpecItem } from '../../../components/SpecList'
 
 
@@ -18,7 +18,7 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    <LinkLayoutsPage /> is a utility for creating common layouts.
+                    <CurrentComponent /> is a utility for creating common layouts.
                 </p>
                 <p>
                     By centralizing the reusable codes in one place, the overall bundle size can be reduced.

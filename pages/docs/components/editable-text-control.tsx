@@ -5,7 +5,7 @@ import Head from 'next/head'
 
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
-import { SectionInheritedProps, LinkEditableTextControlPage, LinkEditableControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionIntro, SectionGeneral, ExternalLink, SectionDemo, BusyBar } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkEditableTextControlPage, LinkEditableControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionIntro, SectionGeneral, ExternalLink, SectionDemo, BusyBar, CurrentComponent } from '../../../components/common-contents'
 import { Warning } from '../../../components/Info'
 
 import loadable from '@loadable/component'
@@ -23,10 +23,10 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    <LinkEditableTextControlPage /> is an <strong>abstract</strong> component of <strong>text editor</strong> with <strong>validation icon</strong>. It also has some validation indicators such as <strong>valid</strong>/<strong>invalid</strong>/<strong>uncheck</strong> that are inherited from <LinkEditableControlPage />.
+                    <CurrentComponent /> is an <strong>abstract</strong> component of <strong>text editor</strong> with <strong>validation icon</strong>. It also has some validation indicators such as <strong>valid</strong>/<strong>invalid</strong>/<strong>uncheck</strong> that are inherited from <LinkEditableControlPage />.
                 </p>
                 <p>
-                    In <em>most cases</em>, you should <strong>not use </strong>this component <strong>directly</strong>, instead create your own component by derivering <LinkEditableTextControlPage />.
+                    In <em>most cases</em>, you should <strong>not use </strong>this component <strong>directly</strong>, instead create your own component by derivering <CurrentComponent />.
                 </p>
             </SectionIntro>
             <SectionDemo>
@@ -96,7 +96,7 @@ const Page: NextPage = () => {
                 <SectionOverridingDefaults moreInfo={
                     <Warning>
                         <p>
-                            If you working with <code>{`<input type='...'>`}</code> or <code>{`<textarea>`}</code>, you should wrap them inside the <LinkEditableTextControlPage /> and then style it to appear borderless.
+                            If you working with <code>{`<input type='...'>`}</code> or <code>{`<textarea>`}</code>, you should wrap them inside the <CurrentComponent /> and then style it to appear borderless.
                         </p>
                         <p>
                             If you set <code>{`<EditableTextControl tag='input'>`}</code> or <code>{`<EditableTextControl tag='textarea'>`}</code>, the <strong>validation icon</strong> will <strong>never show</strong> because
@@ -127,18 +127,18 @@ export default function TextEditor(props) {
                     <SpecList>
                         <DetailSpecItem code='usesEditableTextControlLayout()'>
                             <p>
-                                Returns a <code>Rule</code> object represents a complete <LinkEditableTextControlPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
+                                Returns a <code>Rule</code> object represents a complete <CurrentComponent /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesEditableTextControlVariants()'>
                             <p>
-                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <LinkEditableTextControlPage /> such as:<br />
+                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentComponent /> such as:<br />
                                 <code>SizeVariant</code> and <strong>all variants</strong> inherited from <LinkEditableControlPage />.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesEditableTextControlStates()'>
                             <p>
-                                Returns a <code>Rule</code> object represents the <strong>states</strong> of <LinkEditableTextControlPage />.
+                                Returns a <code>Rule</code> object represents the <strong>states</strong> of <CurrentComponent />.
                             </p>
                             <p>
                                 Currently the states are equivalent to <LinkEditableControlPage />&apos;s states.

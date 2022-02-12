@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Section, SubSection } from '../../../components/Section'
-import { SectionInheritedProps, LinkContainerPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, SectionMoreCustomizingCss, LinkBreakpointsPage } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkContainerPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, SectionMoreCustomizingCss, LinkBreakpointsPage, CurrentComponent } from '../../../components/common-contents'
 
 import { TypeScriptCode } from '../../../components/Code'
 import { Warning } from '../../../components/Info'
@@ -28,7 +28,7 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    <LinkContainerPage /> is a presentation component that is <em>usually</em> used for <strong>the main wrapper</strong> of website&apos;s content.
+                    <CurrentComponent /> is a presentation component that is <em>usually</em> used for <strong>the main wrapper</strong> of website&apos;s content.
                 </p>
                 <p>
                     Commonly, there are some <strong>free spaces</strong> on the left &amp; right <strong>website&apos;s content</strong> and/or on the top &amp; bottom as well, so
@@ -37,23 +37,23 @@ const Page: NextPage = () => {
                     The wider the browser, the more space it has (responsive design).
                 </p>
                 <p>
-                    Hence, the <LinkContainerPage /> is exist to help the web developers save their time.
+                    Hence, the <CurrentComponent /> is exist to help the web developers save their time.
                     You can configure the <LinkBreakpointsPage>responsive breakpoints here</LinkBreakpointsPage> and <strong>customize the available widths</strong> on the <strong>global configuration</strong> on this page below.
                 </p>
             </SectionIntro>
             <SectionDemo message={
                 <p>
                     Resize the browser&apos;s width and change some controls below!
-                    You&apos;ll see the { <LinkContainerPage /> }&apos;s paddings are changed (responsive) &amp; the appearance is customizable.
+                    You&apos;ll see the { <CurrentComponent /> }&apos;s paddings are changed (responsive) &amp; the appearance is customizable.
                 </p>
             }>
                 <DemoContainerLazy fallback={<BusyBar />} />
             </SectionDemo>
             <Section title='Manipulating the Children'>
-                <SubSection title={<>Fill the <LinkContainerPage />&apos;s space</>}>
+                <SubSection title={<>Fill the <CurrentComponent />&apos;s space</>}>
                     <SubSection>
                         <p>
-                            To make the child element(s) <strong>fill</strong> the entire <LinkContainerPage />&apos;s width,
+                            To make the child element(s) <strong>fill</strong> the entire <CurrentComponent />&apos;s width,
                             add <code>fill</code> class (or <code>{`className='fill'`}</code> in React) to the desired children.
                         </p>
                         <p>
@@ -103,7 +103,7 @@ const Page: NextPage = () => {
                     <SubSection>
                         <p>
                             When the child is located at the <strong>top</strong> or <strong>bottom</strong>,
-                            the <code>fill</code> class <strong>removes</strong> the <strong>padding top</strong> or <strong>padding bottom</strong> of the <LinkContainerPage />.
+                            the <code>fill</code> class <strong>removes</strong> the <strong>padding top</strong> or <strong>padding bottom</strong> of the <CurrentComponent />.
                         </p>
                         <p>
                             Here the demonstration:
@@ -147,10 +147,10 @@ const Page: NextPage = () => {
                         `}</TypeScriptCode>
                     </SubSection>
                 </SubSection>
-                <SubSection title={<>Take Over the <LinkContainerPage />&apos;s space</>}>
+                <SubSection title={<>Take Over the <CurrentComponent />&apos;s space</>}>
                     <SubSection>
                         <p>
-                            To make the child element(s) <strong>fill</strong> the entire <LinkContainerPage />&apos;s width and <strong>take over</strong> <LinkContainerPage />&apos;s padding,
+                            To make the child element(s) <strong>fill</strong> the entire <CurrentComponent />&apos;s width and <strong>take over</strong> <CurrentComponent />&apos;s padding,
                             add <code>fill-self</code> class (or <code>{`className='fill-self'`}</code> in React) to the desired children.
                         </p>
                         <p>
@@ -200,7 +200,7 @@ const Page: NextPage = () => {
                     <SubSection>
                         <p>
                             When the child is located at the <strong>top</strong> or <strong>bottom</strong>,
-                            the <code>fill-self</code> class also <strong>takes over</strong> the <strong>padding top</strong> or <strong>padding bottom</strong> of the <LinkContainerPage />.
+                            the <code>fill-self</code> class also <strong>takes over</strong> the <strong>padding top</strong> or <strong>padding bottom</strong> of the <CurrentComponent />.
                         </p>
                         <p>
                             Here the demonstration:
@@ -344,18 +344,18 @@ export default function SiteSection(props) {
                     <SpecList>
                         <DetailSpecItem code='usesContainerLayout()'>
                             <p>
-                                Returns a <code>Rule</code> object represents a complete <LinkContainerPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>children</strong>.
+                                Returns a <code>Rule</code> object represents a complete <CurrentComponent /> <strong>layout</strong> except its <strong>variants</strong> and <strong>children</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesContainerVariants()'>
                             <p>
-                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <LinkContainerPage /> such as:<br />
+                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentComponent /> such as:<br />
                                 <code>SizeVariant</code> and <strong>all variants</strong> inherited from <LinkBasicPage />.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesContainerChildren()'>
                             <p>
-                                Returns a <code>Rule</code> object represents the style of <LinkContainerPage />&apos;s <strong>children</strong>.
+                                Returns a <code>Rule</code> object represents the style of <CurrentComponent />&apos;s <strong>children</strong>.
                             </p>
                             <p>
                                 Currently the returning <strong>style</strong> is <strong>equivalent</strong> to the return of <code>usesContainerChildrenFill()</code>.
@@ -363,10 +363,10 @@ export default function SiteSection(props) {
                         </DetailSpecItem>
                         <DetailSpecItem code='usesContainerChildrenFill()'>
                             <p>
-                                Returns a <code>Rule</code> object represents the style of <LinkContainerPage />&apos;s <strong>children</strong> <em>when</em> its <code>class</code> contains <code>fill</code> or <code>fill-self</code>.
+                                Returns a <code>Rule</code> object represents the style of <CurrentComponent />&apos;s <strong>children</strong> <em>when</em> its <code>class</code> contains <code>fill</code> or <code>fill-self</code>.
                             </p>
                             <p>
-                                When <code>fill</code> class is applied, the corresponding child&apos;s <strong>width</strong> will <strong>expand</strong> to <strong>container&apos;s client width</strong> (ignoring the <LinkContainerPage />&apos;s <strong>padding</strong>), and
+                                When <code>fill</code> class is applied, the corresponding child&apos;s <strong>width</strong> will <strong>expand</strong> to <strong>container&apos;s client width</strong> (ignoring the <CurrentComponent />&apos;s <strong>padding</strong>), and
                                 the <strong>top</strong> will <strong>expand</strong> to <strong>container&apos;s client top</strong> - when it&apos;s <strong>the first child</strong>, and
                                 the <strong>bottom</strong> will <strong>expand</strong> to <strong>container&apos;s client bottom</strong> - when it&apos;s <strong>the last child</strong>.
                             </p>
@@ -460,7 +460,7 @@ export default function SiteSection(props) {
                             </p>
                             <p>
                                 By applying the <code>Rule</code> above, the <strong>border width</strong>, <strong>border radiuses</strong> and <strong>paddings</strong> of the corresponding <strong>container</strong> are <strong>managed by Nodestrap</strong>.
-                                For example if the container&apos;s <strong>child</strong> want to <strong>fill</strong> the entire/partial of <code>container&apos;s client area</code> (ignoring the <LinkContainerPage />&apos;s <strong>padding</strong>),
+                                For example if the container&apos;s <strong>child</strong> want to <strong>fill</strong> the entire/partial of <code>container&apos;s client area</code> (ignoring the <CurrentComponent />&apos;s <strong>padding</strong>),
                                 the child&apos; <strong>border radiuses</strong> and <strong>negative margins</strong> can be <strong>easily calculated</strong> so that the child can <strong>fit into</strong> the container accurately.
                             </p>
                             <p>

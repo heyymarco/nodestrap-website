@@ -5,7 +5,7 @@ import Head from 'next/head'
 
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
-import { SectionInheritedProps, LinkControlPage, LinkIndicatorPage, ParagraphDefaultValue, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionStates, SectionProperty, SectionIntro, SectionDemo, BusyBar } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkControlPage, LinkIndicatorPage, ParagraphDefaultValue, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionStates, SectionProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent } from '../../../components/common-contents'
 
 import loadable from '@loadable/component'
 const DemoControlLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Control' */'../../../components/DemoPanel@Control'))
@@ -22,10 +22,10 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    <LinkControlPage /> is an <strong>abstract</strong> component of <strong>controllable component</strong>. It has some control indicators such as <strong>focus</strong>/<strong>blur</strong> and <strong>arrive</strong>/<strong>leave</strong>.
+                    <CurrentComponent /> is an <strong>abstract</strong> component of <strong>controllable component</strong>. It has some control indicators such as <strong>focus</strong>/<strong>blur</strong> and <strong>arrive</strong>/<strong>leave</strong>.
                 </p>
                 <p>
-                    In <em>most cases</em>, you should <strong>not use </strong>this component <strong>directly</strong>, instead create your own component by derivering <LinkControlPage />.
+                    In <em>most cases</em>, you should <strong>not use </strong>this component <strong>directly</strong>, instead create your own component by derivering <CurrentComponent />.
                 </p>
             </SectionIntro>
             <SectionDemo>
@@ -183,18 +183,18 @@ export default function JoystickControl(props) {
                     <SpecList>
                         <DetailSpecItem code='usesControlLayout()'>
                             <p>
-                                Returns a <code>Rule</code> object represents a complete <LinkControlPage /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
+                                Returns a <code>Rule</code> object represents a complete <CurrentComponent /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesControlVariants()'>
                             <p>
-                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <LinkControlPage /> such as:<br />
+                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentComponent /> such as:<br />
                                 <code>SizeVariant</code> and <strong>all variants</strong> inherited from <LinkIndicatorPage />.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesControlStates()'>
                             <p>
-                                Returns a <code>Rule</code> object represents the <strong>states</strong> of <LinkControlPage /> such as:<br />
+                                Returns a <code>Rule</code> object represents the <strong>states</strong> of <CurrentComponent /> such as:<br />
                                 <strong>focus</strong>/<strong>blur</strong>, <strong>arrive</strong>/<strong>leave</strong>, and <strong>all states</strong> inherited from <LinkIndicatorPage />.
                             </p>
                         </DetailSpecItem>

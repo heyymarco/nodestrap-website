@@ -3,7 +3,7 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { ComponentInfoProvider, LinkAccessibilitiesPage, SectionGeneral, SectionIntro } from '../../../components/common-contents'
+import { ComponentInfoProvider, CurrentComponent, LinkAccessibilitiesPage, SectionGeneral, SectionIntro } from '../../../components/common-contents'
 import { SpecList, DetailSpecItem } from '../../../components/SpecList'
 
 
@@ -18,7 +18,7 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    <LinkAccessibilitiesPage /> is a utility for determining the accessibility statuses of components such as <strong>enabled</strong>/<strong>disabled</strong>, <strong>readonly</strong>/<strong>editable</strong> and <strong>active</strong>/<strong>passive</strong>.
+                    <CurrentComponent /> is a utility for determining the accessibility statuses of components such as <strong>enabled</strong>/<strong>disabled</strong>, <strong>readonly</strong>/<strong>editable</strong> and <strong>active</strong>/<strong>passive</strong>.
                 </p>
                 <p>
                     By centralizing the reusable codes in one place, the overall bundle size can be reduced.

@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { Tips, Warning } from '../../../components/Info'
 import { TypeScriptCode } from '../../../components/Code'
 
-import { ComponentInfoProvider, LinkElementPage, SectionCustomizingCss, SectionDerivering, SectionIntro, SectionOverridingDefaults, SectionProperty, SectionSubProperty } from '../../../components/common-contents'
+import { ComponentInfoProvider, CurrentComponent, LinkElementPage, SectionCustomizingCss, SectionDerivering, SectionIntro, SectionOverridingDefaults, SectionProperty, SectionSubProperty } from '../../../components/common-contents'
 
 
 
@@ -60,7 +60,7 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    <LinkElementPage /> is the most basic component in Nodestrap components.
+                    <CurrentComponent /> is the most basic component in Nodestrap components.
                     It provides the semantic functionality and some basic essentials.
                 </p>
             </SectionIntro>
@@ -70,7 +70,7 @@ const Page: NextPage = () => {
                 </p>
                 <SectionSubProperty property='role'>
                     <p>
-                        Controls the <strong>role property</strong> of rendered <LinkElementPage />.
+                        Controls the <strong>role property</strong> of rendered <CurrentComponent />.
                     </p>
                     <p>
                         If the <code>role</code> value is not defined (or <code>undefined</code>), then fallbacks using a value in <code>semanticRole</code> (we&apos;ll choose the best one) and
@@ -95,7 +95,7 @@ const Page: NextPage = () => {
                 </SectionSubProperty>
                 <SectionSubProperty property='tag'>
                     <p>
-                        Controls the <strong>tag name</strong> of rendered <LinkElementPage />.
+                        Controls the <strong>tag name</strong> of rendered <CurrentComponent />.
                     </p>
                     <p>
                         If the <code>tag</code> value is not defined (or <code>undefined</code>), then fallbacks using a value in <code>semanticTag</code> (we&apos;ll choose the best one) and
@@ -412,7 +412,7 @@ export function CustomSidebar(props) {
             <SectionProperty property={<><code>aria-**</code> Properties</>}>
                 <p>
                     Any properties starting with <code>aria-**</code> will be <strong>rendered directly</strong>.
-                    Fell free to place any <code>aria-**</code> to the <LinkElementPage />.
+                    Fell free to place any <code>aria-**</code> to the <CurrentComponent />.
                 </p>
                 <p>
                     Example:
@@ -434,7 +434,7 @@ export function CustomSidebar(props) {
             <SectionProperty property={<><code>on**</code> Properties</>}>
                 <p>
                     Any properties starting with <code>on**</code> will be treated as <strong>an usual React event</strong>.
-                    Fell free to put any <code>on**</code> to the <LinkElementPage />.
+                    Fell free to put any <code>on**</code> to the <CurrentComponent />.
                 </p>
                 <p>
                     Example:
@@ -448,7 +448,7 @@ export function CustomSidebar(props) {
             <SectionProperty property={<><strong>DOM</strong> Properties</>}>
                 <p>
                     Any <strong>DOM</strong> properties will be <strong>rendered directly</strong>.
-                    Fell free to place any <code>DOM properties</code> to the <LinkElementPage />.
+                    Fell free to place any <code>DOM properties</code> to the <CurrentComponent />.
                 </p>
                 <p>
                     Here the list of recognized <strong>DOM properties</strong>:<br />

@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 import { Warning } from '../../../components/Info'
 
-import { SectionInheritedProps, LinkBasicPage, LinkElementPage, LinkColorsPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionSubProperty, SectionIntro, SectionDemo, BusyBar } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkBasicPage, LinkElementPage, LinkColorsPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionSubProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent } from '../../../components/common-contents'
 
 import loadable from '@loadable/component'
 const DemoBasicLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Basic' */'../../../components/DemoPanel@Basic'))
@@ -16,7 +16,7 @@ const DemoBasicLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Basi
 const WarnNotImplementExited = () => (
     <Warning>
         <p>
-            By default <LinkBasicPage /> is doesn&apos;t implement this feature, but
+            By default <CurrentComponent /> is doesn&apos;t implement this feature, but
             the derived components may do.
         </p>
     </Warning>
@@ -34,11 +34,11 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    <LinkBasicPage /> is the most basic component in Nodestrap components after the <LinkElementPage />.
+                    <CurrentComponent /> is the most basic component in Nodestrap components after the <LinkElementPage />.
                     It provides the basic styling and some basic essentials.
                 </p>
                 <p>
-                    Unlike <LinkElementPage />, <LinkBasicPage /> has a default style that you can see visually.
+                    Unlike <LinkElementPage />, <CurrentComponent /> has a default style that you can see visually.
                 </p>
             </SectionIntro>
             <SectionDemo>
@@ -301,12 +301,12 @@ export default function SiteSidebar(props) {
                     <SpecList>
                         <DetailSpecItem code='usesBasicLayout()'>
                             <p>
-                                Returns a <code>Rule</code> object represents a complete <LinkBasicPage /> <strong>layout</strong> except its <strong>variants</strong>.
+                                Returns a <code>Rule</code> object represents a complete <CurrentComponent /> <strong>layout</strong> except its <strong>variants</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesBasicVariants()'>
                             <p>
-                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <LinkBasicPage /> such as:<br />
+                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentComponent /> such as:<br />
                                 <code>SizeVariant</code>, <code>NudeVariant</code>, <code>ThemeVariant</code>, <code>GradientVariant</code>, <code>OutlinedVariant</code>, and <code>MildVariant</code>.
                             </p>
                         </DetailSpecItem>
