@@ -28,13 +28,14 @@ import {
 
 import spacers from '@nodestrap/spacers'
 import Card from '@nodestrap/card';
-import { usesBackg } from '@nodestrap/basic'
+import { ThemeName, usesBackg } from '@nodestrap/basic'
 import { ResponsiveProvider } from '@nodestrap/responsive'
 
 
 import { Icon } from '@nodestrap/icon'
 import iconFonts from '@nodestrap/icon/dist/Icon-font-material'
 import { Nav, NavItem, NextItem, PrevItem } from '@nodestrap/nav'
+import { ThemeOption } from './DemoPanel';
 
 
 
@@ -50,13 +51,19 @@ export const useDemoIconGallerySheet = createUseSheet(() => {
                     ...children(['.header', '.footer'], {
                         display       : 'flex',
                         flexDirection : 'column',
-                        alignItems    : 'stretch',
+                        alignItems    : 'center',
+                        
+                        gap           : spacers.default,
+
+                        filter        : [['contrast(80%)']],
 
                         ...children('.limiter', {
                             display       : 'flex',
                             flexDirection : 'column',
                             alignItems    : 'center',
                             maxInlineSize : '100%',
+                            
+                            alignSelf     : 'stretch',
                         }),
                     }),
                     
@@ -69,13 +76,15 @@ export const useDemoIconGallerySheet = createUseSheet(() => {
                         justifyItems          : 'stretch', // give each item maximum allowed width
                         justifyContent        : 'center',  // if the items are too few, center whole items horizontally
                         
-                        overflow              : 'visible',
+                        overflow              : 'hidden',
                         
                         gap                   : spacers.lg,
                         
                         ...children('*', { // icon entry
                             display           : 'flex',
                             flexDirection     : 'row',
+                            justifyContent    : 'start',
+                            alignItems        : 'center',
                             flexWrap          : 'nowrap',
                             
                             transition        : [
@@ -83,7 +92,6 @@ export const useDemoIconGallerySheet = createUseSheet(() => {
                             ],
                             
                             ...children(':first-child', {
-                                blockSize     : '24px',
                                 aspectRatio   : 1/1,
                             }),
                             
@@ -148,10 +156,14 @@ export const DemoIconGallery = () => {
     
     
     
+    const [theme, setTheme] = useState<ThemeName|undefined>('primary')
+    
+    
+    
     const pageNav = (
         <ResponsiveProvider fallbacks={[null, 9, 5]}>{(limit) => (
             <div className='limiter'>
-                <Nav theme='primary' size='sm'>
+                <Nav theme={theme} size='sm'>
                     <PrevItem
                         onClick={() => setPage(0)}
                     />
@@ -195,7 +207,19 @@ export const DemoIconGallery = () => {
         )}</ResponsiveProvider>
     );
     return (
-        <Card classes={[style.main, 'media']} cardStyle='flush' header={pageNav} footer={pageNav}>
+        <Card
+            classes={[style.main, 'media']}
+            cardStyle='flush'
+            theme={theme}
+            
+            header={
+                <>
+                    <ThemeOption name='' showName={false} size='sm' value={theme} setValue={setTheme} />
+                    {pageNav}
+                </>
+            }
+            footer={pageNav}
+        >
             {
                 iconSets
                 .slice((page * itemsPerPage), (page * itemsPerPage) + itemsPerPage)
@@ -203,7 +227,8 @@ export const DemoIconGallery = () => {
                     <span key={index}>
                         <Icon
                             icon={iconName}
-                            theme='primary'
+                            theme={theme}
+                            size='md'
                         />
                         <span>
                             {iconName}

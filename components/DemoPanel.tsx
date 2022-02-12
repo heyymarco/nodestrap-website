@@ -1,7 +1,7 @@
 import { ContentProps, Content } from '@nodestrap/content'
 import { ButtonIconProps, ButtonIcon } from '@nodestrap/button-icon'
 import styles from './DemoPanel.module.scss'
-import { Group } from '@nodestrap/group'
+import { Group, GroupProps } from '@nodestrap/group'
 import { Radio } from '@nodestrap/radio'
 import { Range } from '@nodestrap/range'
 import type { OrientationName, ThemeName } from '@nodestrap/basic'
@@ -32,7 +32,7 @@ export default DemoPanel;
 
 
 
-export interface OptionProps {
+export interface OptionProps extends GroupProps {
     name     : string
     options  : any[]
     value    : any
@@ -44,6 +44,8 @@ export const Option = (props: OptionProps) => {
         options,
         value,
         setValue,
+        
+        ...groupProps
     } = props;
     
     const currentFallback = useResponsiveCurrentFallback<Fallback>();
@@ -51,8 +53,10 @@ export const Option = (props: OptionProps) => {
     
     
     return (<>
-        <span>{ name }</span>
+        {name && <span>{ name }</span>}
         <Group
+            {...groupProps}
+            
             orientation={currentFallback}
         >
             {
@@ -77,18 +81,22 @@ export const Option = (props: OptionProps) => {
     </>);
 }
 
-export interface ThemeOptionProps {
+export interface ThemeOptionProps extends GroupProps {
     name     ?: string
     value     : ThemeName|undefined
     addUnset ?: boolean
+    showName ?: boolean
     setValue  : React.Dispatch<ThemeName|undefined>
 }
 export const ThemeOption = (props: ThemeOptionProps) => {
     const {
-        name,
+        name = 'theme',
         value,
         addUnset,
+        showName = true,
         setValue,
+        
+        ...groupProps
     } = props;
     
     const currentFallback = useResponsiveCurrentFallback<Fallback>();
@@ -96,8 +104,10 @@ export const ThemeOption = (props: ThemeOptionProps) => {
     
     
     return (<>
-        <span>{ name ?? 'theme' }</span>
+        {name && <span>{ name }</span>}
         <Group
+            {...groupProps}
+            
             orientation={currentFallback}
         >
             {
@@ -106,16 +116,16 @@ export const ThemeOption = (props: ThemeOptionProps) => {
                     <Radio
                         key={index}
                         theme={option ?? 'secondary'}
-                        mild={true}
+                        mild={showName ? true : false}
                         enableValidation={false}
                         nude={false}
-                        checkStyle='togglerBtn'
+                        checkStyle={showName ? 'togglerBtn' : undefined}
                         
                         name={name}
                         active={value === option}
                         onActiveChange={(active) => { if (active) setValue(option) }}
                     >
-                        { (option === undefined) ? 'unset' : `${option}` }
+                        { showName && ((option === undefined) ? 'unset' : `${option}`) }
                     </Radio>
                 )
             }
@@ -146,7 +156,7 @@ export const Slider = (props: SliderProps) => {
     
     
     return (<>
-        <span>{ name }</span>
+        {name && <span>{ name }</span>}
         <Range
             enableValidation={false}
             
