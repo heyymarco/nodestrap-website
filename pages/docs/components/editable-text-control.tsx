@@ -5,7 +5,7 @@ import Head from 'next/head'
 
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
-import { SectionInheritedProps, LinkEditableTextControlPage, LinkEditableControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionIntro, SectionGeneral, ExternalLink, SectionDemo, BusyBar, CurrentComponent } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkEditableTextControlPage, LinkEditableControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionIntro, SectionGeneral, ExternalLink, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents } from '../../../components/common-contents'
 import { Warning } from '../../../components/Info'
 
 import loadable from '@loadable/component'
@@ -23,7 +23,7 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    <CurrentComponent /> is an <strong>abstract</strong> component of <strong>text editor</strong> with <strong>validation icon</strong>. It also has some validation indicators such as <strong>valid</strong>/<strong>invalid</strong>/<strong>uncheck</strong> that are inherited from <LinkEditableControlPage />.
+                    <CurrentComponent /> is an <strong>abstract</strong> component of <strong>text editor</strong> with <strong>validation icon</strong>. It also has some validation indicators such as <strong>valid</strong>/<strong>invalid</strong>/<strong>uncheck</strong> that are inherited from <CurrentBaseComponents />.
                 </p>
                 <p>
                     In <em>most cases</em>, you should <strong>not use </strong>this component <strong>directly</strong>, instead create your own component by derivering <CurrentComponent />.
@@ -133,7 +133,7 @@ export default function TextEditor(props) {
                         <DetailSpecItem code='usesEditableTextControlVariants()'>
                             <p>
                                 Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentComponent /> such as:<br />
-                                <code>SizeVariant</code> and <strong>all variants</strong> inherited from <LinkEditableControlPage />.
+                                <code>SizeVariant</code> and <strong>all variants</strong> inherited from <CurrentBaseComponents />.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesEditableTextControlStates()'>
@@ -141,7 +141,7 @@ export default function TextEditor(props) {
                                 Returns a <code>Rule</code> object represents the <strong>states</strong> of <CurrentComponent />.
                             </p>
                             <p>
-                                Currently the states are equivalent to <LinkEditableControlPage />&apos;s states.
+                                Currently the states are equivalent to <CurrentBaseComponents />&apos;s states.
                             </p>
                         </DetailSpecItem>
                     </SpecList>

@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Section, SubSection } from '../../../components/Section'
-import { SectionInheritedProps, LinkContainerPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, SectionMoreCustomizingCss, LinkBreakpointsPage, CurrentComponent } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkContainerPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, SectionMoreCustomizingCss, LinkBreakpointsPage, CurrentComponent, CurrentBaseComponents } from '../../../components/common-contents'
 
 import { TypeScriptCode } from '../../../components/Code'
 import { Warning } from '../../../components/Info'
@@ -350,7 +350,7 @@ export default function SiteSection(props) {
                         <DetailSpecItem code='usesContainerVariants()'>
                             <p>
                                 Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentComponent /> such as:<br />
-                                <code>SizeVariant</code> and <strong>all variants</strong> inherited from <LinkBasicPage />.
+                                <code>SizeVariant</code> and <strong>all variants</strong> inherited from <CurrentBaseComponents />.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesContainerChildren()'>
