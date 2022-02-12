@@ -183,9 +183,9 @@ export const DemoIconGallery = () => {
         return alliIconSets.filter((icon) => icon.toLowerCase().includes(filter));
     })() : alliIconSets;
     const itemsPerPage = 100;
-    const [page, setPage] = useState<number>(0);
-    const maxPageIndex = Math.ceil(filteredIconSets.length / itemsPerPage) - 1;
-    if ((maxPageIndex >= 0) && (page > maxPageIndex)) setPage(0);
+    const [pageIndex, setPageIndex] = useState<number>(0);
+    const totalPages = Math.ceil(filteredIconSets.length / itemsPerPage);
+    if (totalPages && (pageIndex > (totalPages - 1))) setPageIndex(0);
     
     
     
@@ -225,23 +225,23 @@ export const DemoIconGallery = () => {
                     itemsLimit={limit}
                     prevItems={
                         <PrevItem
-                            onClick={() => setPage(0)}
+                            onClick={() => setPageIndex(0)}
                         />
                     }
                     nextItems={
                         <NextItem
-                            onClick={() => setPage(maxPageIndex)}
+                            onClick={() => setPageIndex(totalPages - 1)}
                         />
                     }
                 >
                     {
-                        [...Array(maxPageIndex + 1)]
+                        [...Array(totalPages)]
                         .map((value, counter) => counter)
                         .map((counter) => (
                             <NavItem
                                 key={counter}
-                                active={counter === page}
-                                onClick={() => setPage(counter)}
+                                active={counter === pageIndex}
+                                onClick={() => setPageIndex(counter)}
                             >{counter + 1}</NavItem>
                         ))
                     }
@@ -265,7 +265,7 @@ export const DemoIconGallery = () => {
         >
             {
                 filteredIconSets
-                .slice((page * itemsPerPage), (page * itemsPerPage) + itemsPerPage)
+                .slice((pageIndex * itemsPerPage), (pageIndex * itemsPerPage) + itemsPerPage)
                 .map((iconName, index) =>
                     <span key={index}>
                         <Icon
