@@ -219,6 +219,24 @@ export const useComponentInfo = () => {
 
 
 
+export const CurrentComponent = () => {
+    const { component } = useComponentInfo();
+
+    return <>{ component }</>;
+}
+export const CurrentBaseComponents = () => {
+    const { bases } = useComponentInfo();
+
+    return <>{ bases }</>;
+}
+export const CurrentPackageName = () => {
+    const { packageName } = useComponentInfo();
+
+    return <>{ packageName }</>;
+}
+
+
+
 export interface SectionGeneralProps {
     titleTag ?: 'h1'|'h2'|'h3'|'h4'|'h5'|'h6'
     title     : string|React.ReactElement
@@ -241,13 +259,13 @@ export interface SectionIntroProps {
     children   ?: React.ReactNode
 }
 export const SectionIntro = ({ children }: SectionIntroProps) => {
-    const { component, packageType } = useComponentInfo();
+    const { packageType } = useComponentInfo();
     
     return (
         <SectionGeneral
             titleTag='h1'
             title={<>
-                { component }
+                <CurrentComponent />
                 {(() => {
                     switch (packageType) {
                         case 'utility'  : return ' Utility';
@@ -265,18 +283,18 @@ export const SectionIntro = ({ children }: SectionIntroProps) => {
 
 
 export interface SectionDemoProps {
-    children   ?: React.ReactNode
-    message    ?: React.ReactNode
+    title       ?: string
+    detailLabel ?: string
+    children    ?: React.ReactNode
+    message     ?: React.ReactNode
 }
-export const SectionDemo = ({ children, message }: SectionDemoProps) => {
-    const { component } = useComponentInfo();
-    
+export const SectionDemo = ({ title, detailLabel, children, message }: SectionDemoProps) => {
     return (
         <SectionGeneral
-            title='Demonstration'
+            title={title ?? 'Demonstration'}
         >
             <Detail
-                label='Show demonstration panel'
+                label={detailLabel ?? 'Show demonstration panel'}
                 
                 theme='primary'
                 mild={true}
@@ -289,7 +307,7 @@ export const SectionDemo = ({ children, message }: SectionDemoProps) => {
                     ||
                     <p>
                         Change some controls below!
-                        You&apos;ll see the { component } is customizable.
+                        You&apos;ll see the <CurrentComponent /> is customizable.
                     </p>
                 }
                 <DemoPanel classes={['media']}>
@@ -303,7 +321,7 @@ export const SectionDemo = ({ children, message }: SectionDemoProps) => {
 
 
 export const SectionInheritedProps = () => {
-    const { component, bases } = useComponentInfo();
+    const bases = <CurrentBaseComponents />;
     
     
     const basesJsx = <CommaSeparated components={bases} />
@@ -313,7 +331,7 @@ export const SectionInheritedProps = () => {
             title='Inherited Properties'
         >
             <p>
-                Because { component } is made from { basesJsx },
+                Because <CurrentComponent /> is made from { basesJsx },
                 so all properties from { basesJsx } are inherited.<br />
                 You can { linksJsx }.
             </p>
@@ -327,8 +345,6 @@ export interface SectionVariantsProps {
     children   ?: React.ReactNode
 }
 export const SectionVariants = ({ children }: SectionVariantsProps) => {
-    const { component } = useComponentInfo();
-    
     return (
         <SectionGeneral
             title='Variant Properties'
@@ -337,7 +353,7 @@ export const SectionVariants = ({ children }: SectionVariantsProps) => {
                 There&apos;re some properties for <strong>modifying the appearances</strong>.
             </p>
             <p>
-                Those properties do not change the { component } semantically. Just for <strong>styling</strong> purpose.
+                Those properties do not change the <CurrentComponent /> semantically. Just for <strong>styling</strong> purpose.
             </p>
             
             { children }
@@ -409,18 +425,16 @@ export interface SectionCustomizingProps {
     specList    : SpecList
 }
 export const SectionCustomizing = ({ specList }: SectionCustomizingProps) => {
-    const { component, packageName } = useComponentInfo();
-    
     return (
         <SectionGeneral
             title={<>
-                Customizing { component } Component
+                Customizing <CurrentComponent /> Component
             </>}
         >
             <p>
-                There is a <strong>global configuration</strong> of { component } you can tweak.
-                Changing the global configuration <strong>affects all</strong> { component } and <strong>other components</strong> derived from { component }.
-                Here several properties in <code>cssProps</code> of <code>{`import { cssProps } from ${packageName}`}</code> you can customize:
+                There is a <strong>global configuration</strong> of <CurrentComponent /> you can tweak.
+                Changing the global configuration <strong>affects all</strong> <CurrentComponent /> and <strong>other components</strong> derived from <CurrentComponent />.
+                Here several properties in <code>cssProps</code> of <code>import {`{ cssProps }`} from <CurrentPackageName /></code> you can customize:
             </p>
             
             { specList }
@@ -434,16 +448,14 @@ export interface SectionDeriveringProps {
     children   ?: React.ReactNode
 }
 export const SectionDerivering = ({ children }: SectionDeriveringProps) => {
-    const { component } = useComponentInfo();
-    
     return (
         <SectionGeneral
             title={<>
-                Derivering { component } Component
+                Derivering <CurrentComponent /> Component
             </>}
         >
             <p>
-                { component } can be derivered to a <strong>new specific component</strong> you want.
+                <CurrentComponent /> can be derivered to a <strong>new specific component</strong> you want.
                 There are several ways to deriver.
             </p>
             
@@ -457,15 +469,13 @@ export interface SectionOverridingDefaultsProps {
     moreInfo   ?: React.ReactNode
 }
 export const SectionOverridingDefaults = ({ children, moreInfo }: SectionOverridingDefaultsProps) => {
-    const { component } = useComponentInfo();
-    
     return (
         <SectionGeneral
             titleTag='h3'
             title='Derivering by Overriding the Default Properties'
         >
             <p>
-                This is the simples way to deriver { component }, just by <strong>changing</strong> the <strong>default values</strong>.
+                This is the simples way to deriver <CurrentComponent />, just by <strong>changing</strong> the <strong>default values</strong>.
                 The values after the <code>??</code> (nullish coalescing operator) are <strong>your default values</strong>.
                 Here the example:
             </p>
@@ -482,8 +492,6 @@ export interface SectionCustomizingCssProps {
     moreInfo   ?: React.ReactNode
 }
 export const SectionCustomizingCss = ({ specList, children, moreInfo }: SectionCustomizingCssProps) => {
-    const { component } = useComponentInfo();
-    
     return (
         <SectionGeneral
             titleTag='h3'
@@ -491,7 +499,7 @@ export const SectionCustomizingCss = ({ specList, children, moreInfo }: SectionC
         >
             {specList && <>
                 <p>
-                    { component } exports <strong>some CSS</strong> that you can import into <strong>your CSS</strong>.
+                    <CurrentComponent /> exports <strong>some CSS</strong> that you can import into <strong>your CSS</strong>.
                     Here the exported <em>mixins</em>:
                 </p>
                 { specList }
@@ -510,8 +518,6 @@ export interface SectionMoreCustomizingCssProps {
     moreInfo   ?: React.ReactNode
 }
 export const SectionMoreCustomizingCss = ({ specList, moreInfo }: SectionMoreCustomizingCssProps) => {
-    const { component } = useComponentInfo();
-    
     return (
         <SectionGeneral
             titleTag='h3'
@@ -526,7 +532,7 @@ export const SectionMoreCustomizingCss = ({ specList, moreInfo }: SectionMoreCus
                 Conditional calls are useful for making <em>CSS in JS</em> <strong>lazily</strong> (only defined but <strong>not yet</strong> executed).
             </p>
             <p>
-                { component } exports <strong>some CSS hooks</strong> that you can import into <strong>your CSS</strong>.
+                <CurrentComponent /> exports <strong>some CSS hooks</strong> that you can import into <strong>your CSS</strong>.
                 Here the exported <em>css hooks</em>:
             </p>
             { specList }

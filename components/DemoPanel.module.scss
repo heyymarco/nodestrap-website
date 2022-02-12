@@ -7,7 +7,7 @@
 
     background: linear-gradient(90deg, #eeeeee, #aaaaaa)
 }
-.panel:nth-child(n)>:is(span, code) {
+.panel:nth-child(n)>:is(span:not(:nth-child(2)), code) {
     display: flex;
     justify-content: left;
     align-items: center;

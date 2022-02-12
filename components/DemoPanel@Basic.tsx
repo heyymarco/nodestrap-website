@@ -1,4 +1,4 @@
-import { SizeName, ThemeName } from '@nodestrap/basic';
+import type { SizeName, ThemeName } from '@nodestrap/basic';
 import { useResetableState, Option, ThemeOption, ResetButton } from './DemoPanel'
 import { Warning } from './Info';
 

@@ -105,7 +105,7 @@ export const ThemeOption = (props: ThemeOptionProps) => {
                 .map((option, index) =>
                     <Radio
                         key={index}
-                        theme={option}
+                        theme={option ?? 'secondary'}
                         mild={true}
                         enableValidation={false}
                         nude={false}
