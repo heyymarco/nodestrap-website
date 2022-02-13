@@ -5,8 +5,9 @@ import Head from 'next/head'
 
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
-import { Section } from '../../../components/Section'
-import { SectionInheritedProps, LinkIconPage, LinkElementPage, LinkColorsPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionSubProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent } from '../../../components/common-contents'
+import { Section, SubSection } from '../../../components/Section'
+import { SectionInheritedProps, LinkIconPage, LinkElementPage, LinkColorsPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionSubProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentPackageName } from '../../../components/common-contents'
+import { TypeScriptCode } from '../../../components/Code'
 
 import { Icon } from '@nodestrap/icon'
 import { Warning } from '../../../components/Info'
@@ -49,6 +50,105 @@ const Page: NextPage = () => {
                 >
                     <DemoIconGalleryLazy fallback={<BusyBar />} />
                 </Detail>
+            </Section>
+            <Section title={<>Configuring the <CurrentComponent /> Component</>}>
+                <p>
+                    After you install <CurrentComponent /> component (using <strong>npm</strong> or <strong>yarn</strong>),
+                    you need to make a configuration before using the <CurrentComponent />.
+                </p>
+                <p>
+                    By default, the <CurrentComponent /> will access <code>https://yourdomain.com/fonts/**</code> for loading <strong>font based</strong> icon and a <code>https://yourdomain.com/icons/**</code> for loading <strong>image based</strong> icon.
+                    So the <code>/fonts</code> and <code>/icons</code> directory should be exist in your application public directory (in React: <code>/public</code>).
+                </p>
+                <p>
+                    So, copy both the <code>/fonts</code> and <code>/icons</code> directory from the <code>/node_modules/@nodestrap/icon/public</code> to your <code>application/public</code>.
+                </p>
+                <p>
+                    You can add your custom icons by following the next section below.
+                </p>
+            </Section>
+            <Section title='Adding Custom Icon Sets'>
+                <p>
+                    To add a custom icon, for example a logo icon, follow these steps:
+                </p>
+                <SubSection title='Prepare the Image'>
+                    <p>
+                        You can either use a <strong>SVG</strong> or <strong>PNG</strong> file format, but the SVG is more recommended.
+                    </p>
+                    <p>
+                        For the SVG format, you can use any image size.
+                    </p>
+                    <p>
+                        For the PNG format, the image size should be the biggest icon size you&apos;ll use.
+                    </p>
+                    <p>
+                        The black part of the image (<code>rgb(0, 0, 0)</code>) will be fully opaque,
+                        whereas the white part (<code>rgb(255, 255, 255)</code>) will be fully transparent.
+                    </p>
+                </SubSection>
+                <SubSection title='Store the Image'>
+                    <p>
+                        Let&apos;s say you have 2 images: <code>your-logo.svg</code> and <code>your-face.png</code>.
+                        Then store them into your application public directory (in React: <code>/public</code>) with optionally into a sub directory.
+                    </p>
+                    <p>
+                        For example:
+                        <ul>
+                            <li>
+                                <code>/public/icons/your-logo.svg</code>
+                            </li>
+                            <li>
+                                <code>/public/icons/your-face.png</code>
+                            </li>
+                        </ul>
+                        So that it can be accessed by the browser like these:
+                        <ul>
+                            <li>
+                                <code>https://yourdomain.com/icons/your-logo.svg</code>
+                            </li>
+                            <li>
+                                <code>https://yourdomain.com/icons/your-face.png</code>
+                            </li>
+                        </ul>
+                    </p>
+                </SubSection>
+                <SubSection title={<>Configuring the <CurrentComponent /> Component</>}>
+                    <p>
+                        Add the code below into your <strong>application main file</strong> (in React: <code>/src/App.jsx</code>, in NextJS: <code>/pages/_app.jsx</code>):
+                    </p>
+                    <TypeScriptCode>{`
+/* ... */
+import { config as iconConfig } from '@nodestrap/icon'
+/* ... */
+
+/* ... */
+iconConfig.img.path = '/icons';
+iconConfig.img.files.push(
+    'your-logo.svg',
+    'your-face.png',
+);
+/* ... */
+                    `}</TypeScriptCode>
+                </SubSection>
+                <SubSection title={<>Use the <CurrentComponent /> Component</>}>
+                    <p>
+                        Finally, insert an <CurrentComponent /> into your jsx code, with property <code>{`icon='your-logo'`}</code> or <code>{`icon='your-face'`}</code>, something like this code:
+                    </p>
+                    <TypeScriptCode>{`
+/* ... */
+import { Icon } from '@nodestrap/icon'
+/* ... */
+
+/* ... */
+<Icon icon='your-logo' theme='primary' size='lg' />
+/* ... */
+                    `}</TypeScriptCode>
+                    <p>
+                        Because the <code>{`import { /* ... */ } from '@nodestrap/icon'`}</code> is a <strong>singleton</strong>,
+                        so you <strong>don&apos;t need</strong> to configure the <code><CurrentPackageName /></code> <strong>on every page</strong> that uses it.
+                        Just configure it on the main file and done!
+                    </p>
+                </SubSection>
             </Section>
             <SectionInheritedProps />
             <SectionVariants>
