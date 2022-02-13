@@ -227,7 +227,7 @@ export const CurrentComponent = () => {
 export const CurrentBaseComponents = () => {
     const { bases } = useComponentInfo();
 
-    return <>{ bases }</>;
+    return <>{ <CommaSeparated components={bases} /> }</>;
 }
 export const CurrentPackageName = () => {
     const { packageName } = useComponentInfo();
@@ -321,7 +321,7 @@ export const SectionDemo = ({ title, detailLabel, children, message }: SectionDe
 
 
 export const SectionInheritedProps = () => {
-    const bases = <CurrentBaseComponents />;
+    const { bases } = useComponentInfo();
     
     
     const basesJsx = <CommaSeparated components={bases} />
