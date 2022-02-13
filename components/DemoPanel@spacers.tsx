@@ -68,20 +68,23 @@ export const DemoSpacers = () => {
 
     return (
         <>
-            <span>Preview</span>
-            <Basic
-                theme='secondary'
-            >
+            <div className='preview'>
                 <Basic
-                    theme='primary'
+                    theme='secondary'
                 >
-                    hello world
+                    <Basic
+                        theme='primary'
+                    >
+                        hello world
+                    </Basic>
                 </Basic>
-            </Basic>
-
-            <SpacerOptions states={states} />
-
-            <ResetButton states={states} />
+            </div>
+            
+            <div className='options'>
+                <SpacerOptions states={states} />
+                
+                <ResetButton states={states} />
+            </div>
         </>
     );
 }

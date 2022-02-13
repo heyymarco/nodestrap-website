@@ -49,34 +49,26 @@ export const DemoActionControl = () => {
     
     return (
         <>
-            <span>Preview</span>
-            <ActionControl
-                press={states.press[0]}
-                
-                focus={states.focus[0]}
-                arrive={states.arrive[0]}
+            <div className='preview'>
+                <ActionControl
+                    press={states.press[0]}
+                    
+                    focus={states.focus[0]}
+                    arrive={states.arrive[0]}
 
-                enabled={states.enabled[0]}
-                active={states.active[0]}
-                
-                size={states.size[0]}
-                nude={states.nude[0]}
-                theme={states.theme[0]}
-                gradient={states.gradient[0]}
-                outlined={states.outlined[0]}
-                mild={states.mild[0]}
-            >
-                click me
-            </ActionControl>
-
-            <hr />
-            
-            <ActionControlOptions states={states} />
-            
-            <ResetButton states={states} />
-
-            <span>Code</span>
-            <TypeScriptCode collapsable={false}>{`
+                    enabled={states.enabled[0]}
+                    active={states.active[0]}
+                    
+                    size={states.size[0]}
+                    nude={states.nude[0]}
+                    theme={states.theme[0]}
+                    gradient={states.gradient[0]}
+                    outlined={states.outlined[0]}
+                    mild={states.mild[0]}
+                >
+                    click me
+                </ActionControl>
+                <TypeScriptCode collapsable={false}>{`
 <ActionControl
     press={${states.press[0]}}
 
@@ -95,7 +87,14 @@ export const DemoActionControl = () => {
 >
     click me
 </ActionControl>
-            `}</TypeScriptCode>
+                `}</TypeScriptCode>
+            </div>
+            
+            <div className='options'>
+                <ActionControlOptions states={states} />
+                
+                <ResetButton states={states} />
+            </div>
         </>
     );
 }

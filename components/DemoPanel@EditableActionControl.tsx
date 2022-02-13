@@ -47,36 +47,28 @@ export const DemoEditableActionControl = () => {
     
     return (
         <>
-            <span>Preview</span>
-            <EditableActionControl
-                press={states.press[0]}
-                
-                isValid={states.isValid[0]}
-                
-                focus={states.focus[0]}
-                arrive={states.arrive[0]}
+            <div className='preview'>
+                <EditableActionControl
+                    press={states.press[0]}
+                    
+                    isValid={states.isValid[0]}
+                    
+                    focus={states.focus[0]}
+                    arrive={states.arrive[0]}
 
-                enabled={states.enabled[0]}
-                active={states.active[0]}
-                
-                size={states.size[0]}
-                nude={states.nude[0]}
-                theme={states.theme[0]}
-                gradient={states.gradient[0]}
-                outlined={states.outlined[0]}
-                mild={states.mild[0]}
-            >
-                click me
-            </EditableActionControl>
-
-            <hr />
-            
-            <EditableActionControlOptions states={states} />
-            
-            <ResetButton states={states} />
-
-            <span>Code</span>
-            <TypeScriptCode collapsable={false}>{`
+                    enabled={states.enabled[0]}
+                    active={states.active[0]}
+                    
+                    size={states.size[0]}
+                    nude={states.nude[0]}
+                    theme={states.theme[0]}
+                    gradient={states.gradient[0]}
+                    outlined={states.outlined[0]}
+                    mild={states.mild[0]}
+                >
+                    click me
+                </EditableActionControl>
+                <TypeScriptCode collapsable={false}>{`
 <EditableActionControl
     press={${states.press[0]}}
 
@@ -97,7 +89,14 @@ export const DemoEditableActionControl = () => {
 >
     click me
 </EditableActionControl>
-            `}</TypeScriptCode>
+                `}</TypeScriptCode>
+            </div>
+            
+            <div className='options'>
+                <EditableActionControlOptions states={states} />
+                
+                <ResetButton states={states} />
+            </div>
         </>
     );
 }

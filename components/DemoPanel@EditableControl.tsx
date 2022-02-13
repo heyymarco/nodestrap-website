@@ -49,36 +49,28 @@ export const DemoEditableControl = () => {
     
     return (
         <>
-            <span>Preview</span>
-            <EditableControl
-                isValid={states.isValid[0]}
-                
-                focus={states.focus[0]}
-                arrive={states.arrive[0]}
+            <div className='preview'>
+                <EditableControl
+                    isValid={states.isValid[0]}
+                    
+                    focus={states.focus[0]}
+                    arrive={states.arrive[0]}
 
-                enabled={states.enabled[0]}
-                active={states.active[0]}
-                
-                size={states.size[0]}
-                nude={states.nude[0]}
-                theme={states.theme[0]}
-                gradient={states.gradient[0]}
-                outlined={states.outlined[0]}
-                mild={states.mild[0]}
-                
-                {...{ contentEditable: true }}
-            >
-                edit me
-            </EditableControl>
-
-            <hr />
-            
-            <EditableControlOptions states={states} />
-            
-            <ResetButton states={states} />
-
-            <span>Code</span>
-            <TypeScriptCode collapsable={false}>{`
+                    enabled={states.enabled[0]}
+                    active={states.active[0]}
+                    
+                    size={states.size[0]}
+                    nude={states.nude[0]}
+                    theme={states.theme[0]}
+                    gradient={states.gradient[0]}
+                    outlined={states.outlined[0]}
+                    mild={states.mild[0]}
+                    
+                    {...{ contentEditable: true }}
+                >
+                    edit me
+                </EditableControl>
+                <TypeScriptCode collapsable={false}>{`
 <EditableControl
     isValid={${states.isValid[0]}}
 
@@ -99,7 +91,14 @@ export const DemoEditableControl = () => {
 >
     edit me
 </EditableControl>
-            `}</TypeScriptCode>
+                `}</TypeScriptCode>
+            </div>
+            
+            <div className='options'>
+                <EditableControlOptions states={states} />
+                
+                <ResetButton states={states} />
+            </div>
         </>
     );
 }

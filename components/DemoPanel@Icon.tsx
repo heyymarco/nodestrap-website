@@ -10,7 +10,7 @@ import { TypeScriptCode } from './Code';
 export const iconInitials = {
     icon     : 'face'    as IconList,
     size     : undefined as SizeName|undefined,
-    theme    : undefined as ThemeName|undefined,
+    theme    : 'primary' as ThemeName|undefined,
     mild     : false,
 };
 export type IconInitials = typeof iconInitials
@@ -76,29 +76,28 @@ export const DemoIcon = () => {
     
     return (
         <>
-            <span>Preview</span>
-            <Icon
-                icon={states.icon[0]}
-                size={states.size[0]}
-                theme={states.theme[0]}
-                mild={states.mild[0]}
-            />
-
-            <hr />
-            
-            <IconOptions states={states} />
-            
-            <ResetButton states={states} />
-
-            <span>Code</span>
-            <TypeScriptCode collapsable={false}>{`
+            <div className='preview'>
+                <Icon
+                    icon={states.icon[0]}
+                    size={states.size[0]}
+                    theme={states.theme[0]}
+                    mild={states.mild[0]}
+                />
+                <TypeScriptCode collapsable={false}>{`
 <Icon
     icon=${`'${states.icon[0]}'`}
     size=${states.size[0] ? `'${states.size[0]}'` : '{undefined}'}
     theme=${states.theme[0] ? `'${states.theme[0]}'` : '{undefined}'}
     mild={${states.mild[0]}}
 />
-            `}</TypeScriptCode>
+                `}</TypeScriptCode>
+            </div>
+            
+            <div className='options'>
+                <IconOptions states={states} />
+                
+                <ResetButton states={states} />
+            </div>
         </>
     );
 }

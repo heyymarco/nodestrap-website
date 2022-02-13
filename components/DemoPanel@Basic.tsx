@@ -3,6 +3,7 @@ import { useResetableState, Option, ThemeOption, ResetButton } from './DemoPanel
 import { Warning } from './Info';
 
 import { Basic } from '@nodestrap/basic'
+import { Label } from '@nodestrap/label';
 import { TypeScriptCode } from './Code';
 
 
@@ -80,7 +81,7 @@ export const BasicOptions = (props: { states: ReturnType<typeof useBasicStates>,
         { props.warning }
 
         {(states.outlined[0] && states.mild[0]) && <>
-            <span>Warning</span>
+            <Label theme='secondary'>Warning</Label>
             <Warning>
                 If both <code>outlined</code> and <code>mild</code> are <code>true</code>, the <code>outlined</code> is
                 always <strong>dominant</strong> than <code>mild</code>.
@@ -103,26 +104,18 @@ export const DemoBasic = () => {
     
     return (
         <>
-            <span>Preview</span>
-            <Basic
-                size={states.size[0]}
-                nude={states.nude[0]}
-                theme={states.theme[0]}
-                gradient={states.gradient[0]}
-                outlined={states.outlined[0]}
-                mild={states.mild[0]}
-            >
-                hello world
-            </Basic>
-
-            <hr />
-            
-            <BasicOptions states={states} />
-            
-            <ResetButton states={states} />
-
-            <span>Code</span>
-            <TypeScriptCode collapsable={false}>{`
+            <div className='preview'>
+                <Basic
+                    size={states.size[0]}
+                    nude={states.nude[0]}
+                    theme={states.theme[0]}
+                    gradient={states.gradient[0]}
+                    outlined={states.outlined[0]}
+                    mild={states.mild[0]}
+                >
+                    hello world
+                </Basic>
+                <TypeScriptCode collapsable={false}>{`
 <Basic
     size=${states.size[0] ? `'${states.size[0]}'` : '{undefined}'}
     nude={${states.nude[0]}}
@@ -133,7 +126,14 @@ export const DemoBasic = () => {
 >
     hello world
 </Basic>
-            `}</TypeScriptCode>
+                `}</TypeScriptCode>
+            </div>
+            
+            <div className='options'>
+                <BasicOptions states={states} />
+                
+                <ResetButton states={states} />
+            </div>
         </>
     );
 }

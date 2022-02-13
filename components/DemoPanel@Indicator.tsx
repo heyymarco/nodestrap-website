@@ -3,6 +3,7 @@ import { BasicInitials, BasicOptions, useBasicStates } from './DemoPanel@Basic';
 import { Warning } from './Info';
 
 import { Indicator } from '@nodestrap/indicator'
+import { Label } from '@nodestrap/label';
 import { TypeScriptCode } from './Code';
 
 
@@ -55,7 +56,7 @@ export const IndicatorOptions = (props: { states: ReturnType<typeof useIndicator
         <BasicOptions
             states={states}
             warning={(!states.outlined[0] && !states.mild[0]) && <>
-                <span>Warning</span>
+                <Label theme='secondary'>Warning</Label>
                 <Warning>
                     Either <code>outlined</code> or <code>mild</code> should be <code>true</code> to
                     be able to see the effect of <code>active=true</code>.
@@ -72,29 +73,21 @@ export const DemoIndicator = () => {
     
     return (
         <>
-            <span>Preview</span>
-            <Indicator
-                enabled={states.enabled[0]}
-                active={states.active[0]}
-                
-                size={states.size[0]}
-                nude={states.nude[0]}
-                theme={states.theme[0]}
-                gradient={states.gradient[0]}
-                outlined={states.outlined[0]}
-                mild={states.mild[0]}
-            >
-                hello world
-            </Indicator>
-
-            <hr />
-            
-            <IndicatorOptions states={states} />
-            
-            <ResetButton states={states} />
-
-            <span>Code</span>
-            <TypeScriptCode collapsable={false}>{`
+            <div className='preview'>
+                <Indicator
+                    enabled={states.enabled[0]}
+                    active={states.active[0]}
+                    
+                    size={states.size[0]}
+                    nude={states.nude[0]}
+                    theme={states.theme[0]}
+                    gradient={states.gradient[0]}
+                    outlined={states.outlined[0]}
+                    mild={states.mild[0]}
+                >
+                    hello world
+                </Indicator>
+                <TypeScriptCode collapsable={false}>{`
 <Indicator
     enabled={${states.enabled[0]}}
     active={${states.active[0]}}
@@ -108,7 +101,14 @@ export const DemoIndicator = () => {
 >
     hello world
 </Indicator>
-            `}</TypeScriptCode>
+                `}</TypeScriptCode>
+            </div>
+            
+            <div className='options'>
+                <IndicatorOptions states={states} />
+                
+                <ResetButton states={states} />
+            </div>
         </>
     );
 }

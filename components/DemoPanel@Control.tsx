@@ -59,32 +59,24 @@ export const DemoControl = () => {
     
     return (
         <>
-            <span>Preview</span>
-            <Control
-                focus={states.focus[0]}
-                arrive={states.arrive[0]}
+            <div className='preview'>
+                <Control
+                    focus={states.focus[0]}
+                    arrive={states.arrive[0]}
 
-                enabled={states.enabled[0]}
-                active={states.active[0]}
-                
-                size={states.size[0]}
-                nude={states.nude[0]}
-                theme={states.theme[0]}
-                gradient={states.gradient[0]}
-                outlined={states.outlined[0]}
-                mild={states.mild[0]}
-            >
-                hello world
-            </Control>
-
-            <hr />
-            
-            <ControlOptions states={states} />
-            
-            <ResetButton states={states} />
-
-            <span>Code</span>
-            <TypeScriptCode collapsable={false}>{`
+                    enabled={states.enabled[0]}
+                    active={states.active[0]}
+                    
+                    size={states.size[0]}
+                    nude={states.nude[0]}
+                    theme={states.theme[0]}
+                    gradient={states.gradient[0]}
+                    outlined={states.outlined[0]}
+                    mild={states.mild[0]}
+                >
+                    hello world
+                </Control>
+                <TypeScriptCode collapsable={false}>{`
 <Control
     focus={${states.focus[0]}}
     arrive={${states.arrive[0]}}
@@ -101,7 +93,14 @@ export const DemoControl = () => {
 >
     hello world
 </Control>
-            `}</TypeScriptCode>
+                `}</TypeScriptCode>
+            </div>
+            
+            <div className='options'>
+                <ControlOptions states={states} />
+                
+                <ResetButton states={states} />
+            </div>
         </>
     );
 }

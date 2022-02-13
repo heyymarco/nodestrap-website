@@ -39,26 +39,18 @@ export const DemoContent = () => {
     
     return (
         <>
-            <span>Preview</span>
-            <Content
-                size={states.size[0]}
-                nude={states.nude[0]}
-                theme={states.theme[0]}
-                gradient={states.gradient[0]}
-                outlined={states.outlined[0]}
-                mild={states.mild[0]}
-            >
-                hello world
-            </Content>
-
-            <hr />
-            
-            <ContentOptions states={states} />
-            
-            <ResetButton states={states} />
-
-            <span>Code</span>
-            <TypeScriptCode collapsable={false}>{`
+            <div className='preview'>
+                <Content
+                    size={states.size[0]}
+                    nude={states.nude[0]}
+                    theme={states.theme[0]}
+                    gradient={states.gradient[0]}
+                    outlined={states.outlined[0]}
+                    mild={states.mild[0]}
+                >
+                    hello world
+                </Content>
+                <TypeScriptCode collapsable={false}>{`
 <Content
     size=${states.size[0] ? `'${states.size[0]}'` : '{undefined}'}
     nude={${states.nude[0]}}
@@ -69,7 +61,14 @@ export const DemoContent = () => {
 >
     hello world
 </Content>
-            `}</TypeScriptCode>
+                `}</TypeScriptCode>
+            </div>
+            
+            <div className='options'>
+                <ContentOptions states={states} />
+                
+                <ResetButton states={states} />
+            </div>
         </>
     );
 }

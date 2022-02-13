@@ -90,18 +90,19 @@ export const DemoColors = () => {
     
     return (
         <>
-            <span>Preview</span>
-            <Basic
-                theme='primary'
-            >
-                hello world
-            </Basic>
-
-            <hr />
-
-            <ColorOptions states={states} />
-
-            <ResetButton states={states} />
+            <div className='preview'>
+                <Basic
+                    theme='primary'
+                >
+                    hello world
+                </Basic>
+            </div>
+            
+            <div className='options'>
+                <ColorOptions states={states} />
+                
+                <ResetButton states={states} />
+            </div>
         </>
     );
 }

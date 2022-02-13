@@ -39,28 +39,20 @@ export const DemoContainer = () => {
     
     return (
         <>
-            <span>Preview</span>
-            <Container
-                size={states.size[0]}
-                nude={states.nude[0]}
-                theme={states.theme[0]}
-                gradient={states.gradient[0]}
-                outlined={states.outlined[0]}
-                mild={states.mild[0]}
-            >
-                <div style={{ background: 'yellow' }}>
-                    hello world
-                </div>
-            </Container>
-
-            <hr />
-            
-            <ContainerOptions states={states} />
-            
-            <ResetButton states={states} />
-
-            <span>Code</span>
-            <TypeScriptCode collapsable={false}>{`
+            <div className='preview'>
+                <Container
+                    size={states.size[0]}
+                    nude={states.nude[0]}
+                    theme={states.theme[0]}
+                    gradient={states.gradient[0]}
+                    outlined={states.outlined[0]}
+                    mild={states.mild[0]}
+                >
+                    <div style={{ background: 'yellow' }}>
+                        hello world
+                    </div>
+                </Container>
+                <TypeScriptCode collapsable={false}>{`
 <Container
     size=${states.size[0] ? `'${states.size[0]}'` : '{undefined}'}
     nude={${states.nude[0]}}
@@ -73,7 +65,14 @@ export const DemoContainer = () => {
         hello world
     </div>
 </Container>
-            `}</TypeScriptCode>
+                `}</TypeScriptCode>
+            </div>
+            
+            <div className='options'>
+                <ContainerOptions states={states} />
+                
+                <ResetButton states={states} />
+            </div>
         </>
     );
 }
