@@ -5,7 +5,8 @@ import Head from 'next/head'
 
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
-import { SectionInheritedProps, LinkIconPage, LinkElementPage, LinkColorsPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionSubProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, SectionGeneral } from '../../../components/common-contents'
+import { Section } from '../../../components/Section'
+import { SectionInheritedProps, LinkIconPage, LinkElementPage, LinkColorsPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionSubProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent } from '../../../components/common-contents'
 
 import { Icon } from '@nodestrap/icon'
 import { Warning } from '../../../components/Info'
@@ -36,7 +37,7 @@ const Page: NextPage = () => {
             <SectionDemo>
                 <DemoIconLazy fallback={<BusyBar />} />
             </SectionDemo>
-            <SectionGeneral title='Predefined Icon Sets'>
+            <Section title='Predefined Icon Sets'>
                 <Detail
                     label='Show icon gallery'
                     
@@ -48,7 +49,7 @@ const Page: NextPage = () => {
                 >
                     <DemoIconGalleryLazy fallback={<BusyBar />} />
                 </Detail>
-            </SectionGeneral>
+            </Section>
             <SectionInheritedProps />
             <SectionVariants>
                 <SectionSubProperty property='size' specList={

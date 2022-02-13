@@ -3,7 +3,8 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { ComponentInfoProvider, CurrentComponent, LinkBreakpointsPage, SectionGeneral, SectionIntro } from '../../../components/common-contents'
+import { Section } from '../../../components/Section'
+import { ComponentInfoProvider, CurrentComponent, LinkBreakpointsPage, SectionIntro } from '../../../components/common-contents'
 import { SpecList, SimpleSpecItem } from '../../../components/SpecList'
 import { TypeScriptCode } from '../../../components/Code'
 
@@ -29,7 +30,7 @@ const Page: NextPage = () => {
                     <strong>Changing</strong> the configuration in <CurrentComponent /> <strong>affects all components</strong> that depend on it.
                 </p>
             </SectionIntro>
-            <SectionGeneral title='Defining Breakpoints'>
+            <Section title='Defining Breakpoints'>
                 <p>
                     There are 6 pre-defined breakpoint properties:<br />
                     {
@@ -60,8 +61,8 @@ import { breakpoints } from '@nodestrap/breakpoints'
 
 breakpoints.xxxl = null; // delete property \`xxxl\`
                 `}</TypeScriptCode>
-            </SectionGeneral>
-            <SectionGeneral title='Consuming (getting) the Breakpoints'>
+            </Section>
+            <Section title='Consuming (getting) the Breakpoints'>
                 <p>
                     Let&apos; say you want to make a custom component and need to switch some styles based on the configured breakpoints in <CurrentComponent />.
                     You can do like this:
@@ -141,8 +142,8 @@ export default function MyComponent(props) {
                         <p>Applies the specified <code>styles</code> if the device&apos;s screen width is <strong>bigger/equal</strong> to the specified <code>breakpointName</code> but <strong>smaller</strong> than the next <code>breakpointName</code>.</p>
                     </SimpleSpecItem>
                 </SpecList>
-            </SectionGeneral>
-            <SectionGeneral title='Where the Breakpoints are Actually Stored?'>
+            </Section>
+            <Section title='Where the Breakpoints are Actually Stored?'>
                 <p>
                     Well, the breakpoints are stored internally in <CurrentComponent /> only.
                     Unlike other utilities that use the power of <em>css variables</em>, <CurrentComponent /> is currently relies on JavaScript object for storage.
@@ -164,7 +165,7 @@ export const breakpoints = {
                     Most the Nodestrap components build the dynamic css at the first render and <strong>cached it</strong> for re-use.
                     So any changes after already cached will not be affected.
                 </p>
-            </SectionGeneral>
+            </Section>
         </ComponentInfoProvider>
     );
 }

@@ -3,7 +3,8 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { ComponentInfoProvider, CurrentComponent, LinkTyposPage, SectionGeneral, SectionIntro } from '../../../components/common-contents'
+import { Section } from '../../../components/Section'
+import { ComponentInfoProvider, CurrentComponent, LinkTyposPage, SectionIntro } from '../../../components/common-contents'
 import { SpecList, SimpleSpecItem } from '../../../components/SpecList'
 
 
@@ -27,7 +28,7 @@ const Page: NextPage = () => {
                     The main purpose of this utility is to create <strong>a consistent typography (text)</strong> between components.
                 </p>
             </SectionIntro>
-            <SectionGeneral title='Configuring General (Primary) Typography'>
+            <Section title='Configuring General (Primary) Typography'>
                 <p>
                     <strong>General Typography</strong> represents a common typography in your site&apos;s page.
                     Some elements/components might override the general typography.
@@ -115,8 +116,8 @@ const Page: NextPage = () => {
                         </p>
                     </SimpleSpecItem>
                 </SpecList>
-            </SectionGeneral>
-            <SectionGeneral title='Configuring Secondary Typography'>
+            </Section>
+            <Section title='Configuring Secondary Typography'>
                 <p>
                     <strong>Secondary Typography</strong> represents a secondary (muted) text.
                     A <code>&lt;small&gt;</code> element or any elements/components with <code>txt-sec</code> class are affected by <em>secondary typography</em>.
@@ -154,8 +155,8 @@ const Page: NextPage = () => {
                         <p>The opacity of secondary text.</p>
                     </SimpleSpecItem>
                 </SpecList>
-            </SectionGeneral>
-            <SectionGeneral title='Configuring Paragraph'>
+            </Section>
+            <Section title='Configuring Paragraph'>
                 <p>
                     <strong>Paragraph</strong> represents a group of sentences in <code>&lt;p&gt;</code> tag.
                 </p>
@@ -197,8 +198,8 @@ const Page: NextPage = () => {
                         <p>The gap on the left &amp; right of paragraph.</p>
                     </SimpleSpecItem>
                 </SpecList>
-            </SectionGeneral>
-            <SectionGeneral title='Configuring Lead'>
+            </Section>
+            <Section title='Configuring Lead'>
                 <p>
                     <strong>Lead</strong> represents a special paragraph with more prominently.
                     Any elements/components/paragraph with <code>lead</code> class are affected by <em>Lead</em>.
@@ -241,8 +242,8 @@ const Page: NextPage = () => {
                         <p>The gap on the left &amp; right of Lead.</p>
                     </SimpleSpecItem>
                 </SpecList>
-            </SectionGeneral>
-            <SectionGeneral title='Configuring Headings'>
+            </Section>
+            <Section title='Configuring Headings'>
                 <p>
                     <strong>Headings</strong> represents a title of content.<br />
                     Elements with tag:<br />
@@ -294,8 +295,8 @@ const Page: NextPage = () => {
                         <p>The opacity of the sub Headings (any Headings in which directly next to the previous one).</p>
                     </SimpleSpecItem>
                 </SpecList>
-            </SectionGeneral>
-            <SectionGeneral title='Configuring Displays'>
+            </Section>
+            <Section title='Configuring Displays'>
                 <p>
                     <strong>Displays</strong> represents a special heading with more prominently.
                     Usually used for the title in banner or hero section.
@@ -345,8 +346,8 @@ const Page: NextPage = () => {
                         <p>The opacity of the sub Displays (any Displays in which directly next to the previous one).</p>
                     </SimpleSpecItem>
                 </SpecList>
-            </SectionGeneral>
-            <SectionGeneral title='Configuring Blockquote'>
+            </Section>
+            <Section title='Configuring Blockquote'>
                 <p>
                     <strong>Blockquote</strong> represents a quoted content from another source within your document.
                     A <code>&lt;blockquote&gt;</code> element or any elements/components with <code>blockquote</code> class are affected by <em>Blockquote</em>.
@@ -388,8 +389,8 @@ const Page: NextPage = () => {
                         <p>The gap on the left &amp; right of Blockquote.</p>
                     </SimpleSpecItem>
                 </SpecList>
-            </SectionGeneral>
-            <SectionGeneral title='Configuring Mark'>
+            </Section>
+            <Section title='Configuring Mark'>
                 <p>
                     <strong>Mark</strong> represents a highlighted text.
                     A <code>&lt;mark&gt;</code> element or any elements/components with <code>mark</code> class are affected by <em>Mark</em>.
@@ -443,8 +444,8 @@ const Page: NextPage = () => {
                         <p>The inner gap on the left &amp; right of Mark.</p>
                     </SimpleSpecItem>
                 </SpecList>
-            </SectionGeneral>
-            <SectionGeneral title='Configuring Code'>
+            </Section>
+            <Section title='Configuring Code'>
                 <p>
                     <strong>Code</strong> represents a piece of programming code.
                     A <code>&lt;code&gt;</code> element or any elements/components with <code>code</code> class are affected by <em>Code</em>.
@@ -498,8 +499,8 @@ const Page: NextPage = () => {
                         <p>The inner gap on the left &amp; right of Code.</p>
                     </SimpleSpecItem>
                 </SpecList>
-            </SectionGeneral>
-            <SectionGeneral title='Configuring Kbd'>
+            </Section>
+            <Section title='Configuring Kbd'>
                 <p>
                     <strong>Kbd</strong> represents a single button of a computer keyboard.
                     A <code>&lt;kbd&gt;</code> element or any elements/components with <code>kbd</code> class are affected by <em>Kbd</em>.
@@ -553,8 +554,8 @@ const Page: NextPage = () => {
                         <p>The inner gap on the left &amp; right of Kbd.</p>
                     </SimpleSpecItem>
                 </SpecList>
-            </SectionGeneral>
-            <SectionGeneral title='Configuring General Marks'>
+            </Section>
+            <Section title='Configuring General Marks'>
                 <p>
                     There are several marks for expressing emphasis, important, deleted, etc.
                 </p>
@@ -586,8 +587,8 @@ const Page: NextPage = () => {
                         <p>Represents an emphasized text.</p>
                     </SimpleSpecItem>
                 </SpecList>
-            </SectionGeneral>
-            <SectionGeneral title='Configuring Horizontal Line'>
+            </Section>
+            <Section title='Configuring Horizontal Line'>
                 <p>
                     <strong>HorizontalLine</strong> represents a separator between unrelated contents.
                     A <code>&lt;hr&gt;</code> element is affected by <em>HorizontalLine</em>.
@@ -617,7 +618,7 @@ const Page: NextPage = () => {
                         <p>The gap on the left &amp; right of HorizontalLine.</p>
                     </SimpleSpecItem>
                 </SpecList>
-            </SectionGeneral>
+            </Section>
         </ComponentInfoProvider>
     );
 }

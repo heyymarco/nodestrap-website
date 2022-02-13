@@ -3,7 +3,8 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { BusyBar, ComponentInfoProvider, CurrentComponent, LinkColorsPage, SectionDemo, SectionGeneral, SectionIntro } from '../../../components/common-contents'
+import { Section } from '../../../components/Section'
+import { BusyBar, ComponentInfoProvider, CurrentComponent, LinkColorsPage, SectionDemo, SectionIntro } from '../../../components/common-contents'
 import { TypeScriptCode, CssCode } from '../../../components/Code'
 
 import { colors } from '@nodestrap/colors'
@@ -41,7 +42,7 @@ const Page: NextPage = () => {
             }>
                 <DemoColorsLazy fallback={<BusyBar />} />
             </SectionDemo>
-            <SectionGeneral title='Defining Theme Colors'>
+            <Section title='Defining Theme Colors'>
                 <p>
                     There are 8 pre-defined theme colors:<br />
                     {
@@ -126,8 +127,8 @@ defineTheme('primary', '#0000ff');
                     The <code>config</code> are live!
                     Any changes before/after calling the <code>defineTheme()</code> will be applied to corresponding <em>base color</em>.
                 </p>
-            </SectionGeneral>
-            <SectionGeneral title='Defining Background Color'>
+            </Section>
+            <Section title='Defining Background Color'>
                 <p>
                     This color defines the common background color of your site.
                     Set to light color for making light theme, or dark color for dark theme (night mode).
@@ -163,8 +164,8 @@ import { colors } from '@nodestrap/colors'
 colors.dark = '#000000' // set \`dark\` color to black
 colors.light = '#ffffff' // set \`light\` color to white
                 `}</TypeScriptCode>
-            </SectionGeneral>
-            <SectionGeneral title='Defining Foreground (Text) Color'>
+            </Section>
+            <Section title='Defining Foreground (Text) Color'>
                 <p>
                     This color defines the common foreground (text) color of your site.
                     You <em>might not need</em> to use this function because setting the <code>defineBackg()</code> will automatically set the foreground color to <ColorPreview name='dark' value={colors.dark} /> or <ColorPreview name='light' value={colors.light} /> for you.
@@ -185,8 +186,8 @@ import { colors } from '@nodestrap/colors'
 colors.dark = '#0000aa' // set \`dark\` color to dark blue
 colors.light = '#aaaaff' // set \`light\` color to light blue
                 `}</TypeScriptCode>
-            </SectionGeneral>
-            <SectionGeneral title='Consuming (getting) the Colors'>
+            </Section>
+            <Section title='Consuming (getting) the Colors'>
                 <p>
                     Let&apos; say you want to make a custom component and need to get some colors in <CurrentComponent /> for color consistency.
                     You can do like this:
@@ -233,8 +234,8 @@ export default function MyComponent(props) {
     )
 }
                 `}</TypeScriptCode>
-            </SectionGeneral>
-            <SectionGeneral title='Where the Colors are Actually Stored?'>
+            </Section>
+            <Section title='Where the Colors are Actually Stored?'>
                 <p>
                     Well, the colors are stored internally in <CurrentComponent /> and dynamically copied into the browser&apos;s <code>:root</code> by default.
                     Here the actual code you can find on browser&apos;s page inspector:
@@ -330,7 +331,7 @@ console.log(valueByVal); // #0000ff
                     Most the Nodestrap components build the dynamic css at the first render and <strong>cached it</strong> for re-use.
                     So any changes after already cached will not be affected.
                 </p>
-            </SectionGeneral>
+            </Section>
         </ComponentInfoProvider>
     );
 }

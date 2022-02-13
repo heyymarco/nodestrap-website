@@ -3,7 +3,8 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { BusyBar, ComponentInfoProvider, CurrentComponent, LinkBordersPage, SectionDemo, SectionGeneral, SectionIntro } from '../../../components/common-contents'
+import { Section } from '../../../components/Section'
+import { BusyBar, ComponentInfoProvider, CurrentComponent, LinkBordersPage, SectionDemo, SectionIntro } from '../../../components/common-contents'
 import { TypeScriptCode, CssCode } from '../../../components/Code'
 
 import loadable from '@loadable/component'
@@ -38,7 +39,7 @@ const Page: NextPage = () => {
             }>
                 <DemoBordersLazy fallback={<BusyBar />} />
             </SectionDemo>
-            <SectionGeneral title='Defining Borders'>
+            <Section title='Defining Borders'>
                 <p>
                     There are 8 pre-defined border properties:<br />
                     {
@@ -87,8 +88,8 @@ borders.ultraBold = null; // delete property \`ultraBold\`
 
 borderRadiuses.xxl = null; // delete property \`xxl\`
                 `}</TypeScriptCode>
-            </SectionGeneral>
-            <SectionGeneral title='Consuming (getting) the Borders'>
+            </Section>
+            <Section title='Consuming (getting) the Borders'>
                 <p>
                     Let&apos; say you want to make a custom component and need to get some borders in <CurrentComponent /> for border consistency.
                     You can do like this:
@@ -141,8 +142,8 @@ export default function MyComponent(props) {
     )
 }
                 `}</TypeScriptCode>
-            </SectionGeneral>
-            <SectionGeneral title='Where the Borders are Actually Stored?'>
+            </Section>
+            <Section title='Where the Borders are Actually Stored?'>
                 <p>
                     Well, the borders are stored internally in <CurrentComponent /> and dynamically copied into the browser&apos;s <code>:root</code> by default.
                     Here the actual code you can find on browser&apos;s page inspector:
@@ -193,7 +194,7 @@ console.log(valueByVal); // 3px
                     Most the Nodestrap components build the dynamic css at the first render and <strong>cached it</strong> for re-use.
                     So any changes after already cached will not be affected.
                 </p>
-            </SectionGeneral>
+            </Section>
         </ComponentInfoProvider>
     );
 }

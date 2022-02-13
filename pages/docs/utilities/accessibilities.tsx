@@ -3,7 +3,8 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { ComponentInfoProvider, CurrentComponent, LinkAccessibilitiesPage, SectionGeneral, SectionIntro } from '../../../components/common-contents'
+import { Section } from '../../../components/Section'
+import { ComponentInfoProvider, CurrentComponent, LinkAccessibilitiesPage, SectionIntro } from '../../../components/common-contents'
 import { SpecList, DetailSpecItem } from '../../../components/SpecList'
 
 
@@ -24,7 +25,7 @@ const Page: NextPage = () => {
                     By centralizing the reusable codes in one place, the overall bundle size can be reduced.
                 </p>
             </SectionIntro>
-            <SectionGeneral title='Using the Accessibilities'>
+            <Section title='Using the Accessibilities'>
                 <p>
                     There&apos;re some functions you can import into your components:
                 </p>
@@ -113,7 +114,7 @@ const Page: NextPage = () => {
                         </p>
                     </DetailSpecItem>
                 </SpecList>
-            </SectionGeneral>
+            </Section>
         </ComponentInfoProvider>
     );
 }

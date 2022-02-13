@@ -5,7 +5,8 @@ import Head from 'next/head'
 
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
-import { SectionInheritedProps, LinkEditableTextControlPage, LinkEditableControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionIntro, SectionGeneral, ExternalLink, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents } from '../../../components/common-contents'
+import { Section } from '../../../components/Section'
+import { SectionInheritedProps, LinkEditableTextControlPage, LinkEditableControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionIntro, ExternalLink, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents } from '../../../components/common-contents'
 import { Warning } from '../../../components/Info'
 
 import loadable from '@loadable/component'
@@ -33,7 +34,7 @@ const Page: NextPage = () => {
                 <DemoEditableTextControlLazy fallback={<BusyBar />} />
             </SectionDemo>
             <SectionInheritedProps />
-            <SectionGeneral title='Validation Properties'>
+            <Section title='Validation Properties'>
                 <SectionSubProperty property='minLength'>
                     <p>
                         Defines the minimum number of characters (as UTF-16 code units) the user can enter into the (input) component.
@@ -54,7 +55,7 @@ const Page: NextPage = () => {
                         The value (if present) must be greater than or equal to <code>minLength</code>, otherwise the value will never be valid.
                     </p>
                 </SectionSubProperty>
-            </SectionGeneral>
+            </Section>
             <SectionCustomizing specList={
                 <SpecList>
                     <DetailSpecItem title='Accessibilities'>

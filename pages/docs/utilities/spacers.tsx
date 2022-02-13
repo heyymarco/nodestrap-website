@@ -3,7 +3,8 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { BusyBar, ComponentInfoProvider, CurrentComponent, LinkSpacersPage, SectionDemo, SectionGeneral, SectionIntro } from '../../../components/common-contents'
+import { Section } from '../../../components/Section'
+import { BusyBar, ComponentInfoProvider, CurrentComponent, LinkSpacersPage, SectionDemo, SectionIntro } from '../../../components/common-contents'
 import { TypeScriptCode, CssCode } from '../../../components/Code'
 
 import loadable from '@loadable/component'
@@ -38,7 +39,7 @@ const Page: NextPage = () => {
             }>
                 <DemoSpacersLazy fallback={<BusyBar />} />
             </SectionDemo>
-            <SectionGeneral title='Defining Spacers'>
+            <Section title='Defining Spacers'>
                 <p>
                     There are 8 pre-defined spacer properties:<br />
                     {
@@ -70,8 +71,8 @@ import { spacers } from '@nodestrap/spacers'
 
 spacers.xxl = null; // delete property \`xxl\`
                 `}</TypeScriptCode>
-            </SectionGeneral>
-            <SectionGeneral title='Consuming (getting) the Spacers'>
+            </Section>
+            <Section title='Consuming (getting) the Spacers'>
                 <p>
                     Let&apos; say you want to make a custom component and need to get some spacers in <CurrentComponent /> for spacing consistency.
                     You can do like this:
@@ -114,8 +115,8 @@ export default function MyComponent(props) {
     )
 }
                 `}</TypeScriptCode>
-            </SectionGeneral>
-            <SectionGeneral title='Where the Spacers are Actually Stored?'>
+            </Section>
+            <Section title='Where the Spacers are Actually Stored?'>
                 <p>
                     Well, the spacers are stored internally in <CurrentComponent /> and dynamically copied into the browser&apos;s <code>:root</code> by default.
                     Here the actual code you can find on browser&apos;s page inspector:
@@ -157,7 +158,7 @@ console.log(valueByVal); // 1.5rem
                     Most the Nodestrap components build the dynamic css at the first render and <strong>cached it</strong> for re-use.
                     So any changes after already cached will not be affected.
                 </p>
-            </SectionGeneral>
+            </Section>
         </ComponentInfoProvider>
     );
 }

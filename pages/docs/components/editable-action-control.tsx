@@ -5,7 +5,8 @@ import Head from 'next/head'
 
 import { SpecList, DetailSpecItem } from '../../../components/SpecList'
 
-import { SectionInheritedProps, LinkEditableActionControlPage, LinkEditableControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionIntro, SectionGeneral, LinkActionControlPage, useComponentInfo, CommaSeparated, SectionDemo, BusyBar, CurrentComponent } from '../../../components/common-contents'
+import { Section } from '../../../components/Section'
+import { SectionInheritedProps, LinkEditableActionControlPage, LinkEditableControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionIntro, LinkActionControlPage, useComponentInfo, CommaSeparated, SectionDemo, BusyBar, CurrentComponent } from '../../../components/common-contents'
 
 import loadable from '@loadable/component'
 const DemoEditableActionControlLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@EditableActionControl' */'../../../components/DemoPanel@EditableActionControl'))
@@ -16,7 +17,7 @@ const SectionCustomizing = () => {
     const { component, bases } = useComponentInfo();
     
     return (
-        <SectionGeneral
+        <Section
             title={<>
                 Customizing { component } Component
             </>}
@@ -25,7 +26,7 @@ const SectionCustomizing = () => {
                 There is no global configuration of { component } you can tweak, <em>but</em> you can
                 customize the <strong>global configuration</strong> of <CommaSeparated components={bases} /> which are <strong>shared to</strong> { component }.
             </p>
-        </SectionGeneral>
+        </Section>
     );
 }
 

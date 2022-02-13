@@ -237,24 +237,6 @@ export const CurrentPackageName = () => {
 
 
 
-export interface SectionGeneralProps {
-    titleTag ?: 'h1'|'h2'|'h3'|'h4'|'h5'|'h6'
-    title     : string|React.ReactElement
-    children  : React.ReactNode
-}
-export const SectionGeneral = ({ titleTag = 'h2', title, children }: SectionGeneralProps) => {
-    return (
-        <Section
-            titleTag={titleTag}
-            title={title}
-        >
-            { children }
-        </Section>
-    );
-}
-
-
-
 export interface SectionIntroProps {
     children   ?: React.ReactNode
 }
@@ -262,7 +244,7 @@ export const SectionIntro = ({ children }: SectionIntroProps) => {
     const { packageType } = useComponentInfo();
     
     return (
-        <SectionGeneral
+        <Section
             titleTag='h1'
             title={<>
                 <CurrentComponent />
@@ -276,7 +258,7 @@ export const SectionIntro = ({ children }: SectionIntroProps) => {
             </>}
         >
             { children }
-        </SectionGeneral>
+        </Section>
     );
 }
 
@@ -290,7 +272,7 @@ export interface SectionDemoProps {
 }
 export const SectionDemo = ({ title, detailLabel, children, message }: SectionDemoProps) => {
     return (
-        <SectionGeneral
+        <Section
             title={title ?? 'Demonstration'}
         >
             <Detail
@@ -314,7 +296,7 @@ export const SectionDemo = ({ title, detailLabel, children, message }: SectionDe
                     { children }
                 </DemoPanel>
             </Detail>
-        </SectionGeneral>
+        </Section>
     );
 }
 
@@ -327,7 +309,7 @@ export const SectionInheritedProps = () => {
     const basesJsx = <CommaSeparated components={bases} />
     const linksJsx = <SeeDocumentations components={bases} />
     return (
-        <SectionGeneral
+        <Section
             title='Inherited Properties'
         >
             <p>
@@ -335,7 +317,7 @@ export const SectionInheritedProps = () => {
                 so all properties from { basesJsx } are inherited.<br />
                 You can { linksJsx }.
             </p>
-        </SectionGeneral>
+        </Section>
     );
 }
 
@@ -346,7 +328,7 @@ export interface SectionVariantsProps {
 }
 export const SectionVariants = ({ children }: SectionVariantsProps) => {
     return (
-        <SectionGeneral
+        <Section
             title='Variant Properties'
         >
             <p>
@@ -357,7 +339,7 @@ export const SectionVariants = ({ children }: SectionVariantsProps) => {
             </p>
             
             { children }
-        </SectionGeneral>
+        </Section>
     );
 }
 
@@ -366,7 +348,7 @@ export interface SectionStatesProps {
 }
 export const SectionStates = ({ children }: SectionStatesProps) => {
     return (
-        <SectionGeneral
+        <Section
             title='State Properties'
         >
             <p>
@@ -374,7 +356,7 @@ export const SectionStates = ({ children }: SectionStatesProps) => {
             </p>
             
             { children }
-        </SectionGeneral>
+        </Section>
     );
 }
 
@@ -387,7 +369,7 @@ export interface SectionPropertyProps {
 }
 export const SectionProperty = ({ titleTag = 'h2', property, specList, children, moreInfo }: SectionPropertyProps) => {
     return (
-        <SectionGeneral
+        <Section
             titleTag={titleTag}
             title={
                 (typeof(property) === 'string')
@@ -407,7 +389,7 @@ export const SectionProperty = ({ titleTag = 'h2', property, specList, children,
                 { specList }
             </>}
             { moreInfo && <><p></p>{ moreInfo }</> }
-        </SectionGeneral>
+        </Section>
     );
 }
 export const SectionSubProperty = (props: SectionPropertyProps) => {
@@ -426,7 +408,7 @@ export interface SectionCustomizingProps {
 }
 export const SectionCustomizing = ({ specList }: SectionCustomizingProps) => {
     return (
-        <SectionGeneral
+        <Section
             title={<>
                 Customizing <CurrentComponent /> Component
             </>}
@@ -438,7 +420,7 @@ export const SectionCustomizing = ({ specList }: SectionCustomizingProps) => {
             </p>
             
             { specList }
-        </SectionGeneral>
+        </Section>
     );
 }
 
@@ -449,7 +431,7 @@ export interface SectionDeriveringProps {
 }
 export const SectionDerivering = ({ children }: SectionDeriveringProps) => {
     return (
-        <SectionGeneral
+        <Section
             title={<>
                 Derivering <CurrentComponent /> Component
             </>}
@@ -460,7 +442,7 @@ export const SectionDerivering = ({ children }: SectionDeriveringProps) => {
             </p>
             
             { children }
-        </SectionGeneral>
+        </Section>
     );
 }
 
@@ -470,7 +452,7 @@ export interface SectionOverridingDefaultsProps {
 }
 export const SectionOverridingDefaults = ({ children, moreInfo }: SectionOverridingDefaultsProps) => {
     return (
-        <SectionGeneral
+        <Section
             titleTag='h3'
             title='Derivering by Overriding the Default Properties'
         >
@@ -482,7 +464,7 @@ export const SectionOverridingDefaults = ({ children, moreInfo }: SectionOverrid
             <TypeScriptCode>{ children }</TypeScriptCode>
             
             { moreInfo && <><p></p>{ moreInfo }</> }
-        </SectionGeneral>
+        </Section>
     );
 }
 
@@ -493,7 +475,7 @@ export interface SectionCustomizingCssProps {
 }
 export const SectionCustomizingCss = ({ specList, children, moreInfo }: SectionCustomizingCssProps) => {
     return (
-        <SectionGeneral
+        <Section
             titleTag='h3'
             title={`Derivering by ${specList ? 'Customizing the' : 'Adding a'} CSS`}
         >
@@ -509,7 +491,7 @@ export const SectionCustomizingCss = ({ specList, children, moreInfo }: SectionC
             <TypeScriptCode>{ children }</TypeScriptCode>
             
             { moreInfo && <><p></p>{ moreInfo }</> }
-        </SectionGeneral>
+        </Section>
     );
 }
 
@@ -519,7 +501,7 @@ export interface SectionMoreCustomizingCssProps {
 }
 export const SectionMoreCustomizingCss = ({ specList, moreInfo }: SectionMoreCustomizingCssProps) => {
     return (
-        <SectionGeneral
+        <Section
             titleTag='h3'
             title='Advanced CSS Customization'
         >
@@ -538,7 +520,7 @@ export const SectionMoreCustomizingCss = ({ specList, moreInfo }: SectionMoreCus
             { specList }
             
             { moreInfo && <><p></p>{ moreInfo }</> }
-        </SectionGeneral>
+        </Section>
     );
 }
 

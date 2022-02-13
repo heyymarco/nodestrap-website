@@ -3,7 +3,8 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { ComponentInfoProvider, CurrentComponent, LinkStripoutsPage, SectionGeneral, SectionIntro } from '../../../components/common-contents'
+import { Section } from '../../../components/Section'
+import { ComponentInfoProvider, CurrentComponent, LinkStripoutsPage, SectionIntro } from '../../../components/common-contents'
 import { SpecList, DetailSpecItem } from '../../../components/SpecList'
 import { TypeScriptCode } from '../../../components/Code'
 
@@ -29,7 +30,7 @@ const Page: NextPage = () => {
                     Once we&apos;ve <em>un-styled</em> them, we can override ones with <em>own styles</em> without worrying about inconsistency across browsers.
                 </p>
             </SectionIntro>
-            <SectionGeneral title='List of Strippable Elements'>
+            <Section title='List of Strippable Elements'>
                 <SpecList>
                     <DetailSpecItem code='stripoutLink()' excerpt='Removes browser&apos;s default style on link (anchor)'>
                         <p>example:</p>
@@ -330,7 +331,7 @@ export default function AwesomeImage(props) {
                         `}</TypeScriptCode>
                     </DetailSpecItem>
                 </SpecList>
-            </SectionGeneral>
+            </Section>
         </ComponentInfoProvider>
     );
 }

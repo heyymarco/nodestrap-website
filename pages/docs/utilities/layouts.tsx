@@ -3,7 +3,8 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { ComponentInfoProvider, CurrentComponent, LinkLayoutsPage, SectionGeneral, SectionIntro } from '../../../components/common-contents'
+import { Section } from '../../../components/Section'
+import { ComponentInfoProvider, CurrentComponent, LinkLayoutsPage, SectionIntro } from '../../../components/common-contents'
 import { SpecList, SimpleSpecItem } from '../../../components/SpecList'
 
 
@@ -24,7 +25,7 @@ const Page: NextPage = () => {
                     By centralizing the reusable codes in one place, the overall bundle size can be reduced.
                 </p>
             </SectionIntro>
-            <SectionGeneral title='Using the Layout Templates'>
+            <Section title='Using the Layout Templates'>
                 <p>
                     There&apos;re some templates you can import into your css:
                 </p>
@@ -40,7 +41,7 @@ const Page: NextPage = () => {
                         <p>Usually for filling the space in a pseudo element such as <code>::before</code> &amp; <code>::after</code> but can also for filling the another elements.</p>
                     </SimpleSpecItem>
                 </SpecList>
-            </SectionGeneral>
+            </Section>
         </ComponentInfoProvider>
     );
 }

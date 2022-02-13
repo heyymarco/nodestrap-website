@@ -5,7 +5,8 @@ import Head from 'next/head'
 
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
-import { SectionInheritedProps, LinkEditableControlPage, LinkControlPage, ParagraphDefaultValue, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionStates, SectionIntro, LinkAccessibilitiesPage, LinkValidationProviderPage, SectionGeneral, ExternalLink, SectionProperty, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents } from '../../../components/common-contents'
+import { Section } from '../../../components/Section'
+import { SectionInheritedProps, LinkEditableControlPage, LinkControlPage, ParagraphDefaultValue, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionStates, SectionIntro, LinkValidationProviderPage, ExternalLink, SectionProperty, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents } from '../../../components/common-contents'
 
 import loadable from '@loadable/component'
 const DemoEditableControlLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@EditableControl' */'../../../components/DemoPanel@EditableControl'))
@@ -145,7 +146,7 @@ const Page: NextPage = () => {
                     </p>
                 </SectionSubProperty>
             </SectionStates>
-            <SectionGeneral title='Validation Properties'>
+            <Section title='Validation Properties'>
                 <SectionSubProperty property='required' specList={
                     <SpecList>
                     <DetailSpecItem code='true'>
@@ -204,8 +205,8 @@ const Page: NextPage = () => {
                         The the <em>callback function</em> must return <code>true</code> (represents <strong>valid</strong>), or <code>false</code> (represents <strong>invalid</strong>), or <code>null</code> (represents <strong>uncheck</strong>).
                     </p>
                 </SectionSubProperty>
-            </SectionGeneral>
-            <SectionGeneral title='Value Properties'>
+            </Section>
+            <Section title='Value Properties'>
                 <SectionSubProperty property='defaultValue'>
                     <p>
                         Defines the <strong>initial value</strong> of the (input) component.
@@ -236,8 +237,8 @@ const Page: NextPage = () => {
                         <em>In most cases</em>, you should store the new value into your application state (your <code>useState()</code>).
                     </p>
                 </SectionSubProperty>
-            </SectionGeneral>
-            <SectionGeneral title='Form Submission Properties'>
+            </Section>
+            <Section title='Form Submission Properties'>
                 <SectionSubProperty property='name'>
                     <p>
                         Defines the <strong>identifier</strong> used by the server to identify the fields in form submissions.
@@ -254,7 +255,7 @@ const Page: NextPage = () => {
                         If this property isn&apos;t specified, the component is associated with the nearest containing form, if any.
                     </p>
                 </SectionSubProperty>
-            </SectionGeneral>
+            </Section>
             <SectionProperty property='autoFocus'>
                 <p>
                     Indicates that the component should automatically have focus when the page has finished loading.
