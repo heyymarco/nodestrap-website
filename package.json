@@ -29,6 +29,7 @@
     "@nodestrap/input": "^4.0.4",
     "@nodestrap/label": "^4.0.6",
     "@nodestrap/list": "^4.0.7",
+    "@nodestrap/masonry": "^4.0.7",
     "@nodestrap/nav": "^4.0.6",
     "@nodestrap/navbar": "^4.0.9",
     "@nodestrap/progress": "^4.0.5",

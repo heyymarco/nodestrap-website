@@ -73,6 +73,8 @@ export const useDemoPanelSheet = createUseSheet(() => {
     
                         display           : 'flex',
                         flexDirection     : 'column',
+                        justifyContent    : 'stretch',
+                        alignItems        : 'stretch',
                         
                         background        : 'linear-gradient(90deg, #eeeeee, #aaaaaa)',
                         
@@ -89,6 +91,10 @@ export const useDemoPanelSheet = createUseSheet(() => {
     
                         ...children(':first-child', {
                             flex          : [[0, 0, 'auto']],
+
+                            
+                            justifySelf   : 'center',
+                            alignSelf     : 'center',
                             
                             margin        : 0,
                         }),
