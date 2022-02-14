@@ -460,7 +460,7 @@ export const SectionOverridingDefaults = ({ children, moreInfo }: SectionOverrid
             title='Derivering by Overriding the Default Properties'
         >
             <p>
-                This is the simples way to deriver <CurrentComponent />, just by <strong>changing</strong> the <strong>default values</strong>.
+                This is the simplest way to deriver <CurrentComponent />, just by <strong>changing</strong> the <strong>default values</strong>.
                 The values after the <code>??</code> (nullish coalescing operator) are <strong>your default values</strong>.
                 Here the example:
             </p>

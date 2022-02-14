@@ -52,11 +52,11 @@ const Page: NextPage = () => {
                         <Label theme='secondary'>
                             https://example.com/users/
                         </Label>
-                        <TextInput placeholder='company' enableValidation={false} />
+                        <TextInput placeholder='username' enableValidation={false} />
                         <Label theme='secondary'>
                             @
                         </Label>
-                        <TextInput placeholder='username' enableValidation={false} />
+                        <TextInput placeholder='company' enableValidation={false} />
                     </Group>
                 </p>
                 <p>

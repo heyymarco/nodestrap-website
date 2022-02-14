@@ -33,15 +33,15 @@ export const LabelOptions = (props: { states: ReturnType<typeof useLabelStates> 
     
     
     return (<>
-        <BasicOptions
-            states={states}
-        />
-        
         <Option
             name='labelStyle'
             options={[undefined, 'content']}
             value={states.labelStyle[0]}
             setValue={states.labelStyle[1]}
+        />
+        
+        <BasicOptions
+            states={states}
         />
     </>);
 }
