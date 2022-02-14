@@ -403,6 +403,19 @@ export const SectionSubProperty = (props: SectionPropertyProps) => {
         />
     );
 }
+export const SectionSubPropertyStyle = (props: SectionPropertyProps) => {
+    return (
+        <SectionSubProperty {...props}>
+            {
+                props.children
+                ??
+                <p>
+                    Changes the <strong>default appearance</strong> with another alternatives.
+                </p>
+            }
+        </SectionSubProperty>
+    );
+}
 
 
 
@@ -418,7 +431,7 @@ export const SectionCustomizing = ({ specList }: SectionCustomizingProps) => {
         >
             <p>
                 There is a <strong>global configuration</strong> of <CurrentComponent /> you can tweak.
-                Changing the global configuration <strong>affects all</strong> <CurrentComponent /> and <strong>other components</strong> derived from <CurrentComponent />.
+                Changing the global configuration <strong>affects all</strong> <CurrentComponent /> and <strong>other components</strong> depend on <CurrentComponent />.
                 Here several properties in <code>cssProps</code> of <code>import {`{ cssProps }`} from <CurrentPackageName /></code> you can customize:
             </p>
             

@@ -5,14 +5,14 @@ import Head from 'next/head'
 
 import { SpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
-import { SectionInheritedProps, LinkLabelPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, SectionSubProperty, LinkButtonPage, LinkContentPage, LinkGroupPage, LinkInputPage, SeeDocumentations, LinkCheckPage, LinkRangePage } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkLabelPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, LinkButtonPage, LinkContentPage, LinkGroupPage, LinkInputPage, SeeDocumentations, LinkCheckPage, LinkRangePage, SectionSubPropertyStyle } from '../../../components/common-contents'
 
-import Label from '@nodestrap/label'
-import Group from '@nodestrap/group'
+import { Label } from '@nodestrap/label'
+import { Group } from '@nodestrap/group'
+import { Button } from '@nodestrap/button'
 import { NumberInput, TextInput } from '@nodestrap/input'
 
 import loadable from '@loadable/component'
-import Button from '@nodestrap/button'
 const DemoLabelLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Label' */'../../../components/DemoPanel@Label'))
 
 
@@ -63,31 +63,31 @@ const Page: NextPage = () => {
                     For the detail using <code>{`<Group>`}</code>: <SeeDocumentations components={<LinkGroupPage />} />.
                 </p>
             </SectionIntro>
-            <SectionDemo message={
-                <p>
-                    Resize the browser&apos;s width and change some controls below!
-                    You&apos;ll see the { <CurrentComponent /> }&apos;s paddings are changed (responsive) &amp; the appearance is customizable.
-                </p>
-            }>
+            <SectionDemo>
                 <DemoLabelLazy fallback={<BusyBar />} />
             </SectionDemo>
             <SectionInheritedProps />
             <SectionVariants>
-                <SectionSubProperty property='labelStyle' specList={
+                <SectionSubPropertyStyle property='labelStyle' specList={
                     <SpecList>
                         <DetailSpecItem code='undefined'>
-                            <p>No extra styles applied.</p>
+                            <p>
+                                Styling the <CurrentComponent /> with <strong>default appearance</strong>.
+                            </p>
+                            <p>
+                                This is the <strong>default</strong> appearance if the <code>labelStyle</code> value is not specified.
+                            </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='content'>
-                            <p>Styling the <CurrentComponent /> to be similar to <LinkContentPage />&apos;s layout &amp; variants (with wider paddings).</p>
-                            <p>Basically it merges the <CurrentComponent />&apos;s style + <LinkContentPage />&apos;s style.</p>
+                            <p>
+                                Styling the <CurrentComponent /> to be similar to <LinkContentPage />&apos;s appearance (usually with wider paddings).
+                            </p>
+                            <p>
+                                Basically it merges the <CurrentComponent />&apos;s style + <LinkContentPage />&apos;s style.
+                            </p>
                         </DetailSpecItem>
                     </SpecList>
-                }>
-                    <p>
-                        Changes the <strong>default appearance</strong>.
-                    </p>
-                </SectionSubProperty>
+                } />
             </SectionVariants>
             <SectionCustomizing specList={
                 <SpecList>
