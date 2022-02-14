@@ -39,7 +39,7 @@ const Page: NextPage = () => {
                         </p>
                     </DetailSpecItem>
                     <DetailSpecItem
-                        code='--under construction--'
+                        code='-- under construction --'
                     >
                         <p>coming soon...</p>
                     </DetailSpecItem>

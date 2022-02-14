@@ -98,9 +98,12 @@ export const LinkContainerPage             = (props: PageLinkProps) => <LinkCode
 export const LinkContentPage               = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/content'>Content</LinkCode>
 
 export const LinkVisuallyHiddenPage        = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/visually-hidden'>VisuallyHidden</LinkCode>
-
 export const LinkIconPage                  = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/icon'>Icon</LinkCode>
+export const LinkLabelPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/label'>Label</LinkCode>
 export const LinkButtonPage                = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/button'>Button</LinkCode>
+export const LinkInputPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/input'>Input</LinkCode>
+export const LinkCheckPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/check'>Check</LinkCode>
+export const LinkRangePage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/range'>Range</LinkCode>
 
 export const LinkCardPage                  = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/card'>Card</LinkCode>
 export const LinkGroupPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/group'>Group</LinkCode>
@@ -129,10 +132,10 @@ export const CommaSeparated = ({components}: CommaSeparatedProps) => (<>{
 
 
 
-interface SeeDocumentationProps {
+export interface SeeDocumentationProps {
     component: Component
 }
-const SeeDocumentation = ({ component : Component }: SeeDocumentationProps) => {
+export const SeeDocumentation = ({ component : Component }: SeeDocumentationProps) => {
     const item = Component.type({});
     if (!React.isValidElement<React.PropsWithChildren<LinkCodeProps>>(item)) return null;
     
@@ -143,10 +146,10 @@ const SeeDocumentation = ({ component : Component }: SeeDocumentationProps) => {
         </Component.type>
     );
 }
-interface SeeDocumentationsProps {
+export interface SeeDocumentationsProps {
     components: Component|Component[]
 }
-const SeeDocumentations = ({ components }: SeeDocumentationsProps) => <CommaSeparated components={[components].flat().map((component, index) => <SeeDocumentation key={index} component={component} />)} />
+export const SeeDocumentations = ({ components }: SeeDocumentationsProps) => <CommaSeparated components={[components].flat().map((component, index) => <SeeDocumentation key={index} component={component} />)} />
 
 
 
