@@ -1,5 +1,5 @@
 import { useResetableState, Option, ResetButton } from './DemoPanel';
-import { BasicInitials, BasicOptions, useBasicStates } from './DemoPanel@Basic';
+import { BasicInitials, BasicOptionProps, BasicOptions, useBasicStates } from './DemoPanel@Basic';
 
 import { Container } from '@nodestrap/container'
 import { TypeScriptCode } from './Code';
@@ -20,14 +20,11 @@ export const useContainerStates = (initials ?: Partial<ContainerInitials>) => {
         ...useBasicStates(initials2),
     }
 }
-export const ContainerOptions = (props: { states: ReturnType<typeof useContainerStates> }) => {
-    const { states } = props;
-    
-    
-    
+export type ContainerOptionProps = { states: ReturnType<typeof useContainerStates> } & BasicOptionProps
+export const ContainerOptions = (props: ContainerOptionProps) => {
     return (<>
         <BasicOptions
-            states={states}
+            {...props}
         />
     </>);
 }

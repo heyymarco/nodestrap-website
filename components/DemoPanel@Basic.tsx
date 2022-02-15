@@ -39,8 +39,9 @@ export const useBasicStates = (initials ?: Partial<BasicInitials>) => {
         mild,
     };
 }
-export const BasicOptions = (props: { states: ReturnType<typeof useBasicStates>, warning?: React.ReactChild|false }) => {
-    const { states } = props;
+export type BasicOptionProps = { states: ReturnType<typeof useBasicStates>, warning?: React.ReactChild|false, warningBothMildOutlined?: boolean }
+export const BasicOptions = (props: BasicOptionProps) => {
+    const { states, warning, warningBothMildOutlined = true } = props;
     
     
     
@@ -78,9 +79,9 @@ export const BasicOptions = (props: { states: ReturnType<typeof useBasicStates>,
             setValue={states.outlined[1]}
         />
 
-        { props.warning }
+        { warning }
 
-        {(states.outlined[0] && states.mild[0]) && <>
+        {(states.outlined[0] && states.mild[0]) && warningBothMildOutlined && <>
             <Label theme='secondary'>Warning</Label>
             <Warning>
                 If both <code>outlined</code> and <code>mild</code> are <code>true</code>, the <code>outlined</code> is

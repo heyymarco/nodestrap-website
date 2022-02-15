@@ -1,5 +1,5 @@
 import { useResetableState, Option, ResetButton } from './DemoPanel';
-import { BasicInitials, BasicOptions, useBasicStates } from './DemoPanel@Basic';
+import { BasicInitials, BasicOptionProps, BasicOptions, useBasicStates } from './DemoPanel@Basic';
 
 import { Content } from '@nodestrap/content'
 import { TypeScriptCode } from './Code';
@@ -20,14 +20,11 @@ export const useContentStates = (initials ?: Partial<ContentInitials>) => {
         ...useBasicStates(initials2),
     }
 }
-export const ContentOptions = (props: { states: ReturnType<typeof useContentStates> }) => {
-    const { states } = props;
-    
-    
-    
+export type ContentOptionProps =  { states: ReturnType<typeof useContentStates> } & BasicOptionProps
+export const ContentOptions = (props: ContentOptionProps) => {
     return (<>
         <BasicOptions
-            states={states}
+            {...props}
         />
     </>);
 }

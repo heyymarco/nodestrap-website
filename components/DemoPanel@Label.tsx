@@ -1,6 +1,6 @@
 import { ThemeName } from '@nodestrap/basic';
 import { useResetableState, Option, ResetButton } from './DemoPanel';
-import { BasicInitials, BasicOptions, useBasicStates } from './DemoPanel@Basic';
+import { BasicInitials, BasicOptionProps, BasicOptions, useBasicStates } from './DemoPanel@Basic';
 
 import { Label, LabelStyle } from '@nodestrap/label'
 import { TypeScriptCode } from './Code';
@@ -27,7 +27,8 @@ export const useLabelStates = (initials ?: Partial<LabelInitials>) => {
         labelStyle,
     }
 }
-export const LabelOptions = (props: { states: ReturnType<typeof useLabelStates> }) => {
+export type LabelOptionProps = { states: ReturnType<typeof useLabelStates> } & BasicOptionProps
+export const LabelOptions = (props: LabelOptionProps) => {
     const { states } = props;
     
     
@@ -41,7 +42,7 @@ export const LabelOptions = (props: { states: ReturnType<typeof useLabelStates> 
         />
         
         <BasicOptions
-            states={states}
+            {...props}
         />
     </>);
 }

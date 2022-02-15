@@ -34,7 +34,8 @@ export const useColorStates = (initials ?: Partial<ColorInitials>) => {
         lgt,
     };
 }
-export const ColorOptions = (props: { states: ReturnType<typeof useColorStates> }) => {
+export type ColorOptionProps = { states: ReturnType<typeof useColorStates> }
+export const ColorOptions = (props: ColorOptionProps) => {
     const { states } = props;
     
     

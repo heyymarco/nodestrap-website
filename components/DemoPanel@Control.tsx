@@ -1,5 +1,5 @@
 import { useResetableState, Option, ResetButton } from './DemoPanel';
-import { IndicatorInitials, IndicatorOptions, useIndicatorStates } from './DemoPanel@Indicator';
+import { IndicatorInitials, IndicatorOptionProps, IndicatorOptions, useIndicatorStates } from './DemoPanel@Indicator';
 
 import { Control } from '@nodestrap/control'
 import { TypeScriptCode } from './Code';
@@ -26,7 +26,8 @@ export const useControlStates = (initials ?: Partial<ControlInitials>) => {
         arrive,
     }
 }
-export const ControlOptions = (props: { states: ReturnType<typeof useControlStates> }) => {
+export type ControlOptionProps = { states: ReturnType<typeof useControlStates> } & IndicatorOptionProps
+export const ControlOptions = (props: ControlOptionProps) => {
     const { states } = props;
     
     
@@ -47,7 +48,7 @@ export const ControlOptions = (props: { states: ReturnType<typeof useControlStat
         />
 
         <IndicatorOptions
-            states={states}
+            {...props}
         />
     </>);
 }

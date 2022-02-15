@@ -26,7 +26,8 @@ export const useSpacerStates = (initials ?: Partial<SpacerInitials>) => {
         spacer,
     };
 }
-export const SpacerOptions = (props: { states: ReturnType<typeof useSpacerStates> }) => {
+export type SpacerOptionProps = { states: ReturnType<typeof useSpacerStates> }
+export const SpacerOptions = (props: SpacerOptionProps) => {
     const { states } = props;
     
     

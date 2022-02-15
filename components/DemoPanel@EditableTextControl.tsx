@@ -1,5 +1,5 @@
 import { useResetableState, Option, ResetButton } from './DemoPanel';
-import { EditableControlInitials, EditableControlOptions, useEditableControlStates } from './DemoPanel@EditableControl';
+import { EditableControlInitials, EditableControlOptionProps, EditableControlOptions, useEditableControlStates } from './DemoPanel@EditableControl';
 
 import { EditableTextControl } from '@nodestrap/editable-text-control'
 import { TypeScriptCode } from './Code';
@@ -19,14 +19,15 @@ export const useEditableTextControlStates = (initials ?: Partial<EditableTextCon
         ...useEditableControlStates(initials2),
     }
 }
-export const EditableTextControlOptions = (props: { states: ReturnType<typeof useEditableTextControlStates> }) => {
+export type EditableTextControlOptionProps = { states: ReturnType<typeof useEditableTextControlStates> } & EditableControlOptionProps
+export const EditableTextControlOptions = (props: EditableTextControlOptionProps) => {
     const { states } = props;
     
     
     
     return (<>
         <EditableControlOptions
-            states={states}
+            {...props}
         />
     </>);
 }

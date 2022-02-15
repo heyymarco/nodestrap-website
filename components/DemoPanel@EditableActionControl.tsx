@@ -1,5 +1,5 @@
 import { useResetableState, Option, ResetButton } from './DemoPanel';
-import { EditableControlInitials, EditableControlOptions, useEditableControlStates } from './DemoPanel@EditableControl';
+import { EditableControlInitials, EditableControlOptionProps, EditableControlOptions, useEditableControlStates } from './DemoPanel@EditableControl';
 import { ActionControlInitials, useActionControlStates } from './DemoPanel@ActionControl';
 
 import { EditableActionControl } from '@nodestrap/editable-action-control'
@@ -21,7 +21,8 @@ export const useEditableActionControlStates = (initials ?: Partial<EditableActio
         ...useActionControlStates(initials2),
     }
 }
-export const EditableActionControlOptions = (props: { states: ReturnType<typeof useEditableActionControlStates> }) => {
+export type EditableActionControlOptionProps = { states: ReturnType<typeof useEditableActionControlStates> } & EditableControlOptionProps
+export const EditableActionControlOptions = (props: EditableActionControlOptionProps) => {
     const { states } = props;
     
     
@@ -35,7 +36,7 @@ export const EditableActionControlOptions = (props: { states: ReturnType<typeof 
         />
     
         <EditableControlOptions
-            states={states}
+            {...props}
         />
     </>);
 }

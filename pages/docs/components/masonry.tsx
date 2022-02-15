@@ -5,9 +5,8 @@ import Head from 'next/head'
 
 import { SpecList, DetailSpecItem, SimpleSpecItem, SubSpecList } from '../../../components/SpecList'
 
-import { SectionInheritedProps, LinkMasonryPage, LinkContentPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, LinkButtonPage, LinkGroupPage, LinkInputPage, SeeDocumentations, LinkCheckPage, LinkRangePage, SectionSubPropertyStyle, SectionSubPropertyOrientation } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkMasonryPage, LinkContentPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, SectionSubPropertyOrientation } from '../../../components/common-contents'
 
-import { Masonry } from '@nodestrap/masonry'
 
 import loadable from '@loadable/component'
 const DemoMasonryLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Masonry' */'../../../components/DemoPanel@Masonry'))

@@ -32,7 +32,8 @@ export const useBorderStates = (initials ?: Partial<BorderInitials>) => {
         style,
     };
 }
-export const BorderOptions = (props: { states: ReturnType<typeof useBorderStates> }) => {
+export type BorderOptionProps = { states: ReturnType<typeof useBorderStates> }
+export const BorderOptions = (props: BorderOptionProps) => {
     const { states } = props;
     
     

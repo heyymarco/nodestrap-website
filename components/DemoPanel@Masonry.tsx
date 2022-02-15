@@ -1,5 +1,5 @@
 import { useResetableState, Option, ResetButton } from './DemoPanel';
-import { ContentInitials, ContentOptions, useContentStates } from './DemoPanel@Content';
+import { ContentInitials, ContentOptionProps, ContentOptions, useContentStates } from './DemoPanel@Content';
 
 import { Masonry, OrientationName } from '@nodestrap/masonry'
 import { TypeScriptCode } from './Code';
@@ -23,7 +23,8 @@ export const useMasonryStates = (initials ?: Partial<MasonryInitials>) => {
         orientation,
     }
 }
-export const MasonryOptions = (props: { states: ReturnType<typeof useMasonryStates> }) => {
+export type MasonryOptionProps = { states: ReturnType<typeof useMasonryStates> } & ContentOptionProps
+export const MasonryOptions = (props: MasonryOptionProps) => {
     const { states } = props;
     
     
@@ -37,7 +38,7 @@ export const MasonryOptions = (props: { states: ReturnType<typeof useMasonryStat
         />
         
         <ContentOptions
-            states={states}
+            {...props}
         />
     </>);
 }

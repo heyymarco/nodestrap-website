@@ -80,7 +80,7 @@ const Page: NextPage = () => {
                         </DetailSpecItem>
                         <DetailSpecItem code='content'>
                             <p>
-                                Styling the <CurrentComponent /> to be similar to <LinkContentPage />&apos;s appearance (usually with wider paddings).
+                                Styling the <CurrentComponent /> to look similar to <LinkContentPage />&apos;s appearance (usually with wider paddings).
                             </p>
                             <p>
                                 Basically it merges the <CurrentComponent />&apos;s style + <LinkContentPage />&apos;s style.

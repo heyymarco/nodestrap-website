@@ -32,7 +32,8 @@ export const useIconStates = (initials ?: Partial<IconInitials>) => {
         mild,
     };
 }
-export const IconOptions = (props: { states: ReturnType<typeof useIconStates>, warning?: React.ReactChild|false }) => {
+export type IconOptionProps = { states: ReturnType<typeof useIconStates> }
+export const IconOptions = (props: IconOptionProps) => {
     const { states } = props;
     
     
@@ -57,8 +58,6 @@ export const IconOptions = (props: { states: ReturnType<typeof useIconStates>, w
             value={states.theme[0]}
             setValue={states.theme[1]}
         />
-
-        { props.warning }
         
         <Option
             name='mild'

@@ -1,5 +1,5 @@
 import { useResetableState, Option, ResetButton } from './DemoPanel';
-import { BasicInitials, BasicOptions, useBasicStates } from './DemoPanel@Basic';
+import { BasicInitials, BasicOptionProps, BasicOptions, useBasicStates } from './DemoPanel@Basic';
 import { Warning } from './Info';
 
 import { Indicator } from '@nodestrap/indicator'
@@ -33,8 +33,9 @@ export const useIndicatorStates = (initials ?: Partial<IndicatorInitials>) => {
         readOnly,
     }
 }
-export const IndicatorOptions = (props: { states: ReturnType<typeof useIndicatorStates> }) => {
-    const { states } = props;
+export type IndicatorOptionProps = { states: ReturnType<typeof useIndicatorStates>, warningEitherMildOutlined?: boolean } & BasicOptionProps
+export const IndicatorOptions = (props: IndicatorOptionProps) => {
+    const { states, warningEitherMildOutlined = true } = props;
     
     
     
@@ -54,8 +55,8 @@ export const IndicatorOptions = (props: { states: ReturnType<typeof useIndicator
         />
 
         <BasicOptions
-            states={states}
-            warning={(!states.outlined[0] && !states.mild[0]) && <>
+            {...props}
+            warning={(!states.outlined[0] && !states.mild[0]) && warningEitherMildOutlined && <>
                 <Label theme='secondary'>Warning</Label>
                 <Warning>
                     Either <code>outlined</code> or <code>mild</code> should be <code>true</code> to
