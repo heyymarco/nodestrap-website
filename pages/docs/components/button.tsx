@@ -7,9 +7,11 @@ import { SpecList, DetailSpecItem, SimpleSpecItem, SubSpecList } from '../../../
 
 import { SectionInheritedProps, LinkButtonPage, LinkActionControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, LinkGroupPage, LinkInputPage, SeeDocumentations, LinkCheckPage, LinkRangePage, SectionSubPropertyStyle, SectionSubPropertyOrientation } from '../../../components/common-contents'
 
+import { TypeScriptCode } from '../../../components/Code'
 import { Button } from '@nodestrap/button'
 
 import loadable from '@loadable/component'
+import { Section, SubSection } from '../../../components/Section'
 const DemoButtonLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Button' */'../../../components/DemoPanel@Button'))
 
 
@@ -30,6 +32,158 @@ const Page: NextPage = () => {
             <SectionDemo>
                 <DemoButtonLazy fallback={<BusyBar />} />
             </SectionDemo>
+            <Section title={<><CurrentComponent /> as &quot;Button&quot;</>}>
+                <p>
+                    Usually, when a button is clicked, it should perform an action.
+                </p>
+                <p>
+                    To archive this, assign <code>onClick</code> property to desired function/hander.
+                    For example:
+                </p>
+                <TypeScriptCode>{`
+<Button
+    theme='primary'
+    onClick={() => alert('you have clicked me!')}
+>
+    Click me!
+</Button>
+                `}</TypeScriptCode>
+                <p>
+                    Live demo:
+                </p>
+                <Button
+                    theme='primary'
+                    onClick={() => alert('you have clicked me!')}
+                >
+                    Click me!
+                </Button>
+            </Section>
+            <Section title={<><CurrentComponent /> as &quot;Link&quot;</>}>
+                <p>
+                    Our <CurrentComponent /> can be styled and/or be functioned as a link.
+                </p>
+                <p>
+                    To archive this, assign <code>{`href='https://your-desired-url.com'`}</code> and assign <code>{`btnStyle='link'`}</code>.
+                    For example:
+                </p>
+                <TypeScriptCode>{`
+<Button
+    theme='primary'
+    href='http://www.google.com'
+    btnStyle='link'
+>
+    Visit Google!
+</Button>
+                `}</TypeScriptCode>
+                <p>
+                    Live demo:
+                </p>
+                <Button
+                    theme='primary'
+                    href='http://www.google.com'
+                    btnStyle='link'
+                >
+                    Visit Google!
+                </Button>
+                <p>
+                    The button above is rendered and functioned as a <strong>HTML link</strong>.
+                    The rendered HTML is something like this:<br />
+                    <code>{`<a class='link' href='http://www.google.com'>Visit Google!</a>`}</code>
+                </p>
+
+                <SubSection title={<><CurrentComponent /> as &quot;Button Link&quot;</>}>
+                    <p>
+                        To create a link but <strong>styled as a button</strong>, assign <code>{`href='https://your-desired-url.com'`}</code> and assign <code>btnStyle</code> to a value other than <code>'link'</code> -or- just unassign it.
+                        For example:
+                    </p>
+                    <TypeScriptCode>{`
+<Button
+    theme='primary'
+    href='http://www.google.com'
+>
+    Visit Google!
+</Button>
+                    `}</TypeScriptCode>
+                    <p>
+                        Live demo:
+                    </p>
+                    <Button
+                        theme='primary'
+                        href='http://www.google.com'
+                    >
+                        Visit Google!
+                    </Button>
+                    <p>
+                        The button above is rendered and functioned as a <strong>HTML link</strong> but <strong>appears as a button</strong>.
+                        The rendered HTML is something like this:<br />
+                        <code>{`<a href='http://www.google.com'>Visit Google!</a>`}</code>
+                    </p>
+                </SubSection>
+                <SubSection title={<><CurrentComponent /> as &quot;Fake Link&quot;</>}>
+                    <p>
+                        To create a button but <strong>styled as a link</strong>, assign <code>onClick</code> property to desired function/hander and assign <code>{`btnStyle='link'`}</code>.
+                        For example:
+                    </p>
+                    <TypeScriptCode>{`
+<Button
+    theme='primary'
+    onClick={() => alert('you have clicked me!')}
+    btnStyle='link'
+>
+    Click me!
+</Button>
+                    `}</TypeScriptCode>
+                    <p>
+                        Live demo:
+                    </p>
+                    <Button
+                        theme='primary'
+                        onClick={() => alert('you have clicked me!')}
+                        btnStyle='link'
+                    >
+                        Click me!
+                    </Button>
+                    <p>
+                        The button above is rendered and functioned as a <strong>HTML button</strong> but <strong>appears as a link</strong>.
+                        The rendered HTML is something like this:<br />
+                        <code>{`<button class='link' type='button'>Click me!</button>`}</code>
+                    </p>
+                </SubSection>
+            </Section>
+            <Section title={<><code>{`<div>`}</code> as &quot;Button&quot;</>}>
+                <p>
+                    To create almost any HTML elements (<code>{`<div>`}</code>, <code>{`<span>`}</code>, <code>{`<h1>`}</code>, etc) but <strong>styled as a button</strong>, assign <code>onClick</code> property to desired function/hander and assign <code>{`tag='div'`}</code>.
+                    For example:
+                </p>
+                <TypeScriptCode>{`
+<Button
+    theme='primary'
+    onClick={() => alert('you have clicked me!')}
+    tag='div'
+>
+    Click me!
+</Button>
+                `}</TypeScriptCode>
+                <p>
+                    Live demo:
+                </p>
+                <Button
+                    theme='primary'
+                    onClick={() => alert('you have clicked me!')}
+                    tag='div'
+                >
+                    Click me!
+                </Button>
+                <p>
+                    The button above is rendered as a <strong>HTML div</strong> but <strong>appears as a button</strong>.
+                    The rendered HTML is something like this:<br />
+                    <code>{`<div role='button'>Click me!</div>`}</code>
+                </p>
+                <p>
+                    Note: A <code>{`role='button'`}</code> property is automatically inserted to preserve the accessibility.
+                    To remove/change the <code>role</code>, just assign <code>{`role=''`}</code> or <code>{`role='something'`}</code> to the <CurrentComponent />.
+                </p>
+            </Section>
             <SectionInheritedProps />
             <SectionVariants>
                 <SectionSubPropertyOrientation specList={
