@@ -101,8 +101,9 @@ export const LinkVisuallyHiddenPage        = (props: PageLinkProps) => <LinkCode
 export const LinkIconPage                  = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/icon'>Icon</LinkCode>
 export const LinkLabelPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/label'>Label</LinkCode>
 export const LinkMasonryPage               = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/masonry'>Masonry</LinkCode>
-
 export const LinkButtonPage                = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/button'>Button</LinkCode>
+export const LinkNavButtonPage             = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/nav-button'>NavButton</LinkCode>
+
 export const LinkInputPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/input'>Input</LinkCode>
 export const LinkCheckPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/check'>Check</LinkCode>
 export const LinkRangePage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/range'>Range</LinkCode>

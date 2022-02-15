@@ -1,35 +1,28 @@
 import { useResetableState, Option, ResetButton } from './DemoPanel';
-import { ActionControlInitials, ActionControlOptionProps, ActionControlOptions, useActionControlStates } from './DemoPanel@ActionControl';
+import { ButtonInitials, ButtonOptionProps, ButtonOptions, useButtonStates } from './DemoPanel@Button';
 
-import { Button, OrientationName, ButtonStyle } from '@nodestrap/button'
+import { NavButton } from '@nodestrap/nav-button'
 import { TypeScriptCode } from './Code';
 
+import Link from 'next/link'
 
 
-export const buttonInitials = {
-    mild        : false,
-    
-    orientation : undefined   as OrientationName|undefined,
-    btnStyle    : undefined   as ButtonStyle|undefined,
+
+export const navButtonInitials = {
 };
-export type ButtonInitials = typeof buttonInitials & Partial<ActionControlInitials>
-export const useButtonStates = (initials ?: Partial<ButtonInitials>) => {
-    const initials2 : ButtonInitials = {
-        ...buttonInitials,
+export type NavButtonInitials = typeof navButtonInitials & Partial<ButtonInitials>
+export const useNavButtonStates = (initials ?: Partial<NavButtonInitials>) => {
+    const initials2 : NavButtonInitials = {
+        ...navButtonInitials,
         ...initials
     };
-    
-    const orientation  = useResetableState(initials2.orientation);
-    const btnStyle     = useResetableState(initials2.btnStyle);
 
     return {
-        ...useActionControlStates(initials2),
-        orientation,
-        btnStyle,
+        ...useButtonStates(initials2),
     }
 }
-export type ButtonOptionProps = { states: ReturnType<typeof useButtonStates> } & ActionControlOptionProps
-export const ButtonOptions = (props: ButtonOptionProps) => {
+export type NavButtonOptionProps = { states: ReturnType<typeof useNavButtonStates> } & ButtonOptionProps
+export const NavButtonOptions = (props: NavButtonOptionProps) => {
     const { states } = props;
     
     
@@ -49,7 +42,7 @@ export const ButtonOptions = (props: ButtonOptionProps) => {
             setValue={states.btnStyle[1]}
         />
         
-        <ActionControlOptions
+        <ButtonOptions
             {...props}
             warningEitherMildOutlined={false}
         />
@@ -58,13 +51,13 @@ export const ButtonOptions = (props: ButtonOptionProps) => {
 
 
 
-export const DemoButton = () => {
-    const states   = useButtonStates();
+export const DemoNavButton = () => {
+    const states   = useNavButtonStates();
     
     return (
         <>
             <div className='preview'>
-                <Button
+                <NavButton
                     orientation={states.orientation[0]}
                     btnStyle={states.btnStyle[0]}
                     
@@ -83,11 +76,10 @@ export const DemoButton = () => {
                     outlined={states.outlined[0]}
                     mild={states.mild[0]}
                 >
-                    Click me!
-                    <span>Now!</span>
-                </Button>
+                    <Link href='/docs/components/nav-button'>Home</Link>
+                </NavButton>
                 <TypeScriptCode collapsable={false}>{`
-<Button
+<NavButton
     orientation=${states.orientation[0] ? `'${states.orientation[0]}'` : '{undefined}'}
     btnStyle=${states.btnStyle[0] ? `'${states.btnStyle[0]}'` : '{undefined}'}
     
@@ -106,18 +98,17 @@ export const DemoButton = () => {
     outlined={${states.outlined[0]}}
     mild={${states.mild[0]}}
 >
-    Click me!
-    <span>Now!</span>
-</Button>
+    <Link href='/docs/components/nav-button'>Home</Link>
+</NavButton>
                 `}</TypeScriptCode>
             </div>
             
             <div className='options'>
-                <ButtonOptions states={states} />
+                <NavButtonOptions states={states} />
                 
                 <ResetButton states={states} />
             </div>
         </>
     );
 }
-export { DemoButton as default }
+export { DemoNavButton as default }

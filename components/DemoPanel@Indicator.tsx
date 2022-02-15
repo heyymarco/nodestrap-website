@@ -12,7 +12,7 @@ export const indicatorInitials = {
     mild     : true,
 
     enabled  : true,
-    active   : false,
+    active   : undefined as boolean|undefined,
     readOnly : false,
 };
 export type IndicatorInitials = typeof indicatorInitials & Partial<BasicInitials>
@@ -49,7 +49,7 @@ export const IndicatorOptions = (props: IndicatorOptionProps) => {
         
         <Option
             name='active'
-            options={[false, true]}
+            options={[undefined, false, true]}
             value={states.active[0]}
             setValue={states.active[1]}
         />
