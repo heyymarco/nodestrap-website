@@ -172,6 +172,19 @@ export default DemoPanel;
 
 
 
+export const ResponsiveGroup = (props: GroupProps) => {
+    const currentFallback = useResponsiveCurrentFallback<Fallback>();
+    return (
+        <Group
+            {...props}
+            
+            orientation={props.orientation ?? currentFallback}
+        />
+    );
+}
+
+
+
 export interface OptionProps extends GroupProps {
     name     : string
     options  : any[]
@@ -188,15 +201,11 @@ export const Option = (props: OptionProps) => {
         ...groupProps
     } = props;
     
-    const currentFallback = useResponsiveCurrentFallback<Fallback>();
-    
     
     
     return (<>
         {name && <Label theme='secondary'>{ name }</Label>}
-        <Group
-            orientation={currentFallback}
-            
+        <ResponsiveGroup            
             {...groupProps}
         >
             {
@@ -217,7 +226,7 @@ export const Option = (props: OptionProps) => {
                     </Radio>
                 )
             }
-        </Group>
+        </ResponsiveGroup>
     </>);
 }
 

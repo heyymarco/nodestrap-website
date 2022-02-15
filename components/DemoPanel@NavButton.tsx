@@ -9,6 +9,9 @@ import Link from 'next/link'
 
 
 export const navButtonInitials = {
+    href          : '/docs/components/nav-button',
+    caseSensitive : false,
+    end           : false,
 };
 export type NavButtonInitials = typeof navButtonInitials & Partial<ButtonInitials>
 export const useNavButtonStates = (initials ?: Partial<NavButtonInitials>) => {
@@ -17,8 +20,15 @@ export const useNavButtonStates = (initials ?: Partial<NavButtonInitials>) => {
         ...initials
     };
 
+    const href           = useResetableState(initials2.href);
+    const caseSensitive  = useResetableState(initials2.caseSensitive);
+    const end            = useResetableState(initials2.end);
+
     return {
         ...useButtonStates(initials2),
+        href,
+        caseSensitive,
+        end,
     }
 }
 export type NavButtonOptionProps = { states: ReturnType<typeof useNavButtonStates> } & ButtonOptionProps
@@ -29,17 +39,25 @@ export const NavButtonOptions = (props: NavButtonOptionProps) => {
     
     return (<>
         <Option
-            name='orientation'
-            options={[undefined, 'block', 'inline']}
-            value={states.orientation[0]}
-            setValue={states.orientation[1]}
+            orientation='block'
+            name='to/href'
+            options={['/docs/components/nav-button', '/docs/COMPONENTS', '/docs/about']}
+            value={states.href[0]}
+            setValue={states.href[1]}
         />
         
         <Option
-            name='btnStyle'
-            options={[undefined, 'link', 'icon', 'ghost']}
-            value={states.btnStyle[0]}
-            setValue={states.btnStyle[1]}
+            name='caseSensitive'
+            options={[false, true]}
+            value={states.caseSensitive[0]}
+            setValue={states.caseSensitive[1]}
+        />
+        
+        <Option
+            name='end'
+            options={[false, true]}
+            value={states.end[0]}
+            setValue={states.end[1]}
         />
         
         <ButtonOptions
@@ -58,6 +76,9 @@ export const DemoNavButton = () => {
         <>
             <div className='preview'>
                 <NavButton
+                    caseSensitive={states.caseSensitive[0]}
+                    end={states.end[0]}
+                    
                     orientation={states.orientation[0]}
                     btnStyle={states.btnStyle[0]}
                     
@@ -76,10 +97,17 @@ export const DemoNavButton = () => {
                     outlined={states.outlined[0]}
                     mild={states.mild[0]}
                 >
-                    <Link href='/docs/components/nav-button'>Home</Link>
+                    <Link
+                        href={states.href[0]}
+                    >
+                        Show documentation
+                    </Link>
                 </NavButton>
                 <TypeScriptCode collapsable={false}>{`
 <NavButton
+    caseSensitive='${states.caseSensitive[0]}'
+    end='${states.end[0]}'
+
     orientation=${states.orientation[0] ? `'${states.orientation[0]}'` : '{undefined}'}
     btnStyle=${states.btnStyle[0] ? `'${states.btnStyle[0]}'` : '{undefined}'}
     
@@ -98,7 +126,11 @@ export const DemoNavButton = () => {
     outlined={${states.outlined[0]}}
     mild={${states.mild[0]}}
 >
-    <Link href='/docs/components/nav-button'>Home</Link>
+    <Link
+        href='${states.href[0]}'
+    >
+        Show documentation
+    </Link>
 </NavButton>
                 `}</TypeScriptCode>
             </div>
