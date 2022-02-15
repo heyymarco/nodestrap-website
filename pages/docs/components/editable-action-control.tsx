@@ -5,30 +5,12 @@ import Head from 'next/head'
 
 import { SpecList, DetailSpecItem } from '../../../components/SpecList'
 
-import { Section } from '../../../components/Section'
-import { SectionInheritedProps, LinkEditableActionControlPage, LinkEditableControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionIntro, LinkActionControlPage, useComponentInfo, CommaSeparated, SectionDemo, BusyBar, CurrentComponent } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkEditableActionControlPage, LinkEditableControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionIntro, LinkActionControlPage, SectionDemo, BusyBar, CurrentComponent, SectionCustomizingParent } from '../../../components/common-contents'
 
 import loadable from '@loadable/component'
 const DemoEditableActionControlLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@EditableActionControl' */'../../../components/DemoPanel@EditableActionControl'))
 
 
-
-const SectionCustomizing = () => {
-    const { component, bases } = useComponentInfo();
-    
-    return (
-        <Section
-            title={<>
-                Customizing { component } Component
-            </>}
-        >
-            <p>
-                There is no global configuration of { component } you can tweak, <em>but</em> you can
-                customize the <strong>global configuration</strong> of <CommaSeparated components={bases} /> which are <strong>shared to</strong> { component }.
-            </p>
-        </Section>
-    );
-}
 
 const Page: NextPage = () => {
     return (
@@ -52,7 +34,7 @@ const Page: NextPage = () => {
                 <DemoEditableActionControlLazy fallback={<BusyBar />} />
             </SectionDemo>
             <SectionInheritedProps />
-            <SectionCustomizing />
+            <SectionCustomizingParent />
             <SectionDerivering>
                 <SectionOverridingDefaults>{`
 import { EditableActionControl } from '@nodestrap/editable-action-control'

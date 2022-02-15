@@ -82,6 +82,11 @@ export const LinkAccessibilitiesPage       = (props: PageLinkProps) => <LinkCode
 export const LinkValidationProviderPage    = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/utilities/accessibilities'>ValidationProvider</LinkCode>
 export const LinkValidationsPage           = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/utilities/validations'><code>validations</code></LinkCode>
 
+export const LinkReactRouterLinkPage       = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/react-router-link'>ReactRouterLink</LinkCode>
+export const LinkOriReactRouterLinkPage    = (props: PageLinkProps) => <LinkCode text={props.children} href='https://reactrouter.com/docs/en/v6/getting-started/tutorial#add-some-links'>Link</LinkCode>
+
+export const LinkOriNextJsLinkPage         = (props: PageLinkProps) => <LinkCode text={props.children} href='https://nextjs.org/docs/api-reference/next/link'>Link</LinkCode>
+
 export const LinkElementPage               = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/element'>Element</LinkCode>
 export const LinkBasicPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/basic'>Basic</LinkCode>
 export const LinkUsesBasicLayoutPage       = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/basic'><code>usesBasicLayout()</code></LinkCode>
@@ -452,6 +457,22 @@ export const SectionCustomizing = ({ specList }: SectionCustomizingProps) => {
             </p>
             
             { specList }
+        </Section>
+    );
+}
+export const SectionCustomizingParent = () => {
+    const { bases } = useComponentInfo();
+    
+    return (
+        <Section
+            title={<>
+                Customizing <CurrentComponent /> Component
+            </>}
+        >
+            <p>
+                There is no global configuration of <CurrentComponent /> you can tweak, <em>but</em> you can
+                customize the <strong>global configuration</strong> of <CommaSeparated components={bases} /> which {([bases].flat().length > 2) ? 'are': 'is'} <strong>shared to</strong> <CurrentComponent />.
+            </p>
         </Section>
     );
 }

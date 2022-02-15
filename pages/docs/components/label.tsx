@@ -75,7 +75,7 @@ const Page: NextPage = () => {
                                 Styling the <CurrentComponent /> with <strong>default appearance</strong>.
                             </p>
                             <p>
-                                This is the <strong>default</strong> appearance if the <code>labelStyle</code> value is not specified.
+                                This is the <strong>default</strong> value if the <code>labelStyle</code> value is not specified.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='content'>

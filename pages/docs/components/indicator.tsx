@@ -42,7 +42,7 @@ const Page: NextPage = () => {
                                 You can fully interact to this component.
                             </p>
                             <p>
-                                This is the <strong>default</strong> state if the <code>enabled</code> value is not specified.
+                                This is the <strong>default</strong> value if the <code>enabled</code> value is not specified.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='false'>
@@ -69,7 +69,7 @@ const Page: NextPage = () => {
                                 At this state, the component is currently in <strong>normal state</strong>.
                             </p>
                             <p>
-                                This is the <strong>default</strong> state if the <code>active</code> value is not specified.
+                                This is the <strong>default</strong> value if the <code>active</code> value is not specified.
                             </p>
                         </DetailSpecItem>
                     </SpecList>
@@ -92,7 +92,7 @@ const Page: NextPage = () => {
                                 You can make any changes to this component.
                             </p>
                             <p>
-                                This is the <strong>default</strong> state if the <code>readOnly</code> value is not specified.
+                                This is the <strong>default</strong> value if the <code>readOnly</code> value is not specified.
                             </p>
                         </DetailSpecItem>
                     </SpecList>

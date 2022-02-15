@@ -44,7 +44,7 @@ const Page: NextPage = () => {
                             The implemented components may add an icon for displaying the validation status.
                         </p>
                         <p>
-                            This is the <strong>default</strong> state if the <code>enableValidation</code> value is not specified.
+                            This is the <strong>default</strong> value if the <code>enableValidation</code> value is not specified.
                         </p>
                     </DetailSpecItem>
                     <DetailSpecItem code='false'>
@@ -128,7 +128,7 @@ const Page: NextPage = () => {
                             the current control&apos;s validation status is <strong>always overriden</strong>.
                         </p>
                         <p>
-                            This is the <strong>default</strong> state if the <code>inheritValidation</code> value is not specified.
+                            This is the <strong>default</strong> value if the <code>inheritValidation</code> value is not specified.
                         </p>
                     </DetailSpecItem>
                     <DetailSpecItem code='false'>
@@ -165,7 +165,7 @@ const Page: NextPage = () => {
                             If the user <strong>omit to assign</strong> the value, an <strong>invalid</strong> state will <strong>not</strong> be <strong>triggered</strong>.
                         </p>
                         <p>
-                            This is the <strong>default</strong> state if the <code>required</code> value is not specified.
+                            This is the <strong>default</strong> value if the <code>required</code> value is not specified.
                         </p>
                     </DetailSpecItem>
                 </SpecList>

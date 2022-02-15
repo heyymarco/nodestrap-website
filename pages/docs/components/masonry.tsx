@@ -49,7 +49,7 @@ const Page: NextPage = () => {
                                 The <CurrentComponent />&apos;s column is from top to bottom.
                             </p>
                             <p>
-                                This is the <strong>default</strong> appearance if the <code>orientation</code> value is not specified.
+                                This is the <strong>default</strong> value if the <code>orientation</code> value is not specified.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='inline'>

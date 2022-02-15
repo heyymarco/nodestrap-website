@@ -3,15 +3,15 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { SpecList, DetailSpecItem, SimpleSpecItem, SubSpecList } from '../../../components/SpecList'
+import { SpecList, DetailSpecItem } from '../../../components/SpecList'
 
-import { SectionInheritedProps, LinkNavButtonPage, LinkButtonPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, LinkGroupPage, LinkInputPage, SeeDocumentations, LinkCheckPage, LinkRangePage, SectionSubPropertyStyle, SectionSubPropertyOrientation } from '../../../components/common-contents'
+import { Section } from '../../../components/Section'
+import { SectionInheritedProps, LinkNavButtonPage, LinkButtonPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionSubProperty, LinkReactRouterLinkPage, LinkOriReactRouterLinkPage, LinkOriNextJsLinkPage, SectionCustomizingParent } from '../../../components/common-contents'
 
 import { TypeScriptCode } from '../../../components/Code'
-import { NavButton } from '@nodestrap/nav-button'
+import { Accordion, AccordionItem } from '@nodestrap/accordion'
 
 import loadable from '@loadable/component'
-import { Section, SubSection } from '../../../components/Section'
 const DemoNavButtonLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@NavButton' */'../../../components/DemoPanel@NavButton'))
 
 
@@ -26,114 +26,166 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    <CurrentComponent /> is a clickable component for performing an action such as deleting, checkout, displaying menu, etc.
+                    <CurrentComponent /> is a special <CurrentBaseComponents /> for page navigation.
+                    It automatically handle the <code>active</code> property based on <strong>current page url</strong> and the <strong>destination url</strong>.
+                    So the <CurrentComponent /> is <strong>highlighted</strong> if the current page url <strong>matches</strong> the destination url.
+                </p>
+                <p>
+                    If you assign <code>active</code> property other than <code>undefined</code>, the <CurrentComponent /> become the equivalent as <CurrentBaseComponents />, because you <strong>take over</strong> the <code>active</code> property.
                 </p>
             </SectionIntro>
             <SectionDemo>
                 <DemoNavButtonLazy fallback={<BusyBar />} />
             </SectionDemo>
+            <Section title='Navigation Properties'>
+                <p>
+                    In order for <CurrentComponent /> to <strong>work properly</strong> as navigation indicator,
+                    the following properties must be <strong>configured correctly</strong>, they are:
+                </p>
+                <SectionSubProperty property={<>
+                    <code>to</code> / <code>href</code> property of <code>{`<Link>`}</code> Component
+                </>}>
+                    <p>
+                        In this context, we also call <code>to</code> / <code>href</code> property as <strong>destination url</strong>.
+                        So in <em>another section</em>, the <strong>destination url</strong> is referenced here.
+                    </p>
+                    <Accordion theme='primary'>
+                        <AccordionItem tag='h4' label={<>
+                            For <strong>{`React Router`}</strong> User
+                        </>}>
+                            <p>
+                                Inside the <CurrentComponent /> tag, place a <LinkReactRouterLinkPage /> and then assign the <code>{`to='/destination/path'`}</code>.
+                            </p>
+                            <p>
+                                Note: the <LinkReactRouterLinkPage /> is a React Router&apos;s <LinkOriReactRouterLinkPage /> compatible designed for working inside <CurrentComponent />.
+                                It has the <strong>same properties</strong> as the <strong>original</strong> one, with some additional tweak.
+                                You can <strong>rename</strong> it to <code>{`ReactRouterLink as Link`}</code> to make it more familiar for you.
+                            </p>
+                            <p>
+                                Example:
+                            </p>
+                            <TypeScriptCode>{`
+/* ... */
+import { NavButton } from '@nodestrap/nav-button'
+
+// import { Link } from 'react-router-dom'
+import { ReactRouterLink as Link } from '@nodestrap/react-router-link'
+/* ... */
+
+/* ... */
+
+<NavButton caseSensitive={false} end={false}>
+    <Link to='/destination/path'>
+        Show the page
+    </Link>
+</NavButton>
+                            `}</TypeScriptCode>
+                            <p>
+                                Note: You should place the <LinkReactRouterLinkPage /> <strong>inside</strong> the <CurrentComponent />, <strong>not outside</strong>.
+                                The <CurrentComponent /> will <strong>detect</strong> the special child, then make a special stuff, and then automatically swap the hierarchy between <CurrentComponent /> and <LinkReactRouterLinkPage />.
+                            </p>
+                        </AccordionItem>
+                        <AccordionItem tag='h4' label={<>
+                            For <strong>{`NextJS`}</strong> User
+                        </>}>
+                            <p>
+                                Inside the <CurrentComponent /> tag, place a NextJS&apos;s <LinkOriNextJsLinkPage /> and then assign the <code>{`href='/destination/path'`}</code>.
+                            </p>
+                            <p>
+                                Example:
+                            </p>
+                            <TypeScriptCode>{`
+/* ... */
+import { NavButton } from '@nodestrap/nav-button'
+
+import Link from 'next/link'
+/* ... */
+
+/* ... */
+
+<NavButton caseSensitive={false} end={false}>
+    <Link href='/destination/path'>
+        Show the page
+    </Link>
+</NavButton>
+                            `}</TypeScriptCode>
+                            <p>
+                                Note: You should place the <LinkOriNextJsLinkPage /> <strong>inside</strong> the <CurrentComponent />, <strong>not outside</strong>.
+                                The <CurrentComponent /> will <strong>detect</strong> the special child, then make a special stuff, and then automatically swap the hierarchy between <CurrentComponent /> and <LinkOriNextJsLinkPage />.
+                            </p>
+                        </AccordionItem>
+                        <AccordionItem tag='h4' label={<>
+                            For <strong>{`GatsbyJs`}</strong> User
+                        </>}>
+                            <p>
+                                Coming soon! We&apos;re still working to support GatsbyJs.
+                            </p>
+                        </AccordionItem>
+                        <AccordionItem tag='h4' label={<>
+                            For <strong>{`React Remix`}</strong> User
+                        </>}>
+                            <p>
+                                Coming soon! We&apos;re still working to support GatsbyJs.
+                            </p>
+                        </AccordionItem>
+                    </Accordion>
+                </SectionSubProperty>
+                <SectionSubProperty property='caseSensitive' specList={
+                    <SpecList>
+                        <DetailSpecItem code='false'>
+                            <p>
+                                The string comparison is <strong>case insensitive</strong>.
+                                A lowercase character and uppercase character are treated as the <strong>same</strong> thing.
+                            </p>
+                            <p>
+                                This is the <strong>default</strong> value if the <code>caseSensitive</code> value is not specified.
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='true'>
+                            <p>
+                                The string comparison is <strong>case insensitive</strong>.
+                                A lowercase character and uppercase character are treated as the <strong>different</strong> thing.
+                            </p>
+                        </DetailSpecItem>
+                    </SpecList>
+                }>
+                    <p>
+                        Defines how the <strong>current page url</strong> and <strong>destination url</strong> are compared by <strong>string sensivity</strong>.
+                    </p>
+                </SectionSubProperty>
+                <SectionSubProperty property='end' specList={
+                    <SpecList>
+                        <DetailSpecItem code='false'>
+                            <p>
+                                The <strong>destination url</strong> may have one/more sub path(s).
+                            </p>
+                            <p>
+                                If the <strong>current page url</strong> is more specific (has more sub path(s)) than <strong>destination url</strong>, it still matches.
+                            </p>
+                            <p>
+                                This is the <strong>default</strong> value if the <code>end</code> value is not specified and the <strong>destination url</strong> is other than <strong>home page</strong> (<code>{`'/'`}</code> or <code>{`''`}</code>).
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='true'>
+                            <p>
+                                The <strong>destination url</strong> may not have sub path(s).
+                            </p>
+                            <p>
+                                If the <strong>current page url</strong> is more specific (has more sub path(s)) than <strong>destination url</strong>, it doesn&apos;t match.
+                            </p>
+                            <p>
+                                This is the <strong>default</strong> value if the <code>end</code> value is not specified and the <strong>destination url</strong> is a <strong>home page</strong> (<code>{`'/'`}</code> or <code>{`''`}</code>).
+                            </p>
+                        </DetailSpecItem>
+                    </SpecList>
+                }>
+                    <p>
+                        Defines whether the <strong>destination url</strong> is a <strong>sub path</strong> or an <strong>exact path</strong>.
+                    </p>
+                </SectionSubProperty>
+            </Section>
             <SectionInheritedProps />
-            <SectionVariants>
-                <SectionSubPropertyOrientation specList={
-                    <SpecList>
-                        <DetailSpecItem code='block'>
-                            <p>
-                                The <CurrentComponent /> orientation is vertical.
-                            </p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='inline'>
-                            <p>
-                                The <CurrentComponent /> orientation is horizontal.
-                            </p>
-                            <p>
-                                This is the <strong>default</strong> appearance if the <code>orientation</code> value is not specified.
-                            </p>
-                        </DetailSpecItem>
-                    </SpecList>
-                } />
-                <SectionSubPropertyStyle property='btnStyle' specList={
-                    <SpecList>
-                        <DetailSpecItem code='undefined'>
-                            <p>
-                                Styling the <CurrentComponent /> with <strong>default appearance</strong>.
-                            </p>
-                            <p>
-                                This is the <strong>default</strong> appearance if the <code>btnStyle</code> value is not specified.
-                            </p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='link'>
-                            <p>
-                                Styling the <CurrentComponent /> to look similar to native HTML link (anchor).
-                            </p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='icon'>
-                            <p>
-                                Styling the <CurrentComponent /> to look similar to clickable icon.
-                            </p>
-                            <p>
-                                Almost similar to <code>{`btnStyle='link'`}</code> but with slightly different foreground color.
-                            </p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='ghost'>
-                            <p>
-                                Styling the <CurrentComponent /> to look semi transparent.
-                            </p>
-                        </DetailSpecItem>
-                    </SpecList>
-                } />
-            </SectionVariants>
-            <SectionCustomizing specList={
-                <SpecList>
-                    <DetailSpecItem title='Spacings'>
-                        <SubSpecList>
-                            <SimpleSpecItem>
-                                <code>gapInline</code>
-                                <p>The default horizontal spacing between <CurrentComponent />&apos;s items (children).</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>gapBlock</code>
-                                <p>The default vertical spacing between <CurrentComponent />&apos;s items (children).</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>gapInlineSm</code>
-                                <p>The horizontal spacing between <CurrentComponent />&apos;s items (children) when <code>{`size='sm'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>gapBlockSm</code>
-                                <p>The vertical spacing between <CurrentComponent />&apos;s items (children) when <code>{`size='sm'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>gapInlineLg</code>
-                                <p>The horizontal spacing between <CurrentComponent />&apos;s items (children) when <code>{`size='lg'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>gapBlockLg</code>
-                                <p>The vertical spacing between <CurrentComponent />&apos;s items (children) when <code>{`size='lg'`}</code>.</p>
-                            </SimpleSpecItem>
-                        </SubSpecList>
-                    </DetailSpecItem>
-                    <DetailSpecItem title='Typos'>
-                        <SubSpecList>
-                            <SimpleSpecItem>
-                                <code>whiteSpace</code>
-                                <p>Defines how a <strong>white space</strong> inside <CurrentComponent /> is handled.</p>
-                            </SimpleSpecItem>
-                        </SubSpecList>
-                    </DetailSpecItem>
-                    <DetailSpecItem title='Styles'>
-                        <SubSpecList>
-                            <SimpleSpecItem>
-                                <code>ghostOpacity</code>
-                                <p>The default opacity level when <code>{`btnStyle='ghost'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>ghostOpacityArrive</code>
-                                <p>The opacity level when <code>{`btnStyle='ghost'`}</code> and a pointer is on the <CurrentComponent />.</p>
-                            </SimpleSpecItem>
-                        </SubSpecList>
-                    </DetailSpecItem>
-                </SpecList>
-            }/>
+            <SectionCustomizingParent />
             <SectionDerivering>
                 <SectionOverridingDefaults>{`
 import { NavButton } from '@nodestrap/nav-button'
