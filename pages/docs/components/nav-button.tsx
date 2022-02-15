@@ -28,10 +28,10 @@ const Page: NextPage = () => {
                 <p>
                     <CurrentComponent /> is a special <CurrentBaseComponents /> for page navigation.
                     It automatically handle the <code>active</code> property based on <strong>current page url</strong> and the <strong>destination url</strong>.
-                    So the <CurrentComponent /> is <strong>highlighted</strong> if the current page url <strong>matches</strong> the destination url.
+                    So the <CurrentComponent /> will be automatically <strong>highlighted</strong> if the current page url <strong>matches</strong> the destination url.
                 </p>
                 <p>
-                    If you assign <code>active</code> property other than <code>undefined</code>, the <CurrentComponent /> become the equivalent as <CurrentBaseComponents />, because you <strong>take over</strong> the <code>active</code> property.
+                    Note: If you assign <code>active</code> property other than <code>undefined</code>, the <CurrentComponent /> become the equivalent as <CurrentBaseComponents />, because you <strong>take over</strong> the <code>active</code> property.
                 </p>
             </SectionIntro>
             <SectionDemo>
