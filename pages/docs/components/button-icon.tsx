@@ -3,10 +3,10 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { SpecList, DetailSpecItem } from '../../../components/SpecList'
+import { SpecList, DetailSpecItem, SubSpecList, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Section } from '../../../components/Section'
-import { SectionInheritedProps, LinkButtonIconPage, LinkButtonPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionSubProperty, LinkReactRouterLinkPage, LinkOriReactRouterLinkPage, LinkOriNextJsLinkPage, SectionCustomizingParent } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkButtonIconPage, LinkButtonPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionSubProperty, LinkReactRouterLinkPage, LinkOriReactRouterLinkPage, LinkOriNextJsLinkPage, SectionCustomizingParent, LinkIconPage, SectionCustomizing } from '../../../components/common-contents'
 import { Warning } from '../../../components/Info'
 
 import { TypeScriptCode } from '../../../components/Code'
@@ -19,7 +19,7 @@ const DemoButtonIconLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel
 
 const Page: NextPage = () => {
     return (
-        <ComponentInfoProvider packageName='@nodestrap/button-icon' component={<LinkButtonIconPage />} bases={<LinkButtonPage />}>
+        <ComponentInfoProvider packageName='@nodestrap/button-icon' component={<LinkButtonIconPage />} bases={[<LinkButtonPage key={0} />, <LinkIconPage key={1} />]}>
             <Head>
                 <title>ButtonIcon Component</title>
                 <meta name="description" content="Using <ButtonIcon> component" />
@@ -27,19 +27,153 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    <CurrentComponent /> is a special <CurrentBaseComponents /> for page navigation.
-                    It automatically handle the <code>active</code> property based on <strong>current page url</strong> and the <strong>destination url</strong>.
-                    So the <CurrentComponent /> will be automatically <strong>highlighted</strong> if the current page url <strong>matches</strong> the destination url.
+                    <CurrentComponent /> is a composite component of <CurrentBaseComponents />.
                 </p>
                 <p>
-                    Note: If you assign <code>active</code> property other than <code>undefined</code>, the <CurrentComponent /> become equivalent as <CurrentBaseComponents />, because you <strong>take over</strong> the <code>active</code> property.
+                    The functionality is exactly the same as <LinkButtonPage /> but with an additional <LinkIconPage /> for better accessibility to the user eyes.
                 </p>
             </SectionIntro>
             <SectionDemo>
                 <DemoButtonIconLazy fallback={<BusyBar />} />
             </SectionDemo>
             <SectionInheritedProps />
-            <SectionCustomizingParent />
+            <SectionCustomizing specList={
+                <SpecList>
+                    <DetailSpecItem title='Foregrounds, Backgrounds &amp; Borders'>
+                        <SubSpecList>
+                            <SimpleSpecItem>
+                                <code>borderRadius</code>
+                                <p>The default border-radius.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>borderRadiusXs</code>
+                                <p>The border-radius when <code>{`size='xs'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>borderRadiusSm</code>
+                                <p>The border-radius when <code>{`size='sm'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>borderRadiusLg</code>
+                                <p>The border-radius when <code>{`size='lg'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>borderRadiusXl</code>
+                                <p>The border-radius when <code>{`size='xl'`}</code>.</p>
+                            </SimpleSpecItem>
+                        </SubSpecList>
+                    </DetailSpecItem>
+                    <DetailSpecItem title='Spacings'>
+                        <SubSpecList>
+                            <SimpleSpecItem>
+                                <code>paddingInline</code>
+                                <p>The default inner spacing on the left &amp; right.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>paddingBlock</code>
+                                <p>The default inner spacing on the top &amp; bottom.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>paddingInlineXs</code>
+                                <p>The inner spacing on the left &amp; right when <code>{`size='xs'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>paddingBlockXs</code>
+                                <p>The inner spacing on the top &amp; bottom when <code>{`size='xs'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>paddingInlineSm</code>
+                                <p>The inner spacing on the left &amp; right when <code>{`size='sm'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>paddingBlockSm</code>
+                                <p>The inner spacing on the top &amp; bottom when <code>{`size='sm'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>paddingInlineLg</code>
+                                <p>The inner spacing on the left &amp; right when <code>{`size='lg'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>paddingBlockLg</code>
+                                <p>The inner spacing on the top &amp; bottom when <code>{`size='lg'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>paddingInlineXl</code>
+                                <p>The inner spacing on the left &amp; right when <code>{`size='xl'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>paddingBlockXl</code>
+                                <p>The inner spacing on the top &amp; bottom when <code>{`size='xl'`}</code>.</p>
+                            </SimpleSpecItem>
+                            
+                            <SimpleSpecItem>
+                                <code>gapInline</code>
+                                <p>The default horizontal spacing between <CurrentComponent />&apos;s items (children).</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>gapBlock</code>
+                                <p>The default vertical spacing between <CurrentComponent />&apos;s items (children).</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>gapInlineXs</code>
+                                <p>The horizontal spacing between <CurrentComponent />&apos;s items (children) when <code>{`size='xs'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>gapBlockXs</code>
+                                <p>The vertical spacing between <CurrentComponent />&apos;s items (children) when <code>{`size='xs'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>gapInlineSm</code>
+                                <p>The horizontal spacing between <CurrentComponent />&apos;s items (children) when <code>{`size='sm'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>gapBlockSm</code>
+                                <p>The vertical spacing between <CurrentComponent />&apos;s items (children) when <code>{`size='sm'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>gapInlineLg</code>
+                                <p>The horizontal spacing between <CurrentComponent />&apos;s items (children) when <code>{`size='lg'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>gapBlockLg</code>
+                                <p>The vertical spacing between <CurrentComponent />&apos;s items (children) when <code>{`size='lg'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>gapInlineXl</code>
+                                <p>The horizontal spacing between <CurrentComponent />&apos;s items (children) when <code>{`size='xl'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>gapBlockXl</code>
+                                <p>The vertical spacing between <CurrentComponent />&apos;s items (children) when <code>{`size='xl'`}</code>.</p>
+                            </SimpleSpecItem>
+                        </SubSpecList>
+                    </DetailSpecItem>
+                    <DetailSpecItem title='Typos'>
+                        <SubSpecList>
+                            <SimpleSpecItem>
+                                <code>fontSize</code>
+                                <p>The default text size.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>fontSizeXs</code>
+                                <p>The text size when <code>{`size='xs'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>fontSizeSm</code>
+                                <p>The text size when <code>{`size='sm'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>fontSizeLg</code>
+                                <p>The text size when <code>{`size='lg'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>fontSizeXl</code>
+                                <p>The text size when <code>{`size='xl'`}</code>.</p>
+                            </SimpleSpecItem>
+                        </SubSpecList>
+                    </DetailSpecItem>
+                </SpecList>
+            }/>
             <SectionDerivering>
                 <SectionOverridingDefaults>{`
 import { ButtonIcon } from '@nodestrap/button-icon'

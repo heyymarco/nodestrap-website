@@ -64,7 +64,6 @@ export const DemoControl = () => {
                 <Control
                     focus={states.focus[0]}
                     arrive={states.arrive[0]}
-
                     enabled={states.enabled[0]}
                     active={states.active[0]}
                     
@@ -81,7 +80,6 @@ export const DemoControl = () => {
 <Control
     focus={${states.focus[0]}}
     arrive={${states.arrive[0]}}
-    
     enabled={${states.enabled[0]}}
     active={${states.active[0]}}
     

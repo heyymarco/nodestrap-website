@@ -53,10 +53,8 @@ export const DemoActionControl = () => {
             <div className='preview'>
                 <ActionControl
                     press={states.press[0]}
-                    
                     focus={states.focus[0]}
                     arrive={states.arrive[0]}
-
                     enabled={states.enabled[0]}
                     active={states.active[0]}
                     
@@ -72,13 +70,11 @@ export const DemoActionControl = () => {
                 <TypeScriptCode collapsable={false}>{`
 <ActionControl
     press={${states.press[0]}}
-
     focus={${states.focus[0]}}
     arrive={${states.arrive[0]}}
-
     enabled={${states.enabled[0]}}
     active={${states.active[0]}}
-
+    
     size=${states.size[0] ? `'${states.size[0]}'` : '{undefined}'}
     nude={${states.nude[0]}}
     theme='${states.theme[0]}'

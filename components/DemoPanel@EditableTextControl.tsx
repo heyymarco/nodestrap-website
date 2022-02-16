@@ -42,10 +42,8 @@ export const DemoEditableTextControl = () => {
             <div className='preview'>
                 <EditableTextControl
                     isValid={states.isValid[0]}
-                    
                     focus={states.focus[0]}
                     arrive={states.arrive[0]}
-
                     enabled={states.enabled[0]}
                     active={states.active[0]}
                     
@@ -63,13 +61,11 @@ export const DemoEditableTextControl = () => {
                 <TypeScriptCode collapsable={false}>{`
 <EditableTextControl
     isValid={${states.isValid[0]}}
-
     focus={${states.focus[0]}}
     arrive={${states.arrive[0]}}
-
     enabled={${states.enabled[0]}}
     active={${states.active[0]}}
-
+    
     size=${states.size[0] ? `'${states.size[0]}'` : '{undefined}'}
     nude={${states.nude[0]}}
     theme='${states.theme[0]}'

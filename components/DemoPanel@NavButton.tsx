@@ -83,10 +83,8 @@ export const DemoNavButton = () => {
                     btnStyle={states.btnStyle[0]}
                     
                     press={states.press[0]}
-                    
                     focus={states.focus[0]}
                     arrive={states.arrive[0]}
-
                     enabled={states.enabled[0]}
                     active={states.active[0]}
                     
@@ -107,18 +105,16 @@ export const DemoNavButton = () => {
 <NavButton
     caseSensitive='${states.caseSensitive[0]}'
     end='${states.end[0]}'
-
+    
     orientation=${states.orientation[0] ? `'${states.orientation[0]}'` : '{undefined}'}
     btnStyle=${states.btnStyle[0] ? `'${states.btnStyle[0]}'` : '{undefined}'}
     
     press={${states.press[0]}}
-
     focus={${states.focus[0]}}
     arrive={${states.arrive[0]}}
-
     enabled={${states.enabled[0]}}
     active={${states.active[0]}}
-
+    
     size=${states.size[0] ? `'${states.size[0]}'` : '{undefined}'}
     nude={${states.nude[0]}}
     theme='${states.theme[0]}'
