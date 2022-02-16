@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { SpecList, DetailSpecItem, SubSpecList, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Section } from '../../../components/Section'
-import { SectionInheritedProps, LinkButtonIconPage, LinkButtonPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkIconPage, SectionCustomizing, LinkConfigIconPage } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkButtonIconPage, LinkButtonPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkIconPage, SectionCustomizing, LinkConfigIconPage, SectionVariants, SectionSubProperty, LinkBasicPage } from '../../../components/common-contents'
 
 import loadable from '@loadable/component'
 import { Detail } from '../../../components/Detail'
@@ -57,6 +57,32 @@ const Page: NextPage = () => {
                 </p>
             </Section>
             <SectionInheritedProps />
+            <SectionVariants>
+                <SectionSubProperty property='size' specList={
+                    <SpecList>
+                        <DetailSpecItem code='xs'>
+                            <p>Makes the <code>font-size</code>, <code>padding</code> and <code>border-radius</code> are <strong>much smaller</strong> than the default.</p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='sm'>
+                            <p>Makes the <code>font-size</code>, <code>padding</code> and <code>border-radius</code> are <strong>smaller</strong> than the default.</p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='lg'>
+                            <p>Makes the <code>font-size</code>, <code>padding</code> and <code>border-radius</code> are <strong>bigger</strong> than the default.</p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='xl'>
+                            <p>Makes the <code>font-size</code>, <code>padding</code> and <code>border-radius</code> are <strong>much bigger</strong> than the default.</p>
+                        </DetailSpecItem>
+                    </SpecList>
+                }>
+                    <p>
+                        Changes the <strong>default size</strong>.
+                    </p>
+                    <p>
+                        There are 2 additional options: <code>xs</code> and <code>xl</code>.<br />
+                        The <code>sm</code> and <code>lg</code> are remain the same as <LinkBasicPage />.
+                    </p>
+                </SectionSubProperty>
+            </SectionVariants>
             <SectionCustomizing specList={
                 <SpecList>
                     <DetailSpecItem title='Foregrounds, Backgrounds &amp; Borders'>
