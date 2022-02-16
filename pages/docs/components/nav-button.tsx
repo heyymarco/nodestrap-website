@@ -7,6 +7,7 @@ import { SpecList, DetailSpecItem } from '../../../components/SpecList'
 
 import { Section } from '../../../components/Section'
 import { SectionInheritedProps, LinkNavButtonPage, LinkButtonPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionSubProperty, LinkReactRouterLinkPage, LinkOriReactRouterLinkPage, LinkOriNextJsLinkPage, SectionCustomizingParent } from '../../../components/common-contents'
+import { Warning } from '../../../components/Info'
 
 import { TypeScriptCode } from '../../../components/Code'
 import { Accordion, AccordionItem } from '@nodestrap/accordion'
@@ -31,7 +32,7 @@ const Page: NextPage = () => {
                     So the <CurrentComponent /> will be automatically <strong>highlighted</strong> if the current page url <strong>matches</strong> the destination url.
                 </p>
                 <p>
-                    Note: If you assign <code>active</code> property other than <code>undefined</code>, the <CurrentComponent /> become the equivalent as <CurrentBaseComponents />, because you <strong>take over</strong> the <code>active</code> property.
+                    Note: If you assign <code>active</code> property other than <code>undefined</code>, the <CurrentComponent /> become equivalent as <CurrentBaseComponents />, because you <strong>take over</strong> the <code>active</code> property.
                 </p>
             </SectionIntro>
             <SectionDemo>
@@ -45,10 +46,13 @@ const Page: NextPage = () => {
                 <SectionSubProperty property={<>
                     <code>to</code> / <code>href</code> property of <code>{`<Link>`}</code> Component
                 </>}>
-                    <p>
-                        In this context, we also call <code>to</code> / <code>href</code> property as <strong>destination url</strong>.
-                        So in <em>another section</em>, the <strong>destination url</strong> is referenced here.
-                    </p>
+                    <Warning>
+                        <p>
+                            In this context, we also call <code>to</code> / <code>href</code> property as <strong>destination url</strong>.
+                            So in <em>another section</em>, the <strong>destination url</strong> is referenced here.
+                        </p>
+                    </Warning>
+                    <p></p>
                     <Accordion theme='primary'>
                         <AccordionItem tag='h4' label={<>
                             For <strong>{`React Router`}</strong> User
@@ -125,7 +129,7 @@ import Link from 'next/link'
                             For <strong>{`React Remix`}</strong> User
                         </>}>
                             <p>
-                                Coming soon! We&apos;re still working to support GatsbyJs.
+                                Coming soon! We&apos;re still working to support React Remix.
                             </p>
                         </AccordionItem>
                     </Accordion>
@@ -143,7 +147,7 @@ import Link from 'next/link'
                         </DetailSpecItem>
                         <DetailSpecItem code='true'>
                             <p>
-                                The string comparison is <strong>case insensitive</strong>.
+                                The string comparison is <strong>case sensitive</strong>.
                                 A lowercase character and uppercase character are treated as the <strong>different</strong> thing.
                             </p>
                         </DetailSpecItem>
@@ -157,10 +161,11 @@ import Link from 'next/link'
                     <SpecList>
                         <DetailSpecItem code='false'>
                             <p>
-                                The <strong>destination url</strong> may have one/more sub path(s).
+                                The <strong>destination url</strong> is an <strong>exact path</strong> or a <strong>sub path</strong>.<br />
+                                It may <strong>have</strong> one/more sub path(s).
                             </p>
                             <p>
-                                If the <strong>current page url</strong> is more specific (has more sub path(s)) than <strong>destination url</strong>, it still matches.
+                                If the <strong>current page url</strong> is more specific (has more sub path(s)) than <strong>destination url</strong>, it still <strong>matches</strong>.
                             </p>
                             <p>
                                 This is the <strong>default</strong> value if the <code>end</code> value is not specified and the <strong>destination url</strong> is other than <strong>home page</strong> (<code>{`'/'`}</code> or <code>{`''`}</code>).
@@ -168,10 +173,11 @@ import Link from 'next/link'
                         </DetailSpecItem>
                         <DetailSpecItem code='true'>
                             <p>
-                                The <strong>destination url</strong> may not have sub path(s).
+                                The <strong>destination url</strong> is an <strong>exact path</strong>.<br />
+                                It may <strong>not</strong> have sub path(s).
                             </p>
                             <p>
-                                If the <strong>current page url</strong> is more specific (has more sub path(s)) than <strong>destination url</strong>, it doesn&apos;t match.
+                                If the <strong>current page url</strong> is more specific (has more sub path(s)) than <strong>destination url</strong>, it does <strong>not</strong> match.
                             </p>
                             <p>
                                 This is the <strong>default</strong> value if the <code>end</code> value is not specified and the <strong>destination url</strong> is a <strong>home page</strong> (<code>{`'/'`}</code> or <code>{`''`}</code>).
@@ -208,7 +214,8 @@ export default function CoolNavButton(props) {
                 <SectionCustomizingCss>{`
 import { mainComposition, style, imports, variants, states, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
-import { usesButtonLayout, usesButtonVariants, usesButtonStates, isPress } from '@nodestrap/button'
+import { isPress } from '@nodestrap/action-control'
+import { usesButtonLayout, usesButtonVariants, usesButtonStates } from '@nodestrap/button'
 import { NavButton } from '@nodestrap/nav-button'
 
 const useCoolNavButtonSheet = createUseSheet(() => [

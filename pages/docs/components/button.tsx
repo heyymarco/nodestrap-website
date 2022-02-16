@@ -328,7 +328,8 @@ export default function DeleteButton(props) {
                 }>{`
 import { mainComposition, style, imports, variants, states, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
-import { Button, usesButtonLayout, usesButtonVariants, usesButtonStates, isPress } from '@nodestrap/button'
+import { isPress } from '@nodestrap/action-control'
+import { Button, usesButtonLayout, usesButtonVariants, usesButtonStates } from '@nodestrap/button'
 
 const useCoolButtonSheet = createUseSheet(() => [
     mainComposition(
