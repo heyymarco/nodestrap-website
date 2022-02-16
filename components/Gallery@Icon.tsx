@@ -93,7 +93,7 @@ export const useGallerySheet = createUseSheet(() => {
             }),
         ),
     ];
-}, /*sheetId :*/'qazsdydxhx'); // an unique salt for SSR support, ensures the server-side & client-side have the same generated class names
+}, /*sheetId :*/'f9m0wwbe9x'); // an unique salt for SSR support, ensures the server-side & client-side have the same generated class names
 
 
 

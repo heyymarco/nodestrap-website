@@ -14,7 +14,7 @@ import { Warning } from '../../../components/Info'
 
 import loadable from '@loadable/component'
 import { Detail } from '../../../components/Detail'
-const DemoIconLazy        = loadable(() => import(/* webpackChunkName: 'DemoPanel@Icon' */'../../../components/DemoPanel@Icon'))
+const DemoIconLazy    = loadable(() => import(/* webpackChunkName: 'DemoPanel@Icon' */'../../../components/DemoPanel@Icon'))
 const IconGalleryLazy = loadable(() => import(/* webpackChunkName: 'Gallery@Icon' */'../../../components/Gallery@Icon'))
 
 

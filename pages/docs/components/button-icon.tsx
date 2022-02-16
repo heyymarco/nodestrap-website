@@ -6,15 +6,11 @@ import Head from 'next/head'
 import { SpecList, DetailSpecItem, SubSpecList, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Section } from '../../../components/Section'
-import { SectionInheritedProps, LinkButtonIconPage, LinkButtonPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionSubProperty, LinkReactRouterLinkPage, LinkOriReactRouterLinkPage, LinkOriNextJsLinkPage, SectionCustomizingParent, LinkIconPage, SectionCustomizing } from '../../../components/common-contents'
-import { Warning } from '../../../components/Info'
-
-import { TypeScriptCode } from '../../../components/Code'
-import { Accordion, AccordionItem } from '@nodestrap/accordion'
+import { SectionInheritedProps, LinkButtonIconPage, LinkButtonPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkIconPage, SectionCustomizing, LinkConfigIconPage } from '../../../components/common-contents'
 
 import loadable from '@loadable/component'
 import { Detail } from '../../../components/Detail'
-const DemoButtonIconLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@ButtonIcon' */'../../../components/DemoPanel@ButtonIcon'))
+const DemoButtonIconLazy    = loadable(() => import(/* webpackChunkName: 'DemoPanel@ButtonIcon' */'../../../components/DemoPanel@ButtonIcon'))
 const ButtonIconGalleryLazy = loadable(() => import(/* webpackChunkName: 'Gallery@ButtonIcon' */'../../../components/Gallery@ButtonIcon'))
 
 
@@ -50,6 +46,15 @@ const Page: NextPage = () => {
                 >
                     <ButtonIconGalleryLazy fallback={<BusyBar />} />
                 </Detail>
+            </Section>
+            <Section title={<>Configuring the <CurrentComponent /> Component</>}>
+                <p>
+                    Because the <CurrentComponent /> depends on <LinkIconPage /> component,
+                    so you need to make a configuration of <LinkIconPage /> in order to the icon to work properly.
+                </p>
+                <p>
+                    See how to <LinkConfigIconPage />.
+                </p>
             </Section>
             <SectionInheritedProps />
             <SectionCustomizing specList={
