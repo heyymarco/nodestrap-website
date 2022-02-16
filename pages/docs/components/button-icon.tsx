@@ -13,7 +13,9 @@ import { TypeScriptCode } from '../../../components/Code'
 import { Accordion, AccordionItem } from '@nodestrap/accordion'
 
 import loadable from '@loadable/component'
+import { Detail } from '../../../components/Detail'
 const DemoButtonIconLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@ButtonIcon' */'../../../components/DemoPanel@ButtonIcon'))
+const ButtonIconGalleryLazy = loadable(() => import(/* webpackChunkName: 'Gallery@ButtonIcon' */'../../../components/Gallery@ButtonIcon'))
 
 
 
@@ -36,6 +38,19 @@ const Page: NextPage = () => {
             <SectionDemo>
                 <DemoButtonIconLazy fallback={<BusyBar />} />
             </SectionDemo>
+            <Section title='Predefined Icon Sets'>
+                <Detail
+                    label='Show icon gallery'
+                    
+                    theme='primary'
+                    mild={true}
+                    lazy={true}
+                    
+                    detailStyle='content'
+                >
+                    <ButtonIconGalleryLazy fallback={<BusyBar />} />
+                </Detail>
+            </Section>
             <SectionInheritedProps />
             <SectionCustomizing specList={
                 <SpecList>

@@ -15,7 +15,7 @@ import { Warning } from '../../../components/Info'
 import loadable from '@loadable/component'
 import { Detail } from '../../../components/Detail'
 const DemoIconLazy        = loadable(() => import(/* webpackChunkName: 'DemoPanel@Icon' */'../../../components/DemoPanel@Icon'))
-const DemoIconGalleryLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@IconGallery' */'../../../components/DemoPanel@IconGallery'))
+const IconGalleryLazy = loadable(() => import(/* webpackChunkName: 'Gallery@Icon' */'../../../components/Gallery@Icon'))
 
 
 
@@ -48,7 +48,7 @@ const Page: NextPage = () => {
                     
                     detailStyle='content'
                 >
-                    <DemoIconGalleryLazy fallback={<BusyBar />} />
+                    <IconGalleryLazy fallback={<BusyBar />} />
                 </Detail>
             </Section>
             <Section title={<>Configuring the <CurrentComponent /> Component</>}>

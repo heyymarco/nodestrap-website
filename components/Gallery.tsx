@@ -1,6 +1,9 @@
 import React, { useRef, useState } from 'react'
 
 // cssfn:
+import type {
+    Optional,
+}                           from '@cssfn/types'       // cssfn's types
 import {
     // compositions:
     mainComposition,
@@ -9,7 +12,6 @@ import {
     
     // styles:
     style,
-    imports,
     
     
     
@@ -32,8 +34,7 @@ import spacers from '@nodestrap/spacers'
 import Card from '@nodestrap/card';
 import { OrientationName, ThemeName, usesBackg } from '@nodestrap/basic'
 import { ResponsiveProvider } from '@nodestrap/responsive'
-import { Icon, cssProps as iconCssProps } from '@nodestrap/icon'
-import iconFonts from '@nodestrap/icon/dist/Icon-font-material'
+import { Icon } from '@nodestrap/icon'
 import { NavItem, NextItem, PrevItem } from '@nodestrap/nav'
 import Group from '@nodestrap/group';
 import { Search } from '@nodestrap/input';
@@ -44,14 +45,14 @@ import { Pagination } from './Pagination';
 
 
 
-export const useDemoIconGallerySheet = createUseSheet(() => {
+export const useGallerySheet = createUseSheet(() => {
     const [backg, backgRefs] = usesBackg();
     
     
     
     return [
         mainComposition(
-            rule('&&', { // makes `.DemoIconGallery` is more specific than `.Card`
+            rule('&&', { // makes `.Gallery` is more specific than `.Card`
                 ...style({
                     ...children(['.header', '.footer'], {
                         display       : 'flex',
@@ -100,48 +101,8 @@ export const useDemoIconGallerySheet = createUseSheet(() => {
                         
                         gap                   : spacers.lg,
                         
-                        ...children('*', { // icon entry
-                            display           : 'flex',
-                            flexDirection     : 'row',
-                            justifyContent    : 'start',
-                            alignItems        : 'center',
-                            flexWrap          : 'nowrap',
-                            
-                            transition        : [
-                                ['transform', '100ms', 'ease-out'],
-                            ],
-                            
-                            ...children(':first-child', {
-                                blockSize     : iconCssProps.sizeMd,
-                                aspectRatio   : 1/1,
-                            }),
-                            
-                            ...children(':nth-child(2)', {
-                                paddingInline : spacers.sm,
-                            }),
-                            ...rule(':hover', {
-                                position      : 'relative',
-                                zIndex        : 1,
-                                transform     : [['scale(1.05)']],
-                            }),
-                            ...rule(':not(:hover)', {
-                                ...children(':nth-child(2)', {
-                                    whiteSpace   : 'nowrap',
-                                    overflow     : 'hidden',
-                                    textOverflow : 'ellipsis',
-                                }),
-                            }),
-                            ...rule(':hover', {
-                                ...children(':nth-child(2)', {
-                                    ...imports([
-                                        backg(),
-                                    ]),
-                                    ...style({
-                                        backg    : backgRefs.backg,
-                                    }),
-                                }),
-                            }),
-                        }),
+                        // ...children('*', { // gallery entry
+                        // }),
                     }),
                 }),
             }),
@@ -151,23 +112,17 @@ export const useDemoIconGallerySheet = createUseSheet(() => {
 
 
 
-const alliIconSets = [
-    'instagram',
-    'whatsapp',
-    'close',
-    'busy',
-    'prev',
-    'next',
-    'dropdown',
-    'dropright',
-    'dropleft',
-    ...iconFonts,
-];
+export interface ItemProps {
+    theme ?: ThemeName,
+}
+export interface GalleryProps {
+    collection : string[]
+    children   : (itemName: string, itemProps: ItemProps) => JSX.Element
 
-
-
-export const DemoIconGallery = () => {
-    const style = useDemoIconGallerySheet();
+    classes   ?: Optional<string>[]
+}
+export const Gallery = ({ collection, children: itemMap, classes }: GalleryProps) => {
+    const style = useGallerySheet();
     
     
     
@@ -178,13 +133,13 @@ export const DemoIconGallery = () => {
     
     
     const hasSearch = !!search && !!search.trim();
-    const filteredIconSets = (hasSearch && search.trim()) ? (() => {
+    const filteredCollection = (hasSearch && search.trim()) ? (() => {
         const filter = search.trim().toLowerCase();
-        return alliIconSets.filter((icon) => icon.toLowerCase().includes(filter));
-    })() : alliIconSets;
+        return collection.filter((item) => item.toLowerCase().includes(filter));
+    })() : collection;
     const itemsPerPage = 100;
     const [pageIndex, setPageIndex] = useState<number>(0);
-    const totalPages = Math.ceil(filteredIconSets.length / itemsPerPage);
+    const totalPages = Math.ceil(filteredCollection.length / itemsPerPage);
     if (totalPages && (pageIndex > (totalPages - 1))) setPageIndex(0);
     
     
@@ -251,7 +206,7 @@ export const DemoIconGallery = () => {
     );
     return (
         <Card
-            classes={[style.main, 'media']}
+            classes={[style.main, 'media', ...(classes ?? [])]}
             cardStyle='flush'
             theme={theme}
             
@@ -264,22 +219,18 @@ export const DemoIconGallery = () => {
             footer={pageNav}
         >
             {
-                filteredIconSets
+                filteredCollection
                 .slice((pageIndex * itemsPerPage), (pageIndex * itemsPerPage) + itemsPerPage)
-                .map((iconName, index) =>
-                    <span key={index}>
-                        <Icon
-                            icon={iconName}
-                            theme={theme}
-                            size='md'
-                        />
-                        <span>
-                            {iconName}
-                        </span>
-                    </span>
+                .map((itemName) =>
+                    React.cloneElement(
+                        itemMap(itemName, { theme }),
+                        {
+                            key: itemName,
+                        }
+                    )
                 )
             }
         </Card>
     );
 }
-export { DemoIconGallery as default }
+export { Gallery as default }
