@@ -241,20 +241,39 @@ export default function PurchaseButton(props) {
 }
                 `}</SectionOverridingDefaults>
 
-                <SectionCustomizingCss>{`
+                <SectionCustomizingCss specList={
+                    <SpecList>
+                        <DetailSpecItem code='usesButtonIconLayout()'>
+                            <p>
+                                Returns a <code>Rule</code> object represents a complete <CurrentComponent /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='usesButtonIconVariants()'>
+                            <p>
+                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentComponent /> such as:<br />
+                                <code>SizeVariant</code> and <strong>all variants</strong> inherited from <CurrentBaseComponents />.
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='usesButtonIconStates()'>
+                            <p>
+                                Returns a <code>Rule</code> object represents the <strong>states</strong> of <CurrentComponent /> such as:<br />
+                                <strong>press</strong>/<strong>release</strong>, and <strong>all states</strong> inherited from <CurrentBaseComponents />.
+                            </p>
+                        </DetailSpecItem>
+                    </SpecList>
+                }>{`
 import { mainComposition, style, imports, variants, states, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
 import { isPress } from '@nodestrap/action-control'
-import { usesButtonLayout, usesButtonVariants, usesButtonStates } from '@nodestrap/button'
-import { ButtonIcon } from '@nodestrap/button-icon'
+import { ButtonIcon, usesButtonIconLayout, usesButtonIconVariants, usesButtonIconStates } from '@nodestrap/button-icon'
 
 const usePurchaseButtonSheet = createUseSheet(() => [
     mainComposition(
         imports([
-            // import some stuff from <Button>:
-            usesButtonLayout(),
-            usesButtonVariants(),
-            usesButtonStates(),
+            // import some stuff from <ButtonIcon>:
+            usesButtonIconLayout(),
+            usesButtonIconVariants(),
+            usesButtonIconStates(),
         ]),
         style({
             // then overwrite with your style:
