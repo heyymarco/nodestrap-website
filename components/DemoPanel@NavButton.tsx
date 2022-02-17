@@ -62,7 +62,6 @@ export const NavButtonOptions = (props: NavButtonOptionProps) => {
         
         <ButtonOptions
             {...props}
-            warningEitherMildOutlined={false}
         />
     </>);
 }

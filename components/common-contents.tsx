@@ -110,13 +110,22 @@ export const LinkMasonryPage               = (props: PageLinkProps) => <LinkCode
 export const LinkButtonPage                = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/button'>Button</LinkCode>
 export const LinkNavButtonPage             = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/nav-button'>NavButton</LinkCode>
 export const LinkButtonIconPage            = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/button-icon'>ButtonIcon</LinkCode>
+export const LinkCloseButtonPage           = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/close-button'>CloseButton</LinkCode>
 
 export const LinkInputPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/input'>Input</LinkCode>
 export const LinkCheckPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/check'>Check</LinkCode>
 export const LinkRangePage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/range'>Range</LinkCode>
 
+export const LinkListPage                  = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/list'>List</LinkCode>
 export const LinkCardPage                  = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/card'>Card</LinkCode>
+
+export const LinkAlertPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/alert'>Alert</LinkCode>
+
 export const LinkGroupPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/group'>Group</LinkCode>
+
+export const LinkModalPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/modal'>Modal</LinkCode>
+export const LinkModalCardPage             = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/modal-card'>ModalCard</LinkCode>
+export const LinkModalSidePage             = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/modal-side'>ModalSide</LinkCode>
 
 
 
@@ -309,6 +318,22 @@ export const SectionDemo = ({ title, detailLabel, children, message }: SectionDe
                     { children }
                 </DemoPanel>
             </Detail>
+        </Section>
+    );
+}
+
+
+
+export const SectionConfigureDependsOnIcon = () => {
+    return (
+        <Section title={<>Configuring the <CurrentComponent /> Component</>}>
+            <p>
+                Because the <CurrentComponent /> depends on <LinkIconPage /> component,
+                so you need to make a configuration of <LinkIconPage /> in order to the icon to work properly.
+            </p>
+            <p>
+                See how to <LinkConfigIconPage />.
+            </p>
         </Section>
     );
 }

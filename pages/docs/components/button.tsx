@@ -93,7 +93,7 @@ const Page: NextPage = () => {
 
                 <SubSection title={<><CurrentComponent /> as &quot;Button Link&quot;</>}>
                     <p>
-                        To create a link but <strong>styled as a button</strong>, assign <code>{`href='https://your-desired-url.com'`}</code> and assign <code>btnStyle</code> to a value other than <code>'link'</code> -or- just unassign it.
+                        To create a link but <strong>styled as a button</strong>, assign <code>{`href='https://your-desired-url.com'`}</code> and assign <code>btnStyle</code> to a value other than <code>{`'link'`}</code> -or- just unassign it.
                         For example:
                     </p>
                     <TypeScriptCode>{`

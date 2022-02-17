@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { SpecList, DetailSpecItem, SubSpecList, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Section } from '../../../components/Section'
-import { SectionInheritedProps, LinkButtonIconPage, LinkButtonPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkIconPage, SectionCustomizing, LinkConfigIconPage, SectionVariants, SectionSubProperty, LinkBasicPage } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkButtonIconPage, LinkButtonPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkIconPage, SectionCustomizing, SectionVariants, SectionSubProperty, LinkBasicPage, SectionConfigureDependsOnIcon } from '../../../components/common-contents'
 
 import loadable from '@loadable/component'
 import { Detail } from '../../../components/Detail'
@@ -47,15 +47,7 @@ const Page: NextPage = () => {
                     <ButtonIconGalleryLazy fallback={<BusyBar />} />
                 </Detail>
             </Section>
-            <Section title={<>Configuring the <CurrentComponent /> Component</>}>
-                <p>
-                    Because the <CurrentComponent /> depends on <LinkIconPage /> component,
-                    so you need to make a configuration of <LinkIconPage /> in order to the icon to work properly.
-                </p>
-                <p>
-                    See how to <LinkConfigIconPage />.
-                </p>
-            </Section>
+            <SectionConfigureDependsOnIcon />
             <SectionInheritedProps />
             <SectionVariants>
                 <SectionSubProperty property='size' specList={

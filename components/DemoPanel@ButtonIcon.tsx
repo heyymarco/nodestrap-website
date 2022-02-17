@@ -50,7 +50,6 @@ export const ButtonIconOptions = (props: ButtonIconOptionProps) => {
         
         <ButtonOptions
             {...props}
-            warningEitherMildOutlined={false}
         />
     </>);
 }
