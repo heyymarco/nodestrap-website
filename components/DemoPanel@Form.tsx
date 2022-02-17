@@ -29,6 +29,7 @@ import { Form } from '@nodestrap/form'
 import { TypeScriptCode } from './Code';
 import { EmailInput, NumberInput, PasswordInput, TextInput } from '@nodestrap/input';
 import Label from '@nodestrap/label';
+import { Button } from '@nodestrap/button';
 
 
 
@@ -48,7 +49,7 @@ export const useDemoFormSheet = createUseSheet(() => {
                     columnGap           : 0,
                     rowGap              : '1em',
 
-                    ...children(':nth-child(2n+1)', {
+                    ...children(':nth-child(2n+1):not(button)', {
                         display        : 'flex',
                         justifyContent : 'left',
                         alignItems     : 'center',
@@ -62,6 +63,9 @@ export const useDemoFormSheet = createUseSheet(() => {
                             [borderRadiusDecls.borderEndStartRadius  ]: '0px',
                         }),
                     }),
+                    ...children('button', {
+                        gridColumnEnd: 'span 2',
+                    }),
                 }),
             }),
         ),
@@ -72,7 +76,7 @@ export const useDemoFormSheet = createUseSheet(() => {
 
 
 export const formInitials = {
-    enableValidation : true as boolean|undefined,
+    enableValidation : false     as boolean|undefined,
     isValid          : undefined as boolean|undefined,
 };
 export type FormInitials = typeof formInitials & Partial<ContentInitials>
@@ -140,6 +144,12 @@ export const DemoForm = () => {
                     
                     autoComplete='off'
                     classes={[styles.main]}
+
+                    noValidate={true}
+                    onSubmit={(e) => {
+                        e.preventDefault();
+                        states.enableValidation[1](true)
+                    }}
                 >
                     <Label theme='secondary'>username</Label>
                     <TextInput name='usr' placeholder='smith123' required={true} minLength={3} maxLength={20} />
@@ -152,6 +162,8 @@ export const DemoForm = () => {
                     
                     <Label theme='secondary'>Age</Label>
                     <NumberInput name='age' placeholder='29' required={false} min={12} max={199} />
+
+                    <Button type='submit' theme='primary'>Submit</Button>
                 </Form>
                 <TypeScriptCode collapsable={false}>{`
 <Form
