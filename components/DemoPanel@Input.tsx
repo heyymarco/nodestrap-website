@@ -1,28 +1,28 @@
 import { useResetableState, Option, ResetButton } from './DemoPanel';
-import { EditableControlInitials, EditableControlOptionProps, EditableControlOptions, useEditableControlStates } from './DemoPanel@EditableControl';
+import { EditableTextControlInitials, EditableTextControlOptionProps, EditableTextControlOptions, useEditableTextControlStates } from './DemoPanel@EditableTextControl';
 
-import { EditableTextControl } from '@nodestrap/editable-text-control'
+import { Input } from '@nodestrap/input'
 import { TypeScriptCode } from './Code';
 
 
 
-export const editableTextControlInitials = {
+export const inputInitials = {
 };
-export type EditableTextControlInitials = typeof editableTextControlInitials & Partial<EditableControlInitials>
-export const useEditableTextControlStates = (initials ?: Partial<EditableTextControlInitials>) => {
-    const initials2 : EditableTextControlInitials = {
-        ...editableTextControlInitials,
+export type InputInitials = typeof inputInitials & Partial<EditableTextControlInitials>
+export const useInputStates = (initials ?: Partial<InputInitials>) => {
+    const initials2 : InputInitials = {
+        ...inputInitials,
         ...initials
     };
 
     return {
-        ...useEditableControlStates(initials2),
+        ...useEditableTextControlStates(initials2),
     }
 }
-export type EditableTextControlOptionProps = { states: ReturnType<typeof useEditableTextControlStates> } & EditableControlOptionProps
-export const EditableTextControlOptions = (props: EditableTextControlOptionProps) => {
+export type InputOptionProps = { states: ReturnType<typeof useInputStates> } & EditableTextControlOptionProps
+export const InputOptions = (props: InputOptionProps) => {
     return (<>
-        <EditableControlOptions
+        <EditableTextControlOptions
             {...props}
         />
     </>);
@@ -30,13 +30,13 @@ export const EditableTextControlOptions = (props: EditableTextControlOptionProps
 
 
 
-export const DemoEditableTextControl = () => {
-    const states = useEditableTextControlStates();
+export const DemoInput = () => {
+    const states = useInputStates();
     
     return (
         <>
             <div className='preview'>
-                <EditableTextControl
+                <Input
                     enableValidation={states.enableValidation[0]}
                     isValid={states.isValid[0]}
                     focus={states.focus[0]}
@@ -51,12 +51,10 @@ export const DemoEditableTextControl = () => {
                     outlined={states.outlined[0]}
                     mild={states.mild[0]}
                     
-                    {...{ contentEditable: true }}
-                >
-                    edit me
-                </EditableTextControl>
+                    defaultValue='edit me'
+                />
                 <TypeScriptCode collapsable={false}>{`
-<EditableTextControl
+<Input
     enableValidation={${states.enableValidation[0]}}
     isValid={${states.isValid[0]}}
     focus={${states.focus[0]}}
@@ -71,19 +69,17 @@ export const DemoEditableTextControl = () => {
     outlined={${states.outlined[0]}}
     mild={${states.mild[0]}}
     
-    {...{ contentEditable: true }}
->
-    edit me
-</EditableTextControl>
+    defaultValue='edit me'
+/>
                 `}</TypeScriptCode>
             </div>
             
             <div className='options'>
-                <EditableTextControlOptions states={states} />
+                <InputOptions states={states} />
                 
                 <ResetButton states={states} />
             </div>
         </>
     );
 }
-export { DemoEditableTextControl as default }
+export { DemoInput as default }

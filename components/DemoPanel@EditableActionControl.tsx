@@ -51,6 +51,7 @@ export const DemoEditableActionControl = () => {
             <div className='preview'>
                 <EditableActionControl
                     press={states.press[0]}
+                    enableValidation={states.enableValidation[0]}
                     isValid={states.isValid[0]}
                     focus={states.focus[0]}
                     arrive={states.arrive[0]}
@@ -69,6 +70,7 @@ export const DemoEditableActionControl = () => {
                 <TypeScriptCode collapsable={false}>{`
 <EditableActionControl
     press={${states.press[0]}}
+    enableValidation={${states.enableValidation[0]}}
     isValid={${states.isValid[0]}}
     focus={${states.focus[0]}}
     arrive={${states.arrive[0]}}
