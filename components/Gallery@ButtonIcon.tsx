@@ -27,7 +27,7 @@ import {
 }                           from '@cssfn/react-cssfn' // cssfn for react
 
 import spacers from '@nodestrap/spacers'
-import { usesBackg } from '@nodestrap/basic'
+import { usesBackg, usesMildVariant } from '@nodestrap/basic'
 import { ButtonIcon } from '@nodestrap/button-icon'
 import iconFonts from '@nodestrap/icon/dist/Icon-font-material'
 import { Gallery } from "./Gallery";
@@ -36,6 +36,7 @@ import { Gallery } from "./Gallery";
 
 export const useGallerySheet = createUseSheet(() => {
     const [backg, backgRefs] = usesBackg();
+    const [, mildRefs] = usesMildVariant();
     
     
     
@@ -51,9 +52,21 @@ export const useGallerySheet = createUseSheet(() => {
                             justifyContent    : 'start',
                             alignItems        : 'center',
                             flexWrap          : 'nowrap',
+
+                            ...rule(':hover', {
+                                position      : 'relative',
+                                zIndex        : 1,
+                            }),
                             
                             ...children(labelElm, {
                                 paddingInline : spacers.sm,
+
+                                cursor        : 'text',
+                                userSelect    : 'text',
+                                ...children('::selection', {
+                                    foreg: mildRefs.foregFn,
+                                    backg: mildRefs.backgFn,
+                                }),
                             }),
                             ...rule(':not(:hover)', {
                                 ...children(labelElm, {

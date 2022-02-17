@@ -27,7 +27,7 @@ import {
 }                           from '@cssfn/react-cssfn' // cssfn for react
 
 import spacers from '@nodestrap/spacers'
-import { usesBackg } from '@nodestrap/basic'
+import { usesBackg, usesForeg } from '@nodestrap/basic'
 import { Icon, cssProps as iconCssProps } from '@nodestrap/icon'
 import iconFonts from '@nodestrap/icon/dist/Icon-font-material'
 import { Gallery } from "./Gallery";
@@ -36,6 +36,7 @@ import { Gallery } from "./Gallery";
 
 export const useGallerySheet = createUseSheet(() => {
     const [backg, backgRefs] = usesBackg();
+    const [     , foregRefs] = usesForeg();
     
     
     
@@ -69,6 +70,13 @@ export const useGallerySheet = createUseSheet(() => {
                             
                             ...children(labelElm, {
                                 paddingInline : spacers.sm,
+
+                                cursor        : 'text',
+                                userSelect    : 'text',
+                                ...children('::selection', {
+                                    foreg: foregRefs.foregFn,
+                                    backg: backgRefs.backgFn,
+                                }),
                             }),
                             ...rule(':not(:hover)', {
                                 ...children(labelElm, {
