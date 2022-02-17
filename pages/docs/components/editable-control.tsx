@@ -54,7 +54,7 @@ const Page: NextPage = () => {
                         </p>
                         <p>
                             Usually, at the initial form submission, the <code>enableValidation</code> is set to <code>false</code> and then
-                            when a submit button is pressed, the <code>enableValidation</code> is set to <code>true</code>, so the web user can see something was okay or something needs to be revised.
+                            when a submit button is clicked, the <code>enableValidation</code> is set to <code>true</code>, so the web user can see something was okay or something needs to be revised.
                         </p>
                     </DetailSpecItem>
                 </SpecList>
@@ -179,7 +179,7 @@ const Page: NextPage = () => {
                         Provides a <strong>callback function</strong> for validating the value of the component.
                     </p>
                     <p>
-                        This is an <strong>additional</strong> validation beside the browser&apos;s native validation.
+                        This is an <strong>additional validation</strong> beside the browser&apos;s native validation.
                         If you want to do a <strong>fully custom validation</strong> - without needing the result of browser&apos;s native validation,
                         please consider to manipulate the <code>isValid</code> property.
                     </p>

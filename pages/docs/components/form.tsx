@@ -3,10 +3,10 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
+import { SpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Section } from '../../../components/Section'
-import { SectionInheritedProps, LinkFormPage, LinkContentPage, ParagraphDefaultValue, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionStates, SectionIntro, LinkValidationProviderPage, ExternalLink, SectionProperty, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkEditableTextControlPage } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkFormPage, LinkContentPage, ParagraphDefaultValue, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionStates, SectionIntro, LinkValidationProviderPage, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkInputPage, LinkCheckPage, LinkRangePage, LinkRadioPage } from '../../../components/common-contents'
 
 import loadable from '@loadable/component'
 const DemoFormLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Form' */'../../../components/DemoPanel@Form'))
@@ -23,7 +23,11 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    <CurrentComponent /> is a container component with <strong>validation</strong> for <LinkEditableTextControlPage />(s). It has some validation indicators such as <strong>valid</strong>/<strong>invalid</strong>/<strong>uncheck</strong> and inherited indicators from <CurrentBaseComponents />.
+                    <CurrentComponent /> is a container component for submitting information.
+                    It has some validation indicators such as <strong>valid</strong>/<strong>invalid</strong>/<strong>uncheck</strong> and inherited indicators from <CurrentBaseComponents />.
+                </p>
+                <p>
+                    Usually it has some input controls such as <LinkInputPage />, <LinkCheckPage />, <LinkRadioPage />, <LinkRangePage />, etc.
                 </p>
             </SectionIntro>
             <SectionDemo>
@@ -35,7 +39,7 @@ const Page: NextPage = () => {
                     <SpecList>
                     <DetailSpecItem code='true'>
                         <p>
-                            Set to this value, all validation functionalities are <strong>preserved</strong>.
+                            Set to this value, all validation functionalities are <strong>preserved</strong>, including its child controls.
                             You can see the validation indicator in case of success or error.
                             Usually shows a green background if successful and shows a red background if an error.
                             The implemented components may add an icon for displaying the validation status.
@@ -46,18 +50,18 @@ const Page: NextPage = () => {
                     </DetailSpecItem>
                     <DetailSpecItem code='false'>
                         <p>
-                            Set to this value, all validation functionalities are <strong>disabled</strong>.
+                            Set to this value, all validation functionalities are <strong>disabled</strong>, including its child controls.
                             The validation indicator will not shown even if the state is successful or error.
                         </p>
                         <p>
                             Usually, at the initial form submission, the <code>enableValidation</code> is set to <code>false</code> and then
-                            when a submit button is pressed, the <code>enableValidation</code> is set to <code>true</code>, so the web user can see something was okay or something needs to be revised.
+                            when a submit button is clicked, the <code>enableValidation</code> is set to <code>true</code>, so the web user can see something was okay or something needs to be revised.
                         </p>
                     </DetailSpecItem>
                 </SpecList>
                 }>
                     <p>
-                        Influences the component <strong>validation functionalities</strong>.
+                        Influences the form <strong>validation functionalities</strong>, including its child controls.
                     </p>
                 </SectionSubProperty>
                 <SectionSubProperty property='isValid' specList={
@@ -65,19 +69,18 @@ const Page: NextPage = () => {
                         <DetailSpecItem code='undefined'>
                             <p>
                                 Set to this value will :<br />
-                                <strong>Shows</strong> the <strong>valid indicator</strong> when the control validity&apos;s is <strong>valid</strong>,<br />
-                                <strong>Shows</strong> the <strong>invalid indicator</strong> when the control validity&apos;s is <strong>invalid</strong>, and<br />
+                                <strong>Shows</strong> the <strong>valid indicator</strong> when the form state is <strong>valid</strong>,<br />
+                                <strong>Shows</strong> the <strong>invalid indicator</strong> when the form state is <strong>invalid</strong>, and<br />
                                 <strong>Hides</strong> when <code>{`enableValidation={false}`}</code>.
                             </p>
                             <p>
-                                The control validity is taken from <code>.validity.valid</code> property exposed on corresponding <strong>DOM element</strong> (if implemented).
-                                So, if you set <code>{`tag='input'`}</code> or <code>{`tag='textarea'`}</code> or any <strong>DOM elements</strong> that support <strong>client side validation</strong>, the validation is applied automatically without you to write your custom validation logic (<em>uncontrollable</em> validation - uncontrolled by you but controlled by browser).
+                                Any invalid state on the <CurrentComponent />&apos;s child controls causes the <CurrentComponent /> in invalid state.
                             </p>
                             <ParagraphDefaultValue code='isValid' />
                         </DetailSpecItem>
                         <DetailSpecItem code='null'>
                             <p>
-                                Set to this value <strong>always hides</strong> the validation indicator <strong>even if</strong> the control is actually <strong>valid</strong> or <strong>invalid</strong>.
+                                Set to this value <strong>always hides</strong> the validation indicator <strong>even if</strong> the form is actually <strong>valid</strong> or <strong>invalid</strong>.
                             </p>
                             <p>
                                 This is the same effect as setting <code>{`enableValidation={false}`}</code>.
@@ -85,7 +88,7 @@ const Page: NextPage = () => {
                         </DetailSpecItem>
                         <DetailSpecItem code='true'>
                             <p>
-                                Set to this value <strong>always shows</strong> the <strong>valid indicator</strong> <strong>even if</strong> the control is actually <strong>invalid</strong> or <strong>unchecked</strong>.
+                                Set to this value <strong>always shows</strong> the <strong>valid indicator</strong> <strong>even if</strong> the form is actually <strong>invalid</strong> or <strong>unchecked</strong>.
                             </p>
                             <p>
                                 If <code>{`enableValidation={false}`}</code> then the <code>isValid</code> is forced to <code>{`isValid={null}`}</code>.
@@ -93,7 +96,7 @@ const Page: NextPage = () => {
                         </DetailSpecItem>
                         <DetailSpecItem code='false'>
                             <p>
-                                Set to this value <strong>always shows</strong> the <strong>invalid indicator</strong> <strong>even if</strong> the control is actually <strong>valid</strong> or <strong>unchecked</strong>.
+                                Set to this value <strong>always shows</strong> the <strong>invalid indicator</strong> <strong>even if</strong> the form is actually <strong>valid</strong> or <strong>unchecked</strong>.
                             </p>
                             <p>
                                 If <code>{`enableValidation={false}`}</code> then the <code>isValid</code> is forced to <code>{`isValid={null}`}</code>.
@@ -102,7 +105,7 @@ const Page: NextPage = () => {
                     </SpecList>
                 }>
                     <p>
-                        Indicates the control&apos;s value is currently in <strong>valid or invalid</strong> state.
+                        Indicates the form state is currently in <strong>valid or invalid</strong> state.
                     </p>
                     <p>
                         You can use this property to implement a <strong>custom validation</strong> (combined with React&apos;s <code>useState()</code>).
@@ -116,13 +119,13 @@ const Page: NextPage = () => {
                         </p>
                         <p>
                             If the <LinkValidationProviderPage />&apos;s is <code>{`enableValidation={false}`}</code> then
-                            the current control&apos;s <code>enableValidation</code> is <strong>forced</strong> to <code>false</code>, so
-                            the current control&apos;s validation functionalities are <strong>always disabled</strong>.
+                            the current <CurrentComponent />&apos;s <code>enableValidation</code> is <strong>forced</strong> to <code>false</code>, so
+                            the current <CurrentComponent />&apos;s validation functionalities are <strong>always disabled</strong>.
                         </p>
                         <p>
                             If the <LinkValidationProviderPage />&apos;s is <code>{`isValid={true}`}</code> or <code>{`isValid={false}`}</code> or <code>{`isValid={null}`}</code> then
-                            the current control&apos;s <code>isValid</code> is <strong>forced</strong> to that value, so
-                            the current control&apos;s validation status is <strong>always overriden</strong>.
+                            the current <CurrentComponent />&apos;s <code>isValid</code> is <strong>forced</strong> to that value, so
+                            the current <CurrentComponent />&apos;s validation status is <strong>always overriden</strong>.
                         </p>
                         <p>
                             This is the <strong>default</strong> value if the <code>inheritValidation</code> value is not specified.
@@ -146,28 +149,20 @@ const Page: NextPage = () => {
             <Section title='Validation Properties'>
                 <SectionSubProperty property='customValidator'>
                     <p>
-                        Provides a <strong>callback function</strong> for validating the value of the component.
+                        Provides a <strong>callback function</strong> for validating the <CurrentComponent />.
                     </p>
                     <p>
-                        This is an <strong>additional</strong> validation beside the browser&apos;s native validation.
+                        This is an <strong>additional validation</strong> beside the browser&apos;s native validation.
                         If you want to do a <strong>fully custom validation</strong> - without needing the result of browser&apos;s native validation,
                         please consider to manipulate the <code>isValid</code> property.
                     </p>
                     <p>
-                        There are 2 parameters passed into the <em>callback function</em>:
+                        There is 1 parameter passed into the <em>callback function</em>:
                     </p>
                     <SpecList>
-                        <DetailSpecItem code={<><code>state</code> : <code>ValidityState</code></>}>
+                        <DetailSpecItem code={<><code>isValid</code> : <code>ValResult</code></>}>
                             <p>
                                 A validation result returned from browser&apos;s native validation.
-                            </p>
-                            <p>
-                                For more details about the type of <code>ValidityState</code>, which is the <em>type</em> of <code>state</code>, see: <ExternalLink href='https://developer.mozilla.org/en-US/docs/Web/API/ValidityState'>MDN documentation</ExternalLink>.
-                            </p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code={<><code>value</code> : <code>string</code></>}>
-                            <p>
-                                A string represents the value of current component.
                             </p>
                         </DetailSpecItem>
                     </SpecList>
@@ -191,7 +186,7 @@ export default function RegisterForm(props) {
     return (
         <Form
             theme={props.theme ?? 'primary'} // override default value of theme to 'primary'
-            mild={props.mild ?? false}        // override default value of mild  to false
+            mild={props.mild ?? false}       // override default value of mild  to false
         >
             { props.children }
         </Form>
@@ -215,7 +210,7 @@ export default function RegisterForm(props) {
                         <DetailSpecItem code='usesFormStates()'>
                             <p>
                                 Returns a <code>Rule</code> object represents the <strong>states</strong> of <CurrentComponent /> such as:<br />
-                                <strong>valid</strong>/<strong>un-valid</strong>/<strong>invalid</strong>/<strong>un-invalid</strong>, and <strong>all states</strong> inherited from <CurrentBaseComponents />.
+                                <strong>valid</strong>/<strong>un-valid</strong>/<strong>invalid</strong>/<strong>un-invalid</strong>.
                             </p>
                         </DetailSpecItem>
                     </SpecList>

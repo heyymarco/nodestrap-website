@@ -115,6 +115,7 @@ export const LinkFormPage                  = (props: PageLinkProps) => <LinkCode
 
 export const LinkInputPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/input'>Input</LinkCode>
 export const LinkCheckPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/check'>Check</LinkCode>
+export const LinkRadioPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/radio'>Radio</LinkCode>
 export const LinkRangePage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/range'>Range</LinkCode>
 
 export const LinkListPage                  = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/list'>List</LinkCode>
