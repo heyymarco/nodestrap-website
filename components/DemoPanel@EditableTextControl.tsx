@@ -24,6 +24,7 @@ export const EditableTextControlOptions = (props: EditableTextControlOptionProps
     return (<>
         <EditableControlOptions
             {...props}
+            warningEitherMildOutlined={false}
         />
     </>);
 }
