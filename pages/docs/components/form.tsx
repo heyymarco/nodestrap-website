@@ -24,7 +24,7 @@ const Page: NextPage = () => {
             <SectionIntro>
                 <p>
                     <CurrentComponent /> is a container component for submitting information.
-                    It has some validation indicators such as <strong>valid</strong>/<strong>invalid</strong>/<strong>uncheck</strong> and inherited indicators from <CurrentBaseComponents />.
+                    It has some validation indicators such as <strong>valid</strong>/<strong>invalid</strong>/<strong>uncheck</strong>.
                 </p>
                 <p>
                     Usually it has some input controls such as <LinkInputPage />, <LinkCheckPage />, <LinkRadioPage />, <LinkRangePage />, etc.
