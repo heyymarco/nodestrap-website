@@ -7,7 +7,8 @@ import { TypeScriptCode } from './Code';
 
 
 export const editableControlInitials = {
-    isValid : undefined as boolean|undefined,
+    enableValidation : true as boolean|undefined,
+    isValid          : undefined as boolean|undefined,
 };
 export type EditableControlInitials = typeof editableControlInitials & Partial<ControlInitials>
 export const useEditableControlStates = (initials ?: Partial<EditableControlInitials>) => {
@@ -16,10 +17,12 @@ export const useEditableControlStates = (initials ?: Partial<EditableControlInit
         ...initials
     };
     
-    const isValid = useResetableState(initials2.isValid);
+    const enableValidation = useResetableState(initials2.enableValidation);
+    const isValid          = useResetableState(initials2.isValid);
 
     return {
         ...useControlStates(initials2),
+        enableValidation,
         isValid,
     }
 }
@@ -30,6 +33,12 @@ export const EditableControlOptions = (props: EditableControlOptionProps) => {
     
     
     return (<>
+        <Option
+            name='enableValidation'
+            options={[false, true]}
+            value={states.enableValidation[0]}
+            setValue={states.enableValidation[1]}
+        />
         <Option
             name='isValid'
             options={[undefined, false, true]}
@@ -52,6 +61,7 @@ export const DemoEditableControl = () => {
         <>
             <div className='preview'>
                 <EditableControl
+                    enableValidation={states.enableValidation[0]}
                     isValid={states.isValid[0]}
                     focus={states.focus[0]}
                     arrive={states.arrive[0]}
@@ -71,6 +81,7 @@ export const DemoEditableControl = () => {
                 </EditableControl>
                 <TypeScriptCode collapsable={false}>{`
 <EditableControl
+    enableValidation={${states.enableValidation[0]}}
     isValid={${states.isValid[0]}}
     focus={${states.focus[0]}}
     arrive={${states.arrive[0]}}

@@ -111,6 +111,7 @@ export const LinkButtonPage                = (props: PageLinkProps) => <LinkCode
 export const LinkNavButtonPage             = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/nav-button'>NavButton</LinkCode>
 export const LinkButtonIconPage            = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/button-icon'>ButtonIcon</LinkCode>
 export const LinkCloseButtonPage           = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/close-button'>CloseButton</LinkCode>
+export const LinkFormPage                  = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/form'>Form</LinkCode>
 
 export const LinkInputPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/input'>Input</LinkCode>
 export const LinkCheckPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/check'>Check</LinkCode>
