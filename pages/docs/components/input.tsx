@@ -232,7 +232,7 @@ export default function CustomInput(props) {
             theme={props.theme ?? 'primary'}  // override default value of theme to 'primary'
             mild={props.mild ?? false}        // override default value of mild  to false
             
-            defaultValue='Edit me!'
+            defaultValue={props.defaultValue ?? 'Edit me!'}
         />
     );
 }
