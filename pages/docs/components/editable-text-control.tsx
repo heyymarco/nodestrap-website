@@ -41,8 +41,8 @@ const Page: NextPage = () => {
                     </p>
                     <p>
                         The value must be an integer value of 0 or higher.
-                        If the <code>minLength</code> value is not specified, or an invalid value is specified, the value is assumed to be <code>{`minLength={0}`}</code>.
-                        The value (if present) must be less than or equal to <code>maxLength</code>, otherwise the value will never be valid.
+                        If the <code>minLength</code> value is not specified, or an invalid value is specified, the value is assumed to be <strong>0</strong>.
+                        The <code>minLength</code>&apos;s value (if present) must be less than or equal to <code>maxLength</code>&apos;s value, otherwise the value will never be valid.
                     </p>
                 </SectionSubProperty>
                 <SectionSubProperty property='maxLength'>
@@ -52,7 +52,7 @@ const Page: NextPage = () => {
                     <p>
                         The value must be an integer value of 0 or higher.
                         If the <code>maxLength</code> value is not specified, or an invalid value is specified, the value is assumed to be <strong>infinity</strong>.
-                        The value (if present) must be greater than or equal to <code>minLength</code>, otherwise the value will never be valid.
+                        The <code>maxLength</code>&apos;s value (if present) must be greater than or equal to <code>minLength</code>&apos;s value, otherwise the value will never be valid.
                     </p>
                 </SectionSubProperty>
             </Section>

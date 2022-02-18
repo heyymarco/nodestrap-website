@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Section } from '../../../components/Section'
-import { SectionInheritedProps, LinkInputPage, LinkEditableTextControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionIntro, ExternalLink, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkInputPage, LinkEditableTextControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionIntro, ExternalLink, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkRangePage } from '../../../components/common-contents'
 
 import loadable from '@loadable/component'
 const DemoInputLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Input' */'../../../components/DemoPanel@Input'))
@@ -26,32 +26,154 @@ const Page: NextPage = () => {
                     <CurrentComponent /> is a <strong>text like editor</strong> with a <strong>validation icon</strong>.
                 </p>
                 <p>
-                    There are some built in input format such as <strong>email</strong>, <strong>number</strong>, <strong>url</strong>, <strong>time</strong>, etc.
+                    There are some built in input format such as <strong>email</strong>, <strong>number</strong>, <strong>url</strong>, <strong>password</strong>, <strong>time</strong>, etc.
                 </p>
             </SectionIntro>
             <SectionDemo>
                 <DemoInputLazy fallback={<BusyBar />} />
             </SectionDemo>
             <SectionInheritedProps />
+            <Section title='Formats Properties'>
+                <SectionSubProperty property='type' specList={
+                    <SpecList>
+                        <DetailSpecItem code='text'>
+                            <p>
+                                A single-line text field.
+                            </p>
+                            <p>
+                                Line-breaks are automatically removed from the input value.
+                            </p>
+                            <p>
+                                This is the <strong>default</strong> value if the <code>type</code> value is not specified.
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='search'>
+                            <p>
+                                A single-line text field for entering search strings.
+                            </p>
+                            <p>
+                                Line-breaks are automatically removed from the input value.
+                            </p>
+                            <p>
+                                Displays a search icon instead of enter key on some devices with dynamic keypads.
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='password'>
+                            <p>
+                                A single-line text field whose value is obscured.
+                            </p>
+                            <p>
+                                Will alert user if site is not secure.
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='email'>
+                            <p>
+                                A field for editing an email address.
+                            </p>
+                            <p>
+                                Looks like <code>{`type='text'`}</code>, but has validation parameters and relevant keyboard in supporting browsers and devices with dynamic keyboards.
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='tel'>
+                            <p>
+                                A field for editing a telephone number.
+                            </p>
+                            <p>
+                                Looks like <code>{`type='text'`}</code>, but has validation parameters and relevant keyboard in supporting browsers and devices with dynamic keyboards.
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='url'>
+                            <p>
+                                A field for editing a URL.
+                            </p>
+                            <p>
+                                Looks like <code>{`type='text'`}</code>, but has validation parameters and relevant keyboard in supporting browsers and devices with dynamic keyboards.
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='number'>
+                            <p>
+                                A field for editing a number.
+                            </p>
+                            <p>
+                                Looks like <code>{`type='text'`}</code>, but has validation parameters and numeric keyboard in supporting browsers and devices with dynamic keyboards.
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='time'>
+                            <p>
+                                A field for editing a time value with no time zone.
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='week'>
+                            <p>
+                                A field for editing a date consisting of a week-year number and a week number with no time zone.
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='date'>
+                            <p>
+                                A field for editing a date (year, month, and day, with no time).
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='datetime-local'>
+                            <p>
+                                A field for editing a date and time, with no time zone.
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='month'>
+                            <p>
+                                A field for editing a month and year, with no time zone.
+                            </p>
+                        </DetailSpecItem>
+                    </SpecList>
+                }>
+                    <p>
+                        Defines the type of <CurrentComponent /> to render.
+                    </p>
+                </SectionSubProperty>
+                <SectionSubProperty property='placeholder'>
+                    <p>
+                        Displays a text that appears in the form control when it has no value set.
+                    </p>
+                </SectionSubProperty>
+            </Section>
             <Section title='Validation Properties'>
                 <SectionSubProperty property='min'>
                     <p>
-                        Defines the minimum value the user can enter into the <CurrentComponent /> component.
+                        Defines the minimum value that is acceptable and valid for the <CurrentComponent /> component.
                     </p>
                     <p>
-                        The value must be an integer value of 0 or higher.
-                        If the <code>min</code> value is not specified, or an invalid value is specified, the value is assumed to be <code>{`min={0}`}</code>.
-                        The value (if present) must be less than or equal to <code>max</code>, otherwise the value will never be valid.
+                        The value must be a valid expression of the corresponding <code>type</code> of <CurrentComponent />.
+                        If the <code>min</code> value is not specified, or an invalid value is specified, the <CurrentComponent /> has no minimum value.
+                        The <code>min</code>&apos;s value (if present) must be less than or equal to <code>max</code>&apos;s value, otherwise the value will never be valid.
                     </p>
                 </SectionSubProperty>
                 <SectionSubProperty property='max'>
                     <p>
-                        Defines the maximum value the user can enter into the <CurrentComponent /> component.
+                        Defines the maximum value that is acceptable and valid for the <CurrentComponent /> component.
                     </p>
                     <p>
-                        The value must be an integer value of 0 or higher.
-                        If the <code>max</code> value is not specified, or an invalid value is specified, the value is assumed to be <strong>infinity</strong>.
-                        The value (if present) must be greater than or equal to <code>min</code>, otherwise the value will never be valid.
+                        The value must be a valid expression of the corresponding <code>type</code> of <CurrentComponent />.
+                        If the <code>max</code> value is not specified, or an invalid value is specified, the <CurrentComponent /> has no maximum value.
+                        The <code>max</code>&apos;s value (if present) must be greater than or equal to <code>min</code>&apos;s value, otherwise the value will never be valid.
+                    </p>
+                </SectionSubProperty>
+                <SectionSubProperty property='step'>
+                    <p>
+                        Defines the <em>stepping interval</em> when the user clicks the up/down spinner button, moves the slider left/right on <LinkRangePage />, and validates the difference of the <code>type</code> of <code>{`'time'`}</code>/<code>{`'week'`}</code>/<code>{`'date'`}</code>/<code>{`'datetime-local'`}</code>/<code>{`'month'`}</code>.
+                    </p>
+                    <p>
+                        The value must be a valid positive range expression of the corresponding <code>type</code> of <CurrentComponent />.
+                        If the <code>step</code> value is not specified, or an invalid value is specified, the <code>step</code> defaults to 1 for <code>type</code> of <code>{`'number'`}</code> and <code>{`'range'`}</code>, and
+                        1 unit type (minute, week, month, day) for the <code>type</code> of <code>{`'time'`}</code>/<code>{`'week'`}</code>/<code>{`'date'`}</code>/<code>{`'datetime-local'`}</code>/<code>{`'month'`}</code>.
+                    </p>
+                </SectionSubProperty>
+                <SectionSubProperty property='pattern'>
+                    <p>
+                        Defines a <em>regular expression</em> pattern for the <CurrentComponent />&apos;s value should match.
+                        If a non empty value doesn&apos;t conform to the constraints set by the <code>pattern</code> value,
+                        the <code>ValidityState</code>&apos;s <code>patternMismatch</code> property will be <code>true</code>.
+                    </p>
+                    <p>
+                        The <code>pattern</code> is a property for the <code>type</code> of <code>{`'text'`}</code>, <code>{`'tel'`}</code>, <code>{`'email'`}</code>, <code>{`'url'`}</code>, <code>{`'password'`}</code>, and <code>{`'search'`}</code>.
                     </p>
                 </SectionSubProperty>
             </Section>

@@ -51,6 +51,7 @@ export const DemoInput = () => {
                     outlined={states.outlined[0]}
                     mild={states.mild[0]}
                     
+                    placeholder='Please input a value'
                     defaultValue='edit me'
                 />
                 <TypeScriptCode collapsable={false}>{`
@@ -69,6 +70,7 @@ export const DemoInput = () => {
     outlined={${states.outlined[0]}}
     mild={${states.mild[0]}}
     
+    placeholder='Please input a value'
     defaultValue='edit me'
 />
                 `}</TypeScriptCode>
