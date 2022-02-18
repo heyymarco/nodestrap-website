@@ -37,6 +37,8 @@ export const DemoInput = () => {
         <>
             <div className='preview'>
                 <Input
+                    type='text'
+                    
                     enableValidation={states.enableValidation[0]}
                     isValid={states.isValid[0]}
                     focus={states.focus[0]}
@@ -56,6 +58,8 @@ export const DemoInput = () => {
                 />
                 <TypeScriptCode collapsable={false}>{`
 <Input
+    type='text'
+    
     enableValidation={${states.enableValidation[0]}}
     isValid={${states.isValid[0]}}
     focus={${states.focus[0]}}

@@ -7,9 +7,9 @@ import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../
 
 import { Section } from '../../../components/Section'
 import { SectionInheritedProps, LinkInputPage, LinkEditableTextControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkRangePage, LinkDropdownListPage, LinkDropdownListButtonPage } from '../../../components/common-contents'
+import { Warning } from '../../../components/Info'
 
 import loadable from '@loadable/component'
-import { Warning } from '../../../components/Info'
 const DemoInputLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Input' */'../../../components/DemoPanel@Input'))
 
 
@@ -308,6 +308,24 @@ export default function CustomInput(props) {
 }
                 `}</SectionCustomizingCss>
             </SectionDerivering>
+            <Section title='Shortcuts'>
+                <p>
+                    There are some aliases for making <CurrentComponent /> code more readable:
+                </p>
+                <SpecList>
+                    {
+                        ['Text','Search','Password','Email','Tel','Url','Number','Time','Week','Date','DateTime','Month']
+                        .map((type) => (
+                            <SimpleSpecItem>
+                                <code>{`<${type}Input>`}</code> or <code>{`<${type}>`}</code>
+                                <p>
+                                    Equivalent to <code>{`<Input type='${(type === 'DateTime') ? 'datetime-local' : type.toLowerCase()}'>`}</code>.
+                                </p>
+                            </SimpleSpecItem>
+                        ))
+                    }
+                </SpecList>
+            </Section>
         </ComponentInfoProvider>
     );
 }
