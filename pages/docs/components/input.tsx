@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Section } from '../../../components/Section'
-import { SectionInheritedProps, LinkInputPage, LinkEditableTextControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkRangePage, LinkDropdownListPage, LinkDropdownListButtonPage } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkInputPage, LinkEditableTextControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkDropdownListPage, LinkDropdownListButtonPage } from '../../../components/common-contents'
 import { Warning } from '../../../components/Info'
 
 import loadable from '@loadable/component'
@@ -189,11 +189,11 @@ const Page: NextPage = () => {
                 </SectionSubProperty>
                 <SectionSubProperty property='step'>
                     <p>
-                        Defines the <em>stepping interval</em> when the user clicks the up/down spinner button, moves the slider left/right on <LinkRangePage />, and validates the difference of the <code>type</code> of <code>{`'time'`}</code>/<code>{`'week'`}</code>/<code>{`'date'`}</code>/<code>{`'datetime-local'`}</code>/<code>{`'month'`}</code>.
+                        Defines the <em>stepping interval</em> when the user clicks the up/down spinner button, and validates the difference of the <code>type</code> of <code>{`'time'`}</code>/<code>{`'week'`}</code>/<code>{`'date'`}</code>/<code>{`'datetime-local'`}</code>/<code>{`'month'`}</code>.
                     </p>
                     <p>
                         The value must be a valid positive range expression of the corresponding <code>type</code> of <CurrentComponent />.
-                        If the <code>step</code> value is not specified, or an invalid value is specified, the <code>step</code> defaults to 1 for <code>type</code> of <code>{`'number'`}</code> and <code>{`'range'`}</code>, and
+                        If the <code>step</code> value is not specified, or an invalid value is specified, the <code>step</code> defaults to 1 for <code>type</code> of <code>{`'number'`}</code>, and
                         1 unit type (minute, week, month, day) for the <code>type</code> of <code>{`'time'`}</code>/<code>{`'week'`}</code>/<code>{`'date'`}</code>/<code>{`'datetime-local'`}</code>/<code>{`'month'`}</code>.
                     </p>
                 </SectionSubProperty>

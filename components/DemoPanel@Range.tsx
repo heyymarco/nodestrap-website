@@ -1,35 +1,38 @@
 import { useResetableState, Option, ResetButton } from './DemoPanel';
-import { ActionControlInitials, ActionControlOptionProps, ActionControlOptions, useActionControlStates } from './DemoPanel@ActionControl';
+import { EditableActionControlInitials, EditableActionControlOptionProps, EditableActionControlOptions, useEditableActionControlStates } from './DemoPanel@EditableActionControl';
 
-import { Button, OrientationName, ButtonStyle } from '@nodestrap/button'
+import { Range, cssProps as rangeConfig, OrientationName } from '@nodestrap/range'
 import { TypeScriptCode } from './Code';
 
 
 
-export const buttonInitials = {
-    mild        : false,
-    
-    orientation : 'inline'  as OrientationName|undefined,
-    btnStyle    : undefined as ButtonStyle|undefined,
+rangeConfig.minInlineSize = '200px' as any;
+
+
+
+export const rangeInitials = {
+    enableValidation : false as boolean|undefined,
+    nude             : true,
+    mild             : false,
+
+    orientation      : 'inline'  as OrientationName|undefined,
 };
-export type ButtonInitials = typeof buttonInitials & Partial<ActionControlInitials>
-export const useButtonStates = (initials ?: Partial<ButtonInitials>) => {
-    const initials2 : ButtonInitials = {
-        ...buttonInitials,
+export type RangeInitials = typeof rangeInitials & Partial<EditableActionControlInitials>
+export const useRangeStates = (initials ?: Partial<RangeInitials>) => {
+    const initials2 : RangeInitials = {
+        ...rangeInitials,
         ...initials
     };
-    
+
     const orientation  = useResetableState(initials2.orientation);
-    const btnStyle     = useResetableState(initials2.btnStyle);
 
     return {
-        ...useActionControlStates(initials2),
+        ...useEditableActionControlStates(initials2),
         orientation,
-        btnStyle,
     }
 }
-export type ButtonOptionProps = { states: ReturnType<typeof useButtonStates> } & ActionControlOptionProps
-export const ButtonOptions = (props: ButtonOptionProps) => {
+export type RangeOptionProps = { states: ReturnType<typeof useRangeStates> } & EditableActionControlOptionProps
+export const RangeOptions = (props: RangeOptionProps) => {
     const { states } = props;
     
     
@@ -42,14 +45,7 @@ export const ButtonOptions = (props: ButtonOptionProps) => {
             setValue={states.orientation[1]}
         />
         
-        <Option
-            name='btnStyle'
-            options={[undefined, 'link', 'icon', 'ghost']}
-            value={states.btnStyle[0]}
-            setValue={states.btnStyle[1]}
-        />
-        
-        <ActionControlOptions
+        <EditableActionControlOptions
             {...props}
             warningEitherMildOutlined={false}
         />
@@ -58,17 +54,18 @@ export const ButtonOptions = (props: ButtonOptionProps) => {
 
 
 
-export const DemoButton = () => {
-    const states   = useButtonStates();
+export const DemoRange = () => {
+    const states = useRangeStates();
     
     return (
         <>
             <div className='preview'>
-                <Button
+                <Range
                     orientation={states.orientation[0]}
-                    btnStyle={states.btnStyle[0]}
                     
                     press={states.press[0]}
+                    enableValidation={states.enableValidation[0]}
+                    isValid={states.isValid[0]}
                     focus={states.focus[0]}
                     arrive={states.arrive[0]}
                     enabled={states.enabled[0]}
@@ -80,16 +77,14 @@ export const DemoButton = () => {
                     gradient={states.gradient[0]}
                     outlined={states.outlined[0]}
                     mild={states.mild[0]}
-                >
-                    Click me!
-                    <span>Now!</span>
-                </Button>
+                />
                 <TypeScriptCode collapsable={false}>{`
-<Button
+<Range
     orientation=${states.orientation[0] ? `'${states.orientation[0]}'` : '{undefined}'}
-    btnStyle=${states.btnStyle[0] ? `'${states.btnStyle[0]}'` : '{undefined}'}
     
     press={${states.press[0]}}
+    enableValidation={${states.enableValidation[0]}}
+    isValid={${states.isValid[0]}}
     focus={${states.focus[0]}}
     arrive={${states.arrive[0]}}
     enabled={${states.enabled[0]}}
@@ -101,19 +96,16 @@ export const DemoButton = () => {
     gradient={${states.gradient[0]}}
     outlined={${states.outlined[0]}}
     mild={${states.mild[0]}}
->
-    Click me!
-    <span>Now!</span>
-</Button>
+/>
                 `}</TypeScriptCode>
             </div>
             
             <div className='options'>
-                <ButtonOptions states={states} />
+                <RangeOptions states={states} />
                 
                 <ResetButton states={states} />
             </div>
         </>
     );
 }
-export { DemoButton as default }
+export { DemoRange as default }

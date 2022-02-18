@@ -308,7 +308,6 @@ export const Slider = (props: SliderProps) => {
         {name && <Label theme='secondary'>{ name }</Label>}
         <Range
             nude={false}
-            mild={true}
             
             enableValidation={false}
             
