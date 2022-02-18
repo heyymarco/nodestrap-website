@@ -6,9 +6,10 @@ import Head from 'next/head'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Section } from '../../../components/Section'
-import { SectionInheritedProps, LinkInputPage, LinkEditableTextControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionIntro, ExternalLink, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkRangePage } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkInputPage, LinkEditableTextControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkRangePage, LinkDropdownListPage, LinkDropdownListButtonPage } from '../../../components/common-contents'
 
 import loadable from '@loadable/component'
+import { Warning } from '../../../components/Info'
 const DemoInputLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Input' */'../../../components/DemoPanel@Input'))
 
 
@@ -33,7 +34,7 @@ const Page: NextPage = () => {
                 <DemoInputLazy fallback={<BusyBar />} />
             </SectionDemo>
             <SectionInheritedProps />
-            <Section title='Formats Properties'>
+            <Section title='Format Properties'>
                 <SectionSubProperty property='type' specList={
                     <SpecList>
                         <DetailSpecItem code='text'>
@@ -131,8 +132,38 @@ const Page: NextPage = () => {
                 </SectionSubProperty>
                 <SectionSubProperty property='placeholder'>
                     <p>
-                        Displays a text that appears in the form control when it has no value set.
+                        Displays a brief hint to the user as to what kind of information is expected in the <CurrentComponent />.
                     </p>
+                    <p>
+                        It should be a word or short phrase that provides a hint as to the expected type of data, rather than an explanation or prompt.
+                    </p>
+                </SectionSubProperty>
+                <SectionSubProperty property='autoComplete'>
+                    <p>
+                        Suggests what kind of the browser should provide automated assistance in filling out form field values, as well as guidance to the browser on what kind of information to expect in the <CurrentComponent />.
+                    </p>
+                    <p>
+                        The source of the suggested values is generally up to the browser, typically values come from past values entered by the user, but they may also come from pre-configured values.
+                    </p>
+                </SectionSubProperty>
+                <SectionSubProperty property='list'>
+                    <p>
+                        Defines the <code>id</code> of a <code>{`<datalist>`}</code> element located in the same document.
+                    </p>
+                    <p>
+                        A <code>{`<datalist>`}</code> provides a list of predefined values to suggest to the user for the <CurrentComponent />.
+                    </p>
+                    <p>
+                        Any values in the <code>{`<datalist>`}</code> that are not compatible with the <CurrentComponent />&apos;s <code>type</code> are not included in the suggested options.
+                    </p>
+                    <Warning>
+                        <p>
+                            In <strong>React applications</strong>, the <code>list</code> property may be <strong>less useful</strong> since the developers can create a custom complementary component with better appearance.
+                        </p>
+                        <p>
+                            A <LinkDropdownListPage /> and <LinkDropdownListButtonPage /> may be suitable for displaying the suggested options.
+                        </p>
+                    </Warning>
                 </SectionSubProperty>
             </Section>
             <Section title='Validation Properties'>

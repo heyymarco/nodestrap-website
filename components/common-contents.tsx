@@ -123,6 +123,9 @@ export const LinkCardPage                  = (props: PageLinkProps) => <LinkCode
 
 export const LinkAlertPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/alert'>Alert</LinkCode>
 
+export const LinkDropdownListPage          = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/dropdown-list'>DropdownList</LinkCode>
+export const LinkDropdownListButtonPage    = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/dropdown-list-button'>DropdownListButton</LinkCode>
+
 export const LinkGroupPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/group'>Group</LinkCode>
 
 export const LinkModalPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/modal'>Modal</LinkCode>
