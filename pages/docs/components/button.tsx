@@ -20,7 +20,7 @@ const Page: NextPage = () => {
     return (
         <ComponentInfoProvider packageName='@nodestrap/button' component={<LinkButtonPage />} bases={<LinkActionControlPage />}>
             <Head>
-                <title>Button Component</title>
+                <title>&lt;Button&gt; Component</title>
                 <meta name="description" content="Using <Button> component" />
             </Head>
 

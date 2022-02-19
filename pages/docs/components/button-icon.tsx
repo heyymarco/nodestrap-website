@@ -19,7 +19,7 @@ const Page: NextPage = () => {
     return (
         <ComponentInfoProvider packageName='@nodestrap/button-icon' component={<LinkButtonIconPage />} bases={[<LinkButtonPage key={0} />, <LinkIconPage key={1} />]}>
             <Head>
-                <title>ButtonIcon Component</title>
+                <title>&lt;ButtonIcon&gt; Component</title>
                 <meta name="description" content="Using <ButtonIcon> component" />
             </Head>
 

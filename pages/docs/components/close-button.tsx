@@ -14,7 +14,7 @@ const Page: NextPage = () => {
     return (
         <ComponentInfoProvider packageName='@nodestrap/close-button' component={<LinkCloseButtonPage />} bases={<LinkButtonIconPage />}>
             <Head>
-                <title>CloseButton Component</title>
+                <title>&lt;CloseButton&gt; Component</title>
                 <meta name="description" content="Using <CloseButton> component" />
             </Head>
 

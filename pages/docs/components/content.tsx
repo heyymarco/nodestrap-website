@@ -29,7 +29,7 @@ const Page: NextPage = () => {
     return (
         <ComponentInfoProvider packageName='@nodestrap/content' component={<LinkContentPage />} bases={<LinkBasicPage />}>
             <Head>
-                <title>Content Component</title>
+                <title>&lt;Content&gt; Component</title>
                 <meta name="description" content="Using <Content> component" />
             </Head>
 

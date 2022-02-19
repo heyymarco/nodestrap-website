@@ -16,7 +16,7 @@ const Page: NextPage = () => {
     return (
         <ComponentInfoProvider packageName='@nodestrap/action-control' component={<LinkActionControlPage />} bases={<LinkControlPage />}>
             <Head>
-                <title>ActionControl Component</title>
+                <title>&lt;ActionControl&gt; Component</title>
                 <meta name="description" content="Using <ActionControl> component" />
             </Head>
 

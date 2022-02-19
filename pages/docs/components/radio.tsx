@@ -16,7 +16,7 @@ const Page: NextPage = () => {
     return (
         <ComponentInfoProvider packageName='@nodestrap/radio' component={<LinkRadioPage />} bases={<LinkCheckPage />}>
             <Head>
-                <title>Radio Component</title>
+                <title>&lt;Radio&gt; Component</title>
                 <meta name="description" content="Using <Radio> component" />
             </Head>
 

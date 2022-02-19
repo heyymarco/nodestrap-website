@@ -17,7 +17,7 @@ const Page: NextPage = () => {
     return (
         <ComponentInfoProvider packageName='@nodestrap/masonry' component={<LinkMasonryPage />} bases={<LinkContentPage />}>
             <Head>
-                <title>Masonry Component</title>
+                <title>&lt;Masonry&gt; Component</title>
                 <meta name="description" content="Using <Masonry> component" />
             </Head>
 

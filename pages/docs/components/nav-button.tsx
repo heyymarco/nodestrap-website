@@ -21,7 +21,7 @@ const Page: NextPage = () => {
     return (
         <ComponentInfoProvider packageName='@nodestrap/nav-button' component={<LinkNavButtonPage />} bases={<LinkButtonPage />}>
             <Head>
-                <title>NavButton Component</title>
+                <title>&lt;NavButton&gt; Component</title>
                 <meta name="description" content="Using <NavButton> component" />
             </Head>
 

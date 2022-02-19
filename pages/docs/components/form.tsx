@@ -17,7 +17,7 @@ const Page: NextPage = () => {
     return (
         <ComponentInfoProvider packageName='@nodestrap/form' component={<LinkFormPage />} bases={<LinkContentPage />}>
             <Head>
-                <title>Form Component</title>
+                <title>&lt;Form&gt; Component</title>
                 <meta name="description" content="Using <Form> component" />
             </Head>
 

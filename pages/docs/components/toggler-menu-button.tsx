@@ -16,7 +16,7 @@ const Page: NextPage = () => {
     return (
         <ComponentInfoProvider packageName='@nodestrap/toggler-menu-button' component={<LinkTogglerMenuButtonPage />} bases={<LinkCheckPage />}>
             <Head>
-                <title>TogglerMenuButton Component</title>
+                <title>&lt;TogglerMenuButton&gt; Component</title>
                 <meta name="description" content="Using <TogglerMenuButton> component" />
             </Head>
 

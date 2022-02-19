@@ -23,7 +23,7 @@ const Page: NextPage = () => {
     return (
         <ComponentInfoProvider packageName='@nodestrap/icon' component={<LinkIconPage />} bases={<LinkElementPage />}>
             <Head>
-                <title>Icon Component</title>
+                <title>&lt;Icon&gt; Component</title>
                 <meta name="description" content="Using <Icon> component" />
             </Head>
 

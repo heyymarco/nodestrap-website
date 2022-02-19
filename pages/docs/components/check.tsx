@@ -16,7 +16,7 @@ const Page: NextPage = () => {
     return (
         <ComponentInfoProvider packageName='@nodestrap/check' component={<LinkCheckPage />} bases={<LinkEditableActionControlPage />}>
             <Head>
-                <title>Check Component</title>
+                <title>&lt;Check&gt; Component</title>
                 <meta name="description" content="Using <Check> component" />
             </Head>
 

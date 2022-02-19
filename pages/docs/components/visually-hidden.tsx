@@ -13,7 +13,7 @@ const Page: NextPage = () => {
     return (
         <ComponentInfoProvider packageName='@nodestrap/visually-hidden' component={<LinkVisuallyHiddenPage />} bases={<LinkElementPage />}>
             <Head>
-                <title>VisuallyHidden Component</title>
+                <title>&lt;VisuallyHidden&gt; Component</title>
                 <meta name="description" content="Using <VisuallyHidden> component" />
             </Head>
 

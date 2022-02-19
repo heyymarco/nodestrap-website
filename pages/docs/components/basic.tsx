@@ -28,7 +28,7 @@ const Page: NextPage = () => {
     return (
         <ComponentInfoProvider packageName='@nodestrap/basic' component={<LinkBasicPage />} bases={<LinkElementPage />}>
             <Head>
-                <title>Basic Component</title>
+                <title>&lt;Basic&gt; Component</title>
                 <meta name="description" content="Using <Basic> component" />
             </Head>
 

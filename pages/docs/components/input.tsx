@@ -18,7 +18,7 @@ const Page: NextPage = () => {
     return (
         <ComponentInfoProvider packageName='@nodestrap/input' component={<LinkInputPage />} bases={<LinkEditableTextControlPage />}>
             <Head>
-                <title>Input Component</title>
+                <title>&lt;Input&gt; Component</title>
                 <meta name="description" content="Using <Input> component" />
             </Head>
 
@@ -315,8 +315,8 @@ export default function CustomInput(props) {
                 <SpecList>
                     {
                         ['Text','Search','Password','Email','Tel','Url','Number','Time','Week','Date','DateTime','Month']
-                        .map((type) => (
-                            <SimpleSpecItem>
+                        .map((type, index) => (
+                            <SimpleSpecItem key={index}>
                                 <code>{`<${type}Input>`}</code> or <code>{`<${type}>`}</code>
                                 <p>
                                     Equivalent to <code>{`<Input type='${(type === 'DateTime') ? 'datetime-local' : type.toLowerCase()}'>`}</code>.

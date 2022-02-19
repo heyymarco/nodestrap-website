@@ -18,7 +18,7 @@ const Page: NextPage = () => {
     return (
         <ComponentInfoProvider packageName='@nodestrap/editable-text-control' component={<LinkEditableTextControlPage />} bases={<LinkEditableControlPage />}>
             <Head>
-                <title>EditableTextControl Component</title>
+                <title>&lt;EditableTextControl&gt; Component</title>
                 <meta name="description" content="Using <EditableTextControl> component" />
             </Head>
 

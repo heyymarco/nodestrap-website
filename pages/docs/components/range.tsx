@@ -17,7 +17,7 @@ const Page: NextPage = () => {
     return (
         <ComponentInfoProvider packageName='@nodestrap/range' component={<LinkRangePage />} bases={<LinkEditableActionControlPage />}>
             <Head>
-                <title>Range Component</title>
+                <title>&lt;Range&gt; Component</title>
                 <meta name="description" content="Using <Range> component" />
             </Head>
 
