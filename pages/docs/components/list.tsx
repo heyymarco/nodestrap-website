@@ -5,7 +5,10 @@ import Head from 'next/head'
 
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
+import { Section, SubSection } from '../../../components/Section'
 import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkListItemPage } from '../../../components/common-contents'
+import { List, ListItem } from '@nodestrap/list'
+import { TypeScriptCode } from '../../../components/Code'
 
 import loadable from '@loadable/component'
 const DemoListLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@List' */'../../../components/DemoPanel@List'))
@@ -28,6 +31,183 @@ const Page: NextPage = () => {
             <SectionDemo>
                 <DemoListLazy fallback={<BusyBar />} />
             </SectionDemo>
+            <Section title={<>Manipulating the <LinkListItemPage /></>}>
+                <SubSection title='Themes'>
+                    <p>
+                        By default, the <code>theme</code> of <LinkListItemPage /> is <strong>inherit</strong> from <CurrentComponent />, but
+                        you can set the individual <code>theme</code> of <strong>each</strong> <LinkListItemPage />.
+                    </p>
+                    <p>
+                        Here the demonstration:
+                    </p>
+                    <List theme='primary'>
+                        <ListItem>
+                            An inherit theme
+                        </ListItem>
+                        <ListItem>
+                            An inherit theme
+                        </ListItem>
+                        <ListItem theme='primary'>
+                            A primary theme
+                        </ListItem>
+                        <ListItem theme='secondary'>
+                            A secondary theme
+                        </ListItem>
+                        <ListItem theme='success'>
+                            A success theme
+                        </ListItem>
+                        <ListItem theme='info'>
+                            A info theme
+                        </ListItem>
+                        <ListItem theme='warning'>
+                            A warning theme
+                        </ListItem>
+                        <ListItem theme='danger'>
+                            A danger theme
+                        </ListItem>
+                        <ListItem theme='light'>
+                            A light theme
+                        </ListItem>
+                        <ListItem theme='dark'>
+                            A dark theme
+                        </ListItem>
+                    </List>
+                    <p></p>
+                    <TypeScriptCode>{`
+<List theme='primary'>
+    <ListItem>
+        An inherit theme
+    </ListItem>
+    <ListItem>
+        An inherit theme
+    </ListItem>
+    <ListItem theme='primary'>
+        A primary theme
+    </ListItem>
+    <ListItem theme='secondary'>
+        A secondary theme
+    </ListItem>
+    <ListItem theme='success'>
+        A success theme
+    </ListItem>
+    <ListItem theme='info'>
+        A info theme
+    </ListItem>
+    <ListItem theme='warning'>
+        A warning theme
+    </ListItem>
+    <ListItem theme='danger'>
+        A danger theme
+    </ListItem>
+    <ListItem theme='light'>
+        A light theme
+    </ListItem>
+    <ListItem theme='dark'>
+        A dark theme
+    </ListItem>
+</List>
+                    `}</TypeScriptCode>
+                </SubSection>
+                <SubSection title='Links and Buttons'>
+                    <p>
+                        To make each <LinkListItemPage /> clickable, set <code>{`<ListItem actionCtrl={true}>`}</code>.
+                    </p>
+                    <p>
+                        You can also set the <code>actionCtrl</code> at <code>{`<List actionCtrl={true}>`}</code>, so the default value of <code>actionCtrl</code> in the <LinkListItemPage /> will be the same as the parent.
+                    </p>
+                    <p>
+                        To handle the click action of the <LinkListItemPage />, assign <code>onClick</code> to the desired <strong>handler function</strong> -or- assign <code>href</code> to the desired <strong>URL</strong>.
+                    </p>
+                    <p>
+                        Here the demonstration:
+                    </p>
+                    <List theme='primary'>
+                        <ListItem>
+                            A first item
+                        </ListItem>
+                        <ListItem>
+                            A second item
+                        </ListItem>
+                        <ListItem actionCtrl={true} onClick={() => alert('hello world')}>
+                            A third item (clickable)
+                        </ListItem>
+                        <ListItem actionCtrl={true} href='https://www.google.com'>
+                            A fourth item (clickable)
+                        </ListItem>
+                        <ListItem active={true} actionCtrl={true} onClick={() => alert('hello world')}>
+                            A fifth item item (clickable)
+                        </ListItem>
+                        <ListItem active={true} theme='danger' actionCtrl={true} href='https://www.google.com'>
+                            A seventh item item (clickable)
+                        </ListItem>
+                    </List>
+                    <p></p>
+                    <List theme='primary' actionCtrl={true}>
+                        <ListItem>
+                            A first item (clickable)
+                        </ListItem>
+                        <ListItem actionCtrl={false}>
+                            A second item (not clickable)
+                        </ListItem>
+                        <ListItem  onClick={() => alert('hello world')}>
+                            A third item (clickable)
+                        </ListItem>
+                        <ListItem href='https://www.google.com'>
+                            A fourth item (clickable)
+                        </ListItem>
+                        <ListItem active={true} onClick={() => alert('hello world')}>
+                            A fifth item item (clickable)
+                        </ListItem>
+                        <ListItem active={true} theme='danger' href='https://www.google.com'>
+                            A seventh item item (clickable)
+                        </ListItem>
+                    </List>
+                    <p></p>
+                    <TypeScriptCode>{`
+<List theme='primary'>
+    <ListItem>
+        A first item
+    </ListItem>
+    <ListItem>
+        A second item
+    </ListItem>
+    <ListItem actionCtrl={true} onClick={() => alert('hello world')}>
+        A third item (clickable)
+    </ListItem>
+    <ListItem actionCtrl={true} href='https://www.google.com'>
+        A fourth item (clickable)
+    </ListItem>
+    <ListItem active={true} actionCtrl={true} onClick={() => alert('hello world')}>
+        A fifth item item (clickable)
+    </ListItem>
+    <ListItem active={true} theme='danger' actionCtrl={true} href='https://www.google.com'>
+        A seventh item item (clickable)
+    </ListItem>
+</List>
+
+<List theme='primary' actionCtrl={true}>
+    <ListItem>
+        A first item (clickable)
+    </ListItem>
+    <ListItem actionCtrl={false}>
+        A second item (not clickable)
+    </ListItem>
+    <ListItem  onClick={() => alert('hello world')}>
+        A third item (clickable)
+    </ListItem>
+    <ListItem href='https://www.google.com'>
+        A fourth item (clickable)
+    </ListItem>
+    <ListItem active={true} onClick={() => alert('hello world')}>
+        A fifth item item (clickable)
+    </ListItem>
+    <ListItem active={true} theme='danger' href='https://www.google.com'>
+        A seventh item item (clickable)
+    </ListItem>
+</List>
+                    `}</TypeScriptCode>
+                </SubSection>
+            </Section>
             <SectionInheritedProps />
             <SectionProperty property='actionCtrl'>
                 <p>
