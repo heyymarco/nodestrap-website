@@ -6,85 +6,60 @@ import Head from 'next/head'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Section } from '../../../components/Section'
-import { SectionInheritedProps, LinkRangePage, LinkEditableActionControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, SectionSubPropertyOrientation, SectionThemingProblem } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkCheckPage, LinkEditableActionControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, SectionSubPropertyOrientation, SectionThemingProblem, SectionSubPropertyStyle, LinkButtonPage } from '../../../components/common-contents'
 
 import loadable from '@loadable/component'
-const DemoRangeLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Range' */'../../../components/DemoPanel@Range'))
+const DemoCheckLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Check' */'../../../components/DemoPanel@Check'))
 
 
 
 const Page: NextPage = () => {
     return (
-        <ComponentInfoProvider packageName='@nodestrap/range' component={<LinkRangePage />} bases={<LinkEditableActionControlPage />}>
+        <ComponentInfoProvider packageName='@nodestrap/check' component={<LinkCheckPage />} bases={<LinkEditableActionControlPage />}>
             <Head>
-                <title>Range Component</title>
-                <meta name="description" content="Using <Range> component" />
+                <title>Check Component</title>
+                <meta name="description" content="Using <Check> component" />
             </Head>
 
             <SectionIntro>
                 <p>
-                    <CurrentComponent /> is a sliding control for editing a numeric value within a specified range.
+                    <CurrentComponent /> is a toggleable control for indicating a something is selected or not.
                 </p>
             </SectionIntro>
             <SectionDemo>
-                <DemoRangeLazy fallback={<BusyBar />} />
+                <DemoCheckLazy fallback={<BusyBar />} />
             </SectionDemo>
             <SectionThemingProblem />
             <SectionInheritedProps />
             <SectionVariants>
-                <SectionSubPropertyOrientation specList={
+                <SectionSubPropertyStyle property='checkStyle' specList={
                     <SpecList>
-                        <DetailSpecItem code='block'>
+                        <DetailSpecItem code='undefined'>
                             <p>
-                                The <CurrentComponent /> orientation is vertical.
+                                Styling the <CurrentComponent /> with <strong>default appearance</strong>.
+                            </p>
+                            <p>
+                                This is the <strong>default</strong> value if the <code>checkStyle</code> value is not specified.
                             </p>
                         </DetailSpecItem>
-                        <DetailSpecItem code='inline'>
+                        <DetailSpecItem code='btn'>
                             <p>
-                                The <CurrentComponent /> orientation is horizontal.
+                                Styling the <CurrentComponent /> to look similar to <LinkButtonPage />.
                             </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='togglerBtn'>
                             <p>
-                                This is the <strong>default</strong> value if the <code>orientation</code> value is not specified.
+                                Almost similar to <code>{`checkStyle='btn'`}</code> but with <strong>pressed</strong> style when actived.
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='switch'>
+                            <p>
+                                Styling the <CurrentComponent /> to look as sliding button.
                             </p>
                         </DetailSpecItem>
                     </SpecList>
                 } />
             </SectionVariants>
-            <Section title='Validation Properties'>
-                <SectionSubProperty property='min'>
-                    <p>
-                        Defines the minimum value that is acceptable and valid for the <CurrentComponent /> component.
-                    </p>
-                    <p>
-                        The value must be a valid numeric expression.
-                        If the <code>min</code> value is not specified, or an invalid value is specified, the <CurrentComponent /> has no minimum value.
-                    </p>
-                    <p>
-                        If the <code>min</code>&apos;s value is greater than <code>max</code>&apos;s value, sliding right/up the <CurrentComponent /> reduces its value.
-                    </p>
-                </SectionSubProperty>
-                <SectionSubProperty property='max'>
-                    <p>
-                        Defines the maximum value that is acceptable and valid for the <CurrentComponent /> component.
-                    </p>
-                    <p>
-                        The value must be a valid numeric expression.
-                        If the <code>max</code> value is not specified, or an invalid value is specified, the <CurrentComponent /> has no maximum value.
-                    </p>
-                    <p>
-                        If the <code>max</code>&apos;s value is less than <code>min</code>&apos;s value, sliding right/up the <CurrentComponent /> reduces its value.
-                    </p>
-                </SectionSubProperty>
-                <SectionSubProperty property='step'>
-                    <p>
-                        Defines the <em>stepping interval</em> when the user slides the <CurrentComponent />.
-                    </p>
-                    <p>
-                        The value must be a valid positive numeric expression.
-                        If the <code>step</code> value is not specified, or an invalid value is specified, the <code>step</code> defaults to 1.
-                    </p>
-                </SectionSubProperty>
-            </Section>
             <SectionCustomizing specList={
                 <SpecList>
                     <DetailSpecItem title='Accessibilities'>
@@ -162,73 +137,43 @@ const Page: NextPage = () => {
                             </SimpleSpecItem>
                         </SubSpecList>
                     </DetailSpecItem>
-                    <DetailSpecItem title='Thumbs'>
-                        <SubSpecList>
-                            <SimpleSpecItem>
-                                <code>thumbInlineSize</code>
-                                <p>A default thumb width.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>thumbBlockSize</code>
-                                <p>A default thumb height.</p>
-                            </SimpleSpecItem>
-                            
-                            <SimpleSpecItem>
-                                <code>thumbBorderRadius</code>
-                                <p>A thumb border-radius.</p>
-                            </SimpleSpecItem>
-                            
-                            <SimpleSpecItem>
-                                <code>thumbPaddingInline</code>
-                                <p>A thumb inner spacing on the left &amp; right.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>thumbPaddingBlock</code>
-                                <p>A thumb inner spacing on the top &amp; bottom.</p>
-                            </SimpleSpecItem>
-                        </SubSpecList>
-                    </DetailSpecItem>
                 </SpecList>
             }/>
             <SectionDerivering>
                 <SectionOverridingDefaults>{`
-import { Range } from '@nodestrap/range'
+import { Check } from '@nodestrap/check'
 
-export default function CustomRange(props) {
+export default function CustomCheckbox(props) {
     return (
-        <Range
+        <Check
             {...props} // preserves other properties
             
-            theme={props.theme ?? 'primary'}  // override default value of theme to 'primary'
-            mild={props.mild ?? true}         // override default value of mild  to true
-            
-            min={props.min ?? 50}  // override default value of min  to 50
-            max={props.max ?? 100} // override default value of max  to 100
-            step={props.step ?? 2} // override default value of step to 2
-        />
+            theme={props.theme ?? 'danger'}  // override default value of theme to 'danger'
+            mild={props.mild ?? true}        // override default value of mild  to true
+        >
+            { props.children }
+        </Check>
     );
 }
                 `}</SectionOverridingDefaults>
 
                 <SectionCustomizingCss specList={
                     <SpecList>
-                        <DetailSpecItem code='usesRangeLayout()'>
+                        <DetailSpecItem code='usesCheckLayout()'>
                             <p>
                                 Returns a <code>Rule</code> object represents a complete <CurrentComponent /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
                             </p>
                         </DetailSpecItem>
-                        <DetailSpecItem code='usesRangeVariants()'>
+                        <DetailSpecItem code='usesCheckVariants()'>
                             <p>
                                 Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentComponent /> such as:<br />
                                 <code>SizeVariant</code> and <strong>all variants</strong> inherited from <CurrentBaseComponents />.
                             </p>
                         </DetailSpecItem>
-                        <DetailSpecItem code='usesRangeStates()'>
+                        <DetailSpecItem code='usesCheckStates()'>
                             <p>
-                                Returns a <code>Rule</code> object represents the <strong>states</strong> of <CurrentComponent />.
-                            </p>
-                            <p>
-                                Currently the states are equivalent to <CurrentBaseComponents />&apos;s states.
+                                Returns a <code>Rule</code> object represents the <strong>states</strong> of <CurrentComponent /> such as:<br />
+                                <strong>active</strong>/<strong>passive</strong>, and <strong>all states</strong> inherited from <CurrentBaseComponents />.
                             </p>
                         </DetailSpecItem>
                     </SpecList>
@@ -236,15 +181,15 @@ export default function CustomRange(props) {
 import { mainComposition, style, imports, states } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
 import { isValid, isInvalid } from '@nodestrap/editable-control'
-import { Range, usesRangeLayout, usesRangeVariants, usesRangeStates } from '@nodestrap/range'
+import { Check, usesCheckLayout, usesCheckVariants, usesCheckStates } from '@nodestrap/check'
 
-const useCustomRangeSheet = createUseSheet(() => [
+const useCustomCheckboxSheet = createUseSheet(() => [
     mainComposition(
         imports([
-            // import some stuff from <Range>:
-            usesRangeLayout(),
-            usesRangeVariants(),
-            usesRangeStates(),
+            // import some stuff from <Check>:
+            usesCheckLayout(),
+            usesCheckVariants(),
+            usesCheckStates(),
         ]),
         style({
             // then overwrite with your style:
@@ -270,11 +215,10 @@ const useCustomRangeSheet = createUseSheet(() => [
     ),
 ]);
 
-export default function CustomRange(props) {
-    const sheet = useCustomRangeSheet();
-    const [isValueValid, setIsValueValid] = useState(false);
+export default function CustomCheckbox(props) {
+    const sheet = useCustomCheckboxSheet();
     return (
-        <Range {...props} mainClass={sheet.main} isValid={isValueValid} />
+        <Check {...props} mainClass={sheet.main} />
     );
 }
                 `}</SectionCustomizingCss>
