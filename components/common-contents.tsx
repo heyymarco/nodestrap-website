@@ -212,32 +212,26 @@ export function ComponentInfoProvider(props: ComponentInfoProviderProps) {
         </ComponentInfoContext.Provider>
     );
 }
-const codeOf = (component: Component) => {
+const nameOf = (component: Component) => {
     const item = component.type({});
     if (!React.isValidElement<React.PropsWithChildren<LinkCodeProps>>(item)) return null;
     
-    const code = item.props.children;
-    return {
-        code: `<${code}>`,
-        name: code,
-    };
+    return item.props.children;
 }
 export const useComponentInfo = () => {
     const data = useContext(ComponentInfoContext);
     return useMemo(() => ({
         ...data,
         ...(() => {
-            const code = codeOf(data.component);
+            const name = nameOf(data.component);
             return {
-                componentCode: code?.code,
-                componentName: code?.name,
+                componentName: name,
             };
         })(),
         ...(() => {
-            const codes = [data.bases].flat().map((base) => codeOf(base));
+            const name = [data.bases].flat().map((base) => nameOf(base));
             return {
-                baseCodes: codes.map((code) => code?.code),
-                baseNames: codes.map((code) => code?.name),
+                baseNames: name,
             };
         })(),
         // eslint-disable-next-line
@@ -338,6 +332,40 @@ export const SectionConfigureDependsOnIcon = () => {
             </p>
             <p>
                 See how to <LinkConfigIconPage />.
+            </p>
+        </Section>
+    );
+}
+
+
+
+export const SectionThemingProblem = () => {
+    const { componentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <Section title='A Theming Problem'>
+            <p>
+                By design, a <CurrentComponent /> is <strong>unlikely</strong> to get an <strong>invalid state</strong>.
+                So the <CurrentComponent /> is always in <strong>valid state</strong> (the default of <code>{`'success'`}</code> theme is green).
+                So then the <CurrentComponent /> is always colored green, no matter the <code>theme</code> property you have set.
+            </p>
+            <p>
+                To workaround the <em>theming problem</em>, do the following approach:
+            </p>
+            <p>
+                If you use <CurrentComponent /> <strong>outside</strong> <LinkFormPage />,
+                it&apos;s better to set <code>{`<${componentName} enableValidation={false}>`}</code>.
+                By turning off the <code>enableValidation</code>, you can change the <code>theme</code> property to the desired theme color.
+            </p>
+            <p>
+                If you use <CurrentComponent /> <strong>inside</strong> <LinkFormPage />,
+                you can set <code>{`<Form enableValidation={false}>`}</code> via <code>useState()</code>,
+                so you can change the <code>theme</code> property to the desired theme color.
+                At the <code>{`<Form onSubmit={() => { /*...*/ }}>`}</code> event,
+                set back <code>{`<Form enableValidation={true}>`}</code> so that the <CurrentComponent />&apos;s theme color is forced to <code>{`'success'`}</code> (default is green),
+                indicating the <LinkFormPage />&apos;s submission was successful.
             </p>
         </Section>
     );
