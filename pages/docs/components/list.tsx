@@ -123,10 +123,10 @@ const Page: NextPage = () => {
                     </p>
                     <List theme='primary'>
                         <ListItem>
-                            A first item
+                            A first item (not clickable)
                         </ListItem>
                         <ListItem>
-                            A second item
+                            A second item (not clickable)
                         </ListItem>
                         <ListItem actionCtrl={true} onClick={() => alert('hello world')}>
                             A third item (clickable)
@@ -143,8 +143,8 @@ const Page: NextPage = () => {
                     </List>
                     <p></p>
                     <List theme='primary' actionCtrl={true}>
-                        <ListItem>
-                            A first item (clickable)
+                        <ListItem actionCtrl={false}>
+                            A first item (not clickable)
                         </ListItem>
                         <ListItem actionCtrl={false}>
                             A second item (not clickable)
@@ -166,10 +166,10 @@ const Page: NextPage = () => {
                     <TypeScriptCode>{`
 <List theme='primary'>
     <ListItem>
-        A first item
+        A first item (not clickable)
     </ListItem>
     <ListItem>
-        A second item
+        A second item (not clickable)
     </ListItem>
     <ListItem actionCtrl={true} onClick={() => alert('hello world')}>
         A third item (clickable)
@@ -186,8 +186,8 @@ const Page: NextPage = () => {
 </List>
 
 <List theme='primary' actionCtrl={true}>
-    <ListItem>
-        A first item (clickable)
+    <ListItem actionCtrl={false}>
+        A first item (not clickable)
     </ListItem>
     <ListItem actionCtrl={false}>
         A second item (not clickable)
@@ -206,6 +206,8 @@ const Page: NextPage = () => {
     </ListItem>
 </List>
                     `}</TypeScriptCode>
+                </SubSection>
+                <SubSection title='Disabled Items'>
                 </SubSection>
             </Section>
             <SectionInheritedProps />
