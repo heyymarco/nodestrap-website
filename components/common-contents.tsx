@@ -112,11 +112,11 @@ export const LinkNavButtonPage             = (props: PageLinkProps) => <LinkCode
 export const LinkButtonIconPage            = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/button-icon'>ButtonIcon</LinkCode>
 export const LinkCloseButtonPage           = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/close-button'>CloseButton</LinkCode>
 export const LinkFormPage                  = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/form'>Form</LinkCode>
-
 export const LinkInputPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/input'>Input</LinkCode>
+export const LinkRangePage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/range'>Range</LinkCode>
 export const LinkCheckPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/check'>Check</LinkCode>
 export const LinkRadioPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/radio'>Radio</LinkCode>
-export const LinkRangePage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/range'>Range</LinkCode>
+export const LinkTogglerMenuButtonPage     = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/toggler-menu-button'>TogglerMenuButton</LinkCode>
 
 export const LinkListPage                  = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/list'>List</LinkCode>
 export const LinkCardPage                  = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/card'>Card</LinkCode>
@@ -127,6 +127,7 @@ export const LinkDropdownListPage          = (props: PageLinkProps) => <LinkCode
 export const LinkDropdownListButtonPage    = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/dropdown-list-button'>DropdownListButton</LinkCode>
 
 export const LinkGroupPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/group'>Group</LinkCode>
+export const LinkNavbarPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/navbar'>Navbar</LinkCode>
 
 export const LinkModalPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/modal'>Modal</LinkCode>
 export const LinkModalCardPage             = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/modal-card'>ModalCard</LinkCode>

@@ -26,25 +26,27 @@ export const useEditableControlStates = (initials ?: Partial<EditableControlInit
         isValid,
     }
 }
-export type EditableControlOptionProps = { states: ReturnType<typeof useEditableControlStates> } & ControlOptionProps
+export type EditableControlOptionProps = { states: ReturnType<typeof useEditableControlStates>, showValidationCtrl?: boolean } & ControlOptionProps
 export const EditableControlOptions = (props: EditableControlOptionProps) => {
-    const { states } = props;
+    const { states, showValidationCtrl = true } = props;
     
     
     
     return (<>
-        <Option
-            name='enableValidation'
-            options={[false, true]}
-            value={states.enableValidation[0]}
-            setValue={states.enableValidation[1]}
-        />
-        <Option
-            name='isValid'
-            options={[undefined, false, true]}
-            value={states.isValid[0]}
-            setValue={states.isValid[1]}
-        />
+        {showValidationCtrl && <>
+            <Option
+                name='enableValidation'
+                options={[false, true]}
+                value={states.enableValidation[0]}
+                setValue={states.enableValidation[1]}
+            />
+            <Option
+                name='isValid'
+                options={[undefined, false, true]}
+                value={states.isValid[0]}
+                setValue={states.isValid[1]}
+            />
+        </>}
 
         <ControlOptions
             {...props}

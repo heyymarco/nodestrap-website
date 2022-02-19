@@ -1,67 +1,54 @@
 import { useResetableState, Option, ResetButton } from './DemoPanel';
-import { EditableActionControlInitials, EditableActionControlOptionProps, EditableActionControlOptions, useEditableActionControlStates } from './DemoPanel@EditableActionControl';
+import { CheckInitials, CheckOptionProps, CheckOptions, useCheckStates } from './DemoPanel@Check';
 
-import { Check, CheckStyle } from '@nodestrap/check'
+import { CheckStyle } from '@nodestrap/check';
+import { TogglerMenuButton } from '@nodestrap/toggler-menu-button'
 import { TypeScriptCode } from './Code';
 
 
 
-export const checkInitials = {
+export const togglerMenuButtonInitials = {
     enableValidation : false as boolean|undefined,
-    nude             : true,
+    nude             : false,
     mild             : false,
 
     checkStyle       : undefined as CheckStyle|undefined,
 };
-export type CheckInitials = typeof checkInitials & Partial<EditableActionControlInitials>
-export const useCheckStates = (initials ?: Partial<CheckInitials>) => {
-    const initials2 : CheckInitials = {
-        ...checkInitials,
+export type TogglerMenuButtonInitials = typeof togglerMenuButtonInitials & Partial<CheckInitials>
+export const useTogglerMenuButtonStates = (initials ?: Partial<TogglerMenuButtonInitials>) => {
+    const initials2 : TogglerMenuButtonInitials = {
+        ...togglerMenuButtonInitials,
         ...initials
     };
 
-    const checkStyle  = useResetableState(initials2.checkStyle);
-
     return {
-        ...useEditableActionControlStates(initials2),
-        checkStyle,
+        ...useCheckStates(initials2),
     }
 }
-export type CheckOptionProps = { states: ReturnType<typeof useCheckStates>, showCheckStyleCtrl?: boolean } & EditableActionControlOptionProps
-export const CheckOptions = (props: CheckOptionProps) => {
-    const { states, showCheckStyleCtrl = true } = props;
-    
-    
-    
+export type TogglerMenuButtonOptionProps = { states: ReturnType<typeof useTogglerMenuButtonStates> } & CheckOptionProps
+export const TogglerMenuButtonOptions = (props: TogglerMenuButtonOptionProps) => {
     return (<>
-        {showCheckStyleCtrl && <Option
-            name='checkStyle'
-            options={[undefined, 'btn', 'togglerBtn', 'switch']}
-            value={states.checkStyle[0]}
-            setValue={states.checkStyle[1]}
-        />}
-        
-        <EditableActionControlOptions
+        <CheckOptions
             {...props}
             warningEitherMildOutlined={false}
+            showValidationCtrl={false}
+            showCheckStyleCtrl={false}
         />
     </>);
 }
 
 
 
-export const DemoCheck = () => {
-    const states = useCheckStates();
+export const DemoTogglerMenuButton = () => {
+    const states = useTogglerMenuButtonStates();
     
     return (
         <>
             <div className='preview'>
-                <Check
+                <TogglerMenuButton
                     checkStyle={states.checkStyle[0]}
                     
                     press={states.press[0]}
-                    enableValidation={states.enableValidation[0]}
-                    isValid={states.isValid[0]}
                     focus={states.focus[0]}
                     arrive={states.arrive[0]}
                     enabled={states.enabled[0]}
@@ -74,16 +61,12 @@ export const DemoCheck = () => {
                     gradient={states.gradient[0]}
                     outlined={states.outlined[0]}
                     mild={states.mild[0]}
-                >
-                    Select me!
-                </Check>
+                />
                 <TypeScriptCode collapsable={false}>{`
-<Check
+<TogglerMenuButton
     checkStyle=${states.checkStyle[0] ? `'${states.checkStyle[0]}'` : '{undefined}'}
     
     press={${states.press[0]}}
-    enableValidation={${states.enableValidation[0]}}
-    isValid={${states.isValid[0]}}
     focus={${states.focus[0]}}
     arrive={${states.arrive[0]}}
     enabled={${states.enabled[0]}}
@@ -96,17 +79,15 @@ export const DemoCheck = () => {
     outlined={${states.outlined[0]}}
     mild={${states.mild[0]}}
 />
-    Select me!
-</Check>
                 `}</TypeScriptCode>
             </div>
             
             <div className='options'>
-                <CheckOptions states={states} />
+                <TogglerMenuButtonOptions states={states} />
                 
                 <ResetButton states={states} />
             </div>
         </>
     );
 }
-export { DemoCheck as default }
+export { DemoTogglerMenuButton as default }

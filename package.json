@@ -40,6 +40,7 @@
     "@nodestrap/range": "^4.0.8",
     "@nodestrap/responsive": "^4.0.4",
     "@nodestrap/spacers": "^4.0.2",
+    "@nodestrap/toggler-menu-button": "^4.0.4",
     "@nodestrap/tooltip": "^4.0.4",
     "next": "12.0.10",
     "react": "17.0.2",

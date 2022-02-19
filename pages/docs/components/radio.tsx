@@ -5,8 +5,7 @@ import Head from 'next/head'
 
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
-import { Section } from '../../../components/Section'
-import { SectionInheritedProps, LinkRadioPage, LinkCheckPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, SectionSubPropertyOrientation, SectionThemingProblem, SectionSubPropertyStyle, LinkButtonPage, LinkFormPage } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkRadioPage, LinkCheckPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionThemingProblem, LinkFormPage } from '../../../components/common-contents'
 
 import loadable from '@loadable/component'
 const DemoRadioLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Radio' */'../../../components/DemoPanel@Radio'))
