@@ -119,6 +119,8 @@ export const LinkRadioPage                 = (props: PageLinkProps) => <LinkCode
 export const LinkTogglerMenuButtonPage     = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/toggler-menu-button'>TogglerMenuButton</LinkCode>
 
 export const LinkListPage                  = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/list'>List</LinkCode>
+export const LinkListItemPage              = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/list'>ListItem</LinkCode>
+
 export const LinkCardPage                  = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/card'>Card</LinkCode>
 
 export const LinkAlertPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/alert'>Alert</LinkCode>
