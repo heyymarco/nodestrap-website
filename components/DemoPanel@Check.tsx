@@ -75,7 +75,7 @@ export const DemoCheck = () => {
                     outlined={states.outlined[0]}
                     mild={states.mild[0]}
                 >
-                    Click me!
+                    Select me!
                 </Check>
                 <TypeScriptCode collapsable={false}>{`
 <Check
@@ -96,7 +96,7 @@ export const DemoCheck = () => {
     outlined={${states.outlined[0]}}
     mild={${states.mild[0]}}
 />
-    Click me!
+    Select me!
 </Check>
                 `}</TypeScriptCode>
             </div>
