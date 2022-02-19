@@ -23,7 +23,7 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    <CurrentComponent /> is a sliding control to edit a numeric value within a specified range.
+                    <CurrentComponent /> is a sliding control for editing a numeric value within a specified range.
                 </p>
             </SectionIntro>
             <SectionDemo>
@@ -199,7 +199,7 @@ export default function CustomRange(props) {
             {...props} // preserves other properties
             
             theme={props.theme ?? 'primary'}  // override default value of theme to 'primary'
-            mild={props.mild ?? false}        // override default value of mild  to false
+            mild={props.mild ?? true}         // override default value of mild  to true
             
             min={props.min ?? 50}  // override default value of min  to 50
             max={props.max ?? 100} // override default value of max  to 100
