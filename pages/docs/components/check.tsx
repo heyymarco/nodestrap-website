@@ -49,12 +49,12 @@ const Page: NextPage = () => {
                         </DetailSpecItem>
                         <DetailSpecItem code='togglerBtn'>
                             <p>
-                                Almost similar to <code>{`checkStyle='btn'`}</code> but with <strong>pressed</strong> style when actived.
+                                Almost similar to <code>{`checkStyle='btn'`}</code> but with <strong>pressed</strong> style when <strong>actived</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='switch'>
                             <p>
-                                Styling the <CurrentComponent /> to look as sliding button.
+                                Styling the <CurrentComponent /> to look as sliding switch button.
                             </p>
                         </DetailSpecItem>
                     </SpecList>
@@ -62,78 +62,92 @@ const Page: NextPage = () => {
             </SectionVariants>
             <SectionCustomizing specList={
                 <SpecList>
-                    <DetailSpecItem title='Accessibilities'>
+                    <DetailSpecItem title='Spacings'>
                         <SubSpecList>
                             <SimpleSpecItem>
-                                <code>cursor</code>
-                                <p>A default <code>cursor</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>cursorBlock</code>
-                                <p>A <code>cursor</code> when <code>{`orientation='block'`}</code>.</p>
+                                <code>spacing</code>
+                                <p>The spacing between <CurrentComponent />&apos;s <strong>indicator</strong> and <strong>label</strong>.</p>
                             </SimpleSpecItem>
                         </SubSpecList>
                     </DetailSpecItem>
-                    <DetailSpecItem title='Sizes'>
+                    <DetailSpecItem title='Indicators'>
                         <SubSpecList>
                             <SimpleSpecItem>
-                                <code>minInlineSize</code>
-                                <p>A default minimum width.</p>
+                                <code>img</code>
+                                <p>the default <strong>check mark</strong> image.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
-                                <code>minBlockSize</code>
-                                <p>A default minimum height.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>minInlineSizeBlock</code>
-                                <p>A minimum width when <code>{`orientation='block'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>minBlockSizeBlock</code>
-                                <p>A minimum height when <code>{`orientation='block'`}</code>.</p>
+                                <code>switchImg</code>
+                                <p>the <strong>check mark</strong> image when <code>{`checkStyle='switch'`}</code>.</p>
                             </SimpleSpecItem>
                         </SubSpecList>
                     </DetailSpecItem>
-                    <DetailSpecItem title='Tracks'>
+                    <DetailSpecItem title='Animations'>
                         <SubSpecList>
                             <SimpleSpecItem>
-                                <code>trackInlineSize</code>
-                                <p>A default track width.</p>
+                                <code>filterCheck</code>
+                                <p>A <code>filter</code> to apply to <em>check mark indicator</em> when <code>{`active={true}`}</code>.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
-                                <code>trackBlockSize</code>
-                                <p>A default track height.</p>
+                                <code>filterClear</code>
+                                <p>A <code>filter</code> to apply to <em>check mark indicator</em> when <code>{`active={false}`}</code>.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
-                                <code>trackInlineSizeBlock</code>
-                                <p>A track width when <code>{`orientation='block'`}</code>.</p>
+                                <code>transfCheck</code>
+                                <p>A <code>transform</code> to apply to <em>check mark indicator</em> when <code>{`active={true}`}</code>.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
-                                <code>trackBlockSizeBlock</code>
-                                <p>A track height when <code>{`orientation='block'`}</code>.</p>
+                                <code>transfClear</code>
+                                <p>A <code>transform</code> to apply to <em>check mark indicator</em> when <code>{`active={false}`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>@keyframes check</code>
+                                <p>A keyframes name represents <em>checking keyframes</em>, transition from <code>{`active={false}`}</code> to <code>{`active={true}`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>@keyframes clear</code>
+                                <p>A keyframes name represents <em>clearing keyframes</em>, transition from <code>{`active={true}`}</code> to <code>{`active={false}`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>animCheck</code>
+                                <p>An animation represents <em>checking animation</em>, transition from <code>{`active={false}`}</code> to <code>{`active={true}`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>animClear</code>
+                                <p>An animation represents <em>clearing animation</em>, transition from <code>{`active={true}`}</code> to <code>{`active={false}`}</code>.</p>
                             </SimpleSpecItem>
                             
                             <SimpleSpecItem>
-                                <code>trackBorderRadius</code>
-                                <p>A track border-radius.</p>
-                            </SimpleSpecItem>
-                            
-                            <SimpleSpecItem>
-                                <code>trackPaddingInline</code>
-                                <p>A track inner spacing on the left &amp; right.</p>
+                                <code>switchFilterCheck</code>
+                                <p>A <code>filter</code> to apply to <em>switch mark indicator</em> when <code>{`active={true}`}</code>.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
-                                <code>trackPaddingBlock</code>
-                                <p>A track inner spacing on the top &amp; bottom.</p>
-                            </SimpleSpecItem>
-                            
-                            <SimpleSpecItem>
-                                <code>tracklowerFilter</code>
-                                <p>A track filter on the left/bottom.</p>
+                                <code>switchFilterClear</code>
+                                <p>A <code>filter</code> to apply to <em>switch mark indicator</em> when <code>{`active={false}`}</code>.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
-                                <code>trackupperFilter</code>
-                                <p>A track filter on the right/top.</p>
+                                <code>switchTransfCheck</code>
+                                <p>A <code>transform</code> to apply to <em>switch mark indicator</em> when <code>{`active={true}`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>switchTransfClear</code>
+                                <p>A <code>transform</code> to apply to <em>switch mark indicator</em> when <code>{`active={false}`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>@keyframes switchCheck</code>
+                                <p>A keyframes name represents <em>switching on keyframes</em>, transition from <code>{`active={false}`}</code> to <code>{`active={true}`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>@keyframes switchClear</code>
+                                <p>A keyframes name represents <em>switching off keyframes</em>, transition from <code>{`active={true}`}</code> to <code>{`active={false}`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>switchAnimCheck</code>
+                                <p>An animation represents <em>switching on animation</em>, transition from <code>{`active={false}`}</code> to <code>{`active={true}`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>switchAnimClear</code>
+                                <p>An animation represents <em>switching off animation</em>, transition from <code>{`active={true}`}</code> to <code>{`active={false}`}</code>.</p>
                             </SimpleSpecItem>
                         </SubSpecList>
                     </DetailSpecItem>
@@ -167,7 +181,7 @@ export default function CustomCheckbox(props) {
                         <DetailSpecItem code='usesCheckVariants()'>
                             <p>
                                 Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentComponent /> such as:<br />
-                                <code>SizeVariant</code> and <strong>all variants</strong> inherited from <CurrentBaseComponents />.
+                                <code>SizeVariant</code>, <code>CheckVariant</code>, and <strong>all variants</strong> inherited from <CurrentBaseComponents />.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesCheckStates()'>
@@ -218,7 +232,9 @@ const useCustomCheckboxSheet = createUseSheet(() => [
 export default function CustomCheckbox(props) {
     const sheet = useCustomCheckboxSheet();
     return (
-        <Check {...props} mainClass={sheet.main} />
+        <Check {...props} mainClass={sheet.main}>
+            { props.children }
+        </Check>
     );
 }
                 `}</SectionCustomizingCss>

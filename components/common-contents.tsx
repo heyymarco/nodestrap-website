@@ -349,7 +349,7 @@ export const SectionThemingProblem = () => {
             <p>
                 By design, a <CurrentComponent /> is <strong>unlikely</strong> to get an <strong>invalid state</strong>.
                 So the <CurrentComponent /> is always in <strong>valid state</strong> (the default of <code>{`'success'`}</code> theme is green).
-                So then the <CurrentComponent /> is always colored green, no matter the <code>theme</code> property you have set.
+                So that the <CurrentComponent /> is always colored green, no matter the <code>theme</code> property you have set.
             </p>
             <p>
                 To workaround the <em>theming problem</em>, do the following approach:
