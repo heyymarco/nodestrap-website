@@ -23,10 +23,10 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    <CurrentComponent /> is a special <CurrentBaseComponents /> component with allowed <strong>only one item</strong> checked in the <CurrentComponent />&apos;s group.
+                    <CurrentComponent /> is a special <CurrentBaseComponents /> component with allowed <strong>only one item checked</strong> in the <CurrentComponent /> group.
                 </p>
                 <p>
-                    Some <CurrentComponent />s with the same <code>name</code>&apos;s value and within the same <LinkFormPage /> are considered in one group.
+                    Some <CurrentComponent />s with the same <code>name</code>&apos;s value and within the same <LinkFormPage /> are treated in one group.
                 </p>
             </SectionIntro>
             <SectionDemo>
