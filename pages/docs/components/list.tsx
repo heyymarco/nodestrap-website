@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { SubSection } from '../../../components/Section'
-import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, TransparentPreview, SectionSubPropertyOrientation, LinkResponsiveProviderPage } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, TransparentPreview, SectionSubPropertyOrientation, LinkResponsiveProviderPage, SectionSubPropertyStyle, LinkContentPage, LinkButtonPage, LinkListSeparatorItemPage } from '../../../components/common-contents'
 import { List, ListItem, OrientationName } from '@nodestrap/list'
 import { TypeScriptCode } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
@@ -400,7 +400,7 @@ const Page: NextPage = () => {
 </List>
                     `}</TypeScriptCode>
                 </SubSection>
-                <SectionSubPropertyOrientation specList={
+                <SectionSubPropertyOrientation property={<>Orientation</>} specList={
                     <SpecList>
                         <DetailSpecItem code='block'>
                             <p>
@@ -544,6 +544,75 @@ const Page: NextPage = () => {
                         To change the orientation of <CurrentComponent /> to horizontal, set <code>{`<List orientation='inline'>`}</code>.
                     </p>
                 </SectionSubPropertyOrientation>
+                <SectionSubPropertyStyle property={<>Styles</>} specList={
+                    <SpecList>
+                        <DetailSpecItem code='undefined'>
+                            <p>
+                                Styling the <CurrentComponent /> with <strong>default appearance</strong>.
+                            </p>
+                            <p>
+                                This is the <strong>default</strong> value if the <code>listStyle</code> value is not specified.
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='flat'>
+                            <p>
+                                Removes the <code>border</code>, <code>border-radius</code>, and <code>border</code> between <LinkListItemPage />s (separator).
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='flush'>
+                            <p>
+                                Removes the <code>border</code> and <code>border-radius</code>.
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='joined'>
+                            <p>
+                                Removes the <code>border</code> between <LinkListItemPage />s (separator).
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='content'>
+                            <p>
+                                Styling the <CurrentComponent /> to look similar to <LinkContentPage />&apos;s appearance (usually with wider paddings).
+                            </p>
+                            <p>
+                                Basically it merges the <CurrentComponent />&apos;s style + <LinkContentPage />&apos;s style.
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='btn'>
+                            <p>
+                                Styling the <LinkListItemPage /> to look similar to <LinkButtonPage />.
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='tab'>
+                            <p>
+                                Styling the <CurrentComponent /> to look similar to <em>a tabbed interface</em>.
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='breadcrumb'>
+                            <p>
+                                Styling the <CurrentComponent /> to look similar to <em>breadcrumb</em>.
+                            </p>
+                            <p>
+                                Requires <code>{`<List orientation='inline'>`}</code>.
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='bullet'>
+                            <p>
+                                Styling the <LinkListItemPage /> to look similar to <em>bullet</em>.
+                            </p>
+                            <p>
+                                Requires an empty <code>children</code> of <LinkListItemPage />.
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='numbered'>
+                            <p>
+                                Add a number (a counter) on each <LinkListItemPage />.
+                            </p>
+                            <p>
+                                The <LinkListSeparatorItemPage />(s) are not counted.
+                            </p>
+                        </DetailSpecItem>
+                    </SpecList>
+                } />
             </SectionVariants>
             <SectionStates>
                 <SubSection title='Links and Buttons'>
