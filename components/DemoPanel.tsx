@@ -322,7 +322,7 @@ export const Slider = (props: SliderProps) => {
 
 
 
-export type ResetableState<S, P extends number|undefined = undefined> = readonly [
+export type ResetableState<S, P extends number|undefined = undefined> = [
     S,
     React.Dispatch<S>,
     () => void,

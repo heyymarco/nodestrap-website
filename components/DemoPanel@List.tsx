@@ -3,6 +3,7 @@ import { IndicatorInitials, IndicatorOptionProps, IndicatorOptions, useIndicator
 
 import { List, ListItem, ListStyle, OrientationName } from '@nodestrap/list'
 import { TypeScriptCode } from './Code';
+import { useRef } from 'react';
 
 
 
@@ -36,6 +37,49 @@ export const useListStates = (initials ?: Partial<ListInitials>) => {
 export type ListOptionProps = { states: ReturnType<typeof useListStates> } & IndicatorOptionProps
 export const ListOptions = (props: ListOptionProps) => {
     const { states } = props;
+    const prevListStyle1 = useRef(states.listStyle1[0]);
+    const prevListStyle2 = useRef(states.listStyle2[0]);
+
+
+
+    if (prevListStyle1.current !== states.listStyle1[0]) {
+        prevListStyle1.current = states.listStyle1[0];
+
+        switch (states.listStyle2[0]) {
+            case undefined:
+            case 'content':
+            case 'numbered':
+                break;
+            
+            default:
+                if (states.listStyle2[0] !== undefined) {
+                    states.listStyle2[0] = undefined;
+                    states.listStyle2[1](undefined);
+                    prevListStyle2.current = undefined;
+                } // if
+        } // switch
+    } // if
+    
+    if (prevListStyle2.current !== states.listStyle2[0]) {
+        prevListStyle2.current = states.listStyle2[0];
+
+        switch (states.listStyle2[0]) {
+            case 'btn':
+            case 'tab':
+            case 'breadcrumb':
+            case 'bullet':
+                if (states.listStyle1[0] !== undefined) {
+                    states.listStyle1[0] = undefined;
+                    states.listStyle1[1](undefined);
+                    prevListStyle1.current = undefined;
+                } // if
+                break;
+        } // switch
+
+        if (states.listStyle2[0] === 'breadcrumb') {
+            if (states.orientation[0] !== 'inline') states.orientation[1]('inline');
+        } // if
+    } // if
     
     
     
@@ -77,6 +121,7 @@ export const ListOptions = (props: ListOptionProps) => {
 
 export const DemoList = () => {
     const states = useListStates();
+    const hasChildren = states.listStyle2[0] !== 'bullet';
     
     const listStyle : ListStyle[] = [
         states.listStyle1[0],
@@ -101,34 +146,34 @@ export const DemoList = () => {
                     mild={states.mild[0]}
                 >
                     <ListItem>
-                        A first item (inherit theme)
+                        {hasChildren && 'A first item (inherit theme)'}
                     </ListItem>
                     <ListItem>
-                        A second item (inherit theme)
+                        {hasChildren && 'A second item (inherit theme)'}
                     </ListItem>
                     <ListItem theme='danger'>
-                        A third item (danger theme)
+                        {hasChildren && 'A third item (danger theme)'}
                     </ListItem>
                     <ListItem theme='success'>
-                        A fourth item (success theme)
+                        {hasChildren && 'A fourth item (success theme)'}
                     </ListItem>
                     <ListItem active={true}>
-                        A fifth item (active)
+                        {hasChildren && 'A fifth item (active)'}
                     </ListItem>
                     <ListItem enabled={false}>
-                        A sixth item (disabled)
+                        {hasChildren && 'A sixth item (disabled)'}
                     </ListItem>
                     <ListItem active={true} enabled={false}>
-                        A seventh item (active + disabled)
+                        {hasChildren && 'A seventh item (active + disabled)'}
                     </ListItem>
                     <ListItem actionCtrl={true} active={true}>
-                        A eighth item (actionCtrl + active)
+                        {hasChildren && 'A eighth item (actionCtrl + active)'}
                     </ListItem>
                     <ListItem actionCtrl={true} enabled={false}>
-                        A nineth item (actionCtrl + disabled)
+                        {hasChildren && 'A nineth item (actionCtrl + disabled)'}
                     </ListItem>
                     <ListItem actionCtrl={true} active={true} enabled={false}>
-                        A tenth item (actionCtrl + active + disabled)
+                        {hasChildren && 'A tenth item (actionCtrl + active + disabled)'}
                     </ListItem>
                 </List>
                 <TypeScriptCode collapsable={false}>{`
@@ -147,36 +192,16 @@ export const DemoList = () => {
     outlined={${states.outlined[0]}}
     mild={${states.mild[0]}}
 >
-    <ListItem>
-        A first item (inherit theme)
-    </ListItem>
-    <ListItem>
-        A second item (inherit theme)
-    </ListItem>
-    <ListItem theme='danger'>
-        A third item (danger theme)
-    </ListItem>
-    <ListItem theme='success'>
-        A fourth item (success theme)
-    </ListItem>
-    <ListItem active={true}>
-        A fifth item (active)
-    </ListItem>
-    <ListItem enabled={false}>
-        A sixth item (disabled)
-    </ListItem>
-    <ListItem active={true} enabled={false}>
-        A seventh item (active + disabled)
-    </ListItem>
-    <ListItem actionCtrl={true} active={true}>
-        A eighth item (actionCtrl + active)
-    </ListItem>
-    <ListItem actionCtrl={true} enabled={false}>
-        A nineth item (actionCtrl + disabled)
-    </ListItem>
-    <ListItem actionCtrl={true} active={true} enabled={false}>
-        A tenth item (actionCtrl + active + disabled)
-    </ListItem>
+    <ListItem${                                                hasChildren ? '>\n        A first item (inherit theme)\n    </ListItem>'                  : ' />'}
+    <ListItem${                                                hasChildren ? '>\n        A second item (inherit theme)\n    </ListItem>'                 : ' />'}
+    <ListItem theme='danger'${                                 hasChildren ? '>\n        A third item (danger theme)\n    </ListItem>'                   : ' />'}
+    <ListItem theme='success'${                                hasChildren ? '>\n        A fourth item (success theme)\n    </ListItem>'                 : ' />'}
+    <ListItem active={true}${                                  hasChildren ? '>\n        A fifth item (active)\n    </ListItem>'                         : ' />'}
+    <ListItem enabled={false}${                                hasChildren ? '>\n        A sixth item (disabled)\n    </ListItem>'                       : ' />'}
+    <ListItem active={true} enabled={false}${                  hasChildren ? '>\n        A seventh item (active + disabled)\n    </ListItem>'            : ' />'}
+    <ListItem actionCtrl={true} active={true}${                hasChildren ? '>\n        A eighth item (actionCtrl + active)\n    </ListItem>'           : ' />'}
+    <ListItem actionCtrl={true} enabled={false}${              hasChildren ? '>\n        A nineth item (actionCtrl + disabled)\n    </ListItem>'         : ' />'}
+    <ListItem actionCtrl={true} active={true} enabled={false}${hasChildren ? '>\n        A tenth item (actionCtrl + active + disabled)\n    </ListItem>' : ' />'}
 </List>
                 `}</TypeScriptCode>
             </div>
