@@ -9,6 +9,7 @@ import { Section, SubSection } from '../../../components/Section'
 import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates } from '../../../components/common-contents'
 import { List, ListItem } from '@nodestrap/list'
 import { TypeScriptCode } from '../../../components/Code'
+import { Warning } from '../../../components/Info'
 
 import loadable from '@loadable/component'
 const DemoListLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@List' */'../../../components/DemoPanel@List'))
@@ -121,6 +122,17 @@ const Page: NextPage = () => {
                     <p>
                         To handle the click action of the <LinkListItemPage />, assign <code>onClick</code> to the desired <strong>handler function</strong> -or- assign <code>href</code> to the desired <strong>URL</strong>.
                     </p>
+                    <Warning>
+                        <p>
+                            Assigning <code>{`actionCtrl={true}`}</code> and <code>href</code> makes the <LinkListItemPage /> rendered as <code>{`<a>`}</code>.
+                        </p>
+                        <p>
+                            Assigning <code>{`actionCtrl={true}`}</code> without assigning <code>href</code> makes the <LinkListItemPage /> rendered as <code>{`<div role='button'>`}</code>.
+                        </p>
+                        <p>
+                            Assigning <code>{`actionCtrl={true}`}</code> and <code>{`tag='button'`}</code> without assigning <code>href</code> makes the <LinkListItemPage /> rendered as <code>{`<button>`}</code>.
+                        </p>
+                    </Warning>
                     <p>
                         Here the demonstration:
                     </p>
