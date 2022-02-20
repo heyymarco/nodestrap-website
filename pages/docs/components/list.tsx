@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Section, SubSection } from '../../../components/Section'
-import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, TransparentPreview, SectionSubPropertyOrientation } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, TransparentPreview, SectionSubPropertyOrientation, LinkResponsiveProviderPage } from '../../../components/common-contents'
 import { List, ListItem } from '@nodestrap/list'
 import { Range } from '@nodestrap/range'
 import { TypeScriptCode } from '../../../components/Code'
@@ -414,6 +414,17 @@ const Page: NextPage = () => {
                             <p>
                                 The <CurrentComponent /> orientation is horizontal.
                             </p>
+                            <Warning>
+                                <p>
+                                    Make sure the page is wide enough as the <code>inline</code> orientation may take up a lot of space (width).
+                                </p>
+                                <p>
+                                    Insufficient page width can cause distorion of your site&apos;s design.
+                                </p>
+                                <p>
+                                    You may need a <LinkResponsiveProviderPage /> to create <strong>dynamic orientation</strong> based on <em>overflow detection</em>.
+                                </p>
+                            </Warning>
                         </DetailSpecItem>
                     </SpecList>
                 } moreInfo={<>

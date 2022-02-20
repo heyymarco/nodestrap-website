@@ -82,6 +82,7 @@ export const LinkUtilitiesPage             = (props: PageLinkProps) => <LinkCode
 export const LinkAccessibilitiesPage       = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/utilities/accessibilities'><code>accessibilities</code></LinkCode>
 export const LinkValidationProviderPage    = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/utilities/accessibilities'>ValidationProvider</LinkCode>
 export const LinkValidationsPage           = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/utilities/validations'><code>validations</code></LinkCode>
+export const LinkResponsiveProviderPage    = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/utilities/responsive'>ResponsiveProvider</LinkCode>
 
 export const LinkReactRouterLinkPage       = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/react-router-link'>ReactRouterLink</LinkCode>
 export const LinkOriReactRouterLinkPage    = (props: PageLinkProps) => <LinkCode text={props.children} href='https://reactrouter.com/docs/en/v6/getting-started/tutorial#add-some-links'>Link</LinkCode>
