@@ -287,6 +287,9 @@ const Page: NextPage = () => {
                             <ListItem outlined={true}>
                                 A fourth item (outlined)
                             </ListItem>
+                            <ListItem outlined={false}>
+                                A fifth item
+                            </ListItem>
                         </List>
                     </TransparentPreview>
                     <p></p>
@@ -304,6 +307,9 @@ const Page: NextPage = () => {
     <ListItem outlined={true}>
         A fourth item (outlined)
     </ListItem>
+    <ListItem outlined={false}>
+        A fifth item
+    </ListItem>
 </List>
 
 /* enabling outlined at <List> level: */
@@ -319,6 +325,9 @@ const Page: NextPage = () => {
     </ListItem>
     <ListItem>
         A fourth item (outlined)
+    </ListItem>
+    <ListItem>
+        A fifth item (outlined)
     </ListItem>
 </List>
                     `}</TypeScriptCode>
@@ -347,6 +356,9 @@ const Page: NextPage = () => {
                         <ListItem mild={true}>
                             A fourth item (mild)
                         </ListItem>
+                        <ListItem mild={false}>
+                            A fifth item
+                        </ListItem>
                     </List>
                     <p></p>
                     <TypeScriptCode>{`
@@ -362,6 +374,28 @@ const Page: NextPage = () => {
     </ListItem>
     <ListItem mild={true}>
         A fourth item (mild)
+    </ListItem>
+    <ListItem mild={false}>
+        A fifth item
+    </ListItem>
+</List>
+
+/* disabling mild at <List> level: */
+<List mild={false} theme='primary'>
+    <ListItem>
+        A first item
+    </ListItem>
+    <ListItem>
+        A second item
+    </ListItem>
+    <ListItem>
+        A third item
+    </ListItem>
+    <ListItem>
+        A fourth item
+    </ListItem>
+    <ListItem>
+        A fifth item
     </ListItem>
 </List>
                     `}</TypeScriptCode>
