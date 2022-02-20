@@ -210,7 +210,7 @@ const Page: NextPage = () => {
                         To make <LinkListItemPage /> appear 3D, set <code>{`<ListItem gradient={true}>`}</code>.
                     </p>
                     <p>
-                        You can also set the <code>gradient</code> at <code>{`<List gradient={true}>`}</code>, so the whole <CurrentComponent /> is 3D.<br />
+                        You can also set the <code>gradient</code> at <code>{`<List gradient={true}>`}</code>, so the whole <CurrentComponent /> is 3D.
                     </p>
                     <p>
                         Here the demonstration:
@@ -268,7 +268,7 @@ const Page: NextPage = () => {
                         To make <LinkListItemPage /> appear transparent, set <code>{`<ListItem outlined={true}>`}</code>.
                     </p>
                     <p>
-                        You can also set the <code>outlined</code> at <code>{`<List outlined={true}>`}</code>, so the whole <CurrentComponent /> is 3D.<br />
+                        You can also set the <code>outlined</code> at <code>{`<List outlined={true}>`}</code>, so the whole <CurrentComponent /> is transparent.
                     </p>
                     <p>
                         Here the demonstration:
@@ -319,6 +319,49 @@ const Page: NextPage = () => {
     </ListItem>
     <ListItem>
         A fourth item (outlined)
+    </ListItem>
+</List>
+                    `}</TypeScriptCode>
+                </SubSection>
+                <SubSection title='Mild'>
+                    <p>
+                        To make <LinkListItemPage /> look smoother (text friendly), set <code>{`<ListItem mild={true}>`}</code>.
+                    </p>
+                    <p>
+                        You can also set the <code>mild</code> at <code>{`<List mild={true}>`}</code>, so the whole <CurrentComponent /> looks smoother.<br />
+                        Note: the <code>{`mild={true}`}</code> is <strong>already set by default</strong> in <CurrentComponent />, so to disable it assign <code>{`<List mild={false}>`}</code>
+                    </p>
+                    <p>
+                        Here the demonstration:
+                    </p>
+                    <List mild={false} theme='primary'>
+                        <ListItem>
+                            A first item
+                        </ListItem>
+                        <ListItem>
+                            A second item
+                        </ListItem>
+                        <ListItem mild={true}>
+                            A third item (mild)
+                        </ListItem>
+                        <ListItem mild={true}>
+                            A fourth item (mild)
+                        </ListItem>
+                    </List>
+                    <p></p>
+                    <TypeScriptCode>{`
+<List mild={false} theme='primary'>
+    <ListItem>
+        A first item
+    </ListItem>
+    <ListItem>
+        A second item
+    </ListItem>
+    <ListItem mild={true}>
+        A third item (mild)
+    </ListItem>
+    <ListItem mild={true}>
+        A fourth item (mild)
     </ListItem>
 </List>
                     `}</TypeScriptCode>
