@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Section, SubSection } from '../../../components/Section'
-import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, TransparentPreview } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, TransparentPreview, SectionSubPropertyOrientation } from '../../../components/common-contents'
 import { List, ListItem } from '@nodestrap/list'
 import { Range } from '@nodestrap/range'
 import { TypeScriptCode } from '../../../components/Code'
@@ -400,6 +400,56 @@ const Page: NextPage = () => {
 </List>
                     `}</TypeScriptCode>
                 </SubSection>
+                <SectionSubPropertyOrientation specList={
+                    <SpecList>
+                        <DetailSpecItem code='block'>
+                            <p>
+                                The <CurrentComponent /> orientation is vertical.
+                            </p>
+                            <p>
+                                This is the <strong>default</strong> value if the <code>orientation</code> value is not specified.
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='inline'>
+                            <p>
+                                The <CurrentComponent /> orientation is horizontal.
+                            </p>
+                        </DetailSpecItem>
+                    </SpecList>
+                } moreInfo={<>
+                    <p>
+                        Here the demonstration:
+                    </p>
+                    <List orientation='inline' theme='primary'>
+                        <ListItem>
+                            A first item
+                        </ListItem>
+                        <ListItem>
+                            A second item
+                        </ListItem>
+                        <ListItem>
+                            A third item
+                        </ListItem>
+                    </List>
+                    <p></p>
+                    <TypeScriptCode>{`
+<List orientation='inline' theme='primary'>
+    <ListItem>
+        A first item
+    </ListItem>
+    <ListItem>
+        A second item
+    </ListItem>
+    <ListItem>
+        A third item
+    </ListItem>
+</List>
+                    `}</TypeScriptCode>
+                </>}>
+                    <p>
+                        To change the orientation of <CurrentComponent /> to horizontal, set <code>{`<List orientation='inline'>`}</code>.
+                    </p>
+                </SectionSubPropertyOrientation>
             </SectionVariants>
             <SectionStates>
                 <SubSection title='Links and Buttons'>
@@ -720,11 +770,6 @@ const Page: NextPage = () => {
                     `}</TypeScriptCode>
                 </SubSection>
             </SectionStates>
-            <SectionProperty property='actionCtrl'>
-                <p>
-                    Defines the default value of <code>actionCtrl</code> property of <LinkListItemPage />.
-                </p>
-            </SectionProperty>
             <SectionCustomizing specList={
                 <SpecList>
                     <DetailSpecItem title='Styles'>
