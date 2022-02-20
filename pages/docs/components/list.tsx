@@ -569,6 +569,59 @@ const Page: NextPage = () => {
     </ListItem>
 </List>
                     `}</TypeScriptCode>
+                    <SubSection titleTag='h4' title={<>Active Items with Outlined <CurrentComponent /></>}>
+                        <p>
+                            Assigning <code>{`<ListItem active={true}>`}</code> will cancel out the <code>outlined</code> variant.
+                        </p>
+                        <p>
+                            Here the demonstration:
+                        </p>
+                        <TransparentPreview>
+                            <List outlined={true} theme='primary'>
+                                <ListItem>
+                                    A first item (not clickable)
+                                </ListItem>
+                                <ListItem active={true}>
+                                    A second item (not clickable + active)
+                                </ListItem>
+                                <ListItem active={true} actionCtrl={true} onClick={() => alert('hello world')}>
+                                    A third item (clickable + active)
+                                </ListItem>
+                                <ListItem active={true} actionCtrl={true} href='https://www.google.com'>
+                                    A fourth item (clickable + active)
+                                </ListItem>
+                                <ListItem active={true} enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
+                                    A fifth item item (clickable + active + disabled)
+                                </ListItem>
+                                <ListItem active={true} enabled={false} theme='danger' actionCtrl={true} href='https://www.google.com'>
+                                    A seventh item item (clickable + active + disabled)
+                                </ListItem>
+                            </List>
+                        </TransparentPreview>
+                        <p></p>
+                        <TypeScriptCode>{`
+<List outlined={true} theme='primary'>
+    <ListItem>
+        A first item (not clickable)
+    </ListItem>
+    <ListItem active={true}>
+        A second item (not clickable + active)
+    </ListItem>
+    <ListItem active={true} actionCtrl={true} onClick={() => alert('hello world')}>
+        A third item (clickable + active)
+    </ListItem>
+    <ListItem active={true} actionCtrl={true} href='https://www.google.com'>
+        A fourth item (clickable + active)
+    </ListItem>
+    <ListItem active={true} enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
+        A fifth item item (clickable + active + disabled)
+    </ListItem>
+    <ListItem active={true} enabled={false} theme='danger' actionCtrl={true} href='https://www.google.com'>
+        A seventh item item (clickable + active + disabled)
+    </ListItem>
+</List>
+                        `}</TypeScriptCode>
+                    </SubSection>
                 </SubSection>
                 <SubSection title='Disabled Items'>
                     <p>
