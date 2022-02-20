@@ -6,8 +6,9 @@ import Head from 'next/head'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Section, SubSection } from '../../../components/Section'
-import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, TransparentPreview } from '../../../components/common-contents'
 import { List, ListItem } from '@nodestrap/list'
+import { Range } from '@nodestrap/range'
 import { TypeScriptCode } from '../../../components/Code'
 import { Warning } from '../../../components/Info'
 
@@ -106,6 +107,218 @@ const Page: NextPage = () => {
     </ListItem>
     <ListItem theme='dark'>
         A dark theme
+    </ListItem>
+</List>
+                    `}</TypeScriptCode>
+                </SubSection>
+                <SubSection title='Sizes'>
+                    <p>
+                        By default, the <code>size</code> of <LinkListItemPage /> is <strong>inherit</strong> from <CurrentComponent />, but
+                        you can set the individual <code>size</code> of <strong>each</strong> <LinkListItemPage />.
+                    </p>
+                    <p>
+                        Here the demonstration:
+                    </p>
+                    <List theme='primary'>
+                        <ListItem>
+                            An inherit size
+                        </ListItem>
+                        <ListItem>
+                            An inherit size
+                        </ListItem>
+                        <ListItem size='sm'>
+                            A smaller size
+                        </ListItem>
+                        <ListItem size='lg'>
+                            A larger size
+                        </ListItem>
+                    </List>
+                    <p></p>
+                    <TypeScriptCode>{`
+<List theme='primary'>
+    <ListItem>
+        An inherit size
+    </ListItem>
+    <ListItem>
+        An inherit size
+    </ListItem>
+    <ListItem size='sm'>
+        A smaller size
+    </ListItem>
+    <ListItem size='lg'>
+        A larger size
+    </ListItem>
+</List>
+                    `}</TypeScriptCode>
+                </SubSection>
+                <SubSection title='Nude'>
+                    <p>
+                        Assigning <code>{`<ListItem nude={true}>`}</code> makes the <LinkListItemPage /> lose its <code>background</code> and <code>padding</code>.
+                    </p>
+                    <p>
+                        This is useful if you want to fill the <LinkListItemPage /> with a custom component.
+                    </p>
+                    <p>
+                        Here the demonstration:
+                    </p>
+                    <TransparentPreview>
+                        <List theme='primary'>
+                            <ListItem>
+                                A first item
+                            </ListItem>
+                            <ListItem>
+                                A second item
+                            </ListItem>
+                            <ListItem nude={true}>
+                                A third item (nude)
+                            </ListItem>
+                            <ListItem nude={true}>
+                                <div style={{ background: 'pink', padding: '1em', display: 'flex', justifyContent: 'center' }}>
+                                    hello world
+                                </div>
+                            </ListItem>
+                            <ListItem nude={true}>
+                                A fifth item (nude)
+                            </ListItem>
+                        </List>
+                    </TransparentPreview>
+                    <p></p>
+                    <TypeScriptCode>{`
+<List theme='primary'>
+    <ListItem>
+        A first item
+    </ListItem>
+    <ListItem>
+        A second item
+    </ListItem>
+    <ListItem nude={true}>
+        A third item (nude)
+    </ListItem>
+    <ListItem nude={true}>
+        <div style={{ background: 'pink', padding: '1em', display: 'flex', justifyContent: 'center' }}>
+            hello world
+        </div>
+    </ListItem>
+    <ListItem nude={true}>
+        A fifth item (nude)
+    </ListItem>
+</List>
+                    `}</TypeScriptCode>
+                </SubSection>
+                <SubSection title='Gradient'>
+                    <p>
+                        To make <LinkListItemPage /> appear 3D, set <code>{`<ListItem gradient={true}>`}</code>.
+                    </p>
+                    <p>
+                        You can also set the <code>gradient</code> at <code>{`<List gradient={true}>`}</code>, so the whole <CurrentComponent /> is 3D.<br />
+                    </p>
+                    <p>
+                        Here the demonstration:
+                    </p>
+                    <List theme='primary'>
+                        <ListItem>
+                            A first item
+                        </ListItem>
+                        <ListItem>
+                            A second item
+                        </ListItem>
+                        <ListItem gradient={true}>
+                            A third item (gradient)
+                        </ListItem>
+                        <ListItem gradient={true}>
+                            A fourth item (gradient)
+                        </ListItem>
+                    </List>
+                    <p></p>
+                    <TypeScriptCode>{`
+<List theme='primary'>
+    <ListItem>
+        A first item
+    </ListItem>
+    <ListItem>
+        A second item
+    </ListItem>
+    <ListItem gradient={true}>
+        A third item (gradient)
+    </ListItem>
+    <ListItem gradient={true}>
+        A fourth item (gradient)
+    </ListItem>
+</List>
+
+/* enabling gradient at <List> level: */
+<List gradient={true} theme='primary'>
+    <ListItem>
+        A first item (gradient)
+    </ListItem>
+    <ListItem>
+        A second item (gradient)
+    </ListItem>
+    <ListItem>
+        A third item (gradient)
+    </ListItem>
+    <ListItem>
+        A fourth item (gradient)
+    </ListItem>
+</List>
+                    `}</TypeScriptCode>
+                </SubSection>
+                <SubSection title='Outlined'>
+                    <p>
+                        To make <LinkListItemPage /> appear transparent, set <code>{`<ListItem outlined={true}>`}</code>.
+                    </p>
+                    <p>
+                        You can also set the <code>outlined</code> at <code>{`<List outlined={true}>`}</code>, so the whole <CurrentComponent /> is 3D.<br />
+                    </p>
+                    <p>
+                        Here the demonstration:
+                    </p>
+                    <TransparentPreview>
+                        <List theme='primary'>
+                            <ListItem>
+                                A first item
+                            </ListItem>
+                            <ListItem>
+                                A second item
+                            </ListItem>
+                            <ListItem outlined={true}>
+                                A third item (outlined)
+                            </ListItem>
+                            <ListItem outlined={true}>
+                                A fourth item (outlined)
+                            </ListItem>
+                        </List>
+                    </TransparentPreview>
+                    <p></p>
+                    <TypeScriptCode>{`
+<List theme='primary'>
+    <ListItem>
+        A first item
+    </ListItem>
+    <ListItem>
+        A second item
+    </ListItem>
+    <ListItem outlined={true}>
+        A third item (outlined)
+    </ListItem>
+    <ListItem outlined={true}>
+        A fourth item (outlined)
+    </ListItem>
+</List>
+
+/* enabling outlined at <List> level: */
+<List outlined={true} theme='primary'>
+    <ListItem>
+        A first item (outlined)
+    </ListItem>
+    <ListItem>
+        A second item (outlined)
+    </ListItem>
+    <ListItem>
+        A third item (outlined)
+    </ListItem>
+    <ListItem>
+        A fourth item (outlined)
     </ListItem>
 </List>
                     `}</TypeScriptCode>
