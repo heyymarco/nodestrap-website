@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Section, SubSection } from '../../../components/Section'
-import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkListItemPage } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates } from '../../../components/common-contents'
 import { List, ListItem } from '@nodestrap/list'
 import { TypeScriptCode } from '../../../components/Code'
 
@@ -31,7 +31,8 @@ const Page: NextPage = () => {
             <SectionDemo>
                 <DemoListLazy fallback={<BusyBar />} />
             </SectionDemo>
-            <Section title={<>Manipulating the <LinkListItemPage /></>}>
+            <SectionInheritedProps />
+            <SectionVariants>
                 <SubSection title='Themes'>
                     <p>
                         By default, the <code>theme</code> of <LinkListItemPage /> is <strong>inherit</strong> from <CurrentComponent />, but
@@ -108,9 +109,11 @@ const Page: NextPage = () => {
 </List>
                     `}</TypeScriptCode>
                 </SubSection>
+            </SectionVariants>
+            <SectionStates>
                 <SubSection title='Links and Buttons'>
                     <p>
-                        To make each <LinkListItemPage /> clickable, set <code>{`<ListItem actionCtrl={true}>`}</code>.
+                        To make <LinkListItemPage /> clickable, set <code>{`<ListItem actionCtrl={true}>`}</code>.
                     </p>
                     <p>
                         You can also set the <code>actionCtrl</code> at <code>{`<List actionCtrl={true}>`}</code>, so the default value of <code>actionCtrl</code> in the <LinkListItemPage /> will be the same as the parent.
@@ -142,27 +145,6 @@ const Page: NextPage = () => {
                         </ListItem>
                     </List>
                     <p></p>
-                    <List theme='primary' actionCtrl={true}>
-                        <ListItem actionCtrl={false}>
-                            A first item (not clickable)
-                        </ListItem>
-                        <ListItem actionCtrl={false}>
-                            A second item (not clickable)
-                        </ListItem>
-                        <ListItem  onClick={() => alert('hello world')}>
-                            A third item (clickable)
-                        </ListItem>
-                        <ListItem href='https://www.google.com'>
-                            A fourth item (clickable)
-                        </ListItem>
-                        <ListItem active={true} onClick={() => alert('hello world')}>
-                            A fifth item item (clickable)
-                        </ListItem>
-                        <ListItem active={true} theme='danger' href='https://www.google.com'>
-                            A seventh item item (clickable)
-                        </ListItem>
-                    </List>
-                    <p></p>
                     <TypeScriptCode>{`
 <List theme='primary'>
     <ListItem>
@@ -185,6 +167,7 @@ const Page: NextPage = () => {
     </ListItem>
 </List>
 
+/* alternate code but with the similar result: */
 <List theme='primary' actionCtrl={true}>
     <ListItem actionCtrl={false}>
         A first item (not clickable)
@@ -207,10 +190,181 @@ const Page: NextPage = () => {
 </List>
                     `}</TypeScriptCode>
                 </SubSection>
-                <SubSection title='Disabled Items'>
+                <SubSection title='Active Items'>
+                    <p>
+                        To make <LinkListItemPage /> (appear) active, set <code>{`<ListItem active={true}>`}</code>.
+                    </p>
+                    <p>
+                        You can also set the <code>active</code> at <code>{`<List active={true}>`}</code>, so the whole <CurrentComponent /> is active.<br />
+                        To make an exception in a/some <LinkListItemPage />(s), set <code>{`<ListItem active={false} inheritActive={false}>`}</code>.<br />
+                        Note: the <code>{`inheritActive={false}`}</code> prevents the active state on <CurrentComponent /> affecting the <LinkListItemPage />.
+                    </p>
+                    <p>
+                        Here the demonstration:
+                    </p>
+                    <List theme='primary'>
+                        <ListItem>
+                            A first item (not clickable)
+                        </ListItem>
+                        <ListItem active={true}>
+                            A second item (not clickable + active)
+                        </ListItem>
+                        <ListItem active={true} actionCtrl={true} onClick={() => alert('hello world')}>
+                            A third item (clickable + active)
+                        </ListItem>
+                        <ListItem active={true} actionCtrl={true} href='https://www.google.com'>
+                            A fourth item (clickable + active)
+                        </ListItem>
+                        <ListItem active={true} enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
+                            A fifth item item (clickable + active + disabled)
+                        </ListItem>
+                        <ListItem active={true} enabled={false} theme='danger' actionCtrl={true} href='https://www.google.com'>
+                            A seventh item item (clickable + active + disabled)
+                        </ListItem>
+                    </List>
+                    <p></p>
+                    <TypeScriptCode>{`
+<List theme='primary'>
+    <ListItem>
+        A first item (not clickable)
+    </ListItem>
+    <ListItem active={true}>
+        A second item (not clickable + active)
+    </ListItem>
+    <ListItem active={true} actionCtrl={true} onClick={() => alert('hello world')}>
+        A third item (clickable + active)
+    </ListItem>
+    <ListItem active={true} actionCtrl={true} href='https://www.google.com'>
+        A fourth item (clickable + active)
+    </ListItem>
+    <ListItem active={true} enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
+        A fifth item item (clickable + active + disabled)
+    </ListItem>
+    <ListItem active={true} enabled={false} theme='danger' actionCtrl={true} href='https://www.google.com'>
+        A seventh item item (clickable + active + disabled)
+    </ListItem>
+</List>
+
+/* alternate code but with the similar result: */
+<List active={true} theme='primary'>
+    <ListItem active={false} inheritActive={false}>
+        A first item (not clickable)
+    </ListItem>
+    <ListItem>
+        A second item (not clickable + active)
+    </ListItem>
+    <ListItem actionCtrl={true} onClick={() => alert('hello world')}>
+        A third item (clickable + active)
+    </ListItem>
+    <ListItem actionCtrl={true} href='https://www.google.com'>
+        A fourth item (clickable + active)
+    </ListItem>
+    <ListItem enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
+        A fifth item item (clickable + active + disabled)
+    </ListItem>
+    <ListItem enabled={false} theme='danger' actionCtrl={true} href='https://www.google.com'>
+        A seventh item item (clickable + active + disabled)
+    </ListItem>
+</List>
+                    `}</TypeScriptCode>
                 </SubSection>
-            </Section>
-            <SectionInheritedProps />
+                <SubSection title='Disabled Items'>
+                    <p>
+                        To make <LinkListItemPage /> (appear) disabled, set <code>{`<ListItem enabled={false}>`}</code>.
+                    </p>
+                    <p>
+                        You can also set the <code>enabled</code> at <code>{`<List enabled={false}>`}</code>, so the whole <CurrentComponent /> is disabled.<br />
+                        To make an exception in a/some <LinkListItemPage />(s), set <code>{`<ListItem enabled={true} inheritEnabled={false}>`}</code>.<br />
+                        Note: the <code>{`inheritEnabled={false}`}</code> prevents the disabled state on <CurrentComponent /> affecting the <LinkListItemPage />.
+                    </p>
+                    <p>
+                        Here the demonstration:
+                    </p>
+                    <List theme='primary'>
+                        <ListItem>
+                            A first item (not clickable)
+                        </ListItem>
+                        <ListItem enabled={false}>
+                            A second item (not clickable + disabled)
+                        </ListItem>
+                        <ListItem enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
+                            A third item (clickable + disabled)
+                        </ListItem>
+                        <ListItem enabled={false} actionCtrl={true} href='https://www.google.com'>
+                            A fourth item (clickable + disabled)
+                            <p>
+                                <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
+                            </p>
+                        </ListItem>
+                        <ListItem enabled={false} active={true} actionCtrl={true} onClick={() => alert('hello world')}>
+                            A fifth item item (clickable + disabled + active)
+                        </ListItem>
+                        <ListItem enabled={false} active={true} theme='danger' actionCtrl={true} href='https://www.google.com'>
+                            A seventh item item (clickable + disabled + active)
+                            <p>
+                                <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
+                            </p>
+                        </ListItem>
+                    </List>
+                    <p></p>
+                    <TypeScriptCode>{`
+<List theme='primary'>
+    <ListItem>
+        A first item (not clickable)
+    </ListItem>
+    <ListItem enabled={false}>
+        A second item (not clickable + disabled)
+    </ListItem>
+    <ListItem enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
+        A third item (clickable + disabled)
+    </ListItem>
+    <ListItem enabled={false} actionCtrl={true} href='https://www.google.com'>
+        A fourth item (clickable + disabled)
+        <p>
+            <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
+        </p>
+    </ListItem>
+    <ListItem enabled={false} active={true} actionCtrl={true} onClick={() => alert('hello world')}>
+        A fifth item item (clickable + disabled + active)
+    </ListItem>
+    <ListItem enabled={false} active={true} theme='danger' actionCtrl={true} href='https://www.google.com'>
+        A seventh item item (clickable + disabled + active)
+        <p>
+            <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
+        </p>
+    </ListItem>
+</List>
+
+/* alternate code but with the similar result: */
+<List enabled={false} theme='primary'>
+    <ListItem enabled={true} inheritEnabled={false}>
+        A first item (not clickable)
+    </ListItem>
+    <ListItem>
+        A second item (not clickable + disabled)
+    </ListItem>
+    <ListItem actionCtrl={true} onClick={() => alert('hello world')}>
+        A third item (clickable + disabled)
+    </ListItem>
+    <ListItem actionCtrl={true} href='https://www.google.com'>
+        A fourth item (clickable + disabled)
+        <p>
+            <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
+        </p>
+    </ListItem>
+    <ListItem active={true} actionCtrl={true} onClick={() => alert('hello world')}>
+        A fifth item item (clickable + disabled + active)
+    </ListItem>
+    <ListItem active={true} theme='danger' actionCtrl={true} href='https://www.google.com'>
+        A seventh item item (clickable + disabled + active)
+        <p>
+            <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
+        </p>
+    </ListItem>
+</List>
+                    `}</TypeScriptCode>
+                </SubSection>
+            </SectionStates>
             <SectionProperty property='actionCtrl'>
                 <p>
                     Defines the default value of <code>actionCtrl</code> property of <LinkListItemPage />.
