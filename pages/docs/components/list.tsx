@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { SubSection } from '../../../components/Section'
-import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, TransparentPreview, SectionSubPropertyOrientation, LinkResponsiveProviderPage, SectionSubPropertyStyle, LinkContentPage, LinkButtonPage, LinkListSeparatorItemPage } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, TransparentPreview, LinkResponsiveProviderPage, SectionSubPropertyStyle, LinkContentPage, LinkButtonPage, LinkListSeparatorItemPage } from '../../../components/common-contents'
 import { List, ListItem, OrientationName } from '@nodestrap/list'
 import { TypeScriptCode } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
@@ -400,65 +400,120 @@ const Page: NextPage = () => {
 </List>
                     `}</TypeScriptCode>
                 </SubSection>
-                <SectionSubPropertyOrientation property={<>Orientation</>} specList={
-                    <SpecList>
-                        <DetailSpecItem code='block'>
-                            <p>
-                                The <CurrentComponent /> orientation is vertical.
-                            </p>
-                            <p>
-                                This is the <strong>default</strong> value if the <code>orientation</code> value is not specified.
-                            </p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='inline'>
-                            <p>
-                                The <CurrentComponent /> orientation is horizontal.
-                            </p>
-                            <Warning>
-                                <p>
-                                    Make sure the page is wide enough as the <code>inline</code> orientation may take up a lot of space (width).
-                                </p>
-                                <p>
-                                    Insufficient page width can cause distorion of your site&apos;s design.
-                                </p>
-                                <p>
-                                    You may need a <LinkResponsiveProviderPage /> to create <strong>dynamic orientation</strong> based on <em>overflow detection</em>.
-                                </p>
-                            </Warning>
-                        </DetailSpecItem>
-                    </SpecList>
-                } moreInfo={<>
-                    <p>
-                        Here the demonstration:
-                    </p>
-                    <List orientation='inline' theme='primary'>
-                        <ListItem>
-                            A first item
-                        </ListItem>
-                        <ListItem>
-                            A second item
-                        </ListItem>
-                        <ListItem>
-                            A third item
-                        </ListItem>
-                    </List>
-                    <p></p>
-                    <TypeScriptCode>{`
-<List orientation='inline' theme='primary'>
+                <SubSection title='Orientation'>
+                    <SubSection titleTag='h4' title={<><code>block</code> Orientation</>}>
+                        <p>
+                            To make <LinkListItemPage /> stacked in <strong>vertical</strong>, set <code>{`<List orientation='block'>`}</code>.
+                        </p>
+                        <p>
+                            This is the <strong>default</strong> value if the <code>orientation</code> value is not specified.
+                        </p>
+                        <p>
+                            Here the demonstration:
+                        </p>
+                        <List orientation='block' theme='primary'>
+                            <ListItem>
+                                A_first_item
+                            </ListItem>
+                            <ListItem>
+                                A_second_item
+                            </ListItem>
+                            <ListItem>
+                                A_third_item
+                            </ListItem>
+                            <ListItem>
+                                A_fourth_item
+                            </ListItem>
+                            <ListItem>
+                                A_fifth_item
+                            </ListItem>
+                        </List>
+                        <p></p>
+                        <TypeScriptCode>{`
+<List orientation='block' theme='primary'>
     <ListItem>
-        A first item
+        A_first_item
     </ListItem>
     <ListItem>
-        A second item
+        A_second_item
     </ListItem>
     <ListItem>
-        A third item
+        A_third_item
+    </ListItem>
+    <ListItem>
+        A_fourth_item
+    </ListItem>
+    <ListItem>
+        A_fifth_item
     </ListItem>
 </List>
-                    `}</TypeScriptCode>
+                        `}</TypeScriptCode>
+                    </SubSection>
+                    <SubSection titleTag='h4' title={<><code>inline</code> Orientation</>}>
+                        <p>
+                            To make <LinkListItemPage /> stacked in <strong>horizontal</strong>, set <code>{`<List orientation='inline'>`}</code>.
+                        </p>
+                        <Warning>
+                            <p>
+                                Make sure the page is <strong>wide enough</strong> as the <code>inline</code> orientation may take up a lot of space (width).
+                            </p>
+                            <p>
+                                Insufficient page width can cause distorion of your site&apos;s design.
+                            </p>
+                            <p>
+                                You may need a <LinkResponsiveProviderPage /> to create <strong>dynamic orientation</strong> based on <em>overflow detection</em>.
+                            </p>
+                        </Warning>
+                        <p>
+                            Here the demonstration:
+                        </p>
+                        <div style={{ overflowX: 'auto' }}>
+                            <List orientation='inline' theme='primary'>
+                                <ListItem>
+                                    A_first_item
+                                </ListItem>
+                                <ListItem>
+                                    A_second_item
+                                </ListItem>
+                                <ListItem>
+                                    A_third_item
+                                </ListItem>
+                                <ListItem>
+                                    A_fourth_item
+                                </ListItem>
+                                <ListItem>
+                                    A_fifth_item
+                                </ListItem>
+                            </List>
+                        </div>
+                        <p></p>
+                        <TypeScriptCode>{`
+<List orientation='inline' theme='primary'>
+    <ListItem>
+        A_first_item
+    </ListItem>
+    <ListItem>
+        A_second_item
+    </ListItem>
+    <ListItem>
+        A_third_item
+    </ListItem>
+    <ListItem>
+        A_fourth_item
+    </ListItem>
+    <ListItem>
+        A_fifth_item
+    </ListItem>
+</List>
+                        `}</TypeScriptCode>
+                    </SubSection>
                     <SubSection titleTag='h4' title='Dynamic Orientation'>
                         <p>
-                            With a help of <LinkResponsiveProviderPage />, you can create a <em>dynamic orientation</em>.
+                            To make <LinkListItemPage /> stacked in <strong>horizontal</strong> (if the page is wide enough) -or- stacked in <strong>vertical</strong> (if the page is too narrow),
+                            do this trick!
+                        </p>
+                        <p>
+                            With a help of <LinkResponsiveProviderPage />, you can create a <strong>dynamic orientation</strong>.
                         </p>
                         <p>
                             Here the demonstration:
@@ -538,12 +593,8 @@ const Page: NextPage = () => {
     </div>
 )}</ResponsiveProvider>
                         `}</TypeScriptCode>
-                        </SubSection>
-                </>}>
-                    <p>
-                        To change the orientation of <CurrentComponent /> to horizontal, set <code>{`<List orientation='inline'>`}</code>.
-                    </p>
-                </SectionSubPropertyOrientation>
+                    </SubSection>
+                </SubSection>
                 <SectionSubPropertyStyle property={<>Styles</>} specList={
                     <SpecList>
                         <DetailSpecItem code='undefined'>
