@@ -5,11 +5,11 @@ import Head from 'next/head'
 
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
-import { Section, SubSection } from '../../../components/Section'
-import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, TransparentPreview, SectionSubPropertyOrientation, LinkResponsiveProviderPage } from '../../../components/common-contents'
-import { List, ListItem } from '@nodestrap/list'
-import { Range } from '@nodestrap/range'
+import { SubSection } from '../../../components/Section'
+import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, TransparentPreview, SectionSubPropertyOrientation, LinkResponsiveProviderPage } from '../../../components/common-contents'
+import { List, ListItem, OrientationName } from '@nodestrap/list'
 import { TypeScriptCode } from '../../../components/Code'
+import ResponsiveProvider from '@nodestrap/responsive'
 import { Warning } from '../../../components/Info'
 
 import loadable from '@loadable/component'
@@ -456,6 +456,89 @@ const Page: NextPage = () => {
     </ListItem>
 </List>
                     `}</TypeScriptCode>
+                    <SubSection titleTag='h4' title='Dynamic Orientation'>
+                        <p>
+                            With a help of <LinkResponsiveProviderPage />, you can create a <em>dynamic orientation</em>.
+                        </p>
+                        <p>
+                            Here the demonstration:
+                        </p>
+                        <Warning>
+                            <p>
+                                Try to <strong>resize</strong> the <span style={{ background :'pink', border : 'solid 1px darkred', padding: '0.15em' }}>red container</span> below:
+                            </p>
+                        </Warning>
+                        <p></p>
+                        <ResponsiveProvider<OrientationName> fallbacks={[
+                            'inline', // the first try, if overflow is detected, then try next
+                            'block',  // the last try
+                        ]}>{(currentFallback) => (
+                            // a <div> to watch for overflows
+                            <div style={{
+                                display    : 'block',
+                                overflow   : 'hidden',
+                                background : 'pink',
+                                border     : 'solid 1px darkred',
+                                resize     : 'horizontal',
+                                padding    : '1rem',
+                                maxWidth   : '100%',
+                            }}>
+                                <List orientation={currentFallback} theme='primary'>
+                                    <ListItem>
+                                        A_first_item
+                                    </ListItem>
+                                    <ListItem>
+                                        A_second_item
+                                    </ListItem>
+                                    <ListItem>
+                                        A_third_item
+                                    </ListItem>
+                                    <ListItem>
+                                        A_fourth_item
+                                    </ListItem>
+                                    <ListItem>
+                                        A_fifth_item
+                                    </ListItem>
+                                </List>
+                            </div>
+                        )}</ResponsiveProvider>
+                        <p></p>
+                        <TypeScriptCode>{`
+<ResponsiveProvider fallbacks={[
+    'inline', // the first try, if overflow is detected, then try next
+    'block',  // the last try
+]}>{(currentFallback) => (
+    // a <div> to watch for overflows
+    <div style={{
+        display    : 'block',
+        overflow   : 'hidden',
+        background : 'pink',
+        border     : 'solid 1px darkred',
+        resize     : 'horizontal',
+        padding    : '1rem',
+        maxWidth   : '100%',
+    }}>
+        <List orientation={currentFallback} theme='primary'>
+            <ListItem>
+                A_first_item
+            </ListItem>
+            <ListItem>
+                A_second_item
+            </ListItem>
+            <ListItem>
+                A_third_item
+            </ListItem>
+            <ListItem>
+                A_fourth_item
+            </ListItem>
+            <ListItem>
+                A_fifth_item
+            </ListItem>
+        </List>
+    </div>
+)}</ResponsiveProvider>
+                        `}</TypeScriptCode>
+                        </SubSection>
                 </>}>
                     <p>
                         To change the orientation of <CurrentComponent /> to horizontal, set <code>{`<List orientation='inline'>`}</code>.
