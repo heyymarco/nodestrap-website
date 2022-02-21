@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { SubSection } from '../../../components/Section'
-import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, TransparentPreview, LinkResponsiveProviderPage, LinkContentPage, LinkButtonPage, LinkListSeparatorItemPage } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, TransparentPreview, LinkResponsiveProviderPage, LinkContentPage, LinkButtonPage, LinkListSeparatorItemPage, LinkUsesIndicatorVariantsPage } from '../../../components/common-contents'
 import { List, ListItem, ListSeparatorItem, OrientationName } from '@nodestrap/list'
 import { TypeScriptCode } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
@@ -1617,10 +1617,21 @@ export default function ProductList(props) {
                                 Returns a <code>Rule</code> object represents a complete <CurrentComponent /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
                             </p>
                         </DetailSpecItem>
+                        <DetailSpecItem code='usesListBasicVariants()'>
+                            <p>
+                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentComponent /> but <strong>excluding variants</strong> from <LinkUsesIndicatorVariantsPage />.
+                            </p>
+                            <p>
+                                Equivalent to <code>usesListVariants()</code> <strong>minus</strong> <LinkUsesIndicatorVariantsPage />.
+                            </p>
+                        </DetailSpecItem>
                         <DetailSpecItem code='usesListVariants()'>
                             <p>
                                 Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentComponent /> such as:<br />
-                                <code>SizeVariant</code> and <strong>all variants</strong> inherited from <CurrentBaseComponents />.
+                                <code>SizeVariant</code>, <code>ListVariant</code>, and <strong>all variants</strong> inherited from <CurrentBaseComponents />.
+                            </p>
+                            <p>
+                                Equivalent to <code>usesListBasicVariants()</code> <strong>plus</strong> <LinkUsesIndicatorVariantsPage />.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesListStates()'>

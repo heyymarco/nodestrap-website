@@ -93,8 +93,8 @@ export const LinkElementPage               = (props: PageLinkProps) => <LinkCode
 export const LinkBasicPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/basic'>Basic</LinkCode>
 export const LinkUsesBasicLayoutPage       = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/basic'><code>usesBasicLayout()</code></LinkCode>
 export const LinkUsesBasicVariantsPage     = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/basic'><code>usesBasicVariants()</code></LinkCode>
-
 export const LinkIndicatorPage             = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/indicator'>Indicator</LinkCode>
+export const LinkUsesIndicatorVariantsPage = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/indicator'><code>usesIndicatorVariants()</code></LinkCode>
 export const LinkControlPage               = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/control'>Control</LinkCode>
 export const LinkActionControlPage         = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/action-control'>ActionControl</LinkCode>
 export const LinkEditableControlPage       = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/editable-control'>EditableControl</LinkCode>
