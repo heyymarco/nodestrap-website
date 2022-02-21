@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import type { NextPage } from 'next'
 import Head from 'next/head'
@@ -14,6 +14,35 @@ import { Warning } from '../../../components/Info'
 
 import loadable from '@loadable/component'
 const DemoListLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@List' */'../../../components/DemoPanel@List'))
+
+
+
+const ContentMakeListItemClickable = () => {
+    return (
+        <>
+            <p>
+                To make <LinkListItemPage /> clickable, set <code>{`<ListItem actionCtrl={true}>`}</code>.
+            </p>
+            <p>
+                You can also set the <code>actionCtrl</code> at <code>{`<List actionCtrl={true}>`}</code>, so the default value of <code>actionCtrl</code> in the <LinkListItemPage /> will be the same as the parent.
+            </p>
+            <p>
+                To handle the click action of the <LinkListItemPage />, assign <code>onClick</code> to the desired <strong>handler function</strong> -or- assign <code>href</code> to the desired <strong>URL</strong>.
+            </p>
+            <Warning>
+                <p>
+                    Assigning <code>{`actionCtrl={true}`}</code> and <code>href</code> makes the <LinkListItemPage /> rendered as <code>{`<a>`}</code>.
+                </p>
+                <p>
+                    Assigning <code>{`actionCtrl={true}`}</code> without assigning <code>href</code> makes the <LinkListItemPage /> rendered as <code>{`<div role='button'>`}</code>.
+                </p>
+                <p>
+                    Assigning <code>{`actionCtrl={true}`}</code> and <code>{`tag='button'`}</code> without assigning <code>href</code> makes the <LinkListItemPage /> rendered as <code>{`<button>`}</code>.
+                </p>
+            </Warning>
+        </>
+    )
+};
 
 
 
@@ -828,15 +857,7 @@ const Page: NextPage = () => {
 </List>
                         `}</TypeScriptCode>
                         <SubSection titleTag='h5' title='Make the Buttons Functional'>
-                            <p>
-                                To make <LinkListItemPage /> clickable, set <code>{`<ListItem actionCtrl={true}>`}</code>.
-                            </p>
-                            <p>
-                                You can also set the <code>actionCtrl</code> at <code>{`<List actionCtrl={true}>`}</code>, so the default value of <code>actionCtrl</code> in the <LinkListItemPage /> will be the same as the parent.
-                            </p>
-                            <p>
-                                To handle the click action of the <LinkListItemPage />, assign <code>onClick</code> to the desired <strong>handler function</strong> -or- assign <code>href</code> to the desired <strong>URL</strong>.
-                            </p>
+                            <ContentMakeListItemClickable />
                             <p>
                                 Here the demonstration:
                             </p>
@@ -924,6 +945,61 @@ const Page: NextPage = () => {
     </ListItem>
 </List>
                         `}</TypeScriptCode>
+                        <SubSection titleTag='h5' title='Make the Tabs Functional'>
+                            <ContentMakeListItemClickable />
+                            <p>
+                                Here the demonstration:
+                            </p>
+                            {(() => {
+                                const [activeTabIndex, setActiveTabIndex] = useState(3);
+                                
+                                return (
+                                    <List listStyle='tab' actionCtrl={true} orientation='inline' theme='primary'>
+                                        <ListItem active={activeTabIndex === 0} onClick={() => setActiveTabIndex(0)}>
+                                            A first item
+                                        </ListItem>
+                                        <ListItem active={activeTabIndex === 1} onClick={() => setActiveTabIndex(1)}>
+                                            A second item
+                                        </ListItem>
+                                        <ListItem theme='success' active={activeTabIndex === 2} onClick={() => setActiveTabIndex(2)}>
+                                            A third item
+                                        </ListItem>
+                                        <ListItem active={activeTabIndex === 3} onClick={() => setActiveTabIndex(3)}>
+                                            A fourth item
+                                        </ListItem>
+                                        <ListItem theme='danger' active={activeTabIndex === 4} onClick={() => setActiveTabIndex(4)}>
+                                            A fifth item
+                                        </ListItem>
+                                    </List>
+                                );
+                            })()}
+                            <p></p>
+                            <TypeScriptCode>{`
+const TabControl = () => {
+    const [activeTabIndex, setActiveTabIndex] = useState(3);
+    
+    return (
+        <List listStyle='tab' actionCtrl={true} orientation='inline' theme='primary'>
+            <ListItem active={activeTabIndex === 0} onClick={() => setActiveTabIndex(0)}>
+                A first item
+            </ListItem>
+            <ListItem active={activeTabIndex === 1} onClick={() => setActiveTabIndex(1)}>
+                A second item
+            </ListItem>
+            <ListItem theme='success' active={activeTabIndex === 2} onClick={() => setActiveTabIndex(2)}>
+                A third item
+            </ListItem>
+            <ListItem active={activeTabIndex === 3} onClick={() => setActiveTabIndex(3)}>
+                A fourth item
+            </ListItem>
+            <ListItem theme='danger' active={activeTabIndex === 4} onClick={() => setActiveTabIndex(4)}>
+                A fifth item
+            </ListItem>
+        </List>
+    );
+};
+                            `}</TypeScriptCode>
+                        </SubSection>
                     </SubSection>
                     <SubSection titleTag='h4' title={<><code>breadcrumb</code> Style</>}>
                         <p>
@@ -1098,26 +1174,7 @@ const Page: NextPage = () => {
             </SectionVariants>
             <SectionStates>
                 <SubSection title='Links and Buttons'>
-                    <p>
-                        To make <LinkListItemPage /> clickable, set <code>{`<ListItem actionCtrl={true}>`}</code>.
-                    </p>
-                    <p>
-                        You can also set the <code>actionCtrl</code> at <code>{`<List actionCtrl={true}>`}</code>, so the default value of <code>actionCtrl</code> in the <LinkListItemPage /> will be the same as the parent.
-                    </p>
-                    <p>
-                        To handle the click action of the <LinkListItemPage />, assign <code>onClick</code> to the desired <strong>handler function</strong> -or- assign <code>href</code> to the desired <strong>URL</strong>.
-                    </p>
-                    <Warning>
-                        <p>
-                            Assigning <code>{`actionCtrl={true}`}</code> and <code>href</code> makes the <LinkListItemPage /> rendered as <code>{`<a>`}</code>.
-                        </p>
-                        <p>
-                            Assigning <code>{`actionCtrl={true}`}</code> without assigning <code>href</code> makes the <LinkListItemPage /> rendered as <code>{`<div role='button'>`}</code>.
-                        </p>
-                        <p>
-                            Assigning <code>{`actionCtrl={true}`}</code> and <code>{`tag='button'`}</code> without assigning <code>href</code> makes the <LinkListItemPage /> rendered as <code>{`<button>`}</code>.
-                        </p>
-                    </Warning>
+                    <ContentMakeListItemClickable />
                     <p>
                         Here the demonstration:
                     </p>
