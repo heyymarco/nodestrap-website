@@ -827,6 +827,57 @@ const Page: NextPage = () => {
     </ListItem>
 </List>
                         `}</TypeScriptCode>
+                        <SubSection titleTag='h5' title='Make the Buttons Functional'>
+                            <p>
+                                To make <LinkListItemPage /> clickable, set <code>{`<ListItem actionCtrl={true}>`}</code>.
+                            </p>
+                            <p>
+                                You can also set the <code>actionCtrl</code> at <code>{`<List actionCtrl={true}>`}</code>, so the default value of <code>actionCtrl</code> in the <LinkListItemPage /> will be the same as the parent.
+                            </p>
+                            <p>
+                                To handle the click action of the <LinkListItemPage />, assign <code>onClick</code> to the desired <strong>handler function</strong> -or- assign <code>href</code> to the desired <strong>URL</strong>.
+                            </p>
+                            <p>
+                                Here the demonstration:
+                            </p>
+                            <List listStyle='btn' actionCtrl={true} theme='primary'>
+                                <ListItem>
+                                    A first item
+                                </ListItem>
+                                <ListItem actionCtrl={false}>
+                                    A second item (non clickable)
+                                </ListItem>
+                                <ListItem theme='success'>
+                                    A third item
+                                </ListItem>
+                                <ListItem active={true} href='https://www.google.com'>
+                                    A fourth item
+                                </ListItem>
+                                <ListItem theme='danger' onClick={() => alert('hello world')}>
+                                    A fifth item
+                                </ListItem>
+                            </List>
+                            <p></p>
+                            <TypeScriptCode>{`
+<List listStyle='btn' actionCtrl={true} theme='primary'>
+    <ListItem>
+        A first item
+    </ListItem>
+    <ListItem actionCtrl={false}>
+        A second item (non clickable)
+    </ListItem>
+    <ListItem theme='success'>
+        A third item
+    </ListItem>
+    <ListItem active={true} href='https://www.google.com'>
+        A fourth item
+    </ListItem>
+    <ListItem theme='danger' onClick={() => alert('hello world')}>
+        A fifth item
+    </ListItem>
+</List>
+                            `}</TypeScriptCode>
+                        </SubSection>
                     </SubSection>
                     
                     <SubSection titleTag='h4' title={<><code>tab</code> Style</>}>
