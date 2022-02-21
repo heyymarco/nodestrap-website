@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { SubSection } from '../../../components/Section'
-import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, TransparentPreview, LinkResponsiveProviderPage, SectionSubPropertyStyle, LinkContentPage, LinkButtonPage, LinkListSeparatorItemPage } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, TransparentPreview, LinkResponsiveProviderPage, LinkContentPage, LinkButtonPage, LinkListSeparatorItemPage } from '../../../components/common-contents'
 import { List, ListItem, ListSeparatorItem, OrientationName } from '@nodestrap/list'
 import { TypeScriptCode } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
@@ -1474,15 +1474,119 @@ const TabControl = () => {
             </SectionStates>
             <SectionCustomizing specList={
                 <SpecList>
-                    <DetailSpecItem title='Styles'>
+                    <DetailSpecItem title='Button Styles'>
                         <SubSpecList>
                             <SimpleSpecItem>
-                                <code>ghostOpacity</code>
-                                <p>The default opacity level when <code>{`btnStyle='ghost'`}</code>.</p>
+                                <code>btnSpacing</code>
+                                <p>The default spacing between buttons.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
-                                <code>ghostOpacityArrive</code>
-                                <p>The opacity level when <code>{`btnStyle='ghost'`}</code> and a pointer is on the <CurrentComponent />.</p>
+                                <code>btnSpacingSm</code>
+                                <p>The spacing between buttons when <code>{`size='sm'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>btnSpacingLg</code>
+                                <p>The spacing between buttons when <code>{`size='lg'`}</code>.</p>
+                            </SimpleSpecItem>
+                        </SubSpecList>
+                    </DetailSpecItem>
+                    <DetailSpecItem title='Tab Styles'>
+                        <SubSpecList>
+                            <SimpleSpecItem>
+                                <code>tabTextAlign</code>
+                                <p>The text alignment of tabs.</p>
+                            </SimpleSpecItem>
+                            
+                            <SimpleSpecItem>
+                                <code>tabBorderRadius</code>
+                                <p>The default border-radius of tabs.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>tabBorderRadiusSm</code>
+                                <p>The border-radius of tabs when <code>{`size='sm'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>tabBorderRadiusLg</code>
+                                <p>The border-radius of tabs when <code>{`size='lg'`}</code>.</p>
+                            </SimpleSpecItem>
+                        </SubSpecList>
+                    </DetailSpecItem>
+                    <DetailSpecItem title='Breadcrumb Styles'>
+                        <SubSpecList>
+                            <SimpleSpecItem>
+                                <code>breadcrumbPaddingInline</code>
+                                <p>The default inner spacing on the left &amp; right of breadcrumb items.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>breadcrumbPaddingBlock</code>
+                                <p>The default inner spacing on the top &amp; bottom of breadcrumb items.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>breadcrumbPaddingInlineSm</code>
+                                <p>The inner spacing on the left &amp; right of breadcrumb items when <code>{`size='sm'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>breadcrumbPaddingBlockSm</code>
+                                <p>The inner spacing on the top &amp; bottom of breadcrumb items when <code>{`size='sm'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>breadcrumbPaddingInlineLg</code>
+                                <p>The inner spacing on the left &amp; right of breadcrumb items when <code>{`size='lg'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>breadcrumbPaddingBlockLg</code>
+                                <p>The inner spacing on the top &amp; bottom of breadcrumb items when <code>{`size='lg'`}</code>.</p>
+                            </SimpleSpecItem>
+                            
+                            <SimpleSpecItem>
+                                <code>breadcrumbSeparatorImg</code>
+                                <p>The background-image of separator.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>breadcrumbSeparatorInlineSize</code>
+                                <p>The width of separator.</p>
+                                <p>The height is calculated automatically by its <code>aspect-ratio</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>breadcrumbSeparatorMarginInline</code>
+                                <p>The left &amp; right margin of separator.</p>
+                            </SimpleSpecItem>
+                        </SubSpecList>
+                    </DetailSpecItem>
+                    <DetailSpecItem title='Bullet Styles'>
+                        <SubSpecList>
+                            <SimpleSpecItem>
+                                <code>bulletSpacing</code>
+                                <p>The default spacing between bullets.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>bulletSpacingSm</code>
+                                <p>The spacing between bullets when <code>{`size='sm'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>bulletSpacingLg</code>
+                                <p>The spacing between bullets when <code>{`size='lg'`}</code>.</p>
+                            </SimpleSpecItem>
+                            
+                            <SimpleSpecItem>
+                                <code>bulletPadding</code>
+                                <p>The default inner spacing of bullets.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>bulletPaddingSm</code>
+                                <p>The inner spacing of bullets when <code>{`size='sm'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>bulletPaddingLg</code>
+                                <p>The inner spacing of bullets when <code>{`size='lg'`}</code>.</p>
+                            </SimpleSpecItem>
+                        </SubSpecList>
+                    </DetailSpecItem>
+                    <DetailSpecItem title='Numbered Styles'>
+                        <SubSpecList>
+                            <SimpleSpecItem>
+                                <code>numberedContent</code>
+                                <p>A custom content of <code>::before</code> element of each <LinkListItemPage />.</p>
                             </SimpleSpecItem>
                         </SubSpecList>
                     </DetailSpecItem>
