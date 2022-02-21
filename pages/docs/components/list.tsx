@@ -595,6 +595,408 @@ const Page: NextPage = () => {
                         `}</TypeScriptCode>
                     </SubSection>
                 </SubSection>
+                <SubSection title='Styles'>
+                    <SubSection titleTag='h4' title={<><code>flat</code> Style</>}>
+                        <p>
+                            Set <code>{`<List listStyle='flat'>`}</code> to remove the <code>border</code>, <code>border-radius</code>, and <code>border</code> between <LinkListItemPage />s (separator).
+                        </p>
+                        <p>
+                            Here the demonstration:
+                        </p>
+                        <List listStyle='flat' theme='primary'>
+                            <ListItem>
+                                A first item
+                            </ListItem>
+                            <ListItem>
+                                A second item
+                            </ListItem>
+                            <ListItem theme='success'>
+                                A third item
+                            </ListItem>
+                            <ListItem active={true}>
+                                A fourth item
+                            </ListItem>
+                            <ListItem theme='danger'>
+                                A fifth item
+                            </ListItem>
+                        </List>
+                        <p></p>
+                        <TypeScriptCode>{`
+<List listStyle='flat' theme='primary'>
+    <ListItem>
+        A first item
+    </ListItem>
+    <ListItem>
+        A second item
+    </ListItem>
+    <ListItem theme='success'>
+        A third item
+    </ListItem>
+    <ListItem active={true}>
+        A fourth item
+    </ListItem>
+    <ListItem theme='danger'>
+        A fifth item
+    </ListItem>
+</List>
+                        `}</TypeScriptCode>
+                    </SubSection>
+                    <SubSection titleTag='h4' title={<><code>flush</code> Style</>}>
+                        <p>
+                            Set <code>{`<List listStyle='flush'>`}</code> to remove the <code>border</code> and <code>border-radius</code>.
+                        </p>
+                        <p>
+                            Here the demonstration:
+                        </p>
+                        <List listStyle='flush' theme='primary'>
+                            <ListItem>
+                                A first item
+                            </ListItem>
+                            <ListItem>
+                                A second item
+                            </ListItem>
+                            <ListItem theme='success'>
+                                A third item
+                            </ListItem>
+                            <ListItem active={true}>
+                                A fourth item
+                            </ListItem>
+                            <ListItem theme='danger'>
+                                A fifth item
+                            </ListItem>
+                        </List>
+                        <p></p>
+                        <TypeScriptCode>{`
+<List listStyle='flush' theme='primary'>
+    <ListItem>
+        A first item
+    </ListItem>
+    <ListItem>
+        A second item
+    </ListItem>
+    <ListItem theme='success'>
+        A third item
+    </ListItem>
+    <ListItem active={true}>
+        A fourth item
+    </ListItem>
+    <ListItem theme='danger'>
+        A fifth item
+    </ListItem>
+</List>
+                        `}</TypeScriptCode>
+                    </SubSection>
+                    <SubSection titleTag='h4' title={<><code>joined</code> Style</>}>
+                        <p>
+                            Set <code>{`<List listStyle='joined'>`}</code> to remove the <code>border</code> between <LinkListItemPage />s (separator).
+                        </p>
+                        <p>
+                            Here the demonstration:
+                        </p>
+                        <List listStyle='joined' theme='primary'>
+                            <ListItem>
+                                A first item
+                            </ListItem>
+                            <ListItem>
+                                A second item
+                            </ListItem>
+                            <ListItem theme='success'>
+                                A third item
+                            </ListItem>
+                            <ListItem active={true}>
+                                A fourth item
+                            </ListItem>
+                            <ListItem theme='danger'>
+                                A fifth item
+                            </ListItem>
+                        </List>
+                        <p></p>
+                        <TypeScriptCode>{`
+<List listStyle='joined' theme='primary'>
+    <ListItem>
+        A first item
+    </ListItem>
+    <ListItem>
+        A second item
+    </ListItem>
+    <ListItem theme='success'>
+        A third item
+    </ListItem>
+    <ListItem active={true}>
+        A fourth item
+    </ListItem>
+    <ListItem theme='danger'>
+        A fifth item
+    </ListItem>
+</List>
+                        `}</TypeScriptCode>
+                    </SubSection>
+                    
+                    <SubSection titleTag='h4' title={<><code>content</code> Style</>}>
+                        <p>
+                            Set <code>{`<List listStyle='content'>`}</code> to style the <LinkListItemPage /> to look similar to <LinkContentPage /> (usually with wider paddings).
+                        </p>
+                        <p>
+                            Basically it merges the <LinkListItemPage />&apos;s style + <LinkContentPage />&apos;s style.
+                        </p>
+                        <p>
+                            Here the demonstration:
+                        </p>
+                        <List listStyle='content' theme='primary'>
+                            <ListItem>
+                                A first item
+                            </ListItem>
+                            <ListItem>
+                                A second item
+                            </ListItem>
+                            <ListItem theme='success'>
+                                A third item
+                            </ListItem>
+                            <ListItem active={true}>
+                                A fourth item
+                            </ListItem>
+                            <ListItem theme='danger'>
+                                A fifth item
+                            </ListItem>
+                        </List>
+                        <p></p>
+                        <TypeScriptCode>{`
+<List listStyle='content' theme='primary'>
+    <ListItem>
+        A first item
+    </ListItem>
+    <ListItem>
+        A second item
+    </ListItem>
+    <ListItem theme='success'>
+        A third item
+    </ListItem>
+    <ListItem active={true}>
+        A fourth item
+    </ListItem>
+    <ListItem theme='danger'>
+        A fifth item
+    </ListItem>
+</List>
+                        `}</TypeScriptCode>
+                    </SubSection>
+                    <SubSection titleTag='h4' title={<><code>btn</code> Style</>}>
+                        <p>
+                            Set <code>{`<List listStyle='btn'>`}</code> to style the <LinkListItemPage /> to look similar to <LinkButtonPage /> (usually with wider paddings).
+                        </p>
+                        <p>
+                            Basically it merges the <LinkListItemPage />&apos;s style + <LinkButtonPage />&apos;s style.
+                        </p>
+                        <p>
+                            Here the demonstration:
+                        </p>
+                        <List listStyle='btn' theme='primary'>
+                            <ListItem>
+                                A first item
+                            </ListItem>
+                            <ListItem>
+                                A second item
+                            </ListItem>
+                            <ListItem theme='success'>
+                                A third item
+                            </ListItem>
+                            <ListItem active={true}>
+                                A fourth item
+                            </ListItem>
+                            <ListItem theme='danger'>
+                                A fifth item
+                            </ListItem>
+                        </List>
+                        <p></p>
+                        <TypeScriptCode>{`
+<List listStyle='btn' theme='primary'>
+    <ListItem>
+        A first item
+    </ListItem>
+    <ListItem>
+        A second item
+    </ListItem>
+    <ListItem theme='success'>
+        A third item
+    </ListItem>
+    <ListItem active={true}>
+        A fourth item
+    </ListItem>
+    <ListItem theme='danger'>
+        A fifth item
+    </ListItem>
+</List>
+                        `}</TypeScriptCode>
+                    </SubSection>
+                    
+                    <SubSection titleTag='h4' title={<><code>tab</code> Style</>}>
+                        <p>
+                            Set <code>{`<List listStyle='tab'>`}</code> to style the <LinkListItemPage /> to look similar to <em>a tabbed interface</em>.
+                        </p>
+                        <p>
+                            Here the demonstration:
+                        </p>
+                        <List listStyle='tab' orientation='inline' theme='primary'>
+                            <ListItem>
+                                A first item
+                            </ListItem>
+                            <ListItem>
+                                A second item
+                            </ListItem>
+                            <ListItem theme='success'>
+                                A third item
+                            </ListItem>
+                            <ListItem active={true}>
+                                A fourth item
+                            </ListItem>
+                            <ListItem theme='danger'>
+                                A fifth item
+                            </ListItem>
+                        </List>
+                        <p></p>
+                        <TypeScriptCode>{`
+<List listStyle='tab' orientation='inline' theme='primary'>
+    <ListItem>
+        A first item
+    </ListItem>
+    <ListItem>
+        A second item
+    </ListItem>
+    <ListItem theme='success'>
+        A third item
+    </ListItem>
+    <ListItem active={true}>
+        A fourth item
+    </ListItem>
+    <ListItem theme='danger'>
+        A fifth item
+    </ListItem>
+</List>
+                        `}</TypeScriptCode>
+                    </SubSection>
+                    <SubSection titleTag='h4' title={<><code>breadcrumb</code> Style</>}>
+                        <p>
+                            Set <code>{`<List listStyle='breadcrumb'>`}</code> to style the <LinkListItemPage /> to look similar to <em>a breadcrumb</em>.
+                        </p>
+                        <p>
+                            Requires <code>{`<List orientation='inline'>`}</code>.
+                        </p>
+                        <p>
+                            Here the demonstration:
+                        </p>
+                        <List listStyle='breadcrumb' orientation='inline' theme='primary'>
+                            <ListItem>
+                                A first item
+                            </ListItem>
+                            <ListItem>
+                                A second item
+                            </ListItem>
+                            <ListItem theme='success'>
+                                A third item
+                            </ListItem>
+                            <ListItem active={true}>
+                                A fourth item
+                            </ListItem>
+                            <ListItem theme='danger'>
+                                A fifth item
+                            </ListItem>
+                        </List>
+                        <p></p>
+                        <TypeScriptCode>{`
+<List listStyle='breadcrumb' orientation='inline' theme='primary'>
+    <ListItem>
+        A first item
+    </ListItem>
+    <ListItem>
+        A second item
+    </ListItem>
+    <ListItem theme='success'>
+        A third item
+    </ListItem>
+    <ListItem active={true}>
+        A fourth item
+    </ListItem>
+    <ListItem theme='danger'>
+        A fifth item
+    </ListItem>
+</List>
+                        `}</TypeScriptCode>
+                    </SubSection>
+                    <SubSection titleTag='h4' title={<><code>bullet</code> Style</>}>
+                        <p>
+                            Set <code>{`<List listStyle='bullet'>`}</code> to style the <LinkListItemPage /> to look similar to <em>a bullet</em>.
+                        </p>
+                        <p>
+                            Requires an <strong>empty</strong> children of <LinkListItemPage />.
+                        </p>
+                        <p>
+                            Here the demonstration:
+                        </p>
+                        <List listStyle='bullet' orientation='inline' theme='primary'>
+                            <ListItem />
+                            <ListItem />
+                            <ListItem theme='success' />
+                            <ListItem active={true} />
+                            <ListItem theme='danger' />
+                        </List>
+                        <p></p>
+                        <TypeScriptCode>{`
+<List listStyle='bullet' orientation='inline' theme='primary'>
+    <ListItem />
+    <ListItem />
+    <ListItem theme='success' />
+    <ListItem active={true} />
+    <ListItem theme='danger' />
+</List>
+                        `}</TypeScriptCode>
+                    </SubSection>
+                    
+                    <SubSection titleTag='h4' title={<><code>numbered</code> Style</>}>
+                        <p>
+                            Add a number (a counter) on each <LinkListItemPage />.
+                        </p>
+                        <p>
+                            Here the demonstration:
+                        </p>
+                        <List listStyle='numbered' theme='primary'>
+                            <ListItem>
+                                A first item
+                            </ListItem>
+                            <ListItem>
+                                A second item
+                            </ListItem>
+                            <ListItem theme='success'>
+                                A third item
+                            </ListItem>
+                            <ListItem active={true}>
+                                A fourth item
+                            </ListItem>
+                            <ListItem theme='danger'>
+                                A fifth item
+                            </ListItem>
+                        </List>
+                        <p></p>
+                        <TypeScriptCode>{`
+<List listStyle='numbered' theme='primary'>
+    <ListItem>
+        A first item
+    </ListItem>
+    <ListItem>
+        A second item
+    </ListItem>
+    <ListItem theme='success'>
+        A third item
+    </ListItem>
+    <ListItem active={true}>
+        A fourth item
+    </ListItem>
+    <ListItem theme='danger'>
+        A fifth item
+    </ListItem>
+</List>
+                        `}</TypeScriptCode>
+                    </SubSection>
+                </SubSection>
                 <SectionSubPropertyStyle property={<>Styles</>} specList={
                     <SpecList>
                         <DetailSpecItem code='undefined'>
