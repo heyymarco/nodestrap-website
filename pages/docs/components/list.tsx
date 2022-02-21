@@ -18,33 +18,6 @@ const DemoListLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@List'
 
 
 
-const ContentMakeListItemClickable = () => {
-    return (
-        <>
-            <p>
-                To make <LinkListItemPage /> clickable, set <code>{`<ListItem actionCtrl={true}>`}</code>.
-            </p>
-            <p>
-                You can also set the <code>actionCtrl</code> at <code>{`<List actionCtrl={true}>`}</code>, so the default value of <code>actionCtrl</code> in the <LinkListItemPage /> will be the same as the parent.
-            </p>
-            <p>
-                To handle the click action of the <LinkListItemPage />, assign <code>onClick</code> to the desired <strong>handler function</strong> -or- assign <code>href</code> to the desired <strong>URL</strong>.
-            </p>
-            <Warning>
-                <p>
-                    Assigning <code>{`actionCtrl={true}`}</code> and <code>href</code> makes the <LinkListItemPage /> rendered as <code>{`<a>`}</code>.
-                </p>
-                <p>
-                    Assigning <code>{`actionCtrl={true}`}</code> without assigning <code>href</code> makes the <LinkListItemPage /> rendered as <code>{`<div role='button'>`}</code>.
-                </p>
-                <p>
-                    Assigning <code>{`actionCtrl={true}`}</code> and <code>{`tag='button'`}</code> without assigning <code>href</code> makes the <LinkListItemPage /> rendered as <code>{`<button>`}</code>.
-                </p>
-            </Warning>
-        </>
-    )
-};
-
 export const SectionPropertyTheme = ({ propertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
         <BasicSectionPropertyTheme {...restProps} propertySuffix={propertySuffix ?? false} demonstration={<>
@@ -1217,37 +1190,39 @@ const TabControl = () => {
     );
 };
 
-
-
-const Page: NextPage = () => {
+const ContentMakeListItemClickable = () => {
     return (
-        <ComponentInfoProvider packageName='@nodestrap/list' component={<LinkListPage />} bases={<LinkIndicatorPage />}>
-            <Head>
-                <title>&lt;List&gt; Component</title>
-                <meta name="description" content="Using <List> component" />
-            </Head>
-
-            <SectionIntro>
+        <>
+            <p>
+                To make <LinkListItemPage /> clickable, set <code>{`<ListItem actionCtrl={true}>`}</code>.
+            </p>
+            <p>
+                You can also set the <code>actionCtrl</code> at <code>{`<List actionCtrl={true}>`}</code>, so the default value of <code>actionCtrl</code> in the <LinkListItemPage /> will be the same as the parent.
+            </p>
+            <p>
+                To handle the click action of the <LinkListItemPage />, assign <code>onClick</code> to the desired <strong>handler function</strong> -or- assign <code>href</code> to the desired <strong>URL</strong>.
+            </p>
+            <Warning>
                 <p>
-                    <CurrentComponent /> is a presentation component for displaying a series of content.
+                    Assigning <code>{`actionCtrl={true}`}</code> and <code>href</code> makes the <LinkListItemPage /> rendered as <code>{`<a>`}</code>.
                 </p>
-            </SectionIntro>
-            <SectionDemo>
-                <DemoListLazy fallback={<BusyBar />} />
-            </SectionDemo>
-            <SectionInheritedProps />
-            <SectionVariants>
-                <SectionPropertyTheme />
-                <SectionPropertySize />
-                <SectionPropertyNude />
-                <SectionPropertyGradient />
-                <SectionPropertyOutlined />
-                <SectionPropertyMild />
-                <SectionPropertyOrientation />
-                <SectionPropertyStyles />
-            </SectionVariants>
-            <SectionStates>
-                <SubSection title='Links and Buttons'>
+                <p>
+                    Assigning <code>{`actionCtrl={true}`}</code> without assigning <code>href</code> makes the <LinkListItemPage /> rendered as <code>{`<div role='button'>`}</code>.
+                </p>
+                <p>
+                    Assigning <code>{`actionCtrl={true}`}</code> and <code>{`tag='button'`}</code> without assigning <code>href</code> makes the <LinkListItemPage /> rendered as <code>{`<button>`}</code>.
+                </p>
+            </Warning>
+        </>
+    )
+};
+export const SectionPropertyActionCtrl = ({ property, properties, propertySuffix, children, ...restProps }: SectionPropertyProps) => {
+    return (
+        <SectionSubProperty {...restProps} propertySuffix={propertySuffix ?? false} property={property ?? 'actionCtrl'} properties={properties ?? 'Links and Buttons'}>
+            {
+                children
+                ??
+                <>
                     <ContentMakeListItemClickable />
                     <p>
                         Here the demonstration:
@@ -1317,8 +1292,18 @@ const Page: NextPage = () => {
     </ListItem>
 </List>
                     `}</TypeScriptCode>
-                </SubSection>
-                <SubSection title='Active Items'>
+                </>
+            }
+        </SectionSubProperty>
+    );
+};
+export const SectionPropertyActive = ({ property, properties, propertySuffix, children, ...restProps }: SectionPropertyProps) => {
+    return (
+        <SectionSubProperty {...restProps} propertySuffix={propertySuffix ?? false} property={property ?? 'actionCtrl'} properties={properties ?? 'Active Items'}>
+            {
+                children
+                ??
+                <>
                     <p>
                         To make <LinkListItemPage /> (appear) active, set <code>{`<ListItem active={true}>`}</code>.
                     </p>
@@ -1448,8 +1433,18 @@ const Page: NextPage = () => {
 </List>
                         `}</TypeScriptCode>
                     </SubSection>
-                </SubSection>
-                <SubSection title='Disabled Items'>
+                </>
+            }
+        </SectionSubProperty>
+    );
+};
+export const SectionPropertyEnabled = ({ property, properties, propertySuffix, children, ...restProps }: SectionPropertyProps) => {
+    return (
+        <SectionSubProperty {...restProps} propertySuffix={propertySuffix ?? false} property={property ?? 'actionCtrl'} properties={properties ?? 'Disabled Items'}>
+            {
+                children
+                ??
+                <>
                     <p>
                         To make <LinkListItemPage /> (appear) disabled, set <code>{`<ListItem enabled={false}>`}</code>.
                     </p>
@@ -1544,7 +1539,45 @@ const Page: NextPage = () => {
     </ListItem>
 </List>
                     `}</TypeScriptCode>
-                </SubSection>
+                </>
+            }
+        </SectionSubProperty>
+    );
+};
+
+
+
+const Page: NextPage = () => {
+    return (
+        <ComponentInfoProvider packageName='@nodestrap/list' component={<LinkListPage />} bases={<LinkIndicatorPage />}>
+            <Head>
+                <title>&lt;List&gt; Component</title>
+                <meta name="description" content="Using <List> component" />
+            </Head>
+
+            <SectionIntro>
+                <p>
+                    <CurrentComponent /> is a presentation component for displaying a series of content.
+                </p>
+            </SectionIntro>
+            <SectionDemo>
+                <DemoListLazy fallback={<BusyBar />} />
+            </SectionDemo>
+            <SectionInheritedProps />
+            <SectionVariants>
+                <SectionPropertyTheme />
+                <SectionPropertySize />
+                <SectionPropertyNude />
+                <SectionPropertyGradient />
+                <SectionPropertyOutlined />
+                <SectionPropertyMild />
+                <SectionPropertyOrientation />
+                <SectionPropertyStyles />
+            </SectionVariants>
+            <SectionStates>
+                <SectionPropertyActionCtrl />
+                <SectionPropertyActive />
+                <SectionPropertyEnabled />
             </SectionStates>
             <SectionCustomizing specList={
                 <SpecList>
