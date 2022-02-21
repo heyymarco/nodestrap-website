@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 import { Warning } from '../../../components/Info'
 
-import { SectionInheritedProps, LinkBasicPage, LinkElementPage, LinkColorsPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionSubProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkBasicPage, LinkElementPage, LinkColorsPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionSubProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionPropertyProps } from '../../../components/common-contents'
 
 import loadable from '@loadable/component'
 const DemoBasicLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Basic' */'../../../components/DemoPanel@Basic'))
@@ -21,6 +21,141 @@ const WarnNotImplementExited = () => (
         </p>
     </Warning>
 );
+
+
+
+export const SectionPropertyTheme = ({ property, properties, children, ...restProps }: SectionPropertyProps) => {
+    return (
+        <SectionSubProperty {...restProps} property={property ?? 'theme'} properties={properties ?? 'Themes'} specList={
+            <SpecList>
+                <DetailSpecItem code='primary' theme='primary'>
+                    <p>Sets the <code>foreground color</code>, <code>background color</code> and <code>padding color</code> to <strong>primary</strong> theme.</p>
+                    <p>The <strong>primary</strong> theme represents your <strong>website color</strong>.</p>
+                </DetailSpecItem>
+                <DetailSpecItem code='secondary' theme='secondary'>
+                    <p>Sets the <code>foreground color</code>, <code>background color</code> and <code>padding color</code> to <strong>secondary</strong> theme.</p>
+                    <p>The <strong>secondary</strong> theme represents an <strong>alternate option</strong> to website user.</p>
+                </DetailSpecItem>
+                <DetailSpecItem code='success' theme='success'>
+                    <p>Sets the <code>foreground color</code>, <code>background color</code> and <code>padding color</code> to <strong>success</strong> theme.</p>
+                    <p>The <strong>success</strong> theme represents a <strong>success result</strong> to website user.</p>
+                </DetailSpecItem>
+                <DetailSpecItem code='info' theme='info'>
+                    <p>Sets the <code>foreground color</code>, <code>background color</code> and <code>padding color</code> to <strong>info</strong> theme.</p>
+                    <p>The <strong>info</strong> theme represents a <strong>general information</strong> to website user.</p>
+                </DetailSpecItem>
+                <DetailSpecItem code='warning' theme='warning'>
+                    <p>Sets the <code>foreground color</code>, <code>background color</code> and <code>padding color</code> to <strong>warning</strong> theme.</p>
+                    <p>The <strong>warning</strong> theme represents a <strong>warning message</strong> or <strong>notify something that could cause an error</strong> to website user.</p>
+                </DetailSpecItem>
+                <DetailSpecItem code='danger' theme='danger'>
+                    <p>Sets the <code>foreground color</code>, <code>background color</code> and <code>padding color</code> to <strong>danger</strong> theme.</p>
+                    <p>The <strong>danger</strong> theme represents an <strong>error result</strong> to website user.</p>
+                </DetailSpecItem>
+                <DetailSpecItem code='light' theme='light'>
+                    <p>Sets the <code>foreground color</code>, <code>background color</code> and <code>padding color</code> to <strong>light</strong> theme.</p>
+                    <p>The <strong>light</strong> theme doen&apos;t have a meaning, just for helping a text content againts a dark background or image.</p>
+                </DetailSpecItem>
+                <DetailSpecItem code='dark' theme='dark'>
+                    <p>Sets the <code>foreground color</code>, <code>background color</code> and <code>padding color</code> to <strong>dark</strong> theme.</p>
+                    <p>The <strong>dark</strong> theme doen&apos;t have a meaning, just for helping a text content againts a light background or image.</p>
+                </DetailSpecItem>
+            </SpecList>
+        }>
+            {
+                children
+                ??
+                <p>
+                    Changes the <strong>contextual theme</strong> - represented by color.
+                </p>
+            }
+        </SectionSubProperty>
+    );
+};
+export const SectionPropertySize = ({ property, properties, children, ...restProps }: SectionPropertyProps) => {
+    return (
+        <SectionSubProperty {...restProps} property={property ?? 'size'} properties={properties ?? 'Sizes'} specList={
+            <SpecList>
+                <DetailSpecItem code='sm'>
+                    <p>Makes the <code>font-size</code>, <code>padding</code> and <code>border-radius</code> are <strong>smaller</strong> than the default.</p>
+                </DetailSpecItem>
+                <DetailSpecItem code='lg'>
+                    <p>Makes the <code>font-size</code>, <code>padding</code> and <code>border-radius</code> are <strong>bigger</strong> than the default.</p>
+                </DetailSpecItem>
+            </SpecList>
+        }>
+            {
+                children
+                ??
+                <p>
+                    Changes the <strong>default size</strong>.
+                </p>
+            }
+        </SectionSubProperty>
+    );
+};
+export const SectionPropertyNude = ({ property, properties, children, ...restProps }: SectionPropertyProps) => {
+    return (
+        <SectionSubProperty {...restProps} property={property ?? 'nude'} properties={properties ?? 'Nude'}>
+            {
+                children
+                ??
+                <p>
+                    Removes the <code>border</code>, <code>padding</code> and <code>background</code>.
+                    Set <code>{`nude={true}`}</code> to activate.
+                </p>
+            }
+        </SectionSubProperty>
+    );
+};
+export const SectionPropertyGradient = ({ property, properties, children, ...restProps }: SectionPropertyProps) => {
+    return (
+        <SectionSubProperty {...restProps} property={property ?? 'gradient'} properties={properties ?? 'Gradient'}>
+            {
+                children
+                ??
+                <p>
+                    Makes the corresponding component appear 3D.
+                    Set <code>{`gradient={true}`}</code> to activate.
+                </p>
+            }
+        </SectionSubProperty>
+    );
+};
+export const SectionPropertyOutlined = ({ property, properties, children, ...restProps }: SectionPropertyProps) => {
+    return (
+        <SectionSubProperty {...restProps} property={property ?? 'outlined'} properties={properties ?? 'Outlined'}>
+            {
+                children
+                ??
+                <p>
+                    Makes <code>transparent background</code> and makes the <code>border</code> and <code>text</code> color more contrast.
+                    Set <code>{`outlined={true}`}</code> to activate.
+                </p>
+            }
+        </SectionSubProperty>
+    );
+};
+export const SectionPropertyMild = ({ property, properties, children, ...restProps }: SectionPropertyProps) => {
+    return (
+        <SectionSubProperty {...restProps} property={property ?? 'mild'} properties={properties ?? 'Mild'}>
+            {
+                children
+                ??
+                <>
+                    <p>
+                        Makes <code>background color smoother</code> and makes the <code>text</code> color more contrast.
+                        Set <code>{`mild={true}`}</code> to activate.
+                    </p>
+                    <p>
+                        The <strong>smoother</strong> means <strong>near to white</strong> on <strong>light background</strong> and <strong>near to black</strong> on <strong>dark background</strong>.
+                        You can <LinkColorsPage>adjust the background color here</LinkColorsPage>.
+                    </p>
+                </>
+            }
+        </SectionSubProperty>
+    );
+};
 
 
 
@@ -46,88 +181,12 @@ const Page: NextPage = () => {
             </SectionDemo>
             <SectionInheritedProps />
             <SectionVariants>
-                <SectionSubProperty property='size' specList={
-                    <SpecList>
-                        <DetailSpecItem code='sm'>
-                            <p>Makes the <code>font-size</code>, <code>padding</code> and <code>border-radius</code> are <strong>smaller</strong> than the default.</p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='lg'>
-                            <p>Makes the <code>font-size</code>, <code>padding</code> and <code>border-radius</code> are <strong>bigger</strong> than the default.</p>
-                        </DetailSpecItem>
-                    </SpecList>
-                }>
-                    <p>
-                        Changes the <strong>default size</strong>.
-                    </p>
-                </SectionSubProperty>
-                <SectionSubProperty property='nude'>
-                    <p>
-                        Removes the <code>border</code>, <code>padding</code> and <code>background</code>.
-                        Set <code>{`nude={true}`}</code> to activate.
-                    </p>
-                </SectionSubProperty>
-                <SectionSubProperty property='theme' specList={
-                    <SpecList>
-                        <DetailSpecItem code='primary' theme='primary'>
-                            <p>Sets the <code>foreground color</code>, <code>background color</code> and <code>padding color</code> to <strong>primary</strong> theme.</p>
-                            <p>The <strong>primary</strong> theme represents your <strong>website color</strong>.</p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='secondary' theme='secondary'>
-                            <p>Sets the <code>foreground color</code>, <code>background color</code> and <code>padding color</code> to <strong>secondary</strong> theme.</p>
-                            <p>The <strong>secondary</strong> theme represents an <strong>alternate option</strong> to website user.</p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='success' theme='success'>
-                            <p>Sets the <code>foreground color</code>, <code>background color</code> and <code>padding color</code> to <strong>success</strong> theme.</p>
-                            <p>The <strong>success</strong> theme represents a <strong>success result</strong> to website user.</p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='info' theme='info'>
-                            <p>Sets the <code>foreground color</code>, <code>background color</code> and <code>padding color</code> to <strong>info</strong> theme.</p>
-                            <p>The <strong>info</strong> theme represents a <strong>general information</strong> to website user.</p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='warning' theme='warning'>
-                            <p>Sets the <code>foreground color</code>, <code>background color</code> and <code>padding color</code> to <strong>warning</strong> theme.</p>
-                            <p>The <strong>warning</strong> theme represents a <strong>warning message</strong> or <strong>notify something that could cause an error</strong> to website user.</p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='danger' theme='danger'>
-                            <p>Sets the <code>foreground color</code>, <code>background color</code> and <code>padding color</code> to <strong>danger</strong> theme.</p>
-                            <p>The <strong>danger</strong> theme represents an <strong>error result</strong> to website user.</p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='light' theme='light'>
-                            <p>Sets the <code>foreground color</code>, <code>background color</code> and <code>padding color</code> to <strong>light</strong> theme.</p>
-                            <p>The <strong>light</strong> theme doen&apos;t have a meaning, just for helping a text content againts a dark background or image.</p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='dark' theme='dark'>
-                            <p>Sets the <code>foreground color</code>, <code>background color</code> and <code>padding color</code> to <strong>dark</strong> theme.</p>
-                            <p>The <strong>dark</strong> theme doen&apos;t have a meaning, just for helping a text content againts a light background or image.</p>
-                        </DetailSpecItem>
-                    </SpecList>
-                }>
-                    <p>
-                        Changes the <strong>contextual theme</strong> - represented by color.
-                    </p>
-                </SectionSubProperty>
-                <SectionSubProperty property='gradient'>
-                    <p>
-                        Makes the corresponding component appear 3D.
-                        Set <code>{`gradient={true}`}</code> to activate.
-                    </p>
-                </SectionSubProperty>
-                <SectionSubProperty property='outlined'>
-                    <p>
-                        Makes <code>transparent background</code> and makes the <code>border</code> and <code>text</code> color more contrast.
-                        Set <code>{`outlined={true}`}</code> to activate.
-                    </p>
-                </SectionSubProperty>
-                <SectionSubProperty property='mild'>
-                    <p>
-                        Makes <code>background color smoother</code> and makes the <code>text</code> color more contrast.
-                        Set <code>{`mild={true}`}</code> to activate.
-                    </p>
-                    <p>
-                        The <strong>smoother</strong> means <strong>near to white</strong> on <strong>light background</strong> and <strong>near to black</strong> on <strong>dark background</strong>.
-                        You can <LinkColorsPage>adjust the background color here</LinkColorsPage>.
-                    </p>
-                </SectionSubProperty>
+                <SectionPropertyTheme />
+                <SectionPropertySize />
+                <SectionPropertyNude />
+                <SectionPropertyGradient />
+                <SectionPropertyOutlined />
+                <SectionPropertyMild />
             </SectionVariants>
             <SectionCustomizing specList={
                 <SpecList>

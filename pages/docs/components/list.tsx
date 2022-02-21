@@ -6,11 +6,12 @@ import Head from 'next/head'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { SubSection } from '../../../components/Section'
-import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, TransparentPreview, LinkResponsiveProviderPage, LinkContentPage, LinkButtonPage, LinkListSeparatorItemPage, LinkUsesIndicatorVariantsPage } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, TransparentPreview, LinkResponsiveProviderPage, LinkContentPage, LinkButtonPage, LinkListSeparatorItemPage, LinkUsesIndicatorVariantsPage, SectionSubProperty, SectionPropertyProps } from '../../../components/common-contents'
 import { List, ListItem, ListSeparatorItem, OrientationName } from '@nodestrap/list'
 import { TypeScriptCode } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
 import { Warning } from '../../../components/Info'
+import { SectionPropertyGradient as BasicSectionPropertyGradient, SectionPropertyMild as BasicSectionPropertyMild, SectionPropertyNude as BasicSectionPropertyNude, SectionPropertyOutlined as BasicSectionPropertyOutlined, SectionPropertySize as BasicSectionPropertySize, SectionPropertyTheme as BasicSectionPropertyTheme } from './basic'
 
 import loadable from '@loadable/component'
 const DemoListLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@List' */'../../../components/DemoPanel@List'))
@@ -44,68 +45,43 @@ const ContentMakeListItemClickable = () => {
     )
 };
 
-
-
-const Page: NextPage = () => {
+export const SectionPropertyTheme = ({ propertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
-        <ComponentInfoProvider packageName='@nodestrap/list' component={<LinkListPage />} bases={<LinkIndicatorPage />}>
-            <Head>
-                <title>&lt;List&gt; Component</title>
-                <meta name="description" content="Using <List> component" />
-            </Head>
-
-            <SectionIntro>
-                <p>
-                    <CurrentComponent /> is a presentation component for displaying a series of content.
-                </p>
-            </SectionIntro>
-            <SectionDemo>
-                <DemoListLazy fallback={<BusyBar />} />
-            </SectionDemo>
-            <SectionInheritedProps />
-            <SectionVariants>
-                <SubSection title='Themes'>
-                    <p>
-                        By default, the <code>theme</code> of <LinkListItemPage /> is <strong>inherit</strong> from <CurrentComponent />, but
-                        you can set the individual <code>theme</code> of <strong>each</strong> <LinkListItemPage />.
-                    </p>
-                    <p>
-                        Here the demonstration:
-                    </p>
-                    <List theme='primary'>
-                        <ListItem>
-                            An inherit theme
-                        </ListItem>
-                        <ListItem>
-                            An inherit theme
-                        </ListItem>
-                        <ListItem theme='primary'>
-                            A primary theme
-                        </ListItem>
-                        <ListItem theme='secondary'>
-                            A secondary theme
-                        </ListItem>
-                        <ListItem theme='success'>
-                            A success theme
-                        </ListItem>
-                        <ListItem theme='info'>
-                            A info theme
-                        </ListItem>
-                        <ListItem theme='warning'>
-                            A warning theme
-                        </ListItem>
-                        <ListItem theme='danger'>
-                            A danger theme
-                        </ListItem>
-                        <ListItem theme='light'>
-                            A light theme
-                        </ListItem>
-                        <ListItem theme='dark'>
-                            A dark theme
-                        </ListItem>
-                    </List>
-                    <p></p>
-                    <TypeScriptCode>{`
+        <BasicSectionPropertyTheme {...restProps} propertySuffix={propertySuffix ?? false} demonstration={<>
+            <List theme='primary'>
+                <ListItem>
+                    An inherit theme
+                </ListItem>
+                <ListItem>
+                    An inherit theme
+                </ListItem>
+                <ListItem theme='primary'>
+                    A primary theme
+                </ListItem>
+                <ListItem theme='secondary'>
+                    A secondary theme
+                </ListItem>
+                <ListItem theme='success'>
+                    A success theme
+                </ListItem>
+                <ListItem theme='info'>
+                    A info theme
+                </ListItem>
+                <ListItem theme='warning'>
+                    A warning theme
+                </ListItem>
+                <ListItem theme='danger'>
+                    A danger theme
+                </ListItem>
+                <ListItem theme='light'>
+                    A light theme
+                </ListItem>
+                <ListItem theme='dark'>
+                    A dark theme
+                </ListItem>
+            </List>
+            <p></p>
+            <TypeScriptCode>{`
 <List theme='primary'>
     <ListItem>
         An inherit theme
@@ -138,32 +114,38 @@ const Page: NextPage = () => {
         A dark theme
     </ListItem>
 </List>
-                    `}</TypeScriptCode>
-                </SubSection>
-                <SubSection title='Sizes'>
-                    <p>
-                        By default, the <code>size</code> of <LinkListItemPage /> is <strong>inherit</strong> from <CurrentComponent />, but
-                        you can set the individual <code>size</code> of <strong>each</strong> <LinkListItemPage />.
-                    </p>
-                    <p>
-                        Here the demonstration:
-                    </p>
-                    <List theme='primary'>
-                        <ListItem>
-                            An inherit size
-                        </ListItem>
-                        <ListItem>
-                            An inherit size
-                        </ListItem>
-                        <ListItem size='sm'>
-                            A smaller size
-                        </ListItem>
-                        <ListItem size='lg'>
-                            A larger size
-                        </ListItem>
-                    </List>
-                    <p></p>
-                    <TypeScriptCode>{`
+            `}</TypeScriptCode>
+        </>}>
+            {
+                children
+                ??
+                <p>
+                    By default, the <code>theme</code> of <LinkListItemPage /> is <strong>inherit</strong> from <CurrentComponent />, but
+                    you can set the individual <code>theme</code> of <strong>each</strong> <LinkListItemPage />.
+                </p>
+            }
+        </BasicSectionPropertyTheme>
+    );
+};
+export const SectionPropertySize = ({ propertySuffix, children, ...restProps }: SectionPropertyProps) => {
+    return (
+        <BasicSectionPropertySize {...restProps} propertySuffix={propertySuffix ?? false} demonstration={<>
+            <List theme='primary'>
+                <ListItem>
+                    An inherit size
+                </ListItem>
+                <ListItem>
+                    An inherit size
+                </ListItem>
+                <ListItem size='sm'>
+                    A smaller size
+                </ListItem>
+                <ListItem size='lg'>
+                    A larger size
+                </ListItem>
+            </List>
+            <p></p>
+            <TypeScriptCode>{`
 <List theme='primary'>
     <ListItem>
         An inherit size
@@ -178,41 +160,45 @@ const Page: NextPage = () => {
         A larger size
     </ListItem>
 </List>
-                    `}</TypeScriptCode>
-                </SubSection>
-                <SubSection title='Nude'>
-                    <p>
-                        Assigning <code>{`<ListItem nude={true}>`}</code> makes the <LinkListItemPage /> lose its <code>background</code> and <code>padding</code>.
-                    </p>
-                    <p>
-                        This is useful if you want to fill the <LinkListItemPage /> with a custom component.
-                    </p>
-                    <p>
-                        Here the demonstration:
-                    </p>
-                    <TransparentPreview>
-                        <List theme='primary'>
-                            <ListItem>
-                                A first item
-                            </ListItem>
-                            <ListItem>
-                                A second item
-                            </ListItem>
-                            <ListItem nude={true}>
-                                A third item (nude)
-                            </ListItem>
-                            <ListItem nude={true}>
-                                <div style={{ background: 'pink', padding: '1em', display: 'flex', justifyContent: 'center' }}>
-                                    hello world
-                                </div>
-                            </ListItem>
-                            <ListItem nude={true}>
-                                A fifth item (nude)
-                            </ListItem>
-                        </List>
-                    </TransparentPreview>
-                    <p></p>
-                    <TypeScriptCode>{`
+            `}</TypeScriptCode>
+        </>}>
+            {
+                children
+                ??
+                <p>
+                    By default, the <code>size</code> of <LinkListItemPage /> is <strong>inherit</strong> from <CurrentComponent />, but
+                    you can set the individual <code>size</code> of <strong>each</strong> <LinkListItemPage />.
+                </p>
+            }
+        </BasicSectionPropertySize>
+    );
+};
+export const SectionPropertyNude = ({ propertySuffix, children, ...restProps }: SectionPropertyProps) => {
+    return (
+        <BasicSectionPropertyNude {...restProps} propertySuffix={propertySuffix ?? false} demonstration={<>
+            <TransparentPreview>
+                <List theme='primary'>
+                    <ListItem>
+                        A first item
+                    </ListItem>
+                    <ListItem>
+                        A second item
+                    </ListItem>
+                    <ListItem nude={true}>
+                        A third item (nude)
+                    </ListItem>
+                    <ListItem nude={true}>
+                        <div style={{ background: 'pink', padding: '1em', display: 'flex', justifyContent: 'center' }}>
+                            hello world
+                        </div>
+                    </ListItem>
+                    <ListItem nude={true}>
+                        A fifth item (nude)
+                    </ListItem>
+                </List>
+            </TransparentPreview>
+            <p></p>
+            <TypeScriptCode>{`
 <List theme='primary'>
     <ListItem>
         A first item
@@ -232,34 +218,42 @@ const Page: NextPage = () => {
         A fifth item (nude)
     </ListItem>
 </List>
-                    `}</TypeScriptCode>
-                </SubSection>
-                <SubSection title='Gradient'>
+            `}</TypeScriptCode>
+        </>}>
+            {
+                children
+                ??
+                <>
                     <p>
-                        To make <LinkListItemPage /> appear 3D, set <code>{`<ListItem gradient={true}>`}</code>.
+                        Assigning <code>{`<ListItem nude={true}>`}</code> makes the <LinkListItemPage /> lose its <code>background</code> and <code>padding</code>.
                     </p>
                     <p>
-                        You can also set the <code>gradient</code> at <code>{`<List gradient={true}>`}</code>, so the whole <CurrentComponent /> is 3D.
+                        This is useful if you want to fill the <LinkListItemPage /> with a custom component.
                     </p>
-                    <p>
-                        Here the demonstration:
-                    </p>
-                    <List theme='primary'>
-                        <ListItem>
-                            A first item
-                        </ListItem>
-                        <ListItem>
-                            A second item
-                        </ListItem>
-                        <ListItem gradient={true}>
-                            A third item (gradient)
-                        </ListItem>
-                        <ListItem gradient={true}>
-                            A fourth item (gradient)
-                        </ListItem>
-                    </List>
-                    <p></p>
-                    <TypeScriptCode>{`
+                </>
+            }
+        </BasicSectionPropertyNude>
+    );
+};
+export const SectionPropertyGradient = ({ propertySuffix, children, ...restProps }: SectionPropertyProps) => {
+    return (
+        <BasicSectionPropertyGradient {...restProps} propertySuffix={propertySuffix ?? false} demonstration={<>
+            <List theme='primary'>
+                <ListItem>
+                    A first item
+                </ListItem>
+                <ListItem>
+                    A second item
+                </ListItem>
+                <ListItem gradient={true}>
+                    A third item (gradient)
+                </ListItem>
+                <ListItem gradient={true}>
+                    A fourth item (gradient)
+                </ListItem>
+            </List>
+            <p></p>
+            <TypeScriptCode>{`
 <List theme='primary'>
     <ListItem>
         A first item
@@ -290,39 +284,47 @@ const Page: NextPage = () => {
         A fourth item (gradient)
     </ListItem>
 </List>
-                    `}</TypeScriptCode>
-                </SubSection>
-                <SubSection title='Outlined'>
+            `}</TypeScriptCode>
+        </>}>
+            {
+                children
+                ??
+                <>
                     <p>
-                        To make <LinkListItemPage /> appear transparent, set <code>{`<ListItem outlined={true}>`}</code>.
+                        To make <LinkListItemPage /> appear 3D, set <code>{`<ListItem gradient={true}>`}</code>.
                     </p>
                     <p>
-                        You can also set the <code>outlined</code> at <code>{`<List outlined={true}>`}</code>, so the whole <CurrentComponent /> is transparent.
+                        You can also set the <code>gradient</code> at <code>{`<List gradient={true}>`}</code>, so the whole <CurrentComponent /> is 3D.
                     </p>
-                    <p>
-                        Here the demonstration:
-                    </p>
-                    <TransparentPreview>
-                        <List theme='primary'>
-                            <ListItem>
-                                A first item
-                            </ListItem>
-                            <ListItem>
-                                A second item
-                            </ListItem>
-                            <ListItem outlined={true}>
-                                A third item (outlined)
-                            </ListItem>
-                            <ListItem outlined={true}>
-                                A fourth item (outlined)
-                            </ListItem>
-                            <ListItem outlined={false}>
-                                A fifth item
-                            </ListItem>
-                        </List>
-                    </TransparentPreview>
-                    <p></p>
-                    <TypeScriptCode>{`
+                </>
+            }
+        </BasicSectionPropertyGradient>
+    );
+};
+export const SectionPropertyOutlined = ({ propertySuffix, children, ...restProps }: SectionPropertyProps) => {
+    return (
+        <BasicSectionPropertyOutlined {...restProps} propertySuffix={propertySuffix ?? false} demonstration={<>
+            <TransparentPreview>
+                <List theme='primary'>
+                    <ListItem>
+                        A first item
+                    </ListItem>
+                    <ListItem>
+                        A second item
+                    </ListItem>
+                    <ListItem outlined={true}>
+                        A third item (outlined)
+                    </ListItem>
+                    <ListItem outlined={true}>
+                        A fourth item (outlined)
+                    </ListItem>
+                    <ListItem outlined={false}>
+                        A fifth item
+                    </ListItem>
+                </List>
+            </TransparentPreview>
+            <p></p>
+            <TypeScriptCode>{`
 <List theme='primary'>
     <ListItem>
         A first item
@@ -359,38 +361,45 @@ const Page: NextPage = () => {
         A fifth item (outlined)
     </ListItem>
 </List>
-                    `}</TypeScriptCode>
-                </SubSection>
-                <SubSection title='Mild'>
+            `}</TypeScriptCode>
+        </>}>
+            {
+                children
+                ??
+                <>
                     <p>
-                        To make <LinkListItemPage /> look smoother (text friendly), set <code>{`<ListItem mild={true}>`}</code>.
+                        To make <LinkListItemPage /> appear transparent, set <code>{`<ListItem outlined={true}>`}</code>.
                     </p>
                     <p>
-                        You can also set the <code>mild</code> at <code>{`<List mild={true}>`}</code>, so the whole <CurrentComponent /> looks smoother.<br />
-                        Note: the <code>{`mild={true}`}</code> is <strong>already set by default</strong> in <CurrentComponent />, so to disable it assign <code>{`<List mild={false}>`}</code>
+                        You can also set the <code>outlined</code> at <code>{`<List outlined={true}>`}</code>, so the whole <CurrentComponent /> is transparent.
                     </p>
-                    <p>
-                        Here the demonstration:
-                    </p>
-                    <List mild={false} theme='primary'>
-                        <ListItem>
-                            A first item
-                        </ListItem>
-                        <ListItem>
-                            A second item
-                        </ListItem>
-                        <ListItem mild={true}>
-                            A third item (mild)
-                        </ListItem>
-                        <ListItem mild={true}>
-                            A fourth item (mild)
-                        </ListItem>
-                        <ListItem mild={false}>
-                            A fifth item
-                        </ListItem>
-                    </List>
-                    <p></p>
-                    <TypeScriptCode>{`
+                </>
+            }
+        </BasicSectionPropertyOutlined>
+    );
+};
+export const SectionPropertyMild = ({ propertySuffix, children, ...restProps }: SectionPropertyProps) => {
+    return (
+        <BasicSectionPropertyMild {...restProps} propertySuffix={propertySuffix ?? false} demonstration={<>
+            <List mild={false} theme='primary'>
+                <ListItem>
+                    A first item
+                </ListItem>
+                <ListItem>
+                    A second item
+                </ListItem>
+                <ListItem mild={true}>
+                    A third item (mild)
+                </ListItem>
+                <ListItem mild={true}>
+                    A fourth item (mild)
+                </ListItem>
+                <ListItem mild={false}>
+                    A fifth item
+                </ListItem>
+            </List>
+            <p></p>
+            <TypeScriptCode>{`
 <List mild={false} theme='primary'>
     <ListItem>
         A first item
@@ -427,9 +436,31 @@ const Page: NextPage = () => {
         A fifth item
     </ListItem>
 </List>
-                    `}</TypeScriptCode>
-                </SubSection>
-                <SubSection title='Orientation'>
+            `}</TypeScriptCode>
+        </>}>
+            {
+                children
+                ??
+                <>
+                    <p>
+                        To make <LinkListItemPage /> look smoother (text friendly), set <code>{`<ListItem mild={true}>`}</code>.
+                    </p>
+                    <p>
+                        You can also set the <code>mild</code> at <code>{`<List mild={true}>`}</code>, so the whole <CurrentComponent /> looks smoother.<br />
+                        Note: the <code>{`mild={true}`}</code> is <strong>already set by default</strong> in <CurrentComponent />, so to disable it assign <code>{`<List mild={false}>`}</code>
+                    </p>
+                </>
+            }
+        </BasicSectionPropertyMild>
+    );
+};
+export const SectionPropertyOrientation = ({ property, properties, propertySuffix, children, ...restProps }: SectionPropertyProps) => {
+    return (
+        <SectionSubProperty {...restProps} propertySuffix={propertySuffix ?? false} property={property ?? 'orientation'} properties={properties ?? 'Orientation'}>
+            {
+                children
+                ??
+                <>
                     <SubSection titleTag='h4' title={<><code>block</code> Orientation</>}>
                         <p>
                             To make <LinkListItemPage /> stacked in <strong>vertical</strong>, set <code>{`<List orientation='block'>`}</code>.
@@ -623,8 +654,18 @@ const Page: NextPage = () => {
 )}</ResponsiveProvider>
                         `}</TypeScriptCode>
                     </SubSection>
-                </SubSection>
-                <SubSection title='Styles'>
+                </>
+            }
+        </SectionSubProperty>
+    );
+};
+export const SectionPropertyStyles = ({ property, properties, propertySuffix, children, ...restProps }: SectionPropertyProps) => {
+    return (
+        <SectionSubProperty {...restProps} propertySuffix={propertySuffix ?? false} property={property ?? 'listStyle'} properties={properties ?? 'Styles'}>
+            {
+                children
+                ??
+                <>
                     <SubSection titleTag='h4' title={<><code>flat</code> Style</>}>
                         <p>
                             Set <code>{`<List listStyle='flat'>`}</code> to remove the <code>border</code>, <code>border-radius</code>, and <em>separator</em> (a <code>border</code> between <LinkListItemPage />s).
@@ -1170,7 +1211,40 @@ const TabControl = () => {
                             `}</TypeScriptCode>
                         </SubSection>
                     </SubSection>
-                </SubSection>
+                </>
+            }
+        </SectionSubProperty>
+    );
+};
+
+
+
+const Page: NextPage = () => {
+    return (
+        <ComponentInfoProvider packageName='@nodestrap/list' component={<LinkListPage />} bases={<LinkIndicatorPage />}>
+            <Head>
+                <title>&lt;List&gt; Component</title>
+                <meta name="description" content="Using <List> component" />
+            </Head>
+
+            <SectionIntro>
+                <p>
+                    <CurrentComponent /> is a presentation component for displaying a series of content.
+                </p>
+            </SectionIntro>
+            <SectionDemo>
+                <DemoListLazy fallback={<BusyBar />} />
+            </SectionDemo>
+            <SectionInheritedProps />
+            <SectionVariants>
+                <SectionPropertyTheme />
+                <SectionPropertySize />
+                <SectionPropertyNude />
+                <SectionPropertyGradient />
+                <SectionPropertyOutlined />
+                <SectionPropertyMild />
+                <SectionPropertyOrientation />
+                <SectionPropertyStyles />
             </SectionVariants>
             <SectionStates>
                 <SubSection title='Links and Buttons'>

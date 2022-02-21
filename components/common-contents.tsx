@@ -438,24 +438,39 @@ export const SectionStates = ({ children }: SectionStatesProps) => {
 }
 
 export interface SectionPropertyProps {
-    titleTag ?: 'h1'|'h2'|'h3'|'h4'|'h5'|'h6'
-    property  : string|React.ReactElement
-    children ?: React.ReactNode
-    specList ?: SpecList
-    moreInfo ?: React.ReactNode
+    titleTag       ?: 'h1'|'h2'|'h3'|'h4'|'h5'|'h6'
+    property       ?: string|React.ReactElement
+    properties     ?: string|React.ReactElement
+    propertySuffix ?: boolean
+    children       ?: React.ReactNode
+    specList       ?: SpecList
+    moreInfo       ?: React.ReactNode
+    demonstration  ?: React.ReactNode
 }
-export const SectionProperty = ({ titleTag = 'h2', property, specList, children, moreInfo }: SectionPropertyProps) => {
+export const SectionProperty = ({ titleTag = 'h2', property, properties, propertySuffix = true, specList, children, moreInfo, demonstration }: SectionPropertyProps) => {
     return (
         <Section
             titleTag={titleTag}
             title={
-                (typeof(property) === 'string')
-                ?
-                <>
-                    <code>{ property }</code> Property
-                </>
-                :
                 property
+                ?
+                (
+                    (typeof(property) === 'string')
+                    ?
+                    (
+                        propertySuffix
+                        ?
+                        <>
+                            <code>{ property }</code> Property
+                        </>
+                        :
+                        (properties ?? property)
+                    )
+                    :
+                    property
+                )
+                :
+                undefined
             }
         >
             { children }
@@ -466,6 +481,12 @@ export const SectionProperty = ({ titleTag = 'h2', property, specList, children,
                 { specList }
             </>}
             { moreInfo && <><p></p>{ moreInfo }</> }
+            { demonstration && <>
+                <p>
+                    Here the demonstration:
+                </p>
+                { demonstration }
+            </> }
         </Section>
     );
 }
