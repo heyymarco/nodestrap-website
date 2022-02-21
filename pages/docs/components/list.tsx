@@ -995,7 +995,7 @@ const Page: NextPage = () => {
     </ListItem>
 </List>
                         `}</TypeScriptCode>
-                        <SubSection titleTag='h5' title='Skip Unecessary Content'>
+                        <SubSection titleTag='h5' title='Skip Unnecessary Content'>
                             <p>
                                 A <LinkListSeparatorItemPage /> and <code>.void</code> are skipped by counter.
                             </p>
