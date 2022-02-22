@@ -167,13 +167,13 @@ export const DemoList = () => {
                         {hasChildren && 'A seventh item (active + disabled)'}
                     </ListItem>
                     <ListItem actionCtrl={true} active={true}>
-                        {hasChildren && 'A eighth item (actionCtrl + active)'}
+                        {hasChildren && 'A eighth item (clickable + active)'}
                     </ListItem>
                     <ListItem actionCtrl={true} enabled={false}>
-                        {hasChildren && 'A nineth item (actionCtrl + disabled)'}
+                        {hasChildren && 'A nineth item (clickable + disabled)'}
                     </ListItem>
                     <ListItem actionCtrl={true} active={true} enabled={false}>
-                        {hasChildren && 'A tenth item (actionCtrl + active + disabled)'}
+                        {hasChildren && 'A tenth item (clickable + active + disabled)'}
                     </ListItem>
                 </List>
                 <TypeScriptCode collapsable={false}>{`
@@ -199,9 +199,9 @@ export const DemoList = () => {
     <ListItem active={true}${                                  hasChildren ? '>\n        A fifth item (active)\n    </ListItem>'                         : ' />'}
     <ListItem enabled={false}${                                hasChildren ? '>\n        A sixth item (disabled)\n    </ListItem>'                       : ' />'}
     <ListItem active={true} enabled={false}${                  hasChildren ? '>\n        A seventh item (active + disabled)\n    </ListItem>'            : ' />'}
-    <ListItem actionCtrl={true} active={true}${                hasChildren ? '>\n        A eighth item (actionCtrl + active)\n    </ListItem>'           : ' />'}
-    <ListItem actionCtrl={true} enabled={false}${              hasChildren ? '>\n        A nineth item (actionCtrl + disabled)\n    </ListItem>'         : ' />'}
-    <ListItem actionCtrl={true} active={true} enabled={false}${hasChildren ? '>\n        A tenth item (actionCtrl + active + disabled)\n    </ListItem>' : ' />'}
+    <ListItem actionCtrl={true} active={true}${                hasChildren ? '>\n        A eighth item (clickable + active)\n    </ListItem>'           : ' />'}
+    <ListItem actionCtrl={true} enabled={false}${              hasChildren ? '>\n        A nineth item (clickable + disabled)\n    </ListItem>'         : ' />'}
+    <ListItem actionCtrl={true} active={true} enabled={false}${hasChildren ? '>\n        A tenth item (clickable + active + disabled)\n    </ListItem>' : ' />'}
 </List>
                 `}</TypeScriptCode>
             </div>
