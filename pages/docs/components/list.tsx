@@ -24,9 +24,10 @@ const DemoListLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@List'
 
 
 
-export const SectionPropertyTheme = ({ propertySuffix, children, ...restProps }: SectionPropertyProps) => {
+const defaultPropertySuffix = false;
+export const SectionPropertyTheme = ({ propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
-        <BasicSectionPropertyTheme {...restProps} propertySuffix={propertySuffix ?? false} demonstration={<>
+        <BasicSectionPropertyTheme {...restProps} propertySuffix={propertySuffix} demonstration={<>
             <List theme='primary'>
                 <ListItem>
                     An inherit theme
@@ -111,9 +112,9 @@ export const SectionPropertyTheme = ({ propertySuffix, children, ...restProps }:
         </BasicSectionPropertyTheme>
     );
 };
-export const SectionPropertySize = ({ propertySuffix, children, ...restProps }: SectionPropertyProps) => {
+export const SectionPropertySize = ({ propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
-        <BasicSectionPropertySize {...restProps} propertySuffix={propertySuffix ?? false} demonstration={<>
+        <BasicSectionPropertySize {...restProps} propertySuffix={propertySuffix} demonstration={<>
             <List theme='primary'>
                 <ListItem>
                     An inherit size
@@ -162,9 +163,9 @@ export const SectionPropertySize = ({ propertySuffix, children, ...restProps }: 
         </BasicSectionPropertySize>
     );
 };
-export const SectionPropertyNude = ({ propertySuffix, children, ...restProps }: SectionPropertyProps) => {
+export const SectionPropertyNude = ({ propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
-        <BasicSectionPropertyNude {...restProps} propertySuffix={propertySuffix ?? false} demonstration={<>
+        <BasicSectionPropertyNude {...restProps} propertySuffix={propertySuffix} demonstration={<>
             <TransparentPreview>
                 <List theme='primary'>
                     <ListItem>
@@ -224,9 +225,9 @@ export const SectionPropertyNude = ({ propertySuffix, children, ...restProps }: 
         </BasicSectionPropertyNude>
     );
 };
-export const SectionPropertyGradient = ({ propertySuffix, children, ...restProps }: SectionPropertyProps) => {
+export const SectionPropertyGradient = ({ propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
-        <BasicSectionPropertyGradient {...restProps} propertySuffix={propertySuffix ?? false} demonstration={<>
+        <BasicSectionPropertyGradient {...restProps} propertySuffix={propertySuffix} demonstration={<>
             <List theme='primary'>
                 <ListItem>
                     A first item
@@ -290,9 +291,9 @@ export const SectionPropertyGradient = ({ propertySuffix, children, ...restProps
         </BasicSectionPropertyGradient>
     );
 };
-export const SectionPropertyOutlined = ({ propertySuffix, children, ...restProps }: SectionPropertyProps) => {
+export const SectionPropertyOutlined = ({ propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
-        <BasicSectionPropertyOutlined {...restProps} propertySuffix={propertySuffix ?? false} demonstration={<>
+        <BasicSectionPropertyOutlined {...restProps} propertySuffix={propertySuffix} demonstration={<>
             <TransparentPreview>
                 <List theme='primary'>
                     <ListItem>
@@ -367,9 +368,9 @@ export const SectionPropertyOutlined = ({ propertySuffix, children, ...restProps
         </BasicSectionPropertyOutlined>
     );
 };
-export const SectionPropertyMild = ({ propertySuffix, children, ...restProps }: SectionPropertyProps) => {
+export const SectionPropertyMild = ({ propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
-        <BasicSectionPropertyMild {...restProps} propertySuffix={propertySuffix ?? false} demonstration={<>
+        <BasicSectionPropertyMild {...restProps} propertySuffix={propertySuffix} demonstration={<>
             <List mild={false} theme='primary'>
                 <ListItem>
                     A first item
@@ -443,14 +444,14 @@ export const SectionPropertyMild = ({ propertySuffix, children, ...restProps }: 
         </BasicSectionPropertyMild>
     );
 };
-export const SectionPropertyOrientation = ({ property, properties, propertySuffix, children, ...restProps }: SectionPropertyProps) => {
+export const SectionPropertyOrientation = ({ property, properties, propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
-        <SectionSubProperty {...restProps} propertySuffix={propertySuffix ?? false} property={property ?? 'orientation'} properties={properties ?? 'Orientation'}>
+        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property ?? 'orientation'} properties={properties ?? 'Orientation'}>
             {
                 children
                 ??
                 <>
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix ?? false} property={`orientation='block'`} properties={<><code>block</code> Orientation</>} demonstration={<>
+                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`orientation='block'`} properties={<><code>block</code> Orientation</>} demonstration={<>
                         <List orientation='block' theme='primary'>
                             <ListItem>
                                 A first item
@@ -496,7 +497,7 @@ export const SectionPropertyOrientation = ({ property, properties, propertySuffi
                             This is the <strong>default</strong> value if the <code>orientation</code> value is not specified.
                         </p>
                     </SectionSubProperty>
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix ?? false} property={`orientation='inline'`} properties={<><code>inline</code> Orientation</>} demonstration={<>
+                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`orientation='inline'`} properties={<><code>inline</code> Orientation</>} demonstration={<>
                         <div style={{ overflowX: 'auto' }}>
                             <List orientation='inline' theme='primary'>
                                 <ListItem>
@@ -552,7 +553,7 @@ export const SectionPropertyOrientation = ({ property, properties, propertySuffi
                             </p>
                         </Warning>
                     </SectionSubProperty>
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix ?? false} property={`orientation={currentFallback}`} properties='Dynamic Orientation' demonstration={<>
+                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`orientation={currentFallback}`} properties='Dynamic Orientation' demonstration={<>
                         <Warning>
                             <p>
                                 Try to <strong>resize</strong> the <span style={{ background :'pink', border : 'solid 1px darkred', padding: '0.15em' }}>red container</span> below:
@@ -642,14 +643,14 @@ export const SectionPropertyOrientation = ({ property, properties, propertySuffi
         </SectionSubProperty>
     );
 };
-export const SectionPropertyStyles = ({ property, properties, propertySuffix, children, ...restProps }: SectionPropertyProps) => {
+export const SectionPropertyStyles = ({ property, properties, propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
-        <SectionSubProperty {...restProps} propertySuffix={propertySuffix ?? false} property={property ?? 'listStyle'} properties={properties ?? 'Styles'}>
+        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property ?? 'listStyle'} properties={properties ?? 'Styles'}>
             {
                 children
                 ??
                 <>
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix ?? false} property={`listStyle='flat'`} properties={<><code>flat</code> Style</>} demonstration={<>
+                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`listStyle='flat'`} properties={<><code>flat</code> Style</>} demonstration={<>
                         <List listStyle='flat' theme='primary'>
                             <ListItem>
                                 A first item
@@ -692,7 +693,7 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix, ch
                             Set <code>{`<List listStyle='flat'>`}</code> to remove the <code>border</code>, <code>border-radius</code>, and <em>separator</em> (a <code>border</code> between <LinkListItemPage />s).
                         </p>
                     </SectionSubProperty>
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix ?? false} property={`listStyle='flush'`} properties={<><code>flush</code> Style</>} demonstration={<>
+                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`listStyle='flush'`} properties={<><code>flush</code> Style</>} demonstration={<>
                         <List listStyle='flush' theme='primary'>
                             <ListItem>
                                 A first item
@@ -735,7 +736,7 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix, ch
                             Set <code>{`<List listStyle='flush'>`}</code> to remove the <code>border</code> and <code>border-radius</code>.
                         </p>
                     </SectionSubProperty>
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix ?? false} property={`listStyle='joined'`} properties={<><code>joined</code> Style</>} demonstration={<>
+                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`listStyle='joined'`} properties={<><code>joined</code> Style</>} demonstration={<>
                         <List listStyle='joined' theme='primary'>
                             <ListItem>
                                 A first item
@@ -779,7 +780,7 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix, ch
                         </p>
                     </SectionSubProperty>
                     
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix ?? false} property={`listStyle='content'`} properties={<><code>content</code> Style</>} demonstration={<>
+                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`listStyle='content'`} properties={<><code>content</code> Style</>} demonstration={<>
                         <List listStyle='content' theme='primary'>
                             <ListItem>
                                 A first item
@@ -825,7 +826,7 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix, ch
                             Basically it merges the <LinkListItemPage />&apos;s style + <LinkContentPage />&apos;s style.
                         </p>
                     </SectionSubProperty>
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix ?? false} property={`listStyle='btn'`} properties={<><code>btn</code> Style</>} demonstration={<>
+                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`listStyle='btn'`} properties={<><code>btn</code> Style</>} demonstration={<>
                         <List listStyle='btn' theme='primary'>
                             <ListItem>
                                 A first item
@@ -863,7 +864,7 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix, ch
     </ListItem>
 </List>
                         `}</TypeScriptCode>
-                        <SectionSubProperty titleTag='h5' propertySuffix={propertySuffix ?? false} property={`actionCtrl={true}`} properties='Make the Buttons Functional' demonstration={<>
+                        <SectionSubProperty titleTag='h5' propertySuffix={propertySuffix} property={`actionCtrl={true}`} properties='Make the Buttons Functional' demonstration={<>
                             <List listStyle='btn' actionCtrl={true} theme='primary'>
                                 <ListItem>
                                     A first item
@@ -913,7 +914,7 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix, ch
                         </p>
                     </SectionSubProperty>
                     
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix ?? false} property={`listStyle='tab'`} properties={<><code>tab</code> Style</>} demonstration={<>
+                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`listStyle='tab'`} properties={<><code>tab</code> Style</>} demonstration={<>
                         <List listStyle='tab' orientation='inline' theme='primary'>
                             <ListItem>
                                 A first item
@@ -951,7 +952,7 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix, ch
     </ListItem>
 </List>
                         `}</TypeScriptCode>
-                        <SectionSubProperty titleTag='h5' propertySuffix={propertySuffix ?? false} property={`actionCtrl={true}`} properties='Make the Tabs Functional' demonstration={<>
+                        <SectionSubProperty titleTag='h5' propertySuffix={propertySuffix} property={`actionCtrl={true}`} properties='Make the Tabs Functional' demonstration={<>
                             {(() => {
                                 const [activeTabIndex, setActiveTabIndex] = useState(3);
                                 
@@ -1009,7 +1010,7 @@ const TabControl = () => {
                             Set <code>{`<List listStyle='tab'>`}</code> to style the <LinkListItemPage /> to look similar to <em>a tabbed interface</em>.
                         </p>
                     </SectionSubProperty>
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix ?? false} property={`listStyle='breadcrumb'`} properties={<><code>breadcrumb</code> Style</>} demonstration={<>
+                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`listStyle='breadcrumb'`} properties={<><code>breadcrumb</code> Style</>} demonstration={<>
                         <List listStyle='breadcrumb' orientation='inline' theme='primary'>
                             <ListItem>
                                 A first item
@@ -1055,7 +1056,7 @@ const TabControl = () => {
                             Requires <code>{`<List orientation='inline'>`}</code>.
                         </p>
                     </SectionSubProperty>
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix ?? false} property={`listStyle='bullet'`} properties={<><code>bullet</code> Style</>} demonstration={<>
+                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`listStyle='bullet'`} properties={<><code>bullet</code> Style</>} demonstration={<>
                         <List listStyle='bullet' orientation='inline' theme='primary'>
                             <ListItem />
                             <ListItem />
@@ -1082,7 +1083,7 @@ const TabControl = () => {
                         </p>
                     </SectionSubProperty>
                     
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix ?? false} property={`listStyle='numbered'`} properties={<><code>numbered</code> Style</>} demonstration={<>
+                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`listStyle='numbered'`} properties={<><code>numbered</code> Style</>} demonstration={<>
                         <List listStyle='numbered' theme='primary'>
                             <ListItem>
                                 A first item
@@ -1120,7 +1121,7 @@ const TabControl = () => {
     </ListItem>
 </List>
                         `}</TypeScriptCode>
-                        <SectionSubProperty titleTag='h5' propertySuffix={propertySuffix ?? false} property={`.void`} properties='Skip Unnecessary Content' demonstration={<>
+                        <SectionSubProperty titleTag='h5' propertySuffix={propertySuffix} property={`.void`} properties='Skip Unnecessary Content' demonstration={<>
                             <List listStyle={['numbered', 'joined']} theme='primary'>
                                 <ListItem>
                                     A first item
@@ -1202,9 +1203,9 @@ const ContentMakeListItemClickable = () => {
         </>
     )
 };
-export const SectionPropertyActionCtrl = ({ property, properties, propertySuffix, children, ...restProps }: SectionPropertyProps) => {
+export const SectionPropertyActionCtrl = ({ property, properties, propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
-        <SectionSubProperty {...restProps} propertySuffix={propertySuffix ?? false} property={property ?? 'actionCtrl'} properties={properties ?? 'Links and Buttons'} demonstration={<>
+        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property ?? 'actionCtrl'} properties={properties ?? 'Links and Buttons'} demonstration={<>
             <List theme='primary'>
                 <ListItem>
                     A first item (not clickable)
@@ -1281,9 +1282,9 @@ export const SectionPropertyActionCtrl = ({ property, properties, propertySuffix
         </SectionSubProperty>
     );
 };
-export const SectionPropertyActive = ({ property, properties, propertySuffix, children, ...restProps }: SectionPropertyProps) => {
+export const SectionPropertyActive = ({ property, properties, propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
-        <SectionSubProperty {...restProps} propertySuffix={propertySuffix ?? false} property={property ?? 'active'} properties={properties ?? 'Active Items'} demonstration={<>
+        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property ?? 'active'} properties={properties ?? 'Active Items'} demonstration={<>
             <List theme='primary'>
                 <ListItem>
                     A first item (not clickable)
@@ -1349,7 +1350,7 @@ export const SectionPropertyActive = ({ property, properties, propertySuffix, ch
     </ListItem>
 </List>
             `}</TypeScriptCode>
-            <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix ?? false} property={property ?? 'outlined'} properties={<>Active Items with Outlined <CurrentComponent /></>} demonstration={<>
+            <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={property ?? 'outlined'} properties='Active Items with Outlined' demonstration={<>
                 <TransparentPreview>
                     <List outlined={true} theme='primary'>
                         <ListItem>
@@ -1418,9 +1419,9 @@ export const SectionPropertyActive = ({ property, properties, propertySuffix, ch
         </SectionSubProperty>
     );
 };
-export const SectionPropertyEnabled = ({ property, properties, propertySuffix, children, ...restProps }: SectionPropertyProps) => {
+export const SectionPropertyEnabled = ({ property, properties, propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
-        <SectionSubProperty {...restProps} propertySuffix={propertySuffix ?? false} property={property ?? 'enabled'} properties={properties ?? 'Disabled Items'} demonstration={<>
+        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property ?? 'enabled'} properties={properties ?? 'Disabled Items'} demonstration={<>
             <List theme='primary'>
                 <ListItem>
                     A first item (not clickable)
