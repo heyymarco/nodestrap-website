@@ -98,7 +98,7 @@ export const SectionPropertyTheme = ({ propertySuffix, children, ...restProps }:
                         you can set the individual <code>theme</code> of <strong>each</strong> <LinkListItemPage />.
                     </p>
                     <p>
-                        You can also set the <code>theme</code> at <CurrentComponent /> level, so the default <code>theme</code> of whole <LinkListItemPage />s are the same.<br />
+                        You can also set the <code>theme</code> at <CurrentComponent /> level, so the default <code>theme</code> of entire <LinkListItemPage />s are the same.<br />
                     </p>
                 </>
             }
@@ -149,7 +149,7 @@ export const SectionPropertySize = ({ propertySuffix, children, ...restProps }: 
                         you can set the individual <code>size</code> of <strong>each</strong> <LinkListItemPage />.
                     </p>
                     <p>
-                        You can also set the <code>size</code> at <CurrentComponent /> level, so the default <code>size</code> of whole <LinkListItemPage />s are the same.<br />
+                        You can also set the <code>size</code> at <CurrentComponent /> level, so the default <code>size</code> of entire <LinkListItemPage />s are the same.<br />
                     </p>
                 </>
             }
@@ -211,7 +211,7 @@ export const SectionPropertyNude = ({ propertySuffix, children, ...restProps }: 
                         Assigning <code>{`<ListItem nude={true}>`}</code> makes the <LinkListItemPage /> lose its <code>background</code> and <code>padding</code>.
                     </p>
                     <p>
-                        This is useful if you want to fill the <LinkListItemPage /> with a custom component.
+                        This is useful if you want to fill the whole <LinkListItemPage /> with a custom component.
                     </p>
                 </>
             }
@@ -277,7 +277,7 @@ export const SectionPropertyGradient = ({ propertySuffix, children, ...restProps
                         To make <LinkListItemPage /> appear 3D, set <code>{`<ListItem gradient={true}>`}</code>.
                     </p>
                     <p>
-                        You can also set the <code>gradient</code> at <code>{`<List gradient={true}>`}</code>, so the whole <LinkListItemPage />s are 3D.
+                        You can also set the <code>gradient</code> at <code>{`<List gradient={true}>`}</code>, so the entire <LinkListItemPage />s are 3D.
                     </p>
                 </>
             }
@@ -354,7 +354,7 @@ export const SectionPropertyOutlined = ({ propertySuffix, children, ...restProps
                         To make <LinkListItemPage /> appear transparent, set <code>{`<ListItem outlined={true}>`}</code>.
                     </p>
                     <p>
-                        You can also set the <code>outlined</code> at <code>{`<List outlined={true}>`}</code>, so the whole <LinkListItemPage />s are transparent.
+                        You can also set the <code>outlined</code> at <code>{`<List outlined={true}>`}</code>, so the entire <LinkListItemPage />s are transparent.
                     </p>
                 </>
             }
@@ -429,7 +429,7 @@ export const SectionPropertyMild = ({ propertySuffix, children, ...restProps }: 
                         To make <LinkListItemPage /> look smoother (text friendly), set <code>{`<ListItem mild={true}>`}</code>.
                     </p>
                     <p>
-                        You can also set the <code>mild</code> at <code>{`<List mild={true}>`}</code>, so the whole <LinkListItemPage />s look smoother.<br />
+                        You can also set the <code>mild</code> at <code>{`<List mild={true}>`}</code>, so the entire <LinkListItemPage />s look smoother.<br />
                         Note: the <code>{`mild={true}`}</code> is <strong>already set by default</strong> in <CurrentComponent />, so to disable it assign <code>{`<List mild={false}>`}</code>
                     </p>
                 </>
@@ -1318,7 +1318,7 @@ export const SectionPropertyActive = ({ property, properties, propertySuffix, ch
                         To make <LinkListItemPage /> (appear) active, set <code>{`<ListItem active={true}>`}</code>.
                     </p>
                     <p>
-                        You can also set the <code>active</code> at <code>{`<List active={true}>`}</code>, so the whole <LinkListItemPage />s are active.<br />
+                        You can also set the <code>active</code> at <code>{`<List active={true}>`}</code>, so the entire <LinkListItemPage />s are active.<br />
                         To make an exception in a/some <LinkListItemPage />(s), set <code>{`<ListItem active={false} inheritActive={false}>`}</code>.<br />
                         Note: the <code>{`inheritActive={false}`}</code> prevents the active state on <CurrentComponent /> affecting the <LinkListItemPage />.
                     </p>
@@ -1459,7 +1459,7 @@ export const SectionPropertyEnabled = ({ property, properties, propertySuffix, c
                         To make <LinkListItemPage /> (appear) disabled, set <code>{`<ListItem enabled={false}>`}</code>.
                     </p>
                     <p>
-                        You can also set the <code>enabled</code> at <code>{`<List enabled={false}>`}</code>, so the whole <LinkListItemPage />s are disabled.<br />
+                        You can also set the <code>enabled</code> at <code>{`<List enabled={false}>`}</code>, so the entire <LinkListItemPage />s are disabled.<br />
                         To make an exception in a/some <LinkListItemPage />(s), set <code>{`<ListItem enabled={true} inheritEnabled={false}>`}</code>.<br />
                         Note: the <code>{`inheritEnabled={false}`}</code> prevents the disabled state on <CurrentComponent /> affecting the <LinkListItemPage />.
                     </p>
