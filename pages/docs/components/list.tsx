@@ -1303,6 +1303,9 @@ export const SectionPropertyActive = ({ property, properties, propertySuffix = d
                 </ListItem>
                 <ListItem active={true} enabled={false} theme='danger' actionCtrl={true} href='https://www.google.com'>
                     A seventh item item (clickable + active + disabled)
+                    <p>
+                        <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
+                    </p>
                 </ListItem>
             </List>
             <p></p>
@@ -1325,6 +1328,9 @@ export const SectionPropertyActive = ({ property, properties, propertySuffix = d
     </ListItem>
     <ListItem active={true} enabled={false} theme='danger' actionCtrl={true} href='https://www.google.com'>
         A seventh item item (clickable + active + disabled)
+        <p>
+            <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
+        </p>
     </ListItem>
 </List>
 
@@ -1347,6 +1353,9 @@ export const SectionPropertyActive = ({ property, properties, propertySuffix = d
     </ListItem>
     <ListItem enabled={false} theme='danger' actionCtrl={true} href='https://www.google.com'>
         A seventh item item (clickable + active + disabled)
+        <p>
+            <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
+        </p>
     </ListItem>
 </List>
             `}</TypeScriptCode>
@@ -1370,6 +1379,9 @@ export const SectionPropertyActive = ({ property, properties, propertySuffix = d
                         </ListItem>
                         <ListItem active={true} enabled={false} theme='danger' actionCtrl={true} href='https://www.google.com'>
                             A seventh item item (clickable + active + disabled)
+                            <p>
+                                <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
+                            </p>
                         </ListItem>
                     </List>
                 </TransparentPreview>
@@ -1393,6 +1405,9 @@ export const SectionPropertyActive = ({ property, properties, propertySuffix = d
     </ListItem>
     <ListItem active={true} enabled={false} theme='danger' actionCtrl={true} href='https://www.google.com'>
         A seventh item item (clickable + active + disabled)
+        <p>
+            <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
+        </p>
     </ListItem>
 </List>
                 `}</TypeScriptCode>
