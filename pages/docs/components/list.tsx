@@ -430,7 +430,7 @@ export const SectionPropertyMild = ({ propertySuffix, children, ...restProps }: 
                     </p>
                     <p>
                         You can also set the <code>mild</code> at <code>{`<List mild={true}>`}</code>, so the entire <LinkListItemPage />s look smoother.<br />
-                        Note: the <code>{`mild={true}`}</code> is <strong>already set by default</strong> in <CurrentComponent />, so to disable it assign <code>{`<List mild={false}>`}</code>
+                        Note: the <code>{`mild={true}`}</code> is <strong>already set by default</strong> at <CurrentComponent />, so to disable it assign <code>{`<List mild={false}>`}</code>.
                     </p>
                 </>
             }
