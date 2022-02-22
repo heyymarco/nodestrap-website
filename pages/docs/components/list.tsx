@@ -643,13 +643,7 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix, ch
                 children
                 ??
                 <>
-                    <SubSection titleTag='h4' title={<><code>flat</code> Style</>}>
-                        <p>
-                            Set <code>{`<List listStyle='flat'>`}</code> to remove the <code>border</code>, <code>border-radius</code>, and <em>separator</em> (a <code>border</code> between <LinkListItemPage />s).
-                        </p>
-                        <p>
-                            Here the demonstration:
-                        </p>
+                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix ?? false} property={`listStyle='flat'`} properties={<><code>flat</code> Style</>} demonstration={<>
                         <List listStyle='flat' theme='primary'>
                             <ListItem>
                                 A first item
@@ -687,14 +681,12 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix, ch
     </ListItem>
 </List>
                         `}</TypeScriptCode>
-                    </SubSection>
-                    <SubSection titleTag='h4' title={<><code>flush</code> Style</>}>
+                    </>}>
                         <p>
-                            Set <code>{`<List listStyle='flush'>`}</code> to remove the <code>border</code> and <code>border-radius</code>.
+                            Set <code>{`<List listStyle='flat'>`}</code> to remove the <code>border</code>, <code>border-radius</code>, and <em>separator</em> (a <code>border</code> between <LinkListItemPage />s).
                         </p>
-                        <p>
-                            Here the demonstration:
-                        </p>
+                    </SectionSubProperty>
+                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix ?? false} property={`listStyle='flush'`} properties={<><code>flush</code> Style</>} demonstration={<>
                         <List listStyle='flush' theme='primary'>
                             <ListItem>
                                 A first item
@@ -732,14 +724,12 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix, ch
     </ListItem>
 </List>
                         `}</TypeScriptCode>
-                    </SubSection>
-                    <SubSection titleTag='h4' title={<><code>joined</code> Style</>}>
+                    </>}>
                         <p>
-                            Set <code>{`<List listStyle='joined'>`}</code> to remove the <em>separator</em> (a <code>border</code> between <LinkListItemPage />s).
+                            Set <code>{`<List listStyle='flush'>`}</code> to remove the <code>border</code> and <code>border-radius</code>.
                         </p>
-                        <p>
-                            Here the demonstration:
-                        </p>
+                    </SectionSubProperty>
+                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix ?? false} property={`listStyle='joined'`} properties={<><code>joined</code> Style</>} demonstration={<>
                         <List listStyle='joined' theme='primary'>
                             <ListItem>
                                 A first item
@@ -777,18 +767,13 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix, ch
     </ListItem>
 </List>
                         `}</TypeScriptCode>
-                    </SubSection>
+                    </>}>
+                        <p>
+                            Set <code>{`<List listStyle='joined'>`}</code> to remove the <em>separator</em> (a <code>border</code> between <LinkListItemPage />s).
+                        </p>
+                    </SectionSubProperty>
                     
-                    <SubSection titleTag='h4' title={<><code>content</code> Style</>}>
-                        <p>
-                            Set <code>{`<List listStyle='content'>`}</code> to style the <LinkListItemPage /> to look similar to <LinkContentPage /> (usually with wider paddings).
-                        </p>
-                        <p>
-                            Basically it merges the <LinkListItemPage />&apos;s style + <LinkContentPage />&apos;s style.
-                        </p>
-                        <p>
-                            Here the demonstration:
-                        </p>
+                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix ?? false} property={`listStyle='content'`} properties={<><code>content</code> Style</>} demonstration={<>
                         <List listStyle='content' theme='primary'>
                             <ListItem>
                                 A first item
@@ -826,17 +811,15 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix, ch
     </ListItem>
 </List>
                         `}</TypeScriptCode>
-                    </SubSection>
-                    <SubSection titleTag='h4' title={<><code>btn</code> Style</>}>
+                    </>}>
                         <p>
-                            Set <code>{`<List listStyle='btn'>`}</code> to style the <LinkListItemPage /> to look similar to <LinkButtonPage />.
+                            Set <code>{`<List listStyle='content'>`}</code> to style the <LinkListItemPage /> to look similar to <LinkContentPage /> (usually with wider paddings).
                         </p>
                         <p>
-                            Basically it merges the <LinkListItemPage />&apos;s style + <LinkButtonPage />&apos;s style.
+                            Basically it merges the <LinkListItemPage />&apos;s style + <LinkContentPage />&apos;s style.
                         </p>
-                        <p>
-                            Here the demonstration:
-                        </p>
+                    </SectionSubProperty>
+                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix ?? false} property={`listStyle='btn'`} properties={<><code>btn</code> Style</>} demonstration={<>
                         <List listStyle='btn' theme='primary'>
                             <ListItem>
                                 A first item
@@ -874,11 +857,7 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix, ch
     </ListItem>
 </List>
                         `}</TypeScriptCode>
-                        <SubSection titleTag='h5' title='Make the Buttons Functional'>
-                            <ContentMakeListItemClickable />
-                            <p>
-                                Here the demonstration:
-                            </p>
+                        <SectionSubProperty titleTag='h5' propertySuffix={propertySuffix ?? false} property={`actionCtrl={true}`} properties='Make the Buttons Functional' demonstration={<>
                             <List listStyle='btn' actionCtrl={true} theme='primary'>
                                 <ListItem>
                                     A first item
@@ -916,16 +895,19 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix, ch
     </ListItem>
 </List>
                             `}</TypeScriptCode>
-                        </SubSection>
-                    </SubSection>
+                        </>}>
+                            <ContentMakeListItemClickable />
+                        </SectionSubProperty>
+                    </>}>
+                        <p>
+                            Set <code>{`<List listStyle='btn'>`}</code> to style the <LinkListItemPage /> to look similar to <LinkButtonPage />.
+                        </p>
+                        <p>
+                            Basically it merges the <LinkListItemPage />&apos;s style + <LinkButtonPage />&apos;s style.
+                        </p>
+                    </SectionSubProperty>
                     
-                    <SubSection titleTag='h4' title={<><code>tab</code> Style</>}>
-                        <p>
-                            Set <code>{`<List listStyle='tab'>`}</code> to style the <LinkListItemPage /> to look similar to <em>a tabbed interface</em>.
-                        </p>
-                        <p>
-                            Here the demonstration:
-                        </p>
+                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix ?? false} property={`listStyle='tab'`} properties={<><code>tab</code> Style</>} demonstration={<>
                         <List listStyle='tab' orientation='inline' theme='primary'>
                             <ListItem>
                                 A first item
@@ -963,11 +945,7 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix, ch
     </ListItem>
 </List>
                         `}</TypeScriptCode>
-                        <SubSection titleTag='h5' title='Make the Tabs Functional'>
-                            <ContentMakeListItemClickable />
-                            <p>
-                                Here the demonstration:
-                            </p>
+                        <SectionSubProperty titleTag='h5' propertySuffix={propertySuffix ?? false} property={`actionCtrl={true}`} properties='Make the Tabs Functional' demonstration={<>
                             {(() => {
                                 const [activeTabIndex, setActiveTabIndex] = useState(3);
                                 
@@ -1017,18 +995,15 @@ const TabControl = () => {
     );
 };
                             `}</TypeScriptCode>
-                        </SubSection>
-                    </SubSection>
-                    <SubSection titleTag='h4' title={<><code>breadcrumb</code> Style</>}>
+                        </>}>
+                            <ContentMakeListItemClickable />
+                        </SectionSubProperty>
+                    </>}>
                         <p>
-                            Set <code>{`<List listStyle='breadcrumb'>`}</code> to style the <LinkListItemPage /> to look similar to <em>a breadcrumb</em>.
+                            Set <code>{`<List listStyle='tab'>`}</code> to style the <LinkListItemPage /> to look similar to <em>a tabbed interface</em>.
                         </p>
-                        <p>
-                            Requires <code>{`<List orientation='inline'>`}</code>.
-                        </p>
-                        <p>
-                            Here the demonstration:
-                        </p>
+                    </SectionSubProperty>
+                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix ?? false} property={`listStyle='breadcrumb'`} properties={<><code>breadcrumb</code> Style</>} demonstration={<>
                         <List listStyle='breadcrumb' orientation='inline' theme='primary'>
                             <ListItem>
                                 A first item
@@ -1066,17 +1041,15 @@ const TabControl = () => {
     </ListItem>
 </List>
                         `}</TypeScriptCode>
-                    </SubSection>
-                    <SubSection titleTag='h4' title={<><code>bullet</code> Style</>}>
+                    </>}>
                         <p>
-                            Set <code>{`<List listStyle='bullet'>`}</code> to style the <LinkListItemPage /> to look similar to <em>a bullet</em>.
+                            Set <code>{`<List listStyle='breadcrumb'>`}</code> to style the <LinkListItemPage /> to look similar to <em>a breadcrumb</em>.
                         </p>
                         <p>
-                            Requires an <strong>empty</strong> children of <LinkListItemPage />.
+                            Requires <code>{`<List orientation='inline'>`}</code>.
                         </p>
-                        <p>
-                            Here the demonstration:
-                        </p>
+                    </SectionSubProperty>
+                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix ?? false} property={`listStyle='bullet'`} properties={<><code>bullet</code> Style</>} demonstration={<>
                         <List listStyle='bullet' orientation='inline' theme='primary'>
                             <ListItem />
                             <ListItem />
@@ -1094,15 +1067,16 @@ const TabControl = () => {
     <ListItem theme='danger' />
 </List>
                         `}</TypeScriptCode>
-                    </SubSection>
+                    </>}>
+                        <p>
+                            Set <code>{`<List listStyle='bullet'>`}</code> to style the <LinkListItemPage /> to look similar to <em>a bullet</em>.
+                        </p>
+                        <p>
+                            Requires an <strong>empty</strong> children of <LinkListItemPage />.
+                        </p>
+                    </SectionSubProperty>
                     
-                    <SubSection titleTag='h4' title={<><code>numbered</code> Style</>}>
-                        <p>
-                            Add a number (a counter) on each <LinkListItemPage />.
-                        </p>
-                        <p>
-                            Here the demonstration:
-                        </p>
+                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix ?? false} property={`listStyle='numbered'`} properties={<><code>numbered</code> Style</>} demonstration={<>
                         <List listStyle='numbered' theme='primary'>
                             <ListItem>
                                 A first item
@@ -1140,13 +1114,7 @@ const TabControl = () => {
     </ListItem>
 </List>
                         `}</TypeScriptCode>
-                        <SubSection titleTag='h5' title='Skip Unnecessary Content'>
-                            <p>
-                                A <LinkListSeparatorItemPage /> and <code>.void</code> are skipped by counter.
-                            </p>
-                            <p>
-                                Here the demonstration:
-                            </p>
+                        <SectionSubProperty titleTag='h5' propertySuffix={propertySuffix ?? false} property={`.void`} properties='Skip Unnecessary Content' demonstration={<>
                             <List listStyle={['numbered', 'joined']} theme='primary'>
                                 <ListItem>
                                     A first item
@@ -1186,8 +1154,16 @@ const TabControl = () => {
     </ListItem>
 </List>
                             `}</TypeScriptCode>
-                        </SubSection>
-                    </SubSection>
+                        </>}>
+                            <p>
+                                A <LinkListSeparatorItemPage /> and <code>.void</code> are skipped by counter.
+                            </p>
+                        </SectionSubProperty>
+                    </>}>
+                        <p>
+                            Add a number (a counter) on each <LinkListItemPage />.
+                        </p>
+                    </SectionSubProperty>
                 </>
             }
         </SectionSubProperty>
