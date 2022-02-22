@@ -456,38 +456,38 @@ export const SectionPropertyOrientation = ({ property, properties, propertySuffi
                         </p>
                         <List orientation='block' theme='primary'>
                             <ListItem>
-                                A_first_item
+                                A first item
                             </ListItem>
                             <ListItem>
-                                A_second_item
+                                A second item
                             </ListItem>
                             <ListItem>
-                                A_third_item
+                                A third item
                             </ListItem>
                             <ListItem>
-                                A_fourth_item
+                                A fourth item
                             </ListItem>
                             <ListItem>
-                                A_fifth_item
+                                A fifth item
                             </ListItem>
                         </List>
                         <p></p>
                         <TypeScriptCode>{`
 <List orientation='block' theme='primary'>
     <ListItem>
-        A_first_item
+        A first item
     </ListItem>
     <ListItem>
-        A_second_item
+        A second item
     </ListItem>
     <ListItem>
-        A_third_item
+        A third item
     </ListItem>
     <ListItem>
-        A_fourth_item
+        A fourth item
     </ListItem>
     <ListItem>
-        A_fifth_item
+        A fifth item
     </ListItem>
 </List>
                         `}</TypeScriptCode>
@@ -513,19 +513,19 @@ export const SectionPropertyOrientation = ({ property, properties, propertySuffi
                         <div style={{ overflowX: 'auto' }}>
                             <List orientation='inline' theme='primary'>
                                 <ListItem>
-                                    A_first_item
+                                    A first item
                                 </ListItem>
                                 <ListItem>
-                                    A_second_item
+                                    A second item
                                 </ListItem>
                                 <ListItem>
-                                    A_third_item
+                                    A third item
                                 </ListItem>
                                 <ListItem>
-                                    A_fourth_item
+                                    A fourth item
                                 </ListItem>
                                 <ListItem>
-                                    A_fifth_item
+                                    A fifth item
                                 </ListItem>
                             </List>
                         </div>
@@ -533,19 +533,19 @@ export const SectionPropertyOrientation = ({ property, properties, propertySuffi
                         <TypeScriptCode>{`
 <List orientation='inline' theme='primary'>
     <ListItem>
-        A_first_item
+        A first item
     </ListItem>
     <ListItem>
-        A_second_item
+        A second item
     </ListItem>
     <ListItem>
-        A_third_item
+        A third item
     </ListItem>
     <ListItem>
-        A_fourth_item
+        A fourth item
     </ListItem>
     <ListItem>
-        A_fifth_item
+        A fifth item
     </ListItem>
 </List>
                         `}</TypeScriptCode>
