@@ -870,7 +870,7 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix = d
                                     A first item
                                 </ListItem>
                                 <ListItem actionCtrl={false}>
-                                    A second item (non clickable)
+                                    A second item (not clickable)
                                 </ListItem>
                                 <ListItem theme='success'>
                                     A third item
@@ -889,7 +889,7 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix = d
         A first item
     </ListItem>
     <ListItem actionCtrl={false}>
-        A second item (non clickable)
+        A second item (not clickable)
     </ListItem>
     <ListItem theme='success'>
         A third item
