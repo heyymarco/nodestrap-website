@@ -44,24 +44,57 @@ const defaultPropertySuffix = false;
 export const SectionPropertyTheme = ({ propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
         <BasicSectionPropertyTheme {...restProps} propertySuffix={propertySuffix} demonstration={<>
-            <Card theme='danger'>
+            <Card
+                theme='danger'
+                header={<>
+                    A Card with Danger Theme
+                </>}
+                footer={<>
+                    Just for fun!
+                </>}
+            >
                 <DummyContents />
             </Card>
-            <Card theme='success'>
+            <p></p>
+            <Card
+                theme='success'
+                header={<>
+                    A Card with Success Theme
+                </>}
+                footer={<>
+                    Just for fun!
+                </>}
+            >
                 <DummyContents />
             </Card>
             <p></p>
             <TypeScriptCode>{`
-<Card theme='danger'>
-    /* ... */
-    /* ... */
-    /* ... */
+<Card
+    theme='danger'
+    header={<>
+        A Card with Danger Theme
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
+    <p>...</p>
+    <p>...</p>
+    <p>...</p>
 </Card>
 
-<Card theme='success'>
-    /* ... */
-    /* ... */
-    /* ... */
+<Card
+    theme='success'
+    header={<>
+        A Card with Success Theme
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
+    <p>...</p>
+    <p>...</p>
+    <p>...</p>
 </Card>
             `}</TypeScriptCode>
         </>} />
@@ -70,24 +103,61 @@ export const SectionPropertyTheme = ({ propertySuffix = defaultPropertySuffix, c
 export const SectionPropertySize = ({ propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
         <BasicSectionPropertySize {...restProps} propertySuffix={propertySuffix} demonstration={<>
-            <Card size='sm' theme='primary'>
+            <Card
+                size='sm'
+                theme='primary'
+                header={<>
+                    A Card with Smaller Size
+                </>}
+                footer={<>
+                    Just for fun!
+                </>}
+            >
                 <DummyContents />
             </Card>
-            <Card size='lg' theme='primary'>
+            <p></p>
+            <Card
+                size='lg'
+                theme='primary'
+                header={<>
+                    A Card with Larger Size
+                </>}
+                footer={<>
+                    Just for fun!
+                </>}
+            >
                 <DummyContents />
             </Card>
             <p></p>
             <TypeScriptCode>{`
-<Card size='sm' theme='primary'>
-    /* ... */
-    /* ... */
-    /* ... */
+<Card
+    size='sm'
+    theme='primary'
+    header={<>
+        A Card with Smaller Size
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
+    <p>...</p>
+    <p>...</p>
+    <p>...</p>
 </Card>
 
-<Card size='lg' theme='primary'>
-    /* ... */
-    /* ... */
-    /* ... */
+<Card
+    size='lg'
+    theme='primary'
+    header={<>
+        A Card with Larger Size
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
+    <p>...</p>
+    <p>...</p>
+    <p>...</p>
 </Card>
             `}</TypeScriptCode>
         </>} />
@@ -97,16 +167,34 @@ export const SectionPropertyNude = ({ propertySuffix = defaultPropertySuffix, ch
     return (
         <BasicSectionPropertyNude {...restProps} propertySuffix={propertySuffix} demonstration={<>
             <TransparentPreview>
-                <Card nude={true} theme='primary'>
+                <Card
+                    nude={true}
+                    theme='primary'
+                    header={<>
+                        A Card with Nude Variant
+                    </>}
+                    footer={<>
+                        Just for fun!
+                    </>}
+                >
                     <DummyContents />
                 </Card>
             </TransparentPreview>
             <p></p>
             <TypeScriptCode>{`
-<Card nude={true} theme='primary'>
-    /* ... */
-    /* ... */
-    /* ... */
+<Card
+    nude={true}
+    theme='primary'
+    header={<>
+        A Card with Nude Variant
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
+    <p>...</p>
+    <p>...</p>
+    <p>...</p>
 </Card>
             `}</TypeScriptCode>
         </>}>
@@ -128,15 +216,33 @@ export const SectionPropertyNude = ({ propertySuffix = defaultPropertySuffix, ch
 export const SectionPropertyGradient = ({ propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
         <BasicSectionPropertyGradient {...restProps} propertySuffix={propertySuffix} demonstration={<>
-            <Card gradient={true} theme='primary'>
+            <Card
+                gradient={true}
+                theme='primary'
+                header={<>
+                    A Card with Gradient Variant
+                </>}
+                footer={<>
+                    Just for fun!
+                </>}
+            >
                 <DummyContents />
             </Card>
             <p></p>
             <TypeScriptCode>{`
-<Card gradient={true} theme='primary'>
-    /* ... */
-    /* ... */
-    /* ... */
+<Card
+    gradient={true}
+    theme='primary'
+    header={<>
+        A Card with Gradient Variant
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
+    <p>...</p>
+    <p>...</p>
+    <p>...</p>
 </Card>
             `}</TypeScriptCode>
         </>}>
@@ -156,16 +262,34 @@ export const SectionPropertyOutlined = ({ propertySuffix = defaultPropertySuffix
     return (
         <BasicSectionPropertyOutlined {...restProps} propertySuffix={propertySuffix} demonstration={<>
             <TransparentPreview>
-                <Card outlined={true} theme='primary'>
+                <Card
+                    outlined={true}
+                    theme='primary'
+                    header={<>
+                        A Card with Outlined Variant
+                    </>}
+                    footer={<>
+                        Just for fun!
+                    </>}
+                >
                     <DummyContents />
                 </Card>
             </TransparentPreview>
             <p></p>
             <TypeScriptCode>{`
-<Card outlined={true} theme='primary'>
-    /* ... */
-    /* ... */
-    /* ... */
+<Card
+    outlined={true}
+    theme='primary'
+    header={<>
+        A Card with Outlined Variant
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
+    <p>...</p>
+    <p>...</p>
+    <p>...</p>
 </Card>
             `}</TypeScriptCode>
         </>}>
@@ -184,15 +308,33 @@ export const SectionPropertyOutlined = ({ propertySuffix = defaultPropertySuffix
 export const SectionPropertyMild = ({ propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
         <BasicSectionPropertyMild {...restProps} propertySuffix={propertySuffix} demonstration={<>
-            <Card mild={false} theme='primary'>
+            <Card
+                mild={false}
+                theme='primary'
+                header={<>
+                    A Card with not_Mild Variant
+                </>}
+                footer={<>
+                    Just for fun!
+                </>}
+            >
                 <DummyContents />
             </Card>
             <p></p>
             <TypeScriptCode>{`
-<Card mild={false} theme='primary'>
-    /* ... */
-    /* ... */
-    /* ... */
+<Card
+    mild={false}
+    theme='primary'
+    header={<>
+        A Card with not_Mild Variant
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
+    <p>...</p>
+    <p>...</p>
+    <p>...</p>
 </Card>
             `}</TypeScriptCode>
         </>}>
@@ -217,15 +359,33 @@ export const SectionPropertyOrientation = ({ property, properties, propertySuffi
                 ??
                 <>
                     <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`orientation='block'`} properties={<><code>block</code> Orientation</>} demonstration={<>
-                        <Card orientation='block' theme='primary'>
+                        <Card
+                            orientation='block'
+                            theme='primary'
+                            header={<>
+                                A Card with Block Orientation
+                            </>}
+                            footer={<>
+                                Just for fun!
+                            </>}
+                        >
                             <DummyContents />
                         </Card>
                         <p></p>
                         <TypeScriptCode>{`
-<Card orientation='block' theme='primary'>
-    /* ... */
-    /* ... */
-    /* ... */
+<Card
+    orientation='block'
+    theme='primary'
+    header={<>
+        A Card with block Orientation
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
+    <p>...</p>
+    <p>...</p>
+    <p>...</p>
 </Card>
                         `}</TypeScriptCode>
                     </>}>
@@ -238,16 +398,34 @@ export const SectionPropertyOrientation = ({ property, properties, propertySuffi
                     </SectionSubProperty>
                     <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`orientation='inline'`} properties={<><code>inline</code> Orientation</>} demonstration={<>
                         <div style={{ overflowX: 'auto' }}>
-                            <Card orientation='inline' theme='primary'>
+                            <Card
+                                orientation='inline'
+                                theme='primary'
+                                header={<>
+                                    A Card with Inline Orientation
+                                </>}
+                                footer={<>
+                                    Just for fun!
+                                </>}
+                            >
                                 <DummyContents />
                             </Card>
                         </div>
                         <p></p>
                         <TypeScriptCode>{`
-<Card orientation='inline' theme='primary'>
-    /* ... */
-    /* ... */
-    /* ... */
+<Card
+    orientation='inline'
+    theme='primary'
+    header={<>
+        A Card with inline Orientation
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
+    <p>...</p>
+    <p>...</p>
+    <p>...</p>
 </Card>
                         `}</TypeScriptCode>
                     </>}>
@@ -287,7 +465,16 @@ export const SectionPropertyOrientation = ({ property, properties, propertySuffi
                                 padding    : '1rem',
                                 maxWidth   : '100%',
                             }}>
-                                <Card orientation={currentFallback} theme='primary'>
+                                <Card
+                                    orientation={currentFallback}
+                                    theme='primary'
+                                    header={<>
+                                        A Card with Dynamic Orientation
+                                    </>}
+                                    footer={<>
+                                        Just for fun!
+                                    </>}
+                                >
                                     <DummyContents />
                                 </Card>
                             </div>
@@ -308,10 +495,19 @@ export const SectionPropertyOrientation = ({ property, properties, propertySuffi
         padding    : '1rem',
         maxWidth   : '100%',
     }}>
-        <Card orientation={currentFallback} theme='primary'>
-            /* ... */
-            /* ... */
-            /* ... */
+        <Card
+            orientation={currentFallback}
+            theme='primary'
+            header={<>
+                A Card with Dynamic Orientation
+            </>}
+            footer={<>
+                Just for fun!
+            </>}
+        >
+            <p>...</p>
+            <p>...</p>
+            <p>...</p>
         </Card>
     </div>
 )}</ResponsiveProvider>
@@ -344,9 +540,9 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix = d
                         <p></p>
                         <TypeScriptCode>{`
 <Card cardStyle='flat' theme='primary'>
-    /* ... */
-    /* ... */
-    /* ... */
+    <p>...</p>
+    <p>...</p>
+    <p>...</p>
 </Card>
                         `}</TypeScriptCode>
                     </>}>
@@ -361,9 +557,9 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix = d
                         <p></p>
                         <TypeScriptCode>{`
 <Card cardStyle='flush' theme='primary'>
-    /* ... */
-    /* ... */
-    /* ... */
+    <p>...</p>
+    <p>...</p>
+    <p>...</p>
 </Card>
                         `}</TypeScriptCode>
                     </>}>
@@ -378,9 +574,9 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix = d
                         <p></p>
                         <TypeScriptCode>{`
 <Card cardStyle='joined' theme='primary'>
-    /* ... */
-    /* ... */
-    /* ... */
+    <p>...</p>
+    <p>...</p>
+    <p>...</p>
 </Card>
                         `}</TypeScriptCode>
                     </>}>
@@ -403,9 +599,9 @@ export const SectionPropertyActive = ({ property, properties, propertySuffix = d
             <p></p>
             <TypeScriptCode>{`
 <Card active={true} theme='primary'>
-    /* ... */
-    /* ... */
-    /* ... */
+    <p>...</p>
+    <p>...</p>
+    <p>...</p>
 </Card>
             `}</TypeScriptCode>
             <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={property ?? 'outlined'} properties='Active Items with Outlined' demonstration={<>
@@ -417,9 +613,9 @@ export const SectionPropertyActive = ({ property, properties, propertySuffix = d
                 <p></p>
                 <TypeScriptCode>{`
 <Card active={true} outlined={true} theme='primary'>
-    /* ... */
-    /* ... */
-    /* ... */
+    <p>...</p>
+    <p>...</p>
+    <p>...</p>
 </Card>
                 `}</TypeScriptCode>
             </>}>
@@ -449,9 +645,9 @@ export const SectionPropertyEnabled = ({ property, properties, propertySuffix = 
             <p></p>
             <TypeScriptCode>{`
 <Card enabled={false} theme='primary'>
-    /* ... */
-    /* ... */
-    /* ... */
+    <p>...</p>
+    <p>...</p>
+    <p>...</p>
 </Card>
             `}</TypeScriptCode>
         </>}>
@@ -669,24 +865,24 @@ const useProductCardSheet = createUseSheet(() => [
         style({
             // then overwrite with your style:
             margin  : '1em',
-            /* ... */
+            <p>...</p>
             
             ...variants([
                 rule('.big', {
                     // define the style at 'big' variant:
                     fontSize: 'xx-large',
-                    /* ... */
+                    <p>...</p>
                 }),
                 rule('.dark', {
                     // define the style at 'dark' variant:
                     background-color : 'black',
                     color            : 'white',
-                    /* ... */
+                    <p>...</p>
                 }),
-                /* ... */
+                <p>...</p>
             ]),
             
-            /* ... */
+            <p>...</p>
         }),
     ),
 ]);
