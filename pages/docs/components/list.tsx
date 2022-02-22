@@ -444,16 +444,7 @@ export const SectionPropertyOrientation = ({ property, properties, propertySuffi
                 children
                 ??
                 <>
-                    <SubSection titleTag='h4' title={<><code>block</code> Orientation</>}>
-                        <p>
-                            To make <LinkListItemPage />s stacked in <strong>vertical</strong>, set <code>{`<List orientation='block'>`}</code>.
-                        </p>
-                        <p>
-                            This is the <strong>default</strong> value if the <code>orientation</code> value is not specified.
-                        </p>
-                        <p>
-                            Here the demonstration:
-                        </p>
+                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix ?? false} property={`orientation='block'`} properties={<><code>block</code> Orientation</>} demonstration={<>
                         <List orientation='block' theme='primary'>
                             <ListItem>
                                 A first item
@@ -491,25 +482,15 @@ export const SectionPropertyOrientation = ({ property, properties, propertySuffi
     </ListItem>
 </List>
                         `}</TypeScriptCode>
-                    </SubSection>
-                    <SubSection titleTag='h4' title={<><code>inline</code> Orientation</>}>
+                    </>}>
                         <p>
-                            To make <LinkListItemPage />s stacked in <strong>horizontal</strong>, set <code>{`<List orientation='inline'>`}</code>.
+                            To make <LinkListItemPage />s stacked in <strong>vertical</strong>, set <code>{`<List orientation='block'>`}</code>.
                         </p>
-                        <Warning>
-                            <p>
-                                Make sure the page is <strong>wide enough</strong> as the <code>inline</code> orientation may take up a lot of space (width).
-                            </p>
-                            <p>
-                                Insufficient page width can cause distorion of your site&apos;s design.
-                            </p>
-                            <p>
-                                You may need a <LinkResponsiveProviderPage /> to create <strong>dynamic orientation</strong> based on <em>overflow detection</em>.
-                            </p>
-                        </Warning>
                         <p>
-                            Here the demonstration:
+                            This is the <strong>default</strong> value if the <code>orientation</code> value is not specified.
                         </p>
+                    </SectionSubProperty>
+                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix ?? false} property={`orientation='inline'`} properties={<><code>inline</code> Orientation</>} demonstration={<>
                         <div style={{ overflowX: 'auto' }}>
                             <List orientation='inline' theme='primary'>
                                 <ListItem>
@@ -549,18 +530,23 @@ export const SectionPropertyOrientation = ({ property, properties, propertySuffi
     </ListItem>
 </List>
                         `}</TypeScriptCode>
-                    </SubSection>
-                    <SubSection titleTag='h4' title='Dynamic Orientation'>
+                    </>}>
                         <p>
-                            To make <LinkListItemPage />s stacked in <strong>horizontal</strong> (if the page is wide enough) -or- stacked in <strong>vertical</strong> (if the page is too narrow),
-                            do this trick!
+                            To make <LinkListItemPage />s stacked in <strong>horizontal</strong>, set <code>{`<List orientation='inline'>`}</code>.
                         </p>
-                        <p>
-                            With a help of <LinkResponsiveProviderPage />, you can create a <strong>dynamic orientation</strong>.
-                        </p>
-                        <p>
-                            Here the demonstration:
-                        </p>
+                        <Warning>
+                            <p>
+                                Make sure the page is <strong>wide enough</strong> as the <code>inline</code> orientation may take up a lot of space (width).
+                            </p>
+                            <p>
+                                Insufficient page width can cause distorion of your site&apos;s design.
+                            </p>
+                            <p>
+                                You may need a <LinkResponsiveProviderPage /> to create <strong>dynamic orientation</strong> based on <em>overflow detection</em>.
+                            </p>
+                        </Warning>
+                    </SectionSubProperty>
+                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix ?? false} property={`orientation={currentFallback}`} properties='Dynamic Orientation' demonstration={<>
                         <Warning>
                             <p>
                                 Try to <strong>resize</strong> the <span style={{ background :'pink', border : 'solid 1px darkred', padding: '0.15em' }}>red container</span> below:
@@ -636,7 +622,15 @@ export const SectionPropertyOrientation = ({ property, properties, propertySuffi
     </div>
 )}</ResponsiveProvider>
                         `}</TypeScriptCode>
-                    </SubSection>
+                    </>}>
+                        <p>
+                            To make <LinkListItemPage />s stacked in <strong>horizontal</strong> (if the page is wide enough) -or- stacked in <strong>vertical</strong> (if the page is too narrow),
+                            do this trick!
+                        </p>
+                        <p>
+                            With a help of <LinkResponsiveProviderPage />, you can create a <strong>dynamic orientation</strong>.
+                        </p>
+                    </SectionSubProperty>
                 </>
             }
         </SectionSubProperty>
