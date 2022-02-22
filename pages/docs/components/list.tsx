@@ -446,7 +446,7 @@ export const SectionPropertyOrientation = ({ property, properties, propertySuffi
                 <>
                     <SubSection titleTag='h4' title={<><code>block</code> Orientation</>}>
                         <p>
-                            To make <LinkListItemPage /> stacked in <strong>vertical</strong>, set <code>{`<List orientation='block'>`}</code>.
+                            To make <LinkListItemPage />s stacked in <strong>vertical</strong>, set <code>{`<List orientation='block'>`}</code>.
                         </p>
                         <p>
                             This is the <strong>default</strong> value if the <code>orientation</code> value is not specified.
@@ -494,7 +494,7 @@ export const SectionPropertyOrientation = ({ property, properties, propertySuffi
                     </SubSection>
                     <SubSection titleTag='h4' title={<><code>inline</code> Orientation</>}>
                         <p>
-                            To make <LinkListItemPage /> stacked in <strong>horizontal</strong>, set <code>{`<List orientation='inline'>`}</code>.
+                            To make <LinkListItemPage />s stacked in <strong>horizontal</strong>, set <code>{`<List orientation='inline'>`}</code>.
                         </p>
                         <Warning>
                             <p>
@@ -552,7 +552,7 @@ export const SectionPropertyOrientation = ({ property, properties, propertySuffi
                     </SubSection>
                     <SubSection titleTag='h4' title='Dynamic Orientation'>
                         <p>
-                            To make <LinkListItemPage /> stacked in <strong>horizontal</strong> (if the page is wide enough) -or- stacked in <strong>vertical</strong> (if the page is too narrow),
+                            To make <LinkListItemPage />s stacked in <strong>horizontal</strong> (if the page is wide enough) -or- stacked in <strong>vertical</strong> (if the page is too narrow),
                             do this trick!
                         </p>
                         <p>
