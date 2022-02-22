@@ -90,7 +90,7 @@ export const useDemoPanelSheet = createUseSheet(() => {
                         padding           : spacers.lg,
     
                         ...children(':first-child', {
-                            flex          : [[0, 0, 'auto']],
+                            flex          : [[0, 0, 'fit-content']],
 
                             
                             justifySelf   : 'center',

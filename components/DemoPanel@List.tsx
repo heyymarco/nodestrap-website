@@ -1,17 +1,18 @@
+import { useRef } from 'react';
+
 import { useResetableState, Option, ResetButton } from './DemoPanel';
 import { IndicatorInitials, IndicatorOptionProps, IndicatorOptions, useIndicatorStates } from './DemoPanel@Indicator';
 
 import { List, ListItem, ListStyle, OrientationName } from '@nodestrap/list'
 import { TypeScriptCode } from './Code';
-import { useRef } from 'react';
 
 
 
 export const listInitials = {
     orientation : 'block'  as OrientationName|undefined,
-    listStyle1 : undefined as ListStyle|undefined,
-    listStyle2 : undefined as ListStyle|undefined,
-    actionCtrl : undefined as boolean|undefined,
+    listStyle1  : undefined as ListStyle|undefined,
+    listStyle2  : undefined as ListStyle|undefined,
+    actionCtrl  : undefined as boolean|undefined,
 };
 export type ListInitials = typeof listInitials & Partial<IndicatorInitials>
 export const useListStates = (initials ?: Partial<ListInitials>) => {
