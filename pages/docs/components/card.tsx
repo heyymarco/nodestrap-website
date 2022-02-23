@@ -20,6 +20,7 @@ import {
  // SectionPropertyNude     as BasicSectionPropertyNude,
     SectionPropertyGradient as BasicSectionPropertyGradient,
     SectionPropertyOutlined as BasicSectionPropertyOutlined,
+    SectionPropertyMildProps,
     SectionPropertyMild     as BasicSectionPropertyMild,
 } from './basic'
 
@@ -309,50 +310,9 @@ export const SectionPropertyOutlined = ({ propertySuffix = defaultPropertySuffix
         </BasicSectionPropertyOutlined>
     );
 };
-export const SectionPropertyMild = ({ propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
+export const SectionPropertyMild = ({ propertySuffix = defaultPropertySuffix, children, setByDefault, ...restProps }: SectionPropertyMildProps) => {
     return (
-        <BasicSectionPropertyMild {...restProps} propertySuffix={propertySuffix} demonstration={<>
-            <Card
-                mild={false}
-                theme='primary'
-                header={<>
-                    A Card with not_Mild Variant
-                </>}
-                footer={<>
-                    Just for fun!
-                </>}
-            >
-                <DummyContents />
-            </Card>
-            <p></p>
-            <TypeScriptCode>{`
-<Card
-    mild={false}
-    theme='primary'
-    header={<>
-        A Card with not_Mild Variant
-    </>}
-    footer={<>
-        Just for fun!
-    </>}
->
-    <p>...</p>
-    <img alt='lorem image' src='/images/lorem-image-1.svg' />
-    <p>...</p>
-</Card>
-            `}</TypeScriptCode>
-        </>}>
-            {
-                children
-                ??
-                <>
-                    <p>
-                        To make <CurrentComponent /> look smoother (text friendly), set <code>{`<Card mild={true}>`}</code>.<br />
-                        Note: the <code>{`mild={true}`}</code> is <strong>already set by default</strong> at <CurrentComponent />, so to disable it assign <code>{`<Card mild={false}>`}</code>.
-                    </p>
-                </>
-            }
-        </BasicSectionPropertyMild>
+        <BasicSectionPropertyMild {...restProps} propertySuffix={propertySuffix} setByDefault={setByDefault ?? true} />
     );
 };
 export const SectionPropertyOrientation = ({ property, properties, propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
@@ -813,7 +773,37 @@ const Page: NextPage = () => {
                 {/* <SectionPropertyNude /> */}
                 <SectionPropertyGradient />
                 <SectionPropertyOutlined />
-                <SectionPropertyMild />
+                <SectionPropertyMild demonstration={<>
+                    <Card
+                        mild={false}
+                        theme='primary'
+                        header={<>
+                            A Card with not_Mild Variant
+                        </>}
+                        footer={<>
+                            Just for fun!
+                        </>}
+                    >
+                        <DummyContents />
+                    </Card>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Card
+    mild={false}
+    theme='primary'
+    header={<>
+        A Card with not_Mild Variant
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
+    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
+    <p>...</p>
+</Card>
+                    `}</TypeScriptCode>
+                </>} />
                 <SectionPropertyOrientation />
                 <SectionPropertyStyles />
             </SectionVariants>

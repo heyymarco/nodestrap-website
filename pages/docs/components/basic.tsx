@@ -6,7 +6,9 @@ import Head from 'next/head'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 import { Warning } from '../../../components/Info'
 
-import { SectionInheritedProps, LinkBasicPage, LinkElementPage, LinkColorsPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionSubProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionPropertyProps } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkBasicPage, LinkElementPage, LinkColorsPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionSubProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionPropertyProps, useComponentInfo } from '../../../components/common-contents'
+import { TypeScriptCode } from '../../../components/Code'
+import { Basic } from '@nodestrap/basic'
 
 import loadable from '@loadable/component'
 const DemoBasicLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Basic' */'../../../components/DemoPanel@Basic'))
@@ -136,7 +138,14 @@ export const SectionPropertyOutlined = ({ property, properties, children, ...res
         </SectionSubProperty>
     );
 };
-export const SectionPropertyMild = ({ property, properties, children, ...restProps }: SectionPropertyProps) => {
+export interface SectionPropertyMildProps extends SectionPropertyProps {
+    setByDefault ?: boolean
+}
+export const SectionPropertyMild = ({ property, properties, children, setByDefault = false, ...restProps }: SectionPropertyMildProps) => {
+    const { componentName } = useComponentInfo();
+    
+    
+    
     return (
         <SectionSubProperty {...restProps} property={property ?? 'mild'} properties={properties ?? 'Mild'}>
             {
@@ -144,11 +153,14 @@ export const SectionPropertyMild = ({ property, properties, children, ...restPro
                 ??
                 <>
                     <p>
-                        Makes <code>background color smoother</code> and makes the <code>text</code> color more contrast.
-                        Set <code>{`mild={true}`}</code> to activate.
+                        To make <CurrentComponent /> look smoother (text friendly) and make the <code>text color</code> more contrast, set <code>{`<${componentName} mild={true}>`}</code>.
+                        {setByDefault && <>
+                            <br />
+                            Note: the <code>{`mild={true}`}</code> is <strong>already set by default</strong> at <CurrentComponent />, so to disable it assign <code>{`<${componentName} mild={false}>`}</code>.
+                        </>}
                     </p>
                     <p>
-                        The <strong>smoother</strong> means <strong>near to white</strong> on <strong>light background</strong> and <strong>near to black</strong> on <strong>dark background</strong>.
+                        The <em>smoother</em> means <em>near to white</em> on <em>light background</em> and <em>near to black</em> on <em>dark background</em>.<br />
                         You can <LinkColorsPage>adjust the background color here</LinkColorsPage>.
                     </p>
                 </>
@@ -186,7 +198,23 @@ const Page: NextPage = () => {
                 <SectionPropertyNude />
                 <SectionPropertyGradient />
                 <SectionPropertyOutlined />
-                <SectionPropertyMild />
+                <SectionPropertyMild demonstration={<>
+                    <Basic
+                        mild={true}
+                        theme='primary'
+                    >
+                        hello world
+                    </Basic>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Basic
+    mild={true}
+    theme='primary'
+>
+    hello world
+</Basic>
+                    `}</TypeScriptCode>
+                </>} />
             </SectionVariants>
             <SectionCustomizing specList={
                 <SpecList>
