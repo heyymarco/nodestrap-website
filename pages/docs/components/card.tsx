@@ -82,7 +82,7 @@ export const SectionPropertyTheme = ({ propertySuffix = defaultPropertySuffix, c
     </>}
 >
     <p>...</p>
-    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
     <p>...</p>
 </Card>
 
@@ -96,7 +96,7 @@ export const SectionPropertyTheme = ({ propertySuffix = defaultPropertySuffix, c
     </>}
 >
     <p>...</p>
-    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
     <p>...</p>
 </Card>
             `}</TypeScriptCode>
@@ -144,7 +144,7 @@ export const SectionPropertySize = ({ propertySuffix = defaultPropertySuffix, ch
     </>}
 >
     <p>...</p>
-    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
     <p>...</p>
 </Card>
 
@@ -159,7 +159,7 @@ export const SectionPropertySize = ({ propertySuffix = defaultPropertySuffix, ch
     </>}
 >
     <p>...</p>
-    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
     <p>...</p>
 </Card>
             `}</TypeScriptCode>
@@ -196,7 +196,7 @@ export const SectionPropertyNude = ({ propertySuffix = defaultPropertySuffix, ch
     </>}
 >
     <p>...</p>
-    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
     <p>...</p>
 </Card>
             `}</TypeScriptCode>
@@ -244,7 +244,7 @@ export const SectionPropertyGradient = ({ propertySuffix = defaultPropertySuffix
     </>}
 >
     <p>...</p>
-    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
     <p>...</p>
 </Card>
             `}</TypeScriptCode>
@@ -291,7 +291,7 @@ export const SectionPropertyOutlined = ({ propertySuffix = defaultPropertySuffix
     </>}
 >
     <p>...</p>
-    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
     <p>...</p>
 </Card>
             `}</TypeScriptCode>
@@ -336,7 +336,7 @@ export const SectionPropertyMild = ({ propertySuffix = defaultPropertySuffix, ch
     </>}
 >
     <p>...</p>
-    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
     <p>...</p>
 </Card>
             `}</TypeScriptCode>
@@ -387,7 +387,7 @@ export const SectionPropertyOrientation = ({ property, properties, propertySuffi
     </>}
 >
     <p>...</p>
-    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
     <p>...</p>
 </Card>
                         `}</TypeScriptCode>
@@ -427,7 +427,7 @@ export const SectionPropertyOrientation = ({ property, properties, propertySuffi
     </>}
 >
     <p>...</p>
-    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
     <p>...</p>
 </Card>
                         `}</TypeScriptCode>
@@ -509,7 +509,7 @@ export const SectionPropertyOrientation = ({ property, properties, propertySuffi
             </>}
         >
             <p>...</p>
-            <p>...</p>
+            <img alt='lorem image' src='/images/lorem-image-1.svg' />
             <p>...</p>
         </Card>
     </div>
@@ -562,7 +562,7 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix = d
     </>}
 >
     <p>...</p>
-    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
     <p>...</p>
 </Card>
                         `}</TypeScriptCode>
@@ -597,7 +597,7 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix = d
     </>}
 >
     <p>...</p>
-    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
     <p>...</p>
 </Card>
                         `}</TypeScriptCode>
@@ -632,7 +632,7 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix = d
     </>}
 >
     <p>...</p>
-    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
     <p>...</p>
 </Card>
                         `}</TypeScriptCode>
@@ -697,7 +697,7 @@ export const SectionPropertyActive = ({ property, properties, propertySuffix = d
     </>}
 >
     <p>...</p>
-    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
     <p>...</p>
 </Card>
             `}</TypeScriptCode>
@@ -719,7 +719,7 @@ export const SectionPropertyActive = ({ property, properties, propertySuffix = d
     </>}
 >
     <p>...</p>
-    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
     <p>...</p>
 </Card>
                 `}</TypeScriptCode>
@@ -769,7 +769,7 @@ export const SectionPropertyEnabled = ({ property, properties, propertySuffix = 
     </>}
 >
     <p>...</p>
-    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
     <p>...</p>
 </Card>
             `}</TypeScriptCode>
@@ -988,24 +988,24 @@ const useProductCardSheet = createUseSheet(() => [
         style({
             // then overwrite with your style:
             margin  : '1em',
-            <p>...</p>
+            /* ... */
             
             ...variants([
                 rule('.big', {
                     // define the style at 'big' variant:
                     fontSize: 'xx-large',
-                    <p>...</p>
+                    /* ... */
                 }),
                 rule('.dark', {
                     // define the style at 'dark' variant:
                     background-color : 'black',
                     color            : 'white',
-                    <p>...</p>
+                    /* ... */
                 }),
-                <p>...</p>
+                /* ... */
             ]),
             
-            <p>...</p>
+            /* ... */
         }),
     ),
 ]);
