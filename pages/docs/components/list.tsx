@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
+import { useFlipFlop } from '../../../components/hooks'
+
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, TransparentPreview, LinkResponsiveProviderPage, LinkContentPage, LinkButtonPage, LinkListSeparatorItemPage, LinkUsesIndicatorVariantsPage, SectionSubProperty, SectionPropertyProps } from '../../../components/common-contents'
@@ -10,6 +12,7 @@ import { List, ListItem, ListSeparatorItem, OrientationName } from '@nodestrap/l
 import { TypeScriptCode } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
 import { Warning } from '../../../components/Info'
+import Element from '@nodestrap/element'
 import {
     SectionPropertyTheme    as BasicSectionPropertyTheme,
     SectionPropertySize     as BasicSectionPropertySize,
@@ -1361,29 +1364,38 @@ export const SectionPropertyActive = ({ property, properties, propertySuffix = d
             `}</TypeScriptCode>
             <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={property ?? 'outlined'} properties='Active Items with Outlined' demonstration={<>
                 <TransparentPreview>
-                    <List outlined={true} theme='primary'>
-                        <ListItem>
-                            A first item (not clickable)
-                        </ListItem>
-                        <ListItem active={true}>
-                            A second item (not clickable + active)
-                        </ListItem>
-                        <ListItem active={true} actionCtrl={true} onClick={() => alert('hello world')}>
-                            A third item (clickable + active)
-                        </ListItem>
-                        <ListItem active={true} actionCtrl={true} href='https://www.google.com'>
-                            A fourth item (clickable + active)
-                        </ListItem>
-                        <ListItem active={true} enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
-                            A fifth item item (clickable + active + disabled)
-                        </ListItem>
-                        <ListItem active={true} enabled={false} theme='danger' actionCtrl={true} href='https://www.google.com'>
-                            A seventh item item (clickable + active + disabled)
-                            <p>
-                                <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-                            </p>
-                        </ListItem>
-                    </List>
+                    {(() => {
+                        const [listRef, isActive] = useFlipFlop({ defaultState: true });
+                        
+                        
+                        
+                        const activeLabel = <Element tag={isActive ? 'span' : 'del'}>active</Element>
+                        return (
+                            <List elmRef={listRef} outlined={true} theme='primary'>
+                                <ListItem>
+                                    A first item (not clickable)
+                                </ListItem>
+                                <ListItem active={isActive}>
+                                    A second item (not clickable + { activeLabel })
+                                </ListItem>
+                                <ListItem active={isActive} actionCtrl={true} onClick={() => alert('hello world')}>
+                                    A third item (clickable + { activeLabel })
+                                </ListItem>
+                                <ListItem active={isActive} actionCtrl={true} href='https://www.google.com'>
+                                    A fourth item (clickable + { activeLabel })
+                                </ListItem>
+                                <ListItem active={isActive} enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
+                                    A fifth item item (clickable + { activeLabel } + disabled)
+                                </ListItem>
+                                <ListItem active={isActive} enabled={false} theme='danger' actionCtrl={true} href='https://www.google.com'>
+                                    A seventh item item (clickable + { activeLabel } + disabled)
+                                    <p>
+                                        <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
+                                    </p>
+                                </ListItem>
+                            </List>
+                        );
+                    })()}
                 </TransparentPreview>
                 <p></p>
                 <TypeScriptCode>{`

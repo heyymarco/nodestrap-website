@@ -3,6 +3,8 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
+import { useFlipFlop } from '../../../components/hooks'
+
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { SectionInheritedProps, LinkCardPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, SectionStates, TransparentPreview, LinkResponsiveProviderPage, SectionSubProperty, SectionPropertyProps } from '../../../components/common-contents'
@@ -10,6 +12,7 @@ import { Card, OrientationName } from '@nodestrap/card'
 import { TypeScriptCode } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
 import { Warning } from '../../../components/Info'
+import Element from '@nodestrap/element'
 import {
     SectionPropertyTheme    as BasicSectionPropertyTheme,
     SectionPropertySize     as BasicSectionPropertySize,
@@ -678,19 +681,28 @@ export const SectionPropertyActive = ({ property, properties, propertySuffix = d
             `}</TypeScriptCode>
             <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={property ?? 'outlined'} properties='Active Items with Outlined' demonstration={<>
                 <TransparentPreview>
-                    <Card
-                        active={true}
-                        outlined={true}
-                        theme='primary'
-                        header={<>
-                            A Card with Active State + Outlined Variant
-                        </>}
-                        footer={<>
-                            Just for fun!
-                        </>}
-                    >
-                        <DummyContents />
-                    </Card>
+                    {(() => {
+                        const [cardRef, isActive] = useFlipFlop({ defaultState: true });
+                        
+                        
+                        
+                        return (
+                            <Card
+                                elmRef={cardRef}
+                                active={isActive}
+                                outlined={true}
+                                theme='primary'
+                                header={<>
+                                    A Card with <Element tag={isActive ? 'span' : 'del'}>Active State</Element> + Outlined Variant
+                                </>}
+                                footer={<>
+                                    Just for fun!
+                                </>}
+                            >
+                                <DummyContents />
+                            </Card>
+                        );
+                    })()}
                 </TransparentPreview>
                 <p></p>
                 <TypeScriptCode>{`
