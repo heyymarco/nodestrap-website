@@ -8,7 +8,7 @@ import { useFlipFlop } from '../../../components/hooks'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { TransparentPreview } from '../../../components/TransparentPreview'
-import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, LinkResponsiveProviderPage, LinkContentPage, LinkButtonPage, LinkListSeparatorItemPage, LinkUsesIndicatorVariantsPage, SectionSubProperty, SectionPropertyProps } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, LinkResponsiveProviderPage, LinkContentPage, LinkButtonPage, LinkListSeparatorItemPage, LinkUsesIndicatorVariantsPage, SectionSubProperty, SectionPropertyProps, SectionDemoPropertyProps } from '../../../components/common-contents'
 import { List, ListItem, ListSeparatorItem, OrientationName } from '@nodestrap/list'
 import { TypeScriptCode } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
@@ -19,7 +19,7 @@ import {
     SectionPropertySize     as BasicSectionPropertySize,
     SectionPropertyNude     as BasicSectionPropertyNude,
     SectionPropertyGradient as BasicSectionPropertyGradient,
-    SectionPropertyOutlined as BasicSectionPropertyOutlined,
+    SectionPropertyOutlined,
     SectionPropertyMildProps,
     SectionPropertyMild     as BasicSectionPropertyMild,
 } from './basic'
@@ -294,83 +294,6 @@ export const SectionPropertyGradient = ({ propertySuffix = defaultPropertySuffix
                 </>
             }
         </BasicSectionPropertyGradient>
-    );
-};
-export const SectionPropertyOutlined = ({ propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
-    return (
-        <BasicSectionPropertyOutlined {...restProps} propertySuffix={propertySuffix} demonstration={<>
-            <TransparentPreview>
-                <List theme='primary'>
-                    <ListItem>
-                        A first item
-                    </ListItem>
-                    <ListItem>
-                        A second item
-                    </ListItem>
-                    <ListItem outlined={true}>
-                        A third item (outlined)
-                    </ListItem>
-                    <ListItem outlined={true}>
-                        A fourth item (outlined)
-                    </ListItem>
-                    <ListItem outlined={false}>
-                        A fifth item
-                    </ListItem>
-                </List>
-            </TransparentPreview>
-            <p></p>
-            <TypeScriptCode>{`
-<List theme='primary'>
-    <ListItem>
-        A first item
-    </ListItem>
-    <ListItem>
-        A second item
-    </ListItem>
-    <ListItem outlined={true}>
-        A third item (outlined)
-    </ListItem>
-    <ListItem outlined={true}>
-        A fourth item (outlined)
-    </ListItem>
-    <ListItem outlined={false}>
-        A fifth item
-    </ListItem>
-</List>
-
-/* enabling outlined at <List> level: */
-<List outlined={true} theme='primary'>
-    <ListItem>
-        A first item (outlined)
-    </ListItem>
-    <ListItem>
-        A second item (outlined)
-    </ListItem>
-    <ListItem>
-        A third item (outlined)
-    </ListItem>
-    <ListItem>
-        A fourth item (outlined)
-    </ListItem>
-    <ListItem>
-        A fifth item (outlined)
-    </ListItem>
-</List>
-            `}</TypeScriptCode>
-        </>}>
-            {
-                children
-                ??
-                <>
-                    <p>
-                        To make <LinkListItemPage /> appear transparent, set <code>{`<ListItem outlined={true}>`}</code>.
-                    </p>
-                    <p>
-                        You can also set the <code>outlined</code> at <code>{`<List outlined={true}>`}</code>, so the entire <LinkListItemPage />s are transparent.
-                    </p>
-                </>
-            }
-        </BasicSectionPropertyOutlined>
     );
 };
 export const SectionPropertyMild = ({ setByDefault, ...props }: SectionPropertyMildProps) => {
@@ -1510,7 +1433,66 @@ const Page: NextPage = () => {
                 <SectionPropertySize />
                 <SectionPropertyNude />
                 <SectionPropertyGradient />
-                <SectionPropertyOutlined />
+                <SectionPropertyOutlined>
+                    <TransparentPreview>
+                        <List theme='primary'>
+                            <ListItem>
+                                A first item
+                            </ListItem>
+                            <ListItem>
+                                A second item
+                            </ListItem>
+                            <ListItem outlined={true}>
+                                A third item (outlined)
+                            </ListItem>
+                            <ListItem outlined={true}>
+                                A fourth item (outlined)
+                            </ListItem>
+                            <ListItem outlined={false}>
+                                A fifth item
+                            </ListItem>
+                        </List>
+                    </TransparentPreview>
+                    <p></p>
+                    <TypeScriptCode>{`
+<List theme='primary'>
+    <ListItem>
+        A first item
+    </ListItem>
+    <ListItem>
+        A second item
+    </ListItem>
+    <ListItem outlined={true}>
+        A third item (outlined)
+    </ListItem>
+    <ListItem outlined={true}>
+        A fourth item (outlined)
+    </ListItem>
+    <ListItem outlined={false}>
+        A fifth item
+    </ListItem>
+</List>
+
+/* enabling outlined at <List> level: */
+<List outlined={true} theme='primary'>
+    <ListItem>
+        A first item (outlined)
+    </ListItem>
+    <ListItem>
+        A second item (outlined)
+    </ListItem>
+    <ListItem>
+        A third item (outlined)
+    </ListItem>
+    <ListItem>
+        A fourth item (outlined)
+    </ListItem>
+    <ListItem>
+        A fifth item (outlined)
+    </ListItem>
+</List>
+                    `}</TypeScriptCode>
+                </SectionPropertyOutlined>
                 <SectionPropertyMild>
                     <List mild={false} theme='primary'>
                         <ListItem>

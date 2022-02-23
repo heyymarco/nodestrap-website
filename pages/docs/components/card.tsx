@@ -8,7 +8,7 @@ import { useFlipFlop } from '../../../components/hooks'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { TransparentPreview } from '../../../components/TransparentPreview'
-import { SectionInheritedProps, LinkCardPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, SectionStates, LinkResponsiveProviderPage, SectionSubProperty, SectionPropertyProps } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkCardPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, SectionStates, LinkResponsiveProviderPage, SectionSubProperty, SectionPropertyProps, SectionDemoPropertyProps } from '../../../components/common-contents'
 import { Card, OrientationName } from '@nodestrap/card'
 import { TypeScriptCode } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
@@ -19,7 +19,7 @@ import {
     SectionPropertySize     as BasicSectionPropertySize,
  // SectionPropertyNude     as BasicSectionPropertyNude,
     SectionPropertyGradient as BasicSectionPropertyGradient,
-    SectionPropertyOutlined as BasicSectionPropertyOutlined,
+    SectionPropertyOutlined,
     SectionPropertyMildProps,
     SectionPropertyMild     as BasicSectionPropertyMild,
 } from './basic'
@@ -221,11 +221,6 @@ export const SectionPropertySize = ({ propertySuffix = defaultPropertySuffix, ch
 export const SectionPropertyGradient = ({ propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
         <BasicSectionPropertyGradient {...restProps} propertySuffix={propertySuffix} />
-    );
-};
-export const SectionPropertyOutlined = ({ propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
-    return (
-        <BasicSectionPropertyOutlined {...restProps} propertySuffix={propertySuffix} />
     );
 };
 export const SectionPropertyMild = ({ setByDefault, ...props }: SectionPropertyMildProps) => {
@@ -720,7 +715,7 @@ const Page: NextPage = () => {
 </Card>
                     `}</TypeScriptCode>
                 </>} />
-                <SectionPropertyOutlined demonstration={<>
+                <SectionPropertyOutlined>
                     <TransparentPreview>
                         <Card
                             outlined={true}
@@ -752,7 +747,7 @@ const Page: NextPage = () => {
     <p>...</p>
 </Card>
                     `}</TypeScriptCode>
-                </>} />
+                </SectionPropertyOutlined>
                 <SectionPropertyMild>
                     <Card
                         mild={false}

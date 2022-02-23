@@ -130,30 +130,31 @@ export const SectionPropertyGradient = ({ property, properties, children, ...res
         </SectionSubProperty>
     );
 };
-export const SectionPropertyOutlined = ({ property, properties, children, ...restProps }: SectionPropertyProps) => {
-    const { componentName } = useComponentInfo();
+export const SectionPropertyOutlined = ({ property, properties, description, ...restProps }: SectionDemoPropertyProps) => {
+    const { componentName, hasNestedComponent, nestedComponentName } = useComponentInfo();
     
     
     
     return (
-        <SectionSubProperty {...restProps} property={property ?? 'outlined'} properties={properties ?? 'Outlined'}>
-            {
-                children
-                ??
-                <>
-                    <p>
-                        To make <CurrentComponent /> appear transparent and make the <code>border</code> and <code>text color</code> more contrast, set <code>{`<${componentName} outlined={true}>`}</code>.
-                    </p>
-                </>
-            }
-        </SectionSubProperty>
+        <SectionDemoProperty {...restProps} property={property ?? 'outlined'} properties={properties ?? 'Outlined'} description={
+            description
+            ??
+            <>
+                <p>
+                    To make <CurrentNestedComponent /> appear transparent and make the <code>border</code> and <code>text color</code> more contrast, set <code>{`<${nestedComponentName} outlined={true}>`}</code>.
+                </p>
+                {hasNestedComponent && <p>
+                    You can also set the <code>outlined</code> at <code>{`<${componentName} outlined={true}>`}</code>, so the entire <CurrentNestedComponent />s are transparent.
+                </p>}
+            </>
+        } />
     );
 };
 export interface SectionPropertyMildProps extends SectionDemoPropertyProps {
     setByDefault ?: boolean
 }
 export const SectionPropertyMild = ({ property, properties, description, setByDefault = false, ...restProps }: SectionPropertyMildProps) => {
-    const { componentName, nestedComponentName } = useComponentInfo();
+    const { componentName, hasNestedComponent, nestedComponentName } = useComponentInfo();
     
     
     
@@ -165,7 +166,7 @@ export const SectionPropertyMild = ({ property, properties, description, setByDe
                 <p>
                     To make <CurrentNestedComponent /> look smoother (text friendly) and make the <code>text color</code> more contrast, set <code>{`<${nestedComponentName} mild={true}>`}</code>.
                 </p>
-                {(componentName !== nestedComponentName) && <p>
+                {hasNestedComponent && <p>
                     You can also set the <code>mild</code> at <code>{`<${componentName} mild={true}>`}</code>, so the entire <CurrentNestedComponent />s look smoother.
                 </p>}
                 {setByDefault && <p>
@@ -224,7 +225,7 @@ const Page: NextPage = () => {
 </Basic>
                     `}</TypeScriptCode>
                 </>} />
-                <SectionPropertyOutlined demonstration={<>
+                <SectionPropertyOutlined>
                     <TransparentPreview>
                         <Basic
                             outlined={true}
@@ -242,7 +243,7 @@ const Page: NextPage = () => {
     hello world
 </Basic>
                     `}</TypeScriptCode>
-                </>} />
+                </SectionPropertyOutlined>
                 <SectionPropertyMild>
                     <Basic
                         mild={true}

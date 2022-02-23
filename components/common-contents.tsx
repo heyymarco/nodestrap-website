@@ -235,6 +235,7 @@ export const useComponentInfo = () => {
             return {
                 componentName       : name,
                 nestedComponentName : nestedName,
+                hasNestedComponent  : (name !== nestedName),
             };
         })(),
         ...(() => {
