@@ -8,7 +8,6 @@ import { Section } from './Section';
 import { SpecListProps } from './SpecList';
 import { Progress, ProgressBar } from '@nodestrap/progress'
 import { useCurrentActive } from '@nodestrap/nav-button';
-import { Element, ElementProps } from '@nodestrap/element';
 
 
 
@@ -661,19 +660,6 @@ export const SectionMoreCustomizingCss = ({ specList, moreInfo }: SectionMoreCus
             
             { moreInfo && <><p></p>{ moreInfo }</> }
         </Section>
-    );
-}
-
-
-
-export const TransparentPreview = (props: ElementProps) => {
-    return (
-        <Element {...props} style={{
-            background : 'linear-gradient(90deg, rgb(250, 250, 220), rgb(250, 220, 250), rgb(200, 220, 250))',
-            padding    : '1rem',
-        }}>
-            { props.children }
-        </Element>
     );
 }
 

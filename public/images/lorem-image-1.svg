@@ -18,7 +18,6 @@
         <linearGradient id="d" x1="207.28" y1="58.27" x2="257.17" y2="58.27" gradientTransform="translate(29.86 18.28) scale(1 1.4)" xlink:href="#c" />
         <linearGradient id="e" x1="11.53" y1="138.87" x2="61.42" y2="138.87" gradientTransform="translate(-0.42 -94.73) scale(1 1.4)" xlink:href="#c" />
     </defs>
-    <title>lorem-image-1</title>
     <rect width="300" height="200" fill="url(#a)" />
     <g clip-path="url(#b)">
         <rect x="125" y="-50" width="50" height="300" transform="translate(70.1 -61.6) rotate(30)" fill="url(#c)" />

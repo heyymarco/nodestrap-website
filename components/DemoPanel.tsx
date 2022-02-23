@@ -76,7 +76,10 @@ export const useDemoPanelSheet = createUseSheet(() => {
                         justifyContent    : 'stretch',
                         alignItems        : 'stretch',
                         
-                        background        : 'linear-gradient(90deg, #eeeeee, #aaaaaa)',
+                        background: [
+                            'url("/images/tile-1.svg")',
+                            'url("/images/soft-rainbow.svg")',
+                        ],
                         
                         ...imports([
                             borderStroke(),
