@@ -646,6 +646,31 @@ export const SectionPropertyOrientation = ({ property, properties, propertySuffi
         </SectionSubProperty>
     );
 };
+const FunctionalTabList = () => {
+    const [activeTabIndex, setActiveTabIndex] = useState(3);
+    
+    
+    
+    return (
+        <List listStyle='tab' actionCtrl={true} orientation='inline' theme='primary'>
+            <ListItem active={activeTabIndex === 0} onClick={() => setActiveTabIndex(0)}>
+                A first item
+            </ListItem>
+            <ListItem active={activeTabIndex === 1} onClick={() => setActiveTabIndex(1)}>
+                A second item
+            </ListItem>
+            <ListItem theme='success' active={activeTabIndex === 2} onClick={() => setActiveTabIndex(2)}>
+                A third item
+            </ListItem>
+            <ListItem active={activeTabIndex === 3} onClick={() => setActiveTabIndex(3)}>
+                A fourth item
+            </ListItem>
+            <ListItem theme='danger' active={activeTabIndex === 4} onClick={() => setActiveTabIndex(4)}>
+                A fifth item
+            </ListItem>
+        </List>
+    );
+};
 export const SectionPropertyStyles = ({ property, properties, propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
         <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property ?? 'listStyle'} properties={properties ?? 'Styles'}>
@@ -956,29 +981,7 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix = d
 </List>
                         `}</TypeScriptCode>
                         <SectionSubProperty titleTag='h5' propertySuffix={propertySuffix} property={`actionCtrl={true}`} properties='Make the Tabs Functional' demonstration={<>
-                            {(() => {
-                                const [activeTabIndex, setActiveTabIndex] = useState(3);
-                                
-                                return (
-                                    <List listStyle='tab' actionCtrl={true} orientation='inline' theme='primary'>
-                                        <ListItem active={activeTabIndex === 0} onClick={() => setActiveTabIndex(0)}>
-                                            A first item
-                                        </ListItem>
-                                        <ListItem active={activeTabIndex === 1} onClick={() => setActiveTabIndex(1)}>
-                                            A second item
-                                        </ListItem>
-                                        <ListItem theme='success' active={activeTabIndex === 2} onClick={() => setActiveTabIndex(2)}>
-                                            A third item
-                                        </ListItem>
-                                        <ListItem active={activeTabIndex === 3} onClick={() => setActiveTabIndex(3)}>
-                                            A fourth item
-                                        </ListItem>
-                                        <ListItem theme='danger' active={activeTabIndex === 4} onClick={() => setActiveTabIndex(4)}>
-                                            A fifth item
-                                        </ListItem>
-                                    </List>
-                                );
-                            })()}
+                            <FunctionalTabList />
                             <p></p>
                             <TypeScriptCode>{`
 const TabControl = () => {
@@ -1285,6 +1288,38 @@ export const SectionPropertyActionCtrl = ({ property, properties, propertySuffix
         </SectionSubProperty>
     );
 };
+const ListWithActiveOutlined = () => {
+    const [listRef, isActive] = useFlipFlop({ defaultState: true });
+    
+    
+    
+    const activeLabel = <Element tag={isActive ? 'span' : 'del'}>active</Element>
+    return (
+        <List elmRef={listRef} outlined={true} theme='primary'>
+            <ListItem>
+                A first item (not clickable)
+            </ListItem>
+            <ListItem active={isActive}>
+                A second item (not clickable + { activeLabel })
+            </ListItem>
+            <ListItem active={isActive} actionCtrl={true} onClick={() => alert('hello world')}>
+                A third item (clickable + { activeLabel })
+            </ListItem>
+            <ListItem active={isActive} actionCtrl={true} href='https://www.google.com'>
+                A fourth item (clickable + { activeLabel })
+            </ListItem>
+            <ListItem active={isActive} enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
+                A fifth item item (clickable + { activeLabel } + disabled)
+            </ListItem>
+            <ListItem active={isActive} enabled={false} theme='danger' actionCtrl={true} href='https://www.google.com'>
+                A seventh item item (clickable + { activeLabel } + disabled)
+                <p>
+                    <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
+                </p>
+            </ListItem>
+        </List>
+    );
+};
 export const SectionPropertyActive = ({ property, properties, propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
         <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property ?? 'active'} properties={properties ?? 'Active Items'} demonstration={<>
@@ -1364,38 +1399,7 @@ export const SectionPropertyActive = ({ property, properties, propertySuffix = d
             `}</TypeScriptCode>
             <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={property ?? 'outlined'} properties='Active Items with Outlined' demonstration={<>
                 <TransparentPreview>
-                    {(() => {
-                        const [listRef, isActive] = useFlipFlop({ defaultState: true });
-                        
-                        
-                        
-                        const activeLabel = <Element tag={isActive ? 'span' : 'del'}>active</Element>
-                        return (
-                            <List elmRef={listRef} outlined={true} theme='primary'>
-                                <ListItem>
-                                    A first item (not clickable)
-                                </ListItem>
-                                <ListItem active={isActive}>
-                                    A second item (not clickable + { activeLabel })
-                                </ListItem>
-                                <ListItem active={isActive} actionCtrl={true} onClick={() => alert('hello world')}>
-                                    A third item (clickable + { activeLabel })
-                                </ListItem>
-                                <ListItem active={isActive} actionCtrl={true} href='https://www.google.com'>
-                                    A fourth item (clickable + { activeLabel })
-                                </ListItem>
-                                <ListItem active={isActive} enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
-                                    A fifth item item (clickable + { activeLabel } + disabled)
-                                </ListItem>
-                                <ListItem active={isActive} enabled={false} theme='danger' actionCtrl={true} href='https://www.google.com'>
-                                    A seventh item item (clickable + { activeLabel } + disabled)
-                                    <p>
-                                        <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-                                    </p>
-                                </ListItem>
-                            </List>
-                        );
-                    })()}
+                    <ListWithActiveOutlined />
                 </TransparentPreview>
                 <p></p>
                 <TypeScriptCode>{`

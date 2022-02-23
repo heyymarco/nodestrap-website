@@ -26,7 +26,7 @@ export const useFlipFlop = <TState,>({ defaultState } : FlipFlopOptions<TState>)
         return () => {
             observer.disconnect();
         };
-    }, [elmRef.current]);
+    }, []);
     
     
     

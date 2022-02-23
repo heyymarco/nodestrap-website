@@ -647,6 +647,28 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix = d
     );
 };
 
+const CardWithActiveOutlined = () => {
+    const [cardRef, isActive] = useFlipFlop({ defaultState: true });
+    
+    
+    
+    return (
+        <Card
+            elmRef={cardRef}
+            active={isActive}
+            outlined={true}
+            theme='primary'
+            header={<>
+                A Card with <Element tag={isActive ? 'span' : 'del'}>Active State</Element> + Outlined Variant
+            </>}
+            footer={<>
+                Just for fun!
+            </>}
+        >
+            <DummyContents />
+        </Card>
+    );
+};
 export const SectionPropertyActive = ({ property, properties, propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
         <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property ?? 'active'} properties={properties ?? 'Active Items'} demonstration={<>
@@ -681,28 +703,7 @@ export const SectionPropertyActive = ({ property, properties, propertySuffix = d
             `}</TypeScriptCode>
             <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={property ?? 'outlined'} properties='Active Items with Outlined' demonstration={<>
                 <TransparentPreview>
-                    {(() => {
-                        const [cardRef, isActive] = useFlipFlop({ defaultState: true });
-                        
-                        
-                        
-                        return (
-                            <Card
-                                elmRef={cardRef}
-                                active={isActive}
-                                outlined={true}
-                                theme='primary'
-                                header={<>
-                                    A Card with <Element tag={isActive ? 'span' : 'del'}>Active State</Element> + Outlined Variant
-                                </>}
-                                footer={<>
-                                    Just for fun!
-                                </>}
-                            >
-                                <DummyContents />
-                            </Card>
-                        );
-                    })()}
+                    <CardWithActiveOutlined />
                 </TransparentPreview>
                 <p></p>
                 <TypeScriptCode>{`
