@@ -265,49 +265,7 @@ export const SectionPropertyGradient = ({ propertySuffix = defaultPropertySuffix
 };
 export const SectionPropertyOutlined = ({ propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
-        <BasicSectionPropertyOutlined {...restProps} propertySuffix={propertySuffix} demonstration={<>
-            <TransparentPreview>
-                <Card
-                    outlined={true}
-                    theme='primary'
-                    header={<>
-                        A Card with Outlined Variant
-                    </>}
-                    footer={<>
-                        Just for fun!
-                    </>}
-                >
-                    <DummyContents />
-                </Card>
-            </TransparentPreview>
-            <p></p>
-            <TypeScriptCode>{`
-<Card
-    outlined={true}
-    theme='primary'
-    header={<>
-        A Card with Outlined Variant
-    </>}
-    footer={<>
-        Just for fun!
-    </>}
->
-    <p>...</p>
-    <img alt='lorem image' src='/images/lorem-image-1.svg' />
-    <p>...</p>
-</Card>
-            `}</TypeScriptCode>
-        </>}>
-            {
-                children
-                ??
-                <>
-                    <p>
-                        To make <CurrentComponent /> appear transparent, set <code>{`<Card outlined={true}>`}</code>.
-                    </p>
-                </>
-            }
-        </BasicSectionPropertyOutlined>
+        <BasicSectionPropertyOutlined {...restProps} propertySuffix={propertySuffix} />
     );
 };
 export const SectionPropertyMild = ({ propertySuffix = defaultPropertySuffix, children, setByDefault, ...restProps }: SectionPropertyMildProps) => {
@@ -772,7 +730,39 @@ const Page: NextPage = () => {
                 <SectionPropertySize />
                 {/* <SectionPropertyNude /> */}
                 <SectionPropertyGradient />
-                <SectionPropertyOutlined />
+                <SectionPropertyOutlined demonstration={<>
+                    <TransparentPreview>
+                        <Card
+                            outlined={true}
+                            theme='primary'
+                            header={<>
+                                A Card with Outlined Variant
+                            </>}
+                            footer={<>
+                                Just for fun!
+                            </>}
+                        >
+                            <DummyContents />
+                        </Card>
+                    </TransparentPreview>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Card
+    outlined={true}
+    theme='primary'
+    header={<>
+        A Card with Outlined Variant
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
+    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
+    <p>...</p>
+</Card>
+                    `}</TypeScriptCode>
+                </>} />
                 <SectionPropertyMild demonstration={<>
                     <Card
                         mild={false}

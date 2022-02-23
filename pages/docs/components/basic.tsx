@@ -6,6 +6,7 @@ import Head from 'next/head'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 import { Warning } from '../../../components/Info'
 
+import { TransparentPreview } from '../../../components/TransparentPreview'
 import { SectionInheritedProps, LinkBasicPage, LinkElementPage, LinkColorsPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionSubProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionPropertyProps, useComponentInfo } from '../../../components/common-contents'
 import { TypeScriptCode } from '../../../components/Code'
 import { Basic } from '@nodestrap/basic'
@@ -125,15 +126,20 @@ export const SectionPropertyGradient = ({ property, properties, children, ...res
     );
 };
 export const SectionPropertyOutlined = ({ property, properties, children, ...restProps }: SectionPropertyProps) => {
+    const { componentName } = useComponentInfo();
+    
+    
+    
     return (
         <SectionSubProperty {...restProps} property={property ?? 'outlined'} properties={properties ?? 'Outlined'}>
             {
                 children
                 ??
-                <p>
-                    Makes <code>transparent background</code> and makes the <code>border</code> and <code>text</code> color more contrast.
-                    Set <code>{`outlined={true}`}</code> to activate.
-                </p>
+                <>
+                    <p>
+                        To make <CurrentComponent /> appear transparent and make the <code>border</code> and <code>text color</code> more contrast, set <code>{`<${componentName} outlined={true}>`}</code>.
+                    </p>
+                </>
             }
         </SectionSubProperty>
     );
@@ -197,7 +203,25 @@ const Page: NextPage = () => {
                 <SectionPropertySize />
                 <SectionPropertyNude />
                 <SectionPropertyGradient />
-                <SectionPropertyOutlined />
+                <SectionPropertyOutlined demonstration={<>
+                    <TransparentPreview>
+                        <Basic
+                            outlined={true}
+                            theme='primary'
+                        >
+                            hello world
+                        </Basic>
+                    </TransparentPreview>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Basic
+    outlined={true}
+    theme='primary'
+>
+    hello world
+</Basic>
+                    `}</TypeScriptCode>
+                </>} />
                 <SectionPropertyMild demonstration={<>
                     <Basic
                         mild={true}
