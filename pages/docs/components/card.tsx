@@ -702,7 +702,7 @@ export const SectionPropertyActive = ({ property, properties, propertySuffix = d
     <p>...</p>
 </Card>
             `}</TypeScriptCode>
-            <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={property ?? 'outlined'} properties='Active State with Outlined' demonstration={<>
+            <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={property ?? 'outlined'} properties='Active State with Outlined Variant' demonstration={<>
                 <TransparentPreview>
                     <CardWithActiveOutlined />
                 </TransparentPreview>
@@ -823,69 +823,31 @@ const Page: NextPage = () => {
             </SectionStates>
             <SectionCustomizing specList={
                 <SpecList>
-                    <DetailSpecItem title='Button Styles'>
+                    <DetailSpecItem title='Sizes'>
                         <SubSpecList>
                             <SimpleSpecItem>
-                                <code>btnSpacing</code>
-                                <p>The default spacing between buttons.</p>
+                                <code>boxSizing</code>
+                                <p>Defines how the total width and height of <CurrentComponent /> is calculated.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
-                                <code>btnSpacingSm</code>
-                                <p>The spacing between buttons when <code>{`size='sm'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>btnSpacingLg</code>
-                                <p>The spacing between buttons when <code>{`size='lg'`}</code>.</p>
+                                <code>blockSize</code>
+                                <p>The height of <CurrentComponent />.</p>
                             </SimpleSpecItem>
                         </SubSpecList>
                     </DetailSpecItem>
-                    <DetailSpecItem title='Tab Styles'>
+                    <DetailSpecItem title='Captions'>
                         <SubSpecList>
                             <SimpleSpecItem>
-                                <code>tabTextAlign</code>
-                                <p>The text alignment of tabs.</p>
-                            </SimpleSpecItem>
-                            
-                            <SimpleSpecItem>
-                                <code>tabBorderRadius</code>
-                                <p>The default border-radius of tabs.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>tabBorderRadiusSm</code>
-                                <p>The border-radius of tabs when <code>{`size='sm'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>tabBorderRadiusLg</code>
-                                <p>The border-radius of tabs when <code>{`size='lg'`}</code>.</p>
+                                <code>captionFilter</code>
+                                <p>A <code>filter</code> to apply to <CurrentComponent />&apos;s header &amp; footer.</p>
                             </SimpleSpecItem>
                         </SubSpecList>
                     </DetailSpecItem>
-                    <DetailSpecItem title='Bullet Styles'>
+                    <DetailSpecItem title='Typos'>
                         <SubSpecList>
                             <SimpleSpecItem>
-                                <code>bulletSpacing</code>
-                                <p>The default spacing between bullets.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>bulletSpacingSm</code>
-                                <p>The spacing between bullets when <code>{`size='sm'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>bulletSpacingLg</code>
-                                <p>The spacing between bullets when <code>{`size='lg'`}</code>.</p>
-                            </SimpleSpecItem>
-                            
-                            <SimpleSpecItem>
-                                <code>bulletPadding</code>
-                                <p>The default inner spacing of bullets.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>bulletPaddingSm</code>
-                                <p>The inner spacing of bullets when <code>{`size='sm'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>bulletPaddingLg</code>
-                                <p>The inner spacing of bullets when <code>{`size='lg'`}</code>.</p>
+                                <code>overflowWrap</code>
+                                <p>Defines how a <strong>long word</strong> inside <CurrentComponent /> is handled.</p>
                             </SimpleSpecItem>
                         </SubSpecList>
                     </DetailSpecItem>
