@@ -228,9 +228,9 @@ export const SectionPropertyOutlined = ({ propertySuffix = defaultPropertySuffix
         <BasicSectionPropertyOutlined {...restProps} propertySuffix={propertySuffix} />
     );
 };
-export const SectionPropertyMild = ({ propertySuffix = defaultPropertySuffix, children, setByDefault, ...restProps }: SectionPropertyMildProps) => {
+export const SectionPropertyMild = ({ setByDefault, ...props }: SectionPropertyMildProps) => {
     return (
-        <BasicSectionPropertyMild {...restProps} propertySuffix={propertySuffix} setByDefault={setByDefault ?? true} />
+        <BasicSectionPropertyMild {...props} setByDefault={setByDefault ?? true} />
     );
 };
 export const SectionPropertyOrientation = ({ property, properties, propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
@@ -753,7 +753,7 @@ const Page: NextPage = () => {
 </Card>
                     `}</TypeScriptCode>
                 </>} />
-                <SectionPropertyMild demonstration={<>
+                <SectionPropertyMild>
                     <Card
                         mild={false}
                         theme='primary'
@@ -783,7 +783,7 @@ const Page: NextPage = () => {
     <p>...</p>
 </Card>
                     `}</TypeScriptCode>
-                </>} />
+                </SectionPropertyMild>
                 <SectionPropertyOrientation />
                 <SectionPropertyStyles />
             </SectionVariants>

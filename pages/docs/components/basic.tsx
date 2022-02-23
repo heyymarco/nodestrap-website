@@ -7,7 +7,7 @@ import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../
 import { Warning } from '../../../components/Info'
 
 import { TransparentPreview } from '../../../components/TransparentPreview'
-import { SectionInheritedProps, LinkBasicPage, LinkElementPage, LinkColorsPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionSubProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionPropertyProps, useComponentInfo } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkBasicPage, LinkElementPage, LinkColorsPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionSubProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentNestedComponent, CurrentBaseComponents, SectionPropertyProps, useComponentInfo, SectionDemoPropertyProps, SectionDemoProperty } from '../../../components/common-contents'
 import { TypeScriptCode } from '../../../components/Code'
 import { Basic } from '@nodestrap/basic'
 
@@ -149,34 +149,34 @@ export const SectionPropertyOutlined = ({ property, properties, children, ...res
         </SectionSubProperty>
     );
 };
-export interface SectionPropertyMildProps extends SectionPropertyProps {
+export interface SectionPropertyMildProps extends SectionDemoPropertyProps {
     setByDefault ?: boolean
 }
-export const SectionPropertyMild = ({ property, properties, children, setByDefault = false, ...restProps }: SectionPropertyMildProps) => {
-    const { componentName } = useComponentInfo();
+export const SectionPropertyMild = ({ property, properties, description, setByDefault = false, ...restProps }: SectionPropertyMildProps) => {
+    const { componentName, nestedComponentName } = useComponentInfo();
     
     
     
     return (
-        <SectionSubProperty {...restProps} property={property ?? 'mild'} properties={properties ?? 'Mild'}>
-            {
-                children
-                ??
-                <>
-                    <p>
-                        To make <CurrentComponent /> look smoother (text friendly) and make the <code>text color</code> more contrast, set <code>{`<${componentName} mild={true}>`}</code>.
-                        {setByDefault && <>
-                            <br />
-                            Note: the <code>{`mild={true}`}</code> is <strong>already set by default</strong> at <CurrentComponent />, so to disable it assign <code>{`<${componentName} mild={false}>`}</code>.
-                        </>}
-                    </p>
-                    <p>
-                        The <em>smoother</em> means <em>near to white</em> on <em>light background</em> and <em>near to black</em> on <em>dark background</em>.<br />
-                        You can <LinkColorsPage>adjust the background color here</LinkColorsPage>.
-                    </p>
-                </>
-            }
-        </SectionSubProperty>
+        <SectionDemoProperty {...restProps} property={property ?? 'mild'} properties={properties ?? 'Mild'} description={
+            description
+            ??
+            <>
+                <p>
+                    To make <CurrentNestedComponent /> look smoother (text friendly) and make the <code>text color</code> more contrast, set <code>{`<${nestedComponentName} mild={true}>`}</code>.
+                </p>
+                {(componentName !== nestedComponentName) && <p>
+                    You can also set the <code>mild</code> at <code>{`<${componentName} mild={true}>`}</code>, so the entire <CurrentNestedComponent />s look smoother.
+                </p>}
+                {setByDefault && <p>
+                    Note: the <code>{`mild={true}`}</code> is <strong>already set by default</strong> at <CurrentComponent />, so to disable it assign <code>{`<${componentName} mild={false}>`}</code>.
+                </p>}
+                <p>
+                    The <em>smoother</em> means <em>near to white</em> on <em>light background</em> and <em>near to black</em> on <em>dark background</em>.<br />
+                    You can <LinkColorsPage>adjust the background color here</LinkColorsPage>.
+                </p>
+            </>
+        } />
     );
 };
 
@@ -243,7 +243,7 @@ const Page: NextPage = () => {
 </Basic>
                     `}</TypeScriptCode>
                 </>} />
-                <SectionPropertyMild demonstration={<>
+                <SectionPropertyMild>
                     <Basic
                         mild={true}
                         theme='primary'
@@ -259,7 +259,7 @@ const Page: NextPage = () => {
     hello world
 </Basic>
                     `}</TypeScriptCode>
-                </>} />
+                </SectionPropertyMild>
             </SectionVariants>
             <SectionCustomizing specList={
                 <SpecList>

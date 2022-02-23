@@ -20,6 +20,7 @@ import {
     SectionPropertyNude     as BasicSectionPropertyNude,
     SectionPropertyGradient as BasicSectionPropertyGradient,
     SectionPropertyOutlined as BasicSectionPropertyOutlined,
+    SectionPropertyMildProps,
     SectionPropertyMild     as BasicSectionPropertyMild,
 } from './basic'
 
@@ -372,80 +373,9 @@ export const SectionPropertyOutlined = ({ propertySuffix = defaultPropertySuffix
         </BasicSectionPropertyOutlined>
     );
 };
-export const SectionPropertyMild = ({ propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
+export const SectionPropertyMild = ({ setByDefault, ...props }: SectionPropertyMildProps) => {
     return (
-        <BasicSectionPropertyMild {...restProps} propertySuffix={propertySuffix} demonstration={<>
-            <List mild={false} theme='primary'>
-                <ListItem>
-                    A first item
-                </ListItem>
-                <ListItem>
-                    A second item
-                </ListItem>
-                <ListItem mild={true}>
-                    A third item (mild)
-                </ListItem>
-                <ListItem mild={true}>
-                    A fourth item (mild)
-                </ListItem>
-                <ListItem mild={false}>
-                    A fifth item
-                </ListItem>
-            </List>
-            <p></p>
-            <TypeScriptCode>{`
-<List mild={false} theme='primary'>
-    <ListItem>
-        A first item
-    </ListItem>
-    <ListItem>
-        A second item
-    </ListItem>
-    <ListItem mild={true}>
-        A third item (mild)
-    </ListItem>
-    <ListItem mild={true}>
-        A fourth item (mild)
-    </ListItem>
-    <ListItem mild={false}>
-        A fifth item
-    </ListItem>
-</List>
-
-/* disabling mild at <List> level: */
-<List mild={false} theme='primary'>
-    <ListItem>
-        A first item
-    </ListItem>
-    <ListItem>
-        A second item
-    </ListItem>
-    <ListItem>
-        A third item
-    </ListItem>
-    <ListItem>
-        A fourth item
-    </ListItem>
-    <ListItem>
-        A fifth item
-    </ListItem>
-</List>
-            `}</TypeScriptCode>
-        </>}>
-            {
-                children
-                ??
-                <>
-                    <p>
-                        To make <LinkListItemPage /> look smoother (text friendly), set <code>{`<ListItem mild={true}>`}</code>.
-                    </p>
-                    <p>
-                        You can also set the <code>mild</code> at <code>{`<List mild={true}>`}</code>, so the entire <LinkListItemPage />s look smoother.<br />
-                        Note: the <code>{`mild={true}`}</code> is <strong>already set by default</strong> at <CurrentComponent />, so to disable it assign <code>{`<List mild={false}>`}</code>.
-                    </p>
-                </>
-            }
-        </BasicSectionPropertyMild>
+        <BasicSectionPropertyMild {...props} setByDefault={setByDefault ?? true} />
     );
 };
 export const SectionPropertyOrientation = ({ property, properties, propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
@@ -1560,7 +1490,7 @@ export const SectionPropertyEnabled = ({ property, properties, propertySuffix = 
 
 const Page: NextPage = () => {
     return (
-        <ComponentInfoProvider packageName='@nodestrap/list' component={<LinkListPage />} bases={<LinkIndicatorPage />}>
+        <ComponentInfoProvider packageName='@nodestrap/list' component={<LinkListPage />} nestedComponent={<LinkListItemPage />} bases={<LinkIndicatorPage />}>
             <Head>
                 <title>&lt;List&gt; Component</title>
                 <meta name="description" content="Using <List> component" />
@@ -1581,7 +1511,64 @@ const Page: NextPage = () => {
                 <SectionPropertyNude />
                 <SectionPropertyGradient />
                 <SectionPropertyOutlined />
-                <SectionPropertyMild />
+                <SectionPropertyMild>
+                    <List mild={false} theme='primary'>
+                        <ListItem>
+                            A first item
+                        </ListItem>
+                        <ListItem>
+                            A second item
+                        </ListItem>
+                        <ListItem mild={true}>
+                            A third item (mild)
+                        </ListItem>
+                        <ListItem mild={true}>
+                            A fourth item (mild)
+                        </ListItem>
+                        <ListItem mild={false}>
+                            A fifth item
+                        </ListItem>
+                    </List>
+                    <p></p>
+                    <TypeScriptCode>{`
+<List mild={false} theme='primary'>
+    <ListItem>
+        A first item
+    </ListItem>
+    <ListItem>
+        A second item
+    </ListItem>
+    <ListItem mild={true}>
+        A third item (mild)
+    </ListItem>
+    <ListItem mild={true}>
+        A fourth item (mild)
+    </ListItem>
+    <ListItem mild={false}>
+        A fifth item
+    </ListItem>
+</List>
+
+/* disabling mild at <List> level: */
+<List mild={false} theme='primary'>
+    <ListItem>
+        A first item
+    </ListItem>
+    <ListItem>
+        A second item
+    </ListItem>
+    <ListItem>
+        A third item
+    </ListItem>
+    <ListItem>
+        A fourth item
+    </ListItem>
+    <ListItem>
+        A fifth item
+    </ListItem>
+</List>
+                    `}</TypeScriptCode>
+                </SectionPropertyMild>
                 <SectionPropertyOrientation />
                 <SectionPropertyStyles />
             </SectionVariants>

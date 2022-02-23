@@ -194,25 +194,27 @@ export const ParagraphDefaultValue = ({ code }: ParagraphDefaultValueProps) => (
 
 
 interface ComponentInfo {
-    packageName  : `@nodestrap/${string}` | (string & {})
-    packageType ?: 'component'|'utility'
+    packageName      : `@nodestrap/${string}` | (string & {})
+    packageType     ?: 'component'|'utility'
 
-    component    : Component
-    bases        : Component|Component[]
+    component        : Component
+    nestedComponent ?: Component
+    bases            : Component|Component[]
 }
 const ComponentInfoContext = React.createContext<Required<ComponentInfo>>(/*defaultValue :*/{
-    packageName : '@nodestrap/element',
-    packageType        : 'component',
+    packageName      : '@nodestrap/element',
+    packageType      : 'component',
 
-    component   : <LinkElementPage />,
-    bases       : <LinkElementPage />,
+    component        : <LinkElementPage />,
+    nestedComponent  : <LinkElementPage />,
+    bases            : <LinkElementPage />,
 });
 export interface ComponentInfoProviderProps extends ComponentInfo {
     children   ?: React.ReactNode
 }
 export function ComponentInfoProvider(props: ComponentInfoProviderProps) {
     return (
-        <ComponentInfoContext.Provider value={{ ...props, packageType: (props.packageType ?? 'component') }}>
+        <ComponentInfoContext.Provider value={{ ...props, nestedComponent: props.nestedComponent ?? props.component, packageType: (props.packageType ?? 'component') }}>
             { props.children }
         </ComponentInfoContext.Provider>
     );
@@ -228,9 +230,11 @@ export const useComponentInfo = () => {
     return useMemo(() => ({
         ...data,
         ...(() => {
-            const name = nameOf(data.component);
+            const name       = nameOf(data.component);
+            const nestedName = nameOf(data.nestedComponent);
             return {
-                componentName: name,
+                componentName       : name,
+                nestedComponentName : nestedName,
             };
         })(),
         ...(() => {
@@ -249,6 +253,11 @@ export const CurrentComponent = () => {
     const { component } = useComponentInfo();
 
     return <>{ component }</>;
+}
+export const CurrentNestedComponent = () => {
+    const { nestedComponent } = useComponentInfo();
+
+    return <>{ nestedComponent }</>;
 }
 export const CurrentBaseComponents = () => {
     const { bases } = useComponentInfo();
@@ -494,6 +503,22 @@ export const SectionSubProperty = (props: SectionPropertyProps) => {
         <SectionProperty
             {...props}
             titleTag={props.titleTag ?? 'h3'}
+        />
+    );
+}
+export interface SectionDemoPropertyProps extends Omit<SectionPropertyProps, 'demonstration'> {
+    description ?: React.ReactNode
+}
+export const SectionDemoProperty = (props: SectionDemoPropertyProps) => {
+    return (
+        <SectionProperty
+            {...props}
+            titleTag={props.titleTag ?? 'h3'}
+            
+            propertySuffix={props.propertySuffix ?? false}
+
+            demonstration={props.children}
+            children={props.description}
         />
     );
 }
