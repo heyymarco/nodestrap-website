@@ -440,11 +440,11 @@ export const SectionPropertyOrientation = ({ property, properties, propertySuffi
                                 Insufficient page width can cause distorion of your site&apos;s design.
                             </p>
                             <p>
-                                You may need a <LinkResponsiveProviderPage /> to create <strong>dynamic orientation</strong> based on <em>overflow detection</em>.
+                                You may need a <LinkResponsiveProviderPage /> to create <strong>responsive orientation</strong> based on <em>overflow detection</em>.
                             </p>
                         </Warning>
                     </SectionSubProperty>
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`orientation={currentFallback}`} properties='Dynamic Orientation' demonstration={<>
+                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`orientation={currentFallback}`} properties='Responsive Orientation' demonstration={<>
                         <Warning>
                             <p>
                                 Try to <strong>resize</strong> the <span style={{ background :'pink', border : 'solid 1px darkred', padding: '0.15em' }}>red container</span> below:
@@ -469,7 +469,7 @@ export const SectionPropertyOrientation = ({ property, properties, propertySuffi
                                     orientation={currentFallback}
                                     theme='primary'
                                     header={<>
-                                        A Card with Dynamic Orientation
+                                        A Card with Responsive Orientation
                                     </>}
                                     footer={<>
                                         Just for fun!
@@ -499,7 +499,7 @@ export const SectionPropertyOrientation = ({ property, properties, propertySuffi
             orientation={currentFallback}
             theme='primary'
             header={<>
-                A Card with Dynamic Orientation
+                A Card with Responsive Orientation
             </>}
             footer={<>
                 Just for fun!
@@ -518,7 +518,7 @@ export const SectionPropertyOrientation = ({ property, properties, propertySuffi
                             do this trick!
                         </p>
                         <p>
-                            With a help of <LinkResponsiveProviderPage />, you can create a <strong>dynamic orientation</strong>.
+                            With a help of <LinkResponsiveProviderPage />, you can create a <strong>responsive orientation</strong>.
                         </p>
                     </SectionSubProperty>
                 </>
