@@ -112,15 +112,20 @@ export const SectionPropertyNude = ({ property, properties, children, ...restPro
     );
 };
 export const SectionPropertyGradient = ({ property, properties, children, ...restProps }: SectionPropertyProps) => {
+    const { componentName } = useComponentInfo();
+    
+    
+    
     return (
         <SectionSubProperty {...restProps} property={property ?? 'gradient'} properties={properties ?? 'Gradient'}>
             {
                 children
                 ??
-                <p>
-                    Makes the corresponding component appear 3D.
-                    Set <code>{`gradient={true}`}</code> to activate.
-                </p>
+                <>
+                    <p>
+                        To make <CurrentComponent /> appear 3D, set <code>{`<${componentName} gradient={true}>`}</code>.
+                    </p>
+                </>
             }
         </SectionSubProperty>
     );
@@ -202,7 +207,23 @@ const Page: NextPage = () => {
                 <SectionPropertyTheme />
                 <SectionPropertySize />
                 <SectionPropertyNude />
-                <SectionPropertyGradient />
+                <SectionPropertyGradient demonstration={<>
+                    <Basic
+                        gradient={true}
+                        theme='primary'
+                    >
+                        hello world
+                    </Basic>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Basic
+    gradient={true}
+    theme='primary'
+>
+    hello world
+</Basic>
+                    `}</TypeScriptCode>
+                </>} />
                 <SectionPropertyOutlined demonstration={<>
                     <TransparentPreview>
                         <Basic

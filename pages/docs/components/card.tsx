@@ -220,47 +220,7 @@ export const SectionPropertySize = ({ propertySuffix = defaultPropertySuffix, ch
 };*/
 export const SectionPropertyGradient = ({ propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
-        <BasicSectionPropertyGradient {...restProps} propertySuffix={propertySuffix} demonstration={<>
-            <Card
-                gradient={true}
-                theme='primary'
-                header={<>
-                    A Card with Gradient Variant
-                </>}
-                footer={<>
-                    Just for fun!
-                </>}
-            >
-                <DummyContents />
-            </Card>
-            <p></p>
-            <TypeScriptCode>{`
-<Card
-    gradient={true}
-    theme='primary'
-    header={<>
-        A Card with Gradient Variant
-    </>}
-    footer={<>
-        Just for fun!
-    </>}
->
-    <p>...</p>
-    <img alt='lorem image' src='/images/lorem-image-1.svg' />
-    <p>...</p>
-</Card>
-            `}</TypeScriptCode>
-        </>}>
-            {
-                children
-                ??
-                <>
-                    <p>
-                        To make <CurrentComponent /> appear 3D, set <code>{`<Card gradient={true}>`}</code>.
-                    </p>
-                </>
-            }
-        </BasicSectionPropertyGradient>
+        <BasicSectionPropertyGradient {...restProps} propertySuffix={propertySuffix} />
     );
 };
 export const SectionPropertyOutlined = ({ propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
@@ -729,7 +689,37 @@ const Page: NextPage = () => {
                 <SectionPropertyTheme />
                 <SectionPropertySize />
                 {/* <SectionPropertyNude /> */}
-                <SectionPropertyGradient />
+                <SectionPropertyGradient demonstration={<>
+                    <Card
+                        gradient={true}
+                        theme='primary'
+                        header={<>
+                            A Card with Gradient Variant
+                        </>}
+                        footer={<>
+                            Just for fun!
+                        </>}
+                    >
+                        <DummyContents />
+                    </Card>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Card
+    gradient={true}
+    theme='primary'
+    header={<>
+        A Card with Gradient Variant
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
+    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
+    <p>...</p>
+</Card>
+                    `}</TypeScriptCode>
+                </>} />
                 <SectionPropertyOutlined demonstration={<>
                     <TransparentPreview>
                         <Card
