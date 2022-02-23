@@ -17,7 +17,7 @@ import Element from '@nodestrap/element'
 import {
     SectionPropertyTheme    as BasicSectionPropertyTheme,
     SectionPropertySize     as BasicSectionPropertySize,
-    SectionPropertyNude     as BasicSectionPropertyNude,
+ // SectionPropertyNude     as BasicSectionPropertyNude,
     SectionPropertyGradient as BasicSectionPropertyGradient,
     SectionPropertyOutlined as BasicSectionPropertyOutlined,
     SectionPropertyMild     as BasicSectionPropertyMild,
@@ -167,7 +167,7 @@ export const SectionPropertySize = ({ propertySuffix = defaultPropertySuffix, ch
         </>} />
     );
 };
-export const SectionPropertyNude = ({ propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
+/*export const SectionPropertyNude = ({ propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
         <BasicSectionPropertyNude {...restProps} propertySuffix={propertySuffix} demonstration={<>
             <TransparentPreview>
@@ -216,7 +216,7 @@ export const SectionPropertyNude = ({ propertySuffix = defaultPropertySuffix, ch
             }
         </BasicSectionPropertyNude>
     );
-};
+};*/
 export const SectionPropertyGradient = ({ propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
         <BasicSectionPropertyGradient {...restProps} propertySuffix={propertySuffix} demonstration={<>
@@ -810,7 +810,7 @@ const Page: NextPage = () => {
             <SectionVariants>
                 <SectionPropertyTheme />
                 <SectionPropertySize />
-                <SectionPropertyNude />
+                {/* <SectionPropertyNude /> */}
                 <SectionPropertyGradient />
                 <SectionPropertyOutlined />
                 <SectionPropertyMild />
