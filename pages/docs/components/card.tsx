@@ -12,7 +12,7 @@ import { SectionInheritedProps, LinkCardPage, LinkIndicatorPage, SectionOverridi
 import { Card, OrientationName } from '@nodestrap/card'
 import { TypeScriptCode } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
-import { Warning } from '../../../components/Info'
+import { Tips, Warning } from '../../../components/Info'
 import Element from '@nodestrap/element'
 import {
     SectionPropertyTheme    as BasicSectionPropertyTheme,
@@ -347,7 +347,7 @@ export const SectionPropertyMild = ({ propertySuffix = defaultPropertySuffix, ch
                 ??
                 <>
                     <p>
-                        To make <CurrentComponent /> look smoother (text friendly), set <code>{`<Card mild={true}>`}</code>.
+                        To make <CurrentComponent /> look smoother (text friendly), set <code>{`<Card mild={true}>`}</code>.<br />
                         Note: the <code>{`mild={true}`}</code> is <strong>already set by default</strong> at <CurrentComponent />, so to disable it assign <code>{`<Card mild={false}>`}</code>.
                     </p>
                 </>
@@ -444,16 +444,16 @@ export const SectionPropertyOrientation = ({ property, properties, propertySuffi
                                 Insufficient page width can cause distorion of your site&apos;s design.
                             </p>
                             <p>
-                                You may need a <LinkResponsiveProviderPage /> to create <strong>responsive orientation</strong> based on <em>overflow detection</em>.
+                                You may need a <LinkResponsiveProviderPage /> to create a <strong>responsive orientation</strong> based on <em>overflow detection</em>.
                             </p>
                         </Warning>
                     </SectionSubProperty>
                     <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`orientation={currentFallback}`} properties='Responsive Orientation' demonstration={<>
-                        <Warning>
+                        <Tips>
                             <p>
                                 Try to <strong>resize</strong> the <span style={{ background :'pink', border : 'solid 1px darkred', padding: '0.15em' }}>red container</span> below:
                             </p>
-                        </Warning>
+                        </Tips>
                         <p></p>
                         <ResponsiveProvider<OrientationName> fallbacks={[
                             'inline', // the first try, if overflow is detected, then try next
@@ -672,7 +672,7 @@ const CardWithActiveOutlined = () => {
 };
 export const SectionPropertyActive = ({ property, properties, propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
-        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property ?? 'active'} properties={properties ?? 'Active Items'} demonstration={<>
+        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property ?? 'active'} properties={properties ?? 'Active State'} demonstration={<>
             <Card
                 active={true}
                 theme='primary'
@@ -702,7 +702,7 @@ export const SectionPropertyActive = ({ property, properties, propertySuffix = d
     <p>...</p>
 </Card>
             `}</TypeScriptCode>
-            <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={property ?? 'outlined'} properties='Active Items with Outlined' demonstration={<>
+            <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={property ?? 'outlined'} properties='Active State with Outlined' demonstration={<>
                 <TransparentPreview>
                     <CardWithActiveOutlined />
                 </TransparentPreview>
@@ -744,7 +744,7 @@ export const SectionPropertyActive = ({ property, properties, propertySuffix = d
 };
 export const SectionPropertyEnabled = ({ property, properties, propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
-        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property ?? 'enabled'} properties={properties ?? 'Disabled Items'} demonstration={<>
+        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property ?? 'enabled'} properties={properties ?? 'Disabled State'} demonstration={<>
             <Card
                 enabled={false}
                 theme='primary'
@@ -857,48 +857,6 @@ const Page: NextPage = () => {
                             <SimpleSpecItem>
                                 <code>tabBorderRadiusLg</code>
                                 <p>The border-radius of tabs when <code>{`size='lg'`}</code>.</p>
-                            </SimpleSpecItem>
-                        </SubSpecList>
-                    </DetailSpecItem>
-                    <DetailSpecItem title='Breadcrumb Styles'>
-                        <SubSpecList>
-                            <SimpleSpecItem>
-                                <code>breadcrumbPaddingInline</code>
-                                <p>The default inner spacing on the left &amp; right of breadcrumb items.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>breadcrumbPaddingBlock</code>
-                                <p>The default inner spacing on the top &amp; bottom of breadcrumb items.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>breadcrumbPaddingInlineSm</code>
-                                <p>The inner spacing on the left &amp; right of breadcrumb items when <code>{`size='sm'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>breadcrumbPaddingBlockSm</code>
-                                <p>The inner spacing on the top &amp; bottom of breadcrumb items when <code>{`size='sm'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>breadcrumbPaddingInlineLg</code>
-                                <p>The inner spacing on the left &amp; right of breadcrumb items when <code>{`size='lg'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>breadcrumbPaddingBlockLg</code>
-                                <p>The inner spacing on the top &amp; bottom of breadcrumb items when <code>{`size='lg'`}</code>.</p>
-                            </SimpleSpecItem>
-                            
-                            <SimpleSpecItem>
-                                <code>breadcrumbSeparatorImg</code>
-                                <p>The background-image of separator.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>breadcrumbSeparatorInlineSize</code>
-                                <p>The width of separator.</p>
-                                <p>The height is calculated automatically by its <code>aspect-ratio</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>breadcrumbSeparatorMarginInline</code>
-                                <p>The left &amp; right margin of separator.</p>
                             </SimpleSpecItem>
                         </SubSpecList>
                     </DetailSpecItem>
