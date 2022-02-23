@@ -18,7 +18,7 @@ import {
     SectionPropertyTheme    as BasicSectionPropertyTheme,
     SectionPropertySize     as BasicSectionPropertySize,
     SectionPropertyNude     as BasicSectionPropertyNude,
-    SectionPropertyGradient as BasicSectionPropertyGradient,
+    SectionPropertyGradient,
     SectionPropertyOutlined,
     SectionPropertyMildProps,
     SectionPropertyMild     as BasicSectionPropertyMild,
@@ -228,72 +228,6 @@ export const SectionPropertyNude = ({ propertySuffix = defaultPropertySuffix, ch
                 </>
             }
         </BasicSectionPropertyNude>
-    );
-};
-export const SectionPropertyGradient = ({ propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
-    return (
-        <BasicSectionPropertyGradient {...restProps} propertySuffix={propertySuffix} demonstration={<>
-            <List theme='primary'>
-                <ListItem>
-                    A first item
-                </ListItem>
-                <ListItem>
-                    A second item
-                </ListItem>
-                <ListItem gradient={true}>
-                    A third item (gradient)
-                </ListItem>
-                <ListItem gradient={true}>
-                    A fourth item (gradient)
-                </ListItem>
-            </List>
-            <p></p>
-            <TypeScriptCode>{`
-<List theme='primary'>
-    <ListItem>
-        A first item
-    </ListItem>
-    <ListItem>
-        A second item
-    </ListItem>
-    <ListItem gradient={true}>
-        A third item (gradient)
-    </ListItem>
-    <ListItem gradient={true}>
-        A fourth item (gradient)
-    </ListItem>
-</List>
-
-/* enabling gradient at <List> level: */
-<List gradient={true} theme='primary'>
-    <ListItem>
-        A first item (gradient)
-    </ListItem>
-    <ListItem>
-        A second item (gradient)
-    </ListItem>
-    <ListItem>
-        A third item (gradient)
-    </ListItem>
-    <ListItem>
-        A fourth item (gradient)
-    </ListItem>
-</List>
-            `}</TypeScriptCode>
-        </>}>
-            {
-                children
-                ??
-                <>
-                    <p>
-                        To make <LinkListItemPage /> appear 3D, set <code>{`<ListItem gradient={true}>`}</code>.
-                    </p>
-                    <p>
-                        You can also set the <code>gradient</code> at <code>{`<List gradient={true}>`}</code>, so the entire <LinkListItemPage />s are 3D.
-                    </p>
-                </>
-            }
-        </BasicSectionPropertyGradient>
     );
 };
 export const SectionPropertyMild = ({ setByDefault, ...props }: SectionPropertyMildProps) => {
@@ -1432,7 +1366,55 @@ const Page: NextPage = () => {
                 <SectionPropertyTheme />
                 <SectionPropertySize />
                 <SectionPropertyNude />
-                <SectionPropertyGradient />
+                <SectionPropertyGradient>
+                    <List theme='primary'>
+                        <ListItem>
+                            A first item
+                        </ListItem>
+                        <ListItem>
+                            A second item
+                        </ListItem>
+                        <ListItem gradient={true}>
+                            A third item (gradient)
+                        </ListItem>
+                        <ListItem gradient={true}>
+                            A fourth item (gradient)
+                        </ListItem>
+                    </List>
+                    <p></p>
+                    <TypeScriptCode>{`
+<List theme='primary'>
+    <ListItem>
+        A first item
+    </ListItem>
+    <ListItem>
+        A second item
+    </ListItem>
+    <ListItem gradient={true}>
+        A third item (gradient)
+    </ListItem>
+    <ListItem gradient={true}>
+        A fourth item (gradient)
+    </ListItem>
+</List>
+
+/* enabling gradient at <List> level: */
+<List gradient={true} theme='primary'>
+    <ListItem>
+        A first item (gradient)
+    </ListItem>
+    <ListItem>
+        A second item (gradient)
+    </ListItem>
+    <ListItem>
+        A third item (gradient)
+    </ListItem>
+    <ListItem>
+        A fourth item (gradient)
+    </ListItem>
+</List>
+                    `}</TypeScriptCode>
+                </SectionPropertyGradient>
                 <SectionPropertyOutlined>
                     <TransparentPreview>
                         <List theme='primary'>

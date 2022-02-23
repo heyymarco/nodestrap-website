@@ -111,23 +111,24 @@ export const SectionPropertyNude = ({ property, properties, children, ...restPro
         </SectionSubProperty>
     );
 };
-export const SectionPropertyGradient = ({ property, properties, children, ...restProps }: SectionPropertyProps) => {
-    const { componentName } = useComponentInfo();
+export const SectionPropertyGradient = ({ property, properties, description, ...restProps }: SectionDemoPropertyProps) => {
+    const { componentName, hasNestedComponent, nestedComponentName } = useComponentInfo();
     
     
     
     return (
-        <SectionSubProperty {...restProps} property={property ?? 'gradient'} properties={properties ?? 'Gradient'}>
-            {
-                children
-                ??
-                <>
-                    <p>
-                        To make <CurrentComponent /> appear 3D, set <code>{`<${componentName} gradient={true}>`}</code>.
-                    </p>
-                </>
-            }
-        </SectionSubProperty>
+        <SectionDemoProperty {...restProps} property={property ?? 'gradient'} properties={properties ?? 'Gradient'} description={
+            description
+            ??
+            <>
+                <p>
+                    To make <CurrentNestedComponent /> appear 3D, set <code>{`<${nestedComponentName} gradient={true}>`}</code>.
+                </p>
+                {hasNestedComponent && <p>
+                    You can also set the <code>gradient</code> at <code>{`<${componentName} gradient={true}>`}</code>, so the entire <CurrentNestedComponent />s are 3D.
+                </p>}
+            </>
+        } />
     );
 };
 export const SectionPropertyOutlined = ({ property, properties, description, ...restProps }: SectionDemoPropertyProps) => {
@@ -208,7 +209,7 @@ const Page: NextPage = () => {
                 <SectionPropertyTheme />
                 <SectionPropertySize />
                 <SectionPropertyNude />
-                <SectionPropertyGradient demonstration={<>
+                <SectionPropertyGradient>
                     <Basic
                         gradient={true}
                         theme='primary'
@@ -224,7 +225,7 @@ const Page: NextPage = () => {
     hello world
 </Basic>
                     `}</TypeScriptCode>
-                </>} />
+                </SectionPropertyGradient>
                 <SectionPropertyOutlined>
                     <TransparentPreview>
                         <Basic

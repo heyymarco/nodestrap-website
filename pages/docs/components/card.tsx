@@ -18,7 +18,7 @@ import {
     SectionPropertyTheme    as BasicSectionPropertyTheme,
     SectionPropertySize     as BasicSectionPropertySize,
  // SectionPropertyNude     as BasicSectionPropertyNude,
-    SectionPropertyGradient as BasicSectionPropertyGradient,
+    SectionPropertyGradient,
     SectionPropertyOutlined,
     SectionPropertyMildProps,
     SectionPropertyMild     as BasicSectionPropertyMild,
@@ -218,11 +218,6 @@ export const SectionPropertySize = ({ propertySuffix = defaultPropertySuffix, ch
         </BasicSectionPropertyNude>
     );
 };*/
-export const SectionPropertyGradient = ({ propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
-    return (
-        <BasicSectionPropertyGradient {...restProps} propertySuffix={propertySuffix} />
-    );
-};
 export const SectionPropertyMild = ({ setByDefault, ...props }: SectionPropertyMildProps) => {
     return (
         <BasicSectionPropertyMild {...props} setByDefault={setByDefault ?? true} />
@@ -684,7 +679,7 @@ const Page: NextPage = () => {
                 <SectionPropertyTheme />
                 <SectionPropertySize />
                 {/* <SectionPropertyNude /> */}
-                <SectionPropertyGradient demonstration={<>
+                <SectionPropertyGradient>
                     <Card
                         gradient={true}
                         theme='primary'
@@ -714,7 +709,7 @@ const Page: NextPage = () => {
     <p>...</p>
 </Card>
                     `}</TypeScriptCode>
-                </>} />
+                </SectionPropertyGradient>
                 <SectionPropertyOutlined>
                     <TransparentPreview>
                         <Card
