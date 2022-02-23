@@ -534,12 +534,30 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix = d
                 ??
                 <>
                     <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`cardStyle='flat'`} properties={<><code>flat</code> Style</>} demonstration={<>
-                        <Card cardStyle='flat' theme='primary'>
+                        <Card
+                            cardStyle='flat'
+                            theme='primary'
+                            header={<>
+                                A Card with Flat Style
+                            </>}
+                            footer={<>
+                                Just for fun!
+                            </>}
+                        >
                             <DummyContents />
                         </Card>
                         <p></p>
                         <TypeScriptCode>{`
-<Card cardStyle='flat' theme='primary'>
+<Card
+    cardStyle='flat'
+    theme='primary'
+    header={<>
+        A Card with Flat Style
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
     <p>...</p>
     <p>...</p>
     <p>...</p>
@@ -551,12 +569,30 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix = d
                         </p>
                     </SectionSubProperty>
                     <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`cardStyle='flush'`} properties={<><code>flush</code> Style</>} demonstration={<>
-                        <Card cardStyle='flush' theme='primary'>
+                        <Card
+                            cardStyle='flush'
+                            theme='primary'
+                            header={<>
+                                A Card with Flush Style
+                            </>}
+                            footer={<>
+                                Just for fun!
+                            </>}
+                        >
                             <DummyContents />
                         </Card>
                         <p></p>
                         <TypeScriptCode>{`
-<Card cardStyle='flush' theme='primary'>
+<Card
+    cardStyle='flush'
+    theme='primary'
+    header={<>
+        A Card with Flush Style
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
     <p>...</p>
     <p>...</p>
     <p>...</p>
@@ -568,12 +604,30 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix = d
                         </p>
                     </SectionSubProperty>
                     <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`cardStyle='joined'`} properties={<><code>joined</code> Style</>} demonstration={<>
-                        <Card cardStyle='joined' theme='primary'>
+                        <Card
+                            cardStyle='joined'
+                            theme='primary'
+                            header={<>
+                                A Card with Joined Style
+                            </>}
+                            footer={<>
+                                Just for fun!
+                            </>}
+                        >
                             <DummyContents />
                         </Card>
                         <p></p>
                         <TypeScriptCode>{`
-<Card cardStyle='joined' theme='primary'>
+<Card
+    cardStyle='joined'
+    theme='primary'
+    header={<>
+        A Card with Joined Style
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
     <p>...</p>
     <p>...</p>
     <p>...</p>
@@ -593,12 +647,30 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix = d
 export const SectionPropertyActive = ({ property, properties, propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
         <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property ?? 'active'} properties={properties ?? 'Active Items'} demonstration={<>
-            <Card active={true} theme='primary'>
+            <Card
+                active={true}
+                theme='primary'
+                header={<>
+                    A Card with Active State
+                </>}
+                footer={<>
+                    Just for fun!
+                </>}
+            >
                 <DummyContents />
             </Card>
             <p></p>
             <TypeScriptCode>{`
-<Card active={true} theme='primary'>
+<Card
+    active={true}
+    theme='primary'
+    header={<>
+        A Card with Active State
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
     <p>...</p>
     <p>...</p>
     <p>...</p>
@@ -606,13 +678,33 @@ export const SectionPropertyActive = ({ property, properties, propertySuffix = d
             `}</TypeScriptCode>
             <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={property ?? 'outlined'} properties='Active Items with Outlined' demonstration={<>
                 <TransparentPreview>
-                    <Card active={true} outlined={true} theme='primary'>
+                    <Card
+                        active={true}
+                        outlined={true}
+                        theme='primary'
+                        header={<>
+                            A Card with Active State + Outlined Variant
+                        </>}
+                        footer={<>
+                            Just for fun!
+                        </>}
+                    >
                         <DummyContents />
                     </Card>
                 </TransparentPreview>
                 <p></p>
                 <TypeScriptCode>{`
-<Card active={true} outlined={true} theme='primary'>
+<Card
+    active={true}
+    outlined={true}
+    theme='primary'
+    header={<>
+        A Card with Active State + Outlined Variant
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
     <p>...</p>
     <p>...</p>
     <p>...</p>
@@ -639,12 +731,30 @@ export const SectionPropertyActive = ({ property, properties, propertySuffix = d
 export const SectionPropertyEnabled = ({ property, properties, propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
         <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property ?? 'enabled'} properties={properties ?? 'Disabled Items'} demonstration={<>
-            <Card enabled={false} theme='primary'>
+            <Card
+                enabled={false}
+                theme='primary'
+                header={<>
+                    A Card with Disabled State
+                </>}
+                footer={<>
+                    Just for fun!
+                </>}
+            >
                 <DummyContents />
             </Card>
             <p></p>
             <TypeScriptCode>{`
-<Card enabled={false} theme='primary'>
+<Card
+    enabled={false}
+    theme='primary'
+    header={<>
+        A Card with Disabled State
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
     <p>...</p>
     <p>...</p>
     <p>...</p>
