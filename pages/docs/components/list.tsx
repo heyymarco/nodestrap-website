@@ -17,6 +17,7 @@ import Element from '@nodestrap/element'
 import {
     SectionPropertyTheme    as BasicSectionPropertyTheme,
     SectionPropertySize     as BasicSectionPropertySize,
+    SectionPropertyNudeProps,
     SectionPropertyNude     as BasicSectionPropertyNude,
     SectionPropertyGradient,
     SectionPropertyOutlined,
@@ -168,66 +169,9 @@ export const SectionPropertySize = ({ propertySuffix = defaultPropertySuffix, ch
         </BasicSectionPropertySize>
     );
 };
-export const SectionPropertyNude = ({ propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
+export const SectionPropertyNude = ({ noBorder, ...props }: SectionPropertyNudeProps) => {
     return (
-        <BasicSectionPropertyNude {...restProps} propertySuffix={propertySuffix} demonstration={<>
-            <TransparentPreview>
-                <List theme='primary'>
-                    <ListItem>
-                        A first item
-                    </ListItem>
-                    <ListItem>
-                        A second item
-                    </ListItem>
-                    <ListItem nude={true}>
-                        A third item (nude)
-                    </ListItem>
-                    <ListItem nude={true}>
-                        <div style={{ background: 'pink', padding: '1em', display: 'flex', justifyContent: 'center' }}>
-                            hello world
-                        </div>
-                    </ListItem>
-                    <ListItem nude={true}>
-                        A fifth item (nude)
-                    </ListItem>
-                </List>
-            </TransparentPreview>
-            <p></p>
-            <TypeScriptCode>{`
-<List theme='primary'>
-    <ListItem>
-        A first item
-    </ListItem>
-    <ListItem>
-        A second item
-    </ListItem>
-    <ListItem nude={true}>
-        A third item (nude)
-    </ListItem>
-    <ListItem nude={true}>
-        <div style={{ background: 'pink', padding: '1em', display: 'flex', justifyContent: 'center' }}>
-            hello world
-        </div>
-    </ListItem>
-    <ListItem nude={true}>
-        A fifth item (nude)
-    </ListItem>
-</List>
-            `}</TypeScriptCode>
-        </>}>
-            {
-                children
-                ??
-                <>
-                    <p>
-                        Assigning <code>{`<ListItem nude={true}>`}</code> makes the <LinkListItemPage /> lose its <code>background</code> and <code>padding</code>.
-                    </p>
-                    <p>
-                        This is useful if you want to fill the whole <LinkListItemPage /> with a custom component.
-                    </p>
-                </>
-            }
-        </BasicSectionPropertyNude>
+        <BasicSectionPropertyNude {...props} noBorder={noBorder ?? true} />
     );
 };
 export const SectionPropertyMild = ({ setByDefault, ...props }: SectionPropertyMildProps) => {
@@ -1365,7 +1309,51 @@ const Page: NextPage = () => {
             <SectionVariants>
                 <SectionPropertyTheme />
                 <SectionPropertySize />
-                <SectionPropertyNude />
+                <SectionPropertyNude>
+                    <TransparentPreview>
+                        <List theme='primary'>
+                            <ListItem>
+                                A first item
+                            </ListItem>
+                            <ListItem>
+                                A second item
+                            </ListItem>
+                            <ListItem nude={true}>
+                                A third item (nude)
+                            </ListItem>
+                            <ListItem nude={true}>
+                                <div style={{ background: 'pink', padding: '1em', display: 'flex', justifyContent: 'center' }}>
+                                    hello world
+                                </div>
+                            </ListItem>
+                            <ListItem nude={true}>
+                                A fifth item (nude)
+                            </ListItem>
+                        </List>
+                    </TransparentPreview>
+                    <p></p>
+                    <TypeScriptCode>{`
+<List theme='primary'>
+    <ListItem>
+        A first item
+    </ListItem>
+    <ListItem>
+        A second item
+    </ListItem>
+    <ListItem nude={true}>
+        A third item (nude)
+    </ListItem>
+    <ListItem nude={true}>
+        <div style={{ background: 'pink', padding: '1em', display: 'flex', justifyContent: 'center' }}>
+            hello world
+        </div>
+    </ListItem>
+    <ListItem nude={true}>
+        A fifth item (nude)
+    </ListItem>
+</List>
+                    `}</TypeScriptCode>
+                </SectionPropertyNude>
                 <SectionPropertyGradient>
                     <List theme='primary'>
                         <ListItem>

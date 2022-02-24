@@ -97,18 +97,27 @@ export const SectionPropertySize = ({ property, properties, children, ...restPro
         </SectionSubProperty>
     );
 };
-export const SectionPropertyNude = ({ property, properties, children, ...restProps }: SectionPropertyProps) => {
+export interface SectionPropertyNudeProps extends SectionDemoPropertyProps {
+    noBorder ?: boolean
+}
+export const SectionPropertyNude = ({ property, properties, description, noBorder, ...restProps }: SectionPropertyNudeProps) => {
+    const { nestedComponentName } = useComponentInfo();
+    
+    
+    
     return (
-        <SectionSubProperty {...restProps} property={property ?? 'nude'} properties={properties ?? 'Nude'}>
-            {
-                children
-                ??
+        <SectionDemoProperty {...restProps} property={property ?? 'nude'} properties={properties ?? 'Nude'} description={
+            description
+            ??
+            <>
                 <p>
-                    Removes the <code>border</code>, <code>padding</code> and <code>background</code>.
-                    Set <code>{`nude={true}`}</code> to activate.
+                    Assigning <code>{`<${nestedComponentName} nude={true}>`}</code> makes the <CurrentNestedComponent /> lose its {!noBorder && <><code>border</code>, </>}<code>padding</code> and <code>background</code>.
                 </p>
-            }
-        </SectionSubProperty>
+                <p>
+                    This is useful if you want to fill the whole <CurrentNestedComponent /> with a custom component.
+                </p>
+            </>
+        } />
     );
 };
 export const SectionPropertyGradient = ({ property, properties, description, ...restProps }: SectionDemoPropertyProps) => {
@@ -208,7 +217,25 @@ const Page: NextPage = () => {
             <SectionVariants>
                 <SectionPropertyTheme />
                 <SectionPropertySize />
-                <SectionPropertyNude />
+                <SectionPropertyNude>
+                    <TransparentPreview>
+                        <Basic
+                            nude={true}
+                            theme='warning'
+                        >
+                            hello world
+                        </Basic>
+                    </TransparentPreview>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Basic
+    nude={true}
+    theme='warning'
+>
+    hello world
+</Basic>
+                    `}</TypeScriptCode>
+                </SectionPropertyNude>
                 <SectionPropertyGradient>
                     <Basic
                         gradient={true}

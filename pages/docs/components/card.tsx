@@ -17,7 +17,7 @@ import Element from '@nodestrap/element'
 import {
     SectionPropertyTheme    as BasicSectionPropertyTheme,
     SectionPropertySize     as BasicSectionPropertySize,
- // SectionPropertyNude     as BasicSectionPropertyNude,
+ // SectionPropertyNude,
     SectionPropertyGradient,
     SectionPropertyOutlined,
     SectionPropertyMildProps,
@@ -168,56 +168,6 @@ export const SectionPropertySize = ({ propertySuffix = defaultPropertySuffix, ch
         </>} />
     );
 };
-/*export const SectionPropertyNude = ({ propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
-    return (
-        <BasicSectionPropertyNude {...restProps} propertySuffix={propertySuffix} demonstration={<>
-            <TransparentPreview>
-                <Card
-                    nude={true}
-                    theme='primary'
-                    header={<>
-                        A Card with Nude Variant
-                    </>}
-                    footer={<>
-                        Just for fun!
-                    </>}
-                >
-                    <DummyContents />
-                </Card>
-            </TransparentPreview>
-            <p></p>
-            <TypeScriptCode>{`
-<Card
-    nude={true}
-    theme='primary'
-    header={<>
-        A Card with Nude Variant
-    </>}
-    footer={<>
-        Just for fun!
-    </>}
->
-    <p>...</p>
-    <img alt='lorem image' src='/images/lorem-image-1.svg' />
-    <p>...</p>
-</Card>
-            `}</TypeScriptCode>
-        </>}>
-            {
-                children
-                ??
-                <>
-                    <p>
-                        Assigning <code>{`<Card nude={true}>`}</code> makes the <CurrentComponent /> lose its <code>background</code>, <code>padding</code> and <code>border</code>.
-                    </p>
-                    <p>
-                        This is useful if you want to fill the whole <CurrentComponent /> into a container component.
-                    </p>
-                </>
-            }
-        </BasicSectionPropertyNude>
-    );
-};*/
 export const SectionPropertyMild = ({ setByDefault, ...props }: SectionPropertyMildProps) => {
     return (
         <BasicSectionPropertyMild {...props} setByDefault={setByDefault ?? true} />
@@ -678,7 +628,39 @@ const Page: NextPage = () => {
             <SectionVariants>
                 <SectionPropertyTheme />
                 <SectionPropertySize />
-                {/* <SectionPropertyNude /> */}
+                {/* <SectionPropertyNude>
+                    <TransparentPreview>
+                        <Card
+                            nude={true}
+                            theme='primary'
+                            header={<>
+                                A Card with Nude Variant
+                            </>}
+                            footer={<>
+                                Just for fun!
+                            </>}
+                        >
+                            <DummyContents />
+                        </Card>
+                    </TransparentPreview>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Card
+    nude={true}
+    theme='primary'
+    header={<>
+        A Card with Nude Variant
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
+    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
+    <p>...</p>
+</Card>
+                    `}</TypeScriptCode>
+                </SectionPropertyNude> */}
                 <SectionPropertyGradient>
                     <Card
                         gradient={true}
