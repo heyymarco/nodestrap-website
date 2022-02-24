@@ -27,6 +27,12 @@ import {
     SectionPropertyOrientationBlock,
     SectionPropertyOrientationInline,
     SectionPropertyOrientationResponsive,
+    SectionPropertyStyleProps,
+    SectionPropertyStyle,
+    SectionPropertyItemStyleProps,
+    SectionPropertyFlatStyle   as BasicSectionPropertyFlatStyle,
+    SectionPropertyFlushStyle  as BasicSectionPropertyFlushStyle,
+    SectionPropertyJoinedStyle as BasicSectionPropertyJoinedStyle,
 } from './basic'
 
 import loadable from '@loadable/component'
@@ -77,136 +83,6 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix = d
                 children
                 ??
                 <>
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`listStyle='flat'`} properties={<><code>flat</code> Style</>} preview={<>
-                        <List listStyle='flat' theme='primary'>
-                            <ListItem>
-                                A first item
-                            </ListItem>
-                            <ListItem>
-                                A second item
-                            </ListItem>
-                            <ListItem theme='success'>
-                                A third item
-                            </ListItem>
-                            <ListItem active={true}>
-                                A fourth item
-                            </ListItem>
-                            <ListItem theme='danger'>
-                                A fifth item
-                            </ListItem>
-                        </List>
-                        <p></p>
-                        <TypeScriptCode>{`
-<List listStyle='flat' theme='primary'>
-    <ListItem>
-        A first item
-    </ListItem>
-    <ListItem>
-        A second item
-    </ListItem>
-    <ListItem theme='success'>
-        A third item
-    </ListItem>
-    <ListItem active={true}>
-        A fourth item
-    </ListItem>
-    <ListItem theme='danger'>
-        A fifth item
-    </ListItem>
-</List>
-                        `}</TypeScriptCode>
-                    </>}>
-                        <p>
-                            Set <code>{`<List listStyle='flat'>`}</code> to remove the <code>border</code>, <code>border-radius</code>, and <em>separator</em> (a <code>border</code> between <LinkListItemPage />s).
-                        </p>
-                    </SectionSubProperty>
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`listStyle='flush'`} properties={<><code>flush</code> Style</>} preview={<>
-                        <List listStyle='flush' theme='primary'>
-                            <ListItem>
-                                A first item
-                            </ListItem>
-                            <ListItem>
-                                A second item
-                            </ListItem>
-                            <ListItem theme='success'>
-                                A third item
-                            </ListItem>
-                            <ListItem active={true}>
-                                A fourth item
-                            </ListItem>
-                            <ListItem theme='danger'>
-                                A fifth item
-                            </ListItem>
-                        </List>
-                        <p></p>
-                        <TypeScriptCode>{`
-<List listStyle='flush' theme='primary'>
-    <ListItem>
-        A first item
-    </ListItem>
-    <ListItem>
-        A second item
-    </ListItem>
-    <ListItem theme='success'>
-        A third item
-    </ListItem>
-    <ListItem active={true}>
-        A fourth item
-    </ListItem>
-    <ListItem theme='danger'>
-        A fifth item
-    </ListItem>
-</List>
-                        `}</TypeScriptCode>
-                    </>}>
-                        <p>
-                            Set <code>{`<List listStyle='flush'>`}</code> to remove the <code>border</code> and <code>border-radius</code>.
-                        </p>
-                    </SectionSubProperty>
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`listStyle='joined'`} properties={<><code>joined</code> Style</>} preview={<>
-                        <List listStyle='joined' theme='primary'>
-                            <ListItem>
-                                A first item
-                            </ListItem>
-                            <ListItem>
-                                A second item
-                            </ListItem>
-                            <ListItem theme='success'>
-                                A third item
-                            </ListItem>
-                            <ListItem active={true}>
-                                A fourth item
-                            </ListItem>
-                            <ListItem theme='danger'>
-                                A fifth item
-                            </ListItem>
-                        </List>
-                        <p></p>
-                        <TypeScriptCode>{`
-<List listStyle='joined' theme='primary'>
-    <ListItem>
-        A first item
-    </ListItem>
-    <ListItem>
-        A second item
-    </ListItem>
-    <ListItem theme='success'>
-        A third item
-    </ListItem>
-    <ListItem active={true}>
-        A fourth item
-    </ListItem>
-    <ListItem theme='danger'>
-        A fifth item
-    </ListItem>
-</List>
-                        `}</TypeScriptCode>
-                    </>}>
-                        <p>
-                            Set <code>{`<List listStyle='joined'>`}</code> to remove the <em>separator</em> (a <code>border</code> between <LinkListItemPage />s).
-                        </p>
-                    </SectionSubProperty>
-                    
                     <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`listStyle='content'`} properties={<><code>content</code> Style</>} preview={<>
                         <List listStyle='content' theme='primary'>
                             <ListItem>
@@ -579,6 +455,26 @@ const TabControl = () => {
                 </>
             }
         </SectionSubProperty>
+    );
+};
+export const SectionPropertyListStyle = ({ styleName = 'listStyle', ...restProps }: SectionPropertyStyleProps) => {
+    return (
+        <SectionPropertyStyle {...restProps} styleName={styleName} />
+    );
+};
+export const SectionPropertyFlatStyle = ({ styleName = 'listStyle', ...restProps }: SectionPropertyItemStyleProps) => {
+    return (
+        <BasicSectionPropertyFlatStyle {...restProps} styleName={styleName} />
+    );
+};
+export const SectionPropertyFlushStyle = ({ styleName = 'listStyle', ...restProps }: SectionPropertyItemStyleProps) => {
+    return (
+        <BasicSectionPropertyFlushStyle {...restProps} styleName={styleName} />
+    );
+};
+export const SectionPropertyJoinedStyle = ({ styleName = 'listStyle', ...restProps }: SectionPropertyItemStyleProps) => {
+    return (
+        <BasicSectionPropertyJoinedStyle {...restProps} styleName={styleName} />
     );
 };
 
@@ -1447,6 +1343,125 @@ const Page: NextPage = () => {
                         `}</TypeScriptCode>
                     </SectionPropertyOrientationResponsive>
                 </SectionPropertyOrientation>
+                <SectionPropertyListStyle>
+                    <SectionPropertyFlatStyle>
+                        <List listStyle='flat' theme='primary'>
+                            <ListItem>
+                                A first item
+                            </ListItem>
+                            <ListItem>
+                                A second item
+                            </ListItem>
+                            <ListItem theme='success'>
+                                A third item
+                            </ListItem>
+                            <ListItem active={true}>
+                                A fourth item
+                            </ListItem>
+                            <ListItem theme='danger'>
+                                A fifth item
+                            </ListItem>
+                        </List>
+                        <p></p>
+                        <TypeScriptCode>{`
+<List listStyle='flat' theme='primary'>
+    <ListItem>
+        A first item
+    </ListItem>
+    <ListItem>
+        A second item
+    </ListItem>
+    <ListItem theme='success'>
+        A third item
+    </ListItem>
+    <ListItem active={true}>
+        A fourth item
+    </ListItem>
+    <ListItem theme='danger'>
+        A fifth item
+    </ListItem>
+</List>
+                        `}</TypeScriptCode>
+                    </SectionPropertyFlatStyle>
+                    <SectionPropertyFlushStyle>
+                        <List listStyle='flush' theme='primary'>
+                            <ListItem>
+                                A first item
+                            </ListItem>
+                            <ListItem>
+                                A second item
+                            </ListItem>
+                            <ListItem theme='success'>
+                                A third item
+                            </ListItem>
+                            <ListItem active={true}>
+                                A fourth item
+                            </ListItem>
+                            <ListItem theme='danger'>
+                                A fifth item
+                            </ListItem>
+                        </List>
+                        <p></p>
+                        <TypeScriptCode>{`
+<List listStyle='flush' theme='primary'>
+    <ListItem>
+        A first item
+    </ListItem>
+    <ListItem>
+        A second item
+    </ListItem>
+    <ListItem theme='success'>
+        A third item
+    </ListItem>
+    <ListItem active={true}>
+        A fourth item
+    </ListItem>
+    <ListItem theme='danger'>
+        A fifth item
+    </ListItem>
+</List>
+                        `}</TypeScriptCode>
+                    </SectionPropertyFlushStyle>
+                    <SectionPropertyJoinedStyle>
+                        <List listStyle='joined' theme='primary'>
+                            <ListItem>
+                                A first item
+                            </ListItem>
+                            <ListItem>
+                                A second item
+                            </ListItem>
+                            <ListItem theme='success'>
+                                A third item
+                            </ListItem>
+                            <ListItem active={true}>
+                                A fourth item
+                            </ListItem>
+                            <ListItem theme='danger'>
+                                A fifth item
+                            </ListItem>
+                        </List>
+                        <p></p>
+                        <TypeScriptCode>{`
+<List listStyle='joined' theme='primary'>
+    <ListItem>
+        A first item
+    </ListItem>
+    <ListItem>
+        A second item
+    </ListItem>
+    <ListItem theme='success'>
+        A third item
+    </ListItem>
+    <ListItem active={true}>
+        A fourth item
+    </ListItem>
+    <ListItem theme='danger'>
+        A fifth item
+    </ListItem>
+</List>
+                        `}</TypeScriptCode>
+                    </SectionPropertyJoinedStyle>
+                </SectionPropertyListStyle>
                 <SectionPropertyStyles />
             </SectionVariants>
             <SectionStates>

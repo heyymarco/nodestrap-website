@@ -332,7 +332,7 @@ export const SectionPropertyItemStyle = ({ titleTag='h4', ...restProps }: Omit<S
     );
 };
 export const SectionPropertyFlatStyle = ({ property, properties, description, styleName, ...restProps }: SectionPropertyItemStyleProps) => {
-    const { componentName } = useComponentInfo();
+    const { componentName, hasNestedComponent } = useComponentInfo();
     
     
     
@@ -342,7 +342,7 @@ export const SectionPropertyFlatStyle = ({ property, properties, description, st
             ??
             <>
                 <p>
-                    Set <code>{`<${componentName} ${styleName}='flat'>`}</code> to remove the <code>border</code>, <code>border-radius</code>, and <em>separator</em> (a <code>border</code> between <CurrentComponent />&apos;s items).
+                    Set <code>{`<${componentName} ${styleName}='flat'>`}</code> to remove the <code>border</code>, <code>border-radius</code>, and <em>separator</em> (a <code>border</code> between {hasNestedComponent ? <><CurrentNestedComponent />s</> : <><CurrentComponent />&apos;s items</>}).
                 </p>
             </>
         } />
@@ -366,7 +366,7 @@ export const SectionPropertyFlushStyle = ({ property, properties, description, s
     );
 };
 export const SectionPropertyJoinedStyle = ({ property, properties, description, styleName, ...restProps }: SectionPropertyItemStyleProps) => {
-    const { componentName } = useComponentInfo();
+    const { componentName, hasNestedComponent } = useComponentInfo();
     
     
     
@@ -376,7 +376,7 @@ export const SectionPropertyJoinedStyle = ({ property, properties, description, 
             ??
             <>
                 <p>
-                    Set <code>{`<${componentName} ${styleName}='joined'>`}</code> to remove the <em>separator</em> (a <code>border</code> between <CurrentComponent />&apos;s items).
+                    Set <code>{`<${componentName} ${styleName}='joined'>`}</code> to remove the <em>separator</em> (a <code>border</code> between {hasNestedComponent ? <><CurrentNestedComponent />s</> : <><CurrentComponent />&apos;s items</>}).
                 </p>
             </>
         } />
