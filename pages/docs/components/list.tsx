@@ -84,94 +84,6 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix = d
                 children
                 ??
                 <>
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`listStyle='btn'`} properties={<><code>btn</code> Style</>} preview={<>
-                        <List listStyle='btn' theme='primary'>
-                            <ListItem>
-                                A first item
-                            </ListItem>
-                            <ListItem>
-                                A second item
-                            </ListItem>
-                            <ListItem theme='success'>
-                                A third item
-                            </ListItem>
-                            <ListItem active={true}>
-                                A fourth item
-                            </ListItem>
-                            <ListItem theme='danger'>
-                                A fifth item
-                            </ListItem>
-                        </List>
-                        <p></p>
-                        <TypeScriptCode>{`
-<List listStyle='btn' theme='primary'>
-    <ListItem>
-        A first item
-    </ListItem>
-    <ListItem>
-        A second item
-    </ListItem>
-    <ListItem theme='success'>
-        A third item
-    </ListItem>
-    <ListItem active={true}>
-        A fourth item
-    </ListItem>
-    <ListItem theme='danger'>
-        A fifth item
-    </ListItem>
-</List>
-                        `}</TypeScriptCode>
-                        <SectionSubProperty titleTag='h5' propertySuffix={propertySuffix} property={`actionCtrl={true}`} properties='Make the Buttons Functional' preview={<>
-                            <List listStyle='btn' actionCtrl={true} theme='primary'>
-                                <ListItem>
-                                    A first item
-                                </ListItem>
-                                <ListItem actionCtrl={false}>
-                                    A second item (not clickable)
-                                </ListItem>
-                                <ListItem theme='success'>
-                                    A third item
-                                </ListItem>
-                                <ListItem active={true} href='https://www.google.com'>
-                                    A fourth item
-                                </ListItem>
-                                <ListItem theme='danger' onClick={() => alert('hello world')}>
-                                    A fifth item
-                                </ListItem>
-                            </List>
-                            <p></p>
-                            <TypeScriptCode>{`
-<List listStyle='btn' actionCtrl={true} theme='primary'>
-    <ListItem>
-        A first item
-    </ListItem>
-    <ListItem actionCtrl={false}>
-        A second item (not clickable)
-    </ListItem>
-    <ListItem theme='success'>
-        A third item
-    </ListItem>
-    <ListItem active={true} href='https://www.google.com'>
-        A fourth item
-    </ListItem>
-    <ListItem theme='danger' onClick={() => alert('hello world')}>
-        A fifth item
-    </ListItem>
-</List>
-                            `}</TypeScriptCode>
-                        </>}>
-                            <ContentMakeListItemClickable />
-                        </SectionSubProperty>
-                    </>}>
-                        <p>
-                            Set <code>{`<List listStyle='btn'>`}</code> to style the <LinkListItemPage /> to look similar to <LinkButtonPage />.
-                        </p>
-                        <p>
-                            Basically it merges the <LinkListItemPage />&apos;s style + <LinkButtonPage />&apos;s style.
-                        </p>
-                    </SectionSubProperty>
-                    
                     <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`listStyle='tab'`} properties={<><code>tab</code> Style</>} preview={<>
                         <List listStyle='tab' orientation='inline' theme='primary'>
                             <ListItem>
@@ -447,6 +359,26 @@ export const SectionPropertyContentStyle = ({ property, properties, description,
                 </p>
                 <p>
                     Basically it merges the <CurrentNestedComponent />&apos;s style + <LinkContentPage />&apos;s style.
+                </p>
+            </>
+        } />
+    );
+};
+export const SectionPropertyBtnStyle = ({ property, properties, description, styleName = 'listStyle', ...restProps }: SectionPropertyItemStyleProps) => {
+    const { componentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPropertyItemStyle {...restProps} property={property ?? `${styleName}='btn'`} properties={properties ?? <><code>btn</code> Style</>} description={
+            description
+            ??
+            <>
+                <p>
+                    Set <code>{`<${componentName} ${styleName}='btn'>`}</code> to style the <CurrentNestedComponent /> to look similar to <LinkButtonPage />.
+                </p>
+                <p>
+                    Basically it merges the <CurrentNestedComponent />&apos;s style + <LinkButtonPage />&apos;s style.
                 </p>
             </>
         } />
@@ -1476,6 +1408,86 @@ const Page: NextPage = () => {
 </List>
                         `}</TypeScriptCode>
                     </SectionPropertyContentStyle>
+                    <SectionPropertyBtnStyle>
+                        <List listStyle='btn' theme='primary'>
+                            <ListItem>
+                                A first item
+                            </ListItem>
+                            <ListItem>
+                                A second item
+                            </ListItem>
+                            <ListItem theme='success'>
+                                A third item
+                            </ListItem>
+                            <ListItem active={true}>
+                                A fourth item
+                            </ListItem>
+                            <ListItem theme='danger'>
+                                A fifth item
+                            </ListItem>
+                        </List>
+                        <p></p>
+                        <TypeScriptCode>{`
+<List listStyle='btn' theme='primary'>
+    <ListItem>
+        A first item
+    </ListItem>
+    <ListItem>
+        A second item
+    </ListItem>
+    <ListItem theme='success'>
+        A third item
+    </ListItem>
+    <ListItem active={true}>
+        A fourth item
+    </ListItem>
+    <ListItem theme='danger'>
+        A fifth item
+    </ListItem>
+</List>
+                        `}</TypeScriptCode>
+                        <SectionSubProperty titleTag='h5' propertySuffix={true} property={`actionCtrl={true}`} properties='Make the Buttons Functional' preview={<>
+                            <List listStyle='btn' actionCtrl={true} theme='primary'>
+                                <ListItem>
+                                    A first item
+                                </ListItem>
+                                <ListItem actionCtrl={false}>
+                                    A second item (not clickable)
+                                </ListItem>
+                                <ListItem theme='success'>
+                                    A third item
+                                </ListItem>
+                                <ListItem active={true} href='https://www.google.com'>
+                                    A fourth item
+                                </ListItem>
+                                <ListItem theme='danger' onClick={() => alert('hello world')}>
+                                    A fifth item
+                                </ListItem>
+                            </List>
+                            <p></p>
+                            <TypeScriptCode>{`
+<List listStyle='btn' actionCtrl={true} theme='primary'>
+    <ListItem>
+        A first item
+    </ListItem>
+    <ListItem actionCtrl={false}>
+        A second item (not clickable)
+    </ListItem>
+    <ListItem theme='success'>
+        A third item
+    </ListItem>
+    <ListItem active={true} href='https://www.google.com'>
+        A fourth item
+    </ListItem>
+    <ListItem theme='danger' onClick={() => alert('hello world')}>
+        A fifth item
+    </ListItem>
+</List>
+                            `}</TypeScriptCode>
+                        </>}>
+                            <ContentMakeListItemClickable />
+                        </SectionSubProperty>
+                    </SectionPropertyBtnStyle>
                 </SectionPropertyListStyle>
                 <SectionPropertyStyles />
             </SectionVariants>
