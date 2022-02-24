@@ -311,6 +311,77 @@ export const SectionPropertyOrientationResponsive = ({ titleTag='h4', property, 
         } />
     );
 };
+export interface SectionPropertyStyleProps extends SectionPropertyProps {
+    styleName ?: string
+}
+export const SectionPropertyStyle = ({ propertySuffix = false, property, properties, children, styleName, ...restProps }: SectionPropertyStyleProps) => {
+    return (
+        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property ?? styleName} properties={properties ?? 'Styles'}>
+            <p>
+                The appearance alternatives of <CurrentComponent />.
+            </p>
+            { children }
+        </SectionSubProperty>
+    );
+};
+export interface SectionPropertyItemStyleProps extends SectionPreviewPropertyProps, Pick<SectionPropertyStyleProps, 'styleName'> {
+}
+export const SectionPropertyItemStyle = ({ titleTag='h4', ...restProps }: Omit<SectionPropertyItemStyleProps, 'styleName'>) => {
+    return (
+        <SectionPreviewProperty {...restProps} titleTag={titleTag} />
+    );
+};
+export const SectionPropertyFlatStyle = ({ property, properties, description, styleName, ...restProps }: SectionPropertyItemStyleProps) => {
+    const { componentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPropertyItemStyle {...restProps} property={property ?? `${styleName}='flat'`} properties={properties ?? <><code>flat</code> Style</>} description={
+            description
+            ??
+            <>
+                <p>
+                    Set <code>{`<${componentName} ${styleName}='flat'>`}</code> to remove the <code>border</code>, <code>border-radius</code>, and <em>separator</em> (a <code>border</code> between <CurrentComponent />&apos;s items).
+                </p>
+            </>
+        } />
+    );
+};
+export const SectionPropertyFlushStyle = ({ property, properties, description, styleName, ...restProps }: SectionPropertyItemStyleProps) => {
+    const { componentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPropertyItemStyle {...restProps} property={property ?? `${styleName}='flush'`} properties={properties ?? <><code>flush</code> Style</>} description={
+            description
+            ??
+            <>
+                <p>
+                    Set <code>{`<${componentName} ${styleName}='flush'>`}</code> to remove the <code>border</code> and <code>border-radius</code>.
+                </p>
+            </>
+        } />
+    );
+};
+export const SectionPropertyJoinedStyle = ({ property, properties, description, styleName, ...restProps }: SectionPropertyItemStyleProps) => {
+    const { componentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPropertyItemStyle {...restProps} property={property ?? `${styleName}='joined'`} properties={properties ?? <><code>joined</code> Style</>} description={
+            description
+            ??
+            <>
+                <p>
+                    Set <code>{`<${componentName} ${styleName}='joined'>`}</code> to remove the <em>separator</em> (a <code>border</code> between <CurrentComponent />&apos;s items).
+                </p>
+            </>
+        } />
+    );
+};
 
 
 

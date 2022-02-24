@@ -21,11 +21,17 @@ import {
     SectionPropertyGradient,
     SectionPropertyOutlined,
     SectionPropertyMildProps,
-    SectionPropertyMild     as BasicSectionPropertyMild,
+    SectionPropertyMild        as BasicSectionPropertyMild,
     SectionPropertyOrientation,
     SectionPropertyOrientationBlock,
     SectionPropertyOrientationInline,
     SectionPropertyOrientationResponsive,
+    SectionPropertyStyleProps,
+    SectionPropertyStyle,
+    SectionPropertyItemStyleProps,
+    SectionPropertyFlatStyle   as BasicSectionPropertyFlatStyle,
+    SectionPropertyFlushStyle  as BasicSectionPropertyFlushStyle,
+    SectionPropertyJoinedStyle as BasicSectionPropertyJoinedStyle,
 } from './basic'
 
 import loadable from '@loadable/component'
@@ -55,121 +61,24 @@ export const SectionPropertyMild = ({ setByDefault, ...props }: SectionPropertyM
         <BasicSectionPropertyMild {...props} setByDefault={setByDefault ?? true} />
     );
 };
-export const SectionPropertyStyles = ({ property, properties, propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
+export const SectionPropertyCardStyle = ({ styleName = 'cardStyle', ...restProps }: SectionPropertyStyleProps) => {
     return (
-        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property ?? 'cardStyle'} properties={properties ?? 'Styles'}>
-            {
-                children
-                ??
-                <>
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`cardStyle='flat'`} properties={<><code>flat</code> Style</>} preview={<>
-                        <Card
-                            cardStyle='flat'
-                            theme='primary'
-                            header={<>
-                                A Card with Flat Style
-                            </>}
-                            footer={<>
-                                Just for fun!
-                            </>}
-                        >
-                            <DummyContents />
-                        </Card>
-                        <p></p>
-                        <TypeScriptCode>{`
-<Card
-    cardStyle='flat'
-    theme='primary'
-    header={<>
-        A Card with Flat Style
-    </>}
-    footer={<>
-        Just for fun!
-    </>}
->
-    <p>...</p>
-    <img alt='lorem image' src='/images/lorem-image-1.svg' />
-    <p>...</p>
-</Card>
-                        `}</TypeScriptCode>
-                    </>}>
-                        <p>
-                            Set <code>{`<Card cardStyle='flat'>`}</code> to remove the <code>border</code>, <code>border-radius</code>, and <em>separator</em> (a <code>border</code> between <CurrentComponent />&apos;s items).
-                        </p>
-                    </SectionSubProperty>
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`cardStyle='flush'`} properties={<><code>flush</code> Style</>} preview={<>
-                        <Card
-                            cardStyle='flush'
-                            theme='primary'
-                            header={<>
-                                A Card with Flush Style
-                            </>}
-                            footer={<>
-                                Just for fun!
-                            </>}
-                        >
-                            <DummyContents />
-                        </Card>
-                        <p></p>
-                        <TypeScriptCode>{`
-<Card
-    cardStyle='flush'
-    theme='primary'
-    header={<>
-        A Card with Flush Style
-    </>}
-    footer={<>
-        Just for fun!
-    </>}
->
-    <p>...</p>
-    <img alt='lorem image' src='/images/lorem-image-1.svg' />
-    <p>...</p>
-</Card>
-                        `}</TypeScriptCode>
-                    </>}>
-                        <p>
-                            Set <code>{`<Card cardStyle='flush'>`}</code> to remove the <code>border</code> and <code>border-radius</code>.
-                        </p>
-                    </SectionSubProperty>
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`cardStyle='joined'`} properties={<><code>joined</code> Style</>} preview={<>
-                        <Card
-                            cardStyle='joined'
-                            theme='primary'
-                            header={<>
-                                A Card with Joined Style
-                            </>}
-                            footer={<>
-                                Just for fun!
-                            </>}
-                        >
-                            <DummyContents />
-                        </Card>
-                        <p></p>
-                        <TypeScriptCode>{`
-<Card
-    cardStyle='joined'
-    theme='primary'
-    header={<>
-        A Card with Joined Style
-    </>}
-    footer={<>
-        Just for fun!
-    </>}
->
-    <p>...</p>
-    <img alt='lorem image' src='/images/lorem-image-1.svg' />
-    <p>...</p>
-</Card>
-                        `}</TypeScriptCode>
-                    </>}>
-                        <p>
-                            Set <code>{`<Card cardStyle='joined'>`}</code> to remove the <em>separator</em> (a <code>border</code> between <CurrentComponent />&apos;s items).
-                        </p>
-                    </SectionSubProperty>
-                </>
-            }
-        </SectionSubProperty>
+        <SectionPropertyStyle {...restProps} styleName={styleName} />
+    );
+};
+export const SectionPropertyFlatStyle = ({ styleName = 'cardStyle', ...restProps }: SectionPropertyItemStyleProps) => {
+    return (
+        <BasicSectionPropertyFlatStyle {...restProps} styleName={styleName} />
+    );
+};
+export const SectionPropertyFlushStyle = ({ styleName = 'cardStyle', ...restProps }: SectionPropertyItemStyleProps) => {
+    return (
+        <BasicSectionPropertyFlushStyle {...restProps} styleName={styleName} />
+    );
+};
+export const SectionPropertyJoinedStyle = ({ styleName = 'cardStyle', ...restProps }: SectionPropertyItemStyleProps) => {
+    return (
+        <BasicSectionPropertyJoinedStyle {...restProps} styleName={styleName} />
     );
 };
 
@@ -764,7 +673,101 @@ const Page: NextPage = () => {
                         `}</TypeScriptCode>
                     </SectionPropertyOrientationResponsive>
                 </SectionPropertyOrientation>
-                <SectionPropertyStyles />
+                <SectionPropertyCardStyle>
+                    <SectionPropertyFlatStyle>
+                        <Card
+                            cardStyle='flat'
+                            theme='primary'
+                            header={<>
+                                A Card with Flat Style
+                            </>}
+                            footer={<>
+                                Just for fun!
+                            </>}
+                        >
+                            <DummyContents />
+                        </Card>
+                        <p></p>
+                        <TypeScriptCode>{`
+<Card
+    cardStyle='flat'
+    theme='primary'
+    header={<>
+        A Card with Flat Style
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
+    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
+    <p>...</p>
+</Card>
+                        `}</TypeScriptCode>
+                    </SectionPropertyFlatStyle>
+                    <SectionPropertyFlushStyle>
+                        <Card
+                            cardStyle='flush'
+                            theme='primary'
+                            header={<>
+                                A Card with Flush Style
+                            </>}
+                            footer={<>
+                                Just for fun!
+                            </>}
+                        >
+                            <DummyContents />
+                        </Card>
+                        <p></p>
+                        <TypeScriptCode>{`
+<Card
+    cardStyle='flush'
+    theme='primary'
+    header={<>
+        A Card with Flush Style
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
+    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
+    <p>...</p>
+</Card>
+                        `}</TypeScriptCode>
+                    </SectionPropertyFlushStyle>
+                    <SectionPropertyJoinedStyle>
+                        <Card
+                            cardStyle='joined'
+                            theme='primary'
+                            header={<>
+                                A Card with Joined Style
+                            </>}
+                            footer={<>
+                                Just for fun!
+                            </>}
+                        >
+                            <DummyContents />
+                        </Card>
+                        <p></p>
+                        <TypeScriptCode>{`
+<Card
+    cardStyle='joined'
+    theme='primary'
+    header={<>
+        A Card with Joined Style
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
+    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
+    <p>...</p>
+</Card>
+                        `}</TypeScriptCode>
+                    </SectionPropertyJoinedStyle>
+                </SectionPropertyCardStyle>
             </SectionVariants>
             <SectionStates>
                 <SectionPropertyActive />
