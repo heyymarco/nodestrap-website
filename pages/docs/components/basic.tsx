@@ -75,10 +75,17 @@ export const SectionPropertyTheme = ({ property, properties, children, ...restPr
         </SectionSubProperty>
     );
 };
-export const SectionPropertySize = ({ property, properties, children, ...restProps }: SectionPropertyProps) => {
+export const SectionPropertySize = ({ property, properties, description, ...restProps }: SectionDemoPropertyProps) => {
+    const { hasNestedComponent } = useComponentInfo();
+    
+    
+    
     return (
-        <SectionSubProperty {...restProps} property={property ?? 'size'} properties={properties ?? 'Sizes'} specList={
+        <SectionDemoProperty {...restProps} property={property ?? 'size'} properties={properties ?? 'Sizes'} specList={
             <SpecList>
+                <DetailSpecItem code='undefined'>
+                    <p>Uses default size.</p>
+                </DetailSpecItem>
                 <DetailSpecItem code='sm'>
                     <p>Makes the <code>font-size</code>, <code>padding</code> and <code>border-radius</code> are <strong>smaller</strong> than the default.</p>
                 </DetailSpecItem>
@@ -86,15 +93,24 @@ export const SectionPropertySize = ({ property, properties, children, ...restPro
                     <p>Makes the <code>font-size</code>, <code>padding</code> and <code>border-radius</code> are <strong>bigger</strong> than the default.</p>
                 </DetailSpecItem>
             </SpecList>
-        }>
-            {
-                children
-                ??
+        } description={
+            description
+            ??
+            <>
                 <p>
-                    Changes the <strong>default size</strong>.
+                    Changes the <strong>default size</strong> of <CurrentNestedComponent />.
                 </p>
-            }
-        </SectionSubProperty>
+                {hasNestedComponent && <>
+                    <p>
+                        By default, the <code>size</code> of <CurrentNestedComponent /> is <strong>inherit</strong> from <CurrentComponent />, but
+                        you can set the individual <code>size</code> of <strong>each</strong> <CurrentNestedComponent />.
+                    </p>
+                    <p>
+                        You can also set the <code>size</code> at <CurrentComponent /> level, so the default <code>size</code> of entire <CurrentNestedComponent />s are the same as <CurrentComponent />.
+                    </p>
+                </>}
+            </>
+        } />
     );
 };
 export interface SectionPropertyNudeProps extends SectionDemoPropertyProps {
@@ -216,7 +232,51 @@ const Page: NextPage = () => {
             <SectionInheritedProps />
             <SectionVariants>
                 <SectionPropertyTheme />
-                <SectionPropertySize />
+                <SectionPropertySize>
+                    <Basic
+                        size='sm'
+                        theme='primary'
+                    >
+                        A {'<Basic>'} with smaller size
+                    </Basic>
+                    <p></p>
+                    <Basic
+                        size={undefined}
+                        theme='primary'
+                    >
+                        A {'<Basic>'} with default size
+                    </Basic>
+                    <p></p>
+                    <Basic
+                        size='lg'
+                        theme='primary'
+                    >
+                        A {'<Basic>'} with larger size
+                    </Basic>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Basic
+    size='sm'
+    theme='primary'
+>
+    A {'<Basic>'} with smaller size
+</Basic>
+
+<Basic
+    size={undefined}
+    theme='primary'
+>
+    A {'<Basic>'} with default size
+</Basic>
+
+<Basic
+    size='lg'
+    theme='primary'
+>
+    A {'<Basic>'} with larger size
+</Basic>
+                    `}</TypeScriptCode>
+                </SectionPropertySize>
                 <SectionPropertyNude>
                     <TransparentPreview>
                         <Basic

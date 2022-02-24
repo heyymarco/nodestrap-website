@@ -16,7 +16,7 @@ import { Tips, Warning } from '../../../components/Info'
 import Element from '@nodestrap/element'
 import {
     SectionPropertyTheme    as BasicSectionPropertyTheme,
-    SectionPropertySize     as BasicSectionPropertySize,
+    SectionPropertySize,
  // SectionPropertyNude,
     SectionPropertyGradient,
     SectionPropertyOutlined,
@@ -92,69 +92,6 @@ export const SectionPropertyTheme = ({ propertySuffix = defaultPropertySuffix, c
     theme='success'
     header={<>
         A Card with Success Theme
-    </>}
-    footer={<>
-        Just for fun!
-    </>}
->
-    <p>...</p>
-    <img alt='lorem image' src='/images/lorem-image-1.svg' />
-    <p>...</p>
-</Card>
-            `}</TypeScriptCode>
-        </>} />
-    );
-};
-export const SectionPropertySize = ({ propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
-    return (
-        <BasicSectionPropertySize {...restProps} propertySuffix={propertySuffix} demonstration={<>
-            <Card
-                size='sm'
-                theme='primary'
-                header={<>
-                    A Card with Smaller Size
-                </>}
-                footer={<>
-                    Just for fun!
-                </>}
-            >
-                <DummyContents />
-            </Card>
-            <p></p>
-            <Card
-                size='lg'
-                theme='primary'
-                header={<>
-                    A Card with Larger Size
-                </>}
-                footer={<>
-                    Just for fun!
-                </>}
-            >
-                <DummyContents />
-            </Card>
-            <p></p>
-            <TypeScriptCode>{`
-<Card
-    size='sm'
-    theme='primary'
-    header={<>
-        A Card with Smaller Size
-    </>}
-    footer={<>
-        Just for fun!
-    </>}
->
-    <p>...</p>
-    <img alt='lorem image' src='/images/lorem-image-1.svg' />
-    <p>...</p>
-</Card>
-
-<Card
-    size='lg'
-    theme='primary'
-    header={<>
-        A Card with Larger Size
     </>}
     footer={<>
         Just for fun!
@@ -627,7 +564,93 @@ const Page: NextPage = () => {
             <SectionInheritedProps />
             <SectionVariants>
                 <SectionPropertyTheme />
-                <SectionPropertySize />
+                <SectionPropertySize>
+                    <Card
+                        size='sm'
+                        theme='primary'
+                        header={<>
+                            A Card with Smaller Size
+                        </>}
+                        footer={<>
+                            Just for fun!
+                        </>}
+                    >
+                        <DummyContents />
+                    </Card>
+                    <p></p>
+                    <Card
+                        size={undefined}
+                        theme='primary'
+                        header={<>
+                            A Card with Default Size
+                        </>}
+                        footer={<>
+                            Just for fun!
+                        </>}
+                    >
+                        <DummyContents />
+                    </Card>
+                    <p></p>
+                    <Card
+                        size='lg'
+                        theme='primary'
+                        header={<>
+                            A Card with Larger Size
+                        </>}
+                        footer={<>
+                            Just for fun!
+                        </>}
+                    >
+                        <DummyContents />
+                    </Card>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Card
+    size='sm'
+    theme='primary'
+    header={<>
+        A Card with Smaller Size
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
+    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
+    <p>...</p>
+</Card>
+
+<Card
+    size={undefined}
+    theme='primary'
+    header={<>
+        A Card with Default Size
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
+    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
+    <p>...</p>
+</Card>
+
+<Card
+    size='lg'
+    theme='primary'
+    header={<>
+        A Card with Larger Size
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
+    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
+    <p>...</p>
+</Card>
+                    `}</TypeScriptCode>
+                </SectionPropertySize>
                 {/* <SectionPropertyNude>
                     <TransparentPreview>
                         <Card

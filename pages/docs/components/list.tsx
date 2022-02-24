@@ -16,7 +16,7 @@ import { Warning } from '../../../components/Info'
 import Element from '@nodestrap/element'
 import {
     SectionPropertyTheme    as BasicSectionPropertyTheme,
-    SectionPropertySize     as BasicSectionPropertySize,
+    SectionPropertySize,
     SectionPropertyNudeProps,
     SectionPropertyNude     as BasicSectionPropertyNude,
     SectionPropertyGradient,
@@ -116,57 +116,6 @@ export const SectionPropertyTheme = ({ propertySuffix = defaultPropertySuffix, c
                 </>
             }
         </BasicSectionPropertyTheme>
-    );
-};
-export const SectionPropertySize = ({ propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
-    return (
-        <BasicSectionPropertySize {...restProps} propertySuffix={propertySuffix} demonstration={<>
-            <List theme='primary'>
-                <ListItem>
-                    An inherit size
-                </ListItem>
-                <ListItem>
-                    An inherit size
-                </ListItem>
-                <ListItem size='sm'>
-                    A smaller size
-                </ListItem>
-                <ListItem size='lg'>
-                    A larger size
-                </ListItem>
-            </List>
-            <p></p>
-            <TypeScriptCode>{`
-<List theme='primary'>
-    <ListItem>
-        An inherit size
-    </ListItem>
-    <ListItem>
-        An inherit size
-    </ListItem>
-    <ListItem size='sm'>
-        A smaller size
-    </ListItem>
-    <ListItem size='lg'>
-        A larger size
-    </ListItem>
-</List>
-            `}</TypeScriptCode>
-        </>}>
-            {
-                children
-                ??
-                <>
-                    <p>
-                        By default, the <code>size</code> of <LinkListItemPage /> is <strong>inherit</strong> from <CurrentComponent />, but
-                        you can set the individual <code>size</code> of <strong>each</strong> <LinkListItemPage />.
-                    </p>
-                    <p>
-                        You can also set the <code>size</code> at <CurrentComponent /> level, so the default <code>size</code> of entire <LinkListItemPage />s are the same.<br />
-                    </p>
-                </>
-            }
-        </BasicSectionPropertySize>
     );
 };
 export const SectionPropertyNude = ({ noBorder, ...props }: SectionPropertyNudeProps) => {
@@ -1308,7 +1257,45 @@ const Page: NextPage = () => {
             <SectionInheritedProps />
             <SectionVariants>
                 <SectionPropertyTheme />
-                <SectionPropertySize />
+                <SectionPropertySize>
+                    <List theme='primary'>
+                        <ListItem>
+                            An inherit size
+                        </ListItem>
+                        <ListItem>
+                            An inherit size
+                        </ListItem>
+                        <ListItem size='sm'>
+                            A smaller size
+                        </ListItem>
+                        <ListItem size={undefined}>
+                            A default size
+                        </ListItem>
+                        <ListItem size='lg'>
+                            A larger size
+                        </ListItem>
+                    </List>
+                    <p></p>
+                    <TypeScriptCode>{`
+<List theme='primary'>
+    <ListItem>
+        An inherit size
+    </ListItem>
+    <ListItem>
+        An inherit size
+    </ListItem>
+    <ListItem size='sm'>
+        A smaller size
+    </ListItem>
+    <ListItem size={undefined}>
+        A default size
+    </ListItem>
+    <ListItem size='lg'>
+        A larger size
+    </ListItem>
+</List>
+                    `}</TypeScriptCode>
+                </SectionPropertySize>
                 <SectionPropertyNude>
                     <TransparentPreview>
                         <List theme='primary'>
