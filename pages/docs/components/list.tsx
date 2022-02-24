@@ -84,52 +84,6 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix = d
                 children
                 ??
                 <>
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`listStyle='breadcrumb'`} properties={<><code>breadcrumb</code> Style</>} preview={<>
-                        <List listStyle='breadcrumb' orientation='inline' theme='primary'>
-                            <ListItem>
-                                A first item
-                            </ListItem>
-                            <ListItem>
-                                A second item
-                            </ListItem>
-                            <ListItem theme='success'>
-                                A third item
-                            </ListItem>
-                            <ListItem active={true}>
-                                A fourth item
-                            </ListItem>
-                            <ListItem theme='danger'>
-                                A fifth item
-                            </ListItem>
-                        </List>
-                        <p></p>
-                        <TypeScriptCode>{`
-<List listStyle='breadcrumb' orientation='inline' theme='primary'>
-    <ListItem>
-        A first item
-    </ListItem>
-    <ListItem>
-        A second item
-    </ListItem>
-    <ListItem theme='success'>
-        A third item
-    </ListItem>
-    <ListItem active={true}>
-        A fourth item
-    </ListItem>
-    <ListItem theme='danger'>
-        A fifth item
-    </ListItem>
-</List>
-                        `}</TypeScriptCode>
-                    </>}>
-                        <p>
-                            Set <code>{`<List listStyle='breadcrumb'>`}</code> to style the <LinkListItemPage /> to look similar to <em>a breadcrumb</em>.
-                        </p>
-                        <p>
-                            Requires <code>{`<List orientation='inline'>`}</code>.
-                        </p>
-                    </SectionSubProperty>
                     <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`listStyle='bullet'`} properties={<><code>bullet</code> Style</>} preview={<>
                         <List listStyle='bullet' orientation='inline' theme='primary'>
                             <ListItem />
@@ -322,6 +276,26 @@ export const SectionPropertyTabStyle = ({ property, properties, description, sty
             <>
                 <p>
                     Set <code>{`<${componentName} ${styleName}='tab'>`}</code> to style the <CurrentNestedComponent /> to look similar to <em>a tabbed interface</em>.
+                </p>
+            </>
+        } />
+    );
+};
+export const SectionPropertyBreadcrumbStyle = ({ property, properties, description, styleName = 'listStyle', ...restProps }: SectionPropertyItemStyleProps) => {
+    const { componentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPropertyItemStyle {...restProps} property={property ?? `${styleName}='breadcrumb'`} properties={properties ?? <><code>breadcrumb</code> Style</>} description={
+            description
+            ??
+            <>
+                <p>
+                    Set <code>{`<${componentName} ${styleName}='breadcrumb'>`}</code> to style the <CurrentNestedComponent /> to look similar to <em>a breadcrumb</em>.
+                </p>
+                <p>
+                    Requires <code>{`<${componentName} orientation='inline'>`}</code>.
                 </p>
             </>
         } />
@@ -1502,6 +1476,45 @@ const TabControl = () => {
                             <ContentMakeListItemClickable />
                         </SectionSubProperty>
                     </SectionPropertyTabStyle>
+                    <SectionPropertyBreadcrumbStyle>
+                        <List listStyle='breadcrumb' orientation='inline' theme='primary'>
+                            <ListItem>
+                                A first item
+                            </ListItem>
+                            <ListItem>
+                                A second item
+                            </ListItem>
+                            <ListItem theme='success'>
+                                A third item
+                            </ListItem>
+                            <ListItem active={true}>
+                                A fourth item
+                            </ListItem>
+                            <ListItem theme='danger'>
+                                A fifth item
+                            </ListItem>
+                        </List>
+                        <p></p>
+                        <TypeScriptCode>{`
+<List listStyle='breadcrumb' orientation='inline' theme='primary'>
+    <ListItem>
+        A first item
+    </ListItem>
+    <ListItem>
+        A second item
+    </ListItem>
+    <ListItem theme='success'>
+        A third item
+    </ListItem>
+    <ListItem active={true}>
+        A fourth item
+    </ListItem>
+    <ListItem theme='danger'>
+        A fifth item
+    </ListItem>
+</List>
+                        `}</TypeScriptCode>
+                    </SectionPropertyBreadcrumbStyle>
                 </SectionPropertyListStyle>
                 <SectionPropertyStyles />
             </SectionVariants>
