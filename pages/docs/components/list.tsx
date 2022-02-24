@@ -84,80 +84,6 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix = d
                 children
                 ??
                 <>
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`listStyle='tab'`} properties={<><code>tab</code> Style</>} preview={<>
-                        <List listStyle='tab' orientation='inline' theme='primary'>
-                            <ListItem>
-                                A first item
-                            </ListItem>
-                            <ListItem>
-                                A second item
-                            </ListItem>
-                            <ListItem theme='success'>
-                                A third item
-                            </ListItem>
-                            <ListItem active={true}>
-                                A fourth item
-                            </ListItem>
-                            <ListItem theme='danger'>
-                                A fifth item
-                            </ListItem>
-                        </List>
-                        <p></p>
-                        <TypeScriptCode>{`
-<List listStyle='tab' orientation='inline' theme='primary'>
-    <ListItem>
-        A first item
-    </ListItem>
-    <ListItem>
-        A second item
-    </ListItem>
-    <ListItem theme='success'>
-        A third item
-    </ListItem>
-    <ListItem active={true}>
-        A fourth item
-    </ListItem>
-    <ListItem theme='danger'>
-        A fifth item
-    </ListItem>
-</List>
-                        `}</TypeScriptCode>
-                        <SectionSubProperty titleTag='h5' propertySuffix={propertySuffix} property={`actionCtrl={true}`} properties='Make the Tabs Functional' preview={<>
-                            <FunctionalTabList />
-                            <p></p>
-                            <TypeScriptCode>{`
-const TabControl = () => {
-    const [activeTabIndex, setActiveTabIndex] = useState(3);
-    
-    return (
-        <List listStyle='tab' actionCtrl={true} orientation='inline' theme='primary'>
-            <ListItem active={activeTabIndex === 0} onClick={() => setActiveTabIndex(0)}>
-                A first item
-            </ListItem>
-            <ListItem active={activeTabIndex === 1} onClick={() => setActiveTabIndex(1)}>
-                A second item
-            </ListItem>
-            <ListItem theme='success' active={activeTabIndex === 2} onClick={() => setActiveTabIndex(2)}>
-                A third item
-            </ListItem>
-            <ListItem active={activeTabIndex === 3} onClick={() => setActiveTabIndex(3)}>
-                A fourth item
-            </ListItem>
-            <ListItem theme='danger' active={activeTabIndex === 4} onClick={() => setActiveTabIndex(4)}>
-                A fifth item
-            </ListItem>
-        </List>
-    );
-};
-                            `}</TypeScriptCode>
-                        </>}>
-                            <ContentMakeListItemClickable />
-                        </SectionSubProperty>
-                    </>}>
-                        <p>
-                            Set <code>{`<List listStyle='tab'>`}</code> to style the <LinkListItemPage /> to look similar to <em>a tabbed interface</em>.
-                        </p>
-                    </SectionSubProperty>
                     <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`listStyle='breadcrumb'`} properties={<><code>breadcrumb</code> Style</>} preview={<>
                         <List listStyle='breadcrumb' orientation='inline' theme='primary'>
                             <ListItem>
@@ -379,6 +305,23 @@ export const SectionPropertyBtnStyle = ({ property, properties, description, sty
                 </p>
                 <p>
                     Basically it merges the <CurrentNestedComponent />&apos;s style + <LinkButtonPage />&apos;s style.
+                </p>
+            </>
+        } />
+    );
+};
+export const SectionPropertyTabStyle = ({ property, properties, description, styleName = 'listStyle', ...restProps }: SectionPropertyItemStyleProps) => {
+    const { componentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPropertyItemStyle {...restProps} property={property ?? `${styleName}='tab'`} properties={properties ?? <><code>tab</code> Style</>} description={
+            description
+            ??
+            <>
+                <p>
+                    Set <code>{`<${componentName} ${styleName}='tab'>`}</code> to style the <CurrentNestedComponent /> to look similar to <em>a tabbed interface</em>.
                 </p>
             </>
         } />
@@ -1408,6 +1351,7 @@ const Page: NextPage = () => {
 </List>
                         `}</TypeScriptCode>
                     </SectionPropertyContentStyle>
+                    
                     <SectionPropertyBtnStyle>
                         <List listStyle='btn' theme='primary'>
                             <ListItem>
@@ -1446,7 +1390,7 @@ const Page: NextPage = () => {
     </ListItem>
 </List>
                         `}</TypeScriptCode>
-                        <SectionSubProperty titleTag='h5' propertySuffix={true} property={`actionCtrl={true}`} properties='Make the Buttons Functional' preview={<>
+                        <SectionSubProperty titleTag='h5' propertySuffix={false} property={`actionCtrl={true}`} properties='Make the Buttons Functional' preview={<>
                             <List listStyle='btn' actionCtrl={true} theme='primary'>
                                 <ListItem>
                                     A first item
@@ -1488,6 +1432,76 @@ const Page: NextPage = () => {
                             <ContentMakeListItemClickable />
                         </SectionSubProperty>
                     </SectionPropertyBtnStyle>
+                    <SectionPropertyTabStyle>
+                        <List listStyle='tab' orientation='inline' theme='primary'>
+                            <ListItem>
+                                A first item
+                            </ListItem>
+                            <ListItem>
+                                A second item
+                            </ListItem>
+                            <ListItem theme='success'>
+                                A third item
+                            </ListItem>
+                            <ListItem active={true}>
+                                A fourth item
+                            </ListItem>
+                            <ListItem theme='danger'>
+                                A fifth item
+                            </ListItem>
+                        </List>
+                        <p></p>
+                        <TypeScriptCode>{`
+<List listStyle='tab' orientation='inline' theme='primary'>
+    <ListItem>
+        A first item
+    </ListItem>
+    <ListItem>
+        A second item
+    </ListItem>
+    <ListItem theme='success'>
+        A third item
+    </ListItem>
+    <ListItem active={true}>
+        A fourth item
+    </ListItem>
+    <ListItem theme='danger'>
+        A fifth item
+    </ListItem>
+</List>
+                        `}</TypeScriptCode>
+                        <SectionSubProperty titleTag='h5' propertySuffix={false} property={`actionCtrl={true}`} properties='Make the Tabs Functional' preview={<>
+                            <FunctionalTabList />
+                            <p></p>
+                            <TypeScriptCode>{`
+const TabControl = () => {
+    const [activeTabIndex, setActiveTabIndex] = useState(3);
+    
+    return (
+        <List listStyle='tab' actionCtrl={true} orientation='inline' theme='primary'>
+            <ListItem active={activeTabIndex === 0} onClick={() => setActiveTabIndex(0)}>
+                A first item
+            </ListItem>
+            <ListItem active={activeTabIndex === 1} onClick={() => setActiveTabIndex(1)}>
+                A second item
+            </ListItem>
+            <ListItem theme='success' active={activeTabIndex === 2} onClick={() => setActiveTabIndex(2)}>
+                A third item
+            </ListItem>
+            <ListItem active={activeTabIndex === 3} onClick={() => setActiveTabIndex(3)}>
+                A fourth item
+            </ListItem>
+            <ListItem theme='danger' active={activeTabIndex === 4} onClick={() => setActiveTabIndex(4)}>
+                A fifth item
+            </ListItem>
+        </List>
+    );
+};
+                            `}</TypeScriptCode>
+                        </>}>
+                            <ContentMakeListItemClickable />
+                        </SectionSubProperty>
+                    </SectionPropertyTabStyle>
                 </SectionPropertyListStyle>
                 <SectionPropertyStyles />
             </SectionVariants>
