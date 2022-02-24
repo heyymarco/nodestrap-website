@@ -8,14 +8,14 @@ import { useFlipFlop } from '../../../components/hooks'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { TransparentPreview } from '../../../components/TransparentPreview'
-import { SectionInheritedProps, LinkCardPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, SectionStates, LinkResponsiveProviderPage, SectionSubProperty, SectionPropertyProps, SectionDemoPropertyProps } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkCardPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, SectionStates, LinkResponsiveProviderPage, SectionSubProperty, SectionPropertyProps } from '../../../components/common-contents'
 import { Card, OrientationName } from '@nodestrap/card'
 import { TypeScriptCode } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
 import { Tips, Warning } from '../../../components/Info'
 import Element from '@nodestrap/element'
 import {
-    SectionPropertyTheme    as BasicSectionPropertyTheme,
+    SectionPropertyTheme,
     SectionPropertySize,
  // SectionPropertyNude,
     SectionPropertyGradient,
@@ -46,65 +46,6 @@ const DummyContents = () => {
 
 
 const defaultPropertySuffix = false;
-export const SectionPropertyTheme = ({ propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
-    return (
-        <BasicSectionPropertyTheme {...restProps} propertySuffix={propertySuffix} demonstration={<>
-            <Card
-                theme='danger'
-                header={<>
-                    A Card with Danger Theme
-                </>}
-                footer={<>
-                    Just for fun!
-                </>}
-            >
-                <DummyContents />
-            </Card>
-            <p></p>
-            <Card
-                theme='success'
-                header={<>
-                    A Card with Success Theme
-                </>}
-                footer={<>
-                    Just for fun!
-                </>}
-            >
-                <DummyContents />
-            </Card>
-            <p></p>
-            <TypeScriptCode>{`
-<Card
-    theme='danger'
-    header={<>
-        A Card with Danger Theme
-    </>}
-    footer={<>
-        Just for fun!
-    </>}
->
-    <p>...</p>
-    <img alt='lorem image' src='/images/lorem-image-1.svg' />
-    <p>...</p>
-</Card>
-
-<Card
-    theme='success'
-    header={<>
-        A Card with Success Theme
-    </>}
-    footer={<>
-        Just for fun!
-    </>}
->
-    <p>...</p>
-    <img alt='lorem image' src='/images/lorem-image-1.svg' />
-    <p>...</p>
-</Card>
-            `}</TypeScriptCode>
-        </>} />
-    );
-};
 export const SectionPropertyMild = ({ setByDefault, ...props }: SectionPropertyMildProps) => {
     return (
         <BasicSectionPropertyMild {...props} setByDefault={setByDefault ?? true} />
@@ -117,7 +58,7 @@ export const SectionPropertyOrientation = ({ property, properties, propertySuffi
                 children
                 ??
                 <>
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`orientation='block'`} properties={<><code>block</code> Orientation</>} demonstration={<>
+                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`orientation='block'`} properties={<><code>block</code> Orientation</>} preview={<>
                         <Card
                             orientation='block'
                             theme='primary'
@@ -155,7 +96,7 @@ export const SectionPropertyOrientation = ({ property, properties, propertySuffi
                             This is the <strong>default</strong> value if the <code>orientation</code> value is not specified.
                         </p>
                     </SectionSubProperty>
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`orientation='inline'`} properties={<><code>inline</code> Orientation</>} demonstration={<>
+                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`orientation='inline'`} properties={<><code>inline</code> Orientation</>} preview={<>
                         <div style={{ overflowX: 'auto' }}>
                             <Card
                                 orientation='inline'
@@ -203,7 +144,7 @@ export const SectionPropertyOrientation = ({ property, properties, propertySuffi
                             </p>
                         </Warning>
                     </SectionSubProperty>
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`orientation={currentFallback}`} properties='Responsive Orientation' demonstration={<>
+                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`orientation={currentFallback}`} properties='Responsive Orientation' preview={<>
                         <Tips>
                             <p>
                                 Try to <strong>resize</strong> the <span style={{ background :'pink', border : 'solid 1px darkred', padding: '0.15em' }}>red container</span> below:
@@ -292,7 +233,7 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix = d
                 children
                 ??
                 <>
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`cardStyle='flat'`} properties={<><code>flat</code> Style</>} demonstration={<>
+                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`cardStyle='flat'`} properties={<><code>flat</code> Style</>} preview={<>
                         <Card
                             cardStyle='flat'
                             theme='primary'
@@ -327,7 +268,7 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix = d
                             Set <code>{`<Card cardStyle='flat'>`}</code> to remove the <code>border</code>, <code>border-radius</code>, and <em>separator</em> (a <code>border</code> between <CurrentComponent />&apos;s items).
                         </p>
                     </SectionSubProperty>
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`cardStyle='flush'`} properties={<><code>flush</code> Style</>} demonstration={<>
+                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`cardStyle='flush'`} properties={<><code>flush</code> Style</>} preview={<>
                         <Card
                             cardStyle='flush'
                             theme='primary'
@@ -362,7 +303,7 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix = d
                             Set <code>{`<Card cardStyle='flush'>`}</code> to remove the <code>border</code> and <code>border-radius</code>.
                         </p>
                     </SectionSubProperty>
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`cardStyle='joined'`} properties={<><code>joined</code> Style</>} demonstration={<>
+                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`cardStyle='joined'`} properties={<><code>joined</code> Style</>} preview={<>
                         <Card
                             cardStyle='joined'
                             theme='primary'
@@ -427,7 +368,7 @@ const CardWithActiveOutlined = () => {
 };
 export const SectionPropertyActive = ({ property, properties, propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
-        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property ?? 'active'} properties={properties ?? 'Active State'} demonstration={<>
+        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property ?? 'active'} properties={properties ?? 'Active State'} preview={<>
             <Card
                 active={true}
                 theme='primary'
@@ -457,7 +398,7 @@ export const SectionPropertyActive = ({ property, properties, propertySuffix = d
     <p>...</p>
 </Card>
             `}</TypeScriptCode>
-            <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={property ?? 'outlined'} properties='Active State with Outlined Variant' demonstration={<>
+            <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={property ?? 'outlined'} properties='Active State with Outlined Variant' preview={<>
                 <TransparentPreview>
                     <CardWithActiveOutlined />
                 </TransparentPreview>
@@ -499,7 +440,7 @@ export const SectionPropertyActive = ({ property, properties, propertySuffix = d
 };
 export const SectionPropertyEnabled = ({ property, properties, propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
-        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property ?? 'enabled'} properties={properties ?? 'Disabled State'} demonstration={<>
+        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property ?? 'enabled'} properties={properties ?? 'Disabled State'} preview={<>
             <Card
                 enabled={false}
                 theme='primary'
@@ -563,7 +504,87 @@ const Page: NextPage = () => {
             </SectionDemo>
             <SectionInheritedProps />
             <SectionVariants>
-                <SectionPropertyTheme />
+                <SectionPropertyTheme>
+                    <Card
+                        theme='primary'
+                        header={<>
+                            A Card with Primary Theme
+                        </>}
+                        footer={<>
+                            Just for fun!
+                        </>}
+                    >
+                        <DummyContents />
+                    </Card>
+                    <p></p>
+                    <Card
+                        theme='success'
+                        header={<>
+                            A Card with Success Theme
+                        </>}
+                        footer={<>
+                            Just for fun!
+                        </>}
+                    >
+                        <DummyContents />
+                    </Card>
+                    <p></p>
+                    <Card
+                        theme='danger'
+                        header={<>
+                            A Card with Danger Theme
+                        </>}
+                        footer={<>
+                            Just for fun!
+                        </>}
+                    >
+                        <DummyContents />
+                    </Card>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Card
+    theme='primary'
+    header={<>
+        A Card with Primary Theme
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
+    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
+    <p>...</p>
+</Card>
+
+<Card
+    theme='success'
+    header={<>
+        A Card with Success Theme
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
+    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
+    <p>...</p>
+</Card>
+
+<Card
+    theme='danger'
+    header={<>
+        A Card with Danger Theme
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
+    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
+    <p>...</p>
+</Card>
+                    `}</TypeScriptCode>
+                </SectionPropertyTheme>
                 <SectionPropertySize>
                     <Card
                         size='sm'

@@ -454,9 +454,9 @@ export interface SectionPropertyProps {
     children       ?: React.ReactNode
     specList       ?: SpecList
     moreInfo       ?: React.ReactNode
-    demonstration  ?: React.ReactNode
+    preview        ?: React.ReactNode
 }
-export const SectionProperty = ({ titleTag = 'h2', property, properties, propertySuffix = true, specList, children, moreInfo, demonstration }: SectionPropertyProps) => {
+export const SectionProperty = ({ titleTag = 'h2', property, properties, propertySuffix = true, specList, children, moreInfo, preview }: SectionPropertyProps) => {
     return (
         <Section
             titleTag={titleTag}
@@ -490,11 +490,11 @@ export const SectionProperty = ({ titleTag = 'h2', property, properties, propert
                 { specList }
             </>}
             { moreInfo && <><p></p>{ moreInfo }</> }
-            { demonstration && <>
+            { preview && <>
                 <p>
-                    Here the demonstration:
+                    Here the preview:
                 </p>
-                { demonstration }
+                { preview }
             </> }
         </Section>
     );
@@ -507,10 +507,10 @@ export const SectionSubProperty = (props: SectionPropertyProps) => {
         />
     );
 }
-export interface SectionDemoPropertyProps extends Omit<SectionPropertyProps, 'demonstration'> {
+export interface SectionPreviewPropertyProps extends Omit<SectionPropertyProps, 'preview'> {
     description ?: React.ReactNode
 }
-export const SectionDemoProperty = (props: SectionDemoPropertyProps) => {
+export const SectionPreviewProperty = (props: SectionPreviewPropertyProps) => {
     return (
         <SectionProperty
             {...props}
@@ -518,7 +518,7 @@ export const SectionDemoProperty = (props: SectionDemoPropertyProps) => {
             
             propertySuffix={props.propertySuffix ?? false}
 
-            demonstration={props.children}
+            preview={props.children}
             children={props.description}
         />
     );

@@ -7,7 +7,7 @@ import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../
 import { Warning } from '../../../components/Info'
 
 import { TransparentPreview } from '../../../components/TransparentPreview'
-import { SectionInheritedProps, LinkBasicPage, LinkElementPage, LinkColorsPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionSubProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentNestedComponent, CurrentBaseComponents, SectionPropertyProps, useComponentInfo, SectionDemoPropertyProps, SectionDemoProperty } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkBasicPage, LinkElementPage, LinkColorsPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionSubProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentNestedComponent, CurrentBaseComponents, SectionPropertyProps, useComponentInfo, SectionPreviewPropertyProps, SectionPreviewProperty } from '../../../components/common-contents'
 import { TypeScriptCode } from '../../../components/Code'
 import { Basic } from '@nodestrap/basic'
 
@@ -27,10 +27,17 @@ const WarnNotImplementExited = () => (
 
 
 
-export const SectionPropertyTheme = ({ property, properties, children, ...restProps }: SectionPropertyProps) => {
+export const SectionPropertyTheme = ({ property, properties, description, ...restProps }: SectionPreviewPropertyProps) => {
+    const { hasNestedComponent } = useComponentInfo();
+    
+    
+    
     return (
-        <SectionSubProperty {...restProps} property={property ?? 'theme'} properties={properties ?? 'Themes'} specList={
+        <SectionPreviewProperty {...restProps} property={property ?? 'theme'} properties={properties ?? 'Themes'} specList={
             <SpecList>
+                <DetailSpecItem code='undefined' theme='primary'>
+                    <p>Uses the nearest ancestor&apos;s <code>theme</code>.</p>
+                </DetailSpecItem>
                 <DetailSpecItem code='primary' theme='primary'>
                     <p>Sets the <code>foreground color</code>, <code>background color</code> and <code>border color</code> to <strong>primary</strong> theme.</p>
                     <p>The <strong>primary</strong> theme represents your <strong>website color</strong>.</p>
@@ -64,24 +71,33 @@ export const SectionPropertyTheme = ({ property, properties, children, ...restPr
                     <p>The <strong>dark</strong> theme doen&apos;t have a meaning, just for helping a text content againts a light background or image.</p>
                 </DetailSpecItem>
             </SpecList>
-        }>
-            {
-                children
-                ??
+        } description={
+            description
+            ??
+            <>
                 <p>
-                    Changes the <strong>contextual theme</strong> - represented by color.
+                    Changes the <strong>contextual theme</strong> of <CurrentNestedComponent />.
                 </p>
-            }
-        </SectionSubProperty>
+                {hasNestedComponent && <>
+                    <p>
+                        By default, the <code>theme</code> of <CurrentNestedComponent /> is <strong>inherit</strong> from <CurrentComponent />, but
+                        you can set the individual <code>theme</code> of <strong>each</strong> <CurrentNestedComponent />.
+                    </p>
+                    <p>
+                        You can also set the <code>theme</code> at <CurrentComponent /> level, so the default <code>theme</code> of entire <CurrentNestedComponent />s are the same as <CurrentComponent />.
+                    </p>
+                </>}
+            </>
+        } />
     );
 };
-export const SectionPropertySize = ({ property, properties, description, ...restProps }: SectionDemoPropertyProps) => {
+export const SectionPropertySize = ({ property, properties, description, ...restProps }: SectionPreviewPropertyProps) => {
     const { hasNestedComponent } = useComponentInfo();
     
     
     
     return (
-        <SectionDemoProperty {...restProps} property={property ?? 'size'} properties={properties ?? 'Sizes'} specList={
+        <SectionPreviewProperty {...restProps} property={property ?? 'size'} properties={properties ?? 'Sizes'} specList={
             <SpecList>
                 <DetailSpecItem code='undefined'>
                     <p>Uses default size.</p>
@@ -113,7 +129,7 @@ export const SectionPropertySize = ({ property, properties, description, ...rest
         } />
     );
 };
-export interface SectionPropertyNudeProps extends SectionDemoPropertyProps {
+export interface SectionPropertyNudeProps extends SectionPreviewPropertyProps {
     noBorder ?: boolean
 }
 export const SectionPropertyNude = ({ property, properties, description, noBorder, ...restProps }: SectionPropertyNudeProps) => {
@@ -122,7 +138,7 @@ export const SectionPropertyNude = ({ property, properties, description, noBorde
     
     
     return (
-        <SectionDemoProperty {...restProps} property={property ?? 'nude'} properties={properties ?? 'Nude'} description={
+        <SectionPreviewProperty {...restProps} property={property ?? 'nude'} properties={properties ?? 'Nude'} description={
             description
             ??
             <>
@@ -136,13 +152,13 @@ export const SectionPropertyNude = ({ property, properties, description, noBorde
         } />
     );
 };
-export const SectionPropertyGradient = ({ property, properties, description, ...restProps }: SectionDemoPropertyProps) => {
+export const SectionPropertyGradient = ({ property, properties, description, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName, hasNestedComponent, nestedComponentName } = useComponentInfo();
     
     
     
     return (
-        <SectionDemoProperty {...restProps} property={property ?? 'gradient'} properties={properties ?? 'Gradient'} description={
+        <SectionPreviewProperty {...restProps} property={property ?? 'gradient'} properties={properties ?? 'Gradient'} description={
             description
             ??
             <>
@@ -156,13 +172,13 @@ export const SectionPropertyGradient = ({ property, properties, description, ...
         } />
     );
 };
-export const SectionPropertyOutlined = ({ property, properties, description, ...restProps }: SectionDemoPropertyProps) => {
+export const SectionPropertyOutlined = ({ property, properties, description, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName, hasNestedComponent, nestedComponentName } = useComponentInfo();
     
     
     
     return (
-        <SectionDemoProperty {...restProps} property={property ?? 'outlined'} properties={properties ?? 'Outlined'} description={
+        <SectionPreviewProperty {...restProps} property={property ?? 'outlined'} properties={properties ?? 'Outlined'} description={
             description
             ??
             <>
@@ -176,7 +192,7 @@ export const SectionPropertyOutlined = ({ property, properties, description, ...
         } />
     );
 };
-export interface SectionPropertyMildProps extends SectionDemoPropertyProps {
+export interface SectionPropertyMildProps extends SectionPreviewPropertyProps {
     setByDefault ?: boolean
 }
 export const SectionPropertyMild = ({ property, properties, description, setByDefault = false, ...restProps }: SectionPropertyMildProps) => {
@@ -185,7 +201,7 @@ export const SectionPropertyMild = ({ property, properties, description, setByDe
     
     
     return (
-        <SectionDemoProperty {...restProps} property={property ?? 'mild'} properties={properties ?? 'Mild'} description={
+        <SectionPreviewProperty {...restProps} property={property ?? 'mild'} properties={properties ?? 'Mild'} description={
             description
             ??
             <>
@@ -231,7 +247,45 @@ const Page: NextPage = () => {
             </SectionDemo>
             <SectionInheritedProps />
             <SectionVariants>
-                <SectionPropertyTheme />
+                <SectionPropertyTheme>
+                    <Basic
+                        theme='primary'
+                    >
+                        A {'<Basic>'} with primary theme
+                    </Basic>
+                    <p></p>
+                    <Basic
+                        theme='success'
+                    >
+                        A {'<Basic>'} with success theme
+                    </Basic>
+                    <p></p>
+                    <Basic
+                        theme='danger'
+                    >
+                        A {'<Basic>'} with danger theme
+                    </Basic>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Basic
+    theme='primary'
+>
+    A {'<Basic>'} with primary theme
+</Basic>
+
+<Basic
+    theme='success'
+>
+    A {'<Basic>'} with success theme
+</Basic>
+
+<Basic
+    theme='danger'
+>
+    A {'<Basic>'} with danger theme
+</Basic>
+                    `}</TypeScriptCode>
+                </SectionPropertyTheme>
                 <SectionPropertySize>
                     <Basic
                         size='sm'
