@@ -8,7 +8,7 @@ import { useFlipFlop } from '../../../components/hooks'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { TransparentPreview } from '../../../components/TransparentPreview'
-import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, LinkResponsiveProviderPage, LinkContentPage, LinkButtonPage, LinkListSeparatorItemPage, LinkUsesIndicatorVariantsPage, SectionSubProperty, SectionPropertyProps } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentNestedComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, LinkResponsiveProviderPage, LinkContentPage, LinkButtonPage, LinkListSeparatorItemPage, LinkUsesIndicatorVariantsPage, SectionSubProperty, SectionPropertyProps, useComponentInfo } from '../../../components/common-contents'
 import { List, ListItem, ListSeparatorItem, OrientationName } from '@nodestrap/list'
 import { TypeScriptCode } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
@@ -30,6 +30,7 @@ import {
     SectionPropertyStyleProps,
     SectionPropertyStyle,
     SectionPropertyItemStyleProps,
+    SectionPropertyItemStyle,
     SectionPropertyFlatStyle   as BasicSectionPropertyFlatStyle,
     SectionPropertyFlushStyle  as BasicSectionPropertyFlushStyle,
     SectionPropertyJoinedStyle as BasicSectionPropertyJoinedStyle,
@@ -83,52 +84,6 @@ export const SectionPropertyStyles = ({ property, properties, propertySuffix = d
                 children
                 ??
                 <>
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`listStyle='content'`} properties={<><code>content</code> Style</>} preview={<>
-                        <List listStyle='content' theme='primary'>
-                            <ListItem>
-                                A first item
-                            </ListItem>
-                            <ListItem>
-                                A second item
-                            </ListItem>
-                            <ListItem theme='success'>
-                                A third item
-                            </ListItem>
-                            <ListItem active={true}>
-                                A fourth item
-                            </ListItem>
-                            <ListItem theme='danger'>
-                                A fifth item
-                            </ListItem>
-                        </List>
-                        <p></p>
-                        <TypeScriptCode>{`
-<List listStyle='content' theme='primary'>
-    <ListItem>
-        A first item
-    </ListItem>
-    <ListItem>
-        A second item
-    </ListItem>
-    <ListItem theme='success'>
-        A third item
-    </ListItem>
-    <ListItem active={true}>
-        A fourth item
-    </ListItem>
-    <ListItem theme='danger'>
-        A fifth item
-    </ListItem>
-</List>
-                        `}</TypeScriptCode>
-                    </>}>
-                        <p>
-                            Set <code>{`<List listStyle='content'>`}</code> to style the <LinkListItemPage /> to look similar to <LinkContentPage /> (usually with wider paddings).
-                        </p>
-                        <p>
-                            Basically it merges the <LinkListItemPage />&apos;s style + <LinkContentPage />&apos;s style.
-                        </p>
-                    </SectionSubProperty>
                     <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`listStyle='btn'`} properties={<><code>btn</code> Style</>} preview={<>
                         <List listStyle='btn' theme='primary'>
                             <ListItem>
@@ -475,6 +430,26 @@ export const SectionPropertyFlushStyle = ({ styleName = 'listStyle', ...restProp
 export const SectionPropertyJoinedStyle = ({ styleName = 'listStyle', ...restProps }: SectionPropertyItemStyleProps) => {
     return (
         <BasicSectionPropertyJoinedStyle {...restProps} styleName={styleName} />
+    );
+};
+export const SectionPropertyContentStyle = ({ property, properties, description, styleName = 'listStyle', ...restProps }: SectionPropertyItemStyleProps) => {
+    const { componentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPropertyItemStyle {...restProps} property={property ?? `${styleName}='content'`} properties={properties ?? <><code>content</code> Style</>} description={
+            description
+            ??
+            <>
+                <p>
+                    Set <code>{`<${componentName} ${styleName}='content'>`}</code> to style the <CurrentNestedComponent /> to look similar to <LinkContentPage /> (usually with wider paddings).
+                </p>
+                <p>
+                    Basically it merges the <CurrentNestedComponent />&apos;s style + <LinkContentPage />&apos;s style.
+                </p>
+            </>
+        } />
     );
 };
 
@@ -1461,6 +1436,46 @@ const Page: NextPage = () => {
 </List>
                         `}</TypeScriptCode>
                     </SectionPropertyJoinedStyle>
+                    
+                    <SectionPropertyContentStyle>
+                        <List listStyle='content' theme='primary'>
+                            <ListItem>
+                                A first item
+                            </ListItem>
+                            <ListItem>
+                                A second item
+                            </ListItem>
+                            <ListItem theme='success'>
+                                A third item
+                            </ListItem>
+                            <ListItem active={true}>
+                                A fourth item
+                            </ListItem>
+                            <ListItem theme='danger'>
+                                A fifth item
+                            </ListItem>
+                        </List>
+                        <p></p>
+                        <TypeScriptCode>{`
+<List listStyle='content' theme='primary'>
+    <ListItem>
+        A first item
+    </ListItem>
+    <ListItem>
+        A second item
+    </ListItem>
+    <ListItem theme='success'>
+        A third item
+    </ListItem>
+    <ListItem active={true}>
+        A fourth item
+    </ListItem>
+    <ListItem theme='danger'>
+        A fifth item
+    </ListItem>
+</List>
+                        `}</TypeScriptCode>
+                    </SectionPropertyContentStyle>
                 </SectionPropertyListStyle>
                 <SectionPropertyStyles />
             </SectionVariants>
