@@ -1409,9 +1409,6 @@ const Page: NextPage = () => {
                                     <ListItem>
                                         A_fourth_item
                                     </ListItem>
-                                    <ListItem>
-                                        A_fifth_item
-                                    </ListItem>
                                 </List>
                             </div>
                         )}</ResponsiveProvider>
@@ -1443,9 +1440,6 @@ const Page: NextPage = () => {
             </ListItem>
             <ListItem>
                 A_fourth_item
-            </ListItem>
-            <ListItem>
-                A_fifth_item
             </ListItem>
         </List>
     </div>
