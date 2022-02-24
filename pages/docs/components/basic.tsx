@@ -223,10 +223,14 @@ export const SectionPropertyMild = ({ property, properties, description, setByDe
     );
 };
 export const SectionPropertyOrientation = ({ property, properties, children, ...restProps }: SectionPropertyProps) => {
+    const { hasNestedComponent } = useComponentInfo();
+    
+    
+    
     return (
         <SectionSubProperty {...restProps} property={property ?? 'orientation'} properties={properties ?? 'Orientations'}>
             <p>
-                Defines how the <CurrentNestedComponent /> is stacked.
+                Defines how the <CurrentNestedComponent />{hasNestedComponent && 's'} {hasNestedComponent ? 'are' : 'is'} stacked.
             </p>
             { children }
         </SectionSubProperty>
