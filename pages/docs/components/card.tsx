@@ -8,11 +8,11 @@ import { useFlipFlop } from '../../../components/hooks'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { TransparentPreview } from '../../../components/TransparentPreview'
-import { SectionInheritedProps, LinkCardPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, SectionStates, LinkResponsiveProviderPage, SectionSubProperty, SectionPropertyProps } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkCardPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, SectionStates, SectionSubProperty, SectionPropertyProps } from '../../../components/common-contents'
 import { Card, OrientationName } from '@nodestrap/card'
 import { TypeScriptCode } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
-import { Tips, Warning } from '../../../components/Info'
+import { Tips } from '../../../components/Info'
 import Element from '@nodestrap/element'
 import {
     SectionPropertyTheme,
@@ -22,6 +22,10 @@ import {
     SectionPropertyOutlined,
     SectionPropertyMildProps,
     SectionPropertyMild     as BasicSectionPropertyMild,
+    SectionPropertyOrientation,
+    SectionPropertyOrientationBlock,
+    SectionPropertyOrientationInline,
+    SectionPropertyOrientationResponsive,
 } from './basic'
 
 import loadable from '@loadable/component'
@@ -49,181 +53,6 @@ const defaultPropertySuffix = false;
 export const SectionPropertyMild = ({ setByDefault, ...props }: SectionPropertyMildProps) => {
     return (
         <BasicSectionPropertyMild {...props} setByDefault={setByDefault ?? true} />
-    );
-};
-export const SectionPropertyOrientation = ({ property, properties, propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
-    return (
-        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property ?? 'orientation'} properties={properties ?? 'Orientation'}>
-            {
-                children
-                ??
-                <>
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`orientation='block'`} properties={<><code>block</code> Orientation</>} preview={<>
-                        <Card
-                            orientation='block'
-                            theme='primary'
-                            header={<>
-                                A Card with Block Orientation
-                            </>}
-                            footer={<>
-                                Just for fun!
-                            </>}
-                        >
-                            <DummyContents />
-                        </Card>
-                        <p></p>
-                        <TypeScriptCode>{`
-<Card
-    orientation='block'
-    theme='primary'
-    header={<>
-        A Card with block Orientation
-    </>}
-    footer={<>
-        Just for fun!
-    </>}
->
-    <p>...</p>
-    <img alt='lorem image' src='/images/lorem-image-1.svg' />
-    <p>...</p>
-</Card>
-                        `}</TypeScriptCode>
-                    </>}>
-                        <p>
-                            To make <CurrentComponent /> stacked in <strong>vertical</strong>, set <code>{`<Card orientation='block'>`}</code>.
-                        </p>
-                        <p>
-                            This is the <strong>default</strong> value if the <code>orientation</code> value is not specified.
-                        </p>
-                    </SectionSubProperty>
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`orientation='inline'`} properties={<><code>inline</code> Orientation</>} preview={<>
-                        <div style={{ overflowX: 'auto' }}>
-                            <Card
-                                orientation='inline'
-                                theme='primary'
-                                header={<>
-                                    A Card with Inline Orientation
-                                </>}
-                                footer={<>
-                                    Just for fun!
-                                </>}
-                            >
-                                <DummyContents />
-                            </Card>
-                        </div>
-                        <p></p>
-                        <TypeScriptCode>{`
-<Card
-    orientation='inline'
-    theme='primary'
-    header={<>
-        A Card with inline Orientation
-    </>}
-    footer={<>
-        Just for fun!
-    </>}
->
-    <p>...</p>
-    <img alt='lorem image' src='/images/lorem-image-1.svg' />
-    <p>...</p>
-</Card>
-                        `}</TypeScriptCode>
-                    </>}>
-                        <p>
-                            To make <CurrentComponent /> stacked in <strong>horizontal</strong>, set <code>{`<Card orientation='inline'>`}</code>.
-                        </p>
-                        <Warning>
-                            <p>
-                                Make sure the page is <strong>wide enough</strong> as the <code>inline</code> orientation may take up a lot of space (width).
-                            </p>
-                            <p>
-                                Insufficient page width can cause distorion of your site&apos;s design.
-                            </p>
-                            <p>
-                                You may need a <LinkResponsiveProviderPage /> to create a <strong>responsive orientation</strong> based on <em>overflow detection</em>.
-                            </p>
-                        </Warning>
-                    </SectionSubProperty>
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`orientation={currentFallback}`} properties='Responsive Orientation' preview={<>
-                        <Tips>
-                            <p>
-                                Try to <strong>resize</strong> the <span style={{ background :'pink', border : 'solid 1px darkred', padding: '0.15em' }}>red container</span> below:
-                            </p>
-                        </Tips>
-                        <p></p>
-                        <ResponsiveProvider<OrientationName> fallbacks={[
-                            'inline', // the first try, if overflow is detected, then try next
-                            'block',  // the last try
-                        ]}>{(currentFallback) => (
-                            // a <div> to watch for overflows
-                            <div style={{
-                                display    : 'block',
-                                overflow   : 'hidden',
-                                background : 'pink',
-                                border     : 'solid 1px darkred',
-                                resize     : 'horizontal',
-                                padding    : '1rem',
-                                maxWidth   : '100%',
-                            }}>
-                                <Card
-                                    orientation={currentFallback}
-                                    theme='primary'
-                                    header={<>
-                                        A Card with Responsive Orientation
-                                    </>}
-                                    footer={<>
-                                        Just for fun!
-                                    </>}
-                                >
-                                    <DummyContents />
-                                </Card>
-                            </div>
-                        )}</ResponsiveProvider>
-                        <p></p>
-                        <TypeScriptCode>{`
-<ResponsiveProvider fallbacks={[
-    'inline', // the first try, if overflow is detected, then try next
-    'block',  // the last try
-]}>{(currentFallback) => (
-    // a <div> to watch for overflows
-    <div style={{
-        display    : 'block',
-        overflow   : 'hidden',
-        background : 'pink',
-        border     : 'solid 1px darkred',
-        resize     : 'horizontal',
-        padding    : '1rem',
-        maxWidth   : '100%',
-    }}>
-        <Card
-            orientation={currentFallback}
-            theme='primary'
-            header={<>
-                A Card with Responsive Orientation
-            </>}
-            footer={<>
-                Just for fun!
-            </>}
-        >
-            <p>...</p>
-            <img alt='lorem image' src='/images/lorem-image-1.svg' />
-            <p>...</p>
-        </Card>
-    </div>
-)}</ResponsiveProvider>
-                        `}</TypeScriptCode>
-                    </>}>
-                        <p>
-                            To make <CurrentComponent /> stacked in <strong>horizontal</strong> (if the page is wide enough) -or- stacked in <strong>vertical</strong> (if the page is too narrow),
-                            do this trick!
-                        </p>
-                        <p>
-                            With a help of <LinkResponsiveProviderPage />, you can create a <strong>responsive orientation</strong>.
-                        </p>
-                    </SectionSubProperty>
-                </>
-            }
-        </SectionSubProperty>
     );
 };
 export const SectionPropertyStyles = ({ property, properties, propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
@@ -800,7 +629,141 @@ const Page: NextPage = () => {
 </Card>
                     `}</TypeScriptCode>
                 </SectionPropertyMild>
-                <SectionPropertyOrientation />
+                <SectionPropertyOrientation>
+                    <SectionPropertyOrientationBlock>
+                        <Card
+                            orientation='block'
+                            theme='primary'
+                            header={<>
+                                A Card with Block Orientation
+                            </>}
+                            footer={<>
+                                Just for fun!
+                            </>}
+                        >
+                            <DummyContents />
+                        </Card>
+                        <p></p>
+                        <TypeScriptCode>{`
+<Card
+    orientation='block'
+    theme='primary'
+    header={<>
+        A Card with block Orientation
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
+    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
+    <p>...</p>
+</Card>
+                        `}</TypeScriptCode>
+                    </SectionPropertyOrientationBlock>
+                    <SectionPropertyOrientationInline>
+                        <div style={{ overflowX: 'auto' }}>
+                            <Card
+                                orientation='inline'
+                                theme='primary'
+                                header={<>
+                                    A Card with Inline Orientation
+                                </>}
+                                footer={<>
+                                    Just for fun!
+                                </>}
+                            >
+                                <DummyContents />
+                            </Card>
+                        </div>
+                        <p></p>
+                        <TypeScriptCode>{`
+<Card
+    orientation='inline'
+    theme='primary'
+    header={<>
+        A Card with inline Orientation
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
+    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
+    <p>...</p>
+</Card>
+                        `}</TypeScriptCode>
+                    </SectionPropertyOrientationInline>
+                    <SectionPropertyOrientationResponsive>
+                        <Tips>
+                            <p>
+                                Try to <strong>resize</strong> the <span style={{ background :'pink', border : 'solid 1px darkred', padding: '0.15em' }}>red container</span> below:
+                            </p>
+                        </Tips>
+                        <p></p>
+                        <ResponsiveProvider<OrientationName> fallbacks={[
+                            'inline', // the first try, if overflow is detected, then try next
+                            'block',  // the last try
+                        ]}>{(currentFallback) => (
+                            // a <div> to watch for overflows
+                            <div style={{
+                                display    : 'block',
+                                overflow   : 'hidden',
+                                background : 'pink',
+                                border     : 'solid 1px darkred',
+                                resize     : 'horizontal',
+                                padding    : '1rem',
+                                maxWidth   : '100%',
+                            }}>
+                                <Card
+                                    orientation={currentFallback}
+                                    theme='primary'
+                                    header={<>
+                                        A Card with Responsive Orientation
+                                    </>}
+                                    footer={<>
+                                        Just for fun!
+                                    </>}
+                                >
+                                    <DummyContents />
+                                </Card>
+                            </div>
+                        )}</ResponsiveProvider>
+                        <p></p>
+                        <TypeScriptCode>{`
+<ResponsiveProvider fallbacks={[
+    'inline', // the first try, if overflow is detected, then try next
+    'block',  // the last try
+]}>{(currentFallback) => (
+    // a <div> to watch for overflows
+    <div style={{
+        display    : 'block',
+        overflow   : 'hidden',
+        background : 'pink',
+        border     : 'solid 1px darkred',
+        resize     : 'horizontal',
+        padding    : '1rem',
+        maxWidth   : '100%',
+    }}>
+        <Card
+            orientation={currentFallback}
+            theme='primary'
+            header={<>
+                A Card with Responsive Orientation
+            </>}
+            footer={<>
+                Just for fun!
+            </>}
+        >
+            <p>...</p>
+            <img alt='lorem image' src='/images/lorem-image-1.svg' />
+            <p>...</p>
+        </Card>
+    </div>
+)}</ResponsiveProvider>
+                        `}</TypeScriptCode>
+                    </SectionPropertyOrientationResponsive>
+                </SectionPropertyOrientation>
                 <SectionPropertyStyles />
             </SectionVariants>
             <SectionStates>

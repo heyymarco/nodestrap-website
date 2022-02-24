@@ -12,7 +12,7 @@ import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridi
 import { List, ListItem, ListSeparatorItem, OrientationName } from '@nodestrap/list'
 import { TypeScriptCode } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
-import { Warning } from '../../../components/Info'
+import { Tips, Warning } from '../../../components/Info'
 import Element from '@nodestrap/element'
 import {
     SectionPropertyTheme,
@@ -23,6 +23,10 @@ import {
     SectionPropertyOutlined,
     SectionPropertyMildProps,
     SectionPropertyMild     as BasicSectionPropertyMild,
+    SectionPropertyOrientation,
+    SectionPropertyOrientationBlock,
+    SectionPropertyOrientationInline,
+    SectionPropertyOrientationResponsive,
 } from './basic'
 
 import loadable from '@loadable/component'
@@ -39,205 +43,6 @@ export const SectionPropertyNude = ({ noBorder, ...props }: SectionPropertyNudeP
 export const SectionPropertyMild = ({ setByDefault, ...props }: SectionPropertyMildProps) => {
     return (
         <BasicSectionPropertyMild {...props} setByDefault={setByDefault ?? true} />
-    );
-};
-export const SectionPropertyOrientation = ({ property, properties, propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
-    return (
-        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property ?? 'orientation'} properties={properties ?? 'Orientation'}>
-            {
-                children
-                ??
-                <>
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`orientation='block'`} properties={<><code>block</code> Orientation</>} preview={<>
-                        <List orientation='block' theme='primary'>
-                            <ListItem>
-                                A first item
-                            </ListItem>
-                            <ListItem>
-                                A second item
-                            </ListItem>
-                            <ListItem>
-                                A third item
-                            </ListItem>
-                            <ListItem>
-                                A fourth item
-                            </ListItem>
-                            <ListItem>
-                                A fifth item
-                            </ListItem>
-                        </List>
-                        <p></p>
-                        <TypeScriptCode>{`
-<List orientation='block' theme='primary'>
-    <ListItem>
-        A first item
-    </ListItem>
-    <ListItem>
-        A second item
-    </ListItem>
-    <ListItem>
-        A third item
-    </ListItem>
-    <ListItem>
-        A fourth item
-    </ListItem>
-    <ListItem>
-        A fifth item
-    </ListItem>
-</List>
-                        `}</TypeScriptCode>
-                    </>}>
-                        <p>
-                            To make <LinkListItemPage />s stacked in <strong>vertical</strong>, set <code>{`<List orientation='block'>`}</code>.
-                        </p>
-                        <p>
-                            This is the <strong>default</strong> value if the <code>orientation</code> value is not specified.
-                        </p>
-                    </SectionSubProperty>
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`orientation='inline'`} properties={<><code>inline</code> Orientation</>} preview={<>
-                        <div style={{ overflowX: 'auto' }}>
-                            <List orientation='inline' theme='primary'>
-                                <ListItem>
-                                    A first item
-                                </ListItem>
-                                <ListItem>
-                                    A second item
-                                </ListItem>
-                                <ListItem>
-                                    A third item
-                                </ListItem>
-                                <ListItem>
-                                    A fourth item
-                                </ListItem>
-                                <ListItem>
-                                    A fifth item
-                                </ListItem>
-                            </List>
-                        </div>
-                        <p></p>
-                        <TypeScriptCode>{`
-<List orientation='inline' theme='primary'>
-    <ListItem>
-        A first item
-    </ListItem>
-    <ListItem>
-        A second item
-    </ListItem>
-    <ListItem>
-        A third item
-    </ListItem>
-    <ListItem>
-        A fourth item
-    </ListItem>
-    <ListItem>
-        A fifth item
-    </ListItem>
-</List>
-                        `}</TypeScriptCode>
-                    </>}>
-                        <p>
-                            To make <LinkListItemPage />s stacked in <strong>horizontal</strong>, set <code>{`<List orientation='inline'>`}</code>.
-                        </p>
-                        <Warning>
-                            <p>
-                                Make sure the page is <strong>wide enough</strong> as the <code>inline</code> orientation may take up a lot of space (width).
-                            </p>
-                            <p>
-                                Insufficient page width can cause distorion of your site&apos;s design.
-                            </p>
-                            <p>
-                                You may need a <LinkResponsiveProviderPage /> to create <strong>responsive orientation</strong> based on <em>overflow detection</em>.
-                            </p>
-                        </Warning>
-                    </SectionSubProperty>
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`orientation={currentFallback}`} properties='Responsive Orientation' preview={<>
-                        <Warning>
-                            <p>
-                                Try to <strong>resize</strong> the <span style={{ background :'pink', border : 'solid 1px darkred', padding: '0.15em' }}>red container</span> below:
-                            </p>
-                        </Warning>
-                        <p></p>
-                        <ResponsiveProvider<OrientationName> fallbacks={[
-                            'inline', // the first try, if overflow is detected, then try next
-                            'block',  // the last try
-                        ]}>{(currentFallback) => (
-                            // a <div> to watch for overflows
-                            <div style={{
-                                display    : 'block',
-                                overflow   : 'hidden',
-                                background : 'pink',
-                                border     : 'solid 1px darkred',
-                                resize     : 'horizontal',
-                                padding    : '1rem',
-                                maxWidth   : '100%',
-                            }}>
-                                <List orientation={currentFallback} theme='primary'>
-                                    <ListItem>
-                                        A_first_item
-                                    </ListItem>
-                                    <ListItem>
-                                        A_second_item
-                                    </ListItem>
-                                    <ListItem>
-                                        A_third_item
-                                    </ListItem>
-                                    <ListItem>
-                                        A_fourth_item
-                                    </ListItem>
-                                    <ListItem>
-                                        A_fifth_item
-                                    </ListItem>
-                                </List>
-                            </div>
-                        )}</ResponsiveProvider>
-                        <p></p>
-                        <TypeScriptCode>{`
-<ResponsiveProvider fallbacks={[
-    'inline', // the first try, if overflow is detected, then try next
-    'block',  // the last try
-]}>{(currentFallback) => (
-    // a <div> to watch for overflows
-    <div style={{
-        display    : 'block',
-        overflow   : 'hidden',
-        background : 'pink',
-        border     : 'solid 1px darkred',
-        resize     : 'horizontal',
-        padding    : '1rem',
-        maxWidth   : '100%',
-    }}>
-        <List orientation={currentFallback} theme='primary'>
-            <ListItem>
-                A_first_item
-            </ListItem>
-            <ListItem>
-                A_second_item
-            </ListItem>
-            <ListItem>
-                A_third_item
-            </ListItem>
-            <ListItem>
-                A_fourth_item
-            </ListItem>
-            <ListItem>
-                A_fifth_item
-            </ListItem>
-        </List>
-    </div>
-)}</ResponsiveProvider>
-                        `}</TypeScriptCode>
-                    </>}>
-                        <p>
-                            To make <LinkListItemPage />s stacked in <strong>horizontal</strong> (if the page is wide enough) -or- stacked in <strong>vertical</strong> (if the page is too narrow),
-                            do this trick!
-                        </p>
-                        <p>
-                            With a help of <LinkResponsiveProviderPage />, you can create a <strong>responsive orientation</strong>.
-                        </p>
-                    </SectionSubProperty>
-                </>
-            }
-        </SectionSubProperty>
     );
 };
 const FunctionalTabList = () => {
@@ -1489,7 +1294,165 @@ const Page: NextPage = () => {
 </List>
                     `}</TypeScriptCode>
                 </SectionPropertyMild>
-                <SectionPropertyOrientation />
+                <SectionPropertyOrientation>
+                    <SectionPropertyOrientationBlock>
+                        <List orientation='block' theme='primary'>
+                            <ListItem>
+                                A first item
+                            </ListItem>
+                            <ListItem>
+                                A second item
+                            </ListItem>
+                            <ListItem>
+                                A third item
+                            </ListItem>
+                            <ListItem>
+                                A fourth item
+                            </ListItem>
+                            <ListItem>
+                                A fifth item
+                            </ListItem>
+                        </List>
+                        <p></p>
+                        <TypeScriptCode>{`
+<List orientation='block' theme='primary'>
+    <ListItem>
+        A first item
+    </ListItem>
+    <ListItem>
+        A second item
+    </ListItem>
+    <ListItem>
+        A third item
+    </ListItem>
+    <ListItem>
+        A fourth item
+    </ListItem>
+    <ListItem>
+        A fifth item
+    </ListItem>
+</List>
+                        `}</TypeScriptCode>
+                    </SectionPropertyOrientationBlock>
+                    <SectionPropertyOrientationInline>
+                        <div style={{ overflowX: 'auto' }}>
+                            <List orientation='inline' theme='primary'>
+                                <ListItem>
+                                    A first item
+                                </ListItem>
+                                <ListItem>
+                                    A second item
+                                </ListItem>
+                                <ListItem>
+                                    A third item
+                                </ListItem>
+                                <ListItem>
+                                    A fourth item
+                                </ListItem>
+                                <ListItem>
+                                    A fifth item
+                                </ListItem>
+                            </List>
+                        </div>
+                        <p></p>
+                        <TypeScriptCode>{`
+<List orientation='inline' theme='primary'>
+    <ListItem>
+        A first item
+    </ListItem>
+    <ListItem>
+        A second item
+    </ListItem>
+    <ListItem>
+        A third item
+    </ListItem>
+    <ListItem>
+        A fourth item
+    </ListItem>
+    <ListItem>
+        A fifth item
+    </ListItem>
+</List>
+                        `}</TypeScriptCode>
+                    </SectionPropertyOrientationInline>
+                    <SectionPropertyOrientationResponsive>
+                        <Tips>
+                            <p>
+                                Try to <strong>resize</strong> the <span style={{ background :'pink', border : 'solid 1px darkred', padding: '0.15em' }}>red container</span> below:
+                            </p>
+                        </Tips>
+                        <p></p>
+                        <ResponsiveProvider<OrientationName> fallbacks={[
+                            'inline', // the first try, if overflow is detected, then try next
+                            'block',  // the last try
+                        ]}>{(currentFallback) => (
+                            // a <div> to watch for overflows
+                            <div style={{
+                                display    : 'block',
+                                overflow   : 'hidden',
+                                background : 'pink',
+                                border     : 'solid 1px darkred',
+                                resize     : 'horizontal',
+                                padding    : '1rem',
+                                maxWidth   : '100%',
+                            }}>
+                                <List orientation={currentFallback} theme='primary'>
+                                    <ListItem>
+                                        A_first_item
+                                    </ListItem>
+                                    <ListItem>
+                                        A_second_item
+                                    </ListItem>
+                                    <ListItem>
+                                        A_third_item
+                                    </ListItem>
+                                    <ListItem>
+                                        A_fourth_item
+                                    </ListItem>
+                                    <ListItem>
+                                        A_fifth_item
+                                    </ListItem>
+                                </List>
+                            </div>
+                        )}</ResponsiveProvider>
+                        <p></p>
+                        <TypeScriptCode>{`
+<ResponsiveProvider fallbacks={[
+    'inline', // the first try, if overflow is detected, then try next
+    'block',  // the last try
+]}>{(currentFallback) => (
+    // a <div> to watch for overflows
+    <div style={{
+        display    : 'block',
+        overflow   : 'hidden',
+        background : 'pink',
+        border     : 'solid 1px darkred',
+        resize     : 'horizontal',
+        padding    : '1rem',
+        maxWidth   : '100%',
+    }}>
+        <List orientation={currentFallback} theme='primary'>
+            <ListItem>
+                A_first_item
+            </ListItem>
+            <ListItem>
+                A_second_item
+            </ListItem>
+            <ListItem>
+                A_third_item
+            </ListItem>
+            <ListItem>
+                A_fourth_item
+            </ListItem>
+            <ListItem>
+                A_fifth_item
+            </ListItem>
+        </List>
+    </div>
+)}</ResponsiveProvider>
+                        `}</TypeScriptCode>
+                    </SectionPropertyOrientationResponsive>
+                </SectionPropertyOrientation>
                 <SectionPropertyStyles />
             </SectionVariants>
             <SectionStates>

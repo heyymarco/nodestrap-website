@@ -7,7 +7,7 @@ import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../
 import { Warning } from '../../../components/Info'
 
 import { TransparentPreview } from '../../../components/TransparentPreview'
-import { SectionInheritedProps, LinkBasicPage, LinkElementPage, LinkColorsPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionSubProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentNestedComponent, CurrentBaseComponents, SectionPropertyProps, useComponentInfo, SectionPreviewPropertyProps, SectionPreviewProperty } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkBasicPage, LinkElementPage, LinkColorsPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionSubProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentNestedComponent, CurrentBaseComponents, SectionPropertyProps, useComponentInfo, SectionPreviewPropertyProps, SectionPreviewProperty, LinkResponsiveProviderPage } from '../../../components/common-contents'
 import { TypeScriptCode } from '../../../components/Code'
 import { Basic } from '@nodestrap/basic'
 
@@ -217,6 +217,91 @@ export const SectionPropertyMild = ({ property, properties, description, setByDe
                 <p>
                     The <em>smoother</em> means <em>near to white</em> on <em>light background</em> and <em>near to black</em> on <em>dark background</em>.<br />
                     You can <LinkColorsPage>adjust the background color here</LinkColorsPage>.
+                </p>
+            </>
+        } />
+    );
+};
+export const SectionPropertyOrientation = ({ property, properties, children, ...restProps }: SectionPropertyProps) => {
+    return (
+        <SectionSubProperty {...restProps} property={property ?? 'orientation'} properties={properties ?? 'Orientations'}>
+            <p>
+                Defines how the <CurrentNestedComponent /> is stacked.
+            </p>
+            { children }
+        </SectionSubProperty>
+    );
+};
+export interface SectionPropertyOrientationProps extends SectionPreviewPropertyProps {
+    setByDefault ?: boolean
+}
+export const SectionPropertyOrientationBlock = ({ titleTag='h4', property, properties, description, setByDefault = true, ...restProps }: SectionPropertyOrientationProps) => {
+    const { componentName, hasNestedComponent } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPreviewProperty {...restProps} titleTag={titleTag} property={property ?? "orientation='block'"} properties={properties ?? <><code>block</code> Orientation</>} description={
+            description
+            ??
+            <>
+                <p>
+                    To make <CurrentNestedComponent />{hasNestedComponent && 's'} stacked in <strong>vertical</strong>, set <code>{`<${componentName} orientation='block'>`}</code>.
+                </p>
+                {setByDefault && <p>
+                    This is the <strong>default</strong> value if the <code>orientation</code> value is not specified.
+                </p>}
+            </>
+        } />
+    );
+};
+export const SectionPropertyOrientationInline = ({ titleTag='h4', property, properties, description, setByDefault = false, ...restProps }: SectionPropertyOrientationProps) => {
+    const { componentName, hasNestedComponent } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPreviewProperty {...restProps} titleTag={titleTag} property={property ?? "orientation='inline'"} properties={properties ?? <><code>inline</code> Orientation</>} description={
+            description
+            ??
+            <>
+                <p>
+                    To make <CurrentNestedComponent />{hasNestedComponent && 's'} stacked in <strong>vertical</strong>, set <code>{`<${componentName} orientation='inline'>`}</code>.
+                </p>
+                {setByDefault && <p>
+                    This is the <strong>default</strong> value if the <code>orientation</code> value is not specified.
+                </p>}
+                <Warning>
+                    <p>
+                        Make sure the page is <strong>wide enough</strong> as the <code>inline</code> orientation may take up a lot of space (width).
+                    </p>
+                    <p>
+                        Insufficient page width can cause distorion of your site&apos;s design.
+                    </p>
+                    <p>
+                        You may need a <LinkResponsiveProviderPage /> to create a <strong>responsive orientation</strong> based on <em>overflow detection</em>.
+                    </p>
+                </Warning>
+            </>
+        } />
+    );
+};
+export const SectionPropertyOrientationResponsive = ({ titleTag='h4', property, properties, description, ...restProps }: SectionPreviewPropertyProps) => {
+    const { hasNestedComponent } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPreviewProperty {...restProps} titleTag={titleTag} property={property ?? "orientation={currentFallback}"} properties={properties ?? 'Responsive Orientation'} description={
+            description
+            ??
+            <>
+                <p>
+                    To make <CurrentNestedComponent />{hasNestedComponent && 's'} stacked in <strong>horizontal</strong> (if the page is wide enough) -or- stacked in <strong>vertical</strong> (if the page is too narrow),
+                    do this trick!
+                </p>
+                <p>
+                    With a help of <LinkResponsiveProviderPage />, you can create a <strong>responsive orientation</strong>.
                 </p>
             </>
         } />
