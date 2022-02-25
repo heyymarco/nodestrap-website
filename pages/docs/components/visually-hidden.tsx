@@ -5,7 +5,7 @@ import Head from 'next/head'
 
 import { SpecList, DetailSpecItem } from '../../../components/SpecList'
 
-import { SectionInheritedProps, LinkVisuallyHiddenPage, LinkElementPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionIntro, CurrentComponent } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkVisuallyHiddenPage, LinkElementPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionIntro, CurrentComponent } from '../../../components/common'
 
 
 

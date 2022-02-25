@@ -5,7 +5,7 @@ import Head from 'next/head'
 
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
-import { SectionInheritedProps, LinkCheckPage, LinkEditableActionControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, SectionThemingProblem, SectionSubPropertyStyle, LinkButtonPage } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkCheckPage, LinkEditableActionControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, SectionThemingProblem, SectionSubPropertyStyle, LinkButtonPage } from '../../../components/common'
 
 import loadable from '@loadable/component'
 const DemoCheckLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Check' */'../../../components/DemoPanel@Check'))

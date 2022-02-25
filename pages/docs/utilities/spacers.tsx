@@ -4,7 +4,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 
 import { Section } from '../../../components/Section'
-import { BusyBar, ComponentInfoProvider, CurrentComponent, LinkSpacersPage, SectionDemo, SectionIntro } from '../../../components/common-contents'
+import { BusyBar, ComponentInfoProvider, CurrentComponent, LinkSpacersPage, SectionDemo, SectionIntro } from '../../../components/common'
 import { TypeScriptCode, CssCode } from '../../../components/Code'
 
 import loadable from '@loadable/component'

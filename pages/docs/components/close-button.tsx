@@ -3,7 +3,7 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { SectionInheritedProps, LinkCloseButtonPage, LinkButtonIconPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionCustomizingParent, LinkModalCardPage, LinkModalSidePage, LinkAlertPage, SectionConfigureDependsOnIcon } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkCloseButtonPage, LinkButtonIconPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionCustomizingParent, LinkModalCardPage, LinkModalSidePage, LinkAlertPage, SectionConfigureDependsOnIcon } from '../../../components/common'
 
 import loadable from '@loadable/component'
 const DemoCloseButtonLazy    = loadable(() => import(/* webpackChunkName: 'DemoPanel@CloseButton' */'../../../components/DemoPanel@CloseButton'))

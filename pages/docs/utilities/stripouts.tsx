@@ -4,7 +4,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 
 import { Section } from '../../../components/Section'
-import { ComponentInfoProvider, CurrentComponent, LinkStripoutsPage, SectionIntro } from '../../../components/common-contents'
+import { ComponentInfoProvider, CurrentComponent, LinkStripoutsPage, SectionIntro } from '../../../components/common'
 import { SpecList, DetailSpecItem } from '../../../components/SpecList'
 import { TypeScriptCode } from '../../../components/Code'
 

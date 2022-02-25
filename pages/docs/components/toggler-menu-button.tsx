@@ -5,7 +5,7 @@ import Head from 'next/head'
 
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
-import { SectionInheritedProps, LinkTogglerMenuButtonPage, LinkCheckPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkNavbarPage } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkTogglerMenuButtonPage, LinkCheckPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkNavbarPage } from '../../../components/common'
 
 import loadable from '@loadable/component'
 const DemoTogglerMenuButtonLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@TogglerMenuButton' */'../../../components/DemoPanel@TogglerMenuButton'))

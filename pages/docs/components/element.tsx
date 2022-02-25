@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { Tips, Warning } from '../../../components/Info'
 import { TypeScriptCode } from '../../../components/Code'
 
-import { ComponentInfoProvider, CurrentComponent, LinkElementPage, SectionCustomizingCss, SectionDerivering, SectionIntro, SectionOverridingDefaults, SectionProperty, SectionSubProperty } from '../../../components/common-contents'
+import { ComponentInfoProvider, CurrentComponent, LinkElementPage, SectionCustomizingCss, SectionDerivering, SectionIntro, SectionOverridingDefaults, SectionProperty, SectionSubProperty } from '../../../components/common'
 
 
 

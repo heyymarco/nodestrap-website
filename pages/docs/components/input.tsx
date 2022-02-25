@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Section } from '../../../components/Section'
-import { SectionInheritedProps, LinkInputPage, LinkEditableTextControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkDropdownListPage, LinkDropdownListButtonPage } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkInputPage, LinkEditableTextControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkDropdownListPage, LinkDropdownListButtonPage } from '../../../components/common'
 import { Warning } from '../../../components/Info'
 
 import loadable from '@loadable/component'
