@@ -104,7 +104,7 @@ const CardWithActiveOutlined = () => {
         </Card>
     );
 };
-export const SectionPropertyActive           = ({ property = 'active'  , properties = 'Active State'                      , description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyActive           = ({ property = 'active'  , properties = 'Active State'                         , description, ...restProps }: SectionPreviewPropertyProps) => {
     return (
         <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
             description
@@ -114,63 +114,10 @@ export const SectionPropertyActive           = ({ property = 'active'  , propert
                     To make <CurrentComponent /> (appear) active, set <code>{`<Card active={true}>`}</code>.
                 </p>
             </>
-        }>
-            <Card
-                active={true}
-                theme='primary'
-                header={<>
-                    A Card with Active State
-                </>}
-                footer={<>
-                    Just for fun!
-                </>}
-            >
-                <DummyContents />
-            </Card>
-            <p></p>
-            <TypeScriptCode>{`
-<Card
-    active={true}
-    theme='primary'
-    header={<>
-        A Card with Active State
-    </>}
-    footer={<>
-        Just for fun!
-    </>}
->
-    <p>...</p>
-    <img alt='lorem image' src='/images/lorem-image-1.svg' />
-    <p>...</p>
-</Card>
-            `}</TypeScriptCode>
-            <SectionPropertyActiveNoOutlined>
-                <TransparentPreview>
-                    <CardWithActiveOutlined />
-                </TransparentPreview>
-                <p></p>
-                <TypeScriptCode>{`
-<Card
-    active={true}
-    outlined={true}
-    theme='primary'
-    header={<>
-        A Card with Active State + Outlined Variant
-    </>}
-    footer={<>
-        Just for fun!
-    </>}
->
-    <p>...</p>
-    <img alt='lorem image' src='/images/lorem-image-1.svg' />
-    <p>...</p>
-</Card>
-                `}</TypeScriptCode>
-            </SectionPropertyActiveNoOutlined>
-        </SectionPreviewProperty>
+        } />
     );
 };
-export const SectionPropertyActiveNoOutlined = ({ property = 'outlined', properties = 'Active State with Outlined Variant', description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyActiveNoOutlined = ({ property = 'outlined', properties = 'Active State cancels Outlined Variant', description, ...restProps }: SectionPreviewPropertyProps) => {
     return (
         <SectionPreviewProperty {...restProps} titleTag={'h4'} property={property} properties={properties} description={
             description
@@ -183,7 +130,7 @@ export const SectionPropertyActiveNoOutlined = ({ property = 'outlined', propert
         } />
     );
 };
-export const SectionPropertyEnabled          = ({ property = 'enabled' , properties = 'Disabled State'                    , description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyEnabled          = ({ property = 'enabled' , properties = 'Disabled State'                       , description, ...restProps }: SectionPreviewPropertyProps) => {
     return (
         <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
             description
@@ -745,7 +692,60 @@ const Page: NextPage = () => {
                 </SectionPropertyCardStyle>
             </SectionVariants>
             <SectionStates>
-                <SectionPropertyActive />
+                <SectionPropertyActive>
+                    <Card
+                        active={true}
+                        theme='primary'
+                        header={<>
+                            A Card with Active State
+                        </>}
+                        footer={<>
+                            Just for fun!
+                        </>}
+                    >
+                        <DummyContents />
+                    </Card>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Card
+    active={true}
+    theme='primary'
+    header={<>
+        A Card with Active State
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
+    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
+    <p>...</p>
+</Card>
+                    `}</TypeScriptCode>
+                    <SectionPropertyActiveNoOutlined>
+                        <TransparentPreview>
+                            <CardWithActiveOutlined />
+                        </TransparentPreview>
+                        <p></p>
+                        <TypeScriptCode>{`
+<Card
+    active={true}
+    outlined={true}
+    theme='primary'
+    header={<>
+        A Card with Active State + Outlined Variant
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
+    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
+    <p>...</p>
+</Card>
+                        `}</TypeScriptCode>
+                    </SectionPropertyActiveNoOutlined>
+                </SectionPropertyActive>
                 <SectionPropertyEnabled>
                     <Card
                         enabled={false}
