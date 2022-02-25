@@ -8,7 +8,7 @@ import { useFlipFlop } from '../../../components/hooks'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { TransparentPreview } from '../../../components/TransparentPreview'
-import { SectionInheritedProps, LinkCardPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, SectionStates, SectionPreviewProperty, SectionPreviewPropertyProps } from '../../../components/common'
+import { SectionInheritedProps, LinkCardPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, SectionStates } from '../../../components/common'
 import { Card, OrientationName } from '@nodestrap/card'
 import { TypeScriptCode } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
@@ -20,19 +20,21 @@ import {
  // SectionPropertyNude,
     SectionPropertyGradient,
     SectionPropertyOutlined,
-    SectionPropertyMildProps,
-    SectionPropertyMild        as BasicSectionPropertyMild,
     SectionPropertyOrientation,
     SectionPropertyOrientationBlock,
     SectionPropertyOrientationInline,
     SectionPropertyOrientationResponsive,
-    SectionPropertyStyleProps,
-    SectionPropertyStyle,
-    SectionPropertyItemStyleProps,
-    SectionPropertyFlatStyle   as BasicSectionPropertyFlatStyle,
-    SectionPropertyFlushStyle  as BasicSectionPropertyFlushStyle,
-    SectionPropertyJoinedStyle as BasicSectionPropertyJoinedStyle,
 } from '../../../components/common@Basic'
+import {
+    SectionPropertyMild,
+    SectionPropertyCardStyle,
+    SectionPropertyFlatStyle,
+    SectionPropertyFlushStyle,
+    SectionPropertyJoinedStyle,
+    SectionPropertyActive,
+    SectionPropertyActiveNoOutlined,
+    SectionPropertyEnabled,
+} from '../../../components/common@Card'
 
 import loadable from '@loadable/component'
 const DemoCardLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Card' */'../../../components/DemoPanel@Card'))
@@ -52,36 +54,6 @@ const DummyContents = () => {
         </>
     );
 };
-
-
-
-export const SectionPropertyMild = ({ setByDefault = true, ...props }: SectionPropertyMildProps) => {
-    return (
-        <BasicSectionPropertyMild {...props} setByDefault={setByDefault} />
-    );
-};
-const cardStyle = 'cardStyle';
-export const SectionPropertyCardStyle   = ({ styleName = cardStyle, ...restProps }: SectionPropertyStyleProps) => {
-    return (
-        <SectionPropertyStyle {...restProps} styleName={styleName} />
-    );
-};
-export const SectionPropertyFlatStyle   = ({ styleName = cardStyle, ...restProps }: SectionPropertyItemStyleProps) => {
-    return (
-        <BasicSectionPropertyFlatStyle {...restProps} styleName={styleName} />
-    );
-};
-export const SectionPropertyFlushStyle  = ({ styleName = cardStyle, ...restProps }: SectionPropertyItemStyleProps) => {
-    return (
-        <BasicSectionPropertyFlushStyle {...restProps} styleName={styleName} />
-    );
-};
-export const SectionPropertyJoinedStyle = ({ styleName = cardStyle, ...restProps }: SectionPropertyItemStyleProps) => {
-    return (
-        <BasicSectionPropertyJoinedStyle {...restProps} styleName={styleName} />
-    );
-};
-
 const CardWithActiveOutlined = () => {
     const [cardRef, isActive] = useFlipFlop({ defaultState: true });
     
@@ -102,45 +74,6 @@ const CardWithActiveOutlined = () => {
         >
             <DummyContents />
         </Card>
-    );
-};
-export const SectionPropertyActive           = ({ property = 'active'  , properties = 'Active State'                         , description, ...restProps }: SectionPreviewPropertyProps) => {
-    return (
-        <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
-            description
-            ??
-            <>
-                <p>
-                    To make <CurrentComponent /> active, set <code>{`<Card active={true}>`}</code>.
-                </p>
-            </>
-        } />
-    );
-};
-export const SectionPropertyActiveNoOutlined = ({ property = 'outlined', properties = 'Active State cancels Outlined Variant', description, ...restProps }: SectionPreviewPropertyProps) => {
-    return (
-        <SectionPreviewProperty {...restProps} titleTag={'h4'} property={property} properties={properties} description={
-            description
-            ??
-            <>
-                <p>
-                    Assigning <code>{`<Card active={true}>`}</code> will cancel out the <code>outlined</code> variant.
-                </p>
-            </>
-        } />
-    );
-};
-export const SectionPropertyEnabled          = ({ property = 'enabled' , properties = 'Disabled State'                       , description, ...restProps }: SectionPreviewPropertyProps) => {
-    return (
-        <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
-            description
-            ??
-            <>
-                <p>
-                    To make <CurrentComponent /> disabled, set <code>{`<Card enabled={false}>`}</code>.
-                </p>
-            </>
-        } />
     );
 };
 
