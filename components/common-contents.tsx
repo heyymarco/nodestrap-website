@@ -519,8 +519,9 @@ export const SectionPreviewProperty = (props: SectionPreviewPropertyProps) => {
             propertySuffix={props.propertySuffix ?? false}
 
             preview={props.children}
-            children={props.description}
-        />
+        >
+            {props.description}
+        </SectionProperty>
     );
 }
 export const SectionSubPropertyStyle = (props: SectionPropertyProps) => {
