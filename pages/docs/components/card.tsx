@@ -104,7 +104,7 @@ const CardWithActiveOutlined = () => {
         </Card>
     );
 };
-export const SectionPropertyActive  = ({ property = 'active' , properties = 'Active State'  , description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyActive           = ({ property = 'active'  , properties = 'Active State'                      , description, ...restProps }: SectionPreviewPropertyProps) => {
     return (
         <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
             description
@@ -144,13 +144,7 @@ export const SectionPropertyActive  = ({ property = 'active' , properties = 'Act
     <p>...</p>
 </Card>
             `}</TypeScriptCode>
-            <SectionPreviewProperty titleTag='h4' property='outlined' properties='Active State with Outlined Variant' description={
-                <>
-                    <p>
-                        Assigning <code>{`<Card active={true}>`}</code> will cancel out the <code>outlined</code> variant.
-                    </p>
-                </>
-            }>
+            <SectionPropertyActiveNoOutlined>
                 <TransparentPreview>
                     <CardWithActiveOutlined />
                 </TransparentPreview>
@@ -172,11 +166,24 @@ export const SectionPropertyActive  = ({ property = 'active' , properties = 'Act
     <p>...</p>
 </Card>
                 `}</TypeScriptCode>
-            </SectionPreviewProperty>
+            </SectionPropertyActiveNoOutlined>
         </SectionPreviewProperty>
     );
 };
-export const SectionPropertyEnabled = ({ property = 'enabled', properties = 'Disabled State', description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyActiveNoOutlined = ({ property = 'outlined', properties = 'Active State with Outlined Variant', description, ...restProps }: SectionPreviewPropertyProps) => {
+    return (
+        <SectionPreviewProperty {...restProps} titleTag={'h4'} property={property} properties={properties} description={
+            description
+            ??
+            <>
+                <p>
+                    Assigning <code>{`<Card active={true}>`}</code> will cancel out the <code>outlined</code> variant.
+                </p>
+            </>
+        } />
+    );
+};
+export const SectionPropertyEnabled          = ({ property = 'enabled' , properties = 'Disabled State'                    , description, ...restProps }: SectionPreviewPropertyProps) => {
     return (
         <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
             description

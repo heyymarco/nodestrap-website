@@ -270,7 +270,7 @@ const ListWithActiveOutlined = () => {
         </List>
     );
 };
-export const SectionPropertyActionCtrl = ({ property = 'actionCtrl', properties = 'Links and Buttons', description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyActionCtrl       = ({ property = 'actionCtrl', properties = 'Links and Buttons'                 , description, ...restProps }: SectionPreviewPropertyProps) => {
     return (
         <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
             description
@@ -347,7 +347,7 @@ export const SectionPropertyActionCtrl = ({ property = 'actionCtrl', properties 
         </SectionPreviewProperty>
     );
 };
-export const SectionPropertyActive     = ({ property = 'active'    , properties = 'Active Items'     , description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyActive           = ({ property = 'active'    , properties = 'Active Items'                      , description, ...restProps }: SectionPreviewPropertyProps) => {
     return (
         <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
             description
@@ -437,13 +437,7 @@ export const SectionPropertyActive     = ({ property = 'active'    , properties 
     </ListItem>
 </List>
             `}</TypeScriptCode>
-            <SectionPreviewProperty titleTag='h4' property='outlined' properties='Active Items with Outlined Variant' description={
-                <>
-                    <p>
-                        Assigning <code>{`<ListItem active={true}>`}</code> will cancel out the <code>outlined</code> variant.
-                    </p>
-                </>
-            }>
+            <SectionPropertyActiveNoOutlined>
                 <TransparentPreview>
                     <ListWithActiveOutlined />
                 </TransparentPreview>
@@ -473,11 +467,24 @@ export const SectionPropertyActive     = ({ property = 'active'    , properties 
     </ListItem>
 </List>
                 `}</TypeScriptCode>
-            </SectionPreviewProperty>
+            </SectionPropertyActiveNoOutlined>
         </SectionPreviewProperty>
     );
 };
-export const SectionPropertyEnabled    = ({ property = 'enabled'   , properties = 'Disabled Items'   , description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyActiveNoOutlined = ({ property = 'outlined'  , properties = 'Active State with Outlined Variant', description, ...restProps }: SectionPreviewPropertyProps) => {
+    return (
+        <SectionPreviewProperty {...restProps} titleTag={'h4'} property={property} properties={properties} description={
+            description
+            ??
+            <>
+                <p>
+                    Assigning <code>{`<ListItem active={true}>`}</code> will cancel out the <code>outlined</code> variant.
+                </p>
+            </>
+        } />
+    );
+};
+export const SectionPropertyEnabled          = ({ property = 'enabled'   , properties = 'Disabled Items'                    , description, ...restProps }: SectionPreviewPropertyProps) => {
     return (
         <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
             description
