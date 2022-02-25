@@ -8,7 +8,7 @@ import { useFlipFlop } from '../../../components/hooks'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { TransparentPreview } from '../../../components/TransparentPreview'
-import { SectionInheritedProps, LinkCardPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, SectionStates, SectionSubProperty, SectionPropertyProps, SectionPreviewProperty } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkCardPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, SectionStates, SectionPropertyProps, SectionPreviewProperty } from '../../../components/common-contents'
 import { Card, OrientationName } from '@nodestrap/card'
 import { TypeScriptCode } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
@@ -146,7 +146,13 @@ export const SectionPropertyActive  = ({ propertySuffix = defaultPropertySuffix,
     <p>...</p>
 </Card>
             `}</TypeScriptCode>
-            <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property='outlined' properties='Active State with Outlined Variant' preview={<>
+            <SectionPreviewProperty titleTag='h4' property='outlined' properties='Active State with Outlined Variant' description={
+                <>
+                    <p>
+                        Assigning <code>{`<Card active={true}>`}</code> will cancel out the <code>outlined</code> variant.
+                    </p>
+                </>
+            }>
                 <TransparentPreview>
                     <CardWithActiveOutlined />
                 </TransparentPreview>
@@ -168,11 +174,7 @@ export const SectionPropertyActive  = ({ propertySuffix = defaultPropertySuffix,
     <p>...</p>
 </Card>
                 `}</TypeScriptCode>
-            </>}>
-                <p>
-                    Assigning <code>{`<Card active={true}>`}</code> will cancel out the <code>outlined</code> variant.
-                </p>
-            </SectionSubProperty>
+            </SectionPreviewProperty>
         </SectionPreviewProperty>
     );
 };

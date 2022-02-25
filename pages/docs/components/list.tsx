@@ -8,7 +8,7 @@ import { useFlipFlop } from '../../../components/hooks'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { TransparentPreview } from '../../../components/TransparentPreview'
-import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentNestedComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, LinkContentPage, LinkButtonPage, LinkListSeparatorItemPage, LinkUsesIndicatorVariantsPage, SectionSubProperty, SectionPropertyProps, useComponentInfo, SectionPreviewProperty } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentNestedComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, LinkContentPage, LinkButtonPage, LinkListSeparatorItemPage, LinkUsesIndicatorVariantsPage, SectionPropertyProps, useComponentInfo, SectionPreviewProperty } from '../../../components/common-contents'
 import { List, ListItem, ListSeparatorItem, OrientationName } from '@nodestrap/list'
 import { TypeScriptCode } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
@@ -439,7 +439,13 @@ export const SectionPropertyActive     = ({ propertySuffix = defaultPropertySuff
     </ListItem>
 </List>
             `}</TypeScriptCode>
-            <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property='outlined' properties='Active Items with Outlined Variant' preview={<>
+            <SectionPreviewProperty titleTag='h4' property='outlined' properties='Active Items with Outlined Variant' description={
+                <>
+                    <p>
+                        Assigning <code>{`<ListItem active={true}>`}</code> will cancel out the <code>outlined</code> variant.
+                    </p>
+                </>
+            }>
                 <TransparentPreview>
                     <ListWithActiveOutlined />
                 </TransparentPreview>
@@ -469,11 +475,7 @@ export const SectionPropertyActive     = ({ propertySuffix = defaultPropertySuff
     </ListItem>
 </List>
                 `}</TypeScriptCode>
-            </>}>
-                <p>
-                    Assigning <code>{`<ListItem active={true}>`}</code> will cancel out the <code>outlined</code> variant.
-                </p>
-            </SectionSubProperty>
+            </SectionPreviewProperty>
         </SectionPreviewProperty>
     );
 };
