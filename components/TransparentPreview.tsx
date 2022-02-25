@@ -26,6 +26,8 @@ export const useTransparentPreviewSheet = createUseSheet(() => [
             display: 'grid',
             justifyItems : 'normal',
             alignItems   : 'normal',
+            gridAutoFlow : 'row',
+            
             gap          : spacers.default,
             
             background: [
