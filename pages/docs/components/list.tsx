@@ -8,7 +8,7 @@ import { useFlipFlop } from '../../../components/hooks'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { TransparentPreview } from '../../../components/TransparentPreview'
-import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentNestedComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, LinkResponsiveProviderPage, LinkContentPage, LinkButtonPage, LinkListSeparatorItemPage, LinkUsesIndicatorVariantsPage, SectionSubProperty, SectionPropertyProps, useComponentInfo } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentNestedComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, LinkContentPage, LinkButtonPage, LinkListSeparatorItemPage, LinkUsesIndicatorVariantsPage, SectionSubProperty, SectionPropertyProps, useComponentInfo } from '../../../components/common-contents'
 import { List, ListItem, ListSeparatorItem, OrientationName } from '@nodestrap/list'
 import { TypeScriptCode } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
@@ -75,133 +75,6 @@ const FunctionalTabList = () => {
                 A fifth item
             </ListItem>
         </List>
-    );
-};
-export const SectionPropertyStyles = ({ property, properties, propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
-    return (
-        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property ?? 'listStyle'} properties={properties ?? 'Styles'}>
-            {
-                children
-                ??
-                <>
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`listStyle='bullet'`} properties={<><code>bullet</code> Style</>} preview={<>
-                        <List listStyle='bullet' orientation='inline' theme='primary'>
-                            <ListItem />
-                            <ListItem />
-                            <ListItem theme='success' />
-                            <ListItem active={true} />
-                            <ListItem theme='danger' />
-                        </List>
-                        <p></p>
-                        <TypeScriptCode>{`
-<List listStyle='bullet' orientation='inline' theme='primary'>
-    <ListItem />
-    <ListItem />
-    <ListItem theme='success' />
-    <ListItem active={true} />
-    <ListItem theme='danger' />
-</List>
-                        `}</TypeScriptCode>
-                    </>}>
-                        <p>
-                            Set <code>{`<List listStyle='bullet'>`}</code> to style the <LinkListItemPage /> to look similar to <em>a bullet</em>.
-                        </p>
-                        <p>
-                            Requires an <strong>empty</strong> children of <LinkListItemPage />.
-                        </p>
-                    </SectionSubProperty>
-                    
-                    <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={`listStyle='numbered'`} properties={<><code>numbered</code> Style</>} preview={<>
-                        <List listStyle='numbered' theme='primary'>
-                            <ListItem>
-                                A first item
-                            </ListItem>
-                            <ListItem>
-                                A second item
-                            </ListItem>
-                            <ListItem theme='success'>
-                                A third item
-                            </ListItem>
-                            <ListItem active={true}>
-                                A fourth item
-                            </ListItem>
-                            <ListItem theme='danger'>
-                                A fifth item
-                            </ListItem>
-                        </List>
-                        <p></p>
-                        <TypeScriptCode>{`
-<List listStyle='numbered' theme='primary'>
-    <ListItem>
-        A first item
-    </ListItem>
-    <ListItem>
-        A second item
-    </ListItem>
-    <ListItem theme='success'>
-        A third item
-    </ListItem>
-    <ListItem active={true}>
-        A fourth item
-    </ListItem>
-    <ListItem theme='danger'>
-        A fifth item
-    </ListItem>
-</List>
-                        `}</TypeScriptCode>
-                        <SectionSubProperty titleTag='h5' propertySuffix={propertySuffix} property={`.void`} properties='Skip Unnecessary Content' preview={<>
-                            <List listStyle={['numbered', 'joined']} theme='primary'>
-                                <ListItem>
-                                    A first item
-                                </ListItem>
-                                <ListItem>
-                                    A second item
-                                </ListItem>
-                                <ListSeparatorItem />
-                                <ListItem theme='success'>
-                                    A third item
-                                </ListItem>
-                                <ListItem theme='warning' classes={['void']}>
-                                    An advertisement
-                                </ListItem>
-                                <ListItem theme='danger'>
-                                    A fourth item
-                                </ListItem>
-                            </List>
-                            <p></p>
-                            <TypeScriptCode>{`
-<List listStyle={['numbered', 'joined']} theme='primary'>
-    <ListItem>
-        A first item
-    </ListItem>
-    <ListItem>
-        A second item
-    </ListItem>
-    <ListSeparatorItem />
-    <ListItem theme='success'>
-        A third item
-    </ListItem>
-    <ListItem theme='warning' classes={['void']}>
-        An advertisement
-    </ListItem>
-    <ListItem theme='danger'>
-        A fourth item
-    </ListItem>
-</List>
-                            `}</TypeScriptCode>
-                        </>}>
-                            <p>
-                                A <LinkListSeparatorItemPage /> and <code>.void</code> are skipped by counter.
-                            </p>
-                        </SectionSubProperty>
-                    </>}>
-                        <p>
-                            Add a number (a counter) on each <LinkListItemPage />.
-                        </p>
-                    </SectionSubProperty>
-                </>
-            }
-        </SectionSubProperty>
     );
 };
 export const SectionPropertyListStyle = ({ styleName = 'listStyle', ...restProps }: SectionPropertyStyleProps) => {
@@ -296,6 +169,43 @@ export const SectionPropertyBreadcrumbStyle = ({ property, properties, descripti
                 </p>
                 <p>
                     Requires <code>{`<${componentName} orientation='inline'>`}</code>.
+                </p>
+            </>
+        } />
+    );
+};
+export const SectionPropertyBulletStyle = ({ property, properties, description, styleName = 'listStyle', ...restProps }: SectionPropertyItemStyleProps) => {
+    const { componentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPropertyItemStyle {...restProps} property={property ?? `${styleName}='bullet'`} properties={properties ?? <><code>bullet</code> Style</>} description={
+            description
+            ??
+            <>
+                <p>
+                    Set <code>{`<${componentName} ${styleName}='bullet'>`}</code> to style the <CurrentNestedComponent /> to look similar to <em>a bullet</em>.
+                </p>
+                <p>
+                    Requires an <strong>empty</strong> children of <CurrentNestedComponent />.
+                </p>
+            </>
+        } />
+    );
+};
+export const SectionPropertyNumberedStyle = ({ property, properties, description, styleName = 'listStyle', ...restProps }: SectionPropertyItemStyleProps) => {
+    const { componentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPropertyItemStyle {...restProps} property={property ?? `${styleName}='numbered'`} properties={properties ?? <><code>numbered</code> Style</>} description={
+            description
+            ??
+            <>
+                <p>
+                    Add a number (a counter) on each <CurrentNestedComponent />.
                 </p>
             </>
         } />
@@ -1515,8 +1425,110 @@ const TabControl = () => {
 </List>
                         `}</TypeScriptCode>
                     </SectionPropertyBreadcrumbStyle>
+                    <SectionPropertyBulletStyle>
+                        <List listStyle='bullet' orientation='inline' theme='primary'>
+                            <ListItem />
+                            <ListItem />
+                            <ListItem theme='success' />
+                            <ListItem active={true} />
+                            <ListItem theme='danger' />
+                        </List>
+                        <p></p>
+                        <TypeScriptCode>{`
+<List listStyle='bullet' orientation='inline' theme='primary'>
+    <ListItem />
+    <ListItem />
+    <ListItem theme='success' />
+    <ListItem active={true} />
+    <ListItem theme='danger' />
+</List>
+                        `}</TypeScriptCode>
+                    </SectionPropertyBulletStyle>
+                    <SectionPropertyNumberedStyle>
+                        <List listStyle='numbered' theme='primary'>
+                            <ListItem>
+                                A first item
+                            </ListItem>
+                            <ListItem>
+                                A second item
+                            </ListItem>
+                            <ListItem theme='success'>
+                                A third item
+                            </ListItem>
+                            <ListItem active={true}>
+                                A fourth item
+                            </ListItem>
+                            <ListItem theme='danger'>
+                                A fifth item
+                            </ListItem>
+                        </List>
+                        <p></p>
+                        <TypeScriptCode>{`
+<List listStyle='numbered' theme='primary'>
+    <ListItem>
+        A first item
+    </ListItem>
+    <ListItem>
+        A second item
+    </ListItem>
+    <ListItem theme='success'>
+        A third item
+    </ListItem>
+    <ListItem active={true}>
+        A fourth item
+    </ListItem>
+    <ListItem theme='danger'>
+        A fifth item
+    </ListItem>
+</List>
+                        `}</TypeScriptCode>
+                        <SectionSubProperty titleTag='h5' propertySuffix={false} property={`.void`} properties='Skip Unnecessary Content' preview={<>
+                            <List listStyle={['numbered', 'joined']} theme='primary'>
+                                <ListItem>
+                                    A first item
+                                </ListItem>
+                                <ListItem>
+                                    A second item
+                                </ListItem>
+                                <ListSeparatorItem />
+                                <ListItem theme='success'>
+                                    A third item
+                                </ListItem>
+                                <ListItem theme='warning' classes={['void']}>
+                                    An advertisement
+                                </ListItem>
+                                <ListItem theme='danger'>
+                                    A fourth item
+                                </ListItem>
+                            </List>
+                            <p></p>
+                            <TypeScriptCode>{`
+<List listStyle={['numbered', 'joined']} theme='primary'>
+    <ListItem>
+        A first item
+    </ListItem>
+    <ListItem>
+        A second item
+    </ListItem>
+    <ListSeparatorItem />
+    <ListItem theme='success'>
+        A third item
+    </ListItem>
+    <ListItem theme='warning' classes={['void']}>
+        An advertisement
+    </ListItem>
+    <ListItem theme='danger'>
+        A fourth item
+    </ListItem>
+</List>
+                            `}</TypeScriptCode>
+                        </>}>
+                            <p>
+                                A <LinkListSeparatorItemPage /> and <code>.void</code> are skipped by counter.
+                            </p>
+                        </SectionSubProperty>
+                    </SectionPropertyNumberedStyle>
                 </SectionPropertyListStyle>
-                <SectionPropertyStyles />
             </SectionVariants>
             <SectionStates>
                 <SectionPropertyActionCtrl />
