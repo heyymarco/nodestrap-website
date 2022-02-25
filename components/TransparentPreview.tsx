@@ -23,6 +23,11 @@ import { Element, ElementProps } from '@nodestrap/element';
 export const useTransparentPreviewSheet = createUseSheet(() => [
     mainComposition(
         style({
+            display: 'grid',
+            justifyItems : 'normal',
+            alignItems   : 'normal',
+            gap          : spacers.default,
+            
             background: [
                 'url("/images/tile-1.svg")',
                 'url("/images/soft-rainbow.svg")',

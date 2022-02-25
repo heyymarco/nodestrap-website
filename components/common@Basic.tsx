@@ -5,10 +5,21 @@ import { SpecList, DetailSpecItem } from './SpecList'
 import { Warning } from './Info'
 
 import { LinkColorsPage, SectionSubProperty, CurrentComponent, CurrentNestedComponent, SectionPropertyProps, useComponentInfo, SectionPreviewPropertyProps, SectionPreviewProperty, LinkResponsiveProviderPage } from './common'
+import type { ThemeName } from '@nodestrap/basic';
 
 
 
 export const defaultPropertySuffix = false;
+export const themeNames: ThemeName[] = [
+    'primary',
+    'secondary',
+    'success',
+    'info',
+    'warning',
+    'danger',
+    'light',
+    'dark',
+];
 export const SectionPropertyTheme = ({ property = 'theme', properties = 'Themes', description, ...restProps }: SectionPreviewPropertyProps) => {
     const { hasNestedComponent } = useComponentInfo();
     

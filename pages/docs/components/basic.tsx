@@ -10,6 +10,7 @@ import { TransparentPreview } from '../../../components/TransparentPreview'
 import { SectionInheritedProps, LinkBasicPage, LinkElementPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 import {
+    themeNames,
     SectionPropertyTheme,
     SectionPropertySize,
     SectionPropertyNude,
@@ -58,43 +59,25 @@ const Page: NextPage = () => {
             <SectionInheritedProps />
             <SectionVariants>
                 <SectionPropertyTheme>
-                    <Basic
-                        theme='primary'
-                    >
-                        A {'<Basic>'} with primary theme
-                    </Basic>
-                    <p></p>
-                    <Basic
-                        theme='success'
-                    >
-                        A {'<Basic>'} with success theme
-                    </Basic>
-                    <p></p>
-                    <Basic
-                        theme='danger'
-                    >
-                        A {'<Basic>'} with danger theme
-                    </Basic>
-                    <p></p>
-                    <TypeScriptCode>{`
+                    {themeNames.map((themeName) => <>
+                        <Basic
+                            theme={themeName}
+                        >
+                            A {'<Basic>'} with {themeName} theme
+                        </Basic>
+                        <p></p>
+                    </>)}
+                    <TypeScriptCode>
+                        {themeNames.map((themeName) =>
+`
 <Basic
-    theme='primary'
+    theme='${themeName}'
 >
-    A {'<Basic>'} with primary theme
+    A {'<Basic>'} with ${themeName} theme
 </Basic>
-
-<Basic
-    theme='success'
->
-    A {'<Basic>'} with success theme
-</Basic>
-
-<Basic
-    theme='danger'
->
-    A {'<Basic>'} with danger theme
-</Basic>
-                    `}</TypeScriptCode>
+`
+                        ).join('\n')}
+                    </TypeScriptCode>
                 </SectionPropertyTheme>
                 <SectionPropertySize>
                     <Basic
@@ -161,57 +144,75 @@ const Page: NextPage = () => {
                     `}</TypeScriptCode>
                 </SectionPropertyNude>
                 <SectionPropertyGradient>
-                    <Basic
-                        gradient={true}
-                        theme='primary'
-                    >
-                        hello world
-                    </Basic>
-                    <p></p>
-                    <TypeScriptCode>{`
-<Basic
-    gradient={true}
-    theme='primary'
->
-    hello world
-</Basic>
-                    `}</TypeScriptCode>
-                </SectionPropertyGradient>
-                <SectionPropertyOutlined>
-                    <TransparentPreview>
+                    {themeNames.map((themeName) => <>
                         <Basic
-                            outlined={true}
-                            theme='primary'
+                            gradient={true}
+                            theme={themeName}
                         >
                             hello world
                         </Basic>
+                        <p></p>
+                    </>)}
+                    <TypeScriptCode>
+                        {themeNames.map((themeName) =>
+`
+<Basic
+    gradient={true}
+    theme='${themeName}'
+>
+    hello world
+</Basic>
+`
+                        ).join('\n')}
+                    </TypeScriptCode>
+                </SectionPropertyGradient>
+                <SectionPropertyOutlined>
+                    <TransparentPreview>
+                        {themeNames.map((themeName) => <>
+                            <Basic
+                                outlined={true}
+                                theme={themeName}
+                            >
+                                hello world
+                            </Basic>
+                        </>)}
                     </TransparentPreview>
                     <p></p>
-                    <TypeScriptCode>{`
+                    <TypeScriptCode>
+                        {themeNames.map((themeName) =>
+`
 <Basic
     outlined={true}
-    theme='primary'
+    theme='${themeName}'
 >
     hello world
 </Basic>
-                    `}</TypeScriptCode>
+`
+                        ).join('\n')}
+                    </TypeScriptCode>
                 </SectionPropertyOutlined>
                 <SectionPropertyMild>
-                    <Basic
-                        mild={true}
-                        theme='primary'
-                    >
-                        hello world
-                    </Basic>
-                    <p></p>
-                    <TypeScriptCode>{`
+                    {themeNames.map((themeName) => <>
+                        <Basic
+                            mild={true}
+                            theme={themeName}
+                        >
+                            hello world
+                        </Basic>
+                        <p></p>
+                    </>)}
+                    <TypeScriptCode>
+                        {themeNames.map((themeName) =>
+`
 <Basic
     mild={true}
-    theme='primary'
+    theme='${themeName}'
 >
     hello world
 </Basic>
-                    `}</TypeScriptCode>
+`
+                        ).join('\n')}
+                    </TypeScriptCode>
                 </SectionPropertyMild>
             </SectionVariants>
             <SectionCustomizing specList={
