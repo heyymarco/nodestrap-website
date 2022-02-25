@@ -8,15 +8,13 @@ import { useFlipFlop } from '../../../components/hooks'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { TransparentPreview } from '../../../components/TransparentPreview'
-import { SectionInheritedProps, LinkCardPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, SectionStates, SectionPropertyProps, SectionPreviewProperty } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkCardPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, SectionStates, SectionPreviewProperty, SectionPreviewPropertyProps } from '../../../components/common-contents'
 import { Card, OrientationName } from '@nodestrap/card'
 import { TypeScriptCode } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
 import { Tips } from '../../../components/Info'
 import Element from '@nodestrap/element'
 import {
-    defaultPropertySuffix,
-    
     SectionPropertyTheme,
     SectionPropertySize,
  // SectionPropertyNude,
@@ -106,10 +104,10 @@ const CardWithActiveOutlined = () => {
         </Card>
     );
 };
-export const SectionPropertyActive  = ({ propertySuffix = defaultPropertySuffix, property = 'active' , properties = 'Active State'  , children, ...restProps }: SectionPropertyProps) => {
+export const SectionPropertyActive  = ({ property = 'active' , properties = 'Active State'  , description, ...restProps }: SectionPreviewPropertyProps) => {
     return (
         <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
-            children
+            description
             ??
             <>
                 <p>
@@ -178,47 +176,17 @@ export const SectionPropertyActive  = ({ propertySuffix = defaultPropertySuffix,
         </SectionPreviewProperty>
     );
 };
-export const SectionPropertyEnabled = ({ propertySuffix = defaultPropertySuffix, property = 'enabled', properties = 'Disabled State', children, ...restProps }: SectionPropertyProps) => {
+export const SectionPropertyEnabled = ({ property = 'enabled', properties = 'Disabled State', description, ...restProps }: SectionPreviewPropertyProps) => {
     return (
         <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
-            children
+            description
             ??
             <>
                 <p>
                     To make <CurrentComponent /> (appear) disabled, set <code>{`<Card enabled={false}>`}</code>.
                 </p>
             </>
-        }>
-            <Card
-                enabled={false}
-                theme='primary'
-                header={<>
-                    A Card with Disabled State
-                </>}
-                footer={<>
-                    Just for fun!
-                </>}
-            >
-                <DummyContents />
-            </Card>
-            <p></p>
-            <TypeScriptCode>{`
-<Card
-    enabled={false}
-    theme='primary'
-    header={<>
-        A Card with Disabled State
-    </>}
-    footer={<>
-        Just for fun!
-    </>}
->
-    <p>...</p>
-    <img alt='lorem image' src='/images/lorem-image-1.svg' />
-    <p>...</p>
-</Card>
-            `}</TypeScriptCode>
-        </SectionPreviewProperty>
+        } />
     );
 };
 
@@ -771,7 +739,37 @@ const Page: NextPage = () => {
             </SectionVariants>
             <SectionStates>
                 <SectionPropertyActive />
-                <SectionPropertyEnabled />
+                <SectionPropertyEnabled>
+                    <Card
+                        enabled={false}
+                        theme='primary'
+                        header={<>
+                            A Card with Disabled State
+                        </>}
+                        footer={<>
+                            Just for fun!
+                        </>}
+                    >
+                        <DummyContents />
+                    </Card>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Card
+    enabled={false}
+    theme='primary'
+    header={<>
+        A Card with Disabled State
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
+    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
+    <p>...</p>
+</Card>
+                    `}</TypeScriptCode>
+                </SectionPropertyEnabled>
             </SectionStates>
             <SectionCustomizing specList={
                 <SpecList>

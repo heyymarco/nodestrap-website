@@ -28,13 +28,13 @@ const WarnNotImplementExited = () => (
 
 
 export const defaultPropertySuffix = false;
-export const SectionPropertyTheme = ({ property, properties, description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyTheme = ({ property = 'theme', properties = 'Themes', description, ...restProps }: SectionPreviewPropertyProps) => {
     const { hasNestedComponent } = useComponentInfo();
     
     
     
     return (
-        <SectionPreviewProperty {...restProps} property={property ?? 'theme'} properties={properties ?? 'Themes'} specList={
+        <SectionPreviewProperty {...restProps} property={property} properties={properties} specList={
             <SpecList>
                 <DetailSpecItem code='undefined' theme='primary'>
                     <p>Uses the nearest ancestor&apos;s <code>theme</code>.</p>
@@ -92,13 +92,13 @@ export const SectionPropertyTheme = ({ property, properties, description, ...res
         } />
     );
 };
-export const SectionPropertySize = ({ property, properties, description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertySize = ({ property = 'size', properties = 'Sizes', description, ...restProps }: SectionPreviewPropertyProps) => {
     const { hasNestedComponent } = useComponentInfo();
     
     
     
     return (
-        <SectionPreviewProperty {...restProps} property={property ?? 'size'} properties={properties ?? 'Sizes'} specList={
+        <SectionPreviewProperty {...restProps} property={property} properties={properties} specList={
             <SpecList>
                 <DetailSpecItem code='undefined'>
                     <p>Uses default size.</p>
@@ -133,13 +133,13 @@ export const SectionPropertySize = ({ property, properties, description, ...rest
 export interface SectionPropertyNudeProps extends SectionPreviewPropertyProps {
     noBorder ?: boolean
 }
-export const SectionPropertyNude = ({ property, properties, description, noBorder, ...restProps }: SectionPropertyNudeProps) => {
+export const SectionPropertyNude = ({ property = 'nude', properties = 'Nude', description, noBorder, ...restProps }: SectionPropertyNudeProps) => {
     const { nestedComponentName } = useComponentInfo();
     
     
     
     return (
-        <SectionPreviewProperty {...restProps} property={property ?? 'nude'} properties={properties ?? 'Nude'} description={
+        <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
             description
             ??
             <>
@@ -153,13 +153,13 @@ export const SectionPropertyNude = ({ property, properties, description, noBorde
         } />
     );
 };
-export const SectionPropertyGradient = ({ property, properties, description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyGradient = ({ property = 'gradient', properties = 'Gradient', description, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName, hasNestedComponent, nestedComponentName } = useComponentInfo();
     
     
     
     return (
-        <SectionPreviewProperty {...restProps} property={property ?? 'gradient'} properties={properties ?? 'Gradient'} description={
+        <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
             description
             ??
             <>
@@ -173,13 +173,13 @@ export const SectionPropertyGradient = ({ property, properties, description, ...
         } />
     );
 };
-export const SectionPropertyOutlined = ({ property, properties, description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyOutlined = ({ property = 'outlined', properties = 'Outlined', description, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName, hasNestedComponent, nestedComponentName } = useComponentInfo();
     
     
     
     return (
-        <SectionPreviewProperty {...restProps} property={property ?? 'outlined'} properties={properties ?? 'Outlined'} description={
+        <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
             description
             ??
             <>
@@ -196,13 +196,13 @@ export const SectionPropertyOutlined = ({ property, properties, description, ...
 export interface SectionPropertyMildProps extends SectionPreviewPropertyProps {
     setByDefault ?: boolean
 }
-export const SectionPropertyMild = ({ property, properties, description, setByDefault = false, ...restProps }: SectionPropertyMildProps) => {
+export const SectionPropertyMild = ({ property = 'mild', properties = 'Mild', description, setByDefault = false, ...restProps }: SectionPropertyMildProps) => {
     const { componentName, hasNestedComponent, nestedComponentName } = useComponentInfo();
     
     
     
     return (
-        <SectionPreviewProperty {...restProps} property={property ?? 'mild'} properties={properties ?? 'Mild'} description={
+        <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
             description
             ??
             <>
@@ -223,13 +223,13 @@ export const SectionPropertyMild = ({ property, properties, description, setByDe
         } />
     );
 };
-export const SectionPropertyOrientation = ({ propertySuffix = defaultPropertySuffix, property, properties, children, ...restProps }: SectionPropertyProps) => {
+export const SectionPropertyOrientation = ({ propertySuffix = defaultPropertySuffix, property = 'orientation', properties = 'Orientations', children, ...restProps }: SectionPropertyProps) => {
     const { hasNestedComponent } = useComponentInfo();
     
     
     
     return (
-        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property ?? 'orientation'} properties={properties ?? 'Orientations'}>
+        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property} properties={properties}>
             <p>
                 Options for how the <CurrentNestedComponent />{hasNestedComponent && 's'} {hasNestedComponent ? 'are' : 'is'} stacked.
             </p>
@@ -240,13 +240,13 @@ export const SectionPropertyOrientation = ({ propertySuffix = defaultPropertySuf
 export interface SectionPropertyOrientationProps extends SectionPreviewPropertyProps {
     setByDefault ?: boolean
 }
-export const SectionPropertyOrientationBlock = ({ titleTag='h4', property, properties, description, setByDefault = true, ...restProps }: SectionPropertyOrientationProps) => {
+export const SectionPropertyOrientationBlock = ({ titleTag='h4', property = "orientation='block'", properties = <><code>block</code> Orientation</>, description, setByDefault = true, ...restProps }: SectionPropertyOrientationProps) => {
     const { componentName, hasNestedComponent } = useComponentInfo();
     
     
     
     return (
-        <SectionPreviewProperty {...restProps} titleTag={titleTag} property={property ?? "orientation='block'"} properties={properties ?? <><code>block</code> Orientation</>} description={
+        <SectionPreviewProperty {...restProps} titleTag={titleTag} property={property} properties={properties} description={
             description
             ??
             <>
@@ -260,13 +260,13 @@ export const SectionPropertyOrientationBlock = ({ titleTag='h4', property, prope
         } />
     );
 };
-export const SectionPropertyOrientationInline = ({ titleTag='h4', property, properties, description, setByDefault = false, ...restProps }: SectionPropertyOrientationProps) => {
+export const SectionPropertyOrientationInline = ({ titleTag='h4', property = "orientation='inline'", properties = <><code>inline</code> Orientation</>, description, setByDefault = false, ...restProps }: SectionPropertyOrientationProps) => {
     const { componentName, hasNestedComponent } = useComponentInfo();
     
     
     
     return (
-        <SectionPreviewProperty {...restProps} titleTag={titleTag} property={property ?? "orientation='inline'"} properties={properties ?? <><code>inline</code> Orientation</>} description={
+        <SectionPreviewProperty {...restProps} titleTag={titleTag} property={property} properties={properties} description={
             description
             ??
             <>
@@ -291,13 +291,13 @@ export const SectionPropertyOrientationInline = ({ titleTag='h4', property, prop
         } />
     );
 };
-export const SectionPropertyOrientationResponsive = ({ titleTag='h4', property, properties, description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyOrientationResponsive = ({ titleTag='h4', property = "orientation={currentFallback}", properties = 'Responsive Orientation', description, ...restProps }: SectionPreviewPropertyProps) => {
     const { hasNestedComponent } = useComponentInfo();
     
     
     
     return (
-        <SectionPreviewProperty {...restProps} titleTag={titleTag} property={property ?? "orientation={currentFallback}"} properties={properties ?? 'Responsive Orientation'} description={
+        <SectionPreviewProperty {...restProps} titleTag={titleTag} property={property} properties={properties} description={
             description
             ??
             <>
@@ -315,9 +315,9 @@ export const SectionPropertyOrientationResponsive = ({ titleTag='h4', property, 
 export interface SectionPropertyStyleProps extends SectionPropertyProps {
     styleName ?: string
 }
-export const SectionPropertyStyle = ({ propertySuffix = defaultPropertySuffix, styleName, property, properties, children, ...restProps }: SectionPropertyStyleProps) => {
+export const SectionPropertyStyle = ({ propertySuffix = defaultPropertySuffix, styleName, property = styleName, properties = 'Styles', children, ...restProps }: SectionPropertyStyleProps) => {
     return (
-        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property ?? styleName} properties={properties ?? 'Styles'}>
+        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property} properties={properties}>
             <p>
                 The appearance alternatives of <CurrentComponent />.
             </p>

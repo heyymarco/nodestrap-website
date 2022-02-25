@@ -8,15 +8,13 @@ import { useFlipFlop } from '../../../components/hooks'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { TransparentPreview } from '../../../components/TransparentPreview'
-import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentNestedComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, LinkContentPage, LinkButtonPage, LinkListSeparatorItemPage, LinkUsesIndicatorVariantsPage, SectionPropertyProps, useComponentInfo, SectionPreviewProperty } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentNestedComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, LinkContentPage, LinkButtonPage, LinkListSeparatorItemPage, LinkUsesIndicatorVariantsPage, useComponentInfo, SectionPreviewProperty, SectionPreviewPropertyProps } from '../../../components/common-contents'
 import { List, ListItem, ListSeparatorItem, OrientationName } from '@nodestrap/list'
 import { TypeScriptCode } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
 import { Tips, Warning } from '../../../components/Info'
 import Element from '@nodestrap/element'
 import {
-    defaultPropertySuffix,
-    
     SectionPropertyTheme,
     SectionPropertySize,
     SectionPropertyNudeProps,
@@ -272,10 +270,10 @@ const ListWithActiveOutlined = () => {
         </List>
     );
 };
-export const SectionPropertyActionCtrl = ({ propertySuffix = defaultPropertySuffix, property = 'actionCtrl', properties = 'Links and Buttons', children, ...restProps }: SectionPropertyProps) => {
+export const SectionPropertyActionCtrl = ({ property = 'actionCtrl', properties = 'Links and Buttons', description, ...restProps }: SectionPreviewPropertyProps) => {
     return (
         <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
-            children
+            description
             ??
             <>
                 <ContentMakeListItemClickable />
@@ -349,10 +347,10 @@ export const SectionPropertyActionCtrl = ({ propertySuffix = defaultPropertySuff
         </SectionPreviewProperty>
     );
 };
-export const SectionPropertyActive     = ({ propertySuffix = defaultPropertySuffix, property = 'active'    , properties = 'Active Items'     , children, ...restProps }: SectionPropertyProps) => {
+export const SectionPropertyActive     = ({ property = 'active'    , properties = 'Active Items'     , description, ...restProps }: SectionPreviewPropertyProps) => {
     return (
         <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
-            children
+            description
             ??
             <>
                 <p>
@@ -479,10 +477,10 @@ export const SectionPropertyActive     = ({ propertySuffix = defaultPropertySuff
         </SectionPreviewProperty>
     );
 };
-export const SectionPropertyEnabled    = ({ propertySuffix = defaultPropertySuffix, property = 'enabled'   , properties = 'Disabled Items'   , children, ...restProps }: SectionPropertyProps) => {
+export const SectionPropertyEnabled    = ({ property = 'enabled'   , properties = 'Disabled Items'   , description, ...restProps }: SectionPreviewPropertyProps) => {
     return (
         <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
-            children
+            description
             ??
             <>
                 <p>
@@ -494,91 +492,7 @@ export const SectionPropertyEnabled    = ({ propertySuffix = defaultPropertySuff
                     Note: the <code>{`inheritEnabled={false}`}</code> prevents the disabled state on <CurrentComponent /> affecting the <LinkListItemPage />.
                 </p>
             </>
-        }>
-            <List theme='primary'>
-                <ListItem>
-                    A first item (not clickable)
-                </ListItem>
-                <ListItem enabled={false}>
-                    A second item (not clickable + disabled)
-                </ListItem>
-                <ListItem enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
-                    A third item (clickable + disabled)
-                </ListItem>
-                <ListItem enabled={false} actionCtrl={true} href='https://www.google.com'>
-                    A fourth item (clickable + disabled)
-                    <p>
-                        <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-                    </p>
-                </ListItem>
-                <ListItem enabled={false} active={true} actionCtrl={true} onClick={() => alert('hello world')}>
-                    A fifth item item (clickable + disabled + active)
-                </ListItem>
-                <ListItem enabled={false} active={true} theme='danger' actionCtrl={true} href='https://www.google.com'>
-                    A seventh item item (clickable + disabled + active)
-                    <p>
-                        <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-                    </p>
-                </ListItem>
-            </List>
-            <p></p>
-            <TypeScriptCode>{`
-<List theme='primary'>
-    <ListItem>
-        A first item (not clickable)
-    </ListItem>
-    <ListItem enabled={false}>
-        A second item (not clickable + disabled)
-    </ListItem>
-    <ListItem enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
-        A third item (clickable + disabled)
-    </ListItem>
-    <ListItem enabled={false} actionCtrl={true} href='https://www.google.com'>
-        A fourth item (clickable + disabled)
-        <p>
-            <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-        </p>
-    </ListItem>
-    <ListItem enabled={false} active={true} actionCtrl={true} onClick={() => alert('hello world')}>
-        A fifth item item (clickable + disabled + active)
-    </ListItem>
-    <ListItem enabled={false} active={true} theme='danger' actionCtrl={true} href='https://www.google.com'>
-        A seventh item item (clickable + disabled + active)
-        <p>
-            <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-        </p>
-    </ListItem>
-</List>
-
-/* alternate code but with the similar result: */
-<List enabled={false} theme='primary'>
-    <ListItem enabled={true} inheritEnabled={false}>
-        A first item (not clickable)
-    </ListItem>
-    <ListItem>
-        A second item (not clickable + disabled)
-    </ListItem>
-    <ListItem actionCtrl={true} onClick={() => alert('hello world')}>
-        A third item (clickable + disabled)
-    </ListItem>
-    <ListItem actionCtrl={true} href='https://www.google.com'>
-        A fourth item (clickable + disabled)
-        <p>
-            <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-        </p>
-    </ListItem>
-    <ListItem active={true} actionCtrl={true} onClick={() => alert('hello world')}>
-        A fifth item item (clickable + disabled + active)
-    </ListItem>
-    <ListItem active={true} theme='danger' actionCtrl={true} href='https://www.google.com'>
-        A seventh item item (clickable + disabled + active)
-        <p>
-            <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-        </p>
-    </ListItem>
-</List>
-            `}</TypeScriptCode>
-        </SectionPreviewProperty>
+        } />
     );
 };
 
@@ -1531,7 +1445,91 @@ const TabControl = () => {
             <SectionStates>
                 <SectionPropertyActionCtrl />
                 <SectionPropertyActive />
-                <SectionPropertyEnabled />
+                <SectionPropertyEnabled>
+                    <List theme='primary'>
+                        <ListItem>
+                            A first item (not clickable)
+                        </ListItem>
+                        <ListItem enabled={false}>
+                            A second item (not clickable + disabled)
+                        </ListItem>
+                        <ListItem enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
+                            A third item (clickable + disabled)
+                        </ListItem>
+                        <ListItem enabled={false} actionCtrl={true} href='https://www.google.com'>
+                            A fourth item (clickable + disabled)
+                            <p>
+                                <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
+                            </p>
+                        </ListItem>
+                        <ListItem enabled={false} active={true} actionCtrl={true} onClick={() => alert('hello world')}>
+                            A fifth item item (clickable + disabled + active)
+                        </ListItem>
+                        <ListItem enabled={false} active={true} theme='danger' actionCtrl={true} href='https://www.google.com'>
+                            A seventh item item (clickable + disabled + active)
+                            <p>
+                                <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
+                            </p>
+                        </ListItem>
+                    </List>
+                    <p></p>
+                    <TypeScriptCode>{`
+<List theme='primary'>
+    <ListItem>
+        A first item (not clickable)
+    </ListItem>
+    <ListItem enabled={false}>
+        A second item (not clickable + disabled)
+    </ListItem>
+    <ListItem enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
+        A third item (clickable + disabled)
+    </ListItem>
+    <ListItem enabled={false} actionCtrl={true} href='https://www.google.com'>
+        A fourth item (clickable + disabled)
+        <p>
+            <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
+        </p>
+    </ListItem>
+    <ListItem enabled={false} active={true} actionCtrl={true} onClick={() => alert('hello world')}>
+        A fifth item item (clickable + disabled + active)
+    </ListItem>
+    <ListItem enabled={false} active={true} theme='danger' actionCtrl={true} href='https://www.google.com'>
+        A seventh item item (clickable + disabled + active)
+        <p>
+            <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
+        </p>
+    </ListItem>
+</List>
+
+/* alternate code but with the similar result: */
+<List enabled={false} theme='primary'>
+    <ListItem enabled={true} inheritEnabled={false}>
+        A first item (not clickable)
+    </ListItem>
+    <ListItem>
+        A second item (not clickable + disabled)
+    </ListItem>
+    <ListItem actionCtrl={true} onClick={() => alert('hello world')}>
+        A third item (clickable + disabled)
+    </ListItem>
+    <ListItem actionCtrl={true} href='https://www.google.com'>
+        A fourth item (clickable + disabled)
+        <p>
+            <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
+        </p>
+    </ListItem>
+    <ListItem active={true} actionCtrl={true} onClick={() => alert('hello world')}>
+        A fifth item item (clickable + disabled + active)
+    </ListItem>
+    <ListItem active={true} theme='danger' actionCtrl={true} href='https://www.google.com'>
+        A seventh item item (clickable + disabled + active)
+        <p>
+            <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
+        </p>
+    </ListItem>
+</List>
+                    `}</TypeScriptCode>
+                </SectionPropertyEnabled>
             </SectionStates>
             <SectionCustomizing specList={
                 <SpecList>
