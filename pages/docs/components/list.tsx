@@ -66,13 +66,13 @@ const FunctionalTabList = () => {
             <ListItem active={activeTabIndex === 1} onClick={() => setActiveTabIndex(1)}>
                 A second item
             </ListItem>
-            <ListItem theme='success' active={activeTabIndex === 2} onClick={() => setActiveTabIndex(2)}>
+            <ListItem active={activeTabIndex === 2} onClick={() => setActiveTabIndex(2)} theme='success'>
                 A third item
             </ListItem>
             <ListItem active={activeTabIndex === 3} onClick={() => setActiveTabIndex(3)}>
                 A fourth item
             </ListItem>
-            <ListItem theme='danger' active={activeTabIndex === 4} onClick={() => setActiveTabIndex(4)}>
+            <ListItem active={activeTabIndex === 4} onClick={() => setActiveTabIndex(4)} theme='danger'>
                 A fifth item
             </ListItem>
         </List>
@@ -234,7 +234,7 @@ const ContentMakeListItemClickable = () => {
                     Assigning <code>{`actionCtrl={true}`}</code> without assigning <code>href</code> makes the <LinkListItemPage /> rendered as <code>{`<div role='button'>`}</code>.
                 </p>
                 <p>
-                    Assigning <code>{`actionCtrl={true}`}</code> and <code>{`tag='button'`}</code> without assigning <code>href</code> makes the <LinkListItemPage /> rendered as <code>{`<button>`}</code>.
+                    Assigning <code>{`actionCtrl={true}`}</code> and <code>{`tag='button'`}</code> makes the <LinkListItemPage /> rendered as <code>{`<button>`}</code>.
                 </p>
             </Warning>
         </>
@@ -1371,13 +1371,13 @@ const TabControl = () => {
             <ListItem active={activeTabIndex === 1} onClick={() => setActiveTabIndex(1)}>
                 A second item
             </ListItem>
-            <ListItem theme='success' active={activeTabIndex === 2} onClick={() => setActiveTabIndex(2)}>
+            <ListItem active={activeTabIndex === 2} onClick={() => setActiveTabIndex(2)} theme='success'>
                 A third item
             </ListItem>
             <ListItem active={activeTabIndex === 3} onClick={() => setActiveTabIndex(3)}>
                 A fourth item
             </ListItem>
-            <ListItem theme='danger' active={activeTabIndex === 4} onClick={() => setActiveTabIndex(4)}>
+            <ListItem active={activeTabIndex === 4} onClick={() => setActiveTabIndex(4)} theme='danger'>
                 A fifth item
             </ListItem>
         </List>
