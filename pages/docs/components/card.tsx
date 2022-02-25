@@ -111,7 +111,7 @@ export const SectionPropertyActive           = ({ property = 'active'  , propert
             ??
             <>
                 <p>
-                    To make <CurrentComponent /> (appear) active, set <code>{`<Card active={true}>`}</code>.
+                    To make <CurrentComponent /> active, set <code>{`<Card active={true}>`}</code>.
                 </p>
             </>
         } />
@@ -137,7 +137,7 @@ export const SectionPropertyEnabled          = ({ property = 'enabled' , propert
             ??
             <>
                 <p>
-                    To make <CurrentComponent /> (appear) disabled, set <code>{`<Card enabled={false}>`}</code>.
+                    To make <CurrentComponent /> disabled, set <code>{`<Card enabled={false}>`}</code>.
                 </p>
             </>
         } />

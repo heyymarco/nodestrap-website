@@ -288,7 +288,7 @@ export const SectionPropertyActive           = ({ property = 'active'    , prope
             ??
             <>
                 <p>
-                    To make <LinkListItemPage /> (appear) active, set <code>{`<ListItem active={true}>`}</code>.
+                    To make <LinkListItemPage /> active, set <code>{`<ListItem active={true}>`}</code>.
                 </p>
                 <p>
                     You can also set the <code>active</code> at <code>{`<List active={true}>`}</code>, so the entire <LinkListItemPage />s are active.<br />
@@ -319,7 +319,7 @@ export const SectionPropertyEnabled          = ({ property = 'enabled'   , prope
             ??
             <>
                 <p>
-                    To make <LinkListItemPage /> (appear) disabled, set <code>{`<ListItem enabled={false}>`}</code>.
+                    To make <LinkListItemPage /> disabled, set <code>{`<ListItem enabled={false}>`}</code>.
                 </p>
                 <p>
                     You can also set the <code>enabled</code> at <code>{`<List enabled={false}>`}</code>, so the entire <LinkListItemPage />s are disabled.<br />
