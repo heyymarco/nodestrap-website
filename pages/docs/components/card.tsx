@@ -32,7 +32,7 @@ import {
     SectionPropertyFlatStyle   as BasicSectionPropertyFlatStyle,
     SectionPropertyFlushStyle  as BasicSectionPropertyFlushStyle,
     SectionPropertyJoinedStyle as BasicSectionPropertyJoinedStyle,
-} from './basic'
+} from '../../../components/common@Basic'
 
 import loadable from '@loadable/component'
 const DemoCardLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Card' */'../../../components/DemoPanel@Card'))

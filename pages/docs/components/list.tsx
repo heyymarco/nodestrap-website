@@ -34,7 +34,7 @@ import {
     SectionPropertyFlatStyle   as BasicSectionPropertyFlatStyle,
     SectionPropertyFlushStyle  as BasicSectionPropertyFlushStyle,
     SectionPropertyJoinedStyle as BasicSectionPropertyJoinedStyle,
-} from './basic'
+} from '../../../components/common@Basic'
 
 import loadable from '@loadable/component'
 const DemoListLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@List' */'../../../components/DemoPanel@List'))
