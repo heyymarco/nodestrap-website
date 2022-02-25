@@ -278,73 +278,7 @@ export const SectionPropertyActionCtrl       = ({ property = 'actionCtrl', prope
             <>
                 <ContentMakeListItemClickable />
             </>
-        }>
-            <List theme='primary'>
-                <ListItem>
-                    A first item (not clickable)
-                </ListItem>
-                <ListItem>
-                    A second item (not clickable)
-                </ListItem>
-                <ListItem actionCtrl={true} onClick={() => alert('hello world')}>
-                    A third item (clickable)
-                </ListItem>
-                <ListItem actionCtrl={true} href='https://www.google.com'>
-                    A fourth item (clickable)
-                </ListItem>
-                <ListItem active={true} actionCtrl={true} onClick={() => alert('hello world')}>
-                    A fifth item item (clickable)
-                </ListItem>
-                <ListItem active={true} theme='danger' actionCtrl={true} href='https://www.google.com'>
-                    A seventh item item (clickable)
-                </ListItem>
-            </List>
-            <p></p>
-            <TypeScriptCode>{`
-<List theme='primary'>
-    <ListItem>
-        A first item (not clickable)
-    </ListItem>
-    <ListItem>
-        A second item (not clickable)
-    </ListItem>
-    <ListItem actionCtrl={true} onClick={() => alert('hello world')}>
-        A third item (clickable)
-    </ListItem>
-    <ListItem actionCtrl={true} href='https://www.google.com'>
-        A fourth item (clickable)
-    </ListItem>
-    <ListItem active={true} actionCtrl={true} onClick={() => alert('hello world')}>
-        A fifth item item (clickable)
-    </ListItem>
-    <ListItem active={true} theme='danger' actionCtrl={true} href='https://www.google.com'>
-        A seventh item item (clickable)
-    </ListItem>
-</List>
-
-/* alternate code but with the similar result: */
-<List theme='primary' actionCtrl={true}>
-    <ListItem actionCtrl={false}>
-        A first item (not clickable)
-    </ListItem>
-    <ListItem actionCtrl={false}>
-        A second item (not clickable)
-    </ListItem>
-    <ListItem  onClick={() => alert('hello world')}>
-        A third item (clickable)
-    </ListItem>
-    <ListItem href='https://www.google.com'>
-        A fourth item (clickable)
-    </ListItem>
-    <ListItem active={true} onClick={() => alert('hello world')}>
-        A fifth item item (clickable)
-    </ListItem>
-    <ListItem active={true} theme='danger' href='https://www.google.com'>
-        A seventh item item (clickable)
-    </ListItem>
-</List>
-            `}</TypeScriptCode>
-        </SectionPreviewProperty>
+        } />
     );
 };
 export const SectionPropertyActive           = ({ property = 'active'    , properties = 'Active Items'                         , description, ...restProps }: SectionPreviewPropertyProps) => {
@@ -1344,7 +1278,73 @@ const TabControl = () => {
                 </SectionPropertyListStyle>
             </SectionVariants>
             <SectionStates>
-                <SectionPropertyActionCtrl />
+                <SectionPropertyActionCtrl>
+                    <List theme='primary'>
+                        <ListItem>
+                            A first item (not clickable)
+                        </ListItem>
+                        <ListItem>
+                            A second item (not clickable)
+                        </ListItem>
+                        <ListItem actionCtrl={true} onClick={() => alert('hello world')}>
+                            A third item (clickable)
+                        </ListItem>
+                        <ListItem actionCtrl={true} href='https://www.google.com'>
+                            A fourth item (clickable)
+                        </ListItem>
+                        <ListItem active={true} actionCtrl={true} onClick={() => alert('hello world')}>
+                            A fifth item item (clickable)
+                        </ListItem>
+                        <ListItem active={true} theme='danger' actionCtrl={true} href='https://www.google.com'>
+                            A seventh item item (clickable)
+                        </ListItem>
+                    </List>
+                    <p></p>
+                    <TypeScriptCode>{`
+<List theme='primary'>
+    <ListItem>
+        A first item (not clickable)
+    </ListItem>
+    <ListItem>
+        A second item (not clickable)
+    </ListItem>
+    <ListItem actionCtrl={true} onClick={() => alert('hello world')}>
+        A third item (clickable)
+    </ListItem>
+    <ListItem actionCtrl={true} href='https://www.google.com'>
+        A fourth item (clickable)
+    </ListItem>
+    <ListItem active={true} actionCtrl={true} onClick={() => alert('hello world')}>
+        A fifth item item (clickable)
+    </ListItem>
+    <ListItem active={true} theme='danger' actionCtrl={true} href='https://www.google.com'>
+        A seventh item item (clickable)
+    </ListItem>
+</List>
+
+/* alternate code but with the similar result: */
+<List theme='primary' actionCtrl={true}>
+    <ListItem actionCtrl={false}>
+        A first item (not clickable)
+    </ListItem>
+    <ListItem actionCtrl={false}>
+        A second item (not clickable)
+    </ListItem>
+    <ListItem  onClick={() => alert('hello world')}>
+        A third item (clickable)
+    </ListItem>
+    <ListItem href='https://www.google.com'>
+        A fourth item (clickable)
+    </ListItem>
+    <ListItem active={true} onClick={() => alert('hello world')}>
+        A fifth item item (clickable)
+    </ListItem>
+    <ListItem active={true} theme='danger' href='https://www.google.com'>
+        A seventh item item (clickable)
+    </ListItem>
+</List>
+                    `}</TypeScriptCode>
+                </SectionPropertyActionCtrl>
                 <SectionPropertyActive>
                     <List theme='primary'>
                         <ListItem>
