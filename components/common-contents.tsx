@@ -121,7 +121,7 @@ export const LinkTogglerMenuButtonPage     = (props: PageLinkProps) => <LinkCode
 
 export const LinkListPage                  = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/list'>List</LinkCode>
 export const LinkListItemPage              = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/list'>ListItem</LinkCode>
-export const LinkListSeparatorItemPage     = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/list'>LinkListSeparatorItemPage</LinkCode>
+export const LinkListSeparatorItemPage     = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/list'>ListSeparatorItem</LinkCode>
 
 export const LinkCardPage                  = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/card'>Card</LinkCode>
 
