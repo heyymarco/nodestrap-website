@@ -8,7 +8,7 @@ import { useFlipFlop } from '../../../components/hooks'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { TransparentPreview } from '../../../components/TransparentPreview'
-import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentNestedComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, LinkContentPage, LinkButtonPage, LinkListSeparatorItemPage, LinkUsesIndicatorVariantsPage, SectionSubProperty, SectionPropertyProps, useComponentInfo } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentNestedComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, LinkContentPage, LinkButtonPage, LinkListSeparatorItemPage, LinkUsesIndicatorVariantsPage, SectionSubProperty, SectionPropertyProps, useComponentInfo, SectionPreviewProperty } from '../../../components/common-contents'
 import { List, ListItem, ListSeparatorItem, OrientationName } from '@nodestrap/list'
 import { TypeScriptCode } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
@@ -1276,7 +1276,9 @@ const Page: NextPage = () => {
     </ListItem>
 </List>
                         `}</TypeScriptCode>
-                        <SectionSubProperty titleTag='h5' propertySuffix={false} property={`actionCtrl={true}`} properties='Make the Buttons Functional' preview={<>
+                        <SectionPreviewProperty titleTag='h5' property={`actionCtrl={true}`} properties='Make the Buttons Functional' description={
+                            <ContentMakeListItemClickable />
+                        }>
                             <List listStyle='btn' actionCtrl={true} theme='primary'>
                                 <ListItem>
                                     A first item
@@ -1314,9 +1316,7 @@ const Page: NextPage = () => {
     </ListItem>
 </List>
                             `}</TypeScriptCode>
-                        </>}>
-                            <ContentMakeListItemClickable />
-                        </SectionSubProperty>
+                        </SectionPreviewProperty>
                     </SectionPropertyBtnStyle>
                     <SectionPropertyTabStyle>
                         <List listStyle='tab' orientation='inline' theme='primary'>
@@ -1356,7 +1356,9 @@ const Page: NextPage = () => {
     </ListItem>
 </List>
                         `}</TypeScriptCode>
-                        <SectionSubProperty titleTag='h5' propertySuffix={false} property={`actionCtrl={true}`} properties='Make the Tabs Functional' preview={<>
+                        <SectionPreviewProperty titleTag='h5' property={`actionCtrl={true}`} properties='Make the Tabs Functional' description={
+                            <ContentMakeListItemClickable />
+                        }>
                             <FunctionalTabList />
                             <p></p>
                             <TypeScriptCode>{`
@@ -1384,9 +1386,7 @@ const TabControl = () => {
     );
 };
                             `}</TypeScriptCode>
-                        </>}>
-                            <ContentMakeListItemClickable />
-                        </SectionSubProperty>
+                        </SectionPreviewProperty>
                     </SectionPropertyTabStyle>
                     <SectionPropertyBreadcrumbStyle>
                         <List listStyle='breadcrumb' orientation='inline' theme='primary'>
@@ -1484,7 +1484,11 @@ const TabControl = () => {
     </ListItem>
 </List>
                         `}</TypeScriptCode>
-                        <SectionSubProperty titleTag='h5' propertySuffix={false} property={`.void`} properties='Skip Unnecessary Content' preview={<>
+                        <SectionPreviewProperty titleTag='h5' property={`.void`} properties='Skip Unnecessary Content' description={
+                            <p>
+                                A <LinkListSeparatorItemPage /> and <code>.void</code> are skipped by counter.
+                            </p>
+                        }>
                             <List listStyle={['numbered', 'joined']} theme='primary'>
                                 <ListItem>
                                     A first item
@@ -1524,11 +1528,7 @@ const TabControl = () => {
     </ListItem>
 </List>
                             `}</TypeScriptCode>
-                        </>}>
-                            <p>
-                                A <LinkListSeparatorItemPage /> and <code>.void</code> are skipped by counter.
-                            </p>
-                        </SectionSubProperty>
+                        </SectionPreviewProperty>
                     </SectionPropertyNumberedStyle>
                 </SectionPropertyListStyle>
             </SectionVariants>
