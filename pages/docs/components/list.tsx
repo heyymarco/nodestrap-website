@@ -15,6 +15,8 @@ import ResponsiveProvider from '@nodestrap/responsive'
 import { Tips, Warning } from '../../../components/Info'
 import Element from '@nodestrap/element'
 import {
+    defaultPropertySuffix,
+    
     SectionPropertyTheme,
     SectionPropertySize,
     SectionPropertyNudeProps,
@@ -41,7 +43,6 @@ const DemoListLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@List'
 
 
 
-const defaultPropertySuffix = false;
 export const SectionPropertyNude = ({ noBorder = true, ...props }: SectionPropertyNudeProps) => {
     return (
         <BasicSectionPropertyNude {...props} noBorder={noBorder} />
@@ -239,7 +240,39 @@ const ContentMakeListItemClickable = () => {
         </>
     )
 };
-export const SectionPropertyActionCtrl = ({ property = 'actionCtrl', properties = 'Links and Buttons', propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
+const ListWithActiveOutlined = () => {
+    const [listRef, isActive] = useFlipFlop({ defaultState: true });
+    
+    
+    
+    const activeLabel = <Element tag={isActive ? 'span' : 'del'}>active</Element>
+    return (
+        <List elmRef={listRef} outlined={true} theme='primary'>
+            <ListItem>
+                A first item (not clickable)
+            </ListItem>
+            <ListItem active={isActive}>
+                A second item (not clickable + { activeLabel })
+            </ListItem>
+            <ListItem active={isActive} actionCtrl={true} onClick={() => alert('hello world')}>
+                A third item (clickable + { activeLabel })
+            </ListItem>
+            <ListItem active={isActive} actionCtrl={true} href='https://www.google.com'>
+                A fourth item (clickable + { activeLabel })
+            </ListItem>
+            <ListItem active={isActive} enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
+                A fifth item item (clickable + { activeLabel } + disabled)
+            </ListItem>
+            <ListItem active={isActive} enabled={false} theme='danger' actionCtrl={true} href='https://www.google.com'>
+                A seventh item item (clickable + { activeLabel } + disabled)
+                <p>
+                    <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
+                </p>
+            </ListItem>
+        </List>
+    );
+};
+export const SectionPropertyActionCtrl = ({ propertySuffix = defaultPropertySuffix, property = 'actionCtrl', properties = 'Links and Buttons', children, ...restProps }: SectionPropertyProps) => {
     return (
         <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property} properties={properties} preview={<>
             <List theme='primary'>
@@ -318,39 +351,7 @@ export const SectionPropertyActionCtrl = ({ property = 'actionCtrl', properties 
         </SectionSubProperty>
     );
 };
-const ListWithActiveOutlined = () => {
-    const [listRef, isActive] = useFlipFlop({ defaultState: true });
-    
-    
-    
-    const activeLabel = <Element tag={isActive ? 'span' : 'del'}>active</Element>
-    return (
-        <List elmRef={listRef} outlined={true} theme='primary'>
-            <ListItem>
-                A first item (not clickable)
-            </ListItem>
-            <ListItem active={isActive}>
-                A second item (not clickable + { activeLabel })
-            </ListItem>
-            <ListItem active={isActive} actionCtrl={true} onClick={() => alert('hello world')}>
-                A third item (clickable + { activeLabel })
-            </ListItem>
-            <ListItem active={isActive} actionCtrl={true} href='https://www.google.com'>
-                A fourth item (clickable + { activeLabel })
-            </ListItem>
-            <ListItem active={isActive} enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
-                A fifth item item (clickable + { activeLabel } + disabled)
-            </ListItem>
-            <ListItem active={isActive} enabled={false} theme='danger' actionCtrl={true} href='https://www.google.com'>
-                A seventh item item (clickable + { activeLabel } + disabled)
-                <p>
-                    <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-                </p>
-            </ListItem>
-        </List>
-    );
-};
-export const SectionPropertyActive = ({ property = 'active', properties = 'Active Items', propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
+export const SectionPropertyActive     = ({ propertySuffix = defaultPropertySuffix, property = 'active'    , properties = 'Active Items'     , children, ...restProps }: SectionPropertyProps) => {
     return (
         <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property} properties={properties} preview={<>
             <List theme='primary'>
@@ -480,7 +481,7 @@ export const SectionPropertyActive = ({ property = 'active', properties = 'Activ
         </SectionSubProperty>
     );
 };
-export const SectionPropertyEnabled = ({ property = 'enabled', properties = 'Disabled Items', propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
+export const SectionPropertyEnabled    = ({ propertySuffix = defaultPropertySuffix, property = 'enabled'   , properties = 'Disabled Items'   , children, ...restProps }: SectionPropertyProps) => {
     return (
         <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property} properties={properties} preview={<>
             <List theme='primary'>

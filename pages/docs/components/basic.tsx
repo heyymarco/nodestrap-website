@@ -27,6 +27,7 @@ const WarnNotImplementExited = () => (
 
 
 
+export const defaultPropertySuffix = false;
 export const SectionPropertyTheme = ({ property, properties, description, ...restProps }: SectionPreviewPropertyProps) => {
     const { hasNestedComponent } = useComponentInfo();
     
@@ -222,7 +223,7 @@ export const SectionPropertyMild = ({ property, properties, description, setByDe
         } />
     );
 };
-export const SectionPropertyOrientation = ({ propertySuffix = false, property, properties, children, ...restProps }: SectionPropertyProps) => {
+export const SectionPropertyOrientation = ({ propertySuffix = defaultPropertySuffix, property, properties, children, ...restProps }: SectionPropertyProps) => {
     const { hasNestedComponent } = useComponentInfo();
     
     
@@ -314,7 +315,7 @@ export const SectionPropertyOrientationResponsive = ({ titleTag='h4', property, 
 export interface SectionPropertyStyleProps extends SectionPropertyProps {
     styleName ?: string
 }
-export const SectionPropertyStyle = ({ propertySuffix = false, styleName, property, properties, children, ...restProps }: SectionPropertyStyleProps) => {
+export const SectionPropertyStyle = ({ propertySuffix = defaultPropertySuffix, styleName, property, properties, children, ...restProps }: SectionPropertyStyleProps) => {
     return (
         <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property ?? styleName} properties={properties ?? 'Styles'}>
             <p>

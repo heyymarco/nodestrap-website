@@ -15,6 +15,8 @@ import ResponsiveProvider from '@nodestrap/responsive'
 import { Tips } from '../../../components/Info'
 import Element from '@nodestrap/element'
 import {
+    defaultPropertySuffix,
+    
     SectionPropertyTheme,
     SectionPropertySize,
  // SectionPropertyNude,
@@ -55,7 +57,6 @@ const DummyContents = () => {
 
 
 
-const defaultPropertySuffix = false;
 export const SectionPropertyMild = ({ setByDefault = true, ...props }: SectionPropertyMildProps) => {
     return (
         <BasicSectionPropertyMild {...props} setByDefault={setByDefault} />
@@ -105,7 +106,7 @@ const CardWithActiveOutlined = () => {
         </Card>
     );
 };
-export const SectionPropertyActive = ({ property = 'active', properties = 'Active State', propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
+export const SectionPropertyActive  = ({ propertySuffix = defaultPropertySuffix, property = 'active' , properties = 'Active State'  , children, ...restProps }: SectionPropertyProps) => {
     return (
         <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property} properties={properties} preview={<>
             <Card
@@ -177,7 +178,7 @@ export const SectionPropertyActive = ({ property = 'active', properties = 'Activ
         </SectionSubProperty>
     );
 };
-export const SectionPropertyEnabled = ({ property = 'enabled', properties = 'Disabled State', propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
+export const SectionPropertyEnabled = ({ propertySuffix = defaultPropertySuffix, property = 'enabled', properties = 'Disabled State', children, ...restProps }: SectionPropertyProps) => {
     return (
         <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property} properties={properties} preview={<>
             <Card
