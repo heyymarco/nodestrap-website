@@ -274,7 +274,13 @@ const ListWithActiveOutlined = () => {
 };
 export const SectionPropertyActionCtrl = ({ propertySuffix = defaultPropertySuffix, property = 'actionCtrl', properties = 'Links and Buttons', children, ...restProps }: SectionPropertyProps) => {
     return (
-        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property} properties={properties} preview={<>
+        <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
+            children
+            ??
+            <>
+                <ContentMakeListItemClickable />
+            </>
+        }>
             <List theme='primary'>
                 <ListItem>
                     A first item (not clickable)
@@ -340,20 +346,25 @@ export const SectionPropertyActionCtrl = ({ propertySuffix = defaultPropertySuff
     </ListItem>
 </List>
             `}</TypeScriptCode>
-        </>}>
-            {
-                children
-                ??
-                <>
-                    <ContentMakeListItemClickable />
-                </>
-            }
-        </SectionSubProperty>
+        </SectionPreviewProperty>
     );
 };
 export const SectionPropertyActive     = ({ propertySuffix = defaultPropertySuffix, property = 'active'    , properties = 'Active Items'     , children, ...restProps }: SectionPropertyProps) => {
     return (
-        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property} properties={properties} preview={<>
+        <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
+            children
+            ??
+            <>
+                <p>
+                    To make <LinkListItemPage /> (appear) active, set <code>{`<ListItem active={true}>`}</code>.
+                </p>
+                <p>
+                    You can also set the <code>active</code> at <code>{`<List active={true}>`}</code>, so the entire <LinkListItemPage />s are active.<br />
+                    To make an exception in a/some <LinkListItemPage />(s), set <code>{`<ListItem active={false} inheritActive={false}>`}</code>.<br />
+                    Note: the <code>{`inheritActive={false}`}</code> prevents the active state on <CurrentComponent /> affecting the <LinkListItemPage />.
+                </p>
+            </>
+        }>
             <List theme='primary'>
                 <ListItem>
                     A first item (not clickable)
@@ -463,27 +474,25 @@ export const SectionPropertyActive     = ({ propertySuffix = defaultPropertySuff
                     Assigning <code>{`<ListItem active={true}>`}</code> will cancel out the <code>outlined</code> variant.
                 </p>
             </SectionSubProperty>
-        </>}>
-            {
-                children
-                ??
-                <>
-                    <p>
-                        To make <LinkListItemPage /> (appear) active, set <code>{`<ListItem active={true}>`}</code>.
-                    </p>
-                    <p>
-                        You can also set the <code>active</code> at <code>{`<List active={true}>`}</code>, so the entire <LinkListItemPage />s are active.<br />
-                        To make an exception in a/some <LinkListItemPage />(s), set <code>{`<ListItem active={false} inheritActive={false}>`}</code>.<br />
-                        Note: the <code>{`inheritActive={false}`}</code> prevents the active state on <CurrentComponent /> affecting the <LinkListItemPage />.
-                    </p>
-                </>
-            }
-        </SectionSubProperty>
+        </SectionPreviewProperty>
     );
 };
 export const SectionPropertyEnabled    = ({ propertySuffix = defaultPropertySuffix, property = 'enabled'   , properties = 'Disabled Items'   , children, ...restProps }: SectionPropertyProps) => {
     return (
-        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property} properties={properties} preview={<>
+        <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
+            children
+            ??
+            <>
+                <p>
+                    To make <LinkListItemPage /> (appear) disabled, set <code>{`<ListItem enabled={false}>`}</code>.
+                </p>
+                <p>
+                    You can also set the <code>enabled</code> at <code>{`<List enabled={false}>`}</code>, so the entire <LinkListItemPage />s are disabled.<br />
+                    To make an exception in a/some <LinkListItemPage />(s), set <code>{`<ListItem enabled={true} inheritEnabled={false}>`}</code>.<br />
+                    Note: the <code>{`inheritEnabled={false}`}</code> prevents the disabled state on <CurrentComponent /> affecting the <LinkListItemPage />.
+                </p>
+            </>
+        }>
             <List theme='primary'>
                 <ListItem>
                     A first item (not clickable)
@@ -567,22 +576,7 @@ export const SectionPropertyEnabled    = ({ propertySuffix = defaultPropertySuff
     </ListItem>
 </List>
             `}</TypeScriptCode>
-        </>}>
-            {
-                children
-                ??
-                <>
-                    <p>
-                        To make <LinkListItemPage /> (appear) disabled, set <code>{`<ListItem enabled={false}>`}</code>.
-                    </p>
-                    <p>
-                        You can also set the <code>enabled</code> at <code>{`<List enabled={false}>`}</code>, so the entire <LinkListItemPage />s are disabled.<br />
-                        To make an exception in a/some <LinkListItemPage />(s), set <code>{`<ListItem enabled={true} inheritEnabled={false}>`}</code>.<br />
-                        Note: the <code>{`inheritEnabled={false}`}</code> prevents the disabled state on <CurrentComponent /> affecting the <LinkListItemPage />.
-                    </p>
-                </>
-            }
-        </SectionSubProperty>
+        </SectionPreviewProperty>
     );
 };
 

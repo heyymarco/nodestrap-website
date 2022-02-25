@@ -8,7 +8,7 @@ import { useFlipFlop } from '../../../components/hooks'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { TransparentPreview } from '../../../components/TransparentPreview'
-import { SectionInheritedProps, LinkCardPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, SectionStates, SectionSubProperty, SectionPropertyProps } from '../../../components/common-contents'
+import { SectionInheritedProps, LinkCardPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, SectionStates, SectionSubProperty, SectionPropertyProps, SectionPreviewProperty } from '../../../components/common-contents'
 import { Card, OrientationName } from '@nodestrap/card'
 import { TypeScriptCode } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
@@ -108,7 +108,15 @@ const CardWithActiveOutlined = () => {
 };
 export const SectionPropertyActive  = ({ propertySuffix = defaultPropertySuffix, property = 'active' , properties = 'Active State'  , children, ...restProps }: SectionPropertyProps) => {
     return (
-        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property} properties={properties} preview={<>
+        <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
+            children
+            ??
+            <>
+                <p>
+                    To make <CurrentComponent /> (appear) active, set <code>{`<Card active={true}>`}</code>.
+                </p>
+            </>
+        }>
             <Card
                 active={true}
                 theme='primary'
@@ -165,22 +173,20 @@ export const SectionPropertyActive  = ({ propertySuffix = defaultPropertySuffix,
                     Assigning <code>{`<Card active={true}>`}</code> will cancel out the <code>outlined</code> variant.
                 </p>
             </SectionSubProperty>
-        </>}>
-            {
-                children
-                ??
-                <>
-                    <p>
-                        To make <CurrentComponent /> (appear) active, set <code>{`<Card active={true}>`}</code>.
-                    </p>
-                </>
-            }
-        </SectionSubProperty>
+        </SectionPreviewProperty>
     );
 };
 export const SectionPropertyEnabled = ({ propertySuffix = defaultPropertySuffix, property = 'enabled', properties = 'Disabled State', children, ...restProps }: SectionPropertyProps) => {
     return (
-        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property} properties={properties} preview={<>
+        <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
+            children
+            ??
+            <>
+                <p>
+                    To make <CurrentComponent /> (appear) disabled, set <code>{`<Card enabled={false}>`}</code>.
+                </p>
+            </>
+        }>
             <Card
                 enabled={false}
                 theme='primary'
@@ -210,17 +216,7 @@ export const SectionPropertyEnabled = ({ propertySuffix = defaultPropertySuffix,
     <p>...</p>
 </Card>
             `}</TypeScriptCode>
-        </>}>
-            {
-                children
-                ??
-                <>
-                    <p>
-                        To make <CurrentComponent /> (appear) disabled, set <code>{`<Card enabled={false}>`}</code>.
-                    </p>
-                </>
-            }
-        </SectionSubProperty>
+        </SectionPreviewProperty>
     );
 };
 
