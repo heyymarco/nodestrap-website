@@ -42,14 +42,14 @@ const DemoListLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@List'
 
 
 const defaultPropertySuffix = false;
-export const SectionPropertyNude = ({ noBorder, ...props }: SectionPropertyNudeProps) => {
+export const SectionPropertyNude = ({ noBorder = true, ...props }: SectionPropertyNudeProps) => {
     return (
-        <BasicSectionPropertyNude {...props} noBorder={noBorder ?? true} />
+        <BasicSectionPropertyNude {...props} noBorder={noBorder} />
     );
 };
-export const SectionPropertyMild = ({ setByDefault, ...props }: SectionPropertyMildProps) => {
+export const SectionPropertyMild = ({ setByDefault = true, ...props }: SectionPropertyMildProps) => {
     return (
-        <BasicSectionPropertyMild {...props} setByDefault={setByDefault ?? true} />
+        <BasicSectionPropertyMild {...props} setByDefault={setByDefault} />
     );
 };
 const FunctionalTabList = () => {
@@ -77,38 +77,39 @@ const FunctionalTabList = () => {
         </List>
     );
 };
-export const SectionPropertyListStyle = ({ styleName = 'listStyle', ...restProps }: SectionPropertyStyleProps) => {
+const listStyle = 'listStyle';
+export const SectionPropertyListStyle       = ({ styleName = listStyle, ...restProps }: SectionPropertyStyleProps) => {
     return (
         <SectionPropertyStyle {...restProps} styleName={styleName} />
     );
 };
-export const SectionPropertyFlatStyle = ({ styleName = 'listStyle', ...restProps }: SectionPropertyItemStyleProps) => {
+export const SectionPropertyFlatStyle       = ({ styleName = listStyle, ...restProps }: SectionPropertyItemStyleProps) => {
     return (
         <BasicSectionPropertyFlatStyle {...restProps} styleName={styleName} />
     );
 };
-export const SectionPropertyFlushStyle = ({ styleName = 'listStyle', ...restProps }: SectionPropertyItemStyleProps) => {
+export const SectionPropertyFlushStyle      = ({ styleName = listStyle, ...restProps }: SectionPropertyItemStyleProps) => {
     return (
         <BasicSectionPropertyFlushStyle {...restProps} styleName={styleName} />
     );
 };
-export const SectionPropertyJoinedStyle = ({ styleName = 'listStyle', ...restProps }: SectionPropertyItemStyleProps) => {
+export const SectionPropertyJoinedStyle     = ({ styleName = listStyle, ...restProps }: SectionPropertyItemStyleProps) => {
     return (
         <BasicSectionPropertyJoinedStyle {...restProps} styleName={styleName} />
     );
 };
-export const SectionPropertyContentStyle = ({ property, properties, description, styleName = 'listStyle', ...restProps }: SectionPropertyItemStyleProps) => {
+export const SectionPropertyContentStyle    = ({ styleName = listStyle, property = 'content'   , description, ...restProps }: SectionPropertyItemStyleProps) => {
     const { componentName } = useComponentInfo();
     
     
     
     return (
-        <SectionPropertyItemStyle {...restProps} property={property ?? `${styleName}='content'`} properties={properties ?? <><code>content</code> Style</>} description={
+        <SectionPropertyItemStyle {...restProps} styleName={styleName} property={property} description={
             description
             ??
             <>
                 <p>
-                    Set <code>{`<${componentName} ${styleName}='content'>`}</code> to style the <CurrentNestedComponent /> to look similar to <LinkContentPage /> (usually with wider paddings).
+                    Set <code>{`<${componentName} ${styleName}='${property}'>`}</code> to style the <CurrentNestedComponent /> to look similar to <LinkContentPage /> (usually with wider paddings).
                 </p>
                 <p>
                     Basically it merges the <CurrentNestedComponent />&apos;s style + <LinkContentPage />&apos;s style.
@@ -117,18 +118,18 @@ export const SectionPropertyContentStyle = ({ property, properties, description,
         } />
     );
 };
-export const SectionPropertyBtnStyle = ({ property, properties, description, styleName = 'listStyle', ...restProps }: SectionPropertyItemStyleProps) => {
+export const SectionPropertyBtnStyle        = ({ styleName = listStyle, property = 'btn'       , description, ...restProps }: SectionPropertyItemStyleProps) => {
     const { componentName } = useComponentInfo();
     
     
     
     return (
-        <SectionPropertyItemStyle {...restProps} property={property ?? `${styleName}='btn'`} properties={properties ?? <><code>btn</code> Style</>} description={
+        <SectionPropertyItemStyle {...restProps} styleName={styleName} property={property} description={
             description
             ??
             <>
                 <p>
-                    Set <code>{`<${componentName} ${styleName}='btn'>`}</code> to style the <CurrentNestedComponent /> to look similar to <LinkButtonPage />.
+                    Set <code>{`<${componentName} ${styleName}='${property}'>`}</code> to style the <CurrentNestedComponent /> to look similar to <LinkButtonPage />.
                 </p>
                 <p>
                     Basically it merges the <CurrentNestedComponent />&apos;s style + <LinkButtonPage />&apos;s style.
@@ -137,35 +138,35 @@ export const SectionPropertyBtnStyle = ({ property, properties, description, sty
         } />
     );
 };
-export const SectionPropertyTabStyle = ({ property, properties, description, styleName = 'listStyle', ...restProps }: SectionPropertyItemStyleProps) => {
+export const SectionPropertyTabStyle        = ({ styleName = listStyle, property = 'tab'       , description, ...restProps }: SectionPropertyItemStyleProps) => {
     const { componentName } = useComponentInfo();
     
     
     
     return (
-        <SectionPropertyItemStyle {...restProps} property={property ?? `${styleName}='tab'`} properties={properties ?? <><code>tab</code> Style</>} description={
+        <SectionPropertyItemStyle {...restProps} styleName={styleName} property={property} description={
             description
             ??
             <>
                 <p>
-                    Set <code>{`<${componentName} ${styleName}='tab'>`}</code> to style the <CurrentNestedComponent /> to look similar to <em>a tabbed interface</em>.
+                    Set <code>{`<${componentName} ${styleName}='${property}'>`}</code> to style the <CurrentNestedComponent /> to look similar to <em>a tabbed interface</em>.
                 </p>
             </>
         } />
     );
 };
-export const SectionPropertyBreadcrumbStyle = ({ property, properties, description, styleName = 'listStyle', ...restProps }: SectionPropertyItemStyleProps) => {
+export const SectionPropertyBreadcrumbStyle = ({ styleName = listStyle, property = 'breadcrumb', description, ...restProps }: SectionPropertyItemStyleProps) => {
     const { componentName } = useComponentInfo();
     
     
     
     return (
-        <SectionPropertyItemStyle {...restProps} property={property ?? `${styleName}='breadcrumb'`} properties={properties ?? <><code>breadcrumb</code> Style</>} description={
+        <SectionPropertyItemStyle {...restProps} styleName={styleName} property={property} description={
             description
             ??
             <>
                 <p>
-                    Set <code>{`<${componentName} ${styleName}='breadcrumb'>`}</code> to style the <CurrentNestedComponent /> to look similar to <em>a breadcrumb</em>.
+                    Set <code>{`<${componentName} ${styleName}='${property}'>`}</code> to style the <CurrentNestedComponent /> to look similar to <em>a breadcrumb</em>.
                 </p>
                 <p>
                     Requires <code>{`<${componentName} orientation='inline'>`}</code>.
@@ -174,18 +175,18 @@ export const SectionPropertyBreadcrumbStyle = ({ property, properties, descripti
         } />
     );
 };
-export const SectionPropertyBulletStyle = ({ property, properties, description, styleName = 'listStyle', ...restProps }: SectionPropertyItemStyleProps) => {
+export const SectionPropertyBulletStyle     = ({ styleName = listStyle, property = 'bullet'    , description, ...restProps }: SectionPropertyItemStyleProps) => {
     const { componentName } = useComponentInfo();
     
     
     
     return (
-        <SectionPropertyItemStyle {...restProps} property={property ?? `${styleName}='bullet'`} properties={properties ?? <><code>bullet</code> Style</>} description={
+        <SectionPropertyItemStyle {...restProps} styleName={styleName} property={property} description={
             description
             ??
             <>
                 <p>
-                    Set <code>{`<${componentName} ${styleName}='bullet'>`}</code> to style the <CurrentNestedComponent /> to look similar to <em>a bullet</em>.
+                    Set <code>{`<${componentName} ${styleName}='${property}'>`}</code> to style the <CurrentNestedComponent /> to look similar to <em>a bullet</em>.
                 </p>
                 <p>
                     Requires an <strong>empty</strong> children of <CurrentNestedComponent />.
@@ -194,18 +195,18 @@ export const SectionPropertyBulletStyle = ({ property, properties, description, 
         } />
     );
 };
-export const SectionPropertyNumberedStyle = ({ property, properties, description, styleName = 'listStyle', ...restProps }: SectionPropertyItemStyleProps) => {
+export const SectionPropertyNumberedStyle   = ({ styleName = listStyle, property = 'numbered'  , description, ...restProps }: SectionPropertyItemStyleProps) => {
     const { componentName } = useComponentInfo();
     
     
     
     return (
-        <SectionPropertyItemStyle {...restProps} property={property ?? `${styleName}='numbered'`} properties={properties ?? <><code>numbered</code> Style</>} description={
+        <SectionPropertyItemStyle {...restProps} styleName={styleName} property={property} description={
             description
             ??
             <>
                 <p>
-                    Add a number (a counter) on each <CurrentNestedComponent />.
+                    Set <code>{`<${componentName} ${styleName}='${property}'>`}</code> to add a number (a counter) on each <CurrentNestedComponent />.
                 </p>
             </>
         } />
@@ -238,9 +239,9 @@ const ContentMakeListItemClickable = () => {
         </>
     )
 };
-export const SectionPropertyActionCtrl = ({ property, properties, propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
+export const SectionPropertyActionCtrl = ({ property = 'actionCtrl', properties = 'Links and Buttons', propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
-        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property ?? 'actionCtrl'} properties={properties ?? 'Links and Buttons'} preview={<>
+        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property} properties={properties} preview={<>
             <List theme='primary'>
                 <ListItem>
                     A first item (not clickable)
@@ -349,9 +350,9 @@ const ListWithActiveOutlined = () => {
         </List>
     );
 };
-export const SectionPropertyActive = ({ property, properties, propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
+export const SectionPropertyActive = ({ property = 'active', properties = 'Active Items', propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
-        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property ?? 'active'} properties={properties ?? 'Active Items'} preview={<>
+        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property} properties={properties} preview={<>
             <List theme='primary'>
                 <ListItem>
                     A first item (not clickable)
@@ -426,7 +427,7 @@ export const SectionPropertyActive = ({ property, properties, propertySuffix = d
     </ListItem>
 </List>
             `}</TypeScriptCode>
-            <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={property ?? 'outlined'} properties='Active Items with Outlined' preview={<>
+            <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property='outlined' properties='Active Items with Outlined Variant' preview={<>
                 <TransparentPreview>
                     <ListWithActiveOutlined />
                 </TransparentPreview>
@@ -479,9 +480,9 @@ export const SectionPropertyActive = ({ property, properties, propertySuffix = d
         </SectionSubProperty>
     );
 };
-export const SectionPropertyEnabled = ({ property, properties, propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
+export const SectionPropertyEnabled = ({ property = 'enabled', properties = 'Disabled Items', propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
-        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property ?? 'enabled'} properties={properties ?? 'Disabled Items'} preview={<>
+        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property} properties={properties} preview={<>
             <List theme='primary'>
                 <ListItem>
                     A first item (not clickable)

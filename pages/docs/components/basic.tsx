@@ -314,7 +314,7 @@ export const SectionPropertyOrientationResponsive = ({ titleTag='h4', property, 
 export interface SectionPropertyStyleProps extends SectionPropertyProps {
     styleName ?: string
 }
-export const SectionPropertyStyle = ({ propertySuffix = false, property, properties, children, styleName, ...restProps }: SectionPropertyStyleProps) => {
+export const SectionPropertyStyle = ({ propertySuffix = false, styleName, property, properties, children, ...restProps }: SectionPropertyStyleProps) => {
     return (
         <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property ?? styleName} properties={properties ?? 'Styles'}>
             <p>
@@ -326,57 +326,60 @@ export const SectionPropertyStyle = ({ propertySuffix = false, property, propert
 };
 export interface SectionPropertyItemStyleProps extends SectionPreviewPropertyProps, Pick<SectionPropertyStyleProps, 'styleName'> {
 }
-export const SectionPropertyItemStyle = ({ titleTag='h4', ...restProps }: Omit<SectionPropertyItemStyleProps, 'styleName'>) => {
+export const SectionPropertyItemStyle = ({ titleTag='h4', styleName, property, properties, ...restProps }: SectionPropertyItemStyleProps) => {
     return (
-        <SectionPreviewProperty {...restProps} titleTag={titleTag} />
+        <SectionPreviewProperty {...restProps} titleTag={titleTag} property={`${styleName}='${property}'`} properties={properties ?? <><code>{property}</code> Style</>} />
     );
 };
-export const SectionPropertyFlatStyle = ({ property, properties, description, styleName, ...restProps }: SectionPropertyItemStyleProps) => {
+export const SectionPropertyFlatStyle   = ({ property = 'flat'  , description, ...restProps }: SectionPropertyItemStyleProps) => {
     const { componentName, hasNestedComponent } = useComponentInfo();
+    const styleName = restProps.styleName;
     
     
     
     return (
-        <SectionPropertyItemStyle {...restProps} property={property ?? `${styleName}='flat'`} properties={properties ?? <><code>flat</code> Style</>} description={
+        <SectionPropertyItemStyle {...restProps} property={property} description={
             description
             ??
             <>
                 <p>
-                    Set <code>{`<${componentName} ${styleName}='flat'>`}</code> to remove the <code>border</code>, <code>border-radius</code>, and <em>separator</em> (a <code>border</code> between {hasNestedComponent ? <><CurrentNestedComponent />s</> : <><CurrentComponent />&apos;s items</>}).
+                    Set <code>{`<${componentName} ${styleName}='${property}'>`}</code> to remove the <code>border</code>, <code>border-radius</code>, and <em>separator</em> (a <code>border</code> between {hasNestedComponent ? <><CurrentNestedComponent />s</> : <><CurrentComponent />&apos;s items</>}).
                 </p>
             </>
         } />
     );
 };
-export const SectionPropertyFlushStyle = ({ property, properties, description, styleName, ...restProps }: SectionPropertyItemStyleProps) => {
+export const SectionPropertyFlushStyle  = ({ property = 'flush' , description, ...restProps }: SectionPropertyItemStyleProps) => {
     const { componentName } = useComponentInfo();
+    const styleName = restProps.styleName;
     
     
     
     return (
-        <SectionPropertyItemStyle {...restProps} property={property ?? `${styleName}='flush'`} properties={properties ?? <><code>flush</code> Style</>} description={
+        <SectionPropertyItemStyle {...restProps} property={property} description={
             description
             ??
             <>
                 <p>
-                    Set <code>{`<${componentName} ${styleName}='flush'>`}</code> to remove the <code>border</code> and <code>border-radius</code>.
+                    Set <code>{`<${componentName} ${styleName}='${property}'>`}</code> to remove the <code>border</code> and <code>border-radius</code>.
                 </p>
             </>
         } />
     );
 };
-export const SectionPropertyJoinedStyle = ({ property, properties, description, styleName, ...restProps }: SectionPropertyItemStyleProps) => {
+export const SectionPropertyJoinedStyle = ({ property = 'joined', description, ...restProps }: SectionPropertyItemStyleProps) => {
     const { componentName, hasNestedComponent } = useComponentInfo();
+    const styleName = restProps.styleName;
     
     
     
     return (
-        <SectionPropertyItemStyle {...restProps} property={property ?? `${styleName}='joined'`} properties={properties ?? <><code>joined</code> Style</>} description={
+        <SectionPropertyItemStyle {...restProps} property={property} description={
             description
             ??
             <>
                 <p>
-                    Set <code>{`<${componentName} ${styleName}='joined'>`}</code> to remove the <em>separator</em> (a <code>border</code> between {hasNestedComponent ? <><CurrentNestedComponent />s</> : <><CurrentComponent />&apos;s items</>}).
+                    Set <code>{`<${componentName} ${styleName}='${property}'>`}</code> to remove the <em>separator</em> (a <code>border</code> between {hasNestedComponent ? <><CurrentNestedComponent />s</> : <><CurrentComponent />&apos;s items</>}).
                 </p>
             </>
         } />

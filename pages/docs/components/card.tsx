@@ -56,27 +56,28 @@ const DummyContents = () => {
 
 
 const defaultPropertySuffix = false;
-export const SectionPropertyMild = ({ setByDefault, ...props }: SectionPropertyMildProps) => {
+export const SectionPropertyMild = ({ setByDefault = true, ...props }: SectionPropertyMildProps) => {
     return (
-        <BasicSectionPropertyMild {...props} setByDefault={setByDefault ?? true} />
+        <BasicSectionPropertyMild {...props} setByDefault={setByDefault} />
     );
 };
-export const SectionPropertyCardStyle = ({ styleName = 'cardStyle', ...restProps }: SectionPropertyStyleProps) => {
+const cardStyle = 'cardStyle';
+export const SectionPropertyCardStyle   = ({ styleName = cardStyle, ...restProps }: SectionPropertyStyleProps) => {
     return (
         <SectionPropertyStyle {...restProps} styleName={styleName} />
     );
 };
-export const SectionPropertyFlatStyle = ({ styleName = 'cardStyle', ...restProps }: SectionPropertyItemStyleProps) => {
+export const SectionPropertyFlatStyle   = ({ styleName = cardStyle, ...restProps }: SectionPropertyItemStyleProps) => {
     return (
         <BasicSectionPropertyFlatStyle {...restProps} styleName={styleName} />
     );
 };
-export const SectionPropertyFlushStyle = ({ styleName = 'cardStyle', ...restProps }: SectionPropertyItemStyleProps) => {
+export const SectionPropertyFlushStyle  = ({ styleName = cardStyle, ...restProps }: SectionPropertyItemStyleProps) => {
     return (
         <BasicSectionPropertyFlushStyle {...restProps} styleName={styleName} />
     );
 };
-export const SectionPropertyJoinedStyle = ({ styleName = 'cardStyle', ...restProps }: SectionPropertyItemStyleProps) => {
+export const SectionPropertyJoinedStyle = ({ styleName = cardStyle, ...restProps }: SectionPropertyItemStyleProps) => {
     return (
         <BasicSectionPropertyJoinedStyle {...restProps} styleName={styleName} />
     );
@@ -104,9 +105,9 @@ const CardWithActiveOutlined = () => {
         </Card>
     );
 };
-export const SectionPropertyActive = ({ property, properties, propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
+export const SectionPropertyActive = ({ property = 'active', properties = 'Active State', propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
-        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property ?? 'active'} properties={properties ?? 'Active State'} preview={<>
+        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property} properties={properties} preview={<>
             <Card
                 active={true}
                 theme='primary'
@@ -136,7 +137,7 @@ export const SectionPropertyActive = ({ property, properties, propertySuffix = d
     <p>...</p>
 </Card>
             `}</TypeScriptCode>
-            <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property={property ?? 'outlined'} properties='Active State with Outlined Variant' preview={<>
+            <SectionSubProperty titleTag='h4' propertySuffix={propertySuffix} property='outlined' properties='Active State with Outlined Variant' preview={<>
                 <TransparentPreview>
                     <CardWithActiveOutlined />
                 </TransparentPreview>
@@ -176,9 +177,9 @@ export const SectionPropertyActive = ({ property, properties, propertySuffix = d
         </SectionSubProperty>
     );
 };
-export const SectionPropertyEnabled = ({ property, properties, propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
+export const SectionPropertyEnabled = ({ property = 'enabled', properties = 'Disabled State', propertySuffix = defaultPropertySuffix, children, ...restProps }: SectionPropertyProps) => {
     return (
-        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property ?? 'enabled'} properties={properties ?? 'Disabled State'} preview={<>
+        <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property} properties={properties} preview={<>
             <Card
                 enabled={false}
                 theme='primary'
