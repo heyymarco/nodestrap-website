@@ -20,10 +20,9 @@ import {
 } from '../../../components/common@Basic'
 import {
     SectionPropertyMild,
-    
-    SectionPropertyEnabled,
 } from '../../../components/common@Indicator'
 import {
+    SectionPropertyEnabled,
     SectionPropertyActive,
 } from '../../../components/common@Popup'
 

@@ -20,13 +20,15 @@ export const themeNames: ThemeName[] = [
     'light',
     'dark',
 ];
-export const SectionPropertyTheme = ({ property = 'theme', properties = 'Themes', description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyTheme = ({ property = 'theme', properties = 'Themes', specList, description, ...restProps }: SectionPreviewPropertyProps) => {
     const { hasNestedComponent } = useComponentInfo();
     
     
     
     return (
         <SectionPreviewProperty {...restProps} property={property} properties={properties} specList={
+            specList
+            ??
             <SpecList>
                 <DetailSpecItem code='undefined' theme='primary'>
                     <p>Uses the nearest ancestor&apos;s <code>theme</code>.</p>
@@ -84,13 +86,15 @@ export const SectionPropertyTheme = ({ property = 'theme', properties = 'Themes'
         } />
     );
 };
-export const SectionPropertySize = ({ property = 'size', properties = 'Sizes', description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertySize = ({ property = 'size', properties = 'Sizes', specList, description, ...restProps }: SectionPreviewPropertyProps) => {
     const { hasNestedComponent } = useComponentInfo();
     
     
     
     return (
         <SectionPreviewProperty {...restProps} property={property} properties={properties} specList={
+            specList
+            ??
             <SpecList>
                 <DetailSpecItem code='undefined'>
                     <p>Uses default size.</p>

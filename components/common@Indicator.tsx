@@ -19,13 +19,15 @@ export const SectionPropertyMild = ({ setByDefault = true, ...props }: SectionPr
 
 
 
-export const SectionPropertyActive           = ({ property = 'active'    , properties = 'Active State'                         , description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyActive           = ({ property = 'active'    , properties = 'Active State'                         , specList, description, ...restProps }: SectionPreviewPropertyProps) => {
     const { nestedComponentName } = useComponentInfo();
     
     
     
     return (
         <SectionPreviewProperty {...restProps} property={property} properties={properties} specList={
+            specList
+            ??
             <SpecList>
                 <DetailSpecItem code='true'>
                     <p>
@@ -76,7 +78,7 @@ export const ParagraphSetParentActive        = () => {
     );
 };
 
-export const SectionPropertyActiveNoOutlined = ({ property = 'outlined'  , properties = 'Active State cancels Outlined Variant', description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyActiveNoOutlined = ({ property = 'outlined'  , properties = 'Active State cancels Outlined Variant'          , description, ...restProps }: SectionPreviewPropertyProps) => {
     const { nestedComponentName } = useComponentInfo();
     
     
@@ -93,7 +95,7 @@ export const SectionPropertyActiveNoOutlined = ({ property = 'outlined'  , prope
         } />
     );
 };
-export const SectionPropertyActiveNoMild     = ({ property = 'mild'      , properties = 'Active State cancels Mild Variant'    , description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyActiveNoMild     = ({ property = 'mild'      , properties = 'Active State cancels Mild Variant'              , description, ...restProps }: SectionPreviewPropertyProps) => {
     const { nestedComponentName } = useComponentInfo();
     
     
@@ -111,13 +113,15 @@ export const SectionPropertyActiveNoMild     = ({ property = 'mild'      , prope
     );
 };
 
-export const SectionPropertyEnabled          = ({ property = 'enabled'   , properties = 'Disabled State'                       , description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyEnabled          = ({ property = 'enabled'   , properties = 'Disabled State'                       , specList, description, ...restProps }: SectionPreviewPropertyProps) => {
     const { nestedComponentName } = useComponentInfo();
     
     
     
     return (
         <SectionPreviewProperty {...restProps} property={property} properties={properties} specList={
+            specList
+            ??
             <SpecList>
                 <DetailSpecItem code='true'>
                     <p>
@@ -168,13 +172,15 @@ export const ParagraphSetParentDisabled      = () => {
     );
 };
 
-export const SectionPropertyReadOnly         = ({ property = 'readOnly'  , properties = `ReadOnly State`                       , description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyReadOnly         = ({ property = 'readOnly'  , properties = `ReadOnly State`                       , specList, description, ...restProps }: SectionPreviewPropertyProps) => {
     const { nestedComponentName } = useComponentInfo();
     
     
     
     return (
         <SectionPreviewProperty {...restProps} property={property} properties={properties} specList={
+            specList
+            ??
             <SpecList>
                 <DetailSpecItem code='true'>
                     <p>
