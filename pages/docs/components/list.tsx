@@ -8,7 +8,7 @@ import { useFlipFlop } from '../../../components/hooks'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { TransparentPreview } from '../../../components/TransparentPreview'
-import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, LinkListSeparatorItemPage, LinkUsesIndicatorVariantsPage, SectionPreviewProperty } from '../../../components/common'
+import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentNestedComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, LinkListSeparatorItemPage, LinkUsesIndicatorVariantsPage, SectionPreviewProperty } from '../../../components/common'
 import { List, ListItem, ListSeparatorItem, OrientationName } from '@nodestrap/list'
 import { TypeScriptCode } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
@@ -1430,7 +1430,7 @@ const TabControl = () => {
                         <SubSpecList>
                             <SimpleSpecItem>
                                 <code>numberedContent</code>
-                                <p>A custom content of <code>::before</code> element of each <LinkListItemPage />.</p>
+                                <p>A custom content of <code>::before</code> element of each <CurrentNestedComponent />.</p>
                             </SimpleSpecItem>
                         </SubSpecList>
                     </DetailSpecItem>
