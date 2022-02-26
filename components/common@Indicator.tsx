@@ -73,10 +73,29 @@ export const SectionPropertyEnabled          = ({ property = 'enabled'   , prope
     
     
     return (
-        <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
+        <SectionPreviewProperty {...restProps} property={property} properties={properties} specList={
+            <SpecList>
+                <DetailSpecItem code='true'>
+                    <p>
+                        At this state, all functionality of <CurrentNestedComponent /> are <strong>preserved</strong>.
+                    </p>
+                    <p>
+                        This is the <strong>default</strong> value if the <code>enabled</code> value is not specified.
+                    </p>
+                </DetailSpecItem>
+                <DetailSpecItem code='false'>
+                    <p>
+                        At this state, all/almost all functionality of <CurrentNestedComponent /> are <strong>disabled</strong>.
+                    </p>
+                </DetailSpecItem>
+            </SpecList>
+        } description={
             description
             ??
             <>
+                <p>
+                    Disables the <CurrentNestedComponent /> <strong>functionality</strong>.
+                </p>
                 <p>
                     To make <CurrentNestedComponent /> disabled, set <code>{`<${nestedComponentName} enabled={false}>`}</code>.
                 </p>

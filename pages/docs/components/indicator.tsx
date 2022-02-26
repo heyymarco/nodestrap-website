@@ -96,29 +96,23 @@ const Page: NextPage = () => {
                         `}</TypeScriptCode>
                     </SectionPropertyActiveNoOutlined>
                 </SectionPropertyActive>
-                <SectionSubProperty property='enabled' specList={
-                    <SpecList>
-                        <DetailSpecItem code='true'>
-                            <p>
-                                At this state, all functionality are <strong>preserved</strong>.
-                                You can fully interact to this component.
-                            </p>
-                            <p>
-                                This is the <strong>default</strong> value if the <code>enabled</code> value is not specified.
-                            </p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='false'>
-                            <p>
-                                At this state, all/almost all functionality are <strong>disabled</strong>.
-                                You cannot interact to this component.
-                            </p>
-                        </DetailSpecItem>
-                    </SpecList>
-                }>
-                    <p>
-                        Influences the component <strong>functionality</strong>.
-                    </p>
-                </SectionSubProperty>
+                <SectionPropertyEnabled>
+                    <Indicator
+                        enabled={false}
+                        theme='primary'
+                    >
+                        hello world
+                    </Indicator>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Indicator
+    enabled={false}
+    theme='primary'
+>
+    hello world
+</Indicator>
+                    `}</TypeScriptCode>
+                </SectionPropertyEnabled>
                 <SectionSubProperty property='readOnly' specList={
                     <SpecList>
                         <DetailSpecItem code='true'>
