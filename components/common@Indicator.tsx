@@ -20,7 +20,7 @@ export const SectionPropertyMild = ({ setByDefault = true, ...props }: SectionPr
 
 
 export const SectionPropertyActive           = ({ property = 'active'    , properties = 'Active State'                         , description, ...restProps }: SectionPreviewPropertyProps) => {
-    const { componentName, hasNestedComponent, nestedComponentName } = useComponentInfo();
+    const { nestedComponentName } = useComponentInfo();
     
     
     
@@ -46,24 +46,36 @@ export const SectionPropertyActive           = ({ property = 'active'    , prope
             ??
             <>
                 <p>
-                    Indicates the <CurrentNestedComponent /> is currently <strong>selected</strong> or <strong>on</strong> state.
+                    Decides the <CurrentNestedComponent /> is currently <strong>selected</strong> or <strong>on</strong> state.
                 </p>
                 <p>
                     To make <CurrentNestedComponent /> active, set <code>{`<${nestedComponentName} active={true}>`}</code>.
                 </p>
-                {hasNestedComponent && <>
-                    <p>
-                        You can also set the <code>active</code> at <code>{`<${componentName} active={true}>`}</code>, so the entire <CurrentNestedComponent />s are active.<br />
-                        To make an exception in a/some <CurrentNestedComponent />(s), set <code>{`<${nestedComponentName} active={false} inheritActive={false}>`}</code>.<br />
-                    </p>
-                    <p>
-                        Note: the <code>{`inheritActive={false}`}</code> prevents the active state on <CurrentComponent /> affecting the <CurrentNestedComponent />.
-                    </p>
-                </>}
+                <ParagraphSetParentActive />
             </>
         } />
     );
 };
+export const ParagraphSetParentActive        = () => {
+    const { componentName, hasNestedComponent, nestedComponentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <>
+            {hasNestedComponent && <>
+                <p>
+                    You can also set the <code>active</code> at <code>{`<${componentName} active={true}>`}</code>, so the entire <CurrentNestedComponent />s are active.<br />
+                    To make an exception in a/some <CurrentNestedComponent />(s), set <code>{`<${nestedComponentName} active={false} inheritActive={false}>`}</code>.<br />
+                </p>
+                <p>
+                    Note: the <code>{`inheritActive={false}`}</code> prevents the active state on <CurrentComponent /> affecting the <CurrentNestedComponent />.
+                </p>
+            </>}
+        </>
+    );
+};
+
 export const SectionPropertyActiveNoOutlined = ({ property = 'outlined'  , properties = 'Active State cancels Outlined Variant', description, ...restProps }: SectionPreviewPropertyProps) => {
     const { nestedComponentName } = useComponentInfo();
     
@@ -98,8 +110,9 @@ export const SectionPropertyActiveNoMild     = ({ property = 'mild'      , prope
         } />
     );
 };
+
 export const SectionPropertyEnabled          = ({ property = 'enabled'   , properties = 'Disabled State'                       , description, ...restProps }: SectionPreviewPropertyProps) => {
-    const { componentName, hasNestedComponent, nestedComponentName } = useComponentInfo();
+    const { nestedComponentName } = useComponentInfo();
     
     
     
@@ -130,21 +143,33 @@ export const SectionPropertyEnabled          = ({ property = 'enabled'   , prope
                 <p>
                     To make <CurrentNestedComponent /> disabled, set <code>{`<${nestedComponentName} enabled={false}>`}</code>.
                 </p>
-                {hasNestedComponent && <>
-                    <p>
-                        You can also set the <code>enabled</code> at <code>{`<${componentName} enabled={false}>`}</code>, so the entire <CurrentNestedComponent />s are disabled.<br />
-                        To make an exception in a/some <CurrentNestedComponent />(s), set <code>{`<${nestedComponentName} enabled={true} inheritEnabled={false}>`}</code>.<br />
-                    </p>
-                    <p>
-                        Note: the <code>{`inheritEnabled={false}`}</code> prevents the disabled state on <CurrentComponent /> affecting the <CurrentNestedComponent />.
-                    </p>
-                </>}
+                <ParagraphSetParentDisabled />
             </>
         } />
     );
 };
-export const SectionPropertyReadOnly         = ({ property = 'readOnly'  , properties = `ReadOnly State`                       , description, ...restProps }: SectionPreviewPropertyProps) => {
+export const ParagraphSetParentDisabled      = () => {
     const { componentName, hasNestedComponent, nestedComponentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <>
+            {hasNestedComponent && <>
+                <p>
+                    You can also set the <code>enabled</code> at <code>{`<${componentName} enabled={false}>`}</code>, so the entire <CurrentNestedComponent />s are disabled.<br />
+                    To make an exception in a/some <CurrentNestedComponent />(s), set <code>{`<${nestedComponentName} enabled={true} inheritEnabled={false}>`}</code>.<br />
+                </p>
+                <p>
+                    Note: the <code>{`inheritEnabled={false}`}</code> prevents the disabled state on <CurrentComponent /> affecting the <CurrentNestedComponent />.
+                </p>
+            </>}
+        </>
+    );
+};
+
+export const SectionPropertyReadOnly         = ({ property = 'readOnly'  , properties = `ReadOnly State`                       , description, ...restProps }: SectionPreviewPropertyProps) => {
+    const { nestedComponentName } = useComponentInfo();
     
     
     
@@ -178,15 +203,7 @@ export const SectionPropertyReadOnly         = ({ property = 'readOnly'  , prope
                 <p>
                     To make <CurrentNestedComponent /> readOnly, set <code>{`<${nestedComponentName} readOnly={true}>`}</code>.
                 </p>
-                {hasNestedComponent && <>
-                    <p>
-                        You can also set the <code>readOnly</code> at <code>{`<${componentName} readOnly={true}>`}</code>, so the entire <CurrentNestedComponent />s are readOnly.<br />
-                        To make an exception in a/some <CurrentNestedComponent />(s), set <code>{`<${nestedComponentName} readOnly={false} inheritReadOnly={false}>`}</code>.<br />
-                    </p>
-                    <p>
-                        Note: the <code>{`inheritReadOnly={false}`}</code> prevents the readOnly state on <CurrentComponent /> affecting the <CurrentNestedComponent />.
-                    </p>
-                </>}
+                <ParagraphSetParentReadOnly />
             </>
         } moreInfo={restProps.moreInfo ?? (!restProps.children && <>
             <Warning>
@@ -198,5 +215,24 @@ export const SectionPropertyReadOnly         = ({ property = 'readOnly'  , prope
                 </p>
             </Warning>
         </>)} />
+    );
+};
+export const ParagraphSetParentReadOnly      = () => {
+    const { componentName, hasNestedComponent, nestedComponentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <>
+            {hasNestedComponent && <>
+                <p>
+                    You can also set the <code>readOnly</code> at <code>{`<${componentName} readOnly={true}>`}</code>, so the entire <CurrentNestedComponent />s are readOnly.<br />
+                    To make an exception in a/some <CurrentNestedComponent />(s), set <code>{`<${nestedComponentName} readOnly={false} inheritReadOnly={false}>`}</code>.<br />
+                </p>
+                <p>
+                    Note: the <code>{`inheritReadOnly={false}`}</code> prevents the readOnly state on <CurrentComponent /> affecting the <CurrentNestedComponent />.
+                </p>
+            </>}
+        </>
     );
 };

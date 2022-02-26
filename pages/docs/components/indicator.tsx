@@ -80,12 +80,12 @@ const Page: NextPage = () => {
             </Head>
 
             <SectionIntro>
-                    <p>
-                        <CurrentComponent /> is an <strong>abstract</strong> component for <strong>displaying indications</strong> such as <strong>enabled</strong>/<strong>disabled</strong> and <strong>active</strong>/<strong>passive</strong>.
-                    </p>
-                    <p>
-                        In <em>most cases</em>, you should <strong>not use </strong>this component <strong>directly</strong>, instead create your own component by derivering <CurrentComponent />.
-                    </p>
+                <p>
+                    <CurrentComponent /> is an <strong>abstract</strong> component for <strong>displaying indications</strong> such as <strong>enabled</strong>/<strong>disabled</strong> and <strong>active</strong>/<strong>passive</strong>.
+                </p>
+                <p>
+                    In <em>most cases</em>, you should <strong>not use </strong>this component <strong>directly</strong>, instead create your own component by derivering <CurrentComponent />.
+                </p>
             </SectionIntro>
             <SectionDemo>
                 <DemoIndicatorLazy fallback={<BusyBar />} />
