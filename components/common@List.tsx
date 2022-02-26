@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { CurrentComponent, CurrentNestedComponent, LinkListItemPage, LinkContentPage, LinkButtonPage, useComponentInfo, SectionPreviewProperty, SectionPreviewPropertyProps } from './common'
+import { CurrentComponent, CurrentNestedComponent, LinkContentPage, LinkButtonPage, useComponentInfo, SectionPreviewProperty, SectionPreviewPropertyProps } from './common'
 import { Warning } from './Info'
 import {
     SectionPropertyNudeProps,
@@ -164,31 +164,35 @@ export const SectionPropertyNumberedStyle   = ({ styleName = listStyle, property
     );
 };
 
-export const ContentMakeListItemClickable    = () => {
+export const ContentMakeItemsClickable    = () => {
+    const { componentName, hasNestedComponent, nestedComponentName } = useComponentInfo();
+    
+    
+    
     return (
         <>
             <p>
-                To make <LinkListItemPage /> clickable, set <code>{`<ListItem actionCtrl={true}>`}</code>.
+                To make <CurrentNestedComponent /> clickable, set <code>{`<${nestedComponentName} actionCtrl={true}>`}</code>.
             </p>
             <p>
-                You can also set the <code>actionCtrl</code> at <code>{`<List actionCtrl={true}>`}</code>, so the default value of <code>actionCtrl</code> in the <LinkListItemPage /> will be the same as the parent.
+                You can also set the <code>actionCtrl</code> at <code>{`<${componentName} actionCtrl={true}>`}</code>, so the default value of <code>actionCtrl</code> in the <CurrentNestedComponent /> will be the same as the parent.
             </p>
             <p>
-                To handle the click action of the <LinkListItemPage />, assign <code>onClick</code> to the desired <strong>handler function</strong> -or- assign <code>href</code> to the desired <strong>URL</strong>.
+                To handle the click action of the <CurrentNestedComponent />, assign <code>onClick</code> to the desired <strong>handler function</strong> -or- assign <code>href</code> to the desired <strong>URL</strong>.
             </p>
             <Warning>
                 <p>
-                    Assigning <code>{`actionCtrl={true}`}</code> and <code>href</code> makes the <LinkListItemPage /> rendered as <code>{`<a>`}</code>.
+                    Assigning <code>{`actionCtrl={true}`}</code> and <code>href</code> makes the <CurrentNestedComponent /> rendered as <code>{`<a>`}</code>.
                 </p>
                 <p>
-                    Assigning <code>{`actionCtrl={true}`}</code> without assigning <code>href</code> makes the <LinkListItemPage /> rendered as <code>{`<div role='button'>`}</code>.
+                    Assigning <code>{`actionCtrl={true}`}</code> without assigning <code>href</code> makes the <CurrentNestedComponent /> rendered as <code>{`<div role='button'>`}</code>.
                 </p>
                 <p>
-                    Assigning <code>{`actionCtrl={true}`}</code> and <code>{`tag='button'`}</code> makes the <LinkListItemPage /> rendered as <code>{`<button>`}</code>.
+                    Assigning <code>{`actionCtrl={true}`}</code> and <code>{`tag='button'`}</code> makes the <CurrentNestedComponent /> rendered as <code>{`<button>`}</code>.
                 </p>
             </Warning>
         </>
-    )
+    );
 };
 export const SectionPropertyActionCtrl       = ({ property = 'actionCtrl', properties = 'Links and Buttons'                    , description, ...restProps }: SectionPreviewPropertyProps) => {
     return (
@@ -196,7 +200,7 @@ export const SectionPropertyActionCtrl       = ({ property = 'actionCtrl', prope
             description
             ??
             <>
-                <ContentMakeListItemClickable />
+                <ContentMakeItemsClickable />
             </>
         } />
     );

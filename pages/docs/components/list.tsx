@@ -37,7 +37,7 @@ import {
     SectionPropertyBreadcrumbStyle,
     SectionPropertyBulletStyle,
     SectionPropertyNumberedStyle,
-    ContentMakeListItemClickable,
+    ContentMakeItemsClickable,
     SectionPropertyActionCtrl,
     SectionPropertyActive,
     SectionPropertyActiveNoOutlined,
@@ -798,7 +798,7 @@ const Page: NextPage = () => {
 </List>
                         `}</TypeScriptCode>
                         <SectionPreviewProperty titleTag='h5' property={`actionCtrl={true}`} properties='Make the Buttons Functional' description={
-                            <ContentMakeListItemClickable />
+                            <ContentMakeItemsClickable />
                         }>
                             <List listStyle='btn' actionCtrl={true} theme='primary'>
                                 <ListItem>
@@ -878,7 +878,7 @@ const Page: NextPage = () => {
 </List>
                         `}</TypeScriptCode>
                         <SectionPreviewProperty titleTag='h5' property={`actionCtrl={true}`} properties='Make the Tabs Functional' description={
-                            <ContentMakeListItemClickable />
+                            <ContentMakeItemsClickable />
                         }>
                             <FunctionalTabList />
                             <p></p>
