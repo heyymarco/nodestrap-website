@@ -26,14 +26,16 @@ import {
     SectionPropertyOrientationResponsive,
 } from '../../../components/common@Basic'
 import {
+    SectionPropertyActive,
+    SectionPropertyActiveNoOutlined,
+    SectionPropertyEnabled,
+} from '../../../components/common@Indicator'
+import {
     SectionPropertyMild,
     SectionPropertyCardStyle,
     SectionPropertyFlatStyle,
     SectionPropertyFlushStyle,
     SectionPropertyJoinedStyle,
-    SectionPropertyActive,
-    SectionPropertyActiveNoOutlined,
-    SectionPropertyEnabled,
 } from '../../../components/common@Card'
 
 import loadable from '@loadable/component'

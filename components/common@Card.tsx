@@ -1,6 +1,5 @@
 import React from 'react'
 
-import { CurrentNestedComponent, SectionPreviewProperty, SectionPreviewPropertyProps, useComponentInfo } from './common'
 import {
     SectionPropertyMildProps,
     SectionPropertyMild        as BasicSectionPropertyMild,
@@ -38,57 +37,5 @@ export const SectionPropertyFlushStyle  = ({ styleName = cardStyle, ...restProps
 export const SectionPropertyJoinedStyle = ({ styleName = cardStyle, ...restProps }: SectionPropertyItemStyleProps) => {
     return (
         <BasicSectionPropertyJoinedStyle {...restProps} styleName={styleName} />
-    );
-};
-
-export const SectionPropertyActive           = ({ property = 'active'  , properties = 'Active State'                         , description, ...restProps }: SectionPreviewPropertyProps) => {
-    const { nestedComponentName } = useComponentInfo();
-    
-    
-    
-    return (
-        <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
-            description
-            ??
-            <>
-                <p>
-                    To make <CurrentNestedComponent /> active, set <code>{`<${nestedComponentName} active={true}>`}</code>.
-                </p>
-            </>
-        } />
-    );
-};
-export const SectionPropertyActiveNoOutlined = ({ property = 'outlined', properties = 'Active State cancels Outlined Variant', description, ...restProps }: SectionPreviewPropertyProps) => {
-    const { nestedComponentName } = useComponentInfo();
-    
-    
-    
-    return (
-        <SectionPreviewProperty {...restProps} titleTag={'h4'} property={property} properties={properties} description={
-            description
-            ??
-            <>
-                <p>
-                    Assigning <code>{`<${nestedComponentName} active={true}>`}</code> will cancel out the <code>outlined</code> variant.
-                </p>
-            </>
-        } />
-    );
-};
-export const SectionPropertyEnabled          = ({ property = 'enabled' , properties = 'Disabled State'                       , description, ...restProps }: SectionPreviewPropertyProps) => {
-    const { nestedComponentName } = useComponentInfo();
-    
-    
-    
-    return (
-        <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
-            description
-            ??
-            <>
-                <p>
-                    To make <CurrentNestedComponent /> disabled, set <code>{`<${nestedComponentName} enabled={false}>`}</code>.
-                </p>
-            </>
-        } />
     );
 };

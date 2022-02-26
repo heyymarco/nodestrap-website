@@ -25,6 +25,11 @@ import {
     SectionPropertyOrientationResponsive,
 } from '../../../components/common@Basic'
 import {
+    SectionPropertyActive,
+    SectionPropertyActiveNoOutlined,
+    SectionPropertyEnabled,
+} from '../../../components/common@Indicator'
+import {
     SectionPropertyNude,
     SectionPropertyMild,
     SectionPropertyListStyle,
@@ -39,9 +44,6 @@ import {
     SectionPropertyNumberedStyle,
     ContentMakeItemsClickable,
     SectionPropertyActionCtrl,
-    SectionPropertyActive,
-    SectionPropertyActiveNoOutlined,
-    SectionPropertyEnabled,
 } from '../../../components/common@List'
 
 import loadable from '@loadable/component'
