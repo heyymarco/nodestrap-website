@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { CurrentComponent, SectionPreviewProperty, SectionPreviewPropertyProps } from './common'
+import { CurrentComponent, CurrentNestedComponent, SectionPreviewProperty, SectionPreviewPropertyProps, useComponentInfo } from './common'
 import {
     SectionPropertyMildProps,
     SectionPropertyMild        as BasicSectionPropertyMild,
@@ -42,13 +42,17 @@ export const SectionPropertyJoinedStyle = ({ styleName = cardStyle, ...restProps
 };
 
 export const SectionPropertyActive           = ({ property = 'active'  , properties = 'Active State'                         , description, ...restProps }: SectionPreviewPropertyProps) => {
+    const { nestedComponentName } = useComponentInfo();
+    
+    
+    
     return (
         <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
             description
             ??
             <>
                 <p>
-                    To make <CurrentComponent /> active, set <code>{`<Card active={true}>`}</code>.
+                    To make <CurrentNestedComponent /> active, set <code>{`<${nestedComponentName} active={true}>`}</code>.
                 </p>
             </>
         } />
@@ -68,13 +72,17 @@ export const SectionPropertyActiveNoOutlined = ({ property = 'outlined', propert
     );
 };
 export const SectionPropertyEnabled          = ({ property = 'enabled' , properties = 'Disabled State'                       , description, ...restProps }: SectionPreviewPropertyProps) => {
+    const { nestedComponentName } = useComponentInfo();
+    
+    
+    
     return (
         <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
             description
             ??
             <>
                 <p>
-                    To make <CurrentComponent /> disabled, set <code>{`<Card enabled={false}>`}</code>.
+                    To make <CurrentNestedComponent /> disabled, set <code>{`<${nestedComponentName} enabled={false}>`}</code>.
                 </p>
             </>
         } />
