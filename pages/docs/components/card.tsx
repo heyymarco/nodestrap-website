@@ -28,6 +28,7 @@ import {
 import {
     SectionPropertyActive,
     SectionPropertyActiveNoOutlined,
+    SectionPropertyActiveNoMild,
     SectionPropertyEnabled,
 } from '../../../components/common@Indicator'
 import {
@@ -69,6 +70,28 @@ const CardWithActiveOutlined = () => {
             theme='primary'
             header={<>
                 A Card with <Element tag={isActive ? 'span' : 'del'}>Active State</Element> + Outlined Variant
+            </>}
+            footer={<>
+                Just for fun!
+            </>}
+        >
+            <DummyContents />
+        </Card>
+    );
+};
+const CardWithActiveMild     = () => {
+    const [cardRef, isActive] = useFlipFlop({ defaultState: true });
+    
+    
+    
+    return (
+        <Card
+            elmRef={cardRef}
+            active={isActive}
+            mild={true}
+            theme='primary'
+            header={<>
+                A Card with <Element tag={isActive ? 'span' : 'del'}>Active State</Element> + Mild Variant
             </>}
             footer={<>
                 Just for fun!
@@ -680,6 +703,27 @@ const Page: NextPage = () => {
 </Card>
                         `}</TypeScriptCode>
                     </SectionPropertyActiveNoOutlined>
+                    <SectionPropertyActiveNoMild>
+                        <CardWithActiveMild />
+                        <p></p>
+                        <TypeScriptCode>{`
+<Card
+    active={true}
+    mild={true}
+    theme='primary'
+    header={<>
+        A Card with Active State + Mild Variant
+    </>}
+    footer={<>
+        Just for fun!
+    </>}
+>
+    <p>...</p>
+    <img alt='lorem image' src='/images/lorem-image-1.svg' />
+    <p>...</p>
+</Card>
+                        `}</TypeScriptCode>
+                    </SectionPropertyActiveNoMild>
                 </SectionPropertyActive>
                 <SectionPropertyEnabled>
                     <Card

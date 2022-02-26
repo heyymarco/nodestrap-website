@@ -27,6 +27,7 @@ import {
 import {
     SectionPropertyActive,
     SectionPropertyActiveNoOutlined,
+    SectionPropertyActiveNoMild,
     SectionPropertyEnabled,
 } from '../../../components/common@Indicator'
 import {
@@ -84,6 +85,38 @@ const ListWithActiveOutlined = () => {
     const activeLabel = <Element tag={isActive ? 'span' : 'del'}>active</Element>
     return (
         <List elmRef={listRef} outlined={true} theme='primary'>
+            <ListItem>
+                A first item (not clickable)
+            </ListItem>
+            <ListItem active={isActive}>
+                A second item (not clickable + { activeLabel })
+            </ListItem>
+            <ListItem active={isActive} actionCtrl={true} onClick={() => alert('hello world')}>
+                A third item (clickable + { activeLabel })
+            </ListItem>
+            <ListItem active={isActive} actionCtrl={true} href='https://www.google.com'>
+                A fourth item (clickable + { activeLabel })
+            </ListItem>
+            <ListItem active={isActive} enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
+                A fifth item item (clickable + { activeLabel } + disabled)
+            </ListItem>
+            <ListItem active={isActive} enabled={false} theme='danger' actionCtrl={true} href='https://www.google.com'>
+                A seventh item item (clickable + { activeLabel } + disabled)
+                <p>
+                    <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
+                </p>
+            </ListItem>
+        </List>
+    );
+};
+const ListWithActiveMild     = () => {
+    const [listRef, isActive] = useFlipFlop({ defaultState: true });
+    
+    
+    
+    const activeLabel = <Element tag={isActive ? 'span' : 'del'}>active</Element>
+    return (
+        <List elmRef={listRef} mild={true} theme='primary'>
             <ListItem>
                 A first item (not clickable)
             </ListItem>
@@ -1229,6 +1262,35 @@ const TabControl = () => {
 </List>
                         `}</TypeScriptCode>
                     </SectionPropertyActiveNoOutlined>
+                    <SectionPropertyActiveNoMild>
+                        <ListWithActiveMild />
+                        <p></p>
+                        <TypeScriptCode>{`
+<List mild={true} theme='primary'>
+    <ListItem>
+        A first item (not clickable)
+    </ListItem>
+    <ListItem active={true}>
+        A second item (not clickable + active)
+    </ListItem>
+    <ListItem active={true} actionCtrl={true} onClick={() => alert('hello world')}>
+        A third item (clickable + active)
+    </ListItem>
+    <ListItem active={true} actionCtrl={true} href='https://www.google.com'>
+        A fourth item (clickable + active)
+    </ListItem>
+    <ListItem active={true} enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
+        A fifth item item (clickable + active + disabled)
+    </ListItem>
+    <ListItem active={true} enabled={false} theme='danger' actionCtrl={true} href='https://www.google.com'>
+        A seventh item item (clickable + active + disabled)
+        <p>
+            <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
+        </p>
+    </ListItem>
+</List>
+                        `}</TypeScriptCode>
+                    </SectionPropertyActiveNoMild>
                 </SectionPropertyActive>
                 <SectionPropertyEnabled>
                     <List theme='primary'>
