@@ -29,6 +29,7 @@ export const PopupOptions = (props: PopupOptionProps) => {
     return (<>
         <IndicatorOptions
             {...props}
+            warningEitherMildOutlined={false}
         />
     </>);
 }
