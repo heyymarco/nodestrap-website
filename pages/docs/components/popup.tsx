@@ -3,16 +3,24 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { useFlipFlop } from '../../../components/hooks'
-
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { TransparentPreview } from '../../../components/TransparentPreview'
-import { SectionInheritedProps, LinkPopupPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents } from '../../../components/common'
+import { SectionInheritedProps, LinkPopupPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 
 import Popup from '@nodestrap/popup'
 import {
+    themeNames,
+    SectionPropertyTheme,
+    SectionPropertySize,
+    SectionPropertyNude,
+    SectionPropertyGradient,
+    SectionPropertyOutlined,
+} from '../../../components/common@Basic'
+import {
+    SectionPropertyMild,
+    
     SectionPropertyActive,
     SectionPropertyEnabled,
 } from '../../../components/common@Indicator'
@@ -42,6 +50,180 @@ const Page: NextPage = () => {
                 <DemoPopupLazy fallback={<BusyBar />} />
             </SectionDemo>
             <SectionInheritedProps />
+            <SectionVariants>
+                <SectionPropertyTheme>
+                    {themeNames.map((themeName) => <>
+                        <Popup
+                            theme={themeName}
+                            active={true}
+                        >
+                            A {'<Popup>'} with {themeName} theme
+                        </Popup>
+                        <p></p>
+                    </>)}
+                    <TypeScriptCode>
+                        {themeNames.map((themeName) =>
+`
+<Popup
+    theme='${themeName}'
+    active={true}
+>
+    A {'<Popup>'} with ${themeName} theme
+</Popup>
+`
+                        ).join('\n')}
+                    </TypeScriptCode>
+                </SectionPropertyTheme>
+                <SectionPropertySize>
+                    <Popup
+                        size='sm'
+                        active={true}
+                        theme='primary'
+                    >
+                        A {'<Popup>'} with smaller size
+                    </Popup>
+                    <p></p>
+                    <Popup
+                        size={undefined}
+                        active={true}
+                        theme='primary'
+                    >
+                        A {'<Popup>'} with default size
+                    </Popup>
+                    <p></p>
+                    <Popup
+                        size='lg'
+                        active={true}
+                        theme='primary'
+                    >
+                        A {'<Popup>'} with larger size
+                    </Popup>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Popup
+    size='sm'
+    active={true}
+    theme='primary'
+>
+    A {'<Popup>'} with smaller size
+</Popup>
+
+<Popup
+    size={undefined}
+    active={true}
+    theme='primary'
+>
+    A {'<Popup>'} with default size
+</Popup>
+
+<Popup
+    size='lg'
+    active={true}
+    theme='primary'
+>
+    A {'<Popup>'} with larger size
+</Popup>
+                    `}</TypeScriptCode>
+                </SectionPropertySize>
+                <SectionPropertyNude>
+                    <TransparentPreview>
+                        <Popup
+                            nude={true}
+                            active={true}
+                            theme='warning'
+                        >
+                            hello world
+                        </Popup>
+                    </TransparentPreview>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Popup
+    nude={true}
+    active={true}
+    theme='warning'
+>
+    hello world
+</Popup>
+                    `}</TypeScriptCode>
+                </SectionPropertyNude>
+                <SectionPropertyGradient>
+                    {themeNames.map((themeName) => <>
+                        <Popup
+                            gradient={true}
+                            active={true}
+                            theme={themeName}
+                        >
+                            hello world
+                        </Popup>
+                        <p></p>
+                    </>)}
+                    <TypeScriptCode>
+                        {themeNames.map((themeName) =>
+`
+<Popup
+    gradient={true}
+    active={true}
+    theme='${themeName}'
+>
+    hello world
+</Popup>
+`
+                        ).join('\n')}
+                    </TypeScriptCode>
+                </SectionPropertyGradient>
+                <SectionPropertyOutlined>
+                    <TransparentPreview>
+                        {themeNames.map((themeName) => <>
+                            <Popup
+                                outlined={true}
+                                active={true}
+                                theme={themeName}
+                            >
+                                hello world
+                            </Popup>
+                        </>)}
+                    </TransparentPreview>
+                    <p></p>
+                    <TypeScriptCode>
+                        {themeNames.map((themeName) =>
+`
+<Popup
+    outlined={true}
+    active={true}
+    theme='${themeName}'
+>
+    hello world
+</Popup>
+`
+                        ).join('\n')}
+                    </TypeScriptCode>
+                </SectionPropertyOutlined>
+                <SectionPropertyMild>
+                    {themeNames.map((themeName) => <>
+                        <Popup
+                            mild={false}
+                            active={true}
+                            theme={themeName}
+                        >
+                            hello world
+                        </Popup>
+                        <p></p>
+                    </>)}
+                    <TypeScriptCode>
+                        {themeNames.map((themeName) =>
+`
+<Popup
+    mild={false}
+    active={true}
+    theme='${themeName}'
+>
+    hello world
+</Popup>
+`
+                        ).join('\n')}
+                    </TypeScriptCode>
+                </SectionPropertyMild>
+            </SectionVariants>
             <SectionStates>
                 <SectionPropertyActive>
                     <Popup
