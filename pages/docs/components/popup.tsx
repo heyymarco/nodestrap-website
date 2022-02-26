@@ -265,44 +265,24 @@ const Page: NextPage = () => {
                     <DetailSpecItem title='Animations'>
                         <SubSpecList>
                             <SimpleSpecItem>
-                                <code>filterDisable</code>
-                                <p>A <code>filter</code> to apply when <code>{`enabled={false}`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
                                 <code>filterActive</code>
                                 <p>A <code>filter</code> to apply when <code>{`active={true}`}</code>.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
-                                <code>@keyframes enable</code>
-                                <p>A keyframes name represents <em>enabling keyframes</em>, transition from <code>{`enabled={false}`}</code> to <code>{`enabled={true}`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>@keyframes disable</code>
-                                <p>A keyframes name represents <em>disabling keyframes</em>, transition from <code>{`enabled={true}`}</code> to <code>{`enabled={false}`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
                                 <code>@keyframes active</code>
-                                <p>A keyframes name represents <em>activating keyframes</em>, transition from <code>{`active={false}`}</code> to <code>{`active={true}`}</code>.</p>
+                                <p>A keyframes name represents <em>showing keyframes</em>, transition from <code>{`active={false}`}</code> to <code>{`active={true}`}</code>.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>@keyframes passive</code>
-                                <p>A keyframes name represents <em>deactivating keyframes</em>, transition from <code>{`active={true}`}</code> to <code>{`active={false}`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>animEnable</code>
-                                <p>An animation represents <em>enabling animation</em>, transition from <code>{`enabled={false}`}</code> to <code>{`enabled={true}`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>animDisable</code>
-                                <p>An animation represents <em>disabling animation</em>, transition from <code>{`enabled={true}`}</code> to <code>{`enabled={false}`}</code>.</p>
+                                <p>A keyframes name represents <em>hiding keyframes</em>, transition from <code>{`active={true}`}</code> to <code>{`active={false}`}</code>.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>animActive</code>
-                                <p>An animation represents <em>activating animation</em>, transition from <code>{`active={false}`}</code> to <code>{`active={true}`}</code>.</p>
+                                <p>An animation represents <em>showing animation</em>, transition from <code>{`active={false}`}</code> to <code>{`active={true}`}</code>.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>animPassive</code>
-                                <p>An animation represents <em>deactivating animation</em>, transition from <code>{`active={true}`}</code> to <code>{`active={false}`}</code>.</p>
+                                <p>An animation represents <em>hiding animation</em>, transition from <code>{`active={true}`}</code> to <code>{`active={false}`}</code>.</p>
                             </SimpleSpecItem>
                         </SubSpecList>
                     </DetailSpecItem>
@@ -312,7 +292,7 @@ const Page: NextPage = () => {
                 <SectionOverridingDefaults>{`
 import { Popup } from '@nodestrap/popup'
 
-export default function SurprisePopup(props) {
+export default function SurpriseMessage(props) {
     return (
         <Popup
             {...props} // preserves other properties
@@ -320,10 +300,10 @@ export default function SurprisePopup(props) {
             semanticRole={props.semanticRole ?? 'status'} // override default value of semanticRole to 'status'
             semantictag={props.semanticTag ?? 'span'}     // override default value of semanticTag  to 'span'
             
-            theme={props.theme ?? 'danger'} // override default value of theme to 'danger'
-            mild={props.mild ?? true}       // override default value of mild  to true
+            theme={props.theme ?? 'warning'} // override default value of theme to 'warning'
+            mild={props.mild ?? true}        // override default value of mild  to true
         >
-            { props.active ? 'ON' : 'OFF' }
+            { props.children }
         </Popup>
     );
 }
@@ -348,89 +328,15 @@ export default function SurprisePopup(props) {
                                 <strong>enabled</strong>/<strong>disabled</strong> and <strong>active</strong>/<strong>passive</strong>.
                             </p>
                         </DetailSpecItem>
-
-
-                        <DetailSpecItem code='isEnabled(styles)'>
-                            <p>
-                                Applies the specified <code>styles</code> when the current component is <strong>fully enabled</strong>.
-                            </p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='isEnabling(styles)'>
-                            <p>
-                                Applies the specified <code>styles</code> when the current component is <strong>being enabled</strong>.
-                            </p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='isDisabling(styles)'>
-                            <p>
-                                Applies the specified <code>styles</code> when the current component is <strong>being disabled</strong>.
-                            </p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='isDisabled(styles)'>
-                            <p>
-                                Applies the specified <code>styles</code> when the current component is <strong>fully disabled</strong>.
-                            </p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='isEnable(styles)'>
-                            <p>
-                                Applies the specified <code>styles</code> when the current component is <strong>being/fully enabled</strong>.
-                            </p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='isDisable(styles)'>
-                            <p>
-                                Applies the specified <code>styles</code> when the current component is <strong>being/fully disabled</strong>.
-                            </p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='isEnablingDisable(styles)'>
-                            <p>
-                                Applies the specified <code>styles</code> when the current component is <strong>being enabled</strong> or <strong>being/fully disabled</strong>.
-                            </p>
-                        </DetailSpecItem>
-
-
-                        <DetailSpecItem code='isActived(styles)'>
-                            <p>
-                                Applies the specified <code>styles</code> when the current component is <strong>fully activated</strong>.
-                            </p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='isActivating(styles)'>
-                            <p>
-                                Applies the specified <code>styles</code> when the current component is <strong>being activated</strong>.
-                            </p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='isPassivating(styles)'>
-                            <p>
-                                Applies the specified <code>styles</code> when the current component is <strong>being deactivated</strong>.
-                            </p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='isPassived(styles)'>
-                            <p>
-                                Applies the specified <code>styles</code> when the current component is <strong>fully deactivated</strong>.
-                            </p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='isActive(styles)'>
-                            <p>
-                                Applies the specified <code>styles</code> when the current component is <strong>being/fully activated</strong>.
-                            </p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='isPassive(styles)'>
-                            <p>
-                                Applies the specified <code>styles</code> when the current component is <strong>being/fully deactivated</strong>.
-                            </p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='isActivePassivating(styles)'>
-                            <p>
-                                Applies the specified <code>styles</code> when the current component is <strong>being/fully activated</strong> or <strong>being deactivated</strong>.
-                            </p>
-                        </DetailSpecItem>
                     </SpecList>
                 }>{`
 import { mainComposition, style, imports, variants, states, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
-import { Popup, usesPopupLayout, usesPopupVariants, usesPopupStates, isDisable, isActive } from '@nodestrap/popup'
-import { isDisable, isActive } from '@nodestrap/indicator'
+import { isActive } from '@nodestrap/indicator'
+import { Popup, usesPopupLayout, usesPopupVariants, usesPopupStates } from '@nodestrap/popup'
 
 
-const useSurprisePopupSheet = createUseSheet(() => [
+const useSurpriseMessageSheet = createUseSheet(() => [
     mainComposition(
         imports([
             // import some stuff from <Popup>:
@@ -459,11 +365,6 @@ const useSurprisePopupSheet = createUseSheet(() => [
                 /* ... */
             ]),
             ...states([
-                isDisable({
-                    // define the style at 'being/fully disabled' state:
-                    background-color: 'gray',
-                    /* ... */
-                }),
                 isActive({
                     // define the style at 'being/fully active' state:
                     background-color: 'red',
@@ -477,8 +378,8 @@ const useSurprisePopupSheet = createUseSheet(() => [
     ),
 ]);
 
-export default function SurprisePopup(props) {
-    const sheet = useSurprisePopupSheet();
+export default function SurpriseMessage(props) {
+    const sheet = useSurpriseMessageSheet();
     return (
         <Popup {...props} mainClass={sheet.main}>
             { props.children }
