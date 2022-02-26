@@ -6,10 +6,9 @@ import Head from 'next/head'
 import { useFlipFlop } from '../../../components/hooks'
 
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
-import { Warning } from '../../../components/Info'
 
 import { TransparentPreview } from '../../../components/TransparentPreview'
-import { SectionInheritedProps, LinkIndicatorPage, LinkBasicPage, LinkIconPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionStates, SectionSubProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents } from '../../../components/common'
+import { SectionInheritedProps, LinkIndicatorPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 
 import Indicator from '@nodestrap/indicator'
@@ -17,6 +16,7 @@ import {
     SectionPropertyActive,
     SectionPropertyActiveNoOutlined,
     SectionPropertyEnabled,
+    SectionPropertyReadOnly,
 } from '../../../components/common@Indicator'
 
 import loadable from '@loadable/component'
@@ -113,39 +113,7 @@ const Page: NextPage = () => {
 </Indicator>
                     `}</TypeScriptCode>
                 </SectionPropertyEnabled>
-                <SectionSubProperty property='readOnly' specList={
-                    <SpecList>
-                        <DetailSpecItem code='true'>
-                            <p>
-                                At this state, the editing functionality is <strong>disabled</strong>.
-                                You cannot  make any changes to this component.
-                            </p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='false'>
-                            <p>
-                                At this state, all editing functionality are <strong>preserved</strong>.
-                                You can make any changes to this component.
-                            </p>
-                            <p>
-                                This is the <strong>default</strong> value if the <code>readOnly</code> value is not specified.
-                            </p>
-                        </DetailSpecItem>
-                    </SpecList>
-                } moreInfo={
-                    <Warning>
-                        <p>
-                            By default, there is <strong>no visual appearance</strong> for indicating <code>readOnly</code> state.
-                        </p>
-                        <p>
-                            You should add an <LinkIconPage /> or another visual appearance for indicating <code>readOnly</code> state.
-                        </p>
-                    </Warning>
-                }>
-                    <p>
-                        Influences the component <strong>editing functionality</strong>.
-                        Similar to <code>disabled</code> but only disabling the editing functionality.
-                    </p>
-                </SectionSubProperty>
+                <SectionPropertyReadOnly />
             </SectionStates>
             <SectionCustomizing specList={
                 <SpecList>

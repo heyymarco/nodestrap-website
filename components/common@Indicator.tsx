@@ -1,11 +1,12 @@
 import React from 'react'
 
-import { CurrentComponent, CurrentNestedComponent, useComponentInfo, SectionPreviewProperty, SectionPreviewPropertyProps } from './common'
+import { CurrentComponent, CurrentNestedComponent, useComponentInfo, SectionPreviewProperty, SectionPreviewPropertyProps, LinkIconPage } from './common'
 import { DetailSpecItem, SpecList } from './SpecList';
+import { Warning } from './Info';
 
 
 
-export const SectionPropertyActive           = ({ property = 'active'    , properties = 'Active Items'                         , description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyActive           = ({ property = 'active'    , properties = 'Active State'                         , description, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName, hasNestedComponent, nestedComponentName } = useComponentInfo();
     
     
@@ -67,7 +68,7 @@ export const SectionPropertyActiveNoOutlined = ({ property = 'outlined'  , prope
         } />
     );
 };
-export const SectionPropertyEnabled          = ({ property = 'enabled'   , properties = 'Disabled Items'                       , description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyEnabled          = ({ property = 'enabled'   , properties = 'Disabled State'                       , description, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName, hasNestedComponent, nestedComponentName } = useComponentInfo();
     
     
@@ -110,5 +111,62 @@ export const SectionPropertyEnabled          = ({ property = 'enabled'   , prope
                 </>}
             </>
         } />
+    );
+};
+export const SectionPropertyReadOnly         = ({ property = 'readOnly'  , properties = `ReadOnly State`                       , description, ...restProps }: SectionPreviewPropertyProps) => {
+    const { componentName, hasNestedComponent, nestedComponentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPreviewProperty {...restProps} property={property} properties={properties} specList={
+            <SpecList>
+                <DetailSpecItem code='true'>
+                    <p>
+                        At this state, the editing functionality of <CurrentNestedComponent /> is <strong>disabled</strong>.
+                        You cannot make any changes to this component.
+                    </p>
+                </DetailSpecItem>
+                <DetailSpecItem code='false'>
+                    <p>
+                        At this state, the editing functionality of <CurrentNestedComponent /> is <strong>preserved</strong>.
+                        You can make any changes to this component.
+                    </p>
+                    <p>
+                        This is the <strong>default</strong> value if the <code>readOnly</code> value is not specified.
+                    </p>
+                </DetailSpecItem>
+            </SpecList>
+        } description={
+            description
+            ??
+            <>
+                <p>
+                    Disables the <CurrentNestedComponent /> <strong>editing functionality</strong>.
+                    Similar to <code>{`enabled={false}`}</code> but only disabling the editing functionality.
+                </p>
+                <p>
+                    To make <CurrentNestedComponent /> readOnly, set <code>{`<${nestedComponentName} readOnly={true}>`}</code>.
+                </p>
+                {hasNestedComponent && <>
+                    <p>
+                        You can also set the <code>readOnly</code> at <code>{`<${componentName} readOnly={true}>`}</code>, so the entire <CurrentNestedComponent />s are readOnly.<br />
+                        To make an exception in a/some <CurrentNestedComponent />(s), set <code>{`<${nestedComponentName} readOnly={false} inheritReadOnly={false}>`}</code>.<br />
+                    </p>
+                    <p>
+                        Note: the <code>{`inheritReadOnly={false}`}</code> prevents the readOnly state on <CurrentComponent /> affecting the <CurrentNestedComponent />.
+                    </p>
+                </>}
+            </>
+        } moreInfo={restProps.moreInfo ?? (!restProps.children && <>
+            <Warning>
+                <p>
+                    By default, there is <strong>no visual appearance</strong> for indicating <code>readOnly</code> state.
+                </p>
+                <p>
+                    You should add an <LinkIconPage /> or another visual appearance for indicating <code>readOnly</code> state.
+                </p>
+            </Warning>
+        </>)} />
     );
 };
