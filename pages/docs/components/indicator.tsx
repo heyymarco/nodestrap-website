@@ -19,9 +19,10 @@ import {
     SectionPropertyNude,
     SectionPropertyGradient,
     SectionPropertyOutlined,
-    SectionPropertyMild,
 } from '../../../components/common@Basic'
 import {
+    SectionPropertyMild,
+    
     SectionPropertyActive,
     SectionPropertyActiveNoOutlined,
     SectionPropertyEnabled,
@@ -209,7 +210,7 @@ const Page: NextPage = () => {
                 <SectionPropertyMild>
                     {themeNames.map((themeName) => <>
                         <Indicator
-                            mild={true}
+                            mild={false}
                             theme={themeName}
                         >
                             hello world
@@ -220,7 +221,7 @@ const Page: NextPage = () => {
                         {themeNames.map((themeName) =>
 `
 <Indicator
-    mild={true}
+    mild={false}
     theme='${themeName}'
 >
     hello world

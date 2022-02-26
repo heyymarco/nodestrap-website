@@ -4,6 +4,19 @@ import { CurrentComponent, CurrentNestedComponent, useComponentInfo, SectionPrev
 import { DetailSpecItem, SpecList } from './SpecList';
 import { Warning } from './Info';
 
+import {
+    SectionPropertyMildProps,
+    SectionPropertyMild        as BasicSectionPropertyMild,
+} from './common@Basic'
+
+
+
+export const SectionPropertyMild = ({ setByDefault = true, ...props }: SectionPropertyMildProps) => {
+    return (
+        <BasicSectionPropertyMild {...props} setByDefault={setByDefault} />
+    );
+};
+
 
 
 export const SectionPropertyActive           = ({ property = 'active'    , properties = 'Active State'                         , description, ...restProps }: SectionPreviewPropertyProps) => {
