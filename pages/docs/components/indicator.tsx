@@ -11,6 +11,7 @@ import { TransparentPreview } from '../../../components/TransparentPreview'
 import { SectionInheritedProps, LinkIndicatorPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 
+import Element from '@nodestrap/element'
 import Indicator from '@nodestrap/indicator'
 import {
     themeNames,
@@ -25,6 +26,7 @@ import {
     
     SectionPropertyActive,
     SectionPropertyActiveNoOutlined,
+    SectionPropertyActiveNoMild,
     SectionPropertyEnabled,
     SectionPropertyReadOnly,
 } from '../../../components/common@Indicator'
@@ -46,7 +48,23 @@ const IndicatorWithActiveOutlined = () => {
             outlined={true}
             theme='primary'
         >
-            hello world
+            An &lt;Indicator&gt; with <Element tag={isActive ? 'span' : 'del'}>Active State</Element> + Outlined Variant
+        </Indicator>
+    );
+};
+const IndicatorWithActiveMild     = () => {
+    const [indicatorRef, isActive] = useFlipFlop({ defaultState: true });
+    
+    
+    
+    return (
+        <Indicator
+            elmRef={indicatorRef}
+            active={isActive}
+            mild={true}
+            theme='primary'
+        >
+            An &lt;Indicator&gt; with <Element tag={isActive ? 'span' : 'del'}>Active State</Element> + Mild Variant
         </Indicator>
     );
 };
@@ -263,6 +281,19 @@ const Page: NextPage = () => {
 </Indicator>
                         `}</TypeScriptCode>
                     </SectionPropertyActiveNoOutlined>
+                    <SectionPropertyActiveNoMild>
+                        <IndicatorWithActiveMild />
+                        <p></p>
+                        <TypeScriptCode>{`
+<Indicator
+    active={true}
+    mild={true}
+    theme='primary'
+>
+    hello world
+</Indicator>
+                        `}</TypeScriptCode>
+                    </SectionPropertyActiveNoMild>
                 </SectionPropertyActive>
                 <SectionPropertyEnabled>
                     <Indicator

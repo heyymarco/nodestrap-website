@@ -81,6 +81,23 @@ export const SectionPropertyActiveNoOutlined = ({ property = 'outlined'  , prope
         } />
     );
 };
+export const SectionPropertyActiveNoMild     = ({ property = 'mild'      , properties = 'Active State cancels Mild Variant'    , description, ...restProps }: SectionPreviewPropertyProps) => {
+    const { nestedComponentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPreviewProperty {...restProps} titleTag={'h4'} property={property} properties={properties} description={
+            description
+            ??
+            <>
+                <p>
+                    Assigning <code>{`<${nestedComponentName} active={true}>`}</code> will cancel out the <code>mild</code> variant.
+                </p>
+            </>
+        } />
+    );
+};
 export const SectionPropertyEnabled          = ({ property = 'enabled'   , properties = 'Disabled State'                       , description, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName, hasNestedComponent, nestedComponentName } = useComponentInfo();
     
