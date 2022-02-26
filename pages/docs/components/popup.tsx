@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 
 import type { NextPage } from 'next'
 import Head from 'next/head'
@@ -13,6 +13,7 @@ import { TypeScriptCode } from '../../../components/Code'
 
 import Basic from '@nodestrap/basic'
 import Popup from '@nodestrap/popup'
+import Button from '@nodestrap/button'
 import {
     themeNames,
     SectionPropertyTheme,
@@ -30,6 +31,7 @@ import {
 } from '../../../components/common@Popup'
 
 import loadable from '@loadable/component'
+import { Section } from '../../../components/Section'
 const DemoPopupLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Popup' */'../../../components/DemoPanel@Popup'))
 
 
@@ -67,6 +69,36 @@ const PopupPreview = () => {
             </Popup>
         </Basic>
     );
+};
+const OverlayingPopupPreview = () => {
+    const [popupRef, isActive] = useFlipFlop({ defaultState: true });
+    const buttonRef = useRef(null);
+    
+    
+    
+    return (
+        <div ref={popupRef}>
+            <Button elmRef={buttonRef} theme='success' size='lg' enabled={!isActive}>Pay now</Button>
+            <span> -or- </span>
+            <Button theme='secondary' size='lg' outlined={true} enabled={!isActive}>Cancel</Button>
+            <Popup
+                active={isActive}
+                theme='warning'
+                
+                targetRef={buttonRef}
+                popupPlacement='right-start'
+                style={{
+                    position         : 'relative',
+                    insetInlineStart : '-3rem',
+                    insetBlockEnd    : '1rem',
+                }}
+            >
+                <p>
+                    Processing your payment...
+                </p>
+            </Popup>
+        </div>
+    )
 }
 
 
@@ -304,6 +336,18 @@ const Page: NextPage = () => {
                     `}</TypeScriptCode>
                 </SectionPropertyEnabled>
             </SectionStates>
+            <Section
+                title={<>Overlaying <CurrentComponent /></>}
+            >
+                <p>
+                    By default the <CurrentComponent /> is flowed as a normal document element, but
+                    <CurrentComponent /> can also be configured as an <em>overlaying element</em>.
+                </p>
+                <p>
+                    Here the preview:
+                </p>
+                <OverlayingPopupPreview />
+            </Section>
             <SectionCustomizing specList={
                 <SpecList>
                     <DetailSpecItem title='Animations'>
