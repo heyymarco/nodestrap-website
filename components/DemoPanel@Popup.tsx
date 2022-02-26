@@ -7,6 +7,7 @@ import { TypeScriptCode } from './Code';
 
 
 export const popupInitials = {
+    active   : true as boolean|undefined,
 };
 export type PopupInitials = typeof popupInitials & Partial<IndicatorInitials>
 export const usePopupStates = (initials ?: Partial<PopupInitials>) => {

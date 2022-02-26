@@ -14,32 +14,11 @@ import { TypeScriptCode } from '../../../components/Code'
 import Popup from '@nodestrap/popup'
 import {
     SectionPropertyActive,
-    SectionPropertyActiveNoOutlined,
     SectionPropertyEnabled,
-    SectionPropertyReadOnly,
 } from '../../../components/common@Indicator'
 
 import loadable from '@loadable/component'
 const DemoPopupLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Popup' */'../../../components/DemoPanel@Popup'))
-
-
-
-const PopupWithActiveOutlined = () => {
-    const [popupRef, isActive] = useFlipFlop({ defaultState: true });
-    
-    
-    
-    return (
-        <Popup
-            elmRef={popupRef}
-            active={isActive}
-            outlined={true}
-            theme='primary'
-        >
-            hello world
-        </Popup>
-    );
-};
 
 
 
@@ -80,25 +59,11 @@ const Page: NextPage = () => {
     hello world
 </Popup>
                     `}</TypeScriptCode>
-                    <SectionPropertyActiveNoOutlined>
-                        <TransparentPreview>
-                            <PopupWithActiveOutlined />
-                        </TransparentPreview>
-                        <p></p>
-                        <TypeScriptCode>{`
-<Popup
-    active={true}
-    outlined={true}
-    theme='primary'
->
-    hello world
-</Popup>
-                        `}</TypeScriptCode>
-                    </SectionPropertyActiveNoOutlined>
                 </SectionPropertyActive>
                 <SectionPropertyEnabled>
                     <Popup
                         enabled={false}
+                        active={true}
                         theme='primary'
                     >
                         hello world
@@ -107,13 +72,13 @@ const Page: NextPage = () => {
                     <TypeScriptCode>{`
 <Popup
     enabled={false}
+    active={true}
     theme='primary'
 >
     hello world
 </Popup>
                     `}</TypeScriptCode>
                 </SectionPropertyEnabled>
-                <SectionPropertyReadOnly />
             </SectionStates>
             <SectionCustomizing specList={
                 <SpecList>
