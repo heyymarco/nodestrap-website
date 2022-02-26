@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { CurrentComponent, CurrentNestedComponent, useComponentInfo, SectionPreviewProperty, SectionPreviewPropertyProps } from './common'
+import { DetailSpecItem, SpecList } from './SpecList';
 
 
 
@@ -10,10 +11,29 @@ export const SectionPropertyActive           = ({ property = 'active'    , prope
     
     
     return (
-        <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
+        <SectionPreviewProperty {...restProps} property={property} properties={properties} specList={
+            <SpecList>
+                <DetailSpecItem code='true'>
+                    <p>
+                        At this state, the <CurrentNestedComponent /> is currently <strong>selected</strong> or <strong>on</strong> state.
+                    </p>
+                </DetailSpecItem>
+                <DetailSpecItem code='false'>
+                    <p>
+                        At this state, the <CurrentNestedComponent /> is currently in <strong>normal</strong> state.
+                    </p>
+                    <p>
+                        This is the <strong>default</strong> value if the <code>active</code> value is not specified.
+                    </p>
+                </DetailSpecItem>
+            </SpecList>
+        } description={
             description
             ??
             <>
+                <p>
+                    Indicates the <CurrentNestedComponent /> is currently <strong>selected</strong> or <strong>on</strong> state.
+                </p>
                 <p>
                     To make <CurrentNestedComponent /> active, set <code>{`<${nestedComponentName} active={true}>`}</code>.
                 </p>

@@ -3,13 +3,43 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
+import { useFlipFlop } from '../../../components/hooks'
+
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 import { Warning } from '../../../components/Info'
 
+import { TransparentPreview } from '../../../components/TransparentPreview'
 import { SectionInheritedProps, LinkIndicatorPage, LinkBasicPage, LinkIconPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionStates, SectionSubProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents } from '../../../components/common'
+import { TypeScriptCode } from '../../../components/Code'
+
+import Indicator from '@nodestrap/indicator'
+import {
+    SectionPropertyActive,
+    SectionPropertyActiveNoOutlined,
+    SectionPropertyEnabled,
+} from '../../../components/common@Indicator'
 
 import loadable from '@loadable/component'
 const DemoIndicatorLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Indicator' */'../../../components/DemoPanel@Indicator'))
+
+
+
+const IndicatorWithActiveOutlined = () => {
+    const [indicatorRef, isActive] = useFlipFlop({ defaultState: true });
+    
+    
+    
+    return (
+        <Indicator
+            elmRef={indicatorRef}
+            active={isActive}
+            outlined={true}
+            theme='primary'
+        >
+            hello world
+        </Indicator>
+    );
+};
 
 
 
@@ -34,6 +64,38 @@ const Page: NextPage = () => {
             </SectionDemo>
             <SectionInheritedProps />
             <SectionStates>
+                <SectionPropertyActive>
+                    <Indicator
+                        active={true}
+                        theme='primary'
+                    >
+                        hello world
+                    </Indicator>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Indicator
+    active={true}
+    theme='primary'
+>
+    hello world
+</Indicator>
+                    `}</TypeScriptCode>
+                    <SectionPropertyActiveNoOutlined>
+                        <TransparentPreview>
+                            <IndicatorWithActiveOutlined />
+                        </TransparentPreview>
+                        <p></p>
+                        <TypeScriptCode>{`
+<Indicator
+    active={true}
+    outlined={true}
+    theme='primary'
+>
+    hello world
+</Indicator>
+                        `}</TypeScriptCode>
+                    </SectionPropertyActiveNoOutlined>
+                </SectionPropertyActive>
                 <SectionSubProperty property='enabled' specList={
                     <SpecList>
                         <DetailSpecItem code='true'>
@@ -55,27 +117,6 @@ const Page: NextPage = () => {
                 }>
                     <p>
                         Influences the component <strong>functionality</strong>.
-                    </p>
-                </SectionSubProperty>
-                <SectionSubProperty property='active' specList={
-                    <SpecList>
-                        <DetailSpecItem code='true'>
-                            <p>
-                                At this state, the component is currently <strong>selected</strong> or <strong>on state</strong>.
-                            </p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='false'>
-                            <p>
-                                At this state, the component is currently in <strong>normal state</strong>.
-                            </p>
-                            <p>
-                                This is the <strong>default</strong> value if the <code>active</code> value is not specified.
-                            </p>
-                        </DetailSpecItem>
-                    </SpecList>
-                }>
-                    <p>
-                        Indicates the component is currently <strong>selected</strong> or <strong>on state</strong>.
                     </p>
                 </SectionSubProperty>
                 <SectionSubProperty property='readOnly' specList={
