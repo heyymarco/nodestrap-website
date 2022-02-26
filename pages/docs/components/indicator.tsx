@@ -8,10 +8,19 @@ import { useFlipFlop } from '../../../components/hooks'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { TransparentPreview } from '../../../components/TransparentPreview'
-import { SectionInheritedProps, LinkIndicatorPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents } from '../../../components/common'
+import { SectionInheritedProps, LinkIndicatorPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 
 import Indicator from '@nodestrap/indicator'
+import {
+    themeNames,
+    SectionPropertyTheme,
+    SectionPropertySize,
+    SectionPropertyNude,
+    SectionPropertyGradient,
+    SectionPropertyOutlined,
+    SectionPropertyMild,
+} from '../../../components/common@Basic'
 import {
     SectionPropertyActive,
     SectionPropertyActiveNoOutlined,
@@ -63,6 +72,164 @@ const Page: NextPage = () => {
                 <DemoIndicatorLazy fallback={<BusyBar />} />
             </SectionDemo>
             <SectionInheritedProps />
+            <SectionVariants>
+                <SectionPropertyTheme>
+                    {themeNames.map((themeName) => <>
+                        <Indicator
+                            theme={themeName}
+                        >
+                            An {'<Indicator>'} with {themeName} theme
+                        </Indicator>
+                        <p></p>
+                    </>)}
+                    <TypeScriptCode>
+                        {themeNames.map((themeName) =>
+`
+<Indicator
+    theme='${themeName}'
+>
+    An {'<Indicator>'} with ${themeName} theme
+</Indicator>
+`
+                        ).join('\n')}
+                    </TypeScriptCode>
+                </SectionPropertyTheme>
+                <SectionPropertySize>
+                    <Indicator
+                        size='sm'
+                        theme='primary'
+                    >
+                        An {'<Indicator>'} with smaller size
+                    </Indicator>
+                    <p></p>
+                    <Indicator
+                        size={undefined}
+                        theme='primary'
+                    >
+                        An {'<Indicator>'} with default size
+                    </Indicator>
+                    <p></p>
+                    <Indicator
+                        size='lg'
+                        theme='primary'
+                    >
+                        An {'<Indicator>'} with larger size
+                    </Indicator>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Indicator
+    size='sm'
+    theme='primary'
+>
+    An {'<Indicator>'} with smaller size
+</Indicator>
+
+<Indicator
+    size={undefined}
+    theme='primary'
+>
+    An {'<Indicator>'} with default size
+</Indicator>
+
+<Indicator
+    size='lg'
+    theme='primary'
+>
+    An {'<Indicator>'} with larger size
+</Indicator>
+                    `}</TypeScriptCode>
+                </SectionPropertySize>
+                <SectionPropertyNude>
+                    <TransparentPreview>
+                        <Indicator
+                            nude={true}
+                            theme='warning'
+                        >
+                            hello world
+                        </Indicator>
+                    </TransparentPreview>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Indicator
+    nude={true}
+    theme='warning'
+>
+    hello world
+</Indicator>
+                    `}</TypeScriptCode>
+                </SectionPropertyNude>
+                <SectionPropertyGradient>
+                    {themeNames.map((themeName) => <>
+                        <Indicator
+                            gradient={true}
+                            theme={themeName}
+                        >
+                            hello world
+                        </Indicator>
+                        <p></p>
+                    </>)}
+                    <TypeScriptCode>
+                        {themeNames.map((themeName) =>
+`
+<Indicator
+    gradient={true}
+    theme='${themeName}'
+>
+    hello world
+</Indicator>
+`
+                        ).join('\n')}
+                    </TypeScriptCode>
+                </SectionPropertyGradient>
+                <SectionPropertyOutlined>
+                    <TransparentPreview>
+                        {themeNames.map((themeName) => <>
+                            <Indicator
+                                outlined={true}
+                                theme={themeName}
+                            >
+                                hello world
+                            </Indicator>
+                        </>)}
+                    </TransparentPreview>
+                    <p></p>
+                    <TypeScriptCode>
+                        {themeNames.map((themeName) =>
+`
+<Indicator
+    outlined={true}
+    theme='${themeName}'
+>
+    hello world
+</Indicator>
+`
+                        ).join('\n')}
+                    </TypeScriptCode>
+                </SectionPropertyOutlined>
+                <SectionPropertyMild>
+                    {themeNames.map((themeName) => <>
+                        <Indicator
+                            mild={true}
+                            theme={themeName}
+                        >
+                            hello world
+                        </Indicator>
+                        <p></p>
+                    </>)}
+                    <TypeScriptCode>
+                        {themeNames.map((themeName) =>
+`
+<Indicator
+    mild={true}
+    theme='${themeName}'
+>
+    hello world
+</Indicator>
+`
+                        ).join('\n')}
+                    </TypeScriptCode>
+                </SectionPropertyMild>
+            </SectionVariants>
             <SectionStates>
                 <SectionPropertyActive>
                     <Indicator
