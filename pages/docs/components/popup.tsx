@@ -345,7 +345,7 @@ export default function SurpriseMessage(props) {
             semantictag={props.semanticTag ?? 'span'}     // override default value of semanticTag  to 'span'
             
             theme={props.theme ?? 'warning'} // override default value of theme to 'warning'
-            mild={props.mild ?? true}        // override default value of mild  to true
+            mild={props.mild ?? false}       // override default value of mild  to false
         >
             { props.children }
         </Popup>
