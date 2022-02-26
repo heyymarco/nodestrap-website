@@ -164,7 +164,7 @@ export const SectionPropertyNumberedStyle   = ({ styleName = listStyle, property
     );
 };
 
-export const ContentMakeItemsClickable    = () => {
+export const ContentMakeItemsClickable       = () => {
     const { componentName, hasNestedComponent, nestedComponentName } = useComponentInfo();
     
     
