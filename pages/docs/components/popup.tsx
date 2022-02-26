@@ -3,12 +3,15 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
+import { useFlipFlop } from '../../../components/hooks'
+
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { TransparentPreview } from '../../../components/TransparentPreview'
 import { SectionInheritedProps, LinkPopupPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 
+import Basic from '@nodestrap/basic'
 import Popup from '@nodestrap/popup'
 import {
     themeNames,
@@ -31,6 +34,43 @@ const DemoPopupLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Popu
 
 
 
+const PopupPreview = () => {
+    const [popupRef, isActive] = useFlipFlop({ defaultState: true });
+    
+    
+    
+    return (
+        <Basic
+            elmRef={popupRef}
+            theme='secondary'
+            mild={true}
+            style={{
+                display        : 'flex',
+                flexDirection  : 'column',
+                justifyContent : 'center',
+                alignItems     : 'normal',
+                padding        : '2rem',
+                boxSizing      : 'content-box',
+                minHeight      : '5rem',
+            }}
+        >
+            <Popup
+                active={isActive}
+                theme='primary'
+            >
+                <p style={{ textAlign: 'center' }}>
+                    Hopla!
+                </p>
+                <p style={{ textAlign: 'center' }}>
+                    Ho... ho... hoo...
+                </p>
+            </Popup>
+        </Basic>
+    );
+}
+
+
+
 const Page: NextPage = () => {
     return (
         <ComponentInfoProvider packageName='@nodestrap/popup' component={<LinkPopupPage />} bases={<LinkIndicatorPage />}>
@@ -43,6 +83,10 @@ const Page: NextPage = () => {
                 <p>
                     <CurrentComponent /> is a presentation component for dynamically <strong>showing</strong> &amp; <strong>hiding</strong> a content.
                 </p>
+                <p>
+                    Here the preview:
+                </p>
+                <PopupPreview />
             </SectionIntro>
             <SectionDemo>
                 <DemoPopupLazy fallback={<BusyBar />} />
