@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { CurrentComponent, CurrentNestedComponent, SectionPreviewProperty, SectionPreviewPropertyProps, useComponentInfo } from './common'
+import { CurrentNestedComponent, SectionPreviewProperty, SectionPreviewPropertyProps, useComponentInfo } from './common'
 import {
     SectionPropertyMildProps,
     SectionPropertyMild        as BasicSectionPropertyMild,
