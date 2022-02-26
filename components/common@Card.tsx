@@ -59,13 +59,17 @@ export const SectionPropertyActive           = ({ property = 'active'  , propert
     );
 };
 export const SectionPropertyActiveNoOutlined = ({ property = 'outlined', properties = 'Active State cancels Outlined Variant', description, ...restProps }: SectionPreviewPropertyProps) => {
+    const { nestedComponentName } = useComponentInfo();
+    
+    
+    
     return (
         <SectionPreviewProperty {...restProps} titleTag={'h4'} property={property} properties={properties} description={
             description
             ??
             <>
                 <p>
-                    Assigning <code>{`<Card active={true}>`}</code> will cancel out the <code>outlined</code> variant.
+                    Assigning <code>{`<${nestedComponentName} active={true}>`}</code> will cancel out the <code>outlined</code> variant.
                 </p>
             </>
         } />
