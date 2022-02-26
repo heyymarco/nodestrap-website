@@ -56,7 +56,7 @@ const PopupPreview = () => {
         >
             <Popup
                 active={isActive}
-                theme='primary'
+                theme='warning'
             >
                 <p style={{ textAlign: 'center' }}>
                     Hopla!
@@ -113,7 +113,7 @@ const Page: NextPage = () => {
     A {'<Popup>'} with ${themeName} theme
 </Popup>
 `
-                        ).join('\n')}
+                        ).join('')}
                     </TypeScriptCode>
                 </SectionPropertyTheme>
                 <SectionPropertySize>
@@ -210,7 +210,7 @@ const Page: NextPage = () => {
     hello world
 </Popup>
 `
-                        ).join('\n')}
+                        ).join('')}
                     </TypeScriptCode>
                 </SectionPropertyGradient>
                 <SectionPropertyOutlined>
@@ -237,7 +237,7 @@ const Page: NextPage = () => {
     hello world
 </Popup>
 `
-                        ).join('\n')}
+                        ).join('')}
                     </TypeScriptCode>
                 </SectionPropertyOutlined>
                 <SectionPropertyMild>
@@ -262,7 +262,7 @@ const Page: NextPage = () => {
     hello world
 </Popup>
 `
-                        ).join('\n')}
+                        ).join('')}
                     </TypeScriptCode>
                 </SectionPropertyMild>
             </SectionVariants>

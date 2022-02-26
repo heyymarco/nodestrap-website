@@ -110,7 +110,7 @@ const Page: NextPage = () => {
     An {'<Indicator>'} with ${themeName} theme
 </Indicator>
 `
-                        ).join('\n')}
+                        ).join('')}
                     </TypeScriptCode>
                 </SectionPropertyTheme>
                 <SectionPropertySize>
@@ -197,7 +197,7 @@ const Page: NextPage = () => {
     hello world
 </Indicator>
 `
-                        ).join('\n')}
+                        ).join('')}
                     </TypeScriptCode>
                 </SectionPropertyGradient>
                 <SectionPropertyOutlined>
@@ -222,7 +222,7 @@ const Page: NextPage = () => {
     hello world
 </Indicator>
 `
-                        ).join('\n')}
+                        ).join('')}
                     </TypeScriptCode>
                 </SectionPropertyOutlined>
                 <SectionPropertyMild>
@@ -245,7 +245,7 @@ const Page: NextPage = () => {
     hello world
 </Indicator>
 `
-                        ).join('\n')}
+                        ).join('')}
                     </TypeScriptCode>
                 </SectionPropertyMild>
             </SectionVariants>

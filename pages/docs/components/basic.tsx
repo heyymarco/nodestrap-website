@@ -76,7 +76,7 @@ const Page: NextPage = () => {
     A {'<Basic>'} with ${themeName} theme
 </Basic>
 `
-                        ).join('\n')}
+                        ).join('')}
                     </TypeScriptCode>
                 </SectionPropertyTheme>
                 <SectionPropertySize>
@@ -163,7 +163,7 @@ const Page: NextPage = () => {
     hello world
 </Basic>
 `
-                        ).join('\n')}
+                        ).join('')}
                     </TypeScriptCode>
                 </SectionPropertyGradient>
                 <SectionPropertyOutlined>
@@ -188,7 +188,7 @@ const Page: NextPage = () => {
     hello world
 </Basic>
 `
-                        ).join('\n')}
+                        ).join('')}
                     </TypeScriptCode>
                 </SectionPropertyOutlined>
                 <SectionPropertyMild>
@@ -211,7 +211,7 @@ const Page: NextPage = () => {
     hello world
 </Basic>
 `
-                        ).join('\n')}
+                        ).join('')}
                     </TypeScriptCode>
                 </SectionPropertyMild>
             </SectionVariants>
