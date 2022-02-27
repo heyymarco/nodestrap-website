@@ -102,9 +102,9 @@ const PopupPlacementPreview = () => {
                 targetRef={contentRef}
                 popupPlacement={popupPlacement}
             >
-                <p>
+                <code>
                     {`popupPlacement='${popupPlacement}'`}
-                </p>
+                </code>
             </Popup>
         </div>}</SelectPopupPlacement>
     )
