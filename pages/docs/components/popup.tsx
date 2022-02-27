@@ -27,6 +27,8 @@ import {
 import {
     SectionPropertyEnabled,
     SectionPropertyActive,
+    
+    SectionPropertyTargetRef,
 } from '../../../components/common@Popup'
 
 import loadable from '@loadable/component'
@@ -332,6 +334,7 @@ const Page: NextPage = () => {
                 <p>
                     To make the <CurrentComponent /> overlaying on a specific element, configure the following properties:
                 </p>
+                <SectionPropertyTargetRef />
             </Section>
             <SectionCustomizing specList={
                 <SpecList>

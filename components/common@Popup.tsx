@@ -1,7 +1,8 @@
 import React from 'react'
 
-import { CurrentNestedComponent, useComponentInfo, SectionPreviewPropertyProps } from './common'
+import { CurrentComponent, CurrentNestedComponent, useComponentInfo, SectionPreviewProperty, SectionPreviewPropertyProps, LinkIconPage } from './common'
 import { DetailSpecItem, SpecList } from './SpecList';
+import { TypeScriptCode } from './Code';
 
 import {
     SectionPropertyActive as BasicSectionPropertyActive,
@@ -88,6 +89,85 @@ export const SectionPropertyEnabled = ({ specList, description, ...restProps }: 
                     To make <CurrentNestedComponent /> appear disabled, set <code>{`<${nestedComponentName} enabled={false}>`}</code>.
                 </p>
                 <ParagraphSetParentDisabled />
+            </>
+        } />
+    );
+};
+
+
+
+export const SectionPropertyTargetRef = ({ property = 'targetRef', specList, description, ...restProps }: SectionPreviewPropertyProps) => {
+    return (
+        <SectionPreviewProperty {...restProps} property={property} description={
+            description
+            ??
+            <>
+                <p>
+                    Decides which the <strong>DOM element</strong> for the <CurrentComponent /> will <em>hover</em> over it.
+                </p>
+                <p>
+                    You can use <code>useRef()</code> or <code>useState()</code> to assign to the <code>{property}</code>.
+                </p>
+                <p>
+                    In most cases, using <code>useRef()</code> is <em>preferable</em>,
+                    as long as the <strong>target DOM element</strong> remains the same between renders.
+                </p>
+                <p>
+                    An example using <code>useRef()</code>:
+                </p>
+                <TypeScriptCode>{`
+export default function FooComponent() {
+    const buttonRef = useRef(null);
+
+    return (
+        <>
+            <Button
+                elmRef={buttonRef}
+                theme='success'
+                size='lg'
+            >
+                Pay now
+            </Button>
+            <Popup
+                targetRef={buttonRef}
+                theme='warning'
+                popupPlacement='right'
+                active={true}
+            >
+                Processing your payment...
+            </Popup>
+        </>
+    );
+}
+                `}</TypeScriptCode>
+                <p>
+                    An example using <code>useState()</code>:
+                </p>
+                <TypeScriptCode>{`
+export default function FooComponent() {
+    const [buttonRef, setButtonRef] = useState(null);
+
+    return (
+        <>
+            <Button
+                elmRef={setButtonRef}
+                theme='success'
+                size='lg'
+            >
+                Pay now
+            </Button>
+            <Popup
+                targetRef={buttonRef}
+                theme='warning'
+                popupPlacement='right'
+                active={true}
+            >
+                Processing your payment...
+            </Popup>
+        </>
+    );
+}
+                `}</TypeScriptCode>
             </>
         } />
     );
