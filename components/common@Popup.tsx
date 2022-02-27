@@ -96,7 +96,7 @@ export const SectionPropertyEnabled = ({ specList, description, ...restProps }: 
 
 
 
-export const SectionPropertyTargetRef = ({ property = 'targetRef', specList, description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyTargetRef = ({ property = 'targetRef', description, ...restProps }: SectionPreviewPropertyProps) => {
     return (
         <SectionPreviewProperty {...restProps} property={property} description={
             description
@@ -168,6 +168,19 @@ export default function FooComponent() {
     );
 }
                 `}</TypeScriptCode>
+            </>
+        } />
+    );
+};
+export const SectionPropertyPopupPlacement = ({ property = 'popupPlacement', children, description, ...restProps }: SectionPreviewPropertyProps) => {
+    return (
+        <SectionPreviewProperty {...restProps} property={property} specList={children} description={
+            description
+            ??
+            <>
+                <p>
+                    Decides which location (relative to <code>targetRef</code>) for the <CurrentComponent /> to hover.
+                </p>
             </>
         } />
     );

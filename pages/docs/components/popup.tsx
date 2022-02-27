@@ -8,11 +8,15 @@ import { useFlipFlop } from '../../../components/hooks'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
+import { Section } from '../../../components/Section'
 import { SectionInheritedProps, LinkPopupPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
+import { Tips } from '../../../components/Info'
 
+import Label from '@nodestrap/label'
 import Popup from '@nodestrap/popup'
 import Button from '@nodestrap/button'
+import SelectPopupPlacement from '../../../components/SelectPopupPlacement';
 import {
     themeNames,
     SectionPropertyTheme,
@@ -29,10 +33,10 @@ import {
     SectionPropertyActive,
     
     SectionPropertyTargetRef,
+    SectionPropertyPopupPlacement,
 } from '../../../components/common@Popup'
 
 import loadable from '@loadable/component'
-import { Section } from '../../../components/Section'
 const DemoPopupLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Popup' */'../../../components/DemoPanel@Popup'))
 
 
@@ -78,6 +82,31 @@ const OverlayPopupPreview = ({ overlay = true }: OverlayPopupPreviewProps) => {
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
             </p>
         </Preview>
+    )
+};
+
+const PopupPlacementPreview = () => {
+    const contentRef = useRef(null);
+    
+    
+    
+    return (
+        <SelectPopupPlacement>{(popupPlacement) => <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <Label elmRef={contentRef} theme='primary' size='lg' style={{ width: '50%', height: '50%' }}>
+                A content
+            </Label>
+            <Popup
+                active={true}
+                theme='warning'
+                
+                targetRef={contentRef}
+                popupPlacement={popupPlacement}
+            >
+                <p>
+                    popupPlacement='{popupPlacement}'
+                </p>
+            </Popup>
+        </div>}</SelectPopupPlacement>
     )
 };
 
@@ -335,6 +364,16 @@ const Page: NextPage = () => {
                     To make the <CurrentComponent /> overlaying on a specific element, configure the following properties:
                 </p>
                 <SectionPropertyTargetRef />
+                <SectionPropertyPopupPlacement>
+                    <Tips>
+                        <p>
+                            <strong>Click on the dots</strong> to place the tooltip.
+                            There are 12 different placements to choose from.
+                        </p>
+                    </Tips>
+                    <p></p>
+                    <PopupPlacementPreview />
+                </SectionPropertyPopupPlacement>
             </Section>
             <SectionCustomizing specList={
                 <SpecList>
