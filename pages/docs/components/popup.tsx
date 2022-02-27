@@ -56,7 +56,7 @@ const OverlayPopupPreview = ({ overlay = true }: OverlayPopupPreviewProps) => {
             blockDisplay={true}
             
             style={!overlay ? {
-                minHeight : '12rem',
+                minHeight : '14.5rem',
             } : {}}
         >
             <Button elmRef={overlay ? buttonRef : undefined} theme='success' size='lg' enabled={!isActive}>Pay now</Button>
@@ -355,9 +355,7 @@ const Page: NextPage = () => {
                     `}</TypeScriptCode>
                 </SectionPropertyEnabled>
             </SectionStates>
-            <Section
-                title={<>Overlaying <CurrentComponent /></>}
-            >
+            <Section title={<>Overlaying <CurrentComponent /></>}>
                 <p>
                     By default the <CurrentComponent /> is flowed as a normal document element, thus
                     during <em>showing</em>/<em>hiding</em> transition, the <CurrentComponent /> <strong>shifts</strong> the position of <em>next siblings</em>.
