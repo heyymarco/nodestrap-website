@@ -7,7 +7,7 @@ import { useFlipFlop } from '../../../components/hooks'
 
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
-import { TransparentPreview } from '../../../components/Preview'
+import { Preview, TransparentPreview } from '../../../components/Preview'
 import { SectionInheritedProps, LinkCardPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, SectionStates } from '../../../components/common'
 import { Card, OrientationName } from '@nodestrap/card'
 import { TypeScriptCode } from '../../../components/Code'
@@ -123,41 +123,41 @@ const Page: NextPage = () => {
             <SectionInheritedProps />
             <SectionVariants>
                 <SectionPropertyTheme>
-                    <Card
-                        theme='primary'
-                        header={<>
-                            A Card with Primary Theme
-                        </>}
-                        footer={<>
-                            Just for fun!
-                        </>}
-                    >
-                        <DummyContents />
-                    </Card>
-                    <p></p>
-                    <Card
-                        theme='success'
-                        header={<>
-                            A Card with Success Theme
-                        </>}
-                        footer={<>
-                            Just for fun!
-                        </>}
-                    >
-                        <DummyContents />
-                    </Card>
-                    <p></p>
-                    <Card
-                        theme='danger'
-                        header={<>
-                            A Card with Danger Theme
-                        </>}
-                        footer={<>
-                            Just for fun!
-                        </>}
-                    >
-                        <DummyContents />
-                    </Card>
+                    <Preview>
+                        <Card
+                            theme='primary'
+                            header={<>
+                                A Card with Primary Theme
+                            </>}
+                            footer={<>
+                                Just for fun!
+                            </>}
+                        >
+                            <DummyContents />
+                        </Card>
+                        <Card
+                            theme='success'
+                            header={<>
+                                A Card with Success Theme
+                            </>}
+                            footer={<>
+                                Just for fun!
+                            </>}
+                        >
+                            <DummyContents />
+                        </Card>
+                        <Card
+                            theme='danger'
+                            header={<>
+                                A Card with Danger Theme
+                            </>}
+                            footer={<>
+                                Just for fun!
+                            </>}
+                        >
+                            <DummyContents />
+                        </Card>
+                    </Preview>
                     <p></p>
                     <TypeScriptCode>{`
 <Card
@@ -204,44 +204,44 @@ const Page: NextPage = () => {
                     `}</TypeScriptCode>
                 </SectionPropertyTheme>
                 <SectionPropertySize>
-                    <Card
-                        size='sm'
-                        theme='primary'
-                        header={<>
-                            A Card with Smaller Size
-                        </>}
-                        footer={<>
-                            Just for fun!
-                        </>}
-                    >
-                        <DummyContents />
-                    </Card>
-                    <p></p>
-                    <Card
-                        size={undefined}
-                        theme='primary'
-                        header={<>
-                            A Card with Default Size
-                        </>}
-                        footer={<>
-                            Just for fun!
-                        </>}
-                    >
-                        <DummyContents />
-                    </Card>
-                    <p></p>
-                    <Card
-                        size='lg'
-                        theme='primary'
-                        header={<>
-                            A Card with Larger Size
-                        </>}
-                        footer={<>
-                            Just for fun!
-                        </>}
-                    >
-                        <DummyContents />
-                    </Card>
+                    <Preview>
+                        <Card
+                            size='sm'
+                            theme='primary'
+                            header={<>
+                                A Card with Smaller Size
+                            </>}
+                            footer={<>
+                                Just for fun!
+                            </>}
+                        >
+                            <DummyContents />
+                        </Card>
+                        <Card
+                            size={undefined}
+                            theme='primary'
+                            header={<>
+                                A Card with Default Size
+                            </>}
+                            footer={<>
+                                Just for fun!
+                            </>}
+                        >
+                            <DummyContents />
+                        </Card>
+                        <Card
+                            size='lg'
+                            theme='primary'
+                            header={<>
+                                A Card with Larger Size
+                            </>}
+                            footer={<>
+                                Just for fun!
+                            </>}
+                        >
+                            <DummyContents />
+                        </Card>
+                    </Preview>
                     <p></p>
                     <TypeScriptCode>{`
 <Card
@@ -324,18 +324,20 @@ const Page: NextPage = () => {
                     `}</TypeScriptCode>
                 </SectionPropertyNude> */}
                 <SectionPropertyGradient>
-                    <Card
-                        gradient={true}
-                        theme='primary'
-                        header={<>
-                            A Card with Gradient Variant
-                        </>}
-                        footer={<>
-                            Just for fun!
-                        </>}
-                    >
-                        <DummyContents />
-                    </Card>
+                    <Preview>
+                        <Card
+                            gradient={true}
+                            theme='primary'
+                            header={<>
+                                A Card with Gradient Variant
+                            </>}
+                            footer={<>
+                                Just for fun!
+                            </>}
+                        >
+                            <DummyContents />
+                        </Card>
+                    </Preview>
                     <p></p>
                     <TypeScriptCode>{`
 <Card
@@ -388,18 +390,20 @@ const Page: NextPage = () => {
                     `}</TypeScriptCode>
                 </SectionPropertyOutlined>
                 <SectionPropertyMild>
-                    <Card
-                        mild={false}
-                        theme='primary'
-                        header={<>
-                            A Card with not_Mild Variant
-                        </>}
-                        footer={<>
-                            Just for fun!
-                        </>}
-                    >
-                        <DummyContents />
-                    </Card>
+                    <Preview>
+                        <Card
+                            mild={false}
+                            theme='primary'
+                            header={<>
+                                A Card with not_Mild Variant
+                            </>}
+                            footer={<>
+                                Just for fun!
+                            </>}
+                        >
+                            <DummyContents />
+                        </Card>
+                    </Preview>
                     <p></p>
                     <TypeScriptCode>{`
 <Card
@@ -420,18 +424,20 @@ const Page: NextPage = () => {
                 </SectionPropertyMild>
                 <SectionPropertyOrientation>
                     <SectionPropertyOrientationBlock>
-                        <Card
-                            orientation='block'
-                            theme='primary'
-                            header={<>
-                                A Card with Block Orientation
-                            </>}
-                            footer={<>
-                                Just for fun!
-                            </>}
-                        >
-                            <DummyContents />
-                        </Card>
+                        <Preview>
+                            <Card
+                                orientation='block'
+                                theme='primary'
+                                header={<>
+                                    A Card with Block Orientation
+                                </>}
+                                footer={<>
+                                    Just for fun!
+                                </>}
+                            >
+                                <DummyContents />
+                            </Card>
+                        </Preview>
                         <p></p>
                         <TypeScriptCode>{`
 <Card
@@ -451,7 +457,7 @@ const Page: NextPage = () => {
                         `}</TypeScriptCode>
                     </SectionPropertyOrientationBlock>
                     <SectionPropertyOrientationInline>
-                        <div style={{ overflowX: 'auto' }}>
+                        <Preview blockDisplay={true}>
                             <Card
                                 orientation='inline'
                                 theme='primary'
@@ -464,7 +470,7 @@ const Page: NextPage = () => {
                             >
                                 <DummyContents />
                             </Card>
-                        </div>
+                        </Preview>
                         <p></p>
                         <TypeScriptCode>{`
 <Card
@@ -484,40 +490,41 @@ const Page: NextPage = () => {
                         `}</TypeScriptCode>
                     </SectionPropertyOrientationInline>
                     <SectionPropertyOrientationResponsive>
-                        <Tips>
-                            <p>
-                                Try to <strong>resize</strong> the <span style={{ background :'pink', border : 'solid 1px darkred', padding: '0.15em' }}>red container</span> below:
-                            </p>
-                        </Tips>
-                        <p></p>
-                        <ResponsiveProvider<OrientationName> fallbacks={[
-                            'inline', // the first try, if overflow is detected, then try next
-                            'block',  // the last try
-                        ]}>{(currentFallback) => (
-                            // a <div> to watch for overflows
-                            <div style={{
-                                display    : 'block',
-                                overflow   : 'hidden',
-                                background : 'pink',
-                                border     : 'solid 1px darkred',
-                                resize     : 'horizontal',
-                                padding    : '1rem',
-                                maxWidth   : '100%',
-                            }}>
-                                <Card
-                                    orientation={currentFallback}
-                                    theme='primary'
-                                    header={<>
-                                        A Card with Responsive Orientation
-                                    </>}
-                                    footer={<>
-                                        Just for fun!
-                                    </>}
-                                >
-                                    <DummyContents />
-                                </Card>
-                            </div>
-                        )}</ResponsiveProvider>
+                        <Preview>
+                            <Tips>
+                                <p>
+                                    Try to <strong>resize</strong> the <span style={{ background :'pink', border : 'solid 1px darkred', padding: '0.15em' }}>red container</span> below:
+                                </p>
+                            </Tips>
+                            <ResponsiveProvider<OrientationName> fallbacks={[
+                                'inline', // the first try, if overflow is detected, then try next
+                                'block',  // the last try
+                            ]}>{(currentFallback) => (
+                                // a <div> to watch for overflows
+                                <div style={{
+                                    display    : 'block',
+                                    overflow   : 'hidden',
+                                    background : 'pink',
+                                    border     : 'solid 1px darkred',
+                                    resize     : 'horizontal',
+                                    padding    : '1rem',
+                                    maxWidth   : '100%',
+                                }}>
+                                    <Card
+                                        orientation={currentFallback}
+                                        theme='primary'
+                                        header={<>
+                                            A Card with Responsive Orientation
+                                        </>}
+                                        footer={<>
+                                            Just for fun!
+                                        </>}
+                                    >
+                                        <DummyContents />
+                                    </Card>
+                                </div>
+                            )}</ResponsiveProvider>
+                        </Preview>
                         <p></p>
                         <TypeScriptCode>{`
 <ResponsiveProvider fallbacks={[
@@ -555,18 +562,20 @@ const Page: NextPage = () => {
                 </SectionPropertyOrientation>
                 <SectionPropertyCardStyle>
                     <SectionPropertyFlatStyle>
-                        <Card
-                            cardStyle='flat'
-                            theme='primary'
-                            header={<>
-                                A Card with Flat Style
-                            </>}
-                            footer={<>
-                                Just for fun!
-                            </>}
-                        >
-                            <DummyContents />
-                        </Card>
+                        <TransparentPreview>
+                            <Card
+                                cardStyle='flat'
+                                theme='primary'
+                                header={<>
+                                    A Card with Flat Style
+                                </>}
+                                footer={<>
+                                    Just for fun!
+                                </>}
+                            >
+                                <DummyContents />
+                            </Card>
+                        </TransparentPreview>
                         <p></p>
                         <TypeScriptCode>{`
 <Card
@@ -586,18 +595,20 @@ const Page: NextPage = () => {
                         `}</TypeScriptCode>
                     </SectionPropertyFlatStyle>
                     <SectionPropertyFlushStyle>
-                        <Card
-                            cardStyle='flush'
-                            theme='primary'
-                            header={<>
-                                A Card with Flush Style
-                            </>}
-                            footer={<>
-                                Just for fun!
-                            </>}
-                        >
-                            <DummyContents />
-                        </Card>
+                        <TransparentPreview>
+                            <Card
+                                cardStyle='flush'
+                                theme='primary'
+                                header={<>
+                                    A Card with Flush Style
+                                </>}
+                                footer={<>
+                                    Just for fun!
+                                </>}
+                            >
+                                <DummyContents />
+                            </Card>
+                        </TransparentPreview>
                         <p></p>
                         <TypeScriptCode>{`
 <Card
@@ -617,18 +628,20 @@ const Page: NextPage = () => {
                         `}</TypeScriptCode>
                     </SectionPropertyFlushStyle>
                     <SectionPropertyJoinedStyle>
-                        <Card
-                            cardStyle='joined'
-                            theme='primary'
-                            header={<>
-                                A Card with Joined Style
-                            </>}
-                            footer={<>
-                                Just for fun!
-                            </>}
-                        >
-                            <DummyContents />
-                        </Card>
+                        <TransparentPreview>
+                            <Card
+                                cardStyle='joined'
+                                theme='primary'
+                                header={<>
+                                    A Card with Joined Style
+                                </>}
+                                footer={<>
+                                    Just for fun!
+                                </>}
+                            >
+                                <DummyContents />
+                            </Card>
+                        </TransparentPreview>
                         <p></p>
                         <TypeScriptCode>{`
 <Card
@@ -651,18 +664,20 @@ const Page: NextPage = () => {
             </SectionVariants>
             <SectionStates>
                 <SectionPropertyActive>
-                    <Card
-                        active={true}
-                        theme='primary'
-                        header={<>
-                            A Card with Active State
-                        </>}
-                        footer={<>
-                            Just for fun!
-                        </>}
-                    >
-                        <DummyContents />
-                    </Card>
+                    <Preview>
+                        <Card
+                            active={true}
+                            theme='primary'
+                            header={<>
+                                A Card with Active State
+                            </>}
+                            footer={<>
+                                Just for fun!
+                            </>}
+                        >
+                            <DummyContents />
+                        </Card>
+                    </Preview>
                     <p></p>
                     <TypeScriptCode>{`
 <Card
@@ -704,7 +719,9 @@ const Page: NextPage = () => {
                         `}</TypeScriptCode>
                     </SectionPropertyActiveNoOutlined>
                     <SectionPropertyActiveNoMild>
-                        <CardWithActiveMild />
+                        <Preview>
+                            <CardWithActiveMild />
+                        </Preview>
                         <p></p>
                         <TypeScriptCode>{`
 <Card
@@ -726,18 +743,20 @@ const Page: NextPage = () => {
                     </SectionPropertyActiveNoMild>
                 </SectionPropertyActive>
                 <SectionPropertyEnabled>
-                    <Card
-                        enabled={false}
-                        theme='primary'
-                        header={<>
-                            A Card with Disabled State
-                        </>}
-                        footer={<>
-                            Just for fun!
-                        </>}
-                    >
-                        <DummyContents />
-                    </Card>
+                    <Preview>
+                        <Card
+                            enabled={false}
+                            theme='primary'
+                            header={<>
+                                A Card with Disabled State
+                            </>}
+                            footer={<>
+                                Just for fun!
+                            </>}
+                        >
+                            <DummyContents />
+                        </Card>
+                    </Preview>
                     <p></p>
                     <TypeScriptCode>{`
 <Card

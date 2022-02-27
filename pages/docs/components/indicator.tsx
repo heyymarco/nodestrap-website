@@ -7,7 +7,7 @@ import { useFlipFlop } from '../../../components/hooks'
 
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
-import { TransparentPreview } from '../../../components/Preview'
+import { Preview, TransparentPreview } from '../../../components/Preview'
 import { SectionInheritedProps, LinkIndicatorPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 
@@ -93,14 +93,16 @@ const Page: NextPage = () => {
             <SectionInheritedProps />
             <SectionVariants>
                 <SectionPropertyTheme>
-                    {themeNames.map((themeName) => <>
-                        <Indicator
-                            theme={themeName}
-                        >
-                            An {'<Indicator>'} with {themeName} theme
-                        </Indicator>
-                        <p></p>
-                    </>)}
+                    <Preview>
+                        {themeNames.map((themeName) => <>
+                            <Indicator
+                                theme={themeName}
+                            >
+                                An {'<Indicator>'} with {themeName} theme
+                            </Indicator>
+                        </>)}
+                    </Preview>
+                    <p></p>
                     <TypeScriptCode>
                         {themeNames.map((themeName) =>
 `
@@ -114,26 +116,26 @@ const Page: NextPage = () => {
                     </TypeScriptCode>
                 </SectionPropertyTheme>
                 <SectionPropertySize>
-                    <Indicator
-                        size='sm'
-                        theme='primary'
-                    >
-                        An {'<Indicator>'} with smaller size
-                    </Indicator>
-                    <p></p>
-                    <Indicator
-                        size={undefined}
-                        theme='primary'
-                    >
-                        An {'<Indicator>'} with default size
-                    </Indicator>
-                    <p></p>
-                    <Indicator
-                        size='lg'
-                        theme='primary'
-                    >
-                        An {'<Indicator>'} with larger size
-                    </Indicator>
+                    <Preview>
+                        <Indicator
+                            size='sm'
+                            theme='primary'
+                        >
+                            An {'<Indicator>'} with smaller size
+                        </Indicator>
+                        <Indicator
+                            size={undefined}
+                            theme='primary'
+                        >
+                            An {'<Indicator>'} with default size
+                        </Indicator>
+                        <Indicator
+                            size='lg'
+                            theme='primary'
+                        >
+                            An {'<Indicator>'} with larger size
+                        </Indicator>
+                    </Preview>
                     <p></p>
                     <TypeScriptCode>{`
 <Indicator
@@ -178,15 +180,17 @@ const Page: NextPage = () => {
                     `}</TypeScriptCode>
                 </SectionPropertyNude>
                 <SectionPropertyGradient>
-                    {themeNames.map((themeName) => <>
-                        <Indicator
-                            gradient={true}
-                            theme={themeName}
-                        >
-                            hello world
-                        </Indicator>
-                        <p></p>
-                    </>)}
+                    <Preview>
+                        {themeNames.map((themeName) => <>
+                            <Indicator
+                                gradient={true}
+                                theme={themeName}
+                            >
+                                hello world
+                            </Indicator>
+                        </>)}
+                    </Preview>
+                    <p></p>
                     <TypeScriptCode>
                         {themeNames.map((themeName) =>
 `
@@ -226,15 +230,17 @@ const Page: NextPage = () => {
                     </TypeScriptCode>
                 </SectionPropertyOutlined>
                 <SectionPropertyMild>
-                    {themeNames.map((themeName) => <>
-                        <Indicator
-                            mild={false}
-                            theme={themeName}
-                        >
-                            hello world
-                        </Indicator>
-                        <p></p>
-                    </>)}
+                    <Preview>
+                        {themeNames.map((themeName) => <>
+                            <Indicator
+                                mild={false}
+                                theme={themeName}
+                            >
+                                hello world
+                            </Indicator>
+                        </>)}
+                    </Preview>
+                    <p></p>
                     <TypeScriptCode>
                         {themeNames.map((themeName) =>
 `
@@ -251,12 +257,14 @@ const Page: NextPage = () => {
             </SectionVariants>
             <SectionStates>
                 <SectionPropertyActive>
-                    <Indicator
-                        active={true}
-                        theme='primary'
-                    >
-                        hello world
-                    </Indicator>
+                    <Preview>
+                        <Indicator
+                            active={true}
+                            theme='primary'
+                        >
+                            hello world
+                        </Indicator>
+                    </Preview>
                     <p></p>
                     <TypeScriptCode>{`
 <Indicator
@@ -282,7 +290,9 @@ const Page: NextPage = () => {
                         `}</TypeScriptCode>
                     </SectionPropertyActiveNoOutlined>
                     <SectionPropertyActiveNoMild>
-                        <IndicatorWithActiveMild />
+                        <Preview>
+                            <IndicatorWithActiveMild />
+                        </Preview>
                         <p></p>
                         <TypeScriptCode>{`
 <Indicator
@@ -296,12 +306,14 @@ const Page: NextPage = () => {
                     </SectionPropertyActiveNoMild>
                 </SectionPropertyActive>
                 <SectionPropertyEnabled>
-                    <Indicator
-                        enabled={false}
-                        theme='primary'
-                    >
-                        hello world
-                    </Indicator>
+                    <Preview>
+                        <Indicator
+                            enabled={false}
+                            theme='primary'
+                        >
+                            hello world
+                        </Indicator>
+                    </Preview>
                     <p></p>
                     <TypeScriptCode>{`
 <Indicator

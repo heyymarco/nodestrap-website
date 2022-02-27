@@ -5,6 +5,7 @@ import Head from 'next/head'
 
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
+import { TransparentPreview } from '../../../components/Preview'
 import { Section, SubSection } from '../../../components/Section'
 import { SectionInheritedProps, LinkContainerPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, SectionMoreCustomizingCss, LinkBreakpointsPage, CurrentComponent, CurrentBaseComponents } from '../../../components/common'
 
@@ -60,25 +61,27 @@ const Page: NextPage = () => {
                             This is useful if you want to make a <strong>full width page section</strong> - usually with background image such as <strong>hero section</strong>.
                         </p>
                         <p>
-                            Here the demonstration:
+                            Here the preview:
                         </p>
-                        <Container theme='primary'>
-                            <section style={{ background: '#FFC0CB' }}>
-                                The first child
-                            </section>
-                            <section style={{ background: '#FFFF00' }} className='fill'>
-                                The second child applied <code>{`className='fill'`}</code>
-                            </section>
-                            <section style={{ background: '#90EE90' }}>
-                                The third child
-                            </section>
-                            <section style={{ background: '#E9967A' }} className='fill'>
-                                The fourth child applied <code>{`className='fill'`}</code>
-                            </section>
-                            <section style={{ background: '#D2B48C' }}>
-                                The fifth child
-                            </section>
-                        </Container>
+                        <TransparentPreview>
+                            <Container theme='primary'>
+                                <section style={{ background: '#FFC0CB' }}>
+                                    The first child
+                                </section>
+                                <section style={{ background: '#FFFF00' }} className='fill'>
+                                    The second child applied <code>{`className='fill'`}</code>
+                                </section>
+                                <section style={{ background: '#90EE90' }}>
+                                    The third child
+                                </section>
+                                <section style={{ background: '#E9967A' }} className='fill'>
+                                    The fourth child applied <code>{`className='fill'`}</code>
+                                </section>
+                                <section style={{ background: '#D2B48C' }}>
+                                    The fifth child
+                                </section>
+                            </Container>
+                        </TransparentPreview>
                         <p></p>
                         <TypeScriptCode>{`
 <Container theme='primary'>
@@ -106,25 +109,27 @@ const Page: NextPage = () => {
                             the <code>fill</code> class <strong>removes</strong> the <strong>padding top</strong> or <strong>padding bottom</strong> of the <CurrentComponent />.
                         </p>
                         <p>
-                            Here the demonstration:
+                            Here the preview:
                         </p>
-                        <Container theme='primary'>
-                            <section style={{ background: '#FFC0CB' }} className='fill'>
-                                The first child applied <code>{`className='fill'`}</code>
-                            </section>
-                            <section style={{ background: '#FFFF00' }}>
-                                The second child
-                            </section>
-                            <section style={{ background: '#90EE90' }}>
-                                The third child
-                            </section>
-                            <section style={{ background: '#E9967A' }}>
-                                The fourth child
-                            </section>
-                            <section style={{ background: '#D2B48C' }} className='fill'>
-                                The fifth child applied <code>{`className='fill'`}</code>
-                            </section>
-                        </Container>
+                        <TransparentPreview>
+                            <Container theme='primary'>
+                                <section style={{ background: '#FFC0CB' }} className='fill'>
+                                    The first child applied <code>{`className='fill'`}</code>
+                                </section>
+                                <section style={{ background: '#FFFF00' }}>
+                                    The second child
+                                </section>
+                                <section style={{ background: '#90EE90' }}>
+                                    The third child
+                                </section>
+                                <section style={{ background: '#E9967A' }}>
+                                    The fourth child
+                                </section>
+                                <section style={{ background: '#D2B48C' }} className='fill'>
+                                    The fifth child applied <code>{`className='fill'`}</code>
+                                </section>
+                            </Container>
+                        </TransparentPreview>
                         <p></p>
                         <TypeScriptCode>{`
 <Container theme='primary'>
@@ -157,25 +162,27 @@ const Page: NextPage = () => {
                             This is useful if you want to make a <strong>page section with lot of paragraphs/articles</strong>, so the paddings (surrounding space) should be preserved.
                         </p>
                         <p>
-                            Here the demonstration:
+                            Here the preview:
                         </p>
-                        <Container theme='primary'>
-                            <section style={{ background: '#FFC0CB' }}>
-                                The first child
-                            </section>
-                            <section style={{ background: '#FFFF00' }} className='fill-self'>
-                                The second child applied <code>{`className='fill-self'`}</code>
-                            </section>
-                            <section style={{ background: '#90EE90' }}>
-                                The third child
-                            </section>
-                            <section style={{ background: '#E9967A' }} className='fill-self'>
-                                The fourth child applied <code>{`className='fill-self'`}</code>
-                            </section>
-                            <section style={{ background: '#D2B48C' }}>
-                                The fifth child
-                            </section>
-                        </Container>
+                        <TransparentPreview>
+                            <Container theme='primary'>
+                                <section style={{ background: '#FFC0CB' }}>
+                                    The first child
+                                </section>
+                                <section style={{ background: '#FFFF00' }} className='fill-self'>
+                                    The second child applied <code>{`className='fill-self'`}</code>
+                                </section>
+                                <section style={{ background: '#90EE90' }}>
+                                    The third child
+                                </section>
+                                <section style={{ background: '#E9967A' }} className='fill-self'>
+                                    The fourth child applied <code>{`className='fill-self'`}</code>
+                                </section>
+                                <section style={{ background: '#D2B48C' }}>
+                                    The fifth child
+                                </section>
+                            </Container>
+                        </TransparentPreview>
                         <p></p>
                         <TypeScriptCode>{`
 <Container theme='primary'>
@@ -203,25 +210,27 @@ const Page: NextPage = () => {
                             the <code>fill-self</code> class also <strong>takes over</strong> the <strong>padding top</strong> or <strong>padding bottom</strong> of the <CurrentComponent />.
                         </p>
                         <p>
-                            Here the demonstration:
+                            Here the preview:
                         </p>
-                        <Container theme='primary'>
-                            <section style={{ background: '#FFC0CB' }} className='fill-self'>
-                                The first child <code>{`className='fill-self'`}</code>
-                            </section>
-                            <section style={{ background: '#FFFF00' }}>
-                                The second child applied
-                            </section>
-                            <section style={{ background: '#90EE90' }}>
-                                The third child
-                            </section>
-                            <section style={{ background: '#E9967A' }}>
-                                The fourth child applied
-                            </section>
-                            <section style={{ background: '#D2B48C' }} className='fill-self'>
-                                The fifth child <code>{`className='fill-self'`}</code>
-                            </section>
-                        </Container>
+                        <TransparentPreview>
+                            <Container theme='primary'>
+                                <section style={{ background: '#FFC0CB' }} className='fill-self'>
+                                    The first child <code>{`className='fill-self'`}</code>
+                                </section>
+                                <section style={{ background: '#FFFF00' }}>
+                                    The second child applied
+                                </section>
+                                <section style={{ background: '#90EE90' }}>
+                                    The third child
+                                </section>
+                                <section style={{ background: '#E9967A' }}>
+                                    The fourth child applied
+                                </section>
+                                <section style={{ background: '#D2B48C' }} className='fill-self'>
+                                    The fifth child <code>{`className='fill-self'`}</code>
+                                </section>
+                            </Container>
+                        </TransparentPreview>
                         <p></p>
                         <TypeScriptCode>{`
 <Container theme='primary'>

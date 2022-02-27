@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 import { Warning } from '../../../components/Info'
 
-import { TransparentPreview } from '../../../components/Preview'
+import { Preview, TransparentPreview } from '../../../components/Preview'
 import { SectionInheritedProps, LinkBasicPage, LinkElementPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 import {
@@ -59,14 +59,16 @@ const Page: NextPage = () => {
             <SectionInheritedProps />
             <SectionVariants>
                 <SectionPropertyTheme>
-                    {themeNames.map((themeName) => <>
-                        <Basic
-                            theme={themeName}
-                        >
-                            A {'<Basic>'} with {themeName} theme
-                        </Basic>
-                        <p></p>
-                    </>)}
+                    <Preview>
+                        {themeNames.map((themeName) => <>
+                            <Basic
+                                theme={themeName}
+                            >
+                                A {'<Basic>'} with {themeName} theme
+                            </Basic>
+                        </>)}
+                    </Preview>
+                    <p></p>
                     <TypeScriptCode>
                         {themeNames.map((themeName) =>
 `
@@ -80,26 +82,26 @@ const Page: NextPage = () => {
                     </TypeScriptCode>
                 </SectionPropertyTheme>
                 <SectionPropertySize>
-                    <Basic
-                        size='sm'
-                        theme='primary'
-                    >
-                        A {'<Basic>'} with smaller size
-                    </Basic>
-                    <p></p>
-                    <Basic
-                        size={undefined}
-                        theme='primary'
-                    >
-                        A {'<Basic>'} with default size
-                    </Basic>
-                    <p></p>
-                    <Basic
-                        size='lg'
-                        theme='primary'
-                    >
-                        A {'<Basic>'} with larger size
-                    </Basic>
+                    <Preview>
+                        <Basic
+                            size='sm'
+                            theme='primary'
+                        >
+                            A {'<Basic>'} with smaller size
+                        </Basic>
+                        <Basic
+                            size={undefined}
+                            theme='primary'
+                        >
+                            A {'<Basic>'} with default size
+                        </Basic>
+                        <Basic
+                            size='lg'
+                            theme='primary'
+                        >
+                            A {'<Basic>'} with larger size
+                        </Basic>
+                    </Preview>
                     <p></p>
                     <TypeScriptCode>{`
 <Basic
@@ -144,15 +146,17 @@ const Page: NextPage = () => {
                     `}</TypeScriptCode>
                 </SectionPropertyNude>
                 <SectionPropertyGradient>
-                    {themeNames.map((themeName) => <>
-                        <Basic
-                            gradient={true}
-                            theme={themeName}
-                        >
-                            hello world
-                        </Basic>
-                        <p></p>
-                    </>)}
+                    <Preview>
+                        {themeNames.map((themeName) => <>
+                            <Basic
+                                gradient={true}
+                                theme={themeName}
+                            >
+                                hello world
+                            </Basic>
+                        </>)}
+                    </Preview>
+                    <p></p>
                     <TypeScriptCode>
                         {themeNames.map((themeName) =>
 `
@@ -192,15 +196,17 @@ const Page: NextPage = () => {
                     </TypeScriptCode>
                 </SectionPropertyOutlined>
                 <SectionPropertyMild>
-                    {themeNames.map((themeName) => <>
-                        <Basic
-                            mild={true}
-                            theme={themeName}
-                        >
-                            hello world
-                        </Basic>
-                        <p></p>
-                    </>)}
+                    <Preview>
+                        {themeNames.map((themeName) => <>
+                            <Basic
+                                mild={true}
+                                theme={themeName}
+                            >
+                                hello world
+                            </Basic>
+                        </>)}
+                    </Preview>
+                    <p></p>
                     <TypeScriptCode>
                         {themeNames.map((themeName) =>
 `

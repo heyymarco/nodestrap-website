@@ -5,6 +5,7 @@ import Head from 'next/head'
 
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
+import { TransparentPreview } from '../../../components/Preview'
 import { Section, SubSection } from '../../../components/Section'
 import { SectionInheritedProps, LinkContentPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, LinkUsesBasicLayoutPage, LinkUsesBasicVariantsPage, CommaSeparated, SectionDemo, BusyBar, SectionMoreCustomizingCss, LinkGroupPage, LinkCardPage, LinkButtonPage, CurrentComponent, CurrentBaseComponents } from '../../../components/common'
 
@@ -46,21 +47,23 @@ const Page: NextPage = () => {
                     Media elements such as  <MediaList includeCustom={true} /> are <strong>styled to full width</strong> inside <CurrentComponent />, ignoring <CurrentComponent />&apos;s paddings.
                 </p>
                 <p>
-                    Here the demonstration:
+                    Here the preview:
                 </p>
-                <Content theme='primary'>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
-                    </p>
-                    <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
-                    </p>
-                    <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
-                    </p>
-                </Content>
+                <TransparentPreview>
+                    <Content theme='primary'>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                        </p>
+                        <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                        </p>
+                        <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                        </p>
+                    </Content>
+                </TransparentPreview>
                 <p></p>
                 <TypeScriptCode>{`
 <Content theme='primary'>
@@ -83,18 +86,20 @@ const Page: NextPage = () => {
                         If the media position is at the first or the last, at the corners, the media (image) are bit clipped by <CurrentComponent />&apos;s border radius.
                     </p>
                     <p>
-                        Here the demonstration:
+                        Here the preview:
                     </p>
-                    <Content theme='secondary' size='lg'>
-                        <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
-                        </p>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
-                        </p>
-                        <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
-                    </Content>
+                    <TransparentPreview>
+                        <Content theme='secondary' size='lg'>
+                            <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                            </p>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                            </p>
+                            <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+                        </Content>
+                    </TransparentPreview>
                     <p></p>
                     <TypeScriptCode>{`
 <Content theme='secondary' size='lg'>
@@ -113,20 +118,25 @@ const Page: NextPage = () => {
                     <p>
                         If there are multiple images in a sequence (without being inserted by another types), the images are joined together with borders as separator.
                     </p>
-                    <Content theme='primary'>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
-                        </p>
-                        <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
-                        <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
-                        <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
-                        </p>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
-                        </p>
-                    </Content>
+                    <p>
+                        Here the preview:
+                    </p>
+                    <TransparentPreview>
+                        <Content theme='primary'>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                            </p>
+                            <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+                            <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+                            <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                            </p>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                            </p>
+                        </Content>
+                    </TransparentPreview>
                     <p></p>
                     <TypeScriptCode>{`
 <Content theme='primary'>
@@ -160,28 +170,32 @@ const Page: NextPage = () => {
                             We may change the better algorithm in the future to fix this issue.
                         </p>
                     </Warning>
-                    <p></p>
-                    <Content theme='primary'>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
-                        </p>
-                        <Carousel classes={['media']}>
-                            <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
-                            <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
-                            <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
-                        </Carousel>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
-                        </p>
-                        <Basic theme='success' classes={['media']} style={{ textAlign: 'center' }}>
+                    <p>
+                        Here the preview:
+                    </p>
+                    <TransparentPreview>
+                        <Content theme='primary'>
                             <p>
-                                hello world!
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
                             </p>
-                        </Basic>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
-                        </p>
-                    </Content>
+                            <Carousel classes={['media']}>
+                                <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+                                <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+                                <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+                            </Carousel>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                            </p>
+                            <Basic theme='success' classes={['media']} style={{ textAlign: 'center' }}>
+                                <p>
+                                    hello world!
+                                </p>
+                            </Basic>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                            </p>
+                        </Content>
+                    </TransparentPreview>
                     <p></p>
                     <TypeScriptCode>{`
 <Content theme='primary'>
@@ -217,19 +231,24 @@ const Page: NextPage = () => {
                         Set <code>{`classes={['boo', 'not-media', 'foo']}`}</code> for Nodestrap component -or- <code>{`className='boo not-media foo'`}</code> for regular component.{' '}
                         <strong>No style are injected</strong> into that component, thus you should implement your own style for making good looking.
                     </p>
-                    <Content theme='primary'>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
-                        </p>
-                        <img alt='lorem image' src='/images/lorem-image-1.svg' className='not-media' style={{ height: '150px' }} />
-                        <img alt='lorem image' src='/images/lorem-image-1.svg' className='not-media' style={{ height: '150px' }} />
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
-                        </p>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
-                        </p>
-                    </Content>
+                    <p>
+                        Here the preview:
+                    </p>
+                    <TransparentPreview>
+                        <Content theme='primary'>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                            </p>
+                            <img alt='lorem image' src='/images/lorem-image-1.svg' className='not-media' style={{ height: '150px' }} />
+                            <img alt='lorem image' src='/images/lorem-image-1.svg' className='not-media' style={{ height: '150px' }} />
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                            </p>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                            </p>
+                        </Content>
+                    </TransparentPreview>
                     <p></p>
                     <TypeScriptCode>{`
 <Content theme='primary'>
@@ -260,24 +279,25 @@ const Page: NextPage = () => {
                         If the link elements are <strong>function component</strong> or <strong>class component</strong>, we don&apos;t mutate them.
                     </p>
                 </Warning>
-                <p></p>
                 <p>
-                    Here the demonstration:
+                    Here the preview:
                 </p>
-                <Content theme='primary'>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
-                    </p>
-                    <a href='#'>Link 1</a>
-                    <a href='#'>Link 2</a>
-                    <a href='#'>Link 3</a>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
-                    </p>
-                </Content>
+                <TransparentPreview>
+                    <Content theme='primary'>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                        </p>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                        </p>
+                        <a href='#'>Link 1</a>
+                        <a href='#'>Link 2</a>
+                        <a href='#'>Link 3</a>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                        </p>
+                    </Content>
+                </TransparentPreview>
                 <p></p>
                 <TypeScriptCode>{`
 <Content theme='primary'>
@@ -306,23 +326,25 @@ const Page: NextPage = () => {
                         The <code>link</code> class will be automatically added for you.
                     </p>
                     <p>
-                        Here the demonstration:
+                        Here the preview:
                     </p>
-                    <Content theme='primary'>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
-                        </p>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
-                        </p>
-                        <Button btnStyle='link' href='#'>Link 1</Button>
-                        <Button btnStyle='link' onClick={() => alert('hello world')}>Link 2</Button>
-                        <div className='link'>Link 3</div>
-                        <span className='link'>Link 4</span>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
-                        </p>
-                    </Content>
+                    <TransparentPreview>
+                        <Content theme='primary'>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                            </p>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                            </p>
+                            <Button btnStyle='link' href='#'>Link 1</Button>
+                            <Button btnStyle='link' onClick={() => alert('hello world')}>Link 2</Button>
+                            <div className='link'>Link 3</div>
+                            <span className='link'>Link 4</span>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                            </p>
+                        </Content>
+                    </TransparentPreview>
                     <p></p>
                     <TypeScriptCode>{`
 <Content theme='primary'>
@@ -352,20 +374,25 @@ const Page: NextPage = () => {
                         Set <code>{`classes={['boo', 'not-link', 'foo']}`}</code> for Nodestrap component -or- <code>{`className='boo not-link foo'`}</code> for regular component.{' '}
                         <strong>No style are injected</strong> into that component, thus you should implement your own style for making good looking.
                     </p>
-                    <Content theme='primary'>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
-                        </p>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
-                        </p>
-                        <a href='#' className='not-link'>Link 1</a>
-                        <a href='#' className='not-link'>Link 2</a>
-                        <a href='#' className='not-link'>Link 3</a>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
-                        </p>
-                    </Content>
+                    <p>
+                        Here the preview:
+                    </p>
+                    <TransparentPreview>
+                        <Content theme='primary'>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                            </p>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                            </p>
+                            <a href='#' className='not-link'>Link 1</a>
+                            <a href='#' className='not-link'>Link 2</a>
+                            <a href='#' className='not-link'>Link 3</a>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aut deserunt nulla iusto quod a est debitis tenetur dolorem? Molestiae unde nulla amet odio eveniet, quis eum libero aperiam natus?
+                            </p>
+                        </Content>
+                    </TransparentPreview>
                     <p></p>
                     <TypeScriptCode>{`
 <Content theme='primary'>
