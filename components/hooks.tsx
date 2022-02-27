@@ -38,9 +38,19 @@ export const useFlipFlop = <TState,>({ defaultState } : FlipFlopOptions<TState>)
         
         
         // setups:
+        let interval        = 2000;
+        const currentIsFlip = !isFlip;
+        
+        const globalTick    = Date.now();
+        const globalIsFlip  = !!(Math.ceil(globalTick / interval) % 2);
+        const globalLate    = globalTick % interval; // the late interval from globalFlip
+        if (globalLate > (interval * 0.05)) { // sync to another `useFlipFlop()`
+            const globalNextFlip = interval - globalLate;
+            interval = globalNextFlip + ((currentIsFlip !== globalIsFlip) ? interval : 0);
+        } // if
         const timeoutHanlder = setTimeout(() => {
-            setIsFlip(!isFlip);
-        }, 2000);
+            setIsFlip(currentIsFlip);
+        }, interval);
         
         
         

@@ -329,6 +329,9 @@ const Page: NextPage = () => {
                     To workaround for the shifting problem, <CurrentComponent /> can be configured as an <em>overlaying element</em>, like this:
                 </p>
                 <OverlayPopupPreview />
+                <p>
+                    To make the <CurrentComponent /> overlaying on a specific element, configure the following properties:
+                </p>
             </Section>
             <SectionCustomizing specList={
                 <SpecList>
