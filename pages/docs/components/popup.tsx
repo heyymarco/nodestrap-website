@@ -7,11 +7,10 @@ import { useFlipFlop } from '../../../components/hooks'
 
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
-import { TransparentPreview } from '../../../components/TransparentPreview'
+import { Preview, TransparentPreview } from '../../../components/Preview'
 import { SectionInheritedProps, LinkPopupPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 
-import Basic from '@nodestrap/basic'
 import Popup from '@nodestrap/popup'
 import Button from '@nodestrap/button'
 import {
@@ -36,70 +35,49 @@ const DemoPopupLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Popu
 
 
 
-const PopupPreview = () => {
-    const [popupRef, isActive] = useFlipFlop({ defaultState: true });
-    
-    
-    
-    return (
-        <Basic
-            elmRef={popupRef}
-            theme='secondary'
-            mild={true}
-            style={{
-                display        : 'flex',
-                flexDirection  : 'column',
-                justifyContent : 'center',
-                alignItems     : 'normal',
-                padding        : '2rem',
-                boxSizing      : 'content-box',
-                minHeight      : '5rem',
-            }}
-        >
-            <Popup
-                active={isActive}
-                theme='warning'
-            >
-                <p style={{ textAlign: 'center' }}>
-                    Hopla!
-                </p>
-                <p style={{ textAlign: 'center' }}>
-                    Ho... ho... hoo...
-                </p>
-            </Popup>
-        </Basic>
-    );
-};
-const OverlayingPopupPreview = () => {
+interface OverlayPopupPreviewProps {
+    overlay ?: boolean
+}
+const OverlayPopupPreview = ({ overlay = true }: OverlayPopupPreviewProps) => {
     const [popupRef, isActive] = useFlipFlop({ defaultState: true });
     const buttonRef = useRef(null);
     
     
     
     return (
-        <div ref={popupRef}>
-            <Button elmRef={buttonRef} theme='success' size='lg' enabled={!isActive}>Pay now</Button>
+        <Preview
+            elmRef={popupRef}
+            blockDisplay={true}
+            
+            style={!overlay ? {
+                minHeight : '12rem',
+            } : {}}
+        >
+            <Button elmRef={overlay ? buttonRef : undefined} theme='success' size='lg' enabled={!isActive}>Pay now</Button>
             <span> -or- </span>
             <Button theme='secondary' size='lg' outlined={true} enabled={!isActive}>Cancel</Button>
             <Popup
                 active={isActive}
                 theme='warning'
                 
-                targetRef={buttonRef}
+                targetRef={overlay ? buttonRef : undefined}
                 popupPlacement='right-start'
-                style={{
+                style={overlay ? {
                     position         : 'relative',
                     insetInlineStart : '-3rem',
                     insetBlockEnd    : '1rem',
-                }}
+                } : {}}
             >
                 <p>
                     Processing your payment...
                 </p>
             </Popup>
-        </div>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+        </Preview>
     )
-}
+};
 
 
 
@@ -118,7 +96,7 @@ const Page: NextPage = () => {
                 <p>
                     Here the preview:
                 </p>
-                <PopupPreview />
+                <OverlayPopupPreview />
             </SectionIntro>
             <SectionDemo>
                 <DemoPopupLazy fallback={<BusyBar />} />
@@ -340,13 +318,17 @@ const Page: NextPage = () => {
                 title={<>Overlaying <CurrentComponent /></>}
             >
                 <p>
-                    By default the <CurrentComponent /> is flowed as a normal document element, but
-                    <CurrentComponent /> can also be configured as an <em>overlaying element</em>.
+                    By default the <CurrentComponent /> is flowed as a normal document element, thus
+                    during <em>showing</em>/<em>hiding</em> transition, the <CurrentComponent /> <strong>shifts</strong> the position of <em>next siblings</em>.
                 </p>
                 <p>
-                    Here the preview:
+                    The preview below illustrates the <CurrentComponent /> <strong>shifts</strong> the position of <strong>a paragraph</strong>:
                 </p>
-                <OverlayingPopupPreview />
+                <OverlayPopupPreview overlay={false} />
+                <p>
+                    To workaround for the shifting problem, <CurrentComponent /> can be configured as an <em>overlaying element</em>, like this:
+                </p>
+                <OverlayPopupPreview />
             </Section>
             <SectionCustomizing specList={
                 <SpecList>
