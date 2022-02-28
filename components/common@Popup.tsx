@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { CurrentComponent, CurrentNestedComponent, useComponentInfo, SectionPreviewProperty, SectionPreviewPropertyProps, LinkIconPage, ParagraphDefaultValue } from './common'
+import { CurrentComponent, CurrentNestedComponent, useComponentInfo, SectionPreviewProperty, SectionPreviewPropertyProps, ParagraphDefaultValue, LinkReactLazyLinkPage, LinkLoadableComponentsLinkPage } from './common'
 import { DetailSpecItem, SpecList } from './SpecList';
 import { TypeScriptCode } from './Code';
 
@@ -255,6 +255,41 @@ export const SectionPropertyPopupPreventOverflowModifier = ({ titleTag='h4', pro
 ]}>
 </${componentName}>
                 `}</TypeScriptCode>
+            </>
+        } />
+    );
+};
+
+
+
+export const SectionPropertyLazy = ({ titleTag = 'h2', propertySuffix = true, property = 'lazy', specList, description, ...restProps }: SectionPreviewPropertyProps) => {
+    return (
+        <SectionPreviewProperty {...restProps} titleTag={titleTag} propertySuffix={propertySuffix} property={property} specList={
+            specList
+            ??
+            <SpecList>
+                <DetailSpecItem code='true'>
+                    <p>
+                        The <CurrentComponent />&apos;s <code>children</code> are <em>always</em> rendered.
+                    </p>
+                </DetailSpecItem>
+                <DetailSpecItem code='false'>
+                    <p>
+                        The <CurrentComponent />&apos;s <code>children</code> are rendered <em>only if</em> the <CurrentComponent /> is <strong>shown</strong>.
+                    </p>
+                    <ParagraphDefaultValue code='lazy' />
+                </DetailSpecItem>
+            </SpecList>
+        } description={
+            description
+            ??
+            <>
+                <p>
+                    Prevents an unnecessary rendering of <CurrentComponent />&apos;s <code>children</code>, <em>when</em> the <CurrentComponent /> is currently <strong>hidden</strong>.
+                </p>
+                <p>
+                    This is useful to combine with <LinkReactLazyLinkPage /> or <LinkLoadableComponentsLinkPage />.
+                </p>
             </>
         } />
     );

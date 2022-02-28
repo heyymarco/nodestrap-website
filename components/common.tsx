@@ -19,12 +19,14 @@ type Component = React.ReactElement<PageLinkProps, React.FunctionComponent<PageL
 type CodeProps = React.PropsWithChildren<{}>
 const Code = (props: CodeProps) => <code>{ props.children }</code>
 
-type LinkProps = React.PropsWithChildren<{ href: string }>
+interface LinkProps extends React.PropsWithChildren<{ href: string }> {
+    nofollow ?: boolean
+}
 
 type LinkCodeProps = LinkProps & CodeProps & { text?: React.ReactNode }
-const LinkButton = ({ text, ...restProps }: LinkCodeProps) => {
+const LinkButton = ({ text, nofollow = false, ...restProps }: LinkCodeProps) => {
     return (
-        <Button theme='primary' btnStyle='link'>
+        <Button theme='primary' btnStyle='link' rel={nofollow ? 'nofollow noopener noreferrer' : undefined}>
             <Link {...restProps}>
                 { text }
             </Link>
@@ -58,7 +60,7 @@ const LinkCode = (props: LinkCodeProps) => {
     return (
         <LinkCodeInternal currentComponent={children}>
             <Link {...props}>
-                <a>
+                <a rel={props.nofollow ? 'nofollow noopener noreferrer' : undefined}>
                     { children }
                 </a>
             </Link>
@@ -68,75 +70,78 @@ const LinkCode = (props: LinkCodeProps) => {
 
 type PageLinkProps = { children?: React.ReactNode }
 
-export const LinkColorsPage                = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/utilities/colors'><code>colors</code></LinkCode>
-export const LinkBordersPage               = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/utilities/borders'><code>borders</code></LinkCode>
-export const LinkSpacersPage               = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/utilities/spacers'><code>spacers</code></LinkCode>
-export const LinkStripoutsPage             = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/utilities/stripouts'><code>stripouts</code></LinkCode>
-export const LinkBreakpointsPage           = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/utilities/breakpoints'><code>breakpoints</code></LinkCode>
-export const LinkLayoutsPage               = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/utilities/layouts'><code>layouts</code></LinkCode>
-export const LinkTyposPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/utilities/typos'><code>typos</code></LinkCode>
+export const LinkColorsPage                 = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/utilities/colors'><code>colors</code></LinkCode>
+export const LinkBordersPage                = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/utilities/borders'><code>borders</code></LinkCode>
+export const LinkSpacersPage                = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/utilities/spacers'><code>spacers</code></LinkCode>
+export const LinkStripoutsPage              = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/utilities/stripouts'><code>stripouts</code></LinkCode>
+export const LinkBreakpointsPage            = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/utilities/breakpoints'><code>breakpoints</code></LinkCode>
+export const LinkLayoutsPage                = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/utilities/layouts'><code>layouts</code></LinkCode>
+export const LinkTyposPage                  = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/utilities/typos'><code>typos</code></LinkCode>
 
-export const LinkHooksPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/utilities/hooks'><code>hooks</code></LinkCode>
-export const LinkUtilitiesPage             = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/utilities/utilities'><code>utilities</code></LinkCode>
-export const LinkAccessibilitiesPage       = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/utilities/accessibilities'><code>accessibilities</code></LinkCode>
-export const LinkValidationProviderPage    = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/utilities/accessibilities'>ValidationProvider</LinkCode>
-export const LinkValidationsPage           = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/utilities/validations'><code>validations</code></LinkCode>
-export const LinkResponsiveProviderPage    = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/utilities/responsive'>ResponsiveProvider</LinkCode>
+export const LinkHooksPage                  = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/utilities/hooks'><code>hooks</code></LinkCode>
+export const LinkUtilitiesPage              = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/utilities/utilities'><code>utilities</code></LinkCode>
+export const LinkAccessibilitiesPage        = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/utilities/accessibilities'><code>accessibilities</code></LinkCode>
+export const LinkValidationProviderPage     = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/utilities/accessibilities'>ValidationProvider</LinkCode>
+export const LinkValidationsPage            = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/utilities/validations'><code>validations</code></LinkCode>
+export const LinkResponsiveProviderPage     = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/utilities/responsive'>ResponsiveProvider</LinkCode>
 
-export const LinkReactRouterLinkPage       = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/react-router-link'>ReactRouterLink</LinkCode>
-export const LinkOriReactRouterLinkPage    = (props: PageLinkProps) => <LinkCode text={props.children} href='https://reactrouter.com/docs/en/v6/getting-started/tutorial#add-some-links'>Link</LinkCode>
+export const LinkReactRouterLinkPage        = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/react-router-link'>ReactRouterLink</LinkCode>
+export const LinkOriReactRouterLinkPage     = (props: PageLinkProps) => <LinkCode text={props.children}     href='https://reactrouter.com/docs/en/v6/getting-started/tutorial#add-some-links' nofollow={true}>Link</LinkCode>
+export const LinkOriNextJsLinkPage          = (props: PageLinkProps) => <LinkCode text={props.children}     href='https://nextjs.org/docs/api-reference/next/link' nofollow={true}>Link</LinkCode>
 
-export const LinkOriNextJsLinkPage         = (props: PageLinkProps) => <LinkCode text={props.children} href='https://nextjs.org/docs/api-reference/next/link'>Link</LinkCode>
+export const LinkReactLazyLinkPage          = (props: PageLinkProps) => <LinkCode text='React.lazy'         href='https://reactjs.org/docs/code-splitting.html' nofollow={true}/>
+export const LinkLoadableComponentsLinkPage = (props: PageLinkProps) => <LinkCode text='LoadableComponents' href='https://loadable-components.com/' nofollow={true}/>
 
-export const LinkElementPage               = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/element'>Element</LinkCode>
-export const LinkBasicPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/basic'>Basic</LinkCode>
-export const LinkUsesBasicLayoutPage       = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/basic'><code>usesBasicLayout()</code></LinkCode>
-export const LinkUsesBasicVariantsPage     = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/basic'><code>usesBasicVariants()</code></LinkCode>
-export const LinkIndicatorPage             = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/indicator'>Indicator</LinkCode>
-export const LinkUsesIndicatorVariantsPage = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/indicator'><code>usesIndicatorVariants()</code></LinkCode>
-export const LinkControlPage               = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/control'>Control</LinkCode>
-export const LinkActionControlPage         = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/action-control'>ActionControl</LinkCode>
-export const LinkEditableControlPage       = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/editable-control'>EditableControl</LinkCode>
-export const LinkEditableTextControlPage   = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/editable-text-control'>EditableTextControl</LinkCode>
-export const LinkEditableActionControlPage = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/editable-action-control'>EditableActionControl</LinkCode>
 
-export const LinkContainerPage             = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/container'>Container</LinkCode>
-export const LinkContentPage               = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/content'>Content</LinkCode>
+export const LinkElementPage                = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/element'>Element</LinkCode>
+export const LinkBasicPage                  = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/basic'>Basic</LinkCode>
+export const LinkUsesBasicLayoutPage        = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/basic'><code>usesBasicLayout()</code></LinkCode>
+export const LinkUsesBasicVariantsPage      = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/basic'><code>usesBasicVariants()</code></LinkCode>
+export const LinkIndicatorPage              = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/indicator'>Indicator</LinkCode>
+export const LinkUsesIndicatorVariantsPage  = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/indicator'><code>usesIndicatorVariants()</code></LinkCode>
+export const LinkControlPage                = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/control'>Control</LinkCode>
+export const LinkActionControlPage          = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/action-control'>ActionControl</LinkCode>
+export const LinkEditableControlPage        = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/editable-control'>EditableControl</LinkCode>
+export const LinkEditableTextControlPage    = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/editable-text-control'>EditableTextControl</LinkCode>
+export const LinkEditableActionControlPage  = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/editable-action-control'>EditableActionControl</LinkCode>
 
-export const LinkVisuallyHiddenPage        = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/visually-hidden'>VisuallyHidden</LinkCode>
-export const LinkIconPage                  = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/icon'>Icon</LinkCode>
-export const LinkConfigIconPage            = (props: PageLinkProps) => <LinkCode text={props.children ?? (<>Configuring the {`<Icon>`} Component</>)} href='/docs/components/icon' />
-export const LinkLabelPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/label'>Label</LinkCode>
-export const LinkMasonryPage               = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/masonry'>Masonry</LinkCode>
-export const LinkButtonPage                = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/button'>Button</LinkCode>
-export const LinkNavButtonPage             = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/nav-button'>NavButton</LinkCode>
-export const LinkButtonIconPage            = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/button-icon'>ButtonIcon</LinkCode>
-export const LinkCloseButtonPage           = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/close-button'>CloseButton</LinkCode>
-export const LinkFormPage                  = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/form'>Form</LinkCode>
-export const LinkInputPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/input'>Input</LinkCode>
-export const LinkRangePage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/range'>Range</LinkCode>
-export const LinkCheckPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/check'>Check</LinkCode>
-export const LinkRadioPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/radio'>Radio</LinkCode>
-export const LinkTogglerMenuButtonPage     = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/toggler-menu-button'>TogglerMenuButton</LinkCode>
+export const LinkContainerPage              = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/container'>Container</LinkCode>
+export const LinkContentPage                = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/content'>Content</LinkCode>
 
-export const LinkListPage                  = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/list'>List</LinkCode>
-export const LinkListItemPage              = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/list'>ListItem</LinkCode>
-export const LinkListSeparatorItemPage     = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/list'>ListSeparatorItem</LinkCode>
-export const LinkCardPage                  = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/card'>Card</LinkCode>
+export const LinkVisuallyHiddenPage         = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/visually-hidden'>VisuallyHidden</LinkCode>
+export const LinkIconPage                   = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/icon'>Icon</LinkCode>
+export const LinkConfigIconPage             = (props: PageLinkProps) => <LinkCode text={props.children ?? (<>Configuring the {`<Icon>`} Component</>)} href='/docs/components/icon' />
+export const LinkLabelPage                  = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/label'>Label</LinkCode>
+export const LinkMasonryPage                = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/masonry'>Masonry</LinkCode>
+export const LinkButtonPage                 = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/button'>Button</LinkCode>
+export const LinkNavButtonPage              = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/nav-button'>NavButton</LinkCode>
+export const LinkButtonIconPage             = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/button-icon'>ButtonIcon</LinkCode>
+export const LinkCloseButtonPage            = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/close-button'>CloseButton</LinkCode>
+export const LinkFormPage                   = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/form'>Form</LinkCode>
+export const LinkInputPage                  = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/input'>Input</LinkCode>
+export const LinkRangePage                  = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/range'>Range</LinkCode>
+export const LinkCheckPage                  = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/check'>Check</LinkCode>
+export const LinkRadioPage                  = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/radio'>Radio</LinkCode>
+export const LinkTogglerMenuButtonPage      = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/toggler-menu-button'>TogglerMenuButton</LinkCode>
 
-export const LinkPopupPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/popup'>Popup</LinkCode>
+export const LinkListPage                   = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/list'>List</LinkCode>
+export const LinkListItemPage               = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/list'>ListItem</LinkCode>
+export const LinkListSeparatorItemPage      = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/list'>ListSeparatorItem</LinkCode>
+export const LinkCardPage                   = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/card'>Card</LinkCode>
 
-export const LinkAlertPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/alert'>Alert</LinkCode>
+export const LinkPopupPage                  = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/popup'>Popup</LinkCode>
 
-export const LinkDropdownListPage          = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/dropdown-list'>DropdownList</LinkCode>
-export const LinkDropdownListButtonPage    = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/dropdown-list-button'>DropdownListButton</LinkCode>
+export const LinkAlertPage                  = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/alert'>Alert</LinkCode>
 
-export const LinkGroupPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/group'>Group</LinkCode>
-export const LinkNavbarPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/navbar'>Navbar</LinkCode>
+export const LinkDropdownListPage           = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/dropdown-list'>DropdownList</LinkCode>
+export const LinkDropdownListButtonPage     = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/dropdown-list-button'>DropdownListButton</LinkCode>
 
-export const LinkModalPage                 = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/modal'>Modal</LinkCode>
-export const LinkModalCardPage             = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/modal-card'>ModalCard</LinkCode>
-export const LinkModalSidePage             = (props: PageLinkProps) => <LinkCode text={props.children} href='/docs/components/modal-side'>ModalSide</LinkCode>
+export const LinkGroupPage                  = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/group'>Group</LinkCode>
+export const LinkNavbarPage                 = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/navbar'>Navbar</LinkCode>
+
+export const LinkModalPage                  = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/modal'>Modal</LinkCode>
+export const LinkModalCardPage              = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/modal-card'>ModalCard</LinkCode>
+export const LinkModalSidePage              = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/modal-side'>ModalSide</LinkCode>
 
 
 

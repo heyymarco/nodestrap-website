@@ -37,6 +37,8 @@ import {
     SectionPropertyPopupModifiers,
     SectionPropertyPopupFlipModifier,
     SectionPropertyPopupPreventOverflowModifier,
+    
+    SectionPropertyLazy,
 } from '../../../components/common@Popup'
 
 import loadable from '@loadable/component'
@@ -542,6 +544,7 @@ const Page: NextPage = () => {
                     </SectionPropertyPopupPreventOverflowModifier>
                 </SectionPropertyPopupModifiers>
             </Section>
+            <SectionPropertyLazy />
             <SectionCustomizing specList={
                 <SpecList>
                     <DetailSpecItem title='Animations'>
