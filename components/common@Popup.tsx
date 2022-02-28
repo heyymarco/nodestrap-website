@@ -205,7 +205,10 @@ export const SectionPropertyPopupModifiers = ({ property = 'popupModifiers', chi
         } />
     );
 };
-export const SectionPropertyPopupFlipModifier = ({ titleTag='h4', property = "popupModifiers={[name: 'flip']}", properties = 'Flip Modifier', description, ...restProps }: SectionPreviewPropertyProps) => {
+export interface SectionPropertyPopupItemModifierProps extends SectionPreviewPropertyProps {
+    setByDefault ?: boolean
+}
+export const SectionPropertyPopupFlipModifier = ({ titleTag='h4', property = "popupModifiers={[name: 'flip']}", properties = 'Flip Modifier', description, setByDefault = true, ...restProps }: SectionPropertyPopupItemModifierProps) => {
     const { componentName } = useComponentInfo();
     
     
@@ -220,12 +223,12 @@ export const SectionPropertyPopupFlipModifier = ({ titleTag='h4', property = "po
                     if the original location causes the <CurrentComponent /> to be <strong>out of view</strong> in the browser.
                 </p>
                 <p>
-                    This modifier is <strong>enabled by default</strong>.
-                    To disable it, apply this code:
+                    This modifier is <strong>{setByDefault ? 'enabled' : 'disabled'} by default</strong>.
+                    To {setByDefault ? 'disabled' : 'enabled'} it, apply this code:
                 </p>
                 <TypeScriptCode>{`
 <${componentName} popupModifiers={[
-    { name: 'flip', enabled: false },
+    { name: 'flip', enabled: ${!setByDefault} },
     /* ... */
 ]}>
 </${componentName}>
