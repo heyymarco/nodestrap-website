@@ -97,6 +97,10 @@ export const SectionPropertyEnabled = ({ specList, description, ...restProps }: 
 
 
 export const SectionPropertyTargetRef = ({ property = 'targetRef', description, ...restProps }: SectionPreviewPropertyProps) => {
+    const { componentName } = useComponentInfo();
+    
+    
+    
     return (
         <SectionPreviewProperty {...restProps} property={property} description={
             description
@@ -128,14 +132,14 @@ export default function FooComponent() {
             >
                 Pay now
             </Button>
-            <Popup
+            <${componentName}
                 targetRef={buttonRef}
                 theme='warning'
                 popupPlacement='right'
                 active={true}
             >
                 Processing your payment...
-            </Popup>
+            </${componentName}>
         </>
     );
 }
@@ -156,14 +160,14 @@ export default function FooComponent() {
             >
                 Pay now
             </Button>
-            <Popup
+            <${componentName}
                 targetRef={buttonRef}
                 theme='warning'
                 popupPlacement='right'
                 active={true}
             >
                 Processing your payment...
-            </Popup>
+            </${componentName}>
         </>
     );
 }
