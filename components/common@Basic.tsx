@@ -4,7 +4,7 @@ import React from 'react'
 import { SpecList, DetailSpecItem } from './SpecList'
 import { Warning } from './Info'
 
-import { LinkColorsPage, SectionSubProperty, CurrentComponent, CurrentNestedComponent, SectionPropertyProps, useComponentInfo, SectionPreviewPropertyProps, SectionPreviewProperty, LinkResponsiveProviderPage } from './common'
+import { LinkColorsPage, SectionSubProperty, CurrentComponent, CurrentNestedComponent, SectionPropertyProps, useComponentInfo, SectionPreviewPropertyProps, SectionPreviewProperty, LinkResponsiveProviderPage, ParagraphDefaultValue } from './common'
 import type { ThemeName } from '@nodestrap/basic';
 
 
@@ -243,9 +243,7 @@ export const SectionPropertyOrientationBlock = ({ titleTag='h4', property = "ori
                 <p>
                     To make <CurrentNestedComponent />{hasNestedComponent && 's'} stacked in <strong>vertical</strong>, set <code>{`<${componentName} orientation='block'>`}</code>.
                 </p>
-                {setByDefault && <p>
-                    This is the <strong>default</strong> value if the <code>orientation</code> value is not specified.
-                </p>}
+                {setByDefault && <ParagraphDefaultValue code='orientation' />}
             </>
         } />
     );
@@ -263,9 +261,7 @@ export const SectionPropertyOrientationInline = ({ titleTag='h4', property = "or
                 <p>
                     To make <CurrentNestedComponent />{hasNestedComponent && 's'} stacked in <strong>vertical</strong>, set <code>{`<${componentName} orientation='inline'>`}</code>.
                 </p>
-                {setByDefault && <p>
-                    This is the <strong>default</strong> value if the <code>orientation</code> value is not specified.
-                </p>}
+                {setByDefault && <ParagraphDefaultValue code='orientation' />}
                 <Warning>
                     <p>
                         Make sure the page is <strong>wide enough</strong> as the <code>inline</code> orientation may take up a lot of space (width).

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { CurrentComponent, CurrentNestedComponent, useComponentInfo, SectionPreviewProperty, SectionPreviewPropertyProps, LinkIconPage } from './common'
+import { CurrentComponent, CurrentNestedComponent, useComponentInfo, SectionPreviewProperty, SectionPreviewPropertyProps, LinkIconPage, ParagraphDefaultValue } from './common'
 import { DetailSpecItem, SpecList } from './SpecList';
 import { Warning } from './Info';
 
@@ -37,9 +37,7 @@ export const SectionPropertyActive           = ({ property = 'active'    , prope
                     <p>
                         At this state, the <CurrentNestedComponent /> is currently in <strong>normal</strong> state.
                     </p>
-                    <p>
-                        This is the <strong>default</strong> value if the <code>active</code> value is not specified.
-                    </p>
+                    <ParagraphDefaultValue code='active' />
                 </DetailSpecItem>
             </SpecList>
         } description={
@@ -126,9 +124,7 @@ export const SectionPropertyEnabled          = ({ property = 'enabled'   , prope
                     <p>
                         At this state, all functionality of <CurrentNestedComponent /> are <strong>preserved</strong>.
                     </p>
-                    <p>
-                        This is the <strong>default</strong> value if the <code>enabled</code> value is not specified.
-                    </p>
+                    <ParagraphDefaultValue code='enabled' />
                 </DetailSpecItem>
                 <DetailSpecItem code='false'>
                     <p>
@@ -192,9 +188,7 @@ export const SectionPropertyReadOnly         = ({ property = 'readOnly'  , prope
                         At this state, the editing functionality of <CurrentNestedComponent /> is <strong>preserved</strong>.
                         You can make any changes to this component.
                     </p>
-                    <p>
-                        This is the <strong>default</strong> value if the <code>readOnly</code> value is not specified.
-                    </p>
+                    <ParagraphDefaultValue code='readOnly' />
                 </DetailSpecItem>
             </SpecList>
         } description={

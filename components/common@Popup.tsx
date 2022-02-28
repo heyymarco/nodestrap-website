@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { CurrentComponent, CurrentNestedComponent, useComponentInfo, SectionPreviewProperty, SectionPreviewPropertyProps, LinkIconPage } from './common'
+import { CurrentComponent, CurrentNestedComponent, useComponentInfo, SectionPreviewProperty, SectionPreviewPropertyProps, LinkIconPage, ParagraphDefaultValue } from './common'
 import { DetailSpecItem, SpecList } from './SpecList';
 import { TypeScriptCode } from './Code';
 
@@ -33,9 +33,7 @@ export const SectionPropertyActive  = ({ specList, description, ...restProps }: 
                     <p>
                         At this state, the <CurrentNestedComponent /> is currently <strong>hidden</strong>.
                     </p>
-                    <p>
-                        This is the <strong>default</strong> value if the <code>active</code> value is not specified.
-                    </p>
+                    <ParagraphDefaultValue code='active' />
                 </DetailSpecItem>
             </SpecList>
         } description={
@@ -68,9 +66,7 @@ export const SectionPropertyEnabled = ({ specList, description, ...restProps }: 
                     <p>
                         At this state, the <CurrentNestedComponent /> is appear <strong>normal</strong>.
                     </p>
-                    <p>
-                        This is the <strong>default</strong> value if the <code>enabled</code> value is not specified.
-                    </p>
+                    <ParagraphDefaultValue code='enabled' />
                 </DetailSpecItem>
                 <DetailSpecItem code='false'>
                     <p>
