@@ -185,3 +185,48 @@ export const SectionPropertyPopupPlacement = ({ property = 'popupPlacement', chi
         } />
     );
 };
+export const SectionPropertyPopupModifiers = ({ property = 'popupModifiers', children, description, ...restProps }: SectionPreviewPropertyProps) => {
+    return (
+        <SectionPreviewProperty {...restProps} property={property} moreInfo={children} description={
+            description
+            ??
+            <>
+                <p>
+                    Modifies the behoavior of <CurrentComponent />.
+                </p>
+                <p>
+                    There are some useful built-in modifiers, they are:
+                </p>
+            </>
+        } />
+    );
+};
+export const SectionPropertyPopupFlipModifier = ({ titleTag='h4', property = "popupModifiers={[name: 'flip']}", properties = 'Flip Modifier', description, ...restProps }: SectionPreviewPropertyProps) => {
+    const { componentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPreviewProperty {...restProps} titleTag={titleTag} property={property} properties={properties} description={
+            description
+            ??
+            <>
+                <p>
+                    Changes the <code>popupPlacement</code> to the opposite location (eg: <code>popupPlacement='top'</code> to <code>popupPlacement='bottom'</code>)
+                    if the original location causes the <CurrentComponent /> to be <strong>out of view</strong> in the browser.
+                </p>
+                <p>
+                    This modifier is <strong>enabled by default</strong>.
+                    To disable it, apply this code:
+                </p>
+                <TypeScriptCode>{`
+<${componentName} popupModifiers={[
+    { name: 'flip', enabled: false },
+    /* ... */
+]}>
+</${componentName}>
+                `}</TypeScriptCode>
+            </>
+        } />
+    );
+};

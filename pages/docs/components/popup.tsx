@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import type { NextPage } from 'next'
 import Head from 'next/head'
@@ -34,6 +34,8 @@ import {
     
     SectionPropertyTargetRef,
     SectionPropertyPopupPlacement,
+    SectionPropertyPopupModifiers,
+    SectionPropertyPopupFlipModifier,
 } from '../../../components/common@Popup'
 
 import loadable from '@loadable/component'
@@ -45,8 +47,23 @@ interface OverlayPopupPreviewProps {
     overlay ?: boolean
 }
 const OverlayPopupPreview = ({ overlay = true }: OverlayPopupPreviewProps) => {
-    const [popupRef, isActive] = useFlipFlop({ defaultState: true });
-    const buttonRef = useRef(null);
+    const [popupRef, isActiveFlip] = useFlipFlop({ defaultState: true });
+    const buttonRef = useRef<HTMLButtonElement>(null);
+    const [isLoaded, setLoaded] = useState<boolean>(false);
+    const isActive = isLoaded ? isActiveFlip : true;
+
+
+
+    useEffect(() => {
+        if (!overlay) {
+            const container = buttonRef.current?.parentElement;
+            if (container) {
+                container.style.boxSizing = 'border-box';
+                container.style.height = `${container.offsetHeight + 5}px`;
+            } // if
+        } // if
+        setLoaded(true);
+    }, [overlay]);
     
     
     
@@ -54,12 +71,8 @@ const OverlayPopupPreview = ({ overlay = true }: OverlayPopupPreviewProps) => {
         <Preview
             elmRef={popupRef}
             blockDisplay={true}
-            
-            style={!overlay ? {
-                minHeight : '14.5rem',
-            } : {}}
         >
-            <Button elmRef={overlay ? buttonRef : undefined} theme='success' size='lg' enabled={!isActive}>Pay now</Button>
+            <Button elmRef={buttonRef} theme='success' size='lg' enabled={!isActive}>Pay now</Button>
             <span> -or- </span>
             <Button theme='secondary' size='lg' outlined={true} enabled={!isActive}>Cancel</Button>
             <Popup
@@ -86,7 +99,7 @@ const OverlayPopupPreview = ({ overlay = true }: OverlayPopupPreviewProps) => {
 };
 
 const PopupPlacementPreview = () => {
-    const contentRef = useRef(null);
+    const contentRef = useRef<HTMLElement>(null);
     
     
     
@@ -107,6 +120,53 @@ const PopupPlacementPreview = () => {
                 </code>
             </Popup>
         </div>}</SelectPopupPlacement>
+    )
+};
+
+const PopupPlacementTop = ({ overlay = true }: OverlayPopupPreviewProps) => {
+    const contentRef = useRef<HTMLElement>(null);
+    
+    
+    
+    useEffect(() => {
+        const container = contentRef.current?.parentElement;
+        if (!container) return;
+        container.style.boxSizing = 'content-box';
+        container.style.height = `${container.clientHeight / 2}px`;
+        container.scrollTop = (container.scrollHeight - container.clientHeight) / 2;
+    }, []);
+    
+    
+    
+    return (
+        <Preview>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <Label elmRef={contentRef} theme='primary' size='lg'>
+                A content
+            </Label>
+            <Popup
+                active={true}
+                theme='warning'
+                
+                targetRef={contentRef}
+                popupPlacement='top'
+            >
+                <p>
+                    hello world!
+                </p>
+            </Popup>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+        </Preview>
     )
 };
 
@@ -382,6 +442,18 @@ const Page: NextPage = () => {
                     <p></p>
                     <PopupPlacementPreview />
                 </SectionPropertyPopupPlacement>
+                <SectionPropertyPopupModifiers>
+                    <SectionPropertyPopupFlipModifier>
+                        <Tips>
+                            <p>
+                                The <code>popupPlacement</code> is <code>{`'top'`}</code>,
+                                but if you scroll down the container below the <code>popupPlacement</code> will change to <code>{`'bottom'`}</code>.
+                            </p>
+                        </Tips>
+                        <p></p>
+                        <PopupPlacementTop />
+                    </SectionPropertyPopupFlipModifier>
+                </SectionPropertyPopupModifiers>
             </Section>
             <SectionCustomizing specList={
                 <SpecList>
