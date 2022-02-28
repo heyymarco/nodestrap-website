@@ -274,10 +274,7 @@ export const CurrentPackageName = () => {
 
 
 
-export interface SectionIntroProps extends SectionProps {
-    children   ?: React.ReactNode
-}
-export const SectionIntro = ({ titleTag = 'h1', title, children, ...restProps }: SectionIntroProps) => {
+export const SectionIntro = ({ titleTag = 'h1', title, children, ...restProps }: SectionProps) => {
     const { packageType } = useComponentInfo();
     
     return (
@@ -303,7 +300,6 @@ export const SectionIntro = ({ titleTag = 'h1', title, children, ...restProps }:
 export interface SectionDemoProps extends SectionProps {
     title       ?: string
     detailLabel ?: string
-    children    ?: React.ReactNode
     message     ?: React.ReactNode
 }
 export const SectionDemo = ({ title = 'Demonstration', detailLabel, message, children, ...restProps }: SectionDemoProps) => {
@@ -406,10 +402,7 @@ export const SectionInheritedProps = ({ title = 'Inherited Properties', ...restP
 
 
 
-export interface SectionVariantsProps extends SectionProps {
-    children   ?: React.ReactNode
-}
-export const SectionVariants = ({ title = 'Variant Properties', children, ...restProps }: SectionVariantsProps) => {
+export const SectionVariants = ({ title = 'Variant Properties', children, ...restProps }: SectionProps) => {
     return (
         <Section {...restProps} title={title}>
             <p>
@@ -424,10 +417,7 @@ export const SectionVariants = ({ title = 'Variant Properties', children, ...res
     );
 }
 
-export interface SectionStatesProps extends SectionProps {
-    children   ?: React.ReactNode
-}
-export const SectionStates = ({ title = 'State Properties', children, ...restProps }: SectionStatesProps) => {
+export const SectionStates = ({ title = 'State Properties', children, ...restProps }: SectionProps) => {
     return (
         <Section {...restProps} title={title}>
             <p>
@@ -445,7 +435,6 @@ export interface SectionPropertyProps extends SectionProps {
     properties     ?: string|React.ReactElement
     propertySuffix ?: boolean
     setByDefault   ?: boolean
-    children       ?: React.ReactNode
     specList       ?: SpecList|React.ReactNode
     moreInfo       ?: React.ReactNode
     preview        ?: React.ReactNode
@@ -575,10 +564,7 @@ export const SectionCustomizingParent = ({ title = <>Customizing <CurrentCompone
 
 
 
-export interface SectionDeriveringProps extends SectionProps {
-    children   ?: React.ReactNode
-}
-export const SectionDerivering = ({ title = <>Derivering <CurrentComponent /> Component</>, children, ...restProps }: SectionDeriveringProps) => {
+export const SectionDerivering = ({ title = <>Derivering <CurrentComponent /> Component</>, children, ...restProps }: SectionProps) => {
     return (
         <Section {...restProps} title={title}>
             <p>
