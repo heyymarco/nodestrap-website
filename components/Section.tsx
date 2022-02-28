@@ -32,7 +32,7 @@ export default GenericSection;
 export interface SectionProps extends GenericSectionProps {
     titleTag ?: 'h1'|'h2'|'h3'|'h4'|'h5'|'h6'
     title    ?: string|React.ReactElement
-    children  : React.ReactNode
+    children ?: React.ReactNode
 }
 export const Section = (props: SectionProps) => {
     const { titleTag = 'h2', title, children, ...restProps} = props;
