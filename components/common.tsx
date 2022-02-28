@@ -130,6 +130,7 @@ export const LinkListSeparatorItemPage      = (props: PageLinkProps) => <LinkCod
 export const LinkCardPage                   = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/card'>Card</LinkCode>
 
 export const LinkPopupPage                  = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/popup'>Popup</LinkCode>
+export const LinkBadgePage                  = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/badge'>Badge</LinkCode>
 
 export const LinkAlertPage                  = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/alert'>Alert</LinkCode>
 
