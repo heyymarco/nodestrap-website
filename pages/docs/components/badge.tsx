@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef } from 'react'
 
 import type { NextPage } from 'next'
 import Head from 'next/head'
@@ -48,31 +48,8 @@ interface OverlayBadgePreviewProps {
     overlay ?: boolean
 }
 const OverlayBadgePreview = ({ overlay = true }: OverlayBadgePreviewProps) => {
-    const [badgeRef, isActiveFlip] = useFlipFlop({ defaultState: true });
+    const [badgeRef, isActive] = useFlipFlop({ defaultState: true });
     const menuRef = useRef<HTMLElement>(null);
-    const [isLoaded, setLoaded] = useState<boolean>(false);
-    const isActive = isLoaded ? isActiveFlip : true;
-
-
-
-    useEffect(() => {
-        if (isLoaded) return;
-        
-        
-        
-        const container = menuRef.current?.parentElement;
-        if (container) {
-            if (!overlay) {
-                container.style.boxSizing = 'border-box';
-                container.style.height = `${container.offsetHeight + 5}px`;
-            } // if
-            container.style.overflow = 'hidden';
-        } // if
-        
-        
-        
-        setLoaded(true);
-    }, [isLoaded, overlay]);
     
     
     
