@@ -130,7 +130,7 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    <CurrentComponent /> is a presentation component for dynamically <strong>showing</strong> &amp; <strong>hiding</strong> an <strong>overlaying small notification</strong> on another component.
+                    <CurrentComponent /> is a presentation component for dynamically <strong>showing</strong> &amp; <strong>hiding</strong> an <strong>overlaying small notification</strong> on the desired component.
                 </p>
                 <p>
                     Here the preview:
