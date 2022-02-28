@@ -219,7 +219,7 @@ export const SectionPropertyPopupFlipModifier = ({ titleTag='h4', property = "po
             ??
             <>
                 <p>
-                    Changes the <code>popupPlacement</code> to the opposite location (eg: <code>popupPlacement='top'</code> to <code>popupPlacement='bottom'</code>)
+                    Changes the <code>popupPlacement</code> to the opposite location (eg: <code>{`popupPlacement='top'`}</code> to <code>{`popupPlacement='bottom'`}</code>)
                     if the original location causes the <CurrentComponent /> to be <strong>out of view</strong> in the container.
                 </p>
                 <p>

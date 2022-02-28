@@ -57,13 +57,20 @@ const OverlayPopupPreview = ({ overlay = true }: OverlayPopupPreviewProps) => {
 
     useEffect(() => {
         if (isLoaded) return;
-        if (!overlay) {
-            const container = buttonRef.current?.parentElement;
-            if (container) {
+        
+        
+        
+        const container = buttonRef.current?.parentElement;
+        if (container) {
+            if (!overlay) {
                 container.style.boxSizing = 'border-box';
                 container.style.height = `${container.offsetHeight + 5}px`;
             } // if
+            container.style.overflow = 'hidden';
         } // if
+        
+        
+        
         setLoaded(true);
     }, [isLoaded, overlay]);
     
