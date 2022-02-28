@@ -40,15 +40,25 @@ export const usePreviewSheet = createUseSheet(() => [
                 filter    : 'none',
             }),
             ...children('.body.body', {
-                display: 'grid',
-                justifyItems : 'normal',
-                alignItems   : 'normal',
-                gridAutoFlow : 'row',
+                ...rule(':not(.block)&', {
+                    display: 'grid',
+                    
+                    ...rule(':not(.stretch)&', {
+                        justifyItems : 'center',
+                        alignItems   : 'center',
+                    }),
+                    ...rule('.stretch&', {
+                        justifyItems : 'stretch',
+                        alignItems   : 'stretch',
+                    }),
+                    
+                    gridAutoFlow : 'row',
+                    
+                    gap          : spacers.default,
+                }),
                 ...rule('.block&', {
                     display  : 'block',
                 }),
-                
-                gap          : spacers.default,
                 
                 padding      : spacers.lg,
                 background   : colors.secondaryMild,
@@ -68,6 +78,7 @@ export const usePreviewSheet = createUseSheet(() => [
 
 export interface PreviewProps extends CardProps {
     blockDisplay ?: boolean
+    stretch      ?: boolean
 }
 export const Preview = (props: PreviewProps) => {
     const sheet = usePreviewSheet();
@@ -84,7 +95,8 @@ export const Preview = (props: PreviewProps) => {
             // classes:
             classes={[...(props.classes ?? []),
                 sheet.main,
-                props.blockDisplay ? 'block' : null,
+                (props.blockDisplay ?? false) ? 'block'   : null,
+                (props.stretch      ?? true ) ? 'stretch' : null,
             ]}
             
             

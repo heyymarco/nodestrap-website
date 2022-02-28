@@ -92,15 +92,11 @@ const OverlayPopupPreview = ({ overlay = true }: OverlayPopupPreviewProps) => {
                 
                 targetRef={overlay ? buttonRef : undefined}
                 popupPlacement='right-start'
-                style={overlay ? {
-                    position         : 'relative',
-                    insetInlineStart : '-3rem',
-                    insetBlockEnd    : '1rem',
-                } : {}}
+                popupModifiers={[
+                    { name: 'offset', options: { offset: [-16, -48] } }
+                ]}
             >
-                <p>
-                    Processing your payment...
-                </p>
+                Processing your payment...
             </Popup>
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -171,9 +167,7 @@ const PopupPlacementFlip = ({ overlay = true }: OverlayPopupPreviewProps) => {
                 targetRef={contentRef}
                 popupPlacement='top'
             >
-                <p>
-                    hello world!
-                </p>
+                hello world!
             </Popup>
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -224,13 +218,11 @@ const PopupPlacementSlide = ({ overlay = true }: OverlayPopupPreviewProps) => {
                 targetRef={contentRef}
                 popupPlacement='right'
             >
-                <p>
-                    hello<br />
-                    world<br />
-                    <br />
-                    hello<br />
-                    everyone<br />
-                </p>
+                hello<br />
+                world<br />
+                <br />
+                hello<br />
+                everyone<br />
             </Popup>
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.

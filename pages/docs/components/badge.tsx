@@ -16,6 +16,7 @@ import { Tips } from '../../../components/Info'
 import Label from '@nodestrap/label'
 import Badge from '@nodestrap/badge'
 import Button from '@nodestrap/button'
+import { List, ListItem } from '@nodestrap/list'
 import SelectPopupPlacement from '../../../components/SelectPopupPlacement';
 import {
     themeNames,
@@ -27,16 +28,13 @@ import {
 } from '../../../components/common@Basic'
 import {
     SectionPropertyMild,
-} from '../../../components/common@Indicator'
+} from '../../../components/common@Badge'
 import {
     SectionPropertyEnabled,
     SectionPropertyActive,
     
     SectionPropertyTargetRef,
     SectionPropertyPopupPlacement,
-    SectionPropertyPopupModifiers,
-    SectionPropertyPopupFlipModifier,
-    SectionPropertyPopupPreventOverflowModifier,
     
     SectionPropertyLazy,
 } from '../../../components/common@Popup'
@@ -51,7 +49,7 @@ interface OverlayBadgePreviewProps {
 }
 const OverlayBadgePreview = ({ overlay = true }: OverlayBadgePreviewProps) => {
     const [badgeRef, isActiveFlip] = useFlipFlop({ defaultState: true });
-    const buttonRef = useRef<HTMLButtonElement>(null);
+    const menuRef = useRef<HTMLElement>(null);
     const [isLoaded, setLoaded] = useState<boolean>(false);
     const isActive = isLoaded ? isActiveFlip : true;
 
@@ -62,7 +60,7 @@ const OverlayBadgePreview = ({ overlay = true }: OverlayBadgePreviewProps) => {
         
         
         
-        const container = buttonRef.current?.parentElement;
+        const container = menuRef.current?.parentElement;
         if (container) {
             if (!overlay) {
                 container.style.boxSizing = 'border-box';
@@ -83,28 +81,39 @@ const OverlayBadgePreview = ({ overlay = true }: OverlayBadgePreviewProps) => {
             elmRef={badgeRef}
             blockDisplay={true}
         >
-            <Button elmRef={buttonRef} theme='success' size='lg' enabled={!isActive}>Pay now</Button>
-            <span> -or- </span>
-            <Button theme='secondary' size='lg' outlined={true} enabled={!isActive}>Cancel</Button>
+            <List
+                theme='primary'
+                size='lg'
+                mild={false}
+                actionCtrl={true}
+                listStyle='joined'
+                orientation='inline'
+            >
+                <ListItem>
+                    Gallery
+                </ListItem>
+                <ListItem>
+                    Products
+                </ListItem>
+                <ListItem elmRef={menuRef}>
+                    Cart
+                </ListItem>
+            </List>
             <Badge
                 active={isActive}
-                theme='warning'
+                theme='danger'
                 
-                targetRef={overlay ? buttonRef : undefined}
+                targetRef={overlay ? menuRef : undefined}
                 popupPlacement='right-start'
-                style={overlay ? {
-                    position         : 'relative',
-                    insetInlineStart : '-3rem',
-                    insetBlockEnd    : '1rem',
-                } : {}}
+                popupModifiers={[
+                    { name: 'offset', options: { offset: [-10, -35] } }
+                ]}
             >
-                <p>
-                    Processing your payment...
-                </p>
+                New
             </Badge>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </p>
+            <Button theme='secondary' style={{ marginInlineStart: '2rem' }}>
+                Logout
+            </Button>
         </Preview>
     )
 };
@@ -121,127 +130,14 @@ const BadgePlacementPreview = () => {
             </Label>
             <Badge
                 active={true}
-                theme='warning'
+                theme='danger'
                 
                 targetRef={contentRef}
                 popupPlacement={popupPlacement}
             >
-                <code>
-                    {`popupPlacement='${popupPlacement}'`}
-                </code>
+                {`popupPlacement='${popupPlacement}'`}
             </Badge>
         </div>}</SelectPopupPlacement>
-    )
-};
-
-const BadgePlacementFlip = ({ overlay = true }: OverlayBadgePreviewProps) => {
-    const contentRef = useRef<HTMLElement>(null);
-    
-    
-    
-    useEffect(() => {
-        const container = contentRef.current?.parentElement;
-        if (!container) return;
-        if (container.style.height) return;
-        container.style.boxSizing = 'content-box';
-        container.style.height = `${container.clientHeight / 3}px`;
-        container.scrollTop = (container.scrollHeight - container.clientHeight) / 2;
-    }, []);
-    
-    
-    
-    return (
-        <Preview>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </p>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </p>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </p>
-            <Label elmRef={contentRef} theme='primary' size='lg'>
-                A content
-            </Label>
-            <Badge
-                active={true}
-                theme='warning'
-                
-                targetRef={contentRef}
-                popupPlacement='top'
-            >
-                <p>
-                    hello world!
-                </p>
-            </Badge>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </p>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </p>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </p>
-        </Preview>
-    )
-};
-const BadgePlacementSlide = ({ overlay = true }: OverlayBadgePreviewProps) => {
-    const contentRef = useRef<HTMLElement>(null);
-    
-    
-    
-    useEffect(() => {
-        const container = contentRef.current?.parentElement;
-        if (!container) return;
-        if (container.style.height) return;
-        container.style.boxSizing = 'content-box';
-        container.style.height = `${container.clientHeight / 3}px`;
-        container.scrollTop = (container.scrollHeight - container.clientHeight) / 2;
-    }, []);
-    
-    
-    
-    return (
-        <Preview>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </p>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </p>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </p>
-            <Label elmRef={contentRef} theme='primary' size='lg' style={{ width: '50%' }}>
-                A content
-            </Label>
-            <Badge
-                active={true}
-                theme='warning'
-                
-                targetRef={contentRef}
-                popupPlacement='right'
-            >
-                <p>
-                    hello<br />
-                    world<br />
-                    <br />
-                    hello<br />
-                    everyone<br />
-                </p>
-            </Badge>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </p>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </p>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </p>
-        </Preview>
     )
 };
 
@@ -257,7 +153,7 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    <CurrentComponent /> is a presentation component for dynamically <strong>showing</strong> &amp; <strong>hiding</strong> a content.
+                    <CurrentComponent /> is a presentation component for dynamically <strong>showing</strong> &amp; <strong>hiding</strong> an <strong>overlaying small notification</strong> on another component.
                 </p>
                 <p>
                     Here the preview:
@@ -270,7 +166,7 @@ const Page: NextPage = () => {
             <SectionInheritedProps />
             <SectionVariants>
                 <SectionPropertyTheme>
-                    <Preview>
+                    <Preview stretch={false}>
                         {themeNames.map((themeName, index) =>
                             <Badge
                                 theme={themeName}
@@ -296,7 +192,7 @@ const Page: NextPage = () => {
                     </TypeScriptCode>
                 </SectionPropertyTheme>
                 <SectionPropertySize>
-                    <Preview>
+                    <Preview stretch={false}>
                         <Badge
                             size='sm'
                             active={true}
@@ -347,7 +243,7 @@ const Page: NextPage = () => {
                     `}</TypeScriptCode>
                 </SectionPropertySize>
                 <SectionPropertyNude>
-                    <TransparentPreview>
+                    <TransparentPreview stretch={false}>
                         <Badge
                             nude={true}
                             active={true}
@@ -368,7 +264,7 @@ const Page: NextPage = () => {
                     `}</TypeScriptCode>
                 </SectionPropertyNude>
                 <SectionPropertyGradient>
-                    <Preview>
+                    <Preview stretch={false}>
                         {themeNames.map((themeName, index) =>
                             <Badge
                                 gradient={true}
@@ -396,7 +292,7 @@ const Page: NextPage = () => {
                     </TypeScriptCode>
                 </SectionPropertyGradient>
                 <SectionPropertyOutlined>
-                    <TransparentPreview>
+                    <TransparentPreview stretch={false}>
                         {themeNames.map((themeName, index) =>
                             <Badge
                                 outlined={true}
@@ -424,10 +320,10 @@ const Page: NextPage = () => {
                     </TypeScriptCode>
                 </SectionPropertyOutlined>
                 <SectionPropertyMild>
-                    <Preview>
+                    <Preview stretch={false}>
                         {themeNames.map((themeName, index) =>
                             <Badge
-                                mild={false}
+                                mild={true}
                                 active={true}
                                 theme={themeName}
                                 key={index}
@@ -441,7 +337,7 @@ const Page: NextPage = () => {
                         {themeNames.map((themeName) =>
 `
 <Badge
-    mild={false}
+    mild={true}
     active={true}
     theme='${themeName}'
 >
@@ -454,7 +350,7 @@ const Page: NextPage = () => {
             </SectionVariants>
             <SectionStates>
                 <SectionPropertyActive>
-                    <Preview>
+                    <Preview stretch={false}>
                         <Badge
                             active={true}
                             theme='primary'
@@ -473,7 +369,7 @@ const Page: NextPage = () => {
                     `}</TypeScriptCode>
                 </SectionPropertyActive>
                 <SectionPropertyEnabled>
-                    <Preview>
+                    <Preview stretch={false}>
                         <Badge
                             enabled={false}
                             active={true}
@@ -500,7 +396,7 @@ const Page: NextPage = () => {
                     during <em>showing</em>/<em>hiding</em> transition, the <CurrentComponent /> <strong>shifts</strong> the position of <em>next siblings</em>.
                 </p>
                 <p>
-                    The preview below illustrates the <CurrentComponent /> <strong>shifts</strong> the position of <strong>a paragraph</strong>:
+                    The preview below illustrates the <CurrentComponent /> <strong>shifts</strong> the position of <strong>a logout button</strong>:
                 </p>
                 <OverlayBadgePreview overlay={false} />
                 <p>
@@ -521,28 +417,6 @@ const Page: NextPage = () => {
                     <p></p>
                     <BadgePlacementPreview />
                 </SectionPropertyPopupPlacement>
-                <SectionPropertyPopupModifiers>
-                    <SectionPropertyPopupFlipModifier>
-                        <Tips>
-                            <p>
-                                The <code>popupPlacement</code> is on <code>{`'top'`}</code>,
-                                but if you scroll down the <strong>container below</strong>, the <code>popupPlacement</code> will change to <code>{`'bottom'`}</code>.
-                            </p>
-                        </Tips>
-                        <p></p>
-                        <BadgePlacementFlip />
-                    </SectionPropertyPopupFlipModifier>
-                    <SectionPropertyPopupPreventOverflowModifier>
-                        <Tips>
-                            <p>
-                                The <code>popupPlacement</code> is on exact <code>{`'right'`}</code>,
-                                but if you scroll up/down the <strong>container below</strong>, the <code>popupPlacement</code> will shift slightly from its original position.
-                            </p>
-                        </Tips>
-                        <p></p>
-                        <BadgePlacementSlide />
-                    </SectionPropertyPopupPreventOverflowModifier>
-                </SectionPropertyPopupModifiers>
             </Section>
             <SectionPropertyLazy />
             <SectionCustomizing specList={

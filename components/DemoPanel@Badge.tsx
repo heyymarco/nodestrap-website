@@ -7,6 +7,7 @@ import { TypeScriptCode } from './Code';
 
 
 export const badgeInitials = {
+    mild     : false,
 };
 export type BadgeInitials = typeof badgeInitials & Partial<PopupInitials>
 export const useBadgeStates = (initials ?: Partial<BadgeInitials>) => {
