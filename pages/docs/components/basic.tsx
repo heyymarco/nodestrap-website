@@ -60,9 +60,10 @@ const Page: NextPage = () => {
             <SectionVariants>
                 <SectionPropertyTheme>
                     <Preview>
-                        {themeNames.map((themeName) => <>
+                        {themeNames.map((themeName, index) => <>
                             <Basic
                                 theme={themeName}
+                                key={index}
                             >
                                 A {'<Basic>'} with {themeName} theme
                             </Basic>
@@ -147,10 +148,11 @@ const Page: NextPage = () => {
                 </SectionPropertyNude>
                 <SectionPropertyGradient>
                     <Preview>
-                        {themeNames.map((themeName) => <>
+                        {themeNames.map((themeName, index) => <>
                             <Basic
                                 gradient={true}
                                 theme={themeName}
+                                key={index}
                             >
                                 hello world
                             </Basic>
@@ -172,10 +174,11 @@ const Page: NextPage = () => {
                 </SectionPropertyGradient>
                 <SectionPropertyOutlined>
                     <TransparentPreview>
-                        {themeNames.map((themeName) => <>
+                        {themeNames.map((themeName, index) => <>
                             <Basic
                                 outlined={true}
                                 theme={themeName}
+                                key={index}
                             >
                                 hello world
                             </Basic>
@@ -197,10 +200,11 @@ const Page: NextPage = () => {
                 </SectionPropertyOutlined>
                 <SectionPropertyMild>
                     <Preview>
-                        {themeNames.map((themeName) => <>
+                        {themeNames.map((themeName, index) => <>
                             <Basic
                                 mild={true}
                                 theme={themeName}
+                                key={index}
                             >
                                 hello world
                             </Basic>

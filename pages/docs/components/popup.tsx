@@ -196,10 +196,11 @@ const Page: NextPage = () => {
             <SectionVariants>
                 <SectionPropertyTheme>
                     <Preview>
-                        {themeNames.map((themeName) => <>
+                        {themeNames.map((themeName, index) => <>
                             <Popup
                                 theme={themeName}
                                 active={true}
+                                key={index}
                             >
                                 A {'<Popup>'} with {themeName} theme
                             </Popup>
@@ -293,11 +294,12 @@ const Page: NextPage = () => {
                 </SectionPropertyNude>
                 <SectionPropertyGradient>
                     <Preview>
-                        {themeNames.map((themeName) => <>
+                        {themeNames.map((themeName, index) => <>
                             <Popup
                                 gradient={true}
                                 active={true}
                                 theme={themeName}
+                                key={index}
                             >
                                 hello world
                             </Popup>
@@ -320,11 +322,12 @@ const Page: NextPage = () => {
                 </SectionPropertyGradient>
                 <SectionPropertyOutlined>
                     <TransparentPreview>
-                        {themeNames.map((themeName) => <>
+                        {themeNames.map((themeName, index) => <>
                             <Popup
                                 outlined={true}
                                 active={true}
                                 theme={themeName}
+                                key={index}
                             >
                                 hello world
                             </Popup>
@@ -347,11 +350,12 @@ const Page: NextPage = () => {
                 </SectionPropertyOutlined>
                 <SectionPropertyMild>
                     <Preview>
-                        {themeNames.map((themeName) => <>
+                        {themeNames.map((themeName, index) => <>
                             <Popup
                                 mild={false}
                                 active={true}
                                 theme={themeName}
+                                key={index}
                             >
                                 hello world
                             </Popup>
