@@ -5,7 +5,7 @@ import Head from 'next/head'
 
 import { SpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
-import { SectionInheritedProps, LinkLabelPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, LinkButtonPage, LinkContentPage, LinkGroupPage, LinkInputPage, SeeDocumentations, LinkCheckPage, LinkRangePage, SectionSubPropertyStyle } from '../../../components/common'
+import { SectionInheritedProps, LinkLabelPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, LinkButtonPage, LinkContentPage, LinkGroupPage, LinkInputPage, SeeDocumentations, LinkCheckPage, LinkRangePage, SectionSubPropertyStyle, ParagraphDefaultValue } from '../../../components/common'
 
 import { Label } from '@nodestrap/label'
 import { Group } from '@nodestrap/group'
@@ -74,9 +74,7 @@ const Page: NextPage = () => {
                             <p>
                                 Styling the <CurrentComponent /> with <strong>default appearance</strong>.
                             </p>
-                            <p>
-                                This is the <strong>default</strong> value if the <code>labelStyle</code> value is not specified.
-                            </p>
+                            <ParagraphDefaultValue code='labelStyle' />
                         </DetailSpecItem>
                         <DetailSpecItem code='content'>
                             <p>

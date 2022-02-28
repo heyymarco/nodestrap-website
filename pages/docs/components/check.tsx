@@ -5,7 +5,7 @@ import Head from 'next/head'
 
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
-import { SectionInheritedProps, LinkCheckPage, LinkEditableActionControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, SectionThemingProblem, SectionSubPropertyStyle, LinkButtonPage } from '../../../components/common'
+import { SectionInheritedProps, LinkCheckPage, LinkEditableActionControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, SectionThemingProblem, SectionSubPropertyStyle, LinkButtonPage, ParagraphDefaultValue } from '../../../components/common'
 
 import loadable from '@loadable/component'
 const DemoCheckLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Check' */'../../../components/DemoPanel@Check'))
@@ -37,9 +37,7 @@ const Page: NextPage = () => {
                             <p>
                                 Styling the <CurrentComponent /> with <strong>default appearance</strong>.
                             </p>
-                            <p>
-                                This is the <strong>default</strong> value if the <code>checkStyle</code> value is not specified.
-                            </p>
+                            <ParagraphDefaultValue code='checkStyle' />
                         </DetailSpecItem>
                         <DetailSpecItem code='btn'>
                             <p>

@@ -5,7 +5,7 @@ import Head from 'next/head'
 
 import { SpecList, DetailSpecItem, SimpleSpecItem, SubSpecList } from '../../../components/SpecList'
 
-import { SectionInheritedProps, LinkMasonryPage, LinkContentPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, SectionSubPropertyOrientation } from '../../../components/common'
+import { SectionInheritedProps, LinkMasonryPage, LinkContentPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, SectionSubPropertyOrientation, ParagraphDefaultValue } from '../../../components/common'
 
 
 import loadable from '@loadable/component'
@@ -48,9 +48,7 @@ const Page: NextPage = () => {
                             <p>
                                 The <CurrentComponent />&apos;s column is from top to bottom.
                             </p>
-                            <p>
-                                This is the <strong>default</strong> value if the <code>orientation</code> value is not specified.
-                            </p>
+                            <ParagraphDefaultValue code='orientation' />
                         </DetailSpecItem>
                         <DetailSpecItem code='inline'>
                             <p>

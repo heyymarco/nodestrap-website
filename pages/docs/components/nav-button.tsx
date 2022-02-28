@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { SpecList, DetailSpecItem } from '../../../components/SpecList'
 
 import { Section } from '../../../components/Section'
-import { SectionInheritedProps, LinkNavButtonPage, LinkButtonPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionSubProperty, LinkReactRouterLinkPage, LinkOriReactRouterLinkPage, LinkOriNextJsLinkPage, SectionCustomizingParent } from '../../../components/common'
+import { SectionInheritedProps, LinkNavButtonPage, LinkButtonPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionSubProperty, LinkReactRouterLinkPage, LinkOriReactRouterLinkPage, LinkOriNextJsLinkPage, SectionCustomizingParent, ParagraphDefaultValue } from '../../../components/common'
 import { Warning } from '../../../components/Info'
 
 import { TypeScriptCode } from '../../../components/Code'
@@ -141,9 +141,7 @@ import Link from 'next/link'
                                 The string comparison is <strong>case insensitive</strong>.
                                 A lowercase character and uppercase character are treated as the <strong>same</strong> thing.
                             </p>
-                            <p>
-                                This is the <strong>default</strong> value if the <code>caseSensitive</code> value is not specified.
-                            </p>
+                            <ParagraphDefaultValue code='caseSensitive' />
                         </DetailSpecItem>
                         <DetailSpecItem code='true'>
                             <p>

@@ -5,7 +5,7 @@ import Head from 'next/head'
 
 import { SpecList, DetailSpecItem, SimpleSpecItem, SubSpecList } from '../../../components/SpecList'
 
-import { SectionInheritedProps, LinkButtonPage, LinkActionControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, LinkGroupPage, LinkInputPage, SeeDocumentations, LinkCheckPage, LinkRangePage, SectionSubPropertyStyle, SectionSubPropertyOrientation } from '../../../components/common'
+import { SectionInheritedProps, LinkButtonPage, LinkActionControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, LinkGroupPage, LinkInputPage, SeeDocumentations, LinkCheckPage, LinkRangePage, SectionSubPropertyStyle, SectionSubPropertyOrientation, ParagraphDefaultValue } from '../../../components/common'
 
 import { TypeScriptCode } from '../../../components/Code'
 import { Button } from '@nodestrap/button'
@@ -197,9 +197,7 @@ const Page: NextPage = () => {
                             <p>
                                 The <CurrentComponent /> orientation is horizontal.
                             </p>
-                            <p>
-                                This is the <strong>default</strong> value if the <code>orientation</code> value is not specified.
-                            </p>
+                            <ParagraphDefaultValue code='orientation' />
                         </DetailSpecItem>
                     </SpecList>
                 } />
@@ -209,9 +207,7 @@ const Page: NextPage = () => {
                             <p>
                                 Styling the <CurrentComponent /> with <strong>default appearance</strong>.
                             </p>
-                            <p>
-                                This is the <strong>default</strong> value if the <code>btnStyle</code> value is not specified.
-                            </p>
+                            <ParagraphDefaultValue code='btnStyle' />
                         </DetailSpecItem>
                         <DetailSpecItem code='link'>
                             <p>

@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Section } from '../../../components/Section'
-import { SectionInheritedProps, LinkInputPage, LinkEditableTextControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkDropdownListPage, LinkDropdownListButtonPage } from '../../../components/common'
+import { SectionInheritedProps, LinkInputPage, LinkEditableTextControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkDropdownListPage, LinkDropdownListButtonPage, ParagraphDefaultValue } from '../../../components/common'
 import { Warning } from '../../../components/Info'
 
 import loadable from '@loadable/component'
@@ -44,9 +44,7 @@ const Page: NextPage = () => {
                             <p>
                                 Line-breaks are automatically removed from the input value.
                             </p>
-                            <p>
-                                This is the <strong>default</strong> value if the <code>type</code> value is not specified.
-                            </p>
+                            <ParagraphDefaultValue code='type' />
                         </DetailSpecItem>
                         <DetailSpecItem code='search'>
                             <p>

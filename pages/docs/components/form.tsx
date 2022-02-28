@@ -44,9 +44,7 @@ const Page: NextPage = () => {
                             Usually shows a green background if successful and shows a red background if an error.
                             The implemented components may add an icon for displaying the validation status.
                         </p>
-                        <p>
-                            This is the <strong>default</strong> value if the <code>enableValidation</code> value is not specified.
-                        </p>
+                        <ParagraphDefaultValue code='enableValidation' />
                     </DetailSpecItem>
                     <DetailSpecItem code='false'>
                         <p>
@@ -127,9 +125,7 @@ const Page: NextPage = () => {
                             the current <CurrentComponent />&apos;s <code>isValid</code> is <strong>forced</strong> to that value, so
                             the current <CurrentComponent />&apos;s validation status is <strong>always overriden</strong>.
                         </p>
-                        <p>
-                            This is the <strong>default</strong> value if the <code>inheritValidation</code> value is not specified.
-                        </p>
+                        <ParagraphDefaultValue code='inheritValidation' />
                     </DetailSpecItem>
                     <DetailSpecItem code='false'>
                         <p>
