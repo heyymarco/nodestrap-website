@@ -5,13 +5,12 @@ import { DetailSpecItem, SpecList } from './SpecList';
 import { Warning } from './Info';
 
 import {
-    SectionPropertyMildProps,
     SectionPropertyMild        as BasicSectionPropertyMild,
 } from './common@Basic'
 
 
 
-export const SectionPropertyMild = ({ setByDefault = true, ...props }: SectionPropertyMildProps) => {
+export const SectionPropertyMild = ({ setByDefault = true, ...props }: SectionPreviewPropertyProps) => {
     return (
         <BasicSectionPropertyMild {...props} setByDefault={setByDefault} />
     );

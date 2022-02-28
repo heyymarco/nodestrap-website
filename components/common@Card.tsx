@@ -1,7 +1,7 @@
 import React from 'react'
 
+import { SectionPreviewPropertyProps } from './common';
 import {
-    SectionPropertyMildProps,
     SectionPropertyMild        as BasicSectionPropertyMild,
     SectionPropertyStyleProps,
     SectionPropertyStyle,
@@ -13,7 +13,7 @@ import {
 
 
 
-export const SectionPropertyMild = ({ setByDefault = true, ...props }: SectionPropertyMildProps) => {
+export const SectionPropertyMild = ({ setByDefault = true, ...props }: SectionPreviewPropertyProps) => {
     return (
         <BasicSectionPropertyMild {...props} setByDefault={setByDefault} />
     );

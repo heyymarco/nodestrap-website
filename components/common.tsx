@@ -452,6 +452,7 @@ export interface SectionPropertyProps {
     property       ?: string|React.ReactElement
     properties     ?: string|React.ReactElement
     propertySuffix ?: boolean
+    setByDefault   ?: boolean
     children       ?: React.ReactNode
     specList       ?: SpecList|React.ReactNode
     moreInfo       ?: React.ReactNode

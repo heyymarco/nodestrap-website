@@ -5,7 +5,6 @@ import { Warning } from './Info'
 import {
     SectionPropertyNudeProps,
     SectionPropertyNude        as BasicSectionPropertyNude,
-    SectionPropertyMildProps,
     SectionPropertyMild        as BasicSectionPropertyMild,
     SectionPropertyStyleProps,
     SectionPropertyStyle,
@@ -23,7 +22,7 @@ export const SectionPropertyNude = ({ noBorder = true, ...props }: SectionProper
         <BasicSectionPropertyNude {...props} noBorder={noBorder} />
     );
 };
-export const SectionPropertyMild = ({ setByDefault = true, ...props }: SectionPropertyMildProps) => {
+export const SectionPropertyMild = ({ setByDefault = true, ...props }: SectionPreviewPropertyProps) => {
     return (
         <BasicSectionPropertyMild {...props} setByDefault={setByDefault} />
     );

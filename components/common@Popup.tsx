@@ -205,10 +205,7 @@ export const SectionPropertyPopupModifiers = ({ property = 'popupModifiers', chi
         } />
     );
 };
-export interface SectionPropertyPopupItemModifierProps extends SectionPreviewPropertyProps {
-    setByDefault ?: boolean
-}
-export const SectionPropertyPopupFlipModifier = ({ titleTag='h4', property = "popupModifiers={[name: 'flip']}", properties = 'Flip Modifier', description, setByDefault = true, ...restProps }: SectionPropertyPopupItemModifierProps) => {
+export const SectionPropertyPopupFlipModifier = ({ titleTag='h4', property = "popupModifiers={[name: 'flip']}", properties = 'Flip Modifier', description, setByDefault = true, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName } = useComponentInfo();
     
     
@@ -237,7 +234,7 @@ export const SectionPropertyPopupFlipModifier = ({ titleTag='h4', property = "po
         } />
     );
 };
-export const SectionPropertyPopupPreventOverflowModifier = ({ titleTag='h4', property = "popupModifiers={[name: 'preventOverflow']}", properties = 'Prevent Overflow Modifier', description, setByDefault = true, ...restProps }: SectionPropertyPopupItemModifierProps) => {
+export const SectionPropertyPopupPreventOverflowModifier = ({ titleTag='h4', property = "popupModifiers={[name: 'preventOverflow']}", properties = 'Prevent Overflow Modifier', description, setByDefault = true, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName } = useComponentInfo();
     
     

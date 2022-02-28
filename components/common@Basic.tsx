@@ -189,10 +189,7 @@ export const SectionPropertyOutlined = ({ property = 'outlined', properties = 'O
         } />
     );
 };
-export interface SectionPropertyMildProps extends SectionPreviewPropertyProps {
-    setByDefault ?: boolean
-}
-export const SectionPropertyMild = ({ property = 'mild', properties = 'Mild', description, setByDefault = false, ...restProps }: SectionPropertyMildProps) => {
+export const SectionPropertyMild = ({ property = 'mild', properties = 'Mild', description, setByDefault = false, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName, hasNestedComponent, nestedComponentName } = useComponentInfo();
     
     
@@ -233,10 +230,7 @@ export const SectionPropertyOrientation = ({ propertySuffix = defaultPropertySuf
         </SectionSubProperty>
     );
 };
-export interface SectionPropertyOrientationProps extends SectionPreviewPropertyProps {
-    setByDefault ?: boolean
-}
-export const SectionPropertyOrientationBlock = ({ titleTag='h4', property = "orientation='block'", properties = <><code>block</code> Orientation</>, description, setByDefault = true, ...restProps }: SectionPropertyOrientationProps) => {
+export const SectionPropertyOrientationBlock = ({ titleTag='h4', property = "orientation='block'", properties = <><code>block</code> Orientation</>, description, setByDefault = true, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName, hasNestedComponent } = useComponentInfo();
     
     
@@ -256,7 +250,7 @@ export const SectionPropertyOrientationBlock = ({ titleTag='h4', property = "ori
         } />
     );
 };
-export const SectionPropertyOrientationInline = ({ titleTag='h4', property = "orientation='inline'", properties = <><code>inline</code> Orientation</>, description, setByDefault = false, ...restProps }: SectionPropertyOrientationProps) => {
+export const SectionPropertyOrientationInline = ({ titleTag='h4', property = "orientation='inline'", properties = <><code>inline</code> Orientation</>, description, setByDefault = false, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName, hasNestedComponent } = useComponentInfo();
     
     
