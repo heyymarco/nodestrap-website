@@ -269,7 +269,7 @@ const Page: NextPage = () => {
             <SectionVariants>
                 <SectionPropertyTheme>
                     <Preview>
-                        {themeNames.map((themeName, index) => <>
+                        {themeNames.map((themeName, index) =>
                             <Popup
                                 theme={themeName}
                                 active={true}
@@ -277,7 +277,7 @@ const Page: NextPage = () => {
                             >
                                 A {'<Popup>'} with {themeName} theme
                             </Popup>
-                        </>)}
+                        )}
                     </Preview>
                     <p></p>
                     <TypeScriptCode>
@@ -367,7 +367,7 @@ const Page: NextPage = () => {
                 </SectionPropertyNude>
                 <SectionPropertyGradient>
                     <Preview>
-                        {themeNames.map((themeName, index) => <>
+                        {themeNames.map((themeName, index) =>
                             <Popup
                                 gradient={true}
                                 active={true}
@@ -376,7 +376,7 @@ const Page: NextPage = () => {
                             >
                                 hello world
                             </Popup>
-                        </>)}
+                        )}
                     </Preview>
                     <p></p>
                     <TypeScriptCode>
@@ -395,7 +395,7 @@ const Page: NextPage = () => {
                 </SectionPropertyGradient>
                 <SectionPropertyOutlined>
                     <TransparentPreview>
-                        {themeNames.map((themeName, index) => <>
+                        {themeNames.map((themeName, index) =>
                             <Popup
                                 outlined={true}
                                 active={true}
@@ -404,7 +404,7 @@ const Page: NextPage = () => {
                             >
                                 hello world
                             </Popup>
-                        </>)}
+                        )}
                     </TransparentPreview>
                     <p></p>
                     <TypeScriptCode>
@@ -423,7 +423,7 @@ const Page: NextPage = () => {
                 </SectionPropertyOutlined>
                 <SectionPropertyMild>
                     <Preview>
-                        {themeNames.map((themeName, index) => <>
+                        {themeNames.map((themeName, index) =>
                             <Popup
                                 mild={false}
                                 active={true}
@@ -432,7 +432,7 @@ const Page: NextPage = () => {
                             >
                                 hello world
                             </Popup>
-                        </>)}
+                        )}
                     </Preview>
                     <p></p>
                     <TypeScriptCode>

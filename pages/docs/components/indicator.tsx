@@ -94,14 +94,14 @@ const Page: NextPage = () => {
             <SectionVariants>
                 <SectionPropertyTheme>
                     <Preview>
-                        {themeNames.map((themeName, index) => <>
+                        {themeNames.map((themeName, index) =>
                             <Indicator
                                 theme={themeName}
                                 key={index}
                             >
                                 An {'<Indicator>'} with {themeName} theme
                             </Indicator>
-                        </>)}
+                        )}
                     </Preview>
                     <p></p>
                     <TypeScriptCode>
@@ -182,7 +182,7 @@ const Page: NextPage = () => {
                 </SectionPropertyNude>
                 <SectionPropertyGradient>
                     <Preview>
-                        {themeNames.map((themeName, index) => <>
+                        {themeNames.map((themeName, index) =>
                             <Indicator
                                 gradient={true}
                                 theme={themeName}
@@ -190,7 +190,7 @@ const Page: NextPage = () => {
                             >
                                 hello world
                             </Indicator>
-                        </>)}
+                        )}
                     </Preview>
                     <p></p>
                     <TypeScriptCode>
@@ -208,7 +208,7 @@ const Page: NextPage = () => {
                 </SectionPropertyGradient>
                 <SectionPropertyOutlined>
                     <TransparentPreview>
-                        {themeNames.map((themeName, index) => <>
+                        {themeNames.map((themeName, index) =>
                             <Indicator
                                 outlined={true}
                                 theme={themeName}
@@ -216,7 +216,7 @@ const Page: NextPage = () => {
                             >
                                 hello world
                             </Indicator>
-                        </>)}
+                        )}
                     </TransparentPreview>
                     <p></p>
                     <TypeScriptCode>
@@ -234,7 +234,7 @@ const Page: NextPage = () => {
                 </SectionPropertyOutlined>
                 <SectionPropertyMild>
                     <Preview>
-                        {themeNames.map((themeName, index) => <>
+                        {themeNames.map((themeName, index) =>
                             <Indicator
                                 mild={false}
                                 theme={themeName}
@@ -242,7 +242,7 @@ const Page: NextPage = () => {
                             >
                                 hello world
                             </Indicator>
-                        </>)}
+                        )}
                     </Preview>
                     <p></p>
                     <TypeScriptCode>

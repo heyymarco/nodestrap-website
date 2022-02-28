@@ -60,14 +60,14 @@ const Page: NextPage = () => {
             <SectionVariants>
                 <SectionPropertyTheme>
                     <Preview>
-                        {themeNames.map((themeName, index) => <>
+                        {themeNames.map((themeName, index) =>
                             <Basic
                                 theme={themeName}
                                 key={index}
                             >
                                 A {'<Basic>'} with {themeName} theme
                             </Basic>
-                        </>)}
+                        )}
                     </Preview>
                     <p></p>
                     <TypeScriptCode>
@@ -148,7 +148,7 @@ const Page: NextPage = () => {
                 </SectionPropertyNude>
                 <SectionPropertyGradient>
                     <Preview>
-                        {themeNames.map((themeName, index) => <>
+                        {themeNames.map((themeName, index) =>
                             <Basic
                                 gradient={true}
                                 theme={themeName}
@@ -156,7 +156,7 @@ const Page: NextPage = () => {
                             >
                                 hello world
                             </Basic>
-                        </>)}
+                        )}
                     </Preview>
                     <p></p>
                     <TypeScriptCode>
@@ -174,7 +174,7 @@ const Page: NextPage = () => {
                 </SectionPropertyGradient>
                 <SectionPropertyOutlined>
                     <TransparentPreview>
-                        {themeNames.map((themeName, index) => <>
+                        {themeNames.map((themeName, index) =>
                             <Basic
                                 outlined={true}
                                 theme={themeName}
@@ -182,7 +182,7 @@ const Page: NextPage = () => {
                             >
                                 hello world
                             </Basic>
-                        </>)}
+                        )}
                     </TransparentPreview>
                     <p></p>
                     <TypeScriptCode>
@@ -200,7 +200,7 @@ const Page: NextPage = () => {
                 </SectionPropertyOutlined>
                 <SectionPropertyMild>
                     <Preview>
-                        {themeNames.map((themeName, index) => <>
+                        {themeNames.map((themeName, index) =>
                             <Basic
                                 mild={true}
                                 theme={themeName}
@@ -208,7 +208,7 @@ const Page: NextPage = () => {
                             >
                                 hello world
                             </Basic>
-                        </>)}
+                        )}
                     </Preview>
                     <p></p>
                     <TypeScriptCode>
