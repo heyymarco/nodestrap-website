@@ -55,6 +55,7 @@ const OverlayPopupPreview = ({ overlay = true }: OverlayPopupPreviewProps) => {
 
 
     useEffect(() => {
+        if (isLoaded) return;
         if (!overlay) {
             const container = buttonRef.current?.parentElement;
             if (container) {
@@ -63,7 +64,7 @@ const OverlayPopupPreview = ({ overlay = true }: OverlayPopupPreviewProps) => {
             } // if
         } // if
         setLoaded(true);
-    }, [overlay]);
+    }, [isLoaded, overlay]);
     
     
     
@@ -131,6 +132,7 @@ const PopupPlacementTop = ({ overlay = true }: OverlayPopupPreviewProps) => {
     useEffect(() => {
         const container = contentRef.current?.parentElement;
         if (!container) return;
+        if (container.style.height) return;
         container.style.boxSizing = 'content-box';
         container.style.height = `${container.clientHeight / 2}px`;
         container.scrollTop = (container.scrollHeight - container.clientHeight) / 2;
