@@ -220,7 +220,7 @@ export const SectionPropertyPopupFlipModifier = ({ titleTag='h4', property = "po
             <>
                 <p>
                     Changes the <code>popupPlacement</code> to the opposite location (eg: <code>popupPlacement='top'</code> to <code>popupPlacement='bottom'</code>)
-                    if the original location causes the <CurrentComponent /> to be <strong>out of view</strong> in the browser.
+                    if the original location causes the <CurrentComponent /> to be <strong>out of view</strong> in the container.
                 </p>
                 <p>
                     This modifier is <strong>{setByDefault ? 'enabled' : 'disabled'} by default</strong>.
@@ -229,6 +229,35 @@ export const SectionPropertyPopupFlipModifier = ({ titleTag='h4', property = "po
                 <TypeScriptCode>{`
 <${componentName} popupModifiers={[
     { name: 'flip', enabled: ${!setByDefault} },
+    /* ... */
+]}>
+</${componentName}>
+                `}</TypeScriptCode>
+            </>
+        } />
+    );
+};
+export const SectionPropertyPopupPreventOverflowModifier = ({ titleTag='h4', property = "popupModifiers={[name: 'preventOverflow']}", properties = 'Prevent Overflow Modifier', description, setByDefault = true, ...restProps }: SectionPropertyPopupItemModifierProps) => {
+    const { componentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPreviewProperty {...restProps} titleTag={titleTag} property={property} properties={properties} description={
+            description
+            ??
+            <>
+                <p>
+                    Moves the <code>popupPlacement</code> to the nearest original location
+                    if the original location causes the <CurrentComponent /> to be <strong>out of view</strong> in the container.
+                </p>
+                <p>
+                    This modifier is <strong>{setByDefault ? 'enabled' : 'disabled'} by default</strong>.
+                    To {setByDefault ? 'disabled' : 'enabled'} it, apply this code:
+                </p>
+                <TypeScriptCode>{`
+<${componentName} popupModifiers={[
+    { name: 'preventOverflow', enabled: ${!setByDefault} },
     /* ... */
 ]}>
 </${componentName}>

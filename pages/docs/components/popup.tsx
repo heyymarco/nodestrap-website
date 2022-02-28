@@ -36,6 +36,7 @@ import {
     SectionPropertyPopupPlacement,
     SectionPropertyPopupModifiers,
     SectionPropertyPopupFlipModifier,
+    SectionPropertyPopupPreventOverflowModifier,
 } from '../../../components/common@Popup'
 
 import loadable from '@loadable/component'
@@ -124,7 +125,7 @@ const PopupPlacementPreview = () => {
     )
 };
 
-const PopupPlacementTop = ({ overlay = true }: OverlayPopupPreviewProps) => {
+const PopupPlacementFlip = ({ overlay = true }: OverlayPopupPreviewProps) => {
     const contentRef = useRef<HTMLElement>(null);
     
     
@@ -134,7 +135,7 @@ const PopupPlacementTop = ({ overlay = true }: OverlayPopupPreviewProps) => {
         if (!container) return;
         if (container.style.height) return;
         container.style.boxSizing = 'content-box';
-        container.style.height = `${container.clientHeight / 2}px`;
+        container.style.height = `${container.clientHeight / 3}px`;
         container.scrollTop = (container.scrollHeight - container.clientHeight) / 2;
     }, []);
     
@@ -142,6 +143,9 @@ const PopupPlacementTop = ({ overlay = true }: OverlayPopupPreviewProps) => {
     
     return (
         <Preview>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
             </p>
@@ -162,6 +166,66 @@ const PopupPlacementTop = ({ overlay = true }: OverlayPopupPreviewProps) => {
                     hello world!
                 </p>
             </Popup>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+        </Preview>
+    )
+};
+const PopupPlacementSlide = ({ overlay = true }: OverlayPopupPreviewProps) => {
+    const contentRef = useRef<HTMLElement>(null);
+    
+    
+    
+    useEffect(() => {
+        const container = contentRef.current?.parentElement;
+        if (!container) return;
+        if (container.style.height) return;
+        container.style.boxSizing = 'content-box';
+        container.style.height = `${container.clientHeight / 3}px`;
+        container.scrollTop = (container.scrollHeight - container.clientHeight) / 2;
+    }, []);
+    
+    
+    
+    return (
+        <Preview>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <Label elmRef={contentRef} theme='primary' size='lg' style={{ width: '50%' }}>
+                A content
+            </Label>
+            <Popup
+                active={true}
+                theme='warning'
+                
+                targetRef={contentRef}
+                popupPlacement='right'
+            >
+                <p>
+                    hello<br />
+                    world<br />
+                    <br />
+                    hello<br />
+                    everyone<br />
+                </p>
+            </Popup>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
             </p>
@@ -452,13 +516,23 @@ const Page: NextPage = () => {
                     <SectionPropertyPopupFlipModifier>
                         <Tips>
                             <p>
-                                The <code>popupPlacement</code> is <code>{`'top'`}</code>,
-                                but if you scroll down the container below the <code>popupPlacement</code> will change to <code>{`'bottom'`}</code>.
+                                The <code>popupPlacement</code> is on <code>{`'top'`}</code>,
+                                but if you scroll down the <strong>container below</strong>, the <code>popupPlacement</code> will change to <code>{`'bottom'`}</code>.
                             </p>
                         </Tips>
                         <p></p>
-                        <PopupPlacementTop />
+                        <PopupPlacementFlip />
                     </SectionPropertyPopupFlipModifier>
+                    <SectionPropertyPopupPreventOverflowModifier>
+                        <Tips>
+                            <p>
+                                The <code>popupPlacement</code> is on exact <code>{`'right'`}</code>,
+                                but if you scroll up/down the <strong>container below</strong>, the <code>popupPlacement</code> will shift slightly from its original position.
+                            </p>
+                        </Tips>
+                        <p></p>
+                        <PopupPlacementSlide />
+                    </SectionPropertyPopupPreventOverflowModifier>
                 </SectionPropertyPopupModifiers>
             </Section>
             <SectionCustomizing specList={
