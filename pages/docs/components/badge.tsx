@@ -14,7 +14,7 @@ import { TypeScriptCode } from '../../../components/Code'
 import { Tips } from '../../../components/Info'
 
 import Label from '@nodestrap/label'
-import Badge from '@nodestrap/badge'
+import Badge, { BadgeProps } from '@nodestrap/badge'
 import Button from '@nodestrap/button'
 import breakpoints from '@nodestrap/breakpoints'
 import { useWindowSize } from '@nodestrap/dimensions'
@@ -178,6 +178,33 @@ const BadgePlacementPreview = () => {
     )
 };
 
+const BadgeOnButton = (props: BadgeProps) => {
+    const buttonRef = useRef<HTMLButtonElement>(null);
+    
+    
+    
+    return (
+        <>
+            <Button
+                elmRef={buttonRef}
+                theme='primary'
+            >
+                Products
+                <Badge
+                    {...props}
+                    
+                    targetRef={buttonRef}
+                    popupPlacement='right-start'
+                    popupModifiers={[
+                        { name: 'offset', options: { offset: [-10, -25] } },
+                        ...(props.popupModifiers ?? []),
+                    ]}
+                />
+            </Button>
+        </>
+    );
+}
+
 
 
 const Page: NextPage = () => {
@@ -233,13 +260,13 @@ const Page: NextPage = () => {
                 <SectionPropertyTheme>
                     <Preview stretch={false}>
                         {themeNames.map((themeName, index) =>
-                            <Badge
+                            <BadgeOnButton
                                 theme={themeName}
                                 active={true}
                                 key={index}
                             >
-                                A {'<Badge>'} with {themeName} theme
-                            </Badge>
+                                {themeName}
+                            </BadgeOnButton>
                         )}
                     </Preview>
                     <p></p>
@@ -250,7 +277,7 @@ const Page: NextPage = () => {
     theme='${themeName}'
     active={true}
 >
-    A {'<Badge>'} with ${themeName} theme
+    ${themeName}
 </Badge>
 `
                         ).join('')}
@@ -258,34 +285,34 @@ const Page: NextPage = () => {
                 </SectionPropertyTheme>
                 <SectionPropertySize>
                     <Preview stretch={false}>
-                        <Badge
+                        <BadgeOnButton
                             size='sm'
                             active={true}
-                            theme='primary'
+                            theme='danger'
                         >
-                            A {'<Badge>'} with smaller size
-                        </Badge>
-                        <Badge
+                            smaller
+                        </BadgeOnButton>
+                        <BadgeOnButton
                             size={undefined}
                             active={true}
-                            theme='primary'
+                            theme='danger'
                         >
-                            A {'<Badge>'} with default size
-                        </Badge>
-                        <Badge
+                            default
+                        </BadgeOnButton>
+                        <BadgeOnButton
                             size='lg'
                             active={true}
-                            theme='primary'
+                            theme='danger'
                         >
-                            A {'<Badge>'} with larger size
-                        </Badge>
+                            larger
+                        </BadgeOnButton>
                         <GenericSection theme='secondary'>
-                            <h1>H1 heading <Badge theme='danger'>new</Badge></h1><span></span>
-                            <h2>H2 heading <Badge theme='danger'>new</Badge></h2><span></span>
-                            <h3>H3 heading <Badge theme='danger'>new</Badge></h3><span></span>
-                            <h4>H4 heading <Badge theme='danger'>new</Badge></h4><span></span>
-                            <h5>H5 heading <Badge theme='danger'>new</Badge></h5><span></span>
-                            <h6>H6 heading <Badge theme='danger'>new</Badge></h6><span></span>
+                            <h1>H1 heading <Badge theme='danger'>New</Badge></h1><span></span>
+                            <h2>H2 heading <Badge theme='danger'>New</Badge></h2><span></span>
+                            <h3>H3 heading <Badge theme='danger'>New</Badge></h3><span></span>
+                            <h4>H4 heading <Badge theme='danger'>New</Badge></h4><span></span>
+                            <h5>H5 heading <Badge theme='danger'>New</Badge></h5><span></span>
+                            <h6>H6 heading <Badge theme='danger'>New</Badge></h6><span></span>
                         </GenericSection>
                     </Preview>
                     <p></p>
@@ -293,44 +320,47 @@ const Page: NextPage = () => {
 <Badge
     size='sm'
     active={true}
-    theme='primary'
+    theme='danger'
 >
-    A {'<Badge>'} with smaller size
+    smaller
 </Badge>
 
 <Badge
     size={undefined}
     active={true}
-    theme='primary'
+    theme='danger'
 >
-    A {'<Badge>'} with default size
+    default
 </Badge>
 
 <Badge
     size='lg'
     active={true}
-    theme='primary'
+    theme='danger'
 >
-    A {'<Badge>'} with larger size
+    larger
 </Badge>
 
-<h1>H1 heading <Badge theme='danger'>new</Badge></h1>
-<h2>H2 heading <Badge theme='danger'>new</Badge></h2>
-<h3>H3 heading <Badge theme='danger'>new</Badge></h3>
-<h4>H4 heading <Badge theme='danger'>new</Badge></h4>
-<h5>H5 heading <Badge theme='danger'>new</Badge></h5>
-<h6>H6 heading <Badge theme='danger'>new</Badge></h6>
+<h1>H1 heading <Badge theme='danger'>New</Badge></h1>
+<h2>H2 heading <Badge theme='danger'>New</Badge></h2>
+<h3>H3 heading <Badge theme='danger'>New</Badge></h3>
+<h4>H4 heading <Badge theme='danger'>New</Badge></h4>
+<h5>H5 heading <Badge theme='danger'>New</Badge></h5>
+<h6>H6 heading <Badge theme='danger'>New</Badge></h6>
                     `}</TypeScriptCode>
                 </SectionPropertySize>
                 <SectionPropertyNude>
                     <TransparentPreview stretch={false}>
-                        <Badge
+                        <BadgeOnButton
                             nude={true}
                             active={true}
                             theme='warning'
+                            popupModifiers={[
+                                { name: 'offset', options: { offset: [-10, 5] } }
+                            ]}
                         >
-                            hello world
-                        </Badge>
+                            New
+                        </BadgeOnButton>
                     </TransparentPreview>
                     <p></p>
                     <TypeScriptCode>{`
@@ -339,21 +369,21 @@ const Page: NextPage = () => {
     active={true}
     theme='warning'
 >
-    hello world
+    New
 </Badge>
                     `}</TypeScriptCode>
                 </SectionPropertyNude>
                 <SectionPropertyGradient>
                     <Preview stretch={false}>
                         {themeNames.map((themeName, index) =>
-                            <Badge
+                            <BadgeOnButton
                                 gradient={true}
                                 active={true}
                                 theme={themeName}
                                 key={index}
                             >
-                                hello world
-                            </Badge>
+                                New
+                            </BadgeOnButton>
                         )}
                     </Preview>
                     <p></p>
@@ -365,7 +395,7 @@ const Page: NextPage = () => {
     active={true}
     theme='${themeName}'
 >
-    hello world
+    New
 </Badge>
 `
                         ).join('')}
@@ -374,14 +404,17 @@ const Page: NextPage = () => {
                 <SectionPropertyOutlined>
                     <TransparentPreview stretch={false}>
                         {themeNames.map((themeName, index) =>
-                            <Badge
+                            <BadgeOnButton
                                 outlined={true}
                                 active={true}
                                 theme={themeName}
                                 key={index}
+                                popupModifiers={[
+                                    { name: 'offset', options: { offset: [-10, 5] } }
+                                ]}
                             >
-                                hello world
-                            </Badge>
+                                New
+                            </BadgeOnButton>
                         )}
                     </TransparentPreview>
                     <p></p>
@@ -393,7 +426,7 @@ const Page: NextPage = () => {
     active={true}
     theme='${themeName}'
 >
-    hello world
+    New
 </Badge>
 `
                         ).join('')}
@@ -402,14 +435,14 @@ const Page: NextPage = () => {
                 <SectionPropertyMild>
                     <Preview stretch={false}>
                         {themeNames.map((themeName, index) =>
-                            <Badge
+                            <BadgeOnButton
                                 mild={true}
                                 active={true}
                                 theme={themeName}
                                 key={index}
                             >
-                                hello world
-                            </Badge>
+                                New
+                            </BadgeOnButton>
                         )}
                     </Preview>
                     <p></p>
@@ -421,7 +454,7 @@ const Page: NextPage = () => {
     active={true}
     theme='${themeName}'
 >
-    hello world
+    New
 </Badge>
 `
                         ).join('')}
@@ -431,14 +464,14 @@ const Page: NextPage = () => {
                     <SectionPropertyPillStyle>
                         <Preview stretch={false}>
                             {themeNames.map((themeName, index) =>
-                                <Badge
+                                <BadgeOnButton
                                     badgeStyle='pill'
                                     active={true}
                                     theme={themeName}
                                     key={index}
                                 >
-                                    hello world
-                                </Badge>
+                                    New
+                                </BadgeOnButton>
                             )}
                         </Preview>
                         <p></p>
@@ -450,7 +483,7 @@ const Page: NextPage = () => {
     active={true}
     theme='${themeName}'
 >
-    hello world
+    New
 </Badge>
 `
                             ).join('')}
@@ -459,11 +492,14 @@ const Page: NextPage = () => {
                     <SectionPropertySquareStyle>
                         <Preview stretch={false}>
                             {themeNames.map((themeName, index) =>
-                                <Badge
+                                <BadgeOnButton
                                     badgeStyle='square'
                                     active={true}
                                     theme={themeName}
                                     key={index}
+                                    popupModifiers={[
+                                        { name: 'offset', options: { offset: [-10, -15] } }
+                                    ]}
                                 />
                             )}
                         </Preview>
@@ -483,11 +519,14 @@ const Page: NextPage = () => {
                     <SectionPropertyCircleStyle>
                         <Preview stretch={false}>
                             {themeNames.map((themeName, index) =>
-                                <Badge
+                                <BadgeOnButton
                                     badgeStyle='circle'
                                     active={true}
                                     theme={themeName}
                                     key={index}
+                                    popupModifiers={[
+                                        { name: 'offset', options: { offset: [-10, -15] } }
+                                    ]}
                                 />
                             )}
                         </Preview>
@@ -509,41 +548,41 @@ const Page: NextPage = () => {
             <SectionStates>
                 <SectionPropertyActive>
                     <Preview stretch={false}>
-                        <Badge
+                        <BadgeOnButton
                             active={true}
-                            theme='primary'
+                            theme='danger'
                         >
-                            hello world
-                        </Badge>
+                            New
+                        </BadgeOnButton>
                     </Preview>
                     <p></p>
                     <TypeScriptCode>{`
 <Badge
     active={true}
-    theme='primary'
+    theme='danger'
 >
-    hello world
+    New
 </Badge>
                     `}</TypeScriptCode>
                 </SectionPropertyActive>
                 <SectionPropertyEnabled>
                     <Preview stretch={false}>
-                        <Badge
+                        <BadgeOnButton
                             enabled={false}
                             active={true}
-                            theme='primary'
+                            theme='danger'
                         >
-                            hello world
-                        </Badge>
+                            New
+                        </BadgeOnButton>
                     </Preview>
                     <p></p>
                     <TypeScriptCode>{`
 <Badge
     enabled={false}
     active={true}
-    theme='primary'
+    theme='danger'
 >
-    hello world
+    New
 </Badge>
                     `}</TypeScriptCode>
                 </SectionPropertyEnabled>
