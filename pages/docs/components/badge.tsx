@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import type { NextPage } from 'next'
 import Head from 'next/head'
@@ -16,6 +16,8 @@ import { Tips } from '../../../components/Info'
 import Label from '@nodestrap/label'
 import Badge from '@nodestrap/badge'
 import Button from '@nodestrap/button'
+import breakpoints from '@nodestrap/breakpoints'
+import { useWindowSize } from '@nodestrap/dimensions'
 import { List, ListItem } from '@nodestrap/list'
 import SelectPopupPlacement from '../../../components/SelectPopupPlacement';
 import {
@@ -52,14 +54,68 @@ interface OverlayBadgePreviewProps {
     overlay ?: boolean
 }
 const OverlayBadgePreview = ({ overlay = true }: OverlayBadgePreviewProps) => {
-    const [badgeRef, isActive] = useFlipFlop({ defaultState: true });
+    const prevListMini = useRef<boolean>(false);
+    const [isListMini, setIsListMini] = useState<boolean>(prevListMini.current);
+    const { width: mediaWidth } = useWindowSize();
+    useEffect(() => {
+        setIsListMini(
+            !!mediaWidth
+            &&
+            !!breakpoints.sm
+            &&
+            (mediaWidth <= breakpoints.sm)
+        );
+    }, [mediaWidth]);
+    useEffect(() => {
+        if (prevListMini.current === isListMini) return;
+        
+        
+        
+        prevListMini.current = isListMini;
+        setLoaded(false);
+    }, [isListMini]);
+    
+    
+    
+    const [containerRef, isActiveFlip] = useFlipFlop({ defaultState: true });
     const menuRef = useRef<HTMLElement>(null);
+    const [isLoaded, setLoaded] = useState<boolean>(false);
+    const isActive = isLoaded ? isActiveFlip : true;
+    useEffect(() => {
+        if (isLoaded) return;
+        
+        
+        
+        const container = containerRef.current as HTMLElement|null;
+        if (container) {
+            if (!overlay) {
+                container.style.boxSizing = '';
+                container.style.height = '';
+                
+                if (isListMini) {
+                    setLoaded(false);
+                    setTimeout(() => {
+                        container.style.boxSizing = 'border-box';
+                        container.style.height = `${container.offsetHeight + 5}px`;
+                        setLoaded(true);
+                    }, 0);
+                }
+                else {
+                    setLoaded(true);
+                } // if
+            }
+            else {
+                setLoaded(true);
+            } // if
+            container.style.overflow = 'hidden';
+        } // if
+    }, [isLoaded, overlay]);
     
     
     
     return (
         <Preview
-            elmRef={badgeRef}
+            elmRef={containerRef}
             blockDisplay={true}
         >
             <List
@@ -67,8 +123,12 @@ const OverlayBadgePreview = ({ overlay = true }: OverlayBadgePreviewProps) => {
                 mild={false}
                 actionCtrl={true}
                 listStyle='joined'
-                orientation='inline'
+                orientation={isListMini ? 'block' : 'inline'}
+                style={{ textAlign: 'center' }}
             >
+                <ListItem>
+                    Home
+                </ListItem>
                 <ListItem>
                     Gallery
                 </ListItem>
@@ -81,14 +141,14 @@ const OverlayBadgePreview = ({ overlay = true }: OverlayBadgePreviewProps) => {
                 theme='danger'
                 
                 targetRef={overlay ? menuRef : undefined}
-                popupPlacement='right-start'
+                popupPlacement={isListMini ? 'right' : 'right-start'}
                 popupModifiers={[
-                    { name: 'offset', options: { offset: [-10, -35] } }
+                    { name: 'offset', options: { offset: [(isListMini ? 0 : -10), -35] } }
                 ]}
             >
                 New
             </Badge>
-            <Button theme='secondary' style={{ marginInlineStart: '2rem' }}>
+            <Button tag='div' theme='secondary' style={{ [`margin${isListMini ? 'Block' : 'Inline'}Start`]: '2rem', display: (isListMini ? 'flex' : undefined) }}>
                 Logout
             </Button>
         </Preview>
@@ -140,7 +200,6 @@ const Page: NextPage = () => {
             <SectionDemo>
                 <DemoBadgeLazy fallback={<BusyBar />} />
             </SectionDemo>
-            <SectionInheritedProps />
             <Section title={<>Overlaying <CurrentComponent /></>}>
                 <p>
                     By default the <CurrentComponent /> is flowed as a normal document element, thus
@@ -169,6 +228,7 @@ const Page: NextPage = () => {
                     <BadgePlacementPreview />
                 </SectionPropertyPopupPlacement>
             </Section>
+            <SectionInheritedProps />
             <SectionVariants>
                 <SectionPropertyTheme>
                     <Preview stretch={false}>

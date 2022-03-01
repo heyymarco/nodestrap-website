@@ -50,37 +50,40 @@ interface OverlayPopupPreviewProps {
     overlay ?: boolean
 }
 const OverlayPopupPreview = ({ overlay = true }: OverlayPopupPreviewProps) => {
-    const [popupRef, isActiveFlip] = useFlipFlop({ defaultState: true });
+    const [containerRef, isActiveFlip] = useFlipFlop({ defaultState: true });
     const buttonRef = useRef<HTMLButtonElement>(null);
     const [isLoaded, setLoaded] = useState<boolean>(false);
     const isActive = isLoaded ? isActiveFlip : true;
-
-
-
     useEffect(() => {
         if (isLoaded) return;
         
         
         
-        const container = buttonRef.current?.parentElement;
+        const container = containerRef.current as HTMLElement|null;
         if (container) {
             if (!overlay) {
-                container.style.boxSizing = 'border-box';
-                container.style.height = `${container.offsetHeight + 5}px`;
+                container.style.boxSizing = '';
+                container.style.height = '';
+                
+                setLoaded(false);
+                setTimeout(() => {
+                    container.style.boxSizing = 'border-box';
+                    container.style.height = `${container.offsetHeight + 5}px`;
+                    setLoaded(true);
+                }, 0);
+            }
+            else {
+                setLoaded(true);
             } // if
             container.style.overflow = 'hidden';
         } // if
-        
-        
-        
-        setLoaded(true);
     }, [isLoaded, overlay]);
     
     
     
     return (
         <Preview
-            elmRef={popupRef}
+            elmRef={containerRef}
             blockDisplay={true}
         >
             <Button elmRef={buttonRef} theme='success' size='lg' enabled={!isActive}>Pay now</Button>
@@ -259,6 +262,56 @@ const Page: NextPage = () => {
             <SectionDemo>
                 <DemoPopupLazy fallback={<BusyBar />} />
             </SectionDemo>
+            <Section title={<>Overlaying <CurrentComponent /></>}>
+                <p>
+                    By default the <CurrentComponent /> is flowed as a normal document element, thus
+                    during <em>showing</em>/<em>hiding</em> transition, the <CurrentComponent /> <strong>shifts</strong> the position of <em>next siblings</em>.
+                </p>
+                <p>
+                    The preview below illustrates the <CurrentComponent /> <strong>shifts</strong> the position of <strong>a paragraph</strong>:
+                </p>
+                <OverlayPopupPreview overlay={false} />
+                <p>
+                    To workaround for the shifting problem, <CurrentComponent /> can be configured as an <em>overlaying element</em>, like this:
+                </p>
+                <OverlayPopupPreview />
+                <p>
+                    To make the <CurrentComponent /> overlaying on a specific element, configure the following properties:
+                </p>
+                <SectionPropertyTargetRef />
+                <SectionPropertyPopupPlacement>
+                    <Tips>
+                        <p>
+                            <strong>Click on the dots</strong> to place the tooltip.
+                            There are 12 different placements to choose from.
+                        </p>
+                    </Tips>
+                    <p></p>
+                    <PopupPlacementPreview />
+                </SectionPropertyPopupPlacement>
+                <SectionPropertyPopupModifiers>
+                    <SectionPropertyPopupFlipModifier>
+                        <Tips>
+                            <p>
+                                The <code>popupPlacement</code> is on <code>{`'top'`}</code>,
+                                but if you scroll down the <strong>container below</strong>, the <code>popupPlacement</code> will change to <code>{`'bottom'`}</code>.
+                            </p>
+                        </Tips>
+                        <p></p>
+                        <PopupPlacementFlip />
+                    </SectionPropertyPopupFlipModifier>
+                    <SectionPropertyPopupPreventOverflowModifier>
+                        <Tips>
+                            <p>
+                                The <code>popupPlacement</code> is on exact <code>{`'right'`}</code>,
+                                but if you scroll up/down the <strong>container below</strong>, the <code>popupPlacement</code> will shift slightly from its original position.
+                            </p>
+                        </Tips>
+                        <p></p>
+                        <PopupPlacementSlide />
+                    </SectionPropertyPopupPreventOverflowModifier>
+                </SectionPropertyPopupModifiers>
+            </Section>
             <SectionInheritedProps />
             <SectionVariants>
                 <SectionPropertyTheme>
@@ -486,56 +539,6 @@ const Page: NextPage = () => {
                     `}</TypeScriptCode>
                 </SectionPropertyEnabled>
             </SectionStates>
-            <Section title={<>Overlaying <CurrentComponent /></>}>
-                <p>
-                    By default the <CurrentComponent /> is flowed as a normal document element, thus
-                    during <em>showing</em>/<em>hiding</em> transition, the <CurrentComponent /> <strong>shifts</strong> the position of <em>next siblings</em>.
-                </p>
-                <p>
-                    The preview below illustrates the <CurrentComponent /> <strong>shifts</strong> the position of <strong>a paragraph</strong>:
-                </p>
-                <OverlayPopupPreview overlay={false} />
-                <p>
-                    To workaround for the shifting problem, <CurrentComponent /> can be configured as an <em>overlaying element</em>, like this:
-                </p>
-                <OverlayPopupPreview />
-                <p>
-                    To make the <CurrentComponent /> overlaying on a specific element, configure the following properties:
-                </p>
-                <SectionPropertyTargetRef />
-                <SectionPropertyPopupPlacement>
-                    <Tips>
-                        <p>
-                            <strong>Click on the dots</strong> to place the tooltip.
-                            There are 12 different placements to choose from.
-                        </p>
-                    </Tips>
-                    <p></p>
-                    <PopupPlacementPreview />
-                </SectionPropertyPopupPlacement>
-                <SectionPropertyPopupModifiers>
-                    <SectionPropertyPopupFlipModifier>
-                        <Tips>
-                            <p>
-                                The <code>popupPlacement</code> is on <code>{`'top'`}</code>,
-                                but if you scroll down the <strong>container below</strong>, the <code>popupPlacement</code> will change to <code>{`'bottom'`}</code>.
-                            </p>
-                        </Tips>
-                        <p></p>
-                        <PopupPlacementFlip />
-                    </SectionPropertyPopupFlipModifier>
-                    <SectionPropertyPopupPreventOverflowModifier>
-                        <Tips>
-                            <p>
-                                The <code>popupPlacement</code> is on exact <code>{`'right'`}</code>,
-                                but if you scroll up/down the <strong>container below</strong>, the <code>popupPlacement</code> will shift slightly from its original position.
-                            </p>
-                        </Tips>
-                        <p></p>
-                        <PopupPlacementSlide />
-                    </SectionPropertyPopupPreventOverflowModifier>
-                </SectionPropertyPopupModifiers>
-            </Section>
             <SectionPropertyLazy />
             <SectionCustomizing specList={
                 <SpecList>
