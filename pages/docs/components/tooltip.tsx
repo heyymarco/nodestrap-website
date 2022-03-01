@@ -439,36 +439,12 @@ const buttonRef = useRef(null);
             <SectionPropertyLazy />
             <SectionCustomizing specList={
                 <SpecList>
-                    <DetailSpecItem title='Spacings'>
-                        <SubSpecList>
-                            <SimpleSpecItem>
-                                <code>paddingInline</code>
-                                <p>The default inner spacing on the left &amp; right.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>paddingBlock</code>
-                                <p>The default inner spacing on the top &amp; bottom.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>paddingInlineSm</code>
-                                <p>The inner spacing on the left &amp; right when <code>{`size='sm'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>paddingBlockSm</code>
-                                <p>The inner spacing on the top &amp; bottom when <code>{`size='sm'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>paddingInlineLg</code>
-                                <p>The inner spacing on the left &amp; right when <code>{`size='lg'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>paddingBlockLg</code>
-                                <p>The inner spacing on the top &amp; bottom when <code>{`size='lg'`}</code>.</p>
-                            </SimpleSpecItem>
-                        </SubSpecList>
-                    </DetailSpecItem>
                     <DetailSpecItem title='Typos'>
                         <SubSpecList>
+                            <SimpleSpecItem>
+                                <code>whiteSpace</code>
+                                <p>Defines how a <strong>white space</strong> inside <CurrentComponent /> is handled.</p>
+                            </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>fontSize</code>
                                 <p>The default text size.</p>
@@ -480,10 +456,6 @@ const buttonRef = useRef(null);
                             <SimpleSpecItem>
                                 <code>fontSizeLg</code>
                                 <p>The text size when <code>{`size='lg'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>fontWeight</code>
-                                <p>The text thickness.</p>
                             </SimpleSpecItem>
                         </SubSpecList>
                     </DetailSpecItem>
