@@ -31,13 +31,15 @@ import {
 } from '../../../components/common@Basic'
 import {
     SectionPropertyEnabled,
-    SectionPropertyActive,
     
     SectionPropertyTargetRef,
     SectionPropertyPopupPlacement,
     
     SectionPropertyLazy,
 } from '../../../components/common@Popup'
+import {
+    SectionPropertyActive,
+} from '../../../components/common@Tooltip'
 
 import loadable from '@loadable/component'
 const DemoTooltipLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Tooltip' */'../../../components/DemoPanel@Tooltip'))
@@ -261,47 +263,29 @@ const Page: NextPage = () => {
 const buttonRef = useRef(null);
 /* ... */
 
-<Button
-    elmRef={buttonRef}
-    theme='primary'
+<Tooltip
+    size='sm'
+    active={true}
+    theme='warning'
 >
-    <Tooltip
-        targetRef={buttonRef}
-        size='sm'
-        active={true}
-        theme='warning'
-    >
-        smaller
-    </Tooltip>
-</Button>
+    smaller
+</Tooltip>
 
-<Button
-    elmRef={buttonRef}
-    theme='primary'
+<Tooltip
+    size={undefined}
+    active={true}
+    theme='warning'
 >
-    <Tooltip
-        targetRef={buttonRef}
-        size={undefined}
-        active={true}
-        theme='warning'
-    >
-        default
-    </Tooltip>
-</Button>
+    default
+</Tooltip>
 
-<Button
-    elmRef={buttonRef}
-    theme='primary'
+<Tooltip
+    size='lg'
+    active={true}
+    theme='warning'
 >
-    <Tooltip
-        targetRef={buttonRef}
-        size='lg'
-        active={true}
-        theme='warning'
-    >
-        larger
-    </Tooltip>
-</Button>
+    larger
+</Tooltip>
                     `}</TypeScriptCode>
                 </SectionPropertySize>
                 <SectionPropertyNude>
