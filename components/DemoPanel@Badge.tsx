@@ -2,11 +2,13 @@ import { useResetableState, Option, ResetButton } from './DemoPanel';
 import { PopupInitials, PopupOptionProps, PopupOptions, usePopupStates } from './DemoPanel@Popup';
 
 import { Badge } from '@nodestrap/badge'
+import { ThemeName } from '@nodestrap/basic';
 import { TypeScriptCode } from './Code';
 
 
 
 export const badgeInitials = {
+    theme    : 'danger' as ThemeName|undefined,
     mild     : false,
 };
 export type BadgeInitials = typeof badgeInitials & Partial<PopupInitials>

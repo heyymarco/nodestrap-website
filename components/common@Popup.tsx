@@ -126,7 +126,7 @@ export default function FooComponent() {
                 theme='success'
                 size='lg'
             >
-                Pay now
+                Do Something
             </Button>
             <${componentName}
                 targetRef={buttonRef}
@@ -134,7 +134,7 @@ export default function FooComponent() {
                 popupPlacement='right'
                 active={true}
             >
-                Processing your payment...
+                hello world
             </${componentName}>
         </>
     );
@@ -154,7 +154,7 @@ export default function FooComponent() {
                 theme='success'
                 size='lg'
             >
-                Pay now
+                Do Something
             </Button>
             <${componentName}
                 targetRef={buttonRef}
@@ -162,7 +162,7 @@ export default function FooComponent() {
                 popupPlacement='right'
                 active={true}
             >
-                Processing your payment...
+                hello world
             </${componentName}>
         </>
     );

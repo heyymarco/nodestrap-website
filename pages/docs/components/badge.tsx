@@ -8,7 +8,7 @@ import { useFlipFlop } from '../../../components/hooks'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
-import { Section } from '../../../components/Section'
+import GenericSection, { Section } from '../../../components/Section'
 import { SectionInheritedProps, LinkBadgePage, LinkPopupPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 import { Tips } from '../../../components/Info'
@@ -21,13 +21,17 @@ import SelectPopupPlacement from '../../../components/SelectPopupPlacement';
 import {
     themeNames,
     SectionPropertyTheme,
-    SectionPropertySize,
     SectionPropertyNude,
     SectionPropertyGradient,
     SectionPropertyOutlined,
 } from '../../../components/common@Basic'
 import {
+    SectionPropertySize,
     SectionPropertyMild,
+    SectionPropertyBadgeStyle,
+    SectionPropertyPillStyle,
+    SectionPropertySquareStyle,
+    SectionPropertyCircleStyle,
 } from '../../../components/common@Badge'
 import {
     SectionPropertyEnabled,
@@ -60,7 +64,6 @@ const OverlayBadgePreview = ({ overlay = true }: OverlayBadgePreviewProps) => {
         >
             <List
                 theme='primary'
-                size='lg'
                 mild={false}
                 actionCtrl={true}
                 listStyle='joined'
@@ -69,11 +72,8 @@ const OverlayBadgePreview = ({ overlay = true }: OverlayBadgePreviewProps) => {
                 <ListItem>
                     Gallery
                 </ListItem>
-                <ListItem>
-                    Products
-                </ListItem>
                 <ListItem elmRef={menuRef}>
-                    Cart
+                    Products
                 </ListItem>
             </List>
             <Badge
@@ -130,7 +130,7 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    <CurrentComponent /> is a presentation component for dynamically <strong>showing</strong> &amp; <strong>hiding</strong> an <strong>overlaying small notification</strong> on the desired component.
+                    Marks a desired component with a small label.
                 </p>
                 <p>
                     Here the preview:
@@ -141,6 +141,34 @@ const Page: NextPage = () => {
                 <DemoBadgeLazy fallback={<BusyBar />} />
             </SectionDemo>
             <SectionInheritedProps />
+            <Section title={<>Overlaying <CurrentComponent /></>}>
+                <p>
+                    By default the <CurrentComponent /> is flowed as a normal document element, thus
+                    during <em>showing</em>/<em>hiding</em> transition, the <CurrentComponent /> <strong>shifts</strong> the position of <em>next siblings</em>.
+                </p>
+                <p>
+                    The preview below illustrates the <CurrentComponent /> <strong>shifts</strong> the position of <strong>a logout button</strong>:
+                </p>
+                <OverlayBadgePreview overlay={false} />
+                <p>
+                    To workaround for the shifting problem, <CurrentComponent /> can be configured as an <em>overlaying element</em>, like this:
+                </p>
+                <OverlayBadgePreview />
+                <p>
+                    To make the <CurrentComponent /> overlaying on a specific element, configure the following properties:
+                </p>
+                <SectionPropertyTargetRef />
+                <SectionPropertyPopupPlacement>
+                    <Tips>
+                        <p>
+                            <strong>Click on the dots</strong> to place the tooltip.
+                            There are 12 different placements to choose from.
+                        </p>
+                    </Tips>
+                    <p></p>
+                    <BadgePlacementPreview />
+                </SectionPropertyPopupPlacement>
+            </Section>
             <SectionVariants>
                 <SectionPropertyTheme>
                     <Preview stretch={false}>
@@ -191,6 +219,14 @@ const Page: NextPage = () => {
                         >
                             A {'<Badge>'} with larger size
                         </Badge>
+                        <GenericSection theme='secondary'>
+                            <h1>H1 heading <Badge theme='danger'>new</Badge></h1><span></span>
+                            <h2>H2 heading <Badge theme='danger'>new</Badge></h2><span></span>
+                            <h3>H3 heading <Badge theme='danger'>new</Badge></h3><span></span>
+                            <h4>H4 heading <Badge theme='danger'>new</Badge></h4><span></span>
+                            <h5>H5 heading <Badge theme='danger'>new</Badge></h5><span></span>
+                            <h6>H6 heading <Badge theme='danger'>new</Badge></h6><span></span>
+                        </GenericSection>
                     </Preview>
                     <p></p>
                     <TypeScriptCode>{`
@@ -217,6 +253,13 @@ const Page: NextPage = () => {
 >
     A {'<Badge>'} with larger size
 </Badge>
+
+<h1>H1 heading <Badge theme='danger'>new</Badge></h1>
+<h2>H2 heading <Badge theme='danger'>new</Badge></h2>
+<h3>H3 heading <Badge theme='danger'>new</Badge></h3>
+<h4>H4 heading <Badge theme='danger'>new</Badge></h4>
+<h5>H5 heading <Badge theme='danger'>new</Badge></h5>
+<h6>H6 heading <Badge theme='danger'>new</Badge></h6>
                     `}</TypeScriptCode>
                 </SectionPropertySize>
                 <SectionPropertyNude>
@@ -324,6 +367,84 @@ const Page: NextPage = () => {
                         ).join('')}
                     </TypeScriptCode>
                 </SectionPropertyMild>
+                <SectionPropertyBadgeStyle>
+                    <SectionPropertyPillStyle>
+                        <Preview stretch={false}>
+                            {themeNames.map((themeName, index) =>
+                                <Badge
+                                    badgeStyle='pill'
+                                    active={true}
+                                    theme={themeName}
+                                    key={index}
+                                >
+                                    hello world
+                                </Badge>
+                            )}
+                        </Preview>
+                        <p></p>
+                        <TypeScriptCode>
+                            {themeNames.map((themeName) =>
+`
+<Badge
+    badgeStyle='pill'
+    active={true}
+    theme='${themeName}'
+>
+    hello world
+</Badge>
+`
+                            ).join('')}
+                        </TypeScriptCode>
+                    </SectionPropertyPillStyle>
+                    <SectionPropertySquareStyle>
+                        <Preview stretch={false}>
+                            {themeNames.map((themeName, index) =>
+                                <Badge
+                                    badgeStyle='square'
+                                    active={true}
+                                    theme={themeName}
+                                    key={index}
+                                />
+                            )}
+                        </Preview>
+                        <p></p>
+                        <TypeScriptCode>
+                            {themeNames.map((themeName) =>
+`
+<Badge
+    badgeStyle='square'
+    active={true}
+    theme='${themeName}'
+/>
+`
+                            ).join('')}
+                        </TypeScriptCode>
+                    </SectionPropertySquareStyle>
+                    <SectionPropertyCircleStyle>
+                        <Preview stretch={false}>
+                            {themeNames.map((themeName, index) =>
+                                <Badge
+                                    badgeStyle='circle'
+                                    active={true}
+                                    theme={themeName}
+                                    key={index}
+                                />
+                            )}
+                        </Preview>
+                        <p></p>
+                        <TypeScriptCode>
+                            {themeNames.map((themeName) =>
+`
+<Badge
+    badgeStyle='circle'
+    active={true}
+    theme='${themeName}'
+/>
+`
+                            ).join('')}
+                        </TypeScriptCode>
+                    </SectionPropertyCircleStyle>
+                </SectionPropertyBadgeStyle>
             </SectionVariants>
             <SectionStates>
                 <SectionPropertyActive>
@@ -367,58 +488,54 @@ const Page: NextPage = () => {
                     `}</TypeScriptCode>
                 </SectionPropertyEnabled>
             </SectionStates>
-            <Section title={<>Overlaying <CurrentComponent /></>}>
-                <p>
-                    By default the <CurrentComponent /> is flowed as a normal document element, thus
-                    during <em>showing</em>/<em>hiding</em> transition, the <CurrentComponent /> <strong>shifts</strong> the position of <em>next siblings</em>.
-                </p>
-                <p>
-                    The preview below illustrates the <CurrentComponent /> <strong>shifts</strong> the position of <strong>a logout button</strong>:
-                </p>
-                <OverlayBadgePreview overlay={false} />
-                <p>
-                    To workaround for the shifting problem, <CurrentComponent /> can be configured as an <em>overlaying element</em>, like this:
-                </p>
-                <OverlayBadgePreview />
-                <p>
-                    To make the <CurrentComponent /> overlaying on a specific element, configure the following properties:
-                </p>
-                <SectionPropertyTargetRef />
-                <SectionPropertyPopupPlacement>
-                    <Tips>
-                        <p>
-                            <strong>Click on the dots</strong> to place the tooltip.
-                            There are 12 different placements to choose from.
-                        </p>
-                    </Tips>
-                    <p></p>
-                    <BadgePlacementPreview />
-                </SectionPropertyPopupPlacement>
-            </Section>
             <SectionPropertyLazy />
             <SectionCustomizing specList={
                 <SpecList>
-                    <DetailSpecItem title='Animations'>
+                    <DetailSpecItem title='Spacings'>
                         <SubSpecList>
                             <SimpleSpecItem>
-                                <code>filterActive</code>
-                                <p>A <code>filter</code> to apply when <code>{`active={true}`}</code>.</p>
+                                <code>paddingInline</code>
+                                <p>The default inner spacing on the left &amp; right.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
-                                <code>@keyframes active</code>
-                                <p>A keyframes name represents <em>showing keyframes</em>, transition from <code>{`active={false}`}</code> to <code>{`active={true}`}</code>.</p>
+                                <code>paddingBlock</code>
+                                <p>The default inner spacing on the top &amp; bottom.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
-                                <code>@keyframes passive</code>
-                                <p>A keyframes name represents <em>hiding keyframes</em>, transition from <code>{`active={true}`}</code> to <code>{`active={false}`}</code>.</p>
+                                <code>paddingInlineSm</code>
+                                <p>The inner spacing on the left &amp; right when <code>{`size='sm'`}</code>.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
-                                <code>animActive</code>
-                                <p>An animation represents <em>showing animation</em>, transition from <code>{`active={false}`}</code> to <code>{`active={true}`}</code>.</p>
+                                <code>paddingBlockSm</code>
+                                <p>The inner spacing on the top &amp; bottom when <code>{`size='sm'`}</code>.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
-                                <code>animPassive</code>
-                                <p>An animation represents <em>hiding animation</em>, transition from <code>{`active={true}`}</code> to <code>{`active={false}`}</code>.</p>
+                                <code>paddingInlineLg</code>
+                                <p>The inner spacing on the left &amp; right when <code>{`size='lg'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>paddingBlockLg</code>
+                                <p>The inner spacing on the top &amp; bottom when <code>{`size='lg'`}</code>.</p>
+                            </SimpleSpecItem>
+                        </SubSpecList>
+                    </DetailSpecItem>
+                    <DetailSpecItem title='Typos'>
+                        <SubSpecList>
+                            <SimpleSpecItem>
+                                <code>fontSize</code>
+                                <p>The default text size.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>fontSizeSm</code>
+                                <p>The text size when <code>{`size='sm'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>fontSizeLg</code>
+                                <p>The text size when <code>{`size='lg'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>fontWeight</code>
+                                <p>The text thickness.</p>
                             </SimpleSpecItem>
                         </SubSpecList>
                     </DetailSpecItem>
@@ -428,7 +545,7 @@ const Page: NextPage = () => {
                 <SectionOverridingDefaults>{`
 import { Badge } from '@nodestrap/badge'
 
-export default function SurpriseMessage(props) {
+export default function ErrorMark(props) {
     return (
         <Badge
             {...props} // preserves other properties
@@ -436,10 +553,10 @@ export default function SurpriseMessage(props) {
             semanticRole={props.semanticRole ?? 'status'} // override default value of semanticRole to 'status'
             semantictag={props.semanticTag ?? 'span'}     // override default value of semanticTag  to 'span'
             
-            theme={props.theme ?? 'warning'} // override default value of theme to 'warning'
-            mild={props.mild ?? false}       // override default value of mild  to false
+            theme={props.theme ?? 'danger'} // override default value of theme to 'danger'
+            mild={props.mild ?? false}      // override default value of mild  to false
         >
-            { props.children }
+            { props.children ?? 'error' }
         </Badge>
     );
 }
@@ -455,13 +572,15 @@ export default function SurpriseMessage(props) {
                         <DetailSpecItem code='usesBadgeVariants()'>
                             <p>
                                 Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentComponent /> such as:<br />
-                                <code>SizeVariant</code> and <strong>all variants</strong> inherited from <CurrentBaseComponents />.
+                                <code>SizeVariant</code>, <code>BadgeVariant</code>, and <strong>all variants</strong> inherited from <CurrentBaseComponents />.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesBadgeStates()'>
                             <p>
-                                Returns a <code>Rule</code> object represents the <strong>states</strong> of <CurrentComponent /> such as:<br />
-                                <strong>enabled</strong>/<strong>disabled</strong> and <strong>active</strong>/<strong>passive</strong>.
+                                Returns a <code>Rule</code> object represents the <strong>states</strong> of <CurrentComponent />.
+                            </p>
+                            <p>
+                                Currently the states are equivalent to <CurrentBaseComponents />&apos;s states.
                             </p>
                         </DetailSpecItem>
                     </SpecList>
@@ -472,7 +591,7 @@ import { isActive } from '@nodestrap/indicator'
 import { Badge, usesBadgeLayout, usesBadgeVariants, usesBadgeStates } from '@nodestrap/badge'
 
 
-const useSurpriseMessageSheet = createUseSheet(() => [
+const useErrorMarkSheet = createUseSheet(() => [
     mainComposition(
         imports([
             // import some stuff from <Badge>:
@@ -514,8 +633,8 @@ const useSurpriseMessageSheet = createUseSheet(() => [
     ),
 ]);
 
-export default function SurpriseMessage(props) {
-    const sheet = useSurpriseMessageSheet();
+export default function ErrorMark(props) {
+    const sheet = useErrorMarkSheet();
     return (
         <Badge {...props} mainClass={sheet.main}>
             { props.children }
