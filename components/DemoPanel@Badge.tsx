@@ -88,25 +88,47 @@ export const DemoBadge = () => {
                     </Badge>
                 </Button>
                 <TypeScriptCode collapsable={false}>{`
-<Badge
-    badgeStyle=${states.badgeStyle[0] ? `'${states.badgeStyle[0]}'` : '{undefined}'}
+export default function App() {
+    const buttonRef = useRef(null);
     
-    enabled={${states.enabled[0]}}
-    active={${states.active[0]}}
-    
-    size=${states.size[0] ? `'${states.size[0]}'` : '{undefined}'}
-    nude={${states.nude[0]}}
-    theme='${states.theme[0]}'
-    gradient={${states.gradient[0]}}
-    outlined={${states.outlined[0]}}
-    mild={${states.mild[0]}}
-${hasChildren
-?
-`>
-    50% off
-</Badge>`
-:
-'/>'
+    return (
+        <Button
+            elmRef={buttonRef}
+            theme='primary'
+        >
+            Products
+            <Badge
+                targetRef={buttonRef}
+                popupPlacement='right-start'
+                popupModifiers={[
+                    {
+                        name    : 'offset',
+                        options : {
+                            offset: [-10, ${(hasChildren ? -35 : -15)}],
+                        }
+                    },
+                ]}
+                
+                badgeStyle=${states.badgeStyle[0] ? `'${states.badgeStyle[0]}'` : '{undefined}'}
+                
+                enabled={${states.enabled[0]}}
+                active={${states.active[0]}}
+                
+                size=${states.size[0] ? `'${states.size[0]}'` : '{undefined}'}
+                nude={${states.nude[0]}}
+                theme='${states.theme[0]}'
+                gradient={${states.gradient[0]}}
+                outlined={${states.outlined[0]}}
+                mild={${states.mild[0]}}
+            ${hasChildren
+            ?
+            `>
+                50% off
+            </Badge>`
+            :
+            '/>'}
+        </Button>
+    );
 }
                 `}</TypeScriptCode>
             </div>

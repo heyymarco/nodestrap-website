@@ -317,29 +317,50 @@ const Page: NextPage = () => {
                     </Preview>
                     <p></p>
                     <TypeScriptCode>{`
-<Badge
-    size='sm'
-    active={true}
-    theme='danger'
->
-    smaller
-</Badge>
+const buttonRef = useRef(null);
+/* ... */
 
-<Badge
-    size={undefined}
-    active={true}
-    theme='danger'
+<Button
+    elmRef={buttonRef}
+    theme='primary'
 >
-    default
-</Badge>
+    <Badge
+        targetRef={buttonRef}
+        size='sm'
+        active={true}
+        theme='danger'
+    >
+        smaller
+    </Badge>
+</Button>
 
-<Badge
-    size='lg'
-    active={true}
-    theme='danger'
+<Button
+    elmRef={buttonRef}
+    theme='primary'
 >
-    larger
-</Badge>
+    <Badge
+        targetRef={buttonRef}
+        size={undefined}
+        active={true}
+        theme='danger'
+    >
+        default
+    </Badge>
+</Button>
+
+<Button
+    elmRef={buttonRef}
+    theme='primary'
+>
+    <Badge
+        targetRef={buttonRef}
+        size='lg'
+        active={true}
+        theme='danger'
+    >
+        larger
+    </Badge>
+</Button>
 
 <h1>H1 heading <Badge theme='danger'>New</Badge></h1>
 <h2>H2 heading <Badge theme='danger'>New</Badge></h2>

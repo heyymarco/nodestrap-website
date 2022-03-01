@@ -18,9 +18,18 @@ import {
 
 
 
-export const SectionPropertySize = ({ moreInfo = <p>Note: the <CurrentComponent />&apos;s size is relative to <strong>parent element font size</strong>, using <code>em</code> unit, so it matches the parent size.</p>, ...props }: SectionPreviewPropertyProps) => {
+export const SectionPropertySize = ({ moreInfo, ...props }: SectionPreviewPropertyProps) => {
     return (
-        <BasicSectionPropertySize {...props} moreInfo={moreInfo} />
+        <BasicSectionPropertySize {...props} moreInfo={moreInfo ?? <>
+            <p>
+                Note: the <CurrentComponent />&apos;s size is relative to <strong>parent element font size</strong>,
+                using <code>em</code> unit, so it matches the parent size.
+            </p>
+            <p>
+                You can either place the <CurrentComponent /> <strong>inside</strong> the target element or <strong>outside</strong>.
+                We recommend place it <strong>inside</strong> (if possible), so the <CurrentComponent />&apos;s size <strong>matches</strong> the target element.
+            </p>
+        </>} />
     );
 };
 
