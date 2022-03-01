@@ -131,6 +131,7 @@ export const LinkCardPage                   = (props: PageLinkProps) => <LinkCod
 
 export const LinkPopupPage                  = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/popup'>Popup</LinkCode>
 export const LinkBadgePage                  = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/badge'>Badge</LinkCode>
+export const LinkTooltipPage                = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/tooltip'>Tooltip</LinkCode>
 
 export const LinkAlertPage                  = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/alert'>Alert</LinkCode>
 
