@@ -69,7 +69,7 @@ export const DemoBadge = () => {
                         targetRef={buttonRef}
                         popupPlacement='right-start'
                         popupModifiers={[
-                            { name: 'offset', options: { offset: [-10, -35] } }
+                            { name: 'offset', options: { offset: [-10, (hasChildren ? -35 : -15)] } }
                         ]}
                         
                         badgeStyle={states.badgeStyle[0]}
