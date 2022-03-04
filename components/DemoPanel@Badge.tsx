@@ -68,9 +68,8 @@ export const DemoBadge = () => {
                     <Badge
                         targetRef={buttonRef}
                         popupPlacement='right-start'
-                        popupModifiers={[
-                            { name: 'offset', options: { offset: [-10, (hasChildren ? -35 : -15)] } }
-                        ]}
+                        popupOffset={(hasChildren ? -35 : -15)}
+                        popupShift={-10}
                         
                         badgeStyle={states.badgeStyle[0]}
                         
@@ -100,14 +99,8 @@ export default function App() {
             <Badge
                 targetRef={buttonRef}
                 popupPlacement='right-start'
-                popupModifiers={[
-                    {
-                        name    : 'offset',
-                        options : {
-                            offset: [-10, ${(hasChildren ? -35 : -15)}],
-                        }
-                    },
-                ]}
+                popupOffset={${(hasChildren ? -35 : -15)}}
+                popupShift={-10}
                 
                 badgeStyle=${states.badgeStyle[0] ? `'${states.badgeStyle[0]}'` : '{undefined}'}
                 

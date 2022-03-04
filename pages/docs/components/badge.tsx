@@ -34,6 +34,9 @@ import {
     SectionPropertyPillStyle,
     SectionPropertySquareStyle,
     SectionPropertyCircleStyle,
+    
+    SectionPropertyPopupAutoFlip,
+    SectionPropertyPopupAutoShift,
 } from '../../../components/common@Badge'
 import {
     SectionPropertyEnabled,
@@ -41,6 +44,8 @@ import {
     
     SectionPropertyTargetRef,
     SectionPropertyPopupPlacement,
+    SectionPropertyPopupOffset,
+    SectionPropertyPopupShift,
     
     SectionPropertyLazy,
 } from '../../../components/common@Popup'
@@ -142,9 +147,8 @@ const OverlayBadgePreview = ({ overlay = true }: OverlayBadgePreviewProps) => {
                 
                 targetRef={overlay ? menuRef : undefined}
                 popupPlacement={isListMini ? 'right' : 'right-start'}
-                popupModifiers={[
-                    { name: 'offset', options: { offset: [(isListMini ? 0 : -10), -35] } }
-                ]}
+                popupOffset={-35}
+                popupShift={-10}
             >
                 New
             </Badge>
@@ -195,15 +199,192 @@ const BadgeOnButton = (props: BadgeProps) => {
                     
                     targetRef={buttonRef}
                     popupPlacement='right-start'
-                    popupModifiers={[
-                        { name: 'offset', options: { offset: [-10, -25] } },
-                        ...(props.popupModifiers ?? []),
-                    ]}
+                    popupOffset={props.popupOffset ?? -25}
+                    popupShift={props.popupShift ?? -10}
                 />
             </Button>
         </>
     );
-}
+};
+
+const BadgeOffset = () => {
+    const contentRef = useRef<HTMLElement>(null);
+    
+    
+    
+    return (
+        <Preview>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <Label elmRef={contentRef} theme='primary' size='lg'>
+                A content
+            </Label>
+            <Badge
+                active={true}
+                theme='danger'
+                
+                targetRef={contentRef}
+                popupPlacement='top'
+                popupOffset={30}
+            >
+                hello world!
+            </Badge>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+        </Preview>
+    )
+};
+const BadgeShift = () => {
+    const contentRef = useRef<HTMLElement>(null);
+    
+    
+    
+    return (
+        <Preview>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <Label elmRef={contentRef} theme='primary' size='lg'>
+                A content
+            </Label>
+            <Badge
+                active={true}
+                theme='danger'
+                
+                targetRef={contentRef}
+                popupPlacement='top'
+                popupShift={100}
+            >
+                hello world!
+            </Badge>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+        </Preview>
+    )
+};
+const BadgeAutoFlip = () => {
+    const contentRef = useRef<HTMLElement>(null);
+    
+    
+    
+    useEffect(() => {
+        const container = contentRef.current?.parentElement;
+        if (!container) return;
+        if (container.style.height) return;
+        container.style.boxSizing = 'content-box';
+        container.style.height = `${container.clientHeight / 3}px`;
+        container.scrollTop = (container.scrollHeight - container.clientHeight) / 2;
+    }, []);
+    
+    
+    
+    return (
+        <Preview>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <Label elmRef={contentRef} theme='primary' size='lg'>
+                A content
+            </Label>
+            <Badge
+                active={true}
+                theme='danger'
+                
+                targetRef={contentRef}
+                popupPlacement='top'
+                popupAutoFlip={true}
+            >
+                hello world!
+            </Badge>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+        </Preview>
+    )
+};
+const BadgeAutoShift = () => {
+    const contentRef = useRef<HTMLElement>(null);
+    
+    
+    
+    useEffect(() => {
+        const container = contentRef.current?.parentElement;
+        if (!container) return;
+        if (container.style.height) return;
+        container.style.boxSizing = 'content-box';
+        container.style.height = `${container.clientHeight / 3}px`;
+        container.scrollTop = (container.scrollHeight - container.clientHeight) / 2;
+    }, []);
+    
+    
+    
+    return (
+        <Preview>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <Label elmRef={contentRef} theme='primary' size='lg' style={{ width: '50%' }}>
+                A content
+            </Label>
+            <Badge
+                active={true}
+                theme='danger'
+                
+                targetRef={contentRef}
+                popupPlacement='right'
+                popupAutoShift={true}
+            >
+                hello<br />
+                world<br />
+                <br />
+                hello<br />
+                everyone<br />
+            </Badge>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+        </Preview>
+    )
+};
 
 
 
@@ -254,6 +435,32 @@ const Page: NextPage = () => {
                     <p></p>
                     <BadgePlacementPreview />
                 </SectionPropertyPopupPlacement>
+                <SectionPropertyPopupOffset>
+                    <BadgeOffset />
+                </SectionPropertyPopupOffset>
+                <SectionPropertyPopupShift>
+                    <BadgeShift />
+                </SectionPropertyPopupShift>
+                <SectionPropertyPopupAutoFlip>
+                    <Tips>
+                        <p>
+                            The <code>popupPlacement</code> is on <code>{`'top'`}</code>,
+                            but if you scroll down the <strong>container below</strong>, the <code>popupPlacement</code> will change to <code>{`'bottom'`}</code>.
+                        </p>
+                    </Tips>
+                    <p></p>
+                    <BadgeAutoFlip />
+                </SectionPropertyPopupAutoFlip>
+                <SectionPropertyPopupAutoShift>
+                    <Tips>
+                        <p>
+                            The <code>popupPlacement</code> is on exact <code>{`'right'`}</code>,
+                            but if you scroll up/down the <strong>container below</strong>, the <code>popupPlacement</code> will shift slightly from its original position.
+                        </p>
+                    </Tips>
+                    <p></p>
+                    <BadgeAutoShift />
+                </SectionPropertyPopupAutoShift>
             </Section>
             <SectionInheritedProps />
             <SectionVariants>
@@ -376,9 +583,8 @@ const buttonRef = useRef(null);
                             nude={true}
                             active={true}
                             theme='warning'
-                            popupModifiers={[
-                                { name: 'offset', options: { offset: [-10, 5] } }
-                            ]}
+                            popupOffset={5}
+                            popupShift={-10}
                         >
                             New
                         </BadgeOnButton>
@@ -430,9 +636,8 @@ const buttonRef = useRef(null);
                                 active={true}
                                 theme={themeName}
                                 key={index}
-                                popupModifiers={[
-                                    { name: 'offset', options: { offset: [-10, 5] } }
-                                ]}
+                                popupOffset={5}
+                                popupShift={-10}
                             >
                                 New
                             </BadgeOnButton>
@@ -518,9 +723,8 @@ const buttonRef = useRef(null);
                                     active={true}
                                     theme={themeName}
                                     key={index}
-                                    popupModifiers={[
-                                        { name: 'offset', options: { offset: [-10, -15] } }
-                                    ]}
+                                    popupOffset={-15}
+                                    popupShift={-10}
                                 />
                             )}
                         </Preview>
@@ -545,9 +749,8 @@ const buttonRef = useRef(null);
                                     active={true}
                                     theme={themeName}
                                     key={index}
-                                    popupModifiers={[
-                                        { name: 'offset', options: { offset: [-10, -15] } }
-                                    ]}
+                                    popupOffset={-15}
+                                    popupShift={-10}
                                 />
                             )}
                         </Preview>
