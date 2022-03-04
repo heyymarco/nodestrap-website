@@ -83,8 +83,8 @@ import {
 import {
     // general types:
     PopupPlacement,
-    PopupModifier,
-    PopupPosition,
+    PopupMiddleware,
+    PopupStrategy,
 }                           from '@nodestrap/popup'
 import {
     // react components:
@@ -305,4 +305,4 @@ export { Detail as default }
 
 export type { OrientationName, OrientationVariant }
 
-export type { PopupPlacement, PopupModifier, PopupPosition }
+export type { PopupPlacement, PopupMiddleware, PopupStrategy }
