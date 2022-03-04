@@ -227,7 +227,7 @@ export const SectionPropertyPopupShift     = ({ property = 'popupShift'    , pro
         } />
     );
 };
-export const SectionPropertyPopupAutoFlip  = ({ property = 'popupAutoFlip' , properties = 'Auto Flip'     , description, setByDefault = true, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyPopupAutoFlip  = ({ property = 'popupAutoFlip' , properties = 'Auto Flip'     , description, setByDefault = false, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName } = useComponentInfo();
     
     
@@ -249,7 +249,7 @@ export const SectionPropertyPopupAutoFlip  = ({ property = 'popupAutoFlip' , pro
         } />
     );
 };
-export const SectionPropertyPopupAutoShift = ({ property = 'popupAutoShift', properties = 'Auto Shift'    , description, setByDefault = true, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyPopupAutoShift = ({ property = 'popupAutoShift', properties = 'Auto Shift'    , description, setByDefault = false, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName } = useComponentInfo();
     
     
