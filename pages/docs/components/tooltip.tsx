@@ -106,6 +106,9 @@ const OverlayTooltipPreview = ({ overlay = true }: OverlayTooltipPreviewProps) =
                 theme='warning'
                 
                 targetRef={overlay ? buttonRef : undefined}
+                
+                popupAutoFlip={false}
+                popupAutoShift={false}
             >
                 This is <strong>awesome</strong>!
             </Tooltip>
@@ -132,6 +135,9 @@ const TooltipPlacementPreview = () => {
                 
                 targetRef={contentRef}
                 popupPlacement={popupPlacement}
+                
+                popupAutoFlip={false}
+                popupAutoShift={false}
             >
                 {`popupPlacement='${popupPlacement}'`}
             </Tooltip>
@@ -156,6 +162,8 @@ const TooltipOnButton = (props: TooltipProps) => {
                 Products
             </Button>
             <Tooltip
+                popupAutoFlip={false}
+                popupAutoShift={false}
                 {...props}
                 
                 targetRef={buttonRef}
