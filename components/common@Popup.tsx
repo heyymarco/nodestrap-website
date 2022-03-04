@@ -185,29 +185,13 @@ export const SectionPropertyPopupPlacement = ({ property = 'popupPlacement', chi
         } />
     );
 };
-export const SectionPropertyPopupModifiers = ({ property = 'popupModifiers', children, description, ...restProps }: SectionPreviewPropertyProps) => {
-    return (
-        <SectionPreviewProperty {...restProps} property={property} moreInfo={children} description={
-            description
-            ??
-            <>
-                <p>
-                    Modifies the behoavior of <CurrentComponent />.
-                </p>
-                <p>
-                    There are some useful built-in modifiers, they are:
-                </p>
-            </>
-        } />
-    );
-};
-export const SectionPropertyPopupFlipModifier = ({ titleTag='h4', property = "popupModifiers={[name: 'flip']}", properties = 'Flip Modifier', description, setByDefault = true, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyPopupAutoFlip = ({ property = 'popupAutoFlip', properties = 'Auto Flip', description, setByDefault = false, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName } = useComponentInfo();
     
     
     
     return (
-        <SectionPreviewProperty {...restProps} titleTag={titleTag} property={property} properties={properties} description={
+        <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
             description
             ??
             <>
@@ -216,27 +200,20 @@ export const SectionPropertyPopupFlipModifier = ({ titleTag='h4', property = "po
                     if the original location causes the <CurrentComponent /> to be <strong>out of view</strong> in the container.
                 </p>
                 <p>
-                    This modifier is <strong>{setByDefault ? 'enabled' : 'disabled'} by default</strong>.
-                    To {setByDefault ? 'disabled' : 'enabled'} it, apply this code:
+                    This property is <strong>{setByDefault ? 'enabled' : 'disabled'} by default</strong>.
+                    To {setByDefault ? 'disabled' : 'enabled'} it, assign <code>{`<${componentName} popupAutoFlip={${!setByDefault}}>`}</code>.
                 </p>
-                <TypeScriptCode>{`
-<${componentName} popupModifiers={[
-    { name: 'flip', enabled: ${!setByDefault} },
-    /* ... */
-]}>
-</${componentName}>
-                `}</TypeScriptCode>
             </>
         } />
     );
 };
-export const SectionPropertyPopupPreventOverflowModifier = ({ titleTag='h4', property = "popupModifiers={[name: 'preventOverflow']}", properties = 'Prevent Overflow Modifier', description, setByDefault = true, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyPopupAutoShift = ({ property = 'popupAutoShift', properties = 'Auto Shift', description, setByDefault = false, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName } = useComponentInfo();
     
     
     
     return (
-        <SectionPreviewProperty {...restProps} titleTag={titleTag} property={property} properties={properties} description={
+        <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
             description
             ??
             <>
@@ -245,16 +222,51 @@ export const SectionPropertyPopupPreventOverflowModifier = ({ titleTag='h4', pro
                     if the original location causes the <CurrentComponent /> to be <strong>out of view</strong> in the container.
                 </p>
                 <p>
-                    This modifier is <strong>{setByDefault ? 'enabled' : 'disabled'} by default</strong>.
-                    To {setByDefault ? 'disabled' : 'enabled'} it, apply this code:
+                    This property is <strong>{setByDefault ? 'enabled' : 'disabled'} by default</strong>.
+                    To {setByDefault ? 'disabled' : 'enabled'} it, assign <code>{`<${componentName} popupPlacement={${!setByDefault}}>`}</code>.
                 </p>
-                <TypeScriptCode>{`
-<${componentName} popupModifiers={[
-    { name: 'preventOverflow', enabled: ${!setByDefault} },
-    /* ... */
-]}>
-</${componentName}>
-                `}</TypeScriptCode>
+            </>
+        } />
+    );
+};
+export const SectionPropertyPopupOffset = ({ property = 'popupOffset', properties = 'Offset', description, ...restProps }: SectionPreviewPropertyProps) => {
+    return (
+        <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
+            description
+            ??
+            <>
+                <p>
+                    Makes a gap between <code>targetRef</code> and <CurrentComponent />.
+                </p>
+                <p>
+                    Assign to <strong>positive number</strong> for making a gap.<br />
+                    Assign to <strong>negative number</strong> for making the <CurrentComponent /> inset to the <code>targetRef</code>.
+                </p>
+                <p>
+                    Currently, the <code>popupOffset</code> only accepts a <code>Number</code> represents the distance in <strong>pixel unit</strong>.
+                    In the future it may accept a <code>String</code> represents for other units.
+                </p>
+            </>
+        } />
+    );
+};
+export const SectionPropertyPopupShift = ({ property = 'popupShift', properties = 'Shift', description, ...restProps }: SectionPreviewPropertyProps) => {
+    return (
+        <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
+            description
+            ??
+            <>
+                <p>
+                    Adjusts the default <em>cross axis location</em> of the <CurrentComponent /> relative to <code>targetRef</code>.
+                </p>
+                <p>
+                    Assign to <strong>positive number</strong> for making the location more <code>forward</code> (relative to the writing direction).<br />
+                    Assign to <strong>negative number</strong> for making the location more <code>backward</code> (relative to the writing direction).
+                </p>
+                <p>
+                    Currently, the <code>popupShift</code> only accepts a <code>Number</code> represents the distance in <strong>pixel unit</strong>.
+                    In the future it may accept a <code>String</code> represents for other units.
+                </p>
             </>
         } />
     );

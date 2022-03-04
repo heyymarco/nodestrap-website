@@ -34,9 +34,10 @@ import {
     
     SectionPropertyTargetRef,
     SectionPropertyPopupPlacement,
-    SectionPropertyPopupModifiers,
-    SectionPropertyPopupFlipModifier,
-    SectionPropertyPopupPreventOverflowModifier,
+    SectionPropertyPopupAutoFlip,
+    SectionPropertyPopupAutoShift,
+    SectionPropertyPopupOffset,
+    SectionPropertyPopupShift,
     
     SectionPropertyLazy,
 } from '../../../components/common@Popup'
@@ -95,9 +96,8 @@ const OverlayPopupPreview = ({ overlay = true }: OverlayPopupPreviewProps) => {
                 
                 targetRef={overlay ? buttonRef : undefined}
                 popupPlacement='right-start'
-                popupModifiers={[
-                    { name: 'offset', options: { offset: [-16, -48] } }
-                ]}
+                popupOffset={-32}
+                popupShift={-8}
             >
                 Processing your payment...
             </Popup>
@@ -133,7 +133,77 @@ const PopupPlacementPreview = () => {
     )
 };
 
-const PopupPlacementFlip = ({ overlay = true }: OverlayPopupPreviewProps) => {
+const PopupOffset = () => {
+    const contentRef = useRef<HTMLElement>(null);
+    
+    
+    
+    return (
+        <Preview>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <Label elmRef={contentRef} theme='primary' size='lg'>
+                A content
+            </Label>
+            <Popup
+                active={true}
+                theme='warning'
+                
+                targetRef={contentRef}
+                popupPlacement='top'
+                popupOffset={30}
+            >
+                hello world!
+            </Popup>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+        </Preview>
+    )
+};
+const PopupShift = () => {
+    const contentRef = useRef<HTMLElement>(null);
+    
+    
+    
+    return (
+        <Preview>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <Label elmRef={contentRef} theme='primary' size='lg'>
+                A content
+            </Label>
+            <Popup
+                active={true}
+                theme='warning'
+                
+                targetRef={contentRef}
+                popupPlacement='top'
+                popupShift={100}
+            >
+                hello world!
+            </Popup>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+        </Preview>
+    )
+};
+const PopupAutoFlip = () => {
     const contentRef = useRef<HTMLElement>(null);
     
     
@@ -169,6 +239,7 @@ const PopupPlacementFlip = ({ overlay = true }: OverlayPopupPreviewProps) => {
                 
                 targetRef={contentRef}
                 popupPlacement='top'
+                popupAutoFlip={true}
             >
                 hello world!
             </Popup>
@@ -184,7 +255,7 @@ const PopupPlacementFlip = ({ overlay = true }: OverlayPopupPreviewProps) => {
         </Preview>
     )
 };
-const PopupPlacementSlide = ({ overlay = true }: OverlayPopupPreviewProps) => {
+const PopupAutoShift = () => {
     const contentRef = useRef<HTMLElement>(null);
     
     
@@ -220,6 +291,7 @@ const PopupPlacementSlide = ({ overlay = true }: OverlayPopupPreviewProps) => {
                 
                 targetRef={contentRef}
                 popupPlacement='right'
+                popupAutoShift={true}
             >
                 hello<br />
                 world<br />
@@ -289,28 +361,32 @@ const Page: NextPage = () => {
                     <p></p>
                     <PopupPlacementPreview />
                 </SectionPropertyPopupPlacement>
-                <SectionPropertyPopupModifiers>
-                    <SectionPropertyPopupFlipModifier>
-                        <Tips>
-                            <p>
-                                The <code>popupPlacement</code> is on <code>{`'top'`}</code>,
-                                but if you scroll down the <strong>container below</strong>, the <code>popupPlacement</code> will change to <code>{`'bottom'`}</code>.
-                            </p>
-                        </Tips>
-                        <p></p>
-                        <PopupPlacementFlip />
-                    </SectionPropertyPopupFlipModifier>
-                    <SectionPropertyPopupPreventOverflowModifier>
-                        <Tips>
-                            <p>
-                                The <code>popupPlacement</code> is on exact <code>{`'right'`}</code>,
-                                but if you scroll up/down the <strong>container below</strong>, the <code>popupPlacement</code> will shift slightly from its original position.
-                            </p>
-                        </Tips>
-                        <p></p>
-                        <PopupPlacementSlide />
-                    </SectionPropertyPopupPreventOverflowModifier>
-                </SectionPropertyPopupModifiers>
+                <SectionPropertyPopupOffset>
+                    <PopupOffset />
+                </SectionPropertyPopupOffset>
+                <SectionPropertyPopupShift>
+                    <PopupShift />
+                </SectionPropertyPopupShift>
+                <SectionPropertyPopupAutoFlip>
+                    <Tips>
+                        <p>
+                            The <code>popupPlacement</code> is on <code>{`'top'`}</code>,
+                            but if you scroll down the <strong>container below</strong>, the <code>popupPlacement</code> will change to <code>{`'bottom'`}</code>.
+                        </p>
+                    </Tips>
+                    <p></p>
+                    <PopupAutoFlip />
+                </SectionPropertyPopupAutoFlip>
+                <SectionPropertyPopupAutoShift>
+                    <Tips>
+                        <p>
+                            The <code>popupPlacement</code> is on exact <code>{`'right'`}</code>,
+                            but if you scroll up/down the <strong>container below</strong>, the <code>popupPlacement</code> will shift slightly from its original position.
+                        </p>
+                    </Tips>
+                    <p></p>
+                    <PopupAutoShift />
+                </SectionPropertyPopupAutoShift>
             </Section>
             <SectionInheritedProps />
             <SectionVariants>
