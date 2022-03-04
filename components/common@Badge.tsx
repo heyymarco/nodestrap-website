@@ -8,9 +8,6 @@ import {
     SectionPropertyStyle,
     SectionPropertyItemStyleProps,
     SectionPropertyItemStyle,
-    SectionPropertyFlatStyle   as BasicSectionPropertyFlatStyle,
-    SectionPropertyFlushStyle  as BasicSectionPropertyFlushStyle,
-    SectionPropertyJoinedStyle as BasicSectionPropertyJoinedStyle,
 } from './common@Basic'
 import {
     SectionPropertyMild        as IndicatorSectionPropertyMild,
