@@ -46,12 +46,12 @@ export const SectionPropertyMild = ({ setByDefault = false, ...props }: SectionP
 
 
 const badgeStyle = 'badgeStyle';
-export const SectionPropertyBadgeStyle       = ({ styleName = badgeStyle, ...restProps }: SectionPropertyStyleProps) => {
+export const SectionPropertyBadgeStyle     = ({ styleName = badgeStyle, ...restProps }: SectionPropertyStyleProps) => {
     return (
         <SectionPropertyStyle {...restProps} styleName={styleName} />
     );
 };
-export const SectionPropertyPillStyle = ({ styleName = badgeStyle, property = 'pill', description, ...restProps }: SectionPropertyItemStyleProps) => {
+export const SectionPropertyPillStyle      = ({ styleName = badgeStyle, property = 'pill'  , description, ...restProps }: SectionPropertyItemStyleProps) => {
     const { componentName } = useComponentInfo();
     
     
@@ -68,7 +68,7 @@ export const SectionPropertyPillStyle = ({ styleName = badgeStyle, property = 'p
         } />
     );
 };
-export const SectionPropertySquareStyle = ({ styleName = badgeStyle, property = 'square', description, ...restProps }: SectionPropertyItemStyleProps) => {
+export const SectionPropertySquareStyle    = ({ styleName = badgeStyle, property = 'square', description, ...restProps }: SectionPropertyItemStyleProps) => {
     const { componentName } = useComponentInfo();
     
     
@@ -88,7 +88,7 @@ export const SectionPropertySquareStyle = ({ styleName = badgeStyle, property = 
         } />
     );
 };
-export const SectionPropertyCircleStyle = ({ styleName = badgeStyle, property = 'circle', description, ...restProps }: SectionPropertyItemStyleProps) => {
+export const SectionPropertyCircleStyle    = ({ styleName = badgeStyle, property = 'circle', description, ...restProps }: SectionPropertyItemStyleProps) => {
     const { componentName } = useComponentInfo();
     
     
@@ -111,7 +111,7 @@ export const SectionPropertyCircleStyle = ({ styleName = badgeStyle, property = 
 
 
 
-export const SectionPropertyPopupAutoFlip = ({ setByDefault = false, ...props }: SectionPreviewPropertyProps) => {
+export const SectionPropertyPopupAutoFlip  = ({ setByDefault = false, ...props }: SectionPreviewPropertyProps) => {
     return (
         <PopupSectionPropertyPopupAutoFlip {...props} setByDefault={setByDefault} />
     );
