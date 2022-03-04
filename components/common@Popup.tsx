@@ -92,7 +92,7 @@ export const SectionPropertyEnabled = ({ specList, description, ...restProps }: 
 
 
 
-export const SectionPropertyTargetRef = ({ property = 'targetRef', properties = 'Target Element', description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyTargetRef      = ({ property = 'targetRef'     , properties = 'Target Element', description, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName } = useComponentInfo();
     
     
@@ -172,7 +172,7 @@ export default function FooComponent() {
         } />
     );
 };
-export const SectionPropertyPopupPlacement = ({ property = 'popupPlacement', properties = 'Placements', children, description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyPopupPlacement = ({ property = 'popupPlacement', properties = 'Placements'    , description, children, ...restProps }: SectionPreviewPropertyProps) => {
     return (
         <SectionPreviewProperty {...restProps} property={property} properties={properties} specList={children} description={
             description
@@ -185,7 +185,7 @@ export const SectionPropertyPopupPlacement = ({ property = 'popupPlacement', pro
         } />
     );
 };
-export const SectionPropertyPopupOffset = ({ property = 'popupOffset', properties = 'Offset', description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyPopupOffset    = ({ property = 'popupOffset'   , properties = 'Offset'        , description, ...restProps }: SectionPreviewPropertyProps) => {
     return (
         <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
             description
@@ -206,7 +206,7 @@ export const SectionPropertyPopupOffset = ({ property = 'popupOffset', propertie
         } />
     );
 };
-export const SectionPropertyPopupShift = ({ property = 'popupShift', properties = 'Shift', description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyPopupShift     = ({ property = 'popupShift'    , properties = 'Shift'         , description, ...restProps }: SectionPreviewPropertyProps) => {
     return (
         <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
             description
@@ -227,7 +227,7 @@ export const SectionPropertyPopupShift = ({ property = 'popupShift', properties 
         } />
     );
 };
-export const SectionPropertyPopupAutoFlip = ({ property = 'popupAutoFlip', properties = 'Auto Flip', description, setByDefault = true, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyPopupAutoFlip  = ({ property = 'popupAutoFlip' , properties = 'Auto Flip'     , description, setByDefault = true, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName } = useComponentInfo();
     
     
@@ -249,7 +249,7 @@ export const SectionPropertyPopupAutoFlip = ({ property = 'popupAutoFlip', prope
         } />
     );
 };
-export const SectionPropertyPopupAutoShift = ({ property = 'popupAutoShift', properties = 'Auto Shift', description, setByDefault = true, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyPopupAutoShift = ({ property = 'popupAutoShift', properties = 'Auto Shift'    , description, setByDefault = true, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName } = useComponentInfo();
     
     
