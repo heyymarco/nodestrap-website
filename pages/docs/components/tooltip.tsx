@@ -27,17 +27,24 @@ import {
     SectionPropertyNude,
     SectionPropertyGradient,
     SectionPropertyOutlined,
-    SectionPropertyMild,
 } from '../../../components/common@Basic'
+import {
+    SectionPropertyMild,
+} from '../../../components/common@Indicator'
 import {
     SectionPropertyEnabled,
     
     SectionPropertyTargetRef,
     SectionPropertyPopupPlacement,
+    SectionPropertyPopupOffset,
+    SectionPropertyPopupShift,
     
     SectionPropertyLazy,
 } from '../../../components/common@Popup'
 import {
+    SectionPropertyPopupAutoFlip,
+    SectionPropertyPopupAutoShift,
+    
     SectionPropertyActive,
 } from '../../../components/common@Tooltip'
 
@@ -95,6 +102,7 @@ const OverlayTooltipPreview = ({ overlay = true }: OverlayTooltipPreviewProps) =
             </Button>
             <Tooltip
                 active={isActive}
+                activeDelay={!isLoaded ? 0 : undefined}
                 theme='warning'
                 
                 targetRef={overlay ? buttonRef : undefined}
@@ -142,7 +150,7 @@ const TooltipOnButton = (props: TooltipProps) => {
                 elmRef={buttonRef}
                 theme='primary'
                 style={{
-                    marginBlockStart: '3rem',
+                    marginBlockStart: '3rem', // prevent tooltips from overlapping
                 }}
             >
                 Products
@@ -154,7 +162,186 @@ const TooltipOnButton = (props: TooltipProps) => {
             />
         </>
     );
-}
+};
+
+const TooltipOffset = () => {
+    const contentRef = useRef<HTMLElement>(null);
+    
+    
+    
+    return (
+        <Preview>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <Label elmRef={contentRef} theme='primary' size='lg'>
+                A content
+            </Label>
+            <Tooltip
+                active={true}
+                theme='warning'
+                
+                targetRef={contentRef}
+                popupPlacement='top'
+                popupOffset={30}
+            >
+                hello world!
+            </Tooltip>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+        </Preview>
+    )
+};
+const TooltipShift = () => {
+    const contentRef = useRef<HTMLElement>(null);
+    
+    
+    
+    return (
+        <Preview>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <Label elmRef={contentRef} theme='primary' size='lg'>
+                A content
+            </Label>
+            <Tooltip
+                active={true}
+                theme='warning'
+                
+                targetRef={contentRef}
+                popupPlacement='top'
+                popupShift={100}
+            >
+                hello world!
+            </Tooltip>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+        </Preview>
+    )
+};
+const TooltipAutoFlip = () => {
+    const contentRef = useRef<HTMLElement>(null);
+    
+    
+    
+    useEffect(() => {
+        const container = contentRef.current?.parentElement;
+        if (!container) return;
+        if (container.style.height) return;
+        container.style.boxSizing = 'content-box';
+        container.style.height = `${container.clientHeight / 3}px`;
+        container.scrollTop = (container.scrollHeight - container.clientHeight) / 2;
+    }, []);
+    
+    
+    
+    return (
+        <Preview>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <Label elmRef={contentRef} theme='primary' size='lg'>
+                A content
+            </Label>
+            <Tooltip
+                active={true}
+                theme='warning'
+                
+                targetRef={contentRef}
+                popupPlacement='top'
+                popupAutoFlip={true}
+            >
+                hello world!
+            </Tooltip>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+        </Preview>
+    )
+};
+const TooltipAutoShift = () => {
+    const contentRef = useRef<HTMLElement>(null);
+    
+    
+    
+    useEffect(() => {
+        const container = contentRef.current?.parentElement;
+        if (!container) return;
+        if (container.style.height) return;
+        container.style.boxSizing = 'content-box';
+        container.style.height = `${container.clientHeight / 3}px`;
+        container.scrollTop = (container.scrollHeight - container.clientHeight) / 2;
+    }, []);
+    
+    
+    
+    return (
+        <Preview>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <Label elmRef={contentRef} theme='primary' size='lg' style={{ width: '50%' }}>
+                A content
+            </Label>
+            <Tooltip
+                active={true}
+                theme='warning'
+                
+                targetRef={contentRef}
+                popupPlacement='right'
+                popupAutoShift={true}
+            >
+                hello<br />
+                world<br />
+                <br />
+                hello<br />
+                everyone<br />
+            </Tooltip>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+        </Preview>
+    )
+};
 
 
 
@@ -168,7 +355,7 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    Marks a desired component with a small label.
+                    Displays advisory information related to the element it belongs to.
                 </p>
                 <p>
                     Here the preview:
@@ -205,6 +392,32 @@ const Page: NextPage = () => {
                     <p></p>
                     <TooltipPlacementPreview />
                 </SectionPropertyPopupPlacement>
+                <SectionPropertyPopupOffset>
+                    <TooltipOffset />
+                </SectionPropertyPopupOffset>
+                <SectionPropertyPopupShift>
+                    <TooltipShift />
+                </SectionPropertyPopupShift>
+                <SectionPropertyPopupAutoFlip>
+                    <Tips>
+                        <p>
+                            The <code>popupPlacement</code> is on <code>{`'top'`}</code>,
+                            but if you scroll down the <strong>container below</strong>, the <code>popupPlacement</code> will change to <code>{`'bottom'`}</code>.
+                        </p>
+                    </Tips>
+                    <p></p>
+                    <TooltipAutoFlip />
+                </SectionPropertyPopupAutoFlip>
+                <SectionPropertyPopupAutoShift>
+                    <Tips>
+                        <p>
+                            The <code>popupPlacement</code> is on exact <code>{`'right'`}</code>,
+                            but if you scroll up/down the <strong>container below</strong>, the <code>popupPlacement</code> will shift slightly from its original position.
+                        </p>
+                    </Tips>
+                    <p></p>
+                    <TooltipAutoShift />
+                </SectionPropertyPopupAutoShift>
             </Section>
             <SectionInheritedProps />
             <SectionVariants>
@@ -369,7 +582,7 @@ const buttonRef = useRef(null);
                     <Preview stretch={false}>
                         {themeNames.map((themeName, index) =>
                             <TooltipOnButton
-                                mild={true}
+                                mild={false}
                                 active={true}
                                 theme={themeName}
                                 key={index}
@@ -383,7 +596,7 @@ const buttonRef = useRef(null);
                         {themeNames.map((themeName) =>
 `
 <Tooltip
-    mild={true}
+    mild={false}
     active={true}
     theme='${themeName}'
 >
@@ -397,8 +610,15 @@ const buttonRef = useRef(null);
             <SectionStates>
                 <SectionPropertyActive>
                     <Preview stretch={false}>
+                        <Tips>
+                            <p>
+                                <strong>Hover</strong> your cursor over the button below (desktop).<br />
+                                -or-<br />
+                                <strong>Touch</strong> your finger on the button below (mobile).
+                            </p>
+                        </Tips>
                         <TooltipOnButton
-                            active={true}
+                            active={undefined}
                             theme='warning'
                         >
                             This is <strong>awesome</strong>!

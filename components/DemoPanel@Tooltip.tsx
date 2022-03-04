@@ -72,11 +72,13 @@ export default function App() {
     const buttonRef = useRef(null);
     
     return (
-        <Button
-            elmRef={buttonRef}
-            theme='primary'
-        >
-            Products
+        <>
+            <Button
+                elmRef={buttonRef}
+                theme='primary'
+            >
+                Products
+            </Button>
             <Tooltip
                 targetRef={buttonRef}
                 
@@ -92,7 +94,7 @@ export default function App() {
             >
                 This is <strong>awesome</strong>!
             </Tooltip>
-        </Button>
+        </>
     );
 }
                 `}</TypeScriptCode>

@@ -4,8 +4,24 @@ import { CurrentNestedComponent, useComponentInfo, SectionPreviewPropertyProps, 
 import { DetailSpecItem, SpecList } from './SpecList';
 
 import {
-    SectionPropertyActive as PopupSectionPropertyActive,
+    SectionPropertyPopupAutoFlip  as PopupSectionPropertyPopupAutoFlip,
+    SectionPropertyPopupAutoShift as PopupSectionPropertyPopupAutoShift,
+    
+    SectionPropertyActive         as PopupSectionPropertyActive,
 } from './common@Popup'
+
+
+
+export const SectionPropertyPopupAutoFlip  = ({ setByDefault = true, ...props }: SectionPreviewPropertyProps) => {
+    return (
+        <PopupSectionPropertyPopupAutoFlip {...props} setByDefault={setByDefault} />
+    );
+};
+export const SectionPropertyPopupAutoShift = ({ setByDefault = true, ...props }: SectionPreviewPropertyProps) => {
+    return (
+        <PopupSectionPropertyPopupAutoShift {...props} setByDefault={setByDefault} />
+    );
+};
 
 
 
