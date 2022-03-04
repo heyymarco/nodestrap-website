@@ -12,10 +12,6 @@ import {
 import {
     SectionPropertyMild        as IndicatorSectionPropertyMild,
 } from './common@Indicator'
-import {
-    SectionPropertyPopupAutoFlip  as PopupSectionPropertyPopupAutoFlip,
-    SectionPropertyPopupAutoShift as PopupSectionPropertyPopupAutoShift,
-} from './common@Popup'
 
 
 
@@ -103,18 +99,5 @@ export const SectionPropertyCircleStyle    = ({ styleName = badgeStyle, property
                 </p>
             </>
         } />
-    );
-};
-
-
-
-export const SectionPropertyPopupAutoFlip  = ({ setByDefault = false, ...props }: SectionPreviewPropertyProps) => {
-    return (
-        <PopupSectionPropertyPopupAutoFlip {...props} setByDefault={setByDefault} />
-    );
-};
-export const SectionPropertyPopupAutoShift = ({ setByDefault = false, ...props }: SectionPreviewPropertyProps) => {
-    return (
-        <PopupSectionPropertyPopupAutoShift {...props} setByDefault={setByDefault} />
     );
 };

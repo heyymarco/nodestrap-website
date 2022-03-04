@@ -28,17 +28,6 @@ import {
     SectionPropertyOutlined,
 } from '../../../components/common@Basic'
 import {
-    SectionPropertySize,
-    SectionPropertyMild,
-    SectionPropertyBadgeStyle,
-    SectionPropertyPillStyle,
-    SectionPropertySquareStyle,
-    SectionPropertyCircleStyle,
-    
-    SectionPropertyPopupAutoFlip,
-    SectionPropertyPopupAutoShift,
-} from '../../../components/common@Badge'
-import {
     SectionPropertyEnabled,
     SectionPropertyActive,
     
@@ -46,9 +35,19 @@ import {
     SectionPropertyPopupPlacement,
     SectionPropertyPopupOffset,
     SectionPropertyPopupShift,
+    SectionPropertyPopupAutoFlip,
+    SectionPropertyPopupAutoShift,
     
     SectionPropertyLazy,
 } from '../../../components/common@Popup'
+import {
+    SectionPropertySize,
+    SectionPropertyMild,
+    SectionPropertyBadgeStyle,
+    SectionPropertyPillStyle,
+    SectionPropertySquareStyle,
+    SectionPropertyCircleStyle,
+} from '../../../components/common@Badge'
 
 import loadable from '@loadable/component'
 const DemoBadgeLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Badge' */'../../../components/DemoPanel@Badge'))
