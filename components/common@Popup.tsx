@@ -92,13 +92,13 @@ export const SectionPropertyEnabled = ({ specList, description, ...restProps }: 
 
 
 
-export const SectionPropertyTargetRef = ({ property = 'targetRef', description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyTargetRef = ({ property = 'targetRef', properties = 'Target Element', description, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName } = useComponentInfo();
     
     
     
     return (
-        <SectionPreviewProperty {...restProps} property={property} description={
+        <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
             description
             ??
             <>
@@ -172,14 +172,56 @@ export default function FooComponent() {
         } />
     );
 };
-export const SectionPropertyPopupPlacement = ({ property = 'popupPlacement', children, description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyPopupPlacement = ({ property = 'popupPlacement', properties = 'Placements', children, description, ...restProps }: SectionPreviewPropertyProps) => {
     return (
-        <SectionPreviewProperty {...restProps} property={property} specList={children} description={
+        <SectionPreviewProperty {...restProps} property={property} properties={properties} specList={children} description={
             description
             ??
             <>
                 <p>
-                    Decides which location (relative to <code>targetRef</code>) for the <CurrentComponent /> to hover.
+                    Decides which location (relative to the <strong>target element</strong>) for the <CurrentComponent /> to hover.
+                </p>
+            </>
+        } />
+    );
+};
+export const SectionPropertyPopupOffset = ({ property = 'popupOffset', properties = 'Offset', description, ...restProps }: SectionPreviewPropertyProps) => {
+    return (
+        <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
+            description
+            ??
+            <>
+                <p>
+                    Makes a gap between the <CurrentComponent /> and the <strong>target element</strong>.
+                </p>
+                <p>
+                    Assign to <strong>positive number</strong> for making a gap.<br />
+                    Assign to <strong>negative number</strong> for making the <CurrentComponent /> inset to the <strong>target element</strong>.
+                </p>
+                <p>
+                    Currently, the <code>popupOffset</code> only accepts a <code>Number</code> represents the distance in <strong>pixel unit</strong>.
+                    In the future it may accept a <code>String</code> represents for other units.
+                </p>
+            </>
+        } />
+    );
+};
+export const SectionPropertyPopupShift = ({ property = 'popupShift', properties = 'Shift', description, ...restProps }: SectionPreviewPropertyProps) => {
+    return (
+        <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
+            description
+            ??
+            <>
+                <p>
+                    Adjusts the <em>cross axis location</em> of the <CurrentComponent /> relative to the <strong>target element</strong>.
+                </p>
+                <p>
+                    Assign to <strong>positive number</strong> for making the location more <code>forward</code> (relative to the writing direction).<br />
+                    Assign to <strong>negative number</strong> for making the location more <code>backward</code> (relative to the writing direction).
+                </p>
+                <p>
+                    Currently, the <code>popupShift</code> only accepts a <code>Number</code> represents the distance in <strong>pixel unit</strong>.
+                    In the future it may accept a <code>String</code> represents for other units.
                 </p>
             </>
         } />
@@ -224,48 +266,6 @@ export const SectionPropertyPopupAutoShift = ({ property = 'popupAutoShift', pro
                 <p>
                     This property is <strong>{setByDefault ? 'enabled' : 'disabled'} by default</strong>.
                     To {setByDefault ? 'disabled' : 'enabled'} it, assign <code>{`<${componentName} popupPlacement={${!setByDefault}}>`}</code>.
-                </p>
-            </>
-        } />
-    );
-};
-export const SectionPropertyPopupOffset = ({ property = 'popupOffset', properties = 'Offset', description, ...restProps }: SectionPreviewPropertyProps) => {
-    return (
-        <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
-            description
-            ??
-            <>
-                <p>
-                    Makes a gap between <code>targetRef</code> and <CurrentComponent />.
-                </p>
-                <p>
-                    Assign to <strong>positive number</strong> for making a gap.<br />
-                    Assign to <strong>negative number</strong> for making the <CurrentComponent /> inset to the <code>targetRef</code>.
-                </p>
-                <p>
-                    Currently, the <code>popupOffset</code> only accepts a <code>Number</code> represents the distance in <strong>pixel unit</strong>.
-                    In the future it may accept a <code>String</code> represents for other units.
-                </p>
-            </>
-        } />
-    );
-};
-export const SectionPropertyPopupShift = ({ property = 'popupShift', properties = 'Shift', description, ...restProps }: SectionPreviewPropertyProps) => {
-    return (
-        <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
-            description
-            ??
-            <>
-                <p>
-                    Adjusts the default <em>cross axis location</em> of the <CurrentComponent /> relative to <code>targetRef</code>.
-                </p>
-                <p>
-                    Assign to <strong>positive number</strong> for making the location more <code>forward</code> (relative to the writing direction).<br />
-                    Assign to <strong>negative number</strong> for making the location more <code>backward</code> (relative to the writing direction).
-                </p>
-                <p>
-                    Currently, the <code>popupShift</code> only accepts a <code>Number</code> represents the distance in <strong>pixel unit</strong>.
-                    In the future it may accept a <code>String</code> represents for other units.
                 </p>
             </>
         } />

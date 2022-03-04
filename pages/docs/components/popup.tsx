@@ -34,10 +34,10 @@ import {
     
     SectionPropertyTargetRef,
     SectionPropertyPopupPlacement,
-    SectionPropertyPopupAutoFlip,
-    SectionPropertyPopupAutoShift,
     SectionPropertyPopupOffset,
     SectionPropertyPopupShift,
+    SectionPropertyPopupAutoFlip,
+    SectionPropertyPopupAutoShift,
     
     SectionPropertyLazy,
 } from '../../../components/common@Popup'

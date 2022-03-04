@@ -3,10 +3,12 @@ import { IndicatorInitials, IndicatorOptionProps, IndicatorOptions, useIndicator
 
 import { Popup } from '@nodestrap/popup'
 import { TypeScriptCode } from './Code';
+import { ThemeName } from '@nodestrap/basic';
 
 
 
 export const popupInitials = {
+    theme    : 'warning' as ThemeName|undefined,
     active   : true as boolean|undefined,
 };
 export type PopupInitials = typeof popupInitials & Partial<IndicatorInitials>
