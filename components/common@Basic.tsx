@@ -189,7 +189,7 @@ export const SectionPropertyOutlined = ({ property = 'outlined', properties = 'O
         } />
     );
 };
-export const SectionPropertyMild = ({ property = 'mild', properties = 'Mild', description, setByDefault = false, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyMild = ({ property = 'mild', properties = 'Mild', description, defaultValue = false, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName, hasNestedComponent, nestedComponentName } = useComponentInfo();
     
     
@@ -205,7 +205,7 @@ export const SectionPropertyMild = ({ property = 'mild', properties = 'Mild', de
                 {hasNestedComponent && <p>
                     You can also set the <code>mild</code> at <code>{`<${componentName} mild={true}>`}</code>, so the entire <CurrentNestedComponent />s look smoother.
                 </p>}
-                {setByDefault && <p>
+                {defaultValue && <p>
                     Note: the <code>{`mild={true}`}</code> is <strong>already set by default</strong> at <CurrentComponent />, so to disable it assign <code>{`<${componentName} mild={false}>`}</code>.
                 </p>}
                 <p>
@@ -230,7 +230,7 @@ export const SectionPropertyOrientation = ({ propertySuffix = defaultPropertySuf
         </SectionSubProperty>
     );
 };
-export const SectionPropertyOrientationBlock = ({ titleTag='h4', property = "orientation='block'", properties = <><code>block</code> Orientation</>, description, setByDefault = true, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyOrientationBlock = ({ titleTag='h4', property = "orientation='block'", properties = <><code>block</code> Orientation</>, description, defaultValue = true, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName, hasNestedComponent } = useComponentInfo();
     
     
@@ -243,12 +243,12 @@ export const SectionPropertyOrientationBlock = ({ titleTag='h4', property = "ori
                 <p>
                     To make <CurrentNestedComponent />{hasNestedComponent && 's'} stacked in <strong>vertical</strong>, set <code>{`<${componentName} orientation='block'>`}</code>.
                 </p>
-                {setByDefault && <ParagraphDefaultValue code='orientation' />}
+                {defaultValue && <ParagraphDefaultValue code='orientation' />}
             </>
         } />
     );
 };
-export const SectionPropertyOrientationInline = ({ titleTag='h4', property = "orientation='inline'", properties = <><code>inline</code> Orientation</>, description, setByDefault = false, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyOrientationInline = ({ titleTag='h4', property = "orientation='inline'", properties = <><code>inline</code> Orientation</>, description, defaultValue = false, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName, hasNestedComponent } = useComponentInfo();
     
     
@@ -261,7 +261,7 @@ export const SectionPropertyOrientationInline = ({ titleTag='h4', property = "or
                 <p>
                     To make <CurrentNestedComponent />{hasNestedComponent && 's'} stacked in <strong>vertical</strong>, set <code>{`<${componentName} orientation='inline'>`}</code>.
                 </p>
-                {setByDefault && <ParagraphDefaultValue code='orientation' />}
+                {defaultValue && <ParagraphDefaultValue code='orientation' />}
                 <Warning>
                     <p>
                         Make sure the page is <strong>wide enough</strong> as the <code>inline</code> orientation may take up a lot of space (width).

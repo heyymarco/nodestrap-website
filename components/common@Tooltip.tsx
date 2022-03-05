@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { CurrentNestedComponent, useComponentInfo, SectionPreviewPropertyProps, ParagraphDefaultValue } from './common'
+import { CurrentNestedComponent, useComponentInfo, SectionPreviewPropertyProps, ParagraphDefaultValue, SectionPreviewProperty, CurrentComponent } from './common'
 import { DetailSpecItem, SpecList } from './SpecList';
 
 import {
@@ -12,14 +12,14 @@ import {
 
 
 
-export const SectionPropertyPopupAutoFlip  = ({ setByDefault = true, ...props }: SectionPreviewPropertyProps) => {
+export const SectionPropertyPopupAutoFlip  = ({ defaultValue = true, ...props }: SectionPreviewPropertyProps) => {
     return (
-        <PopupSectionPropertyPopupAutoFlip {...props} setByDefault={setByDefault} />
+        <PopupSectionPropertyPopupAutoFlip {...props} defaultValue={defaultValue} />
     );
 };
-export const SectionPropertyPopupAutoShift = ({ setByDefault = true, ...props }: SectionPreviewPropertyProps) => {
+export const SectionPropertyPopupAutoShift = ({ defaultValue = true, ...props }: SectionPreviewPropertyProps) => {
     return (
-        <PopupSectionPropertyPopupAutoShift {...props} setByDefault={setByDefault} />
+        <PopupSectionPropertyPopupAutoShift {...props} defaultValue={defaultValue} />
     );
 };
 
@@ -52,6 +52,40 @@ export const SectionPropertyActive  = ({ specList, description, ...restProps }: 
                     </p>
                 </DetailSpecItem>
             </SpecList>
+        } />
+    );
+};
+export const SectionPropertyActiveDelay = ({ titleTag = 'h4', propertySuffix = true, property = 'activeDelay', description, defaultValue = <><code>300</code> milliseconds</>, ...restProps }: SectionPreviewPropertyProps) => {
+    return (
+        <SectionPreviewProperty {...restProps} titleTag={titleTag} propertySuffix={propertySuffix} property={property} description={
+            description
+            ??
+            <>
+                <p>
+                    Prevents accidentally showing the <CurrentComponent /> when the cursor <em>quickly hovers over</em> the <strong>target element</strong>.
+                </p>
+                { (defaultValue !== undefined) && <ParagraphDefaultValue code={property} defaultValue={defaultValue} />}
+                <p>
+                    This property affects to <strong>hover event</strong>, <strong>focus event</strong>, and re-assigning <code>active</code> property quickly.
+                </p>
+            </>
+        } />
+    );
+};
+export const SectionPropertyPassiveDelay = ({ titleTag = 'h4', propertySuffix = true, property = 'passiveDelay', description, defaultValue = <><code>500</code> milliseconds</>, ...restProps }: SectionPreviewPropertyProps) => {
+    return (
+        <SectionPreviewProperty {...restProps} titleTag={titleTag} propertySuffix={propertySuffix} property={property} description={
+            description
+            ??
+            <>
+                <p>
+                    Prevents accidentally hiding the <CurrentComponent /> when the cursor <em>quickly leaves</em> the <strong>target element</strong>.
+                </p>
+                { (defaultValue !== undefined) && <ParagraphDefaultValue code={property} defaultValue={defaultValue} />}
+                <p>
+                    This property affects to <strong>leave event</strong>, <strong>blur event</strong>, and re-assigning <code>active</code> property quickly.
+                </p>
+            </>
         } />
     );
 };

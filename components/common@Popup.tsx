@@ -227,7 +227,7 @@ export const SectionPropertyPopupShift     = ({ property = 'popupShift'    , pro
         } />
     );
 };
-export const SectionPropertyPopupAutoFlip  = ({ property = 'popupAutoFlip' , properties = 'Auto Flip'     , description, setByDefault = false, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyPopupAutoFlip  = ({ property = 'popupAutoFlip' , properties = 'Auto Flip'     , description, defaultValue = false, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName } = useComponentInfo();
     
     
@@ -242,14 +242,14 @@ export const SectionPropertyPopupAutoFlip  = ({ property = 'popupAutoFlip' , pro
                     if the original location causes the <CurrentComponent /> to be <strong>out of view</strong> in the container.
                 </p>
                 <p>
-                    This property is <strong>{setByDefault ? 'enabled' : 'disabled'} by default</strong>.
-                    To {setByDefault ? 'disabled' : 'enabled'} it, assign <code>{`<${componentName} popupAutoFlip={${!setByDefault}}>`}</code>.
+                    This property is <strong>{defaultValue ? 'enabled' : 'disabled'} by default</strong>.
+                    To {defaultValue ? 'disabled' : 'enabled'} it, assign <code>{`<${componentName} popupAutoFlip={${!defaultValue}}>`}</code>.
                 </p>
             </>
         } />
     );
 };
-export const SectionPropertyPopupAutoShift = ({ property = 'popupAutoShift', properties = 'Auto Shift'    , description, setByDefault = false, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyPopupAutoShift = ({ property = 'popupAutoShift', properties = 'Auto Shift'    , description, defaultValue = false, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName } = useComponentInfo();
     
     
@@ -264,8 +264,8 @@ export const SectionPropertyPopupAutoShift = ({ property = 'popupAutoShift', pro
                     if the original location causes the <CurrentComponent /> to be <strong>out of view</strong> in the container.
                 </p>
                 <p>
-                    This property is <strong>{setByDefault ? 'enabled' : 'disabled'} by default</strong>.
-                    To {setByDefault ? 'disabled' : 'enabled'} it, assign <code>{`<${componentName} popupPlacement={${!setByDefault}}>`}</code>.
+                    This property is <strong>{defaultValue ? 'enabled' : 'disabled'} by default</strong>.
+                    To {defaultValue ? 'disabled' : 'enabled'} it, assign <code>{`<${componentName} popupPlacement={${!defaultValue}}>`}</code>.
                 </p>
             </>
         } />

@@ -22,9 +22,9 @@ export const SectionPropertyNude = ({ noBorder = true, ...props }: SectionProper
         <BasicSectionPropertyNude {...props} noBorder={noBorder} />
     );
 };
-export const SectionPropertyMild = ({ setByDefault = true, ...props }: SectionPreviewPropertyProps) => {
+export const SectionPropertyMild = ({ defaultValue = true, ...props }: SectionPreviewPropertyProps) => {
     return (
-        <BasicSectionPropertyMild {...props} setByDefault={setByDefault} />
+        <BasicSectionPropertyMild {...props} defaultValue={defaultValue} />
     );
 };
 const listStyle = 'listStyle';

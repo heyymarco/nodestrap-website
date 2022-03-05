@@ -191,13 +191,14 @@ export const SeeDocumentations = ({ components }: SeeDocumentationsProps) => <Co
 
 
 export interface ParagraphDefaultValueProps {
-    code: string
+    code          : string|React.ReactElement
+    defaultValue? : boolean|number|string|React.ReactNode
 }
-export const ParagraphDefaultValue = ({ code }: ParagraphDefaultValueProps) => (
+export const ParagraphDefaultValue = ({ code, defaultValue }: ParagraphDefaultValueProps) => (
     <p>
-        This is the <strong>default</strong> value if the <code>{ code }</code> value is not specified.
+        {(defaultValue !== undefined) ? defaultValue : <>This</>} is the <strong>default</strong> value if the <code>{ code }</code> value is not specified.
     </p>
-)
+);
 
 
 
@@ -441,7 +442,7 @@ export interface SectionPropertyProps extends SectionProps {
     property       ?: string|React.ReactElement
     properties     ?: string|React.ReactElement
     propertySuffix ?: boolean
-    setByDefault   ?: boolean
+    defaultValue   ?: boolean|number|string|React.ReactNode
     specList       ?: SpecList|React.ReactNode
     moreInfo       ?: React.ReactNode
     preview        ?: React.ReactNode

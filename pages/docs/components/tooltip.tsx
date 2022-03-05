@@ -46,6 +46,8 @@ import {
     SectionPropertyPopupAutoShift,
     
     SectionPropertyActive,
+    SectionPropertyActiveDelay,
+    SectionPropertyPassiveDelay,
 } from '../../../components/common@Tooltip'
 
 import loadable from '@loadable/component'
@@ -647,6 +649,8 @@ const buttonRef = useRef(null);
     This is <strong>awesome</strong>!
 </Tooltip>
                     `}</TypeScriptCode>
+                    <SectionPropertyActiveDelay />
+                    <SectionPropertyPassiveDelay />
                 </SectionPropertyActive>
                 <SectionPropertyEnabled>
                     <Preview stretch={false}>

@@ -30,9 +30,9 @@ export const SectionPropertySize = ({ moreInfo, ...props }: SectionPreviewProper
     );
 };
 
-export const SectionPropertyMild = ({ setByDefault = false, ...props }: SectionPreviewPropertyProps) => {
+export const SectionPropertyMild = ({ defaultValue = false, ...props }: SectionPreviewPropertyProps) => {
     return (
-        <IndicatorSectionPropertyMild {...props} setByDefault={setByDefault} />
+        <IndicatorSectionPropertyMild {...props} defaultValue={defaultValue} />
     );
 };
 

@@ -10,9 +10,9 @@ import {
 
 
 
-export const SectionPropertyMild = ({ setByDefault = true, ...props }: SectionPreviewPropertyProps) => {
+export const SectionPropertyMild = ({ defaultValue = true, ...props }: SectionPreviewPropertyProps) => {
     return (
-        <BasicSectionPropertyMild {...props} setByDefault={setByDefault} />
+        <BasicSectionPropertyMild {...props} defaultValue={defaultValue} />
     );
 };
 
