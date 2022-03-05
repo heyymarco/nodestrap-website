@@ -1,2 +1,3 @@
 add code preview on page: colors, borders, spacers
-add client side Link support for ActionControl
+add client side Link support for <ActionControl>
+add label property for <Badge>
