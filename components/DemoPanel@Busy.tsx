@@ -12,8 +12,8 @@ import { TypeScriptCode } from './Code';
 
 
 export const busyInitials = {
-    nude       : true,
-    outlined   : true,
+    // nude       : true,
+    // outlined   : true,
     badgeStyle : 'circle' as BadgeStyle|undefined,
 };
 export type BusyInitials = typeof busyInitials & Partial<BadgeInitials>
@@ -50,25 +50,27 @@ export const DemoBusy = () => {
     return (
         <>
             <div className='preview'>
-                <Button elmRef={buttonRef} theme='primary'>
-                    Products
-                    <Busy
-                        targetRef={buttonRef}
-                        popupPlacement='right-start'
-                        popupOffset={-15}
-                        popupShift={-10}
-                        
-                        enabled={states.enabled[0]}
-                        active={states.active[0]}
-                        
-                        size={states.size[0]}
-                        nude={states.nude[0]}
-                        theme={states.theme[0]}
-                        gradient={states.gradient[0]}
-                        outlined={states.outlined[0]}
-                        mild={states.mild[0]}
-                    />
+                <Button elmRef={buttonRef} theme='success' mild={true} enabled={false}>
+                    Pay now
                 </Button>
+                <Busy
+                    targetRef={buttonRef}
+                    popupPlacement='right-start'
+                    popupOffset={states.nude[0] ? -10 : -15}
+                    popupShift={states.nude[0] ? -5 : -10}
+                    
+                    enabled={states.enabled[0]}
+                    active={states.active[0]}
+                    
+                    size={states.size[0]}
+                    nude={states.nude[0]}
+                    theme={states.theme[0]}
+                    gradient={states.gradient[0]}
+                    outlined={states.outlined[0]}
+                    mild={states.mild[0]}
+                    
+                    label='loading...'
+                />
                 <TypeScriptCode collapsable={false}>{`
 export default function App() {
     const buttonRef = useRef(null);
@@ -76,26 +78,30 @@ export default function App() {
     return (
         <Button
             elmRef={buttonRef}
-            theme='primary'
+            theme='success'
+            mild={true}
+            enabled={false}
         >
-            Products
-            <Busy
-                targetRef={buttonRef}
-                popupPlacement='right-start'
-                popupOffset={-15}
-                popupShift={-10}
-                
-                enabled={${states.enabled[0]}}
-                active={${states.active[0]}}
-                
-                size=${states.size[0] ? `'${states.size[0]}'` : '{undefined}'}
-                nude={${states.nude[0]}}
-                theme='${states.theme[0]}'
-                gradient={${states.gradient[0]}}
-                outlined={${states.outlined[0]}}
-                mild={${states.mild[0]}}
-            />
+            Pay now
         </Button>
+        <Busy
+            targetRef={buttonRef}
+            popupPlacement='right-start'
+            popupOffset={${states.nude[0] ? -10 : -15}}
+            popupShift={${states.nude[0] ? -5 : -10}}
+            
+            enabled={${states.enabled[0]}}
+            active={${states.active[0]}}
+            
+            size=${states.size[0] ? `'${states.size[0]}'` : '{undefined}'}
+            nude={${states.nude[0]}}
+            theme='${states.theme[0]}'
+            gradient={${states.gradient[0]}}
+            outlined={${states.outlined[0]}}
+            mild={${states.mild[0]}}
+            
+            label='loading...'
+        />
     );
 }
                 `}</TypeScriptCode>
