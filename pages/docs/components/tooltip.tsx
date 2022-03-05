@@ -673,6 +673,14 @@ const buttonRef = useRef(null);
             <SectionPropertyLazy />
             <SectionCustomizing specList={
                 <SpecList>
+                    <DetailSpecItem title='Foregrounds, Backgrounds &amp; Borders'>
+                        <SubSpecList>
+                            <SimpleSpecItem>
+                                <code>boxShadow</code>
+                                <p>A <code>boxShadow</code> to apply, so the <CurrentComponent /> appears hovered.</p>
+                            </SimpleSpecItem>
+                        </SubSpecList>
+                    </DetailSpecItem>
                     <DetailSpecItem title='Typos'>
                         <SubSpecList>
                             <SimpleSpecItem>
@@ -693,13 +701,63 @@ const buttonRef = useRef(null);
                             </SimpleSpecItem>
                         </SubSpecList>
                     </DetailSpecItem>
+                    <DetailSpecItem title='Arrows'>
+                        <SubSpecList>
+                            <SimpleSpecItem>
+                                <code>arrowInlineSize</code>
+                                <p>A default arrow width.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>arrowBlockSize</code>
+                                <p>A default arrow height.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>arrowInlineSizeSm</code>
+                                <p>The arrow width when <code>{`size='sm'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>arrowBlockSizeSm</code>
+                                <p>The arrow height when <code>{`size='sm'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>arrowInlineSizeLg</code>
+                                <p>The arrow width when <code>{`size='lg'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>arrowBlockSizeLg</code>
+                                <p>The arrow height when <code>{`size='lg'`}</code>.</p>
+                            </SimpleSpecItem>
+                            
+                            <SimpleSpecItem>
+                                <code>arrowClipPath</code>
+                                <p>The shape of arrow.</p>
+                            </SimpleSpecItem>
+                            
+                            <SimpleSpecItem>
+                                <code>arrowTopTransform</code>
+                                <p>A <code>transform</code> to apply to the arrow when <code>{`popupPlacement='top'`}</code> or <code>{`popupPlacement='top-start'`}</code> or <code>{`popupPlacement='top-end'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>arrowBottomTransform</code>
+                                <p>A <code>transform</code> to apply to the arrow when <code>{`popupPlacement='bottom'`}</code> or <code>{`popupPlacement='bottom-start'`}</code> or <code>{`popupPlacement='bottom-end'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>arrowLeftTransform</code>
+                                <p>A <code>transform</code> to apply to the arrow when <code>{`popupPlacement='left'`}</code> or <code>{`popupPlacement='left-start'`}</code> or <code>{`popupPlacement='left-end'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>arrowRightTransform</code>
+                                <p>A <code>transform</code> to apply to the arrow when <code>{`popupPlacement='right'`}</code> or <code>{`popupPlacement='right-start'`}</code> or <code>{`popupPlacement='right-end'`}</code>.</p>
+                            </SimpleSpecItem>
+                        </SubSpecList>
+                    </DetailSpecItem>
                 </SpecList>
             }/>
             <SectionDerivering>
                 <SectionOverridingDefaults>{`
 import { Tooltip } from '@nodestrap/tooltip'
 
-export default function ErrorMark(props) {
+export default function ErrorMessage(props) {
     return (
         <Tooltip
             {...props} // preserves other properties
@@ -710,7 +768,7 @@ export default function ErrorMark(props) {
             theme={props.theme ?? 'danger'} // override default value of theme to 'danger'
             mild={props.mild ?? false}      // override default value of mild  to false
         >
-            { props.children ?? 'error' }
+            { props.children ?? 'Something is wrong here' }
         </Tooltip>
     );
 }
@@ -726,7 +784,7 @@ export default function ErrorMark(props) {
                         <DetailSpecItem code='usesTooltipVariants()'>
                             <p>
                                 Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentComponent /> such as:<br />
-                                <code>SizeVariant</code>, <code>TooltipVariant</code>, and <strong>all variants</strong> inherited from <CurrentBaseComponents />.
+                                <code>SizeVariant</code> and <strong>all variants</strong> inherited from <CurrentBaseComponents />.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesTooltipStates()'>
@@ -745,7 +803,7 @@ import { isActive } from '@nodestrap/indicator'
 import { Tooltip, usesTooltipLayout, usesTooltipVariants, usesTooltipStates } from '@nodestrap/tooltip'
 
 
-const useErrorMarkSheet = createUseSheet(() => [
+const useErrorMessageSheet = createUseSheet(() => [
     mainComposition(
         imports([
             // import some stuff from <Tooltip>:
@@ -787,8 +845,8 @@ const useErrorMarkSheet = createUseSheet(() => [
     ),
 ]);
 
-export default function ErrorMark(props) {
-    const sheet = useErrorMarkSheet();
+export default function ErrorMessage(props) {
+    const sheet = useErrorMessageSheet();
     return (
         <Tooltip {...props} mainClass={sheet.main}>
             { props.children }
