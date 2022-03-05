@@ -129,8 +129,8 @@ export const SectionPropertySize = ({ property = 'size', properties = 'Sizes', s
 export interface SectionPropertyNudeProps extends SectionPreviewPropertyProps {
     noBorder ?: boolean
 }
-export const SectionPropertyNude = ({ property = 'nude', properties = 'Nude', description, noBorder, ...restProps }: SectionPropertyNudeProps) => {
-    const { nestedComponentName } = useComponentInfo();
+export const SectionPropertyNude = ({ property = 'nude', properties = 'Nude', description, defaultValue = false, noBorder, ...restProps }: SectionPropertyNudeProps) => {
+    const { componentName, nestedComponentName } = useComponentInfo();
     
     
     
@@ -145,11 +145,14 @@ export const SectionPropertyNude = ({ property = 'nude', properties = 'Nude', de
                 <p>
                     This is useful if you want to fill the whole <CurrentNestedComponent /> with a custom component.
                 </p>
+                {defaultValue && <p>
+                    Note: the <code>{`nude={true}`}</code> is <strong>already set by default</strong> at <CurrentComponent />, so to disable it assign <code>{`<${componentName} nude={false}>`}</code>.
+                </p>}
             </>
         } />
     );
 };
-export const SectionPropertyGradient = ({ property = 'gradient', properties = 'Gradient', description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyGradient = ({ property = 'gradient', properties = 'Gradient', description, defaultValue = false, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName, hasNestedComponent, nestedComponentName } = useComponentInfo();
     
     
@@ -165,11 +168,14 @@ export const SectionPropertyGradient = ({ property = 'gradient', properties = 'G
                 {hasNestedComponent && <p>
                     You can also set the <code>gradient</code> at <code>{`<${componentName} gradient={true}>`}</code>, so the entire <CurrentNestedComponent />s are 3D.
                 </p>}
+                {defaultValue && <p>
+                    Note: the <code>{`gradient={true}`}</code> is <strong>already set by default</strong> at <CurrentComponent />, so to disable it assign <code>{`<${componentName} gradient={false}>`}</code>.
+                </p>}
             </>
         } />
     );
 };
-export const SectionPropertyOutlined = ({ property = 'outlined', properties = 'Outlined', description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyOutlined = ({ property = 'outlined', properties = 'Outlined', description, defaultValue = false, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName, hasNestedComponent, nestedComponentName } = useComponentInfo();
     
     
@@ -184,6 +190,9 @@ export const SectionPropertyOutlined = ({ property = 'outlined', properties = 'O
                 </p>
                 {hasNestedComponent && <p>
                     You can also set the <code>outlined</code> at <code>{`<${componentName} outlined={true}>`}</code>, so the entire <CurrentNestedComponent />s are transparent.
+                </p>}
+                {defaultValue && <p>
+                    Note: the <code>{`outlined={true}`}</code> is <strong>already set by default</strong> at <CurrentComponent />, so to disable it assign <code>{`<${componentName} outlined={false}>`}</code>.
                 </p>}
             </>
         } />
