@@ -87,7 +87,7 @@ const OverlayPopupPreview = ({ overlay = true }: OverlayPopupPreviewProps) => {
             elmRef={containerRef}
             blockDisplay={true}
         >
-            <Button elmRef={buttonRef} theme='success' size='lg' enabled={!isActive}>Pay now</Button>
+            <Button elmRef={buttonRef} theme='success' size='lg' enabled={!isActive} mild={isActive}>Pay now</Button>
             <Popup
                 active={isActive}
                 theme='warning'
