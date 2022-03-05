@@ -43,7 +43,7 @@ const Page: NextPage = () => {
                             Usually shows a green background if successful and shows a red background if an error.
                             The implemented components may add an icon for displaying the validation status.
                         </p>
-                        <ParagraphDefaultValue code='enableValidation' />
+                        <ParagraphDefaultValue property='enableValidation' />
                     </DetailSpecItem>
                     <DetailSpecItem code='false'>
                         <p>
@@ -74,7 +74,7 @@ const Page: NextPage = () => {
                                 The control validity is taken from <code>.validity.valid</code> property exposed on corresponding <strong>DOM element</strong> (if implemented).
                                 So, if you set <code>{`tag='input'`}</code> or <code>{`tag='textarea'`}</code> or any <strong>DOM elements</strong> that support <strong>client side validation</strong>, the validation is applied automatically without you to write your custom validation logic (<em>uncontrollable</em> validation - uncontrolled by you but controlled by browser).
                             </p>
-                            <ParagraphDefaultValue code='isValid' />
+                            <ParagraphDefaultValue property='isValid' />
                         </DetailSpecItem>
                         <DetailSpecItem code='null'>
                             <p>
@@ -125,7 +125,7 @@ const Page: NextPage = () => {
                             the current control&apos;s <code>isValid</code> is <strong>forced</strong> to that value, so
                             the current control&apos;s validation status is <strong>always overriden</strong>.
                         </p>
-                        <ParagraphDefaultValue code='inheritValidation' />
+                        <ParagraphDefaultValue property='inheritValidation' />
                     </DetailSpecItem>
                     <DetailSpecItem code='false'>
                         <p>
@@ -160,7 +160,7 @@ const Page: NextPage = () => {
                         <p>
                             If the user <strong>omit to assign</strong> the value, an <strong>invalid</strong> state will <strong>not</strong> be <strong>triggered</strong>.
                         </p>
-                        <ParagraphDefaultValue code='required' />
+                        <ParagraphDefaultValue property='required' />
                     </DetailSpecItem>
                 </SpecList>
                 }>

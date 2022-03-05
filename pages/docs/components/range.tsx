@@ -43,7 +43,7 @@ const Page: NextPage = () => {
                             <p>
                                 The <CurrentComponent /> orientation is horizontal.
                             </p>
-                            <ParagraphDefaultValue code='orientation' />
+                            <ParagraphDefaultValue property='orientation' />
                         </DetailSpecItem>
                     </SpecList>
                 } />

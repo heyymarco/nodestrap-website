@@ -44,7 +44,7 @@ const Page: NextPage = () => {
                             <p>
                                 Line-breaks are automatically removed from the input value.
                             </p>
-                            <ParagraphDefaultValue code='type' />
+                            <ParagraphDefaultValue property='type' />
                         </DetailSpecItem>
                         <DetailSpecItem code='search'>
                             <p>

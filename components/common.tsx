@@ -191,12 +191,12 @@ export const SeeDocumentations = ({ components }: SeeDocumentationsProps) => <Co
 
 
 export interface ParagraphDefaultValueProps {
-    code          : string|React.ReactElement
+    property      : string|React.ReactElement
     defaultValue? : boolean|number|string|React.ReactNode
 }
-export const ParagraphDefaultValue = ({ code, defaultValue }: ParagraphDefaultValueProps) => (
+export const ParagraphDefaultValue = ({ property, defaultValue }: ParagraphDefaultValueProps) => (
     <p>
-        {(defaultValue !== undefined) ? defaultValue : <>This</>} is the <strong>default</strong> value if the <code>{ code }</code> value is not specified.
+        {(defaultValue !== undefined) ? defaultValue : <>This</>} is the <strong>default</strong> value if the <code>{ property }</code> value is not specified.
     </p>
 );
 

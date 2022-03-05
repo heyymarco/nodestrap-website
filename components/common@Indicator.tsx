@@ -37,7 +37,7 @@ export const SectionPropertyActive           = ({ property = 'active'    , prope
                     <p>
                         At this state, the <CurrentNestedComponent /> is currently in <strong>normal</strong> state.
                     </p>
-                    <ParagraphDefaultValue code='active' />
+                    <ParagraphDefaultValue property='active' />
                 </DetailSpecItem>
             </SpecList>
         } description={
@@ -124,7 +124,7 @@ export const SectionPropertyEnabled          = ({ property = 'enabled'   , prope
                     <p>
                         At this state, all functionality of <CurrentNestedComponent /> are <strong>preserved</strong>.
                     </p>
-                    <ParagraphDefaultValue code='enabled' />
+                    <ParagraphDefaultValue property='enabled' />
                 </DetailSpecItem>
                 <DetailSpecItem code='false'>
                     <p>
@@ -188,7 +188,7 @@ export const SectionPropertyReadOnly         = ({ property = 'readOnly'  , prope
                         At this state, the editing functionality of <CurrentNestedComponent /> is <strong>preserved</strong>.
                         You can make any changes to this component.
                     </p>
-                    <ParagraphDefaultValue code='readOnly' />
+                    <ParagraphDefaultValue property='readOnly' />
                 </DetailSpecItem>
             </SpecList>
         } description={

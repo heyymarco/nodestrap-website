@@ -33,7 +33,7 @@ export const SectionPropertyActive  = ({ specList, description, ...restProps }: 
                     <p>
                         At this state, the <CurrentNestedComponent /> is currently <strong>hidden</strong>.
                     </p>
-                    <ParagraphDefaultValue code='active' />
+                    <ParagraphDefaultValue property='active' />
                 </DetailSpecItem>
             </SpecList>
         } description={
@@ -66,7 +66,7 @@ export const SectionPropertyEnabled = ({ specList, description, ...restProps }: 
                     <p>
                         At this state, the <CurrentNestedComponent /> is appear <strong>normal</strong>.
                     </p>
-                    <ParagraphDefaultValue code='enabled' />
+                    <ParagraphDefaultValue property='enabled' />
                 </DetailSpecItem>
                 <DetailSpecItem code='false'>
                     <p>
@@ -289,7 +289,7 @@ export const SectionPropertyLazy = ({ titleTag = 'h2', propertySuffix = true, pr
                     <p>
                         The <CurrentComponent />&apos;s <code>children</code> are rendered <em>only if</em> the <CurrentComponent /> is <strong>shown</strong>.
                     </p>
-                    <ParagraphDefaultValue code='lazy' />
+                    <ParagraphDefaultValue property='lazy' />
                 </DetailSpecItem>
             </SpecList>
         } description={

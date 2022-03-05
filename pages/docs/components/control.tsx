@@ -39,7 +39,7 @@ const Page: NextPage = () => {
                             <p>
                                 Set to this value will <strong>show</strong> the focus indicator when the control is <strong>in focus</strong> and <strong>hide</strong> one when it&apos;s <strong>out of focus</strong>.
                             </p>
-                            <ParagraphDefaultValue code='focus' />
+                            <ParagraphDefaultValue property='focus' />
                         </DetailSpecItem>
                         <DetailSpecItem code='true'>
                             <p>
@@ -64,7 +64,7 @@ const Page: NextPage = () => {
                                 Set to this value will <strong>show</strong> the arrive indicator when the cursor is currently <strong>hover</strong> on the control <em>and/or</em> the control is currently <strong>has focus</strong>, and <strong>hide</strong> one
                                 when the cursor is <strong>not hover</strong> on the control <em>and</em> the control is currently <strong>out of focus</strong>.
                             </p>
-                            <ParagraphDefaultValue code='arrive' />
+                            <ParagraphDefaultValue property='arrive' />
                         </DetailSpecItem>
                         <DetailSpecItem code='true'>
                             <p>

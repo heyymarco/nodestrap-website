@@ -39,7 +39,7 @@ export const SectionPropertyActive  = ({ specList, description, ...restProps }: 
                     <p>
                         At this state, the <CurrentNestedComponent /> will be automatically shown when the <em>target element</em> is <strong>hovered</strong> or <strong>focused</strong>, otherwise hidden.
                     </p>
-                    <ParagraphDefaultValue code='active' />
+                    <ParagraphDefaultValue property='active' />
                 </DetailSpecItem>
                 <DetailSpecItem code='true'>
                     <p>
@@ -64,7 +64,7 @@ export const SectionPropertyActiveDelay = ({ titleTag = 'h4', propertySuffix = t
                 <p>
                     Prevents accidentally showing the <CurrentComponent /> when the cursor <em>quickly hovers over</em> the <strong>target element</strong>.
                 </p>
-                { (defaultValue !== undefined) && <ParagraphDefaultValue code={property} defaultValue={defaultValue} />}
+                { (defaultValue !== undefined) && <ParagraphDefaultValue property={property} defaultValue={defaultValue} />}
                 <p>
                     This property affects to <strong>hover event</strong>, <strong>focus event</strong>, and re-assigning <code>active</code> property quickly.
                 </p>
@@ -81,7 +81,7 @@ export const SectionPropertyPassiveDelay = ({ titleTag = 'h4', propertySuffix = 
                 <p>
                     Prevents accidentally hiding the <CurrentComponent /> when the cursor <em>quickly leaves</em> the <strong>target element</strong>.
                 </p>
-                { (defaultValue !== undefined) && <ParagraphDefaultValue code={property} defaultValue={defaultValue} />}
+                { (defaultValue !== undefined) && <ParagraphDefaultValue property={property} defaultValue={defaultValue} />}
                 <p>
                     This property affects to <strong>leave event</strong>, <strong>blur event</strong>, and re-assigning <code>active</code> property quickly.
                 </p>

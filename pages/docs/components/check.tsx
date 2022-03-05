@@ -37,7 +37,7 @@ const Page: NextPage = () => {
                             <p>
                                 Styling the <CurrentComponent /> with <strong>default appearance</strong>.
                             </p>
-                            <ParagraphDefaultValue code='checkStyle' />
+                            <ParagraphDefaultValue property='checkStyle' />
                         </DetailSpecItem>
                         <DetailSpecItem code='btn'>
                             <p>

@@ -243,7 +243,7 @@ export const SectionPropertyOrientationBlock = ({ titleTag='h4', property = "ori
                 <p>
                     To make <CurrentNestedComponent />{hasNestedComponent && 's'} stacked in <strong>vertical</strong>, set <code>{`<${componentName} orientation='block'>`}</code>.
                 </p>
-                {defaultValue && <ParagraphDefaultValue code='orientation' />}
+                {defaultValue && <ParagraphDefaultValue property='orientation' />}
             </>
         } />
     );
@@ -261,7 +261,7 @@ export const SectionPropertyOrientationInline = ({ titleTag='h4', property = "or
                 <p>
                     To make <CurrentNestedComponent />{hasNestedComponent && 's'} stacked in <strong>vertical</strong>, set <code>{`<${componentName} orientation='inline'>`}</code>.
                 </p>
-                {defaultValue && <ParagraphDefaultValue code='orientation' />}
+                {defaultValue && <ParagraphDefaultValue property='orientation' />}
                 <Warning>
                     <p>
                         Make sure the page is <strong>wide enough</strong> as the <code>inline</code> orientation may take up a lot of space (width).

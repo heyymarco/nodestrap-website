@@ -39,7 +39,7 @@ const Page: NextPage = () => {
                             <p>
                                 Set to this value will <strong>show</strong> the pressed indicator when the control is <strong>being pressed</strong> (by user) and <strong>hide</strong> one when it&apos;s <strong>released</strong>.
                             </p>
-                            <ParagraphDefaultValue code='press' />
+                            <ParagraphDefaultValue property='press' />
                         </DetailSpecItem>
                         <DetailSpecItem code='true'>
                             <p>

@@ -141,7 +141,7 @@ import Link from 'next/link'
                                 The string comparison is <strong>case insensitive</strong>.
                                 A lowercase character and uppercase character are treated as the <strong>same</strong> thing.
                             </p>
-                            <ParagraphDefaultValue code='caseSensitive' />
+                            <ParagraphDefaultValue property='caseSensitive' />
                         </DetailSpecItem>
                         <DetailSpecItem code='true'>
                             <p>
