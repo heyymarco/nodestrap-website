@@ -413,7 +413,7 @@ const Page: NextPage = () => {
                     during <em>showing</em>/<em>hiding</em> transition, the <CurrentComponent /> <strong>shifts</strong> the position of <em>next siblings</em>.
                 </p>
                 <p>
-                    The preview below illustrates the <CurrentComponent /> <strong>shifts</strong> the position of <strong>a logout button</strong>:
+                    The preview below illustrates the <CurrentComponent /> <strong>shifts</strong> the position of a <strong>logout button</strong>:
                 </p>
                 <OverlayBadgePreview overlay={false} />
                 <p>
