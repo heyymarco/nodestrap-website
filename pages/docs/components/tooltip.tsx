@@ -195,6 +195,8 @@ const TooltipOffset = () => {
                 targetRef={contentRef}
                 popupPlacement='top'
                 popupOffset={30}
+                popupAutoFlip={false}
+                popupAutoShift={false}
             >
                 hello world!
             </Tooltip>
@@ -230,6 +232,8 @@ const TooltipShift = () => {
                 targetRef={contentRef}
                 popupPlacement='top'
                 popupShift={100}
+                popupAutoFlip={false}
+                popupAutoShift={false}
             >
                 hello world!
             </Tooltip>
@@ -279,6 +283,7 @@ const TooltipAutoFlip = () => {
                 targetRef={contentRef}
                 popupPlacement='top'
                 popupAutoFlip={true}
+                popupAutoShift={false}
             >
                 hello world!
             </Tooltip>
@@ -330,6 +335,7 @@ const TooltipAutoShift = () => {
                 
                 targetRef={contentRef}
                 popupPlacement='right'
+                popupAutoFlip={false}
                 popupAutoShift={true}
             >
                 hello<br />
