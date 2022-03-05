@@ -88,8 +88,6 @@ const OverlayPopupPreview = ({ overlay = true }: OverlayPopupPreviewProps) => {
             blockDisplay={true}
         >
             <Button elmRef={buttonRef} theme='success' size='lg' enabled={!isActive}>Pay now</Button>
-            <span> -or- </span>
-            <Button theme='secondary' size='lg' outlined={true} enabled={!isActive}>Cancel</Button>
             <Popup
                 active={isActive}
                 theme='warning'
@@ -101,9 +99,8 @@ const OverlayPopupPreview = ({ overlay = true }: OverlayPopupPreviewProps) => {
             >
                 Processing your payment...
             </Popup>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </p>
+            <span> -or- </span>
+            <Button theme='secondary' size='lg' outlined={true} enabled={!isActive}>Cancel</Button>
         </Preview>
     )
 };
@@ -340,7 +337,7 @@ const Page: NextPage = () => {
                     during <em>showing</em>/<em>hiding</em> transition, the <CurrentComponent /> <strong>shifts</strong> the position of <em>next siblings</em>.
                 </p>
                 <p>
-                    The preview below illustrates the <CurrentComponent /> <strong>shifts</strong> the position of <strong>a paragraph</strong>:
+                    The preview below illustrates the <CurrentComponent /> <strong>shifts</strong> the position of the <strong>cancel button</strong>:
                 </p>
                 <OverlayPopupPreview overlay={false} />
                 <p>
