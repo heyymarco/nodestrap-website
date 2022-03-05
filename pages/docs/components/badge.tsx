@@ -844,6 +844,10 @@ const buttonRef = useRef(null);
                     <DetailSpecItem title='Typos'>
                         <SubSpecList>
                             <SimpleSpecItem>
+                                <code>whiteSpace</code>
+                                <p>Defines how a <strong>white space</strong> inside <CurrentComponent /> is handled.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
                                 <code>fontSize</code>
                                 <p>The default text size.</p>
                             </SimpleSpecItem>
