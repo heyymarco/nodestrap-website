@@ -60,31 +60,8 @@ interface OverlayBusyPreviewProps {
     overlay ?: boolean
 }
 const OverlayBusyPreview = ({ overlay = true }: OverlayBusyPreviewProps) => {
-    const prevListMini = useRef<boolean>(false);
-    const [isListMini, setIsListMini] = useState<boolean>(prevListMini.current);
-    const { width: mediaWidth } = useWindowSize();
-    useEffect(() => {
-        setIsListMini(
-            !!mediaWidth
-            &&
-            !!breakpoints.sm
-            &&
-            (mediaWidth <= breakpoints.sm)
-        );
-    }, [mediaWidth]);
-    useEffect(() => {
-        if (prevListMini.current === isListMini) return;
-        
-        
-        
-        prevListMini.current = isListMini;
-        setLoaded(false);
-    }, [isListMini]);
-    
-    
-    
     const [containerRef, isActiveFlip] = useFlipFlop({ defaultState: true });
-    const menuRef = useRef<HTMLElement>(null);
+    const buttonRef = useRef<HTMLButtonElement>(null);
     const [isLoaded, setLoaded] = useState<boolean>(false);
     const isActive = isLoaded ? isActiveFlip : true;
     useEffect(() => {
@@ -98,17 +75,12 @@ const OverlayBusyPreview = ({ overlay = true }: OverlayBusyPreviewProps) => {
                 container.style.boxSizing = '';
                 container.style.height = '';
                 
-                if (isListMini) {
-                    setLoaded(false);
-                    setTimeout(() => {
-                        container.style.boxSizing = 'border-box';
-                        container.style.height = `${container.offsetHeight + 5}px`;
-                        setLoaded(true);
-                    }, 0);
-                }
-                else {
+                setLoaded(false);
+                setTimeout(() => {
+                    container.style.boxSizing = 'border-box';
+                    container.style.height = `${container.offsetHeight + 5}px`;
                     setLoaded(true);
-                } // if
+                }, 0);
             }
             else {
                 setLoaded(true);
@@ -124,38 +96,24 @@ const OverlayBusyPreview = ({ overlay = true }: OverlayBusyPreviewProps) => {
             elmRef={containerRef}
             blockDisplay={true}
         >
-            <List
-                theme='primary'
-                mild={false}
-                actionCtrl={true}
-                listStyle='joined'
-                orientation={isListMini ? 'block' : 'inline'}
-                style={{ textAlign: 'center' }}
-            >
-                <ListItem>
-                    Home
-                </ListItem>
-                <ListItem>
-                    Gallery
-                </ListItem>
-                <ListItem elmRef={menuRef}>
-                    Products
-                </ListItem>
-            </List>
-            <Busy
-                active={isActive}
-                theme='danger'
-                
-                targetRef={overlay ? menuRef : undefined}
-                popupPlacement={isListMini ? 'right' : 'right-start'}
-                popupOffset={-35}
-                popupShift={-10}
-            >
-                New
-            </Busy>
-            <Button tag='div' theme='secondary' style={{ [`margin${isListMini ? 'Block' : 'Inline'}Start`]: '2rem', display: (isListMini ? 'flex' : undefined) }}>
-                Logout
+            <Button elmRef={buttonRef} theme='success' size='lg' enabled={!isActive} mild={isActive}>
+                Pay now
+                <Busy
+                    active={isActive}
+                    theme='success'
+                    size='lg'
+                    inheritEnabled={false}
+                    
+                    targetRef={overlay ? buttonRef : undefined}
+                    popupPlacement='right-start'
+                    popupOffset={-12}
+                    popupShift={-8}
+                >
+                    Processing your payment...
+                </Busy>
             </Button>
+            <span> -or- </span>
+            <Button theme='secondary' size='lg' outlined={true} enabled={!isActive}>Cancel</Button>
         </Preview>
     )
 };
@@ -172,7 +130,8 @@ const BusyPlacementPreview = () => {
             </Label>
             <Busy
                 active={true}
-                theme='danger'
+                theme='primary'
+                size='lg'
                 
                 targetRef={contentRef}
                 popupPlacement={popupPlacement}
@@ -181,31 +140,6 @@ const BusyPlacementPreview = () => {
             </Busy>
         </div>}</SelectPopupPlacement>
     )
-};
-
-const BusyOnButton = (props: BusyProps) => {
-    const buttonRef = useRef<HTMLButtonElement>(null);
-    
-    
-    
-    return (
-        <>
-            <Button
-                elmRef={buttonRef}
-                theme='primary'
-            >
-                Products
-                <Busy
-                    {...props}
-                    
-                    targetRef={buttonRef}
-                    popupPlacement='right-start'
-                    popupOffset={props.popupOffset ?? -25}
-                    popupShift={props.popupShift ?? -10}
-                />
-            </Button>
-        </>
-    );
 };
 
 const BusyOffset = () => {
@@ -226,7 +160,8 @@ const BusyOffset = () => {
             </Label>
             <Busy
                 active={true}
-                theme='danger'
+                theme='primary'
+                size='lg'
                 
                 targetRef={contentRef}
                 popupPlacement='top'
@@ -261,7 +196,8 @@ const BusyShift = () => {
             </Label>
             <Busy
                 active={true}
-                theme='danger'
+                theme='primary'
+                size='lg'
                 
                 targetRef={contentRef}
                 popupPlacement='top'
@@ -310,7 +246,8 @@ const BusyAutoFlip = () => {
             </Label>
             <Busy
                 active={true}
-                theme='danger'
+                theme='primary'
+                size='lg'
                 
                 targetRef={contentRef}
                 popupPlacement='top'
@@ -362,7 +299,8 @@ const BusyAutoShift = () => {
             </Label>
             <Busy
                 active={true}
-                theme='danger'
+                theme='primary'
+                size='lg'
                 
                 targetRef={contentRef}
                 popupPlacement='right'
@@ -415,7 +353,7 @@ const Page: NextPage = () => {
                     during <em>showing</em>/<em>hiding</em> transition, the <CurrentComponent /> <strong>shifts</strong> the position of <em>next siblings</em>.
                 </p>
                 <p>
-                    The preview below illustrates the <CurrentComponent /> <strong>shifts</strong> the position of <strong>a logout button</strong>:
+                    The preview below illustrates the <CurrentComponent /> <strong>shifts</strong> the position of a <strong>cancel button</strong>:
                 </p>
                 <OverlayBusyPreview overlay={false} />
                 <p>
@@ -468,13 +406,13 @@ const Page: NextPage = () => {
                 <SectionPropertyTheme>
                     <Preview stretch={false}>
                         {themeNames.map((themeName, index) =>
-                            <BusyOnButton
+                            <Busy
                                 theme={themeName}
                                 active={true}
                                 key={index}
-                            >
-                                {themeName}
-                            </BusyOnButton>
+                                
+                                label='loading...'
+                            />
                         )}
                     </Preview>
                     <p></p>
@@ -484,134 +422,110 @@ const Page: NextPage = () => {
 <Busy
     theme='${themeName}'
     active={true}
->
-    ${themeName}
-</Busy>
+    
+    label='loading...'
+/>
 `
                         ).join('')}
                     </TypeScriptCode>
                 </SectionPropertyTheme>
                 <SectionPropertySize>
                     <Preview stretch={false}>
-                        <BusyOnButton
+                        <Busy
                             size='sm'
                             active={true}
-                            theme='danger'
-                        >
-                            smaller
-                        </BusyOnButton>
-                        <BusyOnButton
+                            theme='primary'
+                            
+                            label='loading...'
+                        />
+                        <Busy
                             size={undefined}
                             active={true}
-                            theme='danger'
-                        >
-                            default
-                        </BusyOnButton>
-                        <BusyOnButton
+                            theme='primary'
+                            
+                            label='loading...'
+                        />
+                        <Busy
                             size='lg'
                             active={true}
-                            theme='danger'
-                        >
-                            larger
-                        </BusyOnButton>
+                            theme='primary'
+                            
+                            label='loading...'
+                        />
                         <GenericSection theme='secondary'>
-                            <h1>H1 heading <Busy theme='danger'>New</Busy></h1><span></span>
-                            <h2>H2 heading <Busy theme='danger'>New</Busy></h2><span></span>
-                            <h3>H3 heading <Busy theme='danger'>New</Busy></h3><span></span>
-                            <h4>H4 heading <Busy theme='danger'>New</Busy></h4><span></span>
-                            <h5>H5 heading <Busy theme='danger'>New</Busy></h5><span></span>
-                            <h6>H6 heading <Busy theme='danger'>New</Busy></h6><span></span>
+                            <h1>H1 heading <Busy theme='primary' label='loading' /></h1><span></span>
+                            <h2>H2 heading <Busy theme='primary' label='loading' /></h2><span></span>
+                            <h3>H3 heading <Busy theme='primary' label='loading' /></h3><span></span>
+                            <h4>H4 heading <Busy theme='primary' label='loading' /></h4><span></span>
+                            <h5>H5 heading <Busy theme='primary' label='loading' /></h5><span></span>
+                            <h6>H6 heading <Busy theme='primary' label='loading' /></h6><span></span>
                         </GenericSection>
                     </Preview>
                     <p></p>
                     <TypeScriptCode>{`
-const buttonRef = useRef(null);
-/* ... */
-
-<Button
-    elmRef={buttonRef}
+<Busy
+    size='sm'
+    active={true}
     theme='primary'
->
-    <Busy
-        targetRef={buttonRef}
-        size='sm'
-        active={true}
-        theme='danger'
-    >
-        smaller
-    </Busy>
-</Button>
-
-<Button
-    elmRef={buttonRef}
+    
+    label='loading...'
+/>
+<Busy
+    size={undefined}
+    active={true}
     theme='primary'
->
-    <Busy
-        targetRef={buttonRef}
-        size={undefined}
-        active={true}
-        theme='danger'
-    >
-        default
-    </Busy>
-</Button>
-
-<Button
-    elmRef={buttonRef}
+    
+    label='loading...'
+/>
+<Busy
+    size='lg'
+    active={true}
     theme='primary'
->
-    <Busy
-        targetRef={buttonRef}
-        size='lg'
-        active={true}
-        theme='danger'
-    >
-        larger
-    </Busy>
-</Button>
+    
+    label='loading...'
+/>
 
-<h1>H1 heading <Busy theme='danger'>New</Busy></h1>
-<h2>H2 heading <Busy theme='danger'>New</Busy></h2>
-<h3>H3 heading <Busy theme='danger'>New</Busy></h3>
-<h4>H4 heading <Busy theme='danger'>New</Busy></h4>
-<h5>H5 heading <Busy theme='danger'>New</Busy></h5>
-<h6>H6 heading <Busy theme='danger'>New</Busy></h6>
+<h1>H1 heading <Busy theme='primary' label='loading' /></h1><span></span>
+<h2>H2 heading <Busy theme='primary' label='loading' /></h2><span></span>
+<h3>H3 heading <Busy theme='primary' label='loading' /></h3><span></span>
+<h4>H4 heading <Busy theme='primary' label='loading' /></h4><span></span>
+<h5>H5 heading <Busy theme='primary' label='loading' /></h5><span></span>
+<h6>H6 heading <Busy theme='primary' label='loading' /></h6><span></span>
                     `}</TypeScriptCode>
                 </SectionPropertySize>
                 <SectionPropertyNude>
                     <TransparentPreview stretch={false}>
-                        <BusyOnButton
-                            nude={true}
+                        <Busy
+                            nude={false}
                             active={true}
-                            theme='warning'
-                            popupOffset={5}
-                            popupShift={-10}
-                        >
-                            New
-                        </BusyOnButton>
+                            theme='primary'
+                            
+                            label='loading...'
+                        />
                     </TransparentPreview>
                     <p></p>
                     <TypeScriptCode>{`
 <Busy
-    nude={true}
+    nude={false}
     active={true}
-    theme='warning'
->
-    New
-</Busy>
+    theme='primary'
+    
+    label='loading...'
+/>
                     `}</TypeScriptCode>
                 </SectionPropertyNude>
                 <SectionPropertyGradient>
                     <Preview stretch={false}>
                         {themeNames.map((themeName, index) =>
-                            <BusyOnButton
+                            <Busy
                                 gradient={true}
+                                nude={false}
                                 active={true}
                                 theme={themeName}
                                 key={index}
-                            >
-                                New
-                            </BusyOnButton>
+                                
+                                label='loading...'
+                            />
                         )}
                     </Preview>
                     <p></p>
@@ -620,11 +534,12 @@ const buttonRef = useRef(null);
 `
 <Busy
     gradient={true}
+    nude={false}
     active={true}
     theme='${themeName}'
->
-    New
-</Busy>
+    
+    label='loading...'
+/>
 `
                         ).join('')}
                     </TypeScriptCode>
@@ -632,16 +547,15 @@ const buttonRef = useRef(null);
                 <SectionPropertyOutlined>
                     <TransparentPreview stretch={false}>
                         {themeNames.map((themeName, index) =>
-                            <BusyOnButton
-                                outlined={true}
+                            <Busy
+                                outlined={false}
+                                nude={false}
                                 active={true}
                                 theme={themeName}
                                 key={index}
-                                popupOffset={5}
-                                popupShift={-10}
-                            >
-                                New
-                            </BusyOnButton>
+                                
+                                label='loading...'
+                            />
                         )}
                     </TransparentPreview>
                     <p></p>
@@ -649,12 +563,13 @@ const buttonRef = useRef(null);
                         {themeNames.map((themeName) =>
 `
 <Busy
-    outlined={true}
+    outlined={false}
+    nude={false}
     active={true}
     theme='${themeName}'
->
-    New
-</Busy>
+    
+    label='loading...'
+/>
 `
                         ).join('')}
                     </TypeScriptCode>
@@ -662,14 +577,16 @@ const buttonRef = useRef(null);
                 <SectionPropertyMild>
                     <Preview stretch={false}>
                         {themeNames.map((themeName, index) =>
-                            <BusyOnButton
+                            <Busy
                                 mild={true}
+                                nude={false}
+                                outlined={false}
                                 active={true}
                                 theme={themeName}
                                 key={index}
-                            >
-                                New
-                            </BusyOnButton>
+                                
+                                label='loading...'
+                            />
                         )}
                     </Preview>
                     <p></p>
@@ -678,11 +595,13 @@ const buttonRef = useRef(null);
 `
 <Busy
     mild={true}
+    nude={false}
+    outlined={false}
     active={true}
     theme='${themeName}'
->
-    New
-</Busy>
+    
+    label='loading...'
+/>
 `
                         ).join('')}
                     </TypeScriptCode>
@@ -691,14 +610,15 @@ const buttonRef = useRef(null);
                     <SectionPropertyPillStyle>
                         <Preview stretch={false}>
                             {themeNames.map((themeName, index) =>
-                                <BusyOnButton
+                                <Busy
                                     badgeStyle='pill'
+                                    nude={false}
                                     active={true}
                                     theme={themeName}
                                     key={index}
-                                >
-                                    New
-                                </BusyOnButton>
+                                    
+                                    label='loading...'
+                                />
                             )}
                         </Preview>
                         <p></p>
@@ -707,11 +627,12 @@ const buttonRef = useRef(null);
 `
 <Busy
     busyStyle='pill'
+    nude={false}
     active={true}
     theme='${themeName}'
->
-    New
-</Busy>
+    
+    label='loading...'
+/>
 `
                             ).join('')}
                         </TypeScriptCode>
@@ -719,13 +640,14 @@ const buttonRef = useRef(null);
                     <SectionPropertySquareStyle>
                         <Preview stretch={false}>
                             {themeNames.map((themeName, index) =>
-                                <BusyOnButton
+                                <Busy
                                     badgeStyle='square'
+                                    nude={false}
                                     active={true}
                                     theme={themeName}
                                     key={index}
-                                    popupOffset={-15}
-                                    popupShift={-10}
+                                    
+                                    label='loading...'
                                 />
                             )}
                         </Preview>
@@ -735,8 +657,11 @@ const buttonRef = useRef(null);
 `
 <Busy
     busyStyle='square'
+    nude={false}
     active={true}
     theme='${themeName}'
+    
+    label='loading...'
 />
 `
                             ).join('')}
@@ -745,13 +670,14 @@ const buttonRef = useRef(null);
                     <SectionPropertyCircleStyle>
                         <Preview stretch={false}>
                             {themeNames.map((themeName, index) =>
-                                <BusyOnButton
+                                <Busy
                                     badgeStyle='circle'
+                                    nude={false}
                                     active={true}
                                     theme={themeName}
                                     key={index}
-                                    popupOffset={-15}
-                                    popupShift={-10}
+                                    
+                                    label='loading...'
                                 />
                             )}
                         </Preview>
@@ -761,8 +687,11 @@ const buttonRef = useRef(null);
 `
 <Busy
     busyStyle='circle'
+    nude={false}
     active={true}
     theme='${themeName}'
+    
+    label='loading...'
 />
 `
                             ).join('')}
@@ -773,42 +702,42 @@ const buttonRef = useRef(null);
             <SectionStates>
                 <SectionPropertyActive>
                     <Preview stretch={false}>
-                        <BusyOnButton
+                        <Busy
                             active={true}
-                            theme='danger'
-                        >
-                            New
-                        </BusyOnButton>
+                            theme='primary'
+                            
+                            label='loading...'
+                        />
                     </Preview>
                     <p></p>
                     <TypeScriptCode>{`
 <Busy
     active={true}
-    theme='danger'
->
-    New
-</Busy>
+    theme='primary'
+    
+    label='loading...'
+/>
                     `}</TypeScriptCode>
                 </SectionPropertyActive>
                 <SectionPropertyEnabled>
                     <Preview stretch={false}>
-                        <BusyOnButton
+                        <Busy
                             enabled={false}
                             active={true}
-                            theme='danger'
-                        >
-                            New
-                        </BusyOnButton>
+                            theme='primary'
+                            
+                            label='loading...'
+                        />
                     </Preview>
                     <p></p>
                     <TypeScriptCode>{`
 <Busy
     enabled={false}
     active={true}
-    theme='danger'
->
-    New
-</Busy>
+    theme='primary'
+    
+    label='loading...'
+/>
                     `}</TypeScriptCode>
                 </SectionPropertyEnabled>
             </SectionStates>
@@ -881,7 +810,7 @@ export default function ErrorMark(props) {
             semanticRole={props.semanticRole ?? 'status'} // override default value of semanticRole to 'status'
             semantictag={props.semanticTag ?? 'span'}     // override default value of semanticTag  to 'span'
             
-            theme={props.theme ?? 'danger'} // override default value of theme to 'danger'
+            theme={props.theme ?? 'success'} // override default value of theme to 'success'
             mild={props.mild ?? false}      // override default value of mild  to false
         >
             { props.children ?? 'error' }
