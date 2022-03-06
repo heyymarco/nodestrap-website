@@ -71,11 +71,11 @@ const Page: NextPage = () => {
                         <SubSpecList>
                             <SimpleSpecItem>
                                 <code>img</code>
-                                <p>the default <strong>check mark</strong> image.</p>
+                                <p>The default <strong>check mark</strong> image.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>switchImg</code>
-                                <p>the <strong>check mark</strong> image when <code>{`checkStyle='switch'`}</code>.</p>
+                                <p>The <strong>check mark</strong> image when <code>{`checkStyle='switch'`}</code>.</p>
                             </SimpleSpecItem>
                         </SubSpecList>
                     </DetailSpecItem>

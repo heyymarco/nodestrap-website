@@ -39,7 +39,7 @@ const Page: NextPage = () => {
                         <SubSpecList>
                             <SimpleSpecItem>
                                 <code>img</code>
-                                <p>the default <strong>radio mark</strong> image.</p>
+                                <p>The default <strong>radio mark</strong> image.</p>
                             </SimpleSpecItem>
                         </SubSpecList>
                     </DetailSpecItem>
