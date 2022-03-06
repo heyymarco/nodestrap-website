@@ -219,8 +219,8 @@ export const SectionPropertyPopupShift     = ({ property = 'popupShift'    , pro
                     Adjusts the <em>cross axis location</em> of the <CurrentComponent /> relative to the <strong>target element</strong>.
                 </p>
                 <p>
-                    Assign to <strong>positive number</strong> for making the location more <code>forward</code> (relative to the writing direction).<br />
-                    Assign to <strong>negative number</strong> for making the location more <code>backward</code> (relative to the writing direction).
+                    Assign <strong>positive number</strong> to make the location more <code>forward</code> (relative to the writing direction).<br />
+                    Assign <strong>negative number</strong> to make the location more <code>backward</code> (relative to the writing direction).
                 </p>
                 <p>
                     Currently, the <code>popupShift</code> only accepts a <code>Number</code> represents the distance in <strong>pixel unit</strong>.
