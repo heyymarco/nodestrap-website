@@ -92,7 +92,10 @@ export const SectionPropertyEnabled = ({ specList, description, ...restProps }: 
 
 
 
-export const SectionPropertyTargetRef      = ({ property = 'targetRef'     , properties = 'Target Element', description, ...restProps }: SectionPreviewPropertyProps) => {
+export interface SectionPropertyTargetRefProps extends SectionPreviewPropertyProps {
+    componentHasChildren ?: boolean
+}
+export const SectionPropertyTargetRef      = ({ property = 'targetRef'     , properties = 'Target Element', description, componentHasChildren = true, ...restProps }: SectionPropertyTargetRefProps) => {
     const { componentName } = useComponentInfo();
     
     
@@ -133,9 +136,9 @@ export default function FooComponent() {
                 theme='warning'
                 popupPlacement='right'
                 active={true}
-            >
+            ${!componentHasChildren ? '/>' : `>
                 hello world
-            </${componentName}>
+            </${componentName}>`}
         </>
     );
 }
@@ -161,9 +164,9 @@ export default function FooComponent() {
                 theme='warning'
                 popupPlacement='right'
                 active={true}
-            >
+            ${!componentHasChildren ? '/>' : `>
                 hello world
-            </${componentName}>
+            </${componentName}>`}
         </>
     );
 }

@@ -359,7 +359,7 @@ const Page: NextPage = () => {
                 <p>
                     To make the <CurrentComponent /> overlaying on a specific element, configure the following properties:
                 </p>
-                <SectionPropertyTargetRef />
+                <SectionPropertyTargetRef componentHasChildren={false} />
                 <SectionPropertyPopupPlacement>
                     <Tips>
                         <p>
