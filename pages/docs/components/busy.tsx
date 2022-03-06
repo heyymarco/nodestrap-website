@@ -449,12 +449,12 @@ const Page: NextPage = () => {
                             label='loading...'
                         />
                         <GenericSection theme='secondary'>
-                            <h1>H1 heading <Busy theme='primary' label='loading' /></h1><span></span>
-                            <h2>H2 heading <Busy theme='primary' label='loading' /></h2><span></span>
-                            <h3>H3 heading <Busy theme='primary' label='loading' /></h3><span></span>
-                            <h4>H4 heading <Busy theme='primary' label='loading' /></h4><span></span>
-                            <h5>H5 heading <Busy theme='primary' label='loading' /></h5><span></span>
-                            <h6>H6 heading <Busy theme='primary' label='loading' /></h6><span></span>
+                            <h1>H1 heading <Busy active={true} theme='primary' label='loading...' /></h1><span></span>
+                            <h2>H2 heading <Busy active={true} theme='primary' label='loading...' /></h2><span></span>
+                            <h3>H3 heading <Busy active={true} theme='primary' label='loading...' /></h3><span></span>
+                            <h4>H4 heading <Busy active={true} theme='primary' label='loading...' /></h4><span></span>
+                            <h5>H5 heading <Busy active={true} theme='primary' label='loading...' /></h5><span></span>
+                            <h6>H6 heading <Busy active={true} theme='primary' label='loading...' /></h6><span></span>
                         </GenericSection>
                     </Preview>
                     <p></p>
@@ -481,12 +481,12 @@ const Page: NextPage = () => {
     label='loading...'
 />
 
-<h1>H1 heading <Busy theme='primary' label='loading' /></h1><span></span>
-<h2>H2 heading <Busy theme='primary' label='loading' /></h2><span></span>
-<h3>H3 heading <Busy theme='primary' label='loading' /></h3><span></span>
-<h4>H4 heading <Busy theme='primary' label='loading' /></h4><span></span>
-<h5>H5 heading <Busy theme='primary' label='loading' /></h5><span></span>
-<h6>H6 heading <Busy theme='primary' label='loading' /></h6><span></span>
+<h1>H1 heading <Busy active={true} theme='primary' label='loading...' /></h1>
+<h2>H2 heading <Busy active={true} theme='primary' label='loading...' /></h2>
+<h3>H3 heading <Busy active={true} theme='primary' label='loading...' /></h3>
+<h4>H4 heading <Busy active={true} theme='primary' label='loading...' /></h4>
+<h5>H5 heading <Busy active={true} theme='primary' label='loading...' /></h5>
+<h6>H6 heading <Busy active={true} theme='primary' label='loading...' /></h6>
                     `}</TypeScriptCode>
                 </SectionPropertySize>
                 <SectionPropertyNude>
