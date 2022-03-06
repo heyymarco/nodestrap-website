@@ -513,12 +513,12 @@ const Page: NextPage = () => {
                             larger
                         </BadgeOnButton>
                         <GenericSection theme='secondary'>
-                            <h1>H1 heading <Badge theme='danger' active={true}>New</Badge></h1><span></span>
-                            <h2>H2 heading <Badge theme='danger' active={true}>New</Badge></h2><span></span>
-                            <h3>H3 heading <Badge theme='danger' active={true}>New</Badge></h3><span></span>
-                            <h4>H4 heading <Badge theme='danger' active={true}>New</Badge></h4><span></span>
-                            <h5>H5 heading <Badge theme='danger' active={true}>New</Badge></h5><span></span>
-                            <h6>H6 heading <Badge theme='danger' active={true}>New</Badge></h6><span></span>
+                            <h1>H1 heading <Badge active={true} theme='danger'>New</Badge></h1><span></span>
+                            <h2>H2 heading <Badge active={true} theme='danger'>New</Badge></h2><span></span>
+                            <h3>H3 heading <Badge active={true} theme='danger'>New</Badge></h3><span></span>
+                            <h4>H4 heading <Badge active={true} theme='danger'>New</Badge></h4><span></span>
+                            <h5>H5 heading <Badge active={true} theme='danger'>New</Badge></h5><span></span>
+                            <h6>H6 heading <Badge active={true} theme='danger'>New</Badge></h6><span></span>
                         </GenericSection>
                     </Preview>
                     <p></p>
@@ -568,12 +568,12 @@ const buttonRef = useRef(null);
     </Badge>
 </Button>
 
-<h1>H1 heading <Badge theme='danger' active={true}>New</Badge></h1>
-<h2>H2 heading <Badge theme='danger' active={true}>New</Badge></h2>
-<h3>H3 heading <Badge theme='danger' active={true}>New</Badge></h3>
-<h4>H4 heading <Badge theme='danger' active={true}>New</Badge></h4>
-<h5>H5 heading <Badge theme='danger' active={true}>New</Badge></h5>
-<h6>H6 heading <Badge theme='danger' active={true}>New</Badge></h6>
+<h1>H1 heading <Badge active={true} theme='danger'>New</Badge></h1>
+<h2>H2 heading <Badge active={true} theme='danger'>New</Badge></h2>
+<h3>H3 heading <Badge active={true} theme='danger'>New</Badge></h3>
+<h4>H4 heading <Badge active={true} theme='danger'>New</Badge></h4>
+<h5>H5 heading <Badge active={true} theme='danger'>New</Badge></h5>
+<h6>H6 heading <Badge active={true} theme='danger'>New</Badge></h6>
                     `}</TypeScriptCode>
                 </SectionPropertySize>
                 <SectionPropertyNude>
