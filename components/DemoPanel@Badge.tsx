@@ -31,20 +31,20 @@ export const useBadgeStates = (initials ?: Partial<BadgeInitials>) => {
         badgeStyle,
     }
 }
-export type BadgeOptionProps = { states: ReturnType<typeof useBadgeStates> } & PopupOptionProps
+export type BadgeOptionProps = { states: ReturnType<typeof useBadgeStates>, showBadgeStyle? : boolean } & PopupOptionProps
 export const BadgeOptions = (props: BadgeOptionProps) => {
     const { states } = props;
     
     
     
     return (<>
-        <Option
+        {(props.showBadgeStyle ?? true) &&<Option
             orientation='block'
             name='badgeStyle'
             options={[undefined, 'pill','square','circle']}
             value={states.badgeStyle[0]}
             setValue={states.badgeStyle[1]}
-        />
+        />}
         
         <PopupOptions
             {...props}
