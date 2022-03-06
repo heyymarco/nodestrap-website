@@ -622,7 +622,7 @@ const Page: NextPage = () => {
                             {themeNames.map((themeName) =>
 `
 <Busy
-    busyStyle='pill'
+    badgeStyle='pill'
     nude={false}
     active={true}
     theme='${themeName}'
@@ -652,7 +652,7 @@ const Page: NextPage = () => {
                             {themeNames.map((themeName) =>
 `
 <Busy
-    busyStyle='square'
+    badgeStyle='square'
     nude={false}
     active={true}
     theme='${themeName}'
@@ -682,7 +682,7 @@ const Page: NextPage = () => {
                             {themeNames.map((themeName) =>
 `
 <Busy
-    busyStyle='circle'
+    badgeStyle='circle'
     nude={false}
     active={true}
     theme='${themeName}'
