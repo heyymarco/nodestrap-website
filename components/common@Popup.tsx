@@ -198,8 +198,8 @@ export const SectionPropertyPopupOffset    = ({ property = 'popupOffset'   , pro
                     Makes a gap between the <CurrentComponent /> and the <strong>target element</strong>.
                 </p>
                 <p>
-                    Assign to <strong>positive number</strong> for making a gap.<br />
-                    Assign to <strong>negative number</strong> for making the <CurrentComponent /> inset to the <strong>target element</strong>.
+                    Assign <strong>positive number</strong> to make a gap.<br />
+                    Assign <strong>negative number</strong> to make the <CurrentComponent /> inset to the <strong>target element</strong>.
                 </p>
                 <p>
                     Currently, the <code>popupOffset</code> only accepts a <code>Number</code> represents the distance in <strong>pixel unit</strong>.
