@@ -9,16 +9,13 @@ import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
 import GenericSection, { Section } from '../../../components/Section'
-import { SectionInheritedProps, LinkBusyPage, LinkBadgePage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents } from '../../../components/common'
+import { SectionInheritedProps, LinkBusyPage, LinkBadgePage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkIconPage, SectionConfigureDependsOnIcon } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 import { Tips } from '../../../components/Info'
 
 import Label from '@nodestrap/label'
-import Busy, { BusyProps } from '@nodestrap/busy'
+import Busy from '@nodestrap/busy'
 import Button from '@nodestrap/button'
-import breakpoints from '@nodestrap/breakpoints'
-import { useWindowSize } from '@nodestrap/dimensions'
-import { List, ListItem } from '@nodestrap/list'
 import SelectPopupPlacement from '../../../components/SelectPopupPlacement';
 import {
     themeNames,
@@ -36,7 +33,7 @@ import {
     SectionPropertyPopupAutoFlip,
     SectionPropertyPopupAutoShift,
     
-    SectionPropertyLazy,
+    // SectionPropertyLazy,
 } from '../../../components/common@Popup'
 import {
     SectionPropertySize,
@@ -343,6 +340,7 @@ const Page: NextPage = () => {
             <SectionDemo>
                 <DemoBusyLazy fallback={<BusyBar />} />
             </SectionDemo>
+            <SectionConfigureDependsOnIcon />
             <Section title={<>Overlaying <CurrentComponent /></>}>
                 <p>
                     By default the <CurrentComponent /> flows as a normal document element, thus
@@ -737,43 +735,11 @@ const Page: NextPage = () => {
                     `}</TypeScriptCode>
                 </SectionPropertyEnabled>
             </SectionStates>
-            <SectionPropertyLazy />
+            {/* <SectionPropertyLazy /> */}
             <SectionCustomizing specList={
                 <SpecList>
-                    <DetailSpecItem title='Spacings'>
-                        <SubSpecList>
-                            <SimpleSpecItem>
-                                <code>paddingInline</code>
-                                <p>The default inner spacing on the left &amp; right.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>paddingBlock</code>
-                                <p>The default inner spacing on the top &amp; bottom.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>paddingInlineSm</code>
-                                <p>The inner spacing on the left &amp; right when <code>{`size='sm'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>paddingBlockSm</code>
-                                <p>The inner spacing on the top &amp; bottom when <code>{`size='sm'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>paddingInlineLg</code>
-                                <p>The inner spacing on the left &amp; right when <code>{`size='lg'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>paddingBlockLg</code>
-                                <p>The inner spacing on the top &amp; bottom when <code>{`size='lg'`}</code>.</p>
-                            </SimpleSpecItem>
-                        </SubSpecList>
-                    </DetailSpecItem>
                     <DetailSpecItem title='Typos'>
                         <SubSpecList>
-                            <SimpleSpecItem>
-                                <code>whiteSpace</code>
-                                <p>Defines how a <strong>white space</strong> inside <CurrentComponent /> is handled.</p>
-                            </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>fontSize</code>
                                 <p>The default text size.</p>
@@ -786,9 +752,13 @@ const Page: NextPage = () => {
                                 <code>fontSizeLg</code>
                                 <p>The text size when <code>{`size='lg'`}</code>.</p>
                             </SimpleSpecItem>
+                        </SubSpecList>
+                    </DetailSpecItem>
+                    <DetailSpecItem title='Indicators'>
+                        <SubSpecList>
                             <SimpleSpecItem>
-                                <code>fontWeight</code>
-                                <p>The text thickness.</p>
+                                <code>icon</code>
+                                <p>The <LinkIconPage /> name of <CurrentComponent />&apos;s image.</p>
                             </SimpleSpecItem>
                         </SubSpecList>
                     </DetailSpecItem>
@@ -798,7 +768,7 @@ const Page: NextPage = () => {
                 <SectionOverridingDefaults>{`
 import { Busy } from '@nodestrap/busy'
 
-export default function ErrorMark(props) {
+export default function LoadingMark(props) {
     return (
         <Busy
             {...props} // preserves other properties
@@ -807,7 +777,7 @@ export default function ErrorMark(props) {
             semantictag={props.semanticTag ?? 'span'}     // override default value of semanticTag  to 'span'
             
             theme={props.theme ?? 'success'} // override default value of theme to 'success'
-            mild={props.mild ?? false}      // override default value of mild  to false
+            mild={props.mild ?? true}        // override default value of mild  to true
             
             label={props.label ?? 'loading...'}
         />
@@ -825,7 +795,7 @@ export default function ErrorMark(props) {
                         <DetailSpecItem code='usesBusyVariants()'>
                             <p>
                                 Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentComponent /> such as:<br />
-                                <code>SizeVariant</code>, <code>BusyVariant</code>, and <strong>all variants</strong> inherited from <CurrentBaseComponents />.
+                                <code>SizeVariant</code> and <strong>all variants</strong> inherited from <CurrentBaseComponents />.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesBusyStates()'>
@@ -844,7 +814,7 @@ import { isActive } from '@nodestrap/indicator'
 import { Busy, usesBusyLayout, usesBusyVariants, usesBusyStates } from '@nodestrap/busy'
 
 
-const useErrorMarkSheet = createUseSheet(() => [
+const useLoadingMarkSheet = createUseSheet(() => [
     mainComposition(
         imports([
             // import some stuff from <Busy>:
@@ -886,8 +856,8 @@ const useErrorMarkSheet = createUseSheet(() => [
     ),
 ]);
 
-export default function ErrorMark(props) {
-    const sheet = useErrorMarkSheet();
+export default function LoadingMark(props) {
+    const sheet = useLoadingMarkSheet();
     return (
         <Busy {...props} mainClass={sheet.main} />
     )
