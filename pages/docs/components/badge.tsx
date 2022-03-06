@@ -397,7 +397,7 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    Marks a desired component with a small label.
+                    Marks the desired component with a small label.
                 </p>
                 <p>
                     Here the preview:
