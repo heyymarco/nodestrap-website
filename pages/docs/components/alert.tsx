@@ -88,7 +88,7 @@ const OverlayAlertPreview = ({ overlay = true }: OverlayAlertPreviewProps) => {
             elmRef={containerRef}
             blockDisplay={true}
         >
-            <Basic elmRef={paraRef} theme='warning' mild={true} style={{ textAlign: 'center' }}>
+            <Basic elmRef={paraRef} theme='secondary' mild={true} style={{ textAlign: 'center' }}>
                 A content
             </Basic>
             <Alert
@@ -132,6 +132,7 @@ const AlertPlacementPreview = () => {
             <Alert
                 active={true}
                 theme='warning'
+                size='sm'
                 icon={null}
                 control={null}
                 
