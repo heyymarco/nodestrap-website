@@ -108,9 +108,9 @@ const OverlayBusyPreview = ({ overlay = true }: OverlayBusyPreviewProps) => {
                     popupPlacement='right-start'
                     popupOffset={-12}
                     popupShift={-8}
-                >
-                    Processing your payment...
-                </Busy>
+                    
+                    label='Processing your payment...'
+                />
             </Button>
             <span> -or- </span>
             <Button theme='secondary' size='lg' outlined={true} enabled={!isActive}>Cancel</Button>
@@ -135,9 +135,9 @@ const BusyPlacementPreview = () => {
                 
                 targetRef={contentRef}
                 popupPlacement={popupPlacement}
-            >
-                {`popupPlacement='${popupPlacement}'`}
-            </Busy>
+                
+                label={`popupPlacement='${popupPlacement}'`}
+            />
         </div>}</SelectPopupPlacement>
     )
 };
@@ -166,9 +166,9 @@ const BusyOffset = () => {
                 targetRef={contentRef}
                 popupPlacement='top'
                 popupOffset={30}
-            >
-                hello world!
-            </Busy>
+                
+                label='loading...'
+            />
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
             </p>
@@ -202,9 +202,9 @@ const BusyShift = () => {
                 targetRef={contentRef}
                 popupPlacement='top'
                 popupShift={100}
-            >
-                hello world!
-            </Busy>
+                
+                label='loading...'
+            />
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
             </p>
@@ -252,9 +252,9 @@ const BusyAutoFlip = () => {
                 targetRef={contentRef}
                 popupPlacement='top'
                 popupAutoFlip={true}
-            >
-                hello world!
-            </Busy>
+                
+                label='loading...'
+            />
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
             </p>
@@ -305,13 +305,9 @@ const BusyAutoShift = () => {
                 targetRef={contentRef}
                 popupPlacement='right'
                 popupAutoShift={true}
-            >
-                hello<br />
-                world<br />
-                <br />
-                hello<br />
-                everyone<br />
-            </Busy>
+                
+                label='loading...'
+            />
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
             </p>
@@ -812,9 +808,9 @@ export default function ErrorMark(props) {
             
             theme={props.theme ?? 'success'} // override default value of theme to 'success'
             mild={props.mild ?? false}      // override default value of mild  to false
-        >
-            { props.children ?? 'error' }
-        </Busy>
+            
+            label={props.label ?? 'loading...'}
+        />
     );
 }
                 `}</SectionOverridingDefaults>
@@ -893,9 +889,7 @@ const useErrorMarkSheet = createUseSheet(() => [
 export default function ErrorMark(props) {
     const sheet = useErrorMarkSheet();
     return (
-        <Busy {...props} mainClass={sheet.main}>
-            { props.children }
-        </Busy>
+        <Busy {...props} mainClass={sheet.main} />
     )
 }
                 `}</SectionCustomizingCss>
