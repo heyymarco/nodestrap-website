@@ -29,7 +29,7 @@ export const useBusyStates = (initials ?: Partial<BusyInitials>) => {
 }
 export type BusyOptionProps = { states: ReturnType<typeof useBusyStates> } & BadgeOptionProps
 export const BusyOptions = (props: BusyOptionProps) => {
-    const { states } = props;
+    // const { states } = props;
     
     
     
@@ -50,7 +50,12 @@ export const DemoBusy = () => {
     return (
         <>
             <div className='preview'>
-                <Button elmRef={buttonRef} theme='success' mild={true} enabled={false}>
+                <Button
+                    elmRef={buttonRef}
+                    theme='success'
+                    mild={true}
+                    enabled={false}
+                >
                     Pay now
                 </Button>
                 <Busy
@@ -58,6 +63,8 @@ export const DemoBusy = () => {
                     popupPlacement='right-start'
                     popupOffset={states.nude[0] ? -10 : -15}
                     popupShift={states.nude[0] ? -5 : -10}
+                    
+                    badgeStyle={states.badgeStyle[0]}
                     
                     enabled={states.enabled[0]}
                     active={states.active[0]}
@@ -89,6 +96,8 @@ export default function App() {
             popupPlacement='right-start'
             popupOffset={${states.nude[0] ? -10 : -15}}
             popupShift={${states.nude[0] ? -5 : -10}}
+            
+            badgeStyle=${states.badgeStyle[0] ? `'${states.badgeStyle[0]}'` : '{undefined}'}
             
             enabled={${states.enabled[0]}}
             active={${states.active[0]}}
