@@ -383,7 +383,7 @@ const Page: NextPage = () => {
             </SectionDemo>
             <Section title={<>Overlaying <CurrentComponent /></>}>
                 <p>
-                    By default the <CurrentComponent /> is flowed as a normal document element, thus
+                    By default the <CurrentComponent /> flows as a normal document element, thus
                     during <em>showing</em>/<em>hiding</em> transition, the <CurrentComponent /> <strong>shifts</strong> the position of <em>next siblings</em>.
                 </p>
                 <p>
