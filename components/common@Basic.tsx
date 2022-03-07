@@ -257,7 +257,10 @@ export const SectionPropertyOrientationBlock = ({ titleTag='h4', property = "ori
         } />
     );
 };
-export const SectionPropertyOrientationInline = ({ titleTag='h4', property = "orientation='inline'", properties = <><code>inline</code> Orientation</>, description, defaultValue = false, ...restProps }: SectionPreviewPropertyProps) => {
+export interface SectionPropertyOrientationInlineProps extends SectionPreviewPropertyProps {
+    overflowWarning ?: boolean
+}
+export const SectionPropertyOrientationInline = ({ titleTag='h4', property = "orientation='inline'", properties = <><code>inline</code> Orientation</>, description, defaultValue = false, overflowWarning = true, ...restProps }: SectionPropertyOrientationInlineProps) => {
     const { componentName, hasNestedComponent } = useComponentInfo();
     
     
@@ -271,7 +274,7 @@ export const SectionPropertyOrientationInline = ({ titleTag='h4', property = "or
                     To make <CurrentNestedComponent />{hasNestedComponent && 's'} stacked in <strong>vertical</strong>, set <code>{`<${componentName} orientation='inline'>`}</code>.
                 </p>
                 {defaultValue && <ParagraphDefaultValue property='orientation' />}
-                <Warning>
+                {overflowWarning && <Warning>
                     <p>
                         Make sure the page is <strong>wide enough</strong> as the <code>inline</code> orientation may take up a lot of space (width).
                     </p>
@@ -281,7 +284,7 @@ export const SectionPropertyOrientationInline = ({ titleTag='h4', property = "or
                     <p>
                         You may need a <LinkResponsiveProviderPage /> to create a <strong>responsive orientation</strong> based on <em>overflow detection</em>.
                     </p>
-                </Warning>
+                </Warning>}
             </>
         } />
     );

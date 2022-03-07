@@ -14,7 +14,7 @@ import { TypeScriptCode } from '../../../components/Code'
 import { Tips } from '../../../components/Info'
 
 import Label from '@nodestrap/label'
-import Collapse, { CollapseProps } from '@nodestrap/collapse'
+import Collapse, { OrientationName } from '@nodestrap/collapse'
 import Button from '@nodestrap/button'
 import Basic from '@nodestrap/basic'
 import SelectPopupPlacement from '../../../components/SelectPopupPlacement';
@@ -25,6 +25,9 @@ import {
     SectionPropertyNude,
     SectionPropertyGradient,
     SectionPropertyOutlined,
+    SectionPropertyOrientation,
+    SectionPropertyOrientationBlock,
+    SectionPropertyOrientationInline,
 } from '../../../components/common@Basic'
 import {
     SectionPropertyMild,
@@ -78,7 +81,10 @@ const OverlayCollapsePreview = ({ overlay = true }: OverlayCollapsePreviewProps)
                     Hello everyone!
                 </p>
                 <p>
-                    This is an awesome message! It supports <strong>any HTML</strong> tags.
+                    This is an awesome message!
+                </p>
+                <p>
+                    It supports <strong>any HTML</strong> tags.
                 </p>
             </Collapse>
             <p>
@@ -297,11 +303,44 @@ const CollapseAutoShift = () => {
     )
 };
 
+interface CollapseOrientationProps {
+    orientation : OrientationName
+}
+const CollapseOrientation = ({ orientation }: CollapseOrientationProps) => {
+    const [containerRef, isActiveFlip] = useFlipFlop({ defaultState: true });
+    
+    
+    
+    return (
+        <Preview
+            elmRef={containerRef}
+            blockDisplay={true}
+            preventShift={true}
+        >{(isLoaded) => <>
+            <Collapse
+                orientation={orientation}
+                active={isLoaded ? isActiveFlip : true}
+                theme='success'
+            >
+                <p style={{ whiteSpace: 'nowrap' }}>
+                    Hello everyone!
+                </p>
+                <p style={{ whiteSpace: 'nowrap' }}>
+                    This is an awesome message!
+                </p>
+                <p style={{ whiteSpace: 'nowrap' }}>
+                    It supports <strong>any HTML</strong> tags.
+                </p>
+            </Collapse>
+        </>}</Preview>
+    )
+};
+
 
 
 const Page: NextPage = () => {
     return (
-        <ComponentInfoProvider packageName='@nodestrap/collapse' component={<LinkCollapsePage />} bases={[<LinkPopupPage key={0} />, <LinkContentPage key={1} />]}>
+        <ComponentInfoProvider packageName='@nodestrap/collapse' component={<LinkCollapsePage />} bases={<LinkPopupPage />}>
             <Head>
                 <title>&lt;Collapse&gt; Component</title>
                 <meta name="description" content="Using <Collapse> component" />
@@ -310,6 +349,9 @@ const Page: NextPage = () => {
             <SectionIntro>
                 <p>
                     Dynamically <strong>shows</strong> and <strong>hides</strong> a content by sliding animation either vertically or horizontally, depending on the orientation.
+                </p>
+                <p>
+                    Similar to <CurrentBaseComponents /> but <em>aware</em> of its orientation for the sliding direction.
                 </p>
                 <p>
                     Here the preview:
@@ -589,6 +631,50 @@ const Page: NextPage = () => {
                         ).join('')}
                     </TypeScriptCode>
                 </SectionPropertyMild>
+                <SectionPropertyOrientation>
+                    <SectionPropertyOrientationBlock>
+                        <CollapseOrientation orientation='block' />
+                        <p></p>
+                        <TypeScriptCode>{`
+<Collapse
+    orientation='block'
+    active={true}
+    theme='primary'
+>
+    <p style={{ whiteSpace: 'nowrap' }}>
+        Hello everyone!
+    </p>
+    <p style={{ whiteSpace: 'nowrap' }}>
+        This is an awesome message!
+    </p>
+    <p style={{ whiteSpace: 'nowrap' }}>
+        It supports <strong>any HTML</strong> tags.
+    </p>
+</Collapse>
+                        `}</TypeScriptCode>
+                    </SectionPropertyOrientationBlock>
+                    <SectionPropertyOrientationInline overflowWarning={false}>
+                        <CollapseOrientation orientation='inline' />
+                        <p></p>
+                        <TypeScriptCode>{`
+<Collapse
+    orientation='inline'
+    active={true}
+    theme='primary'
+>
+    <p style={{ whiteSpace: 'nowrap' }}>
+        Hello everyone!
+    </p>
+    <p style={{ whiteSpace: 'nowrap' }}>
+        This is an awesome message!
+    </p>
+    <p style={{ whiteSpace: 'nowrap' }}>
+        It supports <strong>any HTML</strong> tags.
+    </p>
+</Collapse>
+                        `}</TypeScriptCode>
+                    </SectionPropertyOrientationInline>
+                </SectionPropertyOrientation>
             </SectionVariants>
             <SectionStates>
                 <SectionPropertyActive>
@@ -643,15 +729,45 @@ const Page: NextPage = () => {
             <SectionPropertyLazy />
             <SectionCustomizing specList={
                 <SpecList>
-                    <DetailSpecItem title='Spacings'>
+                    <DetailSpecItem title='Animations'>
                         <SubSpecList>
                             <SimpleSpecItem>
-                                <code>gapInline</code>
-                                <p>The default horizontal spacing between <CurrentComponent />&apos;s items.</p>
+                                <code>filterActive</code>
+                                <p>A <code>filter</code> to apply when <code>{`active={true}`}</code>.</p>
+                            </SimpleSpecItem>
+                            
+                            <SimpleSpecItem>
+                                <code>@keyframes active</code>
+                                <p>A default keyframes name represents <em>showing keyframes</em>, transition from <code>{`active={false}`}</code> to <code>{`active={true}`}</code>.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
-                                <code>gapBlock</code>
-                                <p>The default vertical spacing between <CurrentComponent />&apos;s items.</p>
+                                <code>@keyframes passive</code>
+                                <p>A default keyframes name represents <em>hiding keyframes</em>, transition from <code>{`active={true}`}</code> to <code>{`active={false}`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>animActive</code>
+                                <p>A default animation represents <em>showing animation</em>, transition from <code>{`active={false}`}</code> to <code>{`active={true}`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>animPassive</code>
+                                <p>A default animation represents <em>hiding animation</em>, transition from <code>{`active={true}`}</code> to <code>{`active={false}`}</code>.</p>
+                            </SimpleSpecItem>
+                            
+                            <SimpleSpecItem>
+                                <code>@keyframes activeInline</code>
+                                <p>A keyframes name represents <em>showing keyframes</em> when <code>{`orientation='inline'`}</code>, transition from <code>{`active={false}`}</code> to <code>{`active={true}`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>@keyframes passiveInline</code>
+                                <p>A keyframes name represents <em>hiding keyframes</em> when <code>{`orientation='inline'`}</code>, transition from <code>{`active={true}`}</code> to <code>{`active={false}`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>animActiveInline</code>
+                                <p>An animation represents <em>showing animation</em> when <code>{`orientation='inline'`}</code>, transition from <code>{`active={false}`}</code> to <code>{`active={true}`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>animPassiveInline</code>
+                                <p>An animation represents <em>hiding animation</em> when <code>{`orientation='inline'`}</code>, transition from <code>{`active={true}`}</code> to <code>{`active={false}`}</code>.</p>
                             </SimpleSpecItem>
                         </SubSpecList>
                     </DetailSpecItem>
@@ -661,18 +777,18 @@ const Page: NextPage = () => {
                 <SectionOverridingDefaults>{`
 import { Collapse } from '@nodestrap/collapse'
 
-export default function ErrorMessage(props) {
+export default function PopupLoginForm(props) {
     return (
         <Collapse
             {...props} // preserves other properties
 
-            semanticRole={props.semanticRole ?? 'status'} // override default value of semanticRole to 'status'
-            semantictag={props.semanticTag ?? 'span'}     // override default value of semanticTag  to 'span'
+            semanticRole={props.semanticRole ?? 'form'} // override default value of semanticRole to 'form'
+            semantictag={props.semanticTag ?? 'form'}   // override default value of semanticTag  to 'form'
             
-            theme={props.theme ?? 'danger'} // override default value of theme to 'danger'
-            mild={props.mild ?? true}       // override default value of mild  to true
+            theme={props.theme ?? 'primary'} // override default value of theme to 'primary'
+            mild={props.mild ?? false}       // override default value of mild  to false
         >
-            { props.children ?? 'error' }
+            { props.children }
         </Collapse>
     );
 }
@@ -688,15 +804,13 @@ export default function ErrorMessage(props) {
                         <DetailSpecItem code='usesCollapseVariants()'>
                             <p>
                                 Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentComponent /> such as:<br />
-                                <code>SizeVariant</code> and <strong>all variants</strong> inherited from <CurrentBaseComponents />.
+                                <code>SizeVariant</code>, <code>OrientationVariant</code>, and <strong>all variants</strong> inherited from <CurrentBaseComponents />.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesCollapseStates()'>
                             <p>
-                                Returns a <code>Rule</code> object represents the <strong>states</strong> of <CurrentComponent />.
-                            </p>
-                            <p>
-                                Currently the states are equivalent to <CurrentDominantBaseComponent />&apos;s states.
+                                Returns a <code>Rule</code> object represents the <strong>states</strong> of <CurrentComponent /> such as:<br />
+                                <strong>active</strong>/<strong>passive</strong> and <strong>all states</strong> inherited from <CurrentBaseComponents />.
                             </p>
                         </DetailSpecItem>
                     </SpecList>
@@ -707,7 +821,7 @@ import { isActive } from '@nodestrap/indicator'
 import { Collapse, usesCollapseLayout, usesCollapseVariants, usesCollapseStates } from '@nodestrap/collapse'
 
 
-const useErrorMessageSheet = createUseSheet(() => [
+const usePopupLoginFormSheet = createUseSheet(() => [
     mainComposition(
         imports([
             // import some stuff from <Collapse>:
@@ -717,7 +831,7 @@ const useErrorMessageSheet = createUseSheet(() => [
         ]),
         style({
             // then overwrite with your style:
-            display : 'inline-block',
+            display : 'grid',
             margin  : '1em',
             /* ... */
             
@@ -738,7 +852,7 @@ const useErrorMessageSheet = createUseSheet(() => [
             ...states([
                 isActive({
                     // define the style at 'being/fully active' state:
-                    background-color: 'red',
+                    border-color: 'red',
                     /* ... */
                 }),
                 /* ... */
@@ -749,8 +863,8 @@ const useErrorMessageSheet = createUseSheet(() => [
     ),
 ]);
 
-export default function ErrorMessage(props) {
-    const sheet = useErrorMessageSheet();
+export default function PopupLoginForm(props) {
+    const sheet = usePopupLoginFormSheet();
     return (
         <Collapse {...props} mainClass={sheet.main}>
             { props.children }
