@@ -250,7 +250,7 @@ export const SectionPropertyOrientationBlock = ({ titleTag='h4', property = "ori
             ??
             <>
                 <p>
-                    To make <CurrentNestedComponent />{hasNestedComponent && 's'} stacked in <strong>vertical</strong>, set <code>{`<${componentName} orientation='block'>`}</code>.
+                    To make <CurrentNestedComponent />{hasNestedComponent && 's'} faced in <strong>vertical</strong>, set <code>{`<${componentName} orientation='block'>`}</code>.
                 </p>
                 {defaultValue && <ParagraphDefaultValue property='orientation' />}
             </>
@@ -271,7 +271,7 @@ export const SectionPropertyOrientationInline = ({ titleTag='h4', property = "or
             ??
             <>
                 <p>
-                    To make <CurrentNestedComponent />{hasNestedComponent && 's'} stacked in <strong>vertical</strong>, set <code>{`<${componentName} orientation='inline'>`}</code>.
+                    To make <CurrentNestedComponent />{hasNestedComponent && 's'} faced in <strong>vertical</strong>, set <code>{`<${componentName} orientation='inline'>`}</code>.
                 </p>
                 {defaultValue && <ParagraphDefaultValue property='orientation' />}
                 {overflowWarning && <Warning>
@@ -300,7 +300,7 @@ export const SectionPropertyOrientationResponsive = ({ titleTag='h4', property =
             ??
             <>
                 <p>
-                    To make <CurrentNestedComponent />{hasNestedComponent && 's'} stacked in <strong>horizontal</strong> (if the page is wide enough) -or- stacked in <strong>vertical</strong> (if the page is too narrow),
+                    To make <CurrentNestedComponent />{hasNestedComponent && 's'} faced in <strong>horizontal</strong> (if the page is wide enough) -or- faced in <strong>vertical</strong> (if the page is too narrow),
                     do this trick!
                 </p>
                 <p>
