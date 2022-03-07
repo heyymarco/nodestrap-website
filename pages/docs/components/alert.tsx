@@ -9,7 +9,7 @@ import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
 import GenericSection, { Section } from '../../../components/Section'
-import { SectionInheritedProps, LinkAlertPage, LinkPopupPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents } from '../../../components/common'
+import { SectionInheritedProps, LinkAlertPage, LinkPopupPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkContentPage, CurrentDominantBaseComponent } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 import { Tips } from '../../../components/Info'
 
@@ -131,7 +131,7 @@ const AlertPlacementPreview = () => {
             </Label>
             <Alert
                 active={true}
-                theme='warning'
+                theme='success'
                 size='sm'
                 icon={null}
                 control={null}
@@ -328,7 +328,7 @@ const AlertAutoShift = () => {
 
 const Page: NextPage = () => {
     return (
-        <ComponentInfoProvider packageName='@nodestrap/alert' component={<LinkAlertPage />} bases={<LinkPopupPage />}>
+        <ComponentInfoProvider packageName='@nodestrap/alert' component={<LinkAlertPage />} bases={[<LinkPopupPage key={0} />, <LinkContentPage key={1} />]}>
             <Head>
                 <title>&lt;Alert&gt; Component</title>
                 <meta name="description" content="Using <Alert> component" />
@@ -674,51 +674,11 @@ const Page: NextPage = () => {
                         <SubSpecList>
                             <SimpleSpecItem>
                                 <code>paddingInline</code>
-                                <p>The default inner spacing on the left &amp; right.</p>
+                                <p>The default horizontal spacing between <CurrentComponent />&apos;s items.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>paddingBlock</code>
-                                <p>The default inner spacing on the top &amp; bottom.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>paddingInlineSm</code>
-                                <p>The inner spacing on the left &amp; right when <code>{`size='sm'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>paddingBlockSm</code>
-                                <p>The inner spacing on the top &amp; bottom when <code>{`size='sm'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>paddingInlineLg</code>
-                                <p>The inner spacing on the left &amp; right when <code>{`size='lg'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>paddingBlockLg</code>
-                                <p>The inner spacing on the top &amp; bottom when <code>{`size='lg'`}</code>.</p>
-                            </SimpleSpecItem>
-                        </SubSpecList>
-                    </DetailSpecItem>
-                    <DetailSpecItem title='Typos'>
-                        <SubSpecList>
-                            <SimpleSpecItem>
-                                <code>whiteSpace</code>
-                                <p>Defines how a <strong>white space</strong> inside <CurrentComponent /> is handled.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>fontSize</code>
-                                <p>The default text size.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>fontSizeSm</code>
-                                <p>The text size when <code>{`size='sm'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>fontSizeLg</code>
-                                <p>The text size when <code>{`size='lg'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>fontWeight</code>
-                                <p>The text thickness.</p>
+                                <p>The default vertical spacing between <CurrentComponent />&apos;s items.</p>
                             </SimpleSpecItem>
                         </SubSpecList>
                     </DetailSpecItem>
@@ -728,7 +688,7 @@ const Page: NextPage = () => {
                 <SectionOverridingDefaults>{`
 import { Alert } from '@nodestrap/alert'
 
-export default function ErrorMark(props) {
+export default function ErrorMessage(props) {
     return (
         <Alert
             {...props} // preserves other properties
@@ -737,7 +697,7 @@ export default function ErrorMark(props) {
             semantictag={props.semanticTag ?? 'span'}     // override default value of semanticTag  to 'span'
             
             theme={props.theme ?? 'danger'} // override default value of theme to 'danger'
-            mild={props.mild ?? false}      // override default value of mild  to false
+            mild={props.mild ?? true}       // override default value of mild  to true
         >
             { props.children ?? 'error' }
         </Alert>
@@ -755,7 +715,7 @@ export default function ErrorMark(props) {
                         <DetailSpecItem code='usesAlertVariants()'>
                             <p>
                                 Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentComponent /> such as:<br />
-                                <code>SizeVariant</code>, <code>AlertVariant</code>, and <strong>all variants</strong> inherited from <CurrentBaseComponents />.
+                                <code>SizeVariant</code> and <strong>all variants</strong> inherited from <CurrentBaseComponents />.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesAlertStates()'>
@@ -763,7 +723,7 @@ export default function ErrorMark(props) {
                                 Returns a <code>Rule</code> object represents the <strong>states</strong> of <CurrentComponent />.
                             </p>
                             <p>
-                                Currently the states are equivalent to <CurrentBaseComponents />&apos;s states.
+                                Currently the states are equivalent to <CurrentDominantBaseComponent />&apos;s states.
                             </p>
                         </DetailSpecItem>
                     </SpecList>
@@ -774,7 +734,7 @@ import { isActive } from '@nodestrap/indicator'
 import { Alert, usesAlertLayout, usesAlertVariants, usesAlertStates } from '@nodestrap/alert'
 
 
-const useErrorMarkSheet = createUseSheet(() => [
+const useErrorMessageSheet = createUseSheet(() => [
     mainComposition(
         imports([
             // import some stuff from <Alert>:
@@ -816,8 +776,8 @@ const useErrorMarkSheet = createUseSheet(() => [
     ),
 ]);
 
-export default function ErrorMark(props) {
-    const sheet = useErrorMarkSheet();
+export default function ErrorMessage(props) {
+    const sheet = useErrorMessageSheet();
     return (
         <Alert {...props} mainClass={sheet.main}>
             { props.children }

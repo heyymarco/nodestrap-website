@@ -275,6 +275,11 @@ export const CurrentBaseComponents = () => {
 
     return <>{ <CommaSeparated components={bases} /> }</>;
 }
+export const CurrentDominantBaseComponent = () => {
+    const { bases } = useComponentInfo();
+
+    return <>{ <CommaSeparated components={Array.isArray(bases) ? bases?.[0] : bases} /> }</>;
+}
 export const CurrentPackageName = () => {
     const { packageName } = useComponentInfo();
 
