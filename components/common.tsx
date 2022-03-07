@@ -131,11 +131,12 @@ export const LinkCardPage                   = (props: PageLinkProps) => <LinkCod
 
 export const LinkPopupPage                  = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/popup'>Popup</LinkCode>
 export const LinkBadgePage                  = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/badge'>Badge</LinkCode>
-export const LinkBusyPage                  = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/busy'>Busy</LinkCode>
+export const LinkBusyPage                   = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/busy'>Busy</LinkCode>
 
 export const LinkAlertPage                  = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/alert'>Alert</LinkCode>
 export const LinkTooltipPage                = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/tooltip'>Tooltip</LinkCode>
 
+export const LinkCollapsePage               = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/collapse'>Collapse</LinkCode>
 export const LinkDropdownListPage           = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/dropdown-list'>DropdownList</LinkCode>
 export const LinkDropdownListButtonPage     = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/dropdown-list-button'>DropdownListButton</LinkCode>
 
