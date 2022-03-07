@@ -308,13 +308,13 @@ const AlertAutoShift = () => {
 const AlertWithOnActiveChange = () => {
     const [alertActive, setAlertActive] = useState(true);
     
-    // re-show the <Alert> after 3 seconds:
+    // re-show the <Alert> after 2 seconds:
     useEffect(() => {
         // conditions:
         if (alertActive) return;
         
         // setups:
-        const timerHandler = setTimeout(() => setAlertActive(true), 3000);
+        const timerHandler = setTimeout(() => setAlertActive(true), 2000);
         
         // cleanups:
         return () => {
@@ -655,7 +655,7 @@ const Page: NextPage = () => {
 </Alert>
                     `}</TypeScriptCode>
                     <SectionPropertyOnActiveChange>
-                        <Preview>
+                        <Preview preventShift={true}>
                             <AlertWithOnActiveChange />
                         </Preview>
                         <p></p>
@@ -663,13 +663,13 @@ const Page: NextPage = () => {
 export default function App() {
     const [alertActive, setAlertActive] = useState(true);
     
-    // re-show the <Alert> after 3 seconds:
+    // re-show the <Alert> after 2 seconds:
     useEffect(() => {
         // conditions:
         if (alertActive) return;
         
         // setups:
-        const timerHandler = setTimeout(() => setAlertActive(true), 3000);
+        const timerHandler = setTimeout(() => setAlertActive(true), 2000);
         
         // cleanups:
         return () => {
