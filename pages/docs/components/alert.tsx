@@ -9,7 +9,7 @@ import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
 import GenericSection, { Section } from '../../../components/Section'
-import { SectionInheritedProps, LinkAlertPage, LinkPopupPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkContentPage, CurrentDominantBaseComponent, SectionCustomizingUi } from '../../../components/common'
+import { SectionInheritedProps, LinkAlertPage, LinkPopupPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkContentPage, CurrentDominantBaseComponent, SectionCustomizingUi, SectionConfigureDependsOnIcon } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 import { Tips } from '../../../components/Info'
 
@@ -360,6 +360,7 @@ const Page: NextPage = () => {
             <SectionDemo>
                 <DemoAlertLazy fallback={<BusyBar />} />
             </SectionDemo>
+            <SectionConfigureDependsOnIcon />
             <Section title={<>Overlaying <CurrentComponent /></>}>
                 <p>
                     By default the <CurrentComponent /> flows as a normal document element, thus
