@@ -9,7 +9,7 @@ import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
 import GenericSection, { Section } from '../../../components/Section'
-import { SectionInheritedProps, LinkAlertPage, LinkPopupPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkContentPage, CurrentDominantBaseComponent } from '../../../components/common'
+import { SectionInheritedProps, LinkAlertPage, LinkPopupPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkContentPage, CurrentDominantBaseComponent, SectionCustomizingUi } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 import { Tips } from '../../../components/Info'
 
@@ -44,6 +44,9 @@ import {
 } from '../../../components/common@Popup'
 import {
     SectionPropertyOnActiveChange,
+    
+    SectionPropertyIcon,
+    SectionPropertyControl,
 } from '../../../components/common@Alert'
 
 import loadable from '@loadable/component'
@@ -439,7 +442,7 @@ const Page: NextPage = () => {
             <SectionInheritedProps />
             <SectionVariants>
                 <SectionPropertyTheme>
-                    <Preview stretch={false}>
+                    <Preview>
                         {themeNames.map((themeName, index) =>
                             <Alert
                                 theme={themeName}
@@ -469,7 +472,7 @@ const Page: NextPage = () => {
                     </TypeScriptCode>
                 </SectionPropertyTheme>
                 <SectionPropertySize>
-                    <Preview stretch={false}>
+                    <Preview>
                         <Alert
                             size='sm'
                             active={true}
@@ -532,7 +535,7 @@ const Page: NextPage = () => {
                     `}</TypeScriptCode>
                 </SectionPropertySize>
                 <SectionPropertyNude>
-                    <TransparentPreview stretch={false}>
+                    <TransparentPreview>
                         <Alert
                             nude={true}
                             active={true}
@@ -557,7 +560,7 @@ const Page: NextPage = () => {
                     `}</TypeScriptCode>
                 </SectionPropertyNude>
                 <SectionPropertyGradient>
-                    <Preview stretch={false}>
+                    <Preview>
                         {themeNames.map((themeName, index) =>
                             <Alert
                                 gradient={true}
@@ -589,7 +592,7 @@ const Page: NextPage = () => {
                     </TypeScriptCode>
                 </SectionPropertyGradient>
                 <SectionPropertyOutlined>
-                    <TransparentPreview stretch={false}>
+                    <TransparentPreview>
                         {themeNames.map((themeName, index) =>
                             <Alert
                                 outlined={true}
@@ -621,7 +624,7 @@ const Page: NextPage = () => {
                     </TypeScriptCode>
                 </SectionPropertyOutlined>
                 <SectionPropertyMild>
-                    <Preview stretch={false}>
+                    <Preview>
                         {themeNames.map((themeName, index) =>
                             <Alert
                                 mild={false}
@@ -655,7 +658,7 @@ const Page: NextPage = () => {
             </SectionVariants>
             <SectionStates>
                 <SectionPropertyActive>
-                    <Preview stretch={false}>
+                    <Preview>
                         <Alert
                             active={true}
                             theme='primary'
@@ -677,7 +680,7 @@ const Page: NextPage = () => {
 </Alert>
                     `}</TypeScriptCode>
                     <SectionPropertyOnActiveChange>
-                        <Preview stretch={false}>
+                        <Preview>
                             <AlertWithOnActiveChange />
                         </Preview>
                         <p></p>
@@ -718,7 +721,7 @@ export default function App() {
                     </SectionPropertyOnActiveChange>
                 </SectionPropertyActive>
                 <SectionPropertyEnabled>
-                    <Preview stretch={false}>
+                    <Preview>
                         <Alert
                             enabled={false}
                             active={true}
@@ -744,6 +747,58 @@ export default function App() {
                 </SectionPropertyEnabled>
             </SectionStates>
             <SectionPropertyLazy />
+            <SectionCustomizingUi>
+                <SectionPropertyIcon>
+                    <Preview>
+                        <Alert
+                            icon={<Label theme='primary' mild={false}>Awesome!</Label>}
+                            active={true}
+                            theme='primary'
+                        >
+                            <p>
+                                Hello world!
+                            </p>
+                        </Alert>
+                    </Preview>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Alert
+    icon={<Label theme='primary' mild={false}>Awesome!</Label>}
+    active={true}
+    theme='primary'
+>
+    <p>
+        Hello world!
+    </p>
+</Alert>
+                    `}</TypeScriptCode>
+                </SectionPropertyIcon>
+                <SectionPropertyControl>
+                    <Preview>
+                        <Alert
+                            control={<Button theme='danger'>Close</Button>}
+                            active={true}
+                            theme='primary'
+                        >
+                            <p>
+                                Hello world!
+                            </p>
+                        </Alert>
+                    </Preview>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Alert
+    control={<Button theme='danger'>Close</Button>}
+    active={true}
+    theme='primary'
+>
+    <p>
+        Hello world!
+    </p>
+</Alert>
+                    `}</TypeScriptCode>
+                </SectionPropertyControl>
+            </SectionCustomizingUi>
             <SectionCustomizing specList={
                 <SpecList>
                     <DetailSpecItem title='Spacings'>

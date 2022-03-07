@@ -545,6 +545,18 @@ export const SectionSubPropertyOrientation = ({ property = 'orientation', childr
 
 
 
+export const SectionCustomizingUi = ({ title = <>Customizing <CurrentComponent />&apos;s UI</>, children, ...restProps }: SectionProps) => {
+    return (
+        <Section {...restProps} title={title}>
+            <p>
+                There&apos;re some properties for <strong>customizing the default UI</strong>.
+            </p>
+            
+            { children }
+        </Section>
+    );
+}
+
 export interface SectionCustomizingProps extends SectionProps {
     specList    : SpecList
 }
