@@ -779,11 +779,11 @@ export default function App() {
                     <DetailSpecItem title='Spacings'>
                         <SubSpecList>
                             <SimpleSpecItem>
-                                <code>paddingInline</code>
+                                <code>gapInline</code>
                                 <p>The default horizontal spacing between <CurrentComponent />&apos;s items.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
-                                <code>paddingBlock</code>
+                                <code>gapBlock</code>
                                 <p>The default vertical spacing between <CurrentComponent />&apos;s items.</p>
                             </SimpleSpecItem>
                         </SubSpecList>
