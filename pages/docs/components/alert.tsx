@@ -42,6 +42,9 @@ import {
     
     SectionPropertyLazy,
 } from '../../../components/common@Popup'
+import {
+    SectionPropertyOnActiveChange,
+} from '../../../components/common@Alert'
 
 import loadable from '@loadable/component'
 const DemoAlertLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Alert' */'../../../components/DemoPanel@Alert'))
@@ -323,6 +326,39 @@ const AlertAutoShift = () => {
         </Preview>
     )
 };
+
+const AlertWithOnActiveChange = () => {
+    const [alertActive, setAlertActive] = useState(true);
+    
+    // re-show the <Alert> after 3 seconds:
+    useEffect(() => {
+        // conditions:
+        if (alertActive) return;
+        
+        // setups:
+        const timerHandler = setTimeout(() => setAlertActive(true), 3000);
+        
+        // cleanups:
+        return () => {
+            clearTimeout(timerHandler);
+        };
+    }, [alertActive]);
+    
+    return (
+        <Alert
+            active={alertActive}
+            onActiveChange={() => setAlertActive(false)}
+            theme='primary'
+        >
+            <p>
+                Hello world!
+            </p>
+            <p>
+                Click the close button [x] to dismiss this message.
+            </p>
+        </Alert>
+    );
+}
 
 
 
@@ -640,6 +676,46 @@ const Page: NextPage = () => {
     </p>
 </Alert>
                     `}</TypeScriptCode>
+                    <SectionPropertyOnActiveChange>
+                        <Preview stretch={false}>
+                            <AlertWithOnActiveChange />
+                        </Preview>
+                        <p></p>
+                        <TypeScriptCode>{`
+export default function App() {
+    const [alertActive, setAlertActive] = useState(true);
+    
+    // re-show the <Alert> after 3 seconds:
+    useEffect(() => {
+        // conditions:
+        if (alertActive) return;
+        
+        // setups:
+        const timerHandler = setTimeout(() => setAlertActive(true), 3000);
+        
+        // cleanups:
+        return () => {
+            clearTimeout(timerHandler);
+        };
+    }, [alertActive]);    
+    
+    return (
+        <Alert
+            active={alertActive}
+            onActiveChange={() => setAlertActive(false)}
+            theme='primary'
+        >
+            <p>
+                Hello world!
+            </p>
+            <p>
+                Click the close button [x] to dismiss this message.
+            </p>
+        </Alert>
+    );
+}
+                        `}</TypeScriptCode>
+                    </SectionPropertyOnActiveChange>
                 </SectionPropertyActive>
                 <SectionPropertyEnabled>
                     <Preview stretch={false}>
