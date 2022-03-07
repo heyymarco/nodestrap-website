@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 import type { NextPage } from 'next'
 import Head from 'next/head'
@@ -58,62 +58,19 @@ interface OverlayBadgePreviewProps {
     overlay ?: boolean
 }
 const OverlayBadgePreview = ({ overlay = true }: OverlayBadgePreviewProps) => {
-    const prevListMini = useRef<boolean>(false);
-    const [isListMini, setIsListMini] = useState<boolean>(prevListMini.current);
-    const { width: mediaWidth } = useWindowSize();
-    useEffect(() => {
-        setIsListMini(
-            !!mediaWidth
-            &&
-            !!breakpoints.sm
-            &&
-            (mediaWidth <= breakpoints.sm)
-        );
-    }, [mediaWidth]);
-    useEffect(() => {
-        if (prevListMini.current === isListMini) return;
-        
-        
-        
-        prevListMini.current = isListMini;
-        setLoaded(false);
-    }, [isListMini]);
-    
-    
-    
     const [containerRef, isActiveFlip] = useFlipFlop({ defaultState: true });
     const menuRef = useRef<HTMLElement>(null);
-    const [isLoaded, setLoaded] = useState<boolean>(false);
-    const isActive = isLoaded ? isActiveFlip : true;
-    useEffect(() => {
-        if (isLoaded) return;
-        
-        
-        
-        const container = containerRef.current as HTMLElement|null;
-        if (container) {
-            if (!overlay) {
-                container.style.boxSizing = '';
-                container.style.height = '';
-                
-                if (isListMini) {
-                    setLoaded(false);
-                    setTimeout(() => {
-                        container.style.boxSizing = 'border-box';
-                        container.style.height = `${container.offsetHeight + 5}px`;
-                        setLoaded(true);
-                    }, 0);
-                }
-                else {
-                    setLoaded(true);
-                } // if
-            }
-            else {
-                setLoaded(true);
-            } // if
-            container.style.overflow = 'hidden';
-        } // if
-    }, [isLoaded, overlay]);
+    
+    
+    
+    const { width: mediaWidth } = useWindowSize();
+    const isListMini = (
+        !!mediaWidth
+        &&
+        !!breakpoints.sm
+        &&
+        (mediaWidth <= breakpoints.sm)
+    );
     
     
     
@@ -121,7 +78,8 @@ const OverlayBadgePreview = ({ overlay = true }: OverlayBadgePreviewProps) => {
         <Preview
             elmRef={containerRef}
             blockDisplay={true}
-        >
+            preventShift={!overlay}
+        >{(isLoaded) => <>
             <List
                 theme='primary'
                 mild={false}
@@ -141,7 +99,7 @@ const OverlayBadgePreview = ({ overlay = true }: OverlayBadgePreviewProps) => {
                 </ListItem>
             </List>
             <Badge
-                active={isActive}
+                active={isLoaded ? isActiveFlip : true}
                 theme='danger'
                 
                 targetRef={overlay ? menuRef : undefined}
@@ -154,7 +112,7 @@ const OverlayBadgePreview = ({ overlay = true }: OverlayBadgePreviewProps) => {
             <Button tag='div' theme='secondary' style={{ [`margin${isListMini ? 'Block' : 'Inline'}Start`]: '2rem', display: (isListMini ? 'flex' : undefined) }}>
                 Logout
             </Button>
-        </Preview>
+        </>}</Preview>
     )
 };
 

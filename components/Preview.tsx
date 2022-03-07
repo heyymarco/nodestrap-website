@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 // cssfn:
 import {
@@ -24,10 +24,16 @@ import {
     // hooks:
     createUseSheet,
 }                           from '@cssfn/react-cssfn' // cssfn for react
+
+import {
+    // utilities:
+    setRef,
+}                           from '@nodestrap/utilities'
 import colors from '@nodestrap/colors'
 import spacers from '@nodestrap/spacers'
 
 import { Card, CardProps } from '@nodestrap/card';
+import { useWindowSize } from '@nodestrap/dimensions';
 
 
 
@@ -79,30 +85,80 @@ export const usePreviewSheet = createUseSheet(() => [
 export interface PreviewProps extends CardProps {
     blockDisplay ?: boolean
     stretch      ?: boolean
+    preventShift ?: boolean
+    
+    children     ?: React.ReactNode | ((isLoaded: boolean) => React.ReactNode)
 }
-export const Preview = (props: PreviewProps) => {
+export const Preview = ({blockDisplay = false, stretch = true, preventShift = false, children, ...restProps}: PreviewProps) => {
+    const cardRef = useRef<HTMLElement>(null);
+    const [isLoaded, setLoaded] = useState<boolean>(false);
+    useEffect(() => {
+        if (isLoaded) return;
+        
+        
+        
+        const container = cardRef.current as HTMLElement|null;
+        if (container) {
+            if (preventShift) {
+                container.style.boxSizing = '';
+                container.style.height = '';
+                
+                setLoaded(false);
+                setTimeout(() => {
+                    container.style.boxSizing = 'border-box';
+                    container.style.height = `${container.offsetHeight + 5}px`;
+                    setLoaded(true);
+                }, 0);
+            }
+            else {
+                setLoaded(true);
+            } // if
+            container.style.overflow = 'hidden';
+        } // if
+    }, [isLoaded, preventShift]);
+    
+    
+    
+    const { width: currentMediaWidth } = useWindowSize();
+    const [mediaWidth, setMediaWidth] = useState<number|null>(currentMediaWidth);
+    useEffect(() => {
+        if (mediaWidth === currentMediaWidth) return;
+        setMediaWidth(currentMediaWidth);
+        
+        
+        
+        setLoaded(false);
+    }, [mediaWidth, currentMediaWidth]);
+    
+    
+    
     const sheet = usePreviewSheet();
     
     
     
     return (
         <Card
-            {...props}
+            {...restProps}
+            
+            elmRef={(elm) => {
+                setRef(restProps.elmRef, elm);
+                setRef(cardRef, elm);
+            }}
 
-            theme={props.theme ?? 'primary'}
+            theme={restProps.theme ?? 'primary'}
             // mild={props.mild ?? false}
             
             // classes:
-            classes={[...(props.classes ?? []),
+            classes={[...(restProps.classes ?? []),
                 sheet.main,
-                (props.blockDisplay ?? false) ? 'block'   : null,
-                (props.stretch      ?? true ) ? 'stretch' : null,
+                blockDisplay ? 'block'   : null,
+                stretch      ? 'stretch' : null,
             ]}
             
             
-            header={props.header ?? 'Preview'}
+            header={restProps.header ?? 'Preview'}
         >
-            { props.children }
+            { (typeof(children) === 'function') ? children(isLoaded) : children }
         </Card>
     );
 }

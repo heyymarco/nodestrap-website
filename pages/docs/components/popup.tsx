@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 import type { NextPage } from 'next'
 import Head from 'next/head'
@@ -53,32 +53,6 @@ interface OverlayPopupPreviewProps {
 const OverlayPopupPreview = ({ overlay = true }: OverlayPopupPreviewProps) => {
     const [containerRef, isActiveFlip] = useFlipFlop({ defaultState: true });
     const buttonRef = useRef<HTMLButtonElement>(null);
-    const [isLoaded, setLoaded] = useState<boolean>(false);
-    const isActive = isLoaded ? isActiveFlip : true;
-    useEffect(() => {
-        if (isLoaded) return;
-        
-        
-        
-        const container = containerRef.current as HTMLElement|null;
-        if (container) {
-            if (!overlay) {
-                container.style.boxSizing = '';
-                container.style.height = '';
-                
-                setLoaded(false);
-                setTimeout(() => {
-                    container.style.boxSizing = 'border-box';
-                    container.style.height = `${container.offsetHeight + 5}px`;
-                    setLoaded(true);
-                }, 0);
-            }
-            else {
-                setLoaded(true);
-            } // if
-            container.style.overflow = 'hidden';
-        } // if
-    }, [isLoaded, overlay]);
     
     
     
@@ -86,22 +60,28 @@ const OverlayPopupPreview = ({ overlay = true }: OverlayPopupPreviewProps) => {
         <Preview
             elmRef={containerRef}
             blockDisplay={true}
-        >
-            <Button elmRef={buttonRef} theme='success' size='lg' enabled={!isActive} mild={isActive}>Pay now</Button>
-            <Popup
-                active={isActive}
-                theme='warning'
-                
-                targetRef={overlay ? buttonRef : undefined}
-                popupPlacement='right-start'
-                popupOffset={-32}
-                popupShift={-8}
-            >
-                Processing your payment...
-            </Popup>
-            <span> -or- </span>
-            <Button theme='secondary' size='lg' outlined={true} enabled={!isActive}>Cancel</Button>
-        </Preview>
+            preventShift={!overlay}
+        >{(isLoaded) => {
+            const isActive = isLoaded ? isActiveFlip : true;
+            return (
+                <>
+                    <Button elmRef={buttonRef} theme='success' size='lg' enabled={!isActive} mild={isActive}>Pay now</Button>
+                    <Popup
+                        active={isActive}
+                        theme='warning'
+                        
+                        targetRef={overlay ? buttonRef : undefined}
+                        popupPlacement='right-start'
+                        popupOffset={-32}
+                        popupShift={-8}
+                    >
+                        Processing your payment...
+                    </Popup>
+                    <span> -or- </span>
+                    <Button theme='secondary' size='lg' outlined={true} enabled={!isActive}>Cancel</Button>
+                </>
+            );
+        }}</Preview>
     )
 };
 

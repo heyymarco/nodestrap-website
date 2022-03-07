@@ -60,32 +60,6 @@ interface OverlayAlertPreviewProps {
 const OverlayAlertPreview = ({ overlay = true }: OverlayAlertPreviewProps) => {
     const [containerRef, isActiveFlip] = useFlipFlop({ defaultState: true });
     const paraRef = useRef<HTMLParagraphElement>(null);
-    const [isLoaded, setLoaded] = useState<boolean>(false);
-    const isActive = isLoaded ? isActiveFlip : true;
-    useEffect(() => {
-        if (isLoaded) return;
-        
-        
-        
-        const container = containerRef.current as HTMLElement|null;
-        if (container) {
-            if (!overlay) {
-                container.style.boxSizing = '';
-                container.style.height = '';
-                
-                setLoaded(false);
-                setTimeout(() => {
-                    container.style.boxSizing = 'border-box';
-                    container.style.height = `${container.offsetHeight + 5}px`;
-                    setLoaded(true);
-                }, 0);
-            }
-            else {
-                setLoaded(true);
-            } // if
-            container.style.overflow = 'hidden';
-        } // if
-    }, [isLoaded, overlay]);
     
     
     
@@ -93,12 +67,13 @@ const OverlayAlertPreview = ({ overlay = true }: OverlayAlertPreviewProps) => {
         <Preview
             elmRef={containerRef}
             blockDisplay={true}
-        >
+            preventShift={!overlay}
+        >{(isLoaded) => <>
             <Basic elmRef={paraRef} theme='secondary' mild={true} style={{ textAlign: 'center' }}>
                 A content
             </Basic>
             <Alert
-                active={isActive}
+                active={isLoaded ? isActiveFlip : true}
                 theme='success'
                 
                 targetRef={overlay ? paraRef : undefined}
@@ -121,7 +96,7 @@ const OverlayAlertPreview = ({ overlay = true }: OverlayAlertPreviewProps) => {
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium cum nulla, tenetur nisi dolorem fuga ad dicta nobis, itaque, esse repellat. Sint commodi eum quos assumenda. Voluptatem quos facere officiis.
             </p>
-        </Preview>
+        </>}</Preview>
     )
 };
 

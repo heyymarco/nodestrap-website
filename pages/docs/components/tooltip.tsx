@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 import type { NextPage } from 'next'
 import Head from 'next/head'
@@ -61,32 +61,6 @@ interface OverlayTooltipPreviewProps {
 const OverlayTooltipPreview = ({ overlay = true }: OverlayTooltipPreviewProps) => {
     const [containerRef, isActiveFlip] = useFlipFlop({ defaultState: true });
     const buttonRef = useRef<HTMLButtonElement>(null);
-    const [isLoaded, setLoaded] = useState<boolean>(false);
-    const isActive = isLoaded ? isActiveFlip : true;
-    useEffect(() => {
-        if (isLoaded) return;
-        
-        
-        
-        const container = containerRef.current as HTMLElement|null;
-        if (container) {
-            if (!overlay) {
-                container.style.boxSizing = '';
-                container.style.height = '';
-                
-                setLoaded(false);
-                setTimeout(() => {
-                    container.style.boxSizing = 'border-box';
-                    container.style.height = `${container.offsetHeight + 5}px`;
-                    setLoaded(true);
-                }, 0);
-            }
-            else {
-                setLoaded(true);
-            } // if
-            container.style.overflow = 'hidden';
-        } // if
-    }, [isLoaded, overlay]);
     
     
     
@@ -94,7 +68,8 @@ const OverlayTooltipPreview = ({ overlay = true }: OverlayTooltipPreviewProps) =
         <Preview
             elmRef={containerRef}
             blockDisplay={true}
-        >
+            preventShift={!overlay}
+        >{(isLoaded) => <>
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
             <Button
                 elmRef={buttonRef}
@@ -103,7 +78,7 @@ const OverlayTooltipPreview = ({ overlay = true }: OverlayTooltipPreviewProps) =
                 Get discount
             </Button>
             <Tooltip
-                active={isActive}
+                active={isLoaded ? isActiveFlip : true}
                 activeDelay={!isLoaded ? 0 : undefined}
                 theme='warning'
                 
@@ -117,7 +92,7 @@ const OverlayTooltipPreview = ({ overlay = true }: OverlayTooltipPreviewProps) =
             <Button tag='div' theme='secondary' style={{ [`marginInlineStart`]: '2rem' }}>
                 Logout
             </Button>
-        </Preview>
+        </>}</Preview>
     )
 };
 

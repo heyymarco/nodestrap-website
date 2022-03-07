@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 import type { NextPage } from 'next'
 import Head from 'next/head'
@@ -59,32 +59,6 @@ interface OverlayBusyPreviewProps {
 const OverlayBusyPreview = ({ overlay = true }: OverlayBusyPreviewProps) => {
     const [containerRef, isActiveFlip] = useFlipFlop({ defaultState: true });
     const buttonRef = useRef<HTMLButtonElement>(null);
-    const [isLoaded, setLoaded] = useState<boolean>(false);
-    const isActive = isLoaded ? isActiveFlip : true;
-    useEffect(() => {
-        if (isLoaded) return;
-        
-        
-        
-        const container = containerRef.current as HTMLElement|null;
-        if (container) {
-            if (!overlay) {
-                container.style.boxSizing = '';
-                container.style.height = '';
-                
-                setLoaded(false);
-                setTimeout(() => {
-                    container.style.boxSizing = 'border-box';
-                    container.style.height = `${container.offsetHeight + 5}px`;
-                    setLoaded(true);
-                }, 0);
-            }
-            else {
-                setLoaded(true);
-            } // if
-            container.style.overflow = 'hidden';
-        } // if
-    }, [isLoaded, overlay]);
     
     
     
@@ -92,26 +66,32 @@ const OverlayBusyPreview = ({ overlay = true }: OverlayBusyPreviewProps) => {
         <Preview
             elmRef={containerRef}
             blockDisplay={true}
-        >
-            <Button elmRef={buttonRef} theme='success' size='lg' enabled={!isActive} mild={isActive}>
-                Pay now
-                <Busy
-                    active={isActive}
-                    theme='success'
-                    size='lg'
-                    inheritEnabled={false}
-                    
-                    targetRef={overlay ? buttonRef : undefined}
-                    popupPlacement='right-start'
-                    popupOffset={-12}
-                    popupShift={-8}
-                    
-                    label='Processing your payment...'
-                />
-            </Button>
-            <span> -or- </span>
-            <Button theme='secondary' size='lg' outlined={true} enabled={!isActive}>Cancel</Button>
-        </Preview>
+            preventShift={!overlay}
+        >{(isLoaded) => {
+            const isActive = isLoaded ? isActiveFlip : true;
+            return (
+                <>
+                    <Button elmRef={buttonRef} theme='success' size='lg' enabled={!isActive} mild={isActive}>
+                        Pay now
+                        <Busy
+                            active={isActive}
+                            theme='success'
+                            size='lg'
+                            inheritEnabled={false}
+                            
+                            targetRef={overlay ? buttonRef : undefined}
+                            popupPlacement='right-start'
+                            popupOffset={-12}
+                            popupShift={-8}
+                            
+                            label='Processing your payment...'
+                        />
+                    </Button>
+                    <span> -or- </span>
+                    <Button theme='secondary' size='lg' outlined={true} enabled={!isActive}>Cancel</Button>
+                </>
+            );
+        }}</Preview>
     )
 };
 
