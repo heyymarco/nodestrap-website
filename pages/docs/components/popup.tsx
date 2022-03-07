@@ -301,7 +301,7 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    <CurrentComponent /> is a presentation component for dynamically <strong>showing</strong> &amp; <strong>hiding</strong> a content.
+                    Dynamically <strong>shows</strong> and <strong>hides</strong> a content.
                 </p>
                 <p>
                     Here the preview:
