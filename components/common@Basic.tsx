@@ -233,7 +233,7 @@ export const SectionPropertyOrientation = ({ propertySuffix = defaultPropertySuf
     return (
         <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property} properties={properties}>
             <p>
-                Options for how the <CurrentNestedComponent />{hasNestedComponent && 's'} {hasNestedComponent ? 'are' : 'is'} stacked.
+                Options for how the <CurrentNestedComponent />{hasNestedComponent && 's'} {hasNestedComponent ? 'are' : 'is'} faced.
             </p>
             { children }
         </SectionSubProperty>
