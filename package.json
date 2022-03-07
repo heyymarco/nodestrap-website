@@ -11,7 +11,7 @@
     "@cssfn/types": "^1.0.4",
     "@loadable/component": "^5.15.2",
     "@nodestrap/accordion": "^4.0.6",
-    "@nodestrap/alert": "^4.0.6",
+    "@nodestrap/alert": "^4.0.7",
     "@nodestrap/badge": "^4.0.7",
     "@nodestrap/basic": "^4.0.7",
     "@nodestrap/breakpoints": "^4.0.3",

@@ -350,7 +350,7 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    Displays a feedback message to the site&apos;s user.
+                    Displays a feedback message to the users.
                 </p>
                 <p>
                     Here the preview:

@@ -285,12 +285,12 @@ export const SectionPropertyLazy = ({ titleTag = 'h2', propertySuffix = true, pr
             <SpecList>
                 <DetailSpecItem code='true'>
                     <p>
-                        The <CurrentComponent />&apos;s <code>children</code> are <em>always</em> rendered.
+                        The <CurrentComponent />&apos;s <code>children</code> are rendered <em>only if</em> the <CurrentComponent /> is <strong>shown</strong>.
                     </p>
                 </DetailSpecItem>
                 <DetailSpecItem code='false'>
                     <p>
-                        The <CurrentComponent />&apos;s <code>children</code> are rendered <em>only if</em> the <CurrentComponent /> is <strong>shown</strong>.
+                        The <CurrentComponent />&apos;s <code>children</code> are <em>always</em> rendered.
                     </p>
                     <ParagraphDefaultValue property='lazy' />
                 </DetailSpecItem>
