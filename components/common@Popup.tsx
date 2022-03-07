@@ -95,13 +95,13 @@ export const SectionPropertyEnabled = ({ specList, description, ...restProps }: 
 export interface SectionPropertyTargetRefProps extends SectionPreviewPropertyProps {
     componentHasChildren ?: boolean
 }
-export const SectionPropertyTargetRef      = ({ property = 'targetRef'     , properties = 'Target Element', description, componentHasChildren = true, ...restProps }: SectionPropertyTargetRefProps) => {
+export const SectionPropertyTargetRef      = ({ propertySuffix = true, property = 'targetRef'     , properties = 'Target Element', description, componentHasChildren = true, ...restProps }: SectionPropertyTargetRefProps) => {
     const { componentName } = useComponentInfo();
     
     
     
     return (
-        <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
+        <SectionPreviewProperty {...restProps} propertySuffix={propertySuffix} property={property} properties={properties} description={
             description
             ??
             <>
@@ -175,9 +175,9 @@ export default function FooComponent() {
         } />
     );
 };
-export const SectionPropertyPopupPlacement = ({ property = 'popupPlacement', properties = 'Placements'    , description, children, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyPopupPlacement = ({ propertySuffix = true, property = 'popupPlacement', properties = 'Placements'    , description, children, ...restProps }: SectionPreviewPropertyProps) => {
     return (
-        <SectionPreviewProperty {...restProps} property={property} properties={properties} specList={children} description={
+        <SectionPreviewProperty {...restProps} propertySuffix={propertySuffix} property={property} properties={properties} specList={children} description={
             description
             ??
             <>
@@ -188,9 +188,9 @@ export const SectionPropertyPopupPlacement = ({ property = 'popupPlacement', pro
         } />
     );
 };
-export const SectionPropertyPopupOffset    = ({ property = 'popupOffset'   , properties = 'Offset'        , description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyPopupOffset    = ({ propertySuffix = true, property = 'popupOffset'   , properties = 'Offset'        , description, ...restProps }: SectionPreviewPropertyProps) => {
     return (
-        <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
+        <SectionPreviewProperty {...restProps} propertySuffix={propertySuffix} property={property} properties={properties} description={
             description
             ??
             <>
@@ -198,20 +198,20 @@ export const SectionPropertyPopupOffset    = ({ property = 'popupOffset'   , pro
                     Makes a gap between the <CurrentComponent /> and the <strong>target element</strong>.
                 </p>
                 <p>
-                    Assign <strong>positive number</strong> to make a gap.<br />
-                    Assign <strong>negative number</strong> to make the <CurrentComponent /> inset to the <strong>target element</strong>.
+                    Assign a <strong>positive number</strong> to make a gap.<br />
+                    Assign a <strong>negative number</strong> to make the <CurrentComponent /> inset to the <strong>target element</strong>.
                 </p>
                 <p>
-                    Currently, the <code>popupOffset</code> only accepts a <code>Number</code> represents the distance in <strong>pixel unit</strong>.
+                    Currently, the <code>{property}</code> only accepts a <code>Number</code> represents the distance in <strong>pixel unit</strong>.
                     In the future it may accept a <code>String</code> represents for other units.
                 </p>
             </>
         } />
     );
 };
-export const SectionPropertyPopupShift     = ({ property = 'popupShift'    , properties = 'Shift'         , description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyPopupShift     = ({ propertySuffix = true, property = 'popupShift'    , properties = 'Shift'         , description, ...restProps }: SectionPreviewPropertyProps) => {
     return (
-        <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
+        <SectionPreviewProperty {...restProps} propertySuffix={propertySuffix} property={property} properties={properties} description={
             description
             ??
             <>
@@ -219,24 +219,24 @@ export const SectionPropertyPopupShift     = ({ property = 'popupShift'    , pro
                     Adjusts the <em>cross axis location</em> of the <CurrentComponent /> relative to the <strong>target element</strong>.
                 </p>
                 <p>
-                    Assign <strong>positive number</strong> to make the location more <code>forward</code> (relative to the writing direction).<br />
-                    Assign <strong>negative number</strong> to make the location more <code>backward</code> (relative to the writing direction).
+                    Assign a <strong>positive number</strong> to make the location more <code>forward</code> (relative to the writing direction).<br />
+                    Assign a <strong>negative number</strong> to make the location more <code>backward</code> (relative to the writing direction).
                 </p>
                 <p>
-                    Currently, the <code>popupShift</code> only accepts a <code>Number</code> represents the distance in <strong>pixel unit</strong>.
+                    Currently, the <code>{property}</code> only accepts a <code>Number</code> represents the distance in <strong>pixel unit</strong>.
                     In the future it may accept a <code>String</code> represents for other units.
                 </p>
             </>
         } />
     );
 };
-export const SectionPropertyPopupAutoFlip  = ({ property = 'popupAutoFlip' , properties = 'Auto Flip'     , description, defaultValue = false, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyPopupAutoFlip  = ({ propertySuffix = true, property = 'popupAutoFlip' , properties = 'Auto Flip'     , description, defaultValue = false, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName } = useComponentInfo();
     
     
     
     return (
-        <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
+        <SectionPreviewProperty {...restProps} propertySuffix={propertySuffix} property={property} properties={properties} description={
             description
             ??
             <>
@@ -246,19 +246,19 @@ export const SectionPropertyPopupAutoFlip  = ({ property = 'popupAutoFlip' , pro
                 </p>
                 <p>
                     This property is <strong>{defaultValue ? 'enabled' : 'disabled'} by default</strong>.
-                    To {defaultValue ? 'disabled' : 'enabled'} it, assign <code>{`<${componentName} popupAutoFlip={${!defaultValue}}>`}</code>.
+                    To {defaultValue ? 'disabled' : 'enabled'} it, assign <code>{`<${componentName} ${property}={${!defaultValue}}>`}</code>.
                 </p>
             </>
         } />
     );
 };
-export const SectionPropertyPopupAutoShift = ({ property = 'popupAutoShift', properties = 'Auto Shift'    , description, defaultValue = false, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyPopupAutoShift = ({ propertySuffix = true, property = 'popupAutoShift', properties = 'Auto Shift'    , description, defaultValue = false, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName } = useComponentInfo();
     
     
     
     return (
-        <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
+        <SectionPreviewProperty {...restProps} propertySuffix={propertySuffix} property={property} properties={properties} description={
             description
             ??
             <>
@@ -268,7 +268,7 @@ export const SectionPropertyPopupAutoShift = ({ property = 'popupAutoShift', pro
                 </p>
                 <p>
                     This property is <strong>{defaultValue ? 'enabled' : 'disabled'} by default</strong>.
-                    To {defaultValue ? 'disabled' : 'enabled'} it, assign <code>{`<${componentName} popupPlacement={${!defaultValue}}>`}</code>.
+                    To {defaultValue ? 'disabled' : 'enabled'} it, assign <code>{`<${componentName} ${property}={${!defaultValue}}>`}</code>.
                 </p>
             </>
         } />

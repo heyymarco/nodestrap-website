@@ -84,7 +84,7 @@ const OverlayAlertPreview = ({ overlay = true }: OverlayAlertPreviewProps) => {
                     Hello everyone!
                 </p>
                 <p>
-                    This is awesome message! It support <strong>any HTML</strong> tags.
+                    This is an awesome message! It supports <strong>any HTML</strong> tags.
                 </p>
             </Alert>
             <p>
