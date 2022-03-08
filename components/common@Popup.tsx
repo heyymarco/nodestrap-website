@@ -106,7 +106,7 @@ export const SectionPropertyTargetRef      = ({ propertySuffix = true, property 
             ??
             <>
                 <p>
-                    Decides which the <strong>DOM element</strong> for the <CurrentComponent /> will <em>hover</em> over it.
+                    Decides which the <strong>DOM element</strong> for the <CurrentComponent /> to <em>hover</em> over it.
                 </p>
                 <p>
                     You can use <code>useRef()</code> or <code>useState()</code> to assign to the <code>{property}</code>.
@@ -134,7 +134,7 @@ export default function FooComponent() {
             <${componentName}
                 targetRef={buttonRef}
                 theme='warning'
-                popupPlacement='right'
+                popupPlacement='bottom'
                 active={true}
             ${!componentHasChildren ? '/>' : `>
                 hello world
@@ -162,7 +162,7 @@ export default function FooComponent() {
             <${componentName}
                 targetRef={buttonRef}
                 theme='warning'
-                popupPlacement='right'
+                popupPlacement='bottom'
                 active={true}
             ${!componentHasChildren ? '/>' : `>
                 hello world
