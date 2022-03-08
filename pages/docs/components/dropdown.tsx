@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import type { NextPage } from 'next'
 import Head from 'next/head'
@@ -14,8 +14,10 @@ import { TypeScriptCode } from '../../../components/Code'
 import { Tips } from '../../../components/Info'
 
 import Label from '@nodestrap/label'
-import Dropdown, { OrientationName } from '@nodestrap/dropdown'
+import Dropdown, { OrientationName, DropdownComponentProps, DropdownCloseType } from '@nodestrap/dropdown'
 import Basic from '@nodestrap/basic'
+import Button from '@nodestrap/button'
+import { TextInput, EmailInput } from '@nodestrap/input'
 import SelectPopupPlacement from '../../../components/SelectPopupPlacement';
 import {
     themeNames,
@@ -50,11 +52,46 @@ const DemoDropdownLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@D
 
 
 
+interface ExampleDropdownUiProps extends DropdownComponentProps<HTMLElement, DropdownCloseType | 'close-by-btn'> {
+}
+const ExampleDropdownUi = ({ elmRef, tabIndex = -1, onActiveChange }: ExampleDropdownUiProps) => {
+    return (
+        <Basic<HTMLElement>
+            elmRef={elmRef}
+            {...{
+                tabIndex,
+            }}
+            theme='primary'
+            mild={true}
+            style={{
+                display       : 'flex',
+                flexDirection : 'column',
+                gap           : '1rem',
+                outline       : 'none',
+            }}
+        >
+            <p style={{ whiteSpace: 'nowrap' }}>
+                Hello World
+            </p>
+            <TextInput  placeholder='John Smith'     size='sm' enableValidation={false} />
+            <EmailInput placeholder='john@smith.com' size='sm' enableValidation={false} />
+            <Button
+                theme='secondary'
+                size='sm'
+                onClick={() => onActiveChange?.(false, 'close-by-btn')}
+            >
+                Close
+            </Button>
+        </Basic>
+    );
+}
+
 interface OverlayDropdownPreviewProps {
     overlay ?: boolean
 }
 const OverlayDropdownPreview = ({ overlay = true }: OverlayDropdownPreviewProps) => {
     const [containerRef, isActiveFlip] = useFlipFlop({ defaultState: true });
+    const [flip, setFlip] = useState(false);
     const contentRef = useRef<HTMLElement>(null);
     
     
@@ -69,25 +106,26 @@ const OverlayDropdownPreview = ({ overlay = true }: OverlayDropdownPreviewProps)
                 A content
             </Basic>
             <Dropdown
-                active={isLoaded ? isActiveFlip : true}
+                active={isLoaded ? (isActiveFlip === flip) : true}
+                onActiveChange={() => {
+                    setFlip(!flip);
+                }}
                 theme='success'
                 
                 targetRef={overlay ? contentRef : undefined}
                 popupPlacement='bottom'
                 popupOffset={10}
             >
-                <p>
-                    Hello everyone!
-                </p>
-                <p>
-                    This is an awesome message!
-                </p>
-                <p>
-                    It supports <strong>any HTML</strong> tags.
-                </p>
+                <ExampleDropdownUi />
             </Dropdown>
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dolorum laborum quos magni accusamus.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium cum nulla, tenetur nisi dolorem fuga ad dicta nobis, itaque, esse repellat. Sint commodi eum quos assumenda. Voluptatem quos facere officiis.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium cum nulla, tenetur nisi dolorem fuga ad dicta nobis, itaque, esse repellat. Sint commodi eum quos assumenda. Voluptatem quos facere officiis.
             </p>
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium cum nulla, tenetur nisi dolorem fuga ad dicta nobis, itaque, esse repellat. Sint commodi eum quos assumenda. Voluptatem quos facere officiis.
@@ -111,13 +149,16 @@ const DropdownPlacementPreview = () => {
             </Label>
             <Dropdown
                 active={true}
+                nude={false}
                 theme='success'
                 size='sm'
                 
                 targetRef={contentRef}
                 popupPlacement={popupPlacement}
             >
-                {`popupPlacement='${popupPlacement}'`}
+                <p>
+                    {`popupPlacement='${popupPlacement}'`}
+                </p>
             </Dropdown>
         </div>}</SelectPopupPlacement>
     )
@@ -141,13 +182,16 @@ const DropdownOffset = () => {
             </Label>
             <Dropdown
                 active={true}
+                nude={false}
                 theme='success'
                 
                 targetRef={contentRef}
                 popupPlacement='top'
                 popupOffset={30}
             >
-                hello world!
+                <p>
+                    hello world!
+                </p>
             </Dropdown>
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -176,13 +220,16 @@ const DropdownShift = () => {
             </Label>
             <Dropdown
                 active={true}
+                nude={false}
                 theme='success'
                 
                 targetRef={contentRef}
                 popupPlacement='top'
                 popupShift={100}
             >
-                hello world!
+                <p>
+                    hello world!
+                </p>
             </Dropdown>
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -225,13 +272,16 @@ const DropdownAutoFlip = () => {
             </Label>
             <Dropdown
                 active={true}
+                nude={false}
                 theme='success'
                 
                 targetRef={contentRef}
                 popupPlacement='top'
                 popupAutoFlip={true}
             >
-                hello world!
+                <p>
+                    hello world!
+                </p>
             </Dropdown>
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -277,17 +327,20 @@ const DropdownAutoShift = () => {
             </Label>
             <Dropdown
                 active={true}
+                nude={false}
                 theme='success'
                 
                 targetRef={contentRef}
                 popupPlacement='right'
                 popupAutoShift={true}
             >
-                hello<br />
-                world<br />
-                <br />
-                hello<br />
-                everyone<br />
+                <p>
+                    hello<br />
+                    world<br />
+                    <br />
+                    hello<br />
+                    everyone<br />
+                </p>
             </Dropdown>
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -321,15 +374,7 @@ const DropdownOrientation = ({ orientation }: DropdownOrientationProps) => {
                 active={isLoaded ? isActiveFlip : true}
                 theme='success'
             >
-                <p style={{ whiteSpace: 'nowrap' }}>
-                    Hello everyone!
-                </p>
-                <p style={{ whiteSpace: 'nowrap' }}>
-                    This is an awesome message!
-                </p>
-                <p style={{ whiteSpace: 'nowrap' }}>
-                    It supports <strong>any HTML</strong> tags.
-                </p>
+                <ExampleDropdownUi />
             </Dropdown>
         </>}</Preview>
     )
@@ -427,6 +472,7 @@ const Page: NextPage = () => {
                             <Dropdown
                                 theme={themeName}
                                 active={true}
+                                nude={false}
                                 key={index}
                             >
                                 <p>
@@ -442,6 +488,7 @@ const Page: NextPage = () => {
 <Dropdown
     theme='${themeName}'
     active={true}
+    nude={false}
 >
     <p>
         A <code>{'<Dropdown>'}</code> with ${themeName} theme.
@@ -456,6 +503,7 @@ const Page: NextPage = () => {
                         <Dropdown
                             size='sm'
                             active={true}
+                            nude={false}
                             theme='primary'
                         >
                             <p>
@@ -465,6 +513,7 @@ const Page: NextPage = () => {
                         <Dropdown
                             size={undefined}
                             active={true}
+                            nude={false}
                             theme='primary'
                         >
                             <p>
@@ -474,6 +523,7 @@ const Page: NextPage = () => {
                         <Dropdown
                             size='lg'
                             active={true}
+                            nude={false}
                             theme='primary'
                         >
                             <p>
@@ -486,6 +536,7 @@ const Page: NextPage = () => {
 <Dropdown
     size='sm'
     active={true}
+    nude={false}
     theme='primary'
 >
     <p>
@@ -496,6 +547,7 @@ const Page: NextPage = () => {
 <Dropdown
     size={undefined}
     active={true}
+    nude={false}
     theme='primary'
 >
     <p>
@@ -506,6 +558,7 @@ const Page: NextPage = () => {
 <Dropdown
     size='lg'
     active={true}
+    nude={false}
     theme='primary'
 >
     <p>
@@ -545,6 +598,7 @@ const Page: NextPage = () => {
                             <Dropdown
                                 gradient={true}
                                 active={true}
+                                nude={false}
                                 theme={themeName}
                                 key={index}
                             >
@@ -561,6 +615,7 @@ const Page: NextPage = () => {
 <Dropdown
     gradient={true}
     active={true}
+    nude={false}
     theme='${themeName}'
 >
     <p>
@@ -577,6 +632,7 @@ const Page: NextPage = () => {
                             <Dropdown
                                 outlined={true}
                                 active={true}
+                                nude={false}
                                 theme={themeName}
                                 key={index}
                             >
@@ -593,6 +649,7 @@ const Page: NextPage = () => {
 <Dropdown
     outlined={true}
     active={true}
+    nude={false}
     theme='${themeName}'
 >
     <p>
@@ -609,6 +666,7 @@ const Page: NextPage = () => {
                             <Dropdown
                                 mild={false}
                                 active={true}
+                                nude={false}
                                 theme={themeName}
                                 key={index}
                             >
@@ -625,6 +683,7 @@ const Page: NextPage = () => {
 <Dropdown
     mild={false}
     active={true}
+    nude={false}
     theme='${themeName}'
 >
     <p>
@@ -645,15 +704,17 @@ const Page: NextPage = () => {
     active={true}
     theme='primary'
 >
-    <p style={{ whiteSpace: 'nowrap' }}>
-        Hello everyone!
-    </p>
-    <p style={{ whiteSpace: 'nowrap' }}>
-        This is an awesome message!
-    </p>
-    <p style={{ whiteSpace: 'nowrap' }}>
-        It supports <strong>any HTML</strong> tags.
-    </p>
+    <div>
+        <p style={{ whiteSpace: 'nowrap' }}>
+            Hello everyone!
+        </p>
+        <p style={{ whiteSpace: 'nowrap' }}>
+            This is an awesome message!
+        </p>
+        <p style={{ whiteSpace: 'nowrap' }}>
+            It supports <strong>any HTML</strong> tags.
+        </p>
+    </div>
 </Dropdown>
                         `}</TypeScriptCode>
                     </SectionPropertyOrientationBlock>
@@ -666,15 +727,17 @@ const Page: NextPage = () => {
     active={true}
     theme='primary'
 >
-    <p style={{ whiteSpace: 'nowrap' }}>
-        Hello everyone!
-    </p>
-    <p style={{ whiteSpace: 'nowrap' }}>
-        This is an awesome message!
-    </p>
-    <p style={{ whiteSpace: 'nowrap' }}>
-        It supports <strong>any HTML</strong> tags.
-    </p>
+    <div>
+        <p style={{ whiteSpace: 'nowrap' }}>
+            Hello everyone!
+        </p>
+        <p style={{ whiteSpace: 'nowrap' }}>
+            This is an awesome message!
+        </p>
+        <p style={{ whiteSpace: 'nowrap' }}>
+            It supports <strong>any HTML</strong> tags.
+        </p>
+    </div>
 </Dropdown>
                         `}</TypeScriptCode>
                     </SectionPropertyOrientationInline>

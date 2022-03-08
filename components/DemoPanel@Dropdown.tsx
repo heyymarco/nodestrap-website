@@ -10,6 +10,7 @@ import { TypeScriptCode } from './Code';
 
 
 export const dropdownInitials = {
+    nude     : false,
 };
 export type DropdownInitials = typeof dropdownInitials & Partial<CollapseInitials>
 export const useDropdownStates = (initials ?: Partial<DropdownInitials>) => {
@@ -57,14 +58,8 @@ export const DemoDropdown = () => {
                     outlined={states.outlined[0]}
                     mild={states.mild[0]}
                 >
-                    <p style={{ whiteSpace: 'nowrap' }}>
-                        Hello everyone!
-                    </p>
-                    <p style={{ whiteSpace: 'nowrap' }}>
-                        This is an awesome message!
-                    </p>
-                    <p style={{ whiteSpace: 'nowrap' }}>
-                        It supports <strong>any HTML</strong> tags.
+                    <p style={{ background: '#fafee2' }}>
+                        Hello world!
                     </p>
                 </Dropdown>
                 <TypeScriptCode collapsable={false}>{`
@@ -81,14 +76,8 @@ export const DemoDropdown = () => {
     outlined={${states.outlined[0]}}
     mild={${states.mild[0]}}
 >
-    <p style={{ whiteSpace: 'nowrap' }}>
-        Hello everyone!
-    </p>
-    <p style={{ whiteSpace: 'nowrap' }}>
-        This is an awesome message!
-    </p>
-    <p style={{ whiteSpace: 'nowrap' }}>
-        It supports <strong>any HTML</strong> tags.
+    <p style={{ background: '#fafee2' }}>
+        Hello world!
     </p>
 </Dropdown>
                 `}</TypeScriptCode>
