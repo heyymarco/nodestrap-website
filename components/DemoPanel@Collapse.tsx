@@ -4,7 +4,6 @@ import { useResetableState, Option, ResetButton } from './DemoPanel';
 import { PopupInitials, PopupOptionProps, PopupOptions, usePopupStates } from './DemoPanel@Popup';
 
 import { Collapse, OrientationName } from '@nodestrap/collapse'
-import Button from '@nodestrap/button';
 import { ThemeName } from '@nodestrap/basic';
 import { TypeScriptCode } from './Code';
 
