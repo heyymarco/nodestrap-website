@@ -385,7 +385,7 @@ const Page: NextPage = () => {
                 <SectionPropertyPopupPlacement>
                     <Tips>
                         <p>
-                            <strong>Click on the dots</strong> to place the tooltip.
+                            <strong>Click on the dots</strong> to place the <CurrentComponent />.
                             There are 12 different placements to choose from.
                         </p>
                     </Tips>
