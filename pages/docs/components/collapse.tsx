@@ -426,7 +426,7 @@ const Page: NextPage = () => {
                                 key={index}
                             >
                                 <p>
-                                    An <CurrentComponent/> with {themeName} theme.
+                                    A <CurrentComponent/> with {themeName} theme.
                                 </p>
                             </Collapse>
                         )}
@@ -440,7 +440,7 @@ const Page: NextPage = () => {
     active={true}
 >
     <p>
-        An <code>{'<Collapse>'}</code> with ${themeName} theme.
+        A <code>{'<Collapse>'}</code> with ${themeName} theme.
     </p>
 </Collapse>
 `
@@ -455,7 +455,7 @@ const Page: NextPage = () => {
                             theme='primary'
                         >
                             <p>
-                                An <CurrentComponent/> with smaller size.
+                                A <CurrentComponent/> with smaller size.
                             </p>
                         </Collapse>
                         <Collapse
@@ -464,7 +464,7 @@ const Page: NextPage = () => {
                             theme='primary'
                         >
                             <p>
-                                An <CurrentComponent/> with default size.
+                                A <CurrentComponent/> with default size.
                             </p>
                         </Collapse>
                         <Collapse
@@ -473,7 +473,7 @@ const Page: NextPage = () => {
                             theme='primary'
                         >
                             <p>
-                                An <CurrentComponent/> with larger size.
+                                A <CurrentComponent/> with larger size.
                             </p>
                         </Collapse>
                     </Preview>
@@ -485,7 +485,7 @@ const Page: NextPage = () => {
     theme='primary'
 >
     <p>
-        An <code>{'<Collapse>'}</code> with smaller size.
+        A <code>{'<Collapse>'}</code> with smaller size.
     </p>
 </Collapse>
 
@@ -495,7 +495,7 @@ const Page: NextPage = () => {
     theme='primary'
 >
     <p>
-        An <code>{'<Collapse>'}</code> with default size.
+        A <code>{'<Collapse>'}</code> with default size.
     </p>
 </Collapse>
 
@@ -505,7 +505,7 @@ const Page: NextPage = () => {
     theme='primary'
 >
     <p>
-        An <code>{'<Collapse>'}</code> with larger size.
+        A <code>{'<Collapse>'}</code> with larger size.
     </p>
 </Collapse>
                     `}</TypeScriptCode>
