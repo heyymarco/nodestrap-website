@@ -16,6 +16,7 @@ import { Tips } from '../../../components/Info'
 import Label from '@nodestrap/label'
 import Dropdown, { OrientationName, DropdownComponentProps, DropdownCloseType } from '@nodestrap/dropdown'
 import Basic from '@nodestrap/basic'
+import Content from '@nodestrap/content'
 import Button from '@nodestrap/button'
 import { TextInput, EmailInput } from '@nodestrap/input'
 import SelectPopupPlacement from '../../../components/SelectPopupPlacement';
@@ -56,13 +57,12 @@ interface ExampleDropdownUiProps extends DropdownComponentProps<HTMLElement, Dro
 }
 const ExampleDropdownUi = ({ elmRef, tabIndex = -1, onActiveChange }: ExampleDropdownUiProps) => {
     return (
-        <Basic<HTMLElement>
+        <Content<HTMLElement>
             elmRef={elmRef}
             {...{
                 tabIndex,
             }}
             theme='primary'
-            mild={true}
             style={{
                 display       : 'flex',
                 flexDirection : 'column',
@@ -70,9 +70,6 @@ const ExampleDropdownUi = ({ elmRef, tabIndex = -1, onActiveChange }: ExampleDro
                 outline       : 'none',
             }}
         >
-            <p style={{ whiteSpace: 'nowrap' }}>
-                Hello World
-            </p>
             <TextInput  placeholder='John Smith'     size='sm' enableValidation={false} />
             <EmailInput placeholder='john@smith.com' size='sm' enableValidation={false} />
             <Button
@@ -82,7 +79,7 @@ const ExampleDropdownUi = ({ elmRef, tabIndex = -1, onActiveChange }: ExampleDro
             >
                 Close
             </Button>
-        </Basic>
+        </Content>
     );
 }
 
