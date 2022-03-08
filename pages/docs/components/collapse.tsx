@@ -56,7 +56,7 @@ interface OverlayCollapsePreviewProps {
 }
 const OverlayCollapsePreview = ({ overlay = true }: OverlayCollapsePreviewProps) => {
     const [containerRef, isActiveFlip] = useFlipFlop({ defaultState: true });
-    const paraRef = useRef<HTMLParagraphElement>(null);
+    const contentRef = useRef<HTMLElement>(null);
     
     
     
@@ -66,14 +66,14 @@ const OverlayCollapsePreview = ({ overlay = true }: OverlayCollapsePreviewProps)
             blockDisplay={true}
             preventShift={!overlay}
         >{(isLoaded) => <>
-            <Basic elmRef={paraRef} theme='secondary' mild={true} style={{ textAlign: 'center' }}>
+            <Basic elmRef={contentRef} theme='secondary' mild={true} style={{ textAlign: 'center' }}>
                 A content
             </Basic>
             <Collapse
                 active={isLoaded ? isActiveFlip : true}
                 theme='success'
                 
-                targetRef={overlay ? paraRef : undefined}
+                targetRef={overlay ? contentRef : undefined}
                 popupPlacement='bottom'
                 popupOffset={10}
             >
