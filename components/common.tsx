@@ -137,7 +137,9 @@ export const LinkAlertPage                  = (props: PageLinkProps) => <LinkCod
 export const LinkTooltipPage                = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/tooltip'>Tooltip</LinkCode>
 
 export const LinkCollapsePage               = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/collapse'>Collapse</LinkCode>
+export const LinkDropdownPage               = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/dropdown'>Dropdown</LinkCode>
 export const LinkDropdownListPage           = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/dropdown-list'>DropdownList</LinkCode>
+export const LinkDropdownButtonPage         = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/dropdown-button'>DropdownButton</LinkCode>
 export const LinkDropdownListButtonPage     = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/dropdown-list-button'>DropdownListButton</LinkCode>
 
 export const LinkGroupPage                  = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/group'>Group</LinkCode>
