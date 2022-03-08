@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 import type { NextPage } from 'next'
 import Head from 'next/head'
@@ -8,14 +8,13 @@ import { useFlipFlop } from '../../../components/hooks'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
-import GenericSection, { Section } from '../../../components/Section'
-import { SectionInheritedProps, LinkCollapsePage, LinkPopupPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkContentPage, CurrentDominantBaseComponent } from '../../../components/common'
+import { Section } from '../../../components/Section'
+import { SectionInheritedProps, LinkCollapsePage, LinkPopupPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 import { Tips } from '../../../components/Info'
 
 import Label from '@nodestrap/label'
 import Collapse, { OrientationName } from '@nodestrap/collapse'
-import Button from '@nodestrap/button'
 import Basic from '@nodestrap/basic'
 import SelectPopupPlacement from '../../../components/SelectPopupPlacement';
 import {
