@@ -1031,7 +1031,7 @@ const useDropdownLoginFormSheet = createUseSheet(() => [
     ),
 ]);
 
-export default function DropdownLoginForm(props) {
+export default function DropdownLoginForm(props: DropdownProps) {
     const sheet = useDropdownLoginFormSheet();
     return (
         <Dropdown {...props} mainClass={sheet.main}>
