@@ -135,19 +135,66 @@ const OverlayDropdownPreview = ({ overlay = true }: OverlayDropdownPreviewProps)
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dolorum laborum quos magni accusamus.
             </p>
             <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium cum nulla, tenetur nisi dolorem fuga ad dicta nobis, itaque, esse repellat. Sint commodi eum quos assumenda. Voluptatem quos facere officiis.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dolorum laborum quos magni accusamus.
             </p>
             <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium cum nulla, tenetur nisi dolorem fuga ad dicta nobis, itaque, esse repellat. Sint commodi eum quos assumenda. Voluptatem quos facere officiis.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dolorum laborum quos magni accusamus.
             </p>
             <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium cum nulla, tenetur nisi dolorem fuga ad dicta nobis, itaque, esse repellat. Sint commodi eum quos assumenda. Voluptatem quos facere officiis.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dolorum laborum quos magni accusamus.
             </p>
             <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium cum nulla, tenetur nisi dolorem fuga ad dicta nobis, itaque, esse repellat. Sint commodi eum quos assumenda. Voluptatem quos facere officiis.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dolorum laborum quos magni accusamus.
             </p>
         </>}</Preview>
     )
+};
+
+const DropdownFormChildPreview = () => {
+    const [showDropdown, setShowDropdown] = useState(false);
+    const buttonRef = useRef<HTMLButtonElement>(null);
+    
+    return (
+        <Preview
+            blockDisplay={true}
+            preventShift={true}
+        >{(isLoaded) => <>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <Button elmRef={buttonRef} theme='primary' onClick={() => setShowDropdown(!showDropdown)}>
+                    Toggle dropdown
+                </Button>
+                <Dropdown
+                    active={isLoaded ? showDropdown : true}
+                    onActiveChange={(newActive) => setShowDropdown(newActive)}
+                    theme='success'
+                    
+                    targetRef={buttonRef}
+                    popupPlacement='bottom'
+                    popupOffset={5}
+                    
+                    popupAutoFlip={false}
+                    popupAutoShift={false}
+                >
+                    <LoginForm />
+                </Dropdown>
+            </div>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dolorum laborum quos magni accusamus.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dolorum laborum quos magni accusamus.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dolorum laborum quos magni accusamus.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dolorum laborum quos magni accusamus.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dolorum laborum quos magni accusamus.
+            </p>
+        </>}</Preview>
+    );
 };
 
 const DropdownPlacementPreview = () => {
@@ -427,7 +474,86 @@ const Page: NextPage = () => {
             <SectionDemo>
                 <DemoDropdownLazy fallback={<BusyBar />} />
             </SectionDemo>
-            <SectionPropertyChildren />
+            <SectionPropertyChildren>
+                <DropdownFormChildPreview />
+                <p></p>
+                <TypeScriptCode>{`
+import React, { useRef, useState } from 'react'
+import {
+    Dropdown,
+    DropdownProps,
+    
+    DropdownComponentProps,
+    DropdownCloseType,
+} from '@nodestrap/dropdown'
+import Form from '@nodestrap/form'
+
+export default function App() {
+    const [showDropdown, setShowDropdown] = useState(false);
+    const buttonRef = useRef<HTMLButtonElement>(null);
+    
+    return (
+        <>
+            <Button elmRef={buttonRef} theme='primary' onClick={() => setShowDropdown(!showDropdown)}>
+                Toggle dropdown
+            </Button>
+            <Dropdown
+                active={showDropdown}
+                onActiveChange={(newActive) => setShowDropdown(newActive)}
+                theme='success'
+                
+                targetRef={buttonRef}
+                popupPlacement='bottom'
+                popupOffset={5}
+                
+                popupAutoFlip={false}
+                popupAutoShift={false}
+            >
+                <LoginForm />
+            </Dropdown>
+        </>
+    );
+};
+
+type LoginFormCloseType = DropdownCloseType | 'closeBySubmit'|'closeByCancel';
+interface LoginFormProps extends DropdownComponentProps<HTMLFormElement, LoginFormCloseType> {
+}
+const LoginForm = ({ elmRef, tabIndex = -1, onActiveChange }: LoginFormProps) => {
+    return (
+        <Form
+            elmRef={elmRef}
+            tabIndex={tabIndex}
+            theme='primary'
+            enableValidation={false}
+            style={{
+                display             : 'grid',
+                gridTemplateColumns : '1fr 1fr',
+                gridAutoFlow        : 'row',
+                gap                 : '1rem',
+                outline             : 'none',
+            }}
+        >
+            <TextInput  placeholder='John Smith'     size='sm' style={{ gridColumnEnd: 'span 2' }} />
+            <EmailInput placeholder='john@smith.com' size='sm' style={{ gridColumnEnd: 'span 2' }} />
+            <Button
+                theme='primary'
+                size='sm'
+                onClick={() => onActiveChange?.(false, 'closeBySubmit')}
+            >
+                Submit
+            </Button>
+            <Button
+                theme='secondary'
+                size='sm'
+                onClick={() => onActiveChange?.(false, 'closeByCancel')}
+            >
+                Cancel
+            </Button>
+        </Form>
+    );
+};
+                `}</TypeScriptCode>
+            </SectionPropertyChildren>
             <Section title={<>Overlaying <CurrentComponent /></>}>
                 <p>
                     By default the <CurrentComponent /> flows as a normal document element, thus

@@ -41,7 +41,7 @@ export const SectionPropertyChildren = ({ titleTag = 'h2', propertySuffix = fals
                     Placing a <em>multiple children</em> causes an <code>Error</code> to throw.
                 </p>
                 <p>
-                    The child component should <strong>implement these properties</strong>:
+                    The child component should <strong>implement these properties</strong> on its <code>props</code>:
                 </p>
                 <SpecList>
                     <DetailSpecItem code='tabIndex'>
