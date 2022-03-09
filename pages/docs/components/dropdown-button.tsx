@@ -62,7 +62,13 @@ const DemoDropdownButtonLazy = loadable(() => import(/* webpackChunkName: 'DemoP
 
 
 
-const DropdownButton = (props: DropdownButtonProps) => <DropdownButtonOri {...props} buttonChildren={props.buttonChildren ?? 'Toggle dropdown'} />
+const DropdownButton = (props: DropdownButtonProps) => <DropdownButtonOri
+    popupAutoFlip={false}
+    popupAutoShift={false}
+    {...props}
+    
+    buttonChildren={props.buttonChildren ?? 'Toggle dropdown'}
+/>
 
 
 type LoginFormCloseType = DropdownCloseType | 'closeBySubmit'|'closeByCancel';
@@ -109,44 +115,36 @@ interface OverlayDropdownButtonPreviewProps {
 const OverlayDropdownButtonPreview = ({ overlay = true }: OverlayDropdownButtonPreviewProps) => {
     const [containerRef, isActiveFlip] = useFlipFlop({ defaultState: true });
     const [flip, setFlip] = useState(false);
-    const contentRef = useRef<HTMLElement>(null);
     
     
     
     return (
         <Preview
             blockDisplay={true}
-            preventShift={!overlay}
         >{(isLoaded) => <>
-            <Basic
-                elmRef={(elm) => {
-                    setRef(containerRef, elm);
-                    setRef(contentRef, elm);
-                }}
-                theme='secondary'
-                mild={true}
-                style={{
-                    textAlign: 'center',
-                }}
-            >
-                A content
-            </Basic>
-            <DropdownButton
-                active={isLoaded ? (isActiveFlip === flip) : true}
-                onActiveChange={() => {
-                    setFlip(!flip);
-                }}
-                theme='primary'
-                
-                targetRef={overlay ? contentRef : undefined}
-                popupPlacement='bottom'
-                popupOffset={10}
-                
-                popupAutoFlip={false}
-                popupAutoShift={false}
-            >
-                <LoginForm />
-            </DropdownButton>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <DropdownButton
+                    elmRef={containerRef}
+                    
+                    active={isLoaded ? (isActiveFlip === flip) : true}
+                    onActiveChange={() => {
+                        setFlip(!flip);
+                    }}
+                    theme='primary'
+                    
+                    popupPlacement='bottom'
+                    popupOffset={10}
+                    
+                    popupAutoFlip={false}
+                    popupAutoShift={false}
+                    
+                    style={{
+                        justifySelf: 'center',
+                    }}
+                >
+                    <LoginForm />
+                </DropdownButton>
+            </div>
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dolorum laborum quos magni accusamus.
             </p>
@@ -168,23 +166,17 @@ const OverlayDropdownButtonPreview = ({ overlay = true }: OverlayDropdownButtonP
 
 const DropdownButtonFormChildPreview = () => {
     const [showDropdownButton, setShowDropdownButton] = useState(false);
-    const buttonRef = useRef<HTMLButtonElement>(null);
     
     return (
         <Preview
             blockDisplay={true}
-            preventShift={true}
         >{(isLoaded) => <>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <Button elmRef={buttonRef} theme='primary' onClick={() => setShowDropdownButton(!showDropdownButton)}>
-                    Toggle dropdownButton
-                </Button>
                 <DropdownButton
                     active={isLoaded ? showDropdownButton : true}
                     onActiveChange={(newActive) => setShowDropdownButton(newActive)}
                     theme='primary'
                     
-                    targetRef={buttonRef}
                     popupPlacement='bottom'
                     popupOffset={5}
                     
@@ -593,7 +585,7 @@ const LoginForm = (props) => {
                 <SectionPropertyPopupAutoFlip>
                     <Tips>
                         <p>
-                            The <code>popupPlacement</code> is on <code>{`'top'`}</code>,
+                            The <code>popupPlacement</code> is on <code>{`'bottom'`}</code>,
                             but if you scroll up the <strong>container below</strong>, the <code>popupPlacement</code> will change to <code>{`'bottom'`}</code>.
                         </p>
                     </Tips>

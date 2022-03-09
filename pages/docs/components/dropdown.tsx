@@ -215,7 +215,7 @@ const DropdownPlacementPreview = () => {
     
     
     return (
-        <SelectPopupPlacement>{(popupPlacement) => <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <SelectPopupPlacement initialPlacement='bottom'>{(popupPlacement) => <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Label elmRef={contentRef} theme='primary' size='lg' style={{ width: '50%', height: '50%' }}>
                 A content
             </Label>
@@ -261,7 +261,7 @@ const DropdownOffset = () => {
                 theme='success'
                 
                 targetRef={contentRef}
-                popupPlacement='top'
+                popupPlacement='bottom'
                 popupOffset={30}
                 popupAutoFlip={false}
                 popupAutoShift={false}
@@ -301,7 +301,7 @@ const DropdownShift = () => {
                 theme='success'
                 
                 targetRef={contentRef}
-                popupPlacement='top'
+                popupPlacement='bottom'
                 popupShift={100}
                 popupAutoFlip={false}
                 popupAutoShift={false}
@@ -359,7 +359,7 @@ const DropdownAutoFlip = () => {
                 theme='success'
                 
                 targetRef={contentRef}
-                popupPlacement='top'
+                popupPlacement='bottom'
                 popupAutoFlip={true}
                 popupAutoShift={false}
             >
@@ -599,8 +599,8 @@ const LoginForm = (props) => {
                 <SectionPropertyPopupAutoFlip>
                     <Tips>
                         <p>
-                            The <code>popupPlacement</code> is on <code>{`'top'`}</code>,
-                            but if you scroll down the <strong>container below</strong>, the <code>popupPlacement</code> will change to <code>{`'bottom'`}</code>.
+                            The <code>popupPlacement</code> is on <code>{`'bottom'`}</code>,
+                            but if you scroll up the <strong>container below</strong>, the <code>popupPlacement</code> will change to <code>{`'bottom'`}</code>.
                         </p>
                     </Tips>
                     <p></p>
