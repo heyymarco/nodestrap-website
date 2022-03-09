@@ -336,7 +336,7 @@ const AlertWithOnActiveChange = () => {
             </p>
         </Alert>
     );
-}
+};
 
 
 

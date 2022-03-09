@@ -120,3 +120,22 @@ export const SectionPropertyPopupAutoShift = ({ defaultValue = true, ...props }:
         <PopupSectionPropertyPopupAutoShift {...props} defaultValue={defaultValue} />
     );
 };
+
+
+
+export const SectionPropertyOnActiveChange = ({ titleTag = 'h4', propertySuffix = true, property = 'onActiveChange', specList, description, ...restProps }: SectionPreviewPropertyProps) => {
+    return (
+        <SectionPreviewProperty {...restProps} titleTag={titleTag} propertySuffix={propertySuffix} property={property} description={
+            description
+            ??
+            <>
+                <p>
+                    Fires when the <CurrentComponent /> loses focus, the user clicks <kbd>Esc</kbd> key when the <CurrentComponent /> is opened, or the user clicks a close control (if any) on the <CurrentComponent />.
+                </p>
+                <p>
+                    You have to implement an <em>event handler</em> to change your state, then the state changes the <code>active</code> property.
+                </p>
+            </>
+        } />
+    );
+};

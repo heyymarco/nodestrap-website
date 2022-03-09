@@ -52,6 +52,8 @@ import {
     
     SectionPropertyPopupAutoFlip,
     SectionPropertyPopupAutoShift,
+    
+    SectionPropertyOnActiveChange,
 } from '../../../components/common@Dropdown'
 
 import loadable from '@loadable/component'
@@ -459,6 +461,34 @@ const DropdownOrientation = ({ orientation }: DropdownOrientationProps) => {
     )
 };
 
+const DropdownWithOnActiveChange = () => {
+    const [dropdownActive, setDropdownActive] = useState(true);
+    
+    // re-show the <Dropdown> after 2 seconds:
+    useEffect(() => {
+        // conditions:
+        if (dropdownActive) return;
+        
+        // setups:
+        const timerHandler = setTimeout(() => setDropdownActive(true), 2000);
+        
+        // cleanups:
+        return () => {
+            clearTimeout(timerHandler);
+        };
+    }, [dropdownActive]);
+    
+    return (
+        <Dropdown
+            active={dropdownActive}
+            onActiveChange={() => setDropdownActive(false)}
+            theme='primary'
+        >
+            <LoginForm />
+        </Dropdown>
+    );
+};
+
 
 
 const Page: NextPage = () => {
@@ -863,6 +893,41 @@ const LoginForm = (props) => {
     </p>
 </Dropdown>
                     `}</TypeScriptCode>
+                    <SectionPropertyOnActiveChange>
+                        <Preview preventShift={true}>
+                            <DropdownWithOnActiveChange />
+                        </Preview>
+                        <p></p>
+                        <TypeScriptCode>{`
+export default function App() {
+    const [dropdownActive, setDropdownActive] = useState(true);
+    
+    // re-show the <Dropdown> after 2 seconds:
+    useEffect(() => {
+        // conditions:
+        if (dropdownActive) return;
+        
+        // setups:
+        const timerHandler = setTimeout(() => setDropdownActive(true), 2000);
+        
+        // cleanups:
+        return () => {
+            clearTimeout(timerHandler);
+        };
+    }, [dropdownActive]);    
+    
+    return (
+        <Dropdown
+            active={dropdownActive}
+            onActiveChange={() => setDropdownActive(false)}
+            theme='primary'
+        >
+            <LoginForm />
+        </Dropdown>
+    );
+}
+                        `}</TypeScriptCode>
+                    </SectionPropertyOnActiveChange>
                 </SectionPropertyActive>
                 <SectionPropertyEnabled>
                     <Preview>
