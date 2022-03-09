@@ -58,7 +58,7 @@ export const DemoDropdown = () => {
                     outlined={states.outlined[0]}
                     mild={states.mild[0]}
                 >
-                    <p style={{ background: '#fafee2' }}>
+                    <p style={{ background: '#fbf3d5', whiteSpace: 'nowrap' }}>
                         Hello world!
                     </p>
                 </Dropdown>

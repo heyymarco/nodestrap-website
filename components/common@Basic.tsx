@@ -225,7 +225,10 @@ export const SectionPropertyMild = ({ property = 'mild', properties = 'Mild', de
         } />
     );
 };
-export const SectionPropertyOrientation = ({ propertySuffix = defaultPropertySuffix, property = 'orientation', properties = 'Orientations', children, ...restProps }: SectionPropertyProps) => {
+export interface SectionPropertyOrientationProps {
+    orientationStuff ?: string
+}
+export const SectionPropertyOrientation = ({ propertySuffix = defaultPropertySuffix, orientationStuff = 'faced', property = 'orientation', properties = 'Orientations', children, ...restProps }: SectionPropertyProps & SectionPropertyOrientationProps) => {
     const { hasNestedComponent } = useComponentInfo();
     
     
@@ -233,13 +236,13 @@ export const SectionPropertyOrientation = ({ propertySuffix = defaultPropertySuf
     return (
         <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property} properties={properties}>
             <p>
-                Options for how the <CurrentNestedComponent />{hasNestedComponent && 's'} {hasNestedComponent ? 'are' : 'is'} faced.
+                Options for how the <CurrentNestedComponent />{hasNestedComponent && 's'} {hasNestedComponent ? 'are' : 'is'} {orientationStuff}.
             </p>
             { children }
         </SectionSubProperty>
     );
 };
-export const SectionPropertyOrientationBlock = ({ titleTag='h4', property = "orientation='block'", properties = <><code>block</code> Orientation</>, description, defaultValue = true, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyOrientationBlock = ({ titleTag='h4', orientationStuff = 'faced', property = "orientation='block'", properties = <><code>block</code> Orientation</>, description, defaultValue = true, ...restProps }: SectionPreviewPropertyProps & SectionPropertyOrientationProps) => {
     const { componentName, hasNestedComponent } = useComponentInfo();
     
     
@@ -250,7 +253,7 @@ export const SectionPropertyOrientationBlock = ({ titleTag='h4', property = "ori
             ??
             <>
                 <p>
-                    To make <CurrentNestedComponent />{hasNestedComponent && 's'} faced in <strong>vertical</strong>, set <code>{`<${componentName} orientation='block'>`}</code>.
+                    To make <CurrentNestedComponent />{hasNestedComponent && 's'} {orientationStuff} in <strong>vertical</strong>, set <code>{`<${componentName} orientation='block'>`}</code>.
                 </p>
                 {defaultValue && <ParagraphDefaultValue property='orientation' />}
             </>
@@ -260,7 +263,7 @@ export const SectionPropertyOrientationBlock = ({ titleTag='h4', property = "ori
 export interface SectionPropertyOrientationInlineProps extends SectionPreviewPropertyProps {
     overflowWarning ?: boolean
 }
-export const SectionPropertyOrientationInline = ({ titleTag='h4', property = "orientation='inline'", properties = <><code>inline</code> Orientation</>, description, defaultValue = false, overflowWarning = true, ...restProps }: SectionPropertyOrientationInlineProps) => {
+export const SectionPropertyOrientationInline = ({ titleTag='h4', orientationStuff = 'faced', property = "orientation='inline'", properties = <><code>inline</code> Orientation</>, description, defaultValue = false, overflowWarning = true, ...restProps }: SectionPropertyOrientationInlineProps & SectionPropertyOrientationProps) => {
     const { componentName, hasNestedComponent } = useComponentInfo();
     
     
@@ -271,7 +274,7 @@ export const SectionPropertyOrientationInline = ({ titleTag='h4', property = "or
             ??
             <>
                 <p>
-                    To make <CurrentNestedComponent />{hasNestedComponent && 's'} faced in <strong>vertical</strong>, set <code>{`<${componentName} orientation='inline'>`}</code>.
+                    To make <CurrentNestedComponent />{hasNestedComponent && 's'} {orientationStuff} in <strong>horizontal</strong>, set <code>{`<${componentName} orientation='inline'>`}</code>.
                 </p>
                 {defaultValue && <ParagraphDefaultValue property='orientation' />}
                 {overflowWarning && <Warning>
@@ -289,7 +292,7 @@ export const SectionPropertyOrientationInline = ({ titleTag='h4', property = "or
         } />
     );
 };
-export const SectionPropertyOrientationResponsive = ({ titleTag='h4', property = "orientation={currentFallback}", properties = 'Responsive Orientation', description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyOrientationResponsive = ({ titleTag='h4', orientationStuff = 'faced', property = "orientation={currentFallback}", properties = 'Responsive Orientation', description, ...restProps }: SectionPreviewPropertyProps & SectionPropertyOrientationProps) => {
     const { hasNestedComponent } = useComponentInfo();
     
     
@@ -300,7 +303,7 @@ export const SectionPropertyOrientationResponsive = ({ titleTag='h4', property =
             ??
             <>
                 <p>
-                    To make <CurrentNestedComponent />{hasNestedComponent && 's'} faced in <strong>horizontal</strong> (if the page is wide enough) -or- faced in <strong>vertical</strong> (if the page is too narrow),
+                    To make <CurrentNestedComponent />{hasNestedComponent && 's'} {orientationStuff} in <strong>horizontal</strong> (if the page is wide enough) -or- {orientationStuff} in <strong>vertical</strong> (if the page is too narrow),
                     do this trick!
                 </p>
                 <p>

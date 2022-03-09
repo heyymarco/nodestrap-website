@@ -27,9 +27,6 @@ import {
     SectionPropertyNude,
     SectionPropertyGradient,
     SectionPropertyOutlined,
-    SectionPropertyOrientation,
-    SectionPropertyOrientationBlock,
-    SectionPropertyOrientationInline,
 } from '../../../components/common@Basic'
 import {
     SectionPropertyMild,
@@ -42,11 +39,17 @@ import {
     SectionPropertyPopupPlacement,
     SectionPropertyPopupOffset,
     SectionPropertyPopupShift,
-    SectionPropertyPopupAutoFlip,
-    SectionPropertyPopupAutoShift,
     
     SectionPropertyLazy,
 } from '../../../components/common@Popup'
+import {
+    SectionPropertyPopupAutoFlip,
+    SectionPropertyPopupAutoShift,
+    
+    SectionPropertyOrientation,
+    SectionPropertyOrientationBlock,
+    SectionPropertyOrientationInline,
+} from '../../../components/common@Dropdown'
 
 import loadable from '@loadable/component'
 const DemoDropdownLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Dropdown' */'../../../components/DemoPanel@Dropdown'))
@@ -112,6 +115,9 @@ const OverlayDropdownPreview = ({ overlay = true }: OverlayDropdownPreviewProps)
                 targetRef={overlay ? contentRef : undefined}
                 popupPlacement='bottom'
                 popupOffset={10}
+                
+                popupAutoFlip={false}
+                popupAutoShift={false}
             >
                 <ExampleDropdownUi />
             </Dropdown>
@@ -152,6 +158,9 @@ const DropdownPlacementPreview = () => {
                 
                 targetRef={contentRef}
                 popupPlacement={popupPlacement}
+                
+                popupAutoFlip={false}
+                popupAutoShift={false}
             >
                 <p>
                     {`popupPlacement='${popupPlacement}'`}
@@ -185,6 +194,8 @@ const DropdownOffset = () => {
                 targetRef={contentRef}
                 popupPlacement='top'
                 popupOffset={30}
+                popupAutoFlip={false}
+                popupAutoShift={false}
             >
                 <p>
                     hello world!
@@ -223,6 +234,8 @@ const DropdownShift = () => {
                 targetRef={contentRef}
                 popupPlacement='top'
                 popupShift={100}
+                popupAutoFlip={false}
+                popupAutoShift={false}
             >
                 <p>
                     hello world!
@@ -275,6 +288,7 @@ const DropdownAutoFlip = () => {
                 targetRef={contentRef}
                 popupPlacement='top'
                 popupAutoFlip={true}
+                popupAutoShift={false}
             >
                 <p>
                     hello world!
@@ -329,6 +343,7 @@ const DropdownAutoShift = () => {
                 
                 targetRef={contentRef}
                 popupPlacement='right'
+                popupAutoFlip={false}
                 popupAutoShift={true}
             >
                 <p>
