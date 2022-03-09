@@ -56,9 +56,10 @@ const DemoDropdownLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@D
 
 
 
-interface ExampleDropdownUiProps extends DropdownComponentProps<HTMLFormElement, DropdownCloseType | 'closeBySubmit'|'closeByCancel'> {
+type LoginFormCloseType = DropdownCloseType | 'closeBySubmit'|'closeByCancel';
+interface LoginFormProps extends DropdownComponentProps<HTMLFormElement, LoginFormCloseType> {
 }
-const ExampleDropdownUi = ({ elmRef, tabIndex = -1, onActiveChange }: ExampleDropdownUiProps) => {
+const LoginForm = ({ elmRef, tabIndex = -1, onActiveChange }: LoginFormProps) => {
     return (
         <Form
             elmRef={elmRef}
@@ -126,7 +127,7 @@ const OverlayDropdownPreview = ({ overlay = true }: OverlayDropdownPreviewProps)
                 popupAutoFlip={false}
                 popupAutoShift={false}
             >
-                <ExampleDropdownUi />
+                <LoginForm />
             </Dropdown>
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dolorum laborum quos magni accusamus.
@@ -393,7 +394,7 @@ const DropdownOrientation = ({ orientation }: DropdownOrientationProps) => {
                 active={isLoaded ? isActiveFlip : true}
                 theme='success'
             >
-                <ExampleDropdownUi />
+                <LoginForm />
             </Dropdown>
         </>}</Preview>
     )
@@ -831,17 +832,62 @@ const Page: NextPage = () => {
             }/>
             <SectionDerivering>
                 <SectionOverridingDefaults>{`
-import { Dropdown } from '@nodestrap/dropdown'
+import {
+    Dropdown,
+    DropdownProps,
+    
+    DropdownComponentProps,
+    DropdownCloseType,
+} from '@nodestrap/dropdown'
+import Form from '@nodestrap/form'
 
-export default function DropdownLoginForm(props) {
+export default function DropdownLoginForm(props: DropdownProps) {
     return (
         <Dropdown
             {...props} // preserves other properties
             
             theme={props.theme ?? 'primary'} // override default value of theme to 'primary'
         >
-            { props.children }
+            { props.children ?? <LoginForm /> }
         </Dropdown>
+    );
+}
+
+type LoginFormCloseType = DropdownCloseType | 'closeBySubmit'|'closeByCancel';
+interface LoginFormProps extends DropdownComponentProps<HTMLFormElement, LoginFormCloseType> {
+}
+const LoginForm = ({ elmRef, tabIndex = -1, onActiveChange }: LoginFormProps) => {
+    return (
+        <Form
+            elmRef={elmRef}
+            tabIndex={tabIndex}
+            theme='primary'
+            enableValidation={false}
+            style={{
+                display             : 'grid',
+                gridTemplateColumns : '1fr 1fr',
+                gridAutoFlow        : 'row',
+                gap                 : '1rem',
+                outline             : 'none',
+            }}
+        >
+            <TextInput  placeholder='John Smith'     size='sm' style={{ gridColumnEnd: 'span 2' }} />
+            <EmailInput placeholder='john@smith.com' size='sm' style={{ gridColumnEnd: 'span 2' }} />
+            <Button
+                theme='primary'
+                size='sm'
+                onClick={() => onActiveChange?.(false, 'closeBySubmit')}
+            >
+                Submit
+            </Button>
+            <Button
+                theme='secondary'
+                size='sm'
+                onClick={() => onActiveChange?.(false, 'closeByCancel')}
+            >
+                Cancel
+            </Button>
+        </Form>
     );
 }
                 `}</SectionOverridingDefaults>
