@@ -902,21 +902,33 @@ const LoginForm = ({ elmRef, tabIndex = -1, onActiveChange }: LoginFormProps) =>
                         <DetailSpecItem code='usesDropdownVariants()'>
                             <p>
                                 Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentComponent /> such as:<br />
-                                <code>SizeVariant</code>, <code>OrientationVariant</code>, and <strong>all variants</strong> inherited from <CurrentBaseComponents />.
+                                <code>SizeVariant</code> and <strong>all variants</strong> inherited from <CurrentBaseComponents />.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesDropdownStates()'>
                             <p>
-                                Returns a <code>Rule</code> object represents the <strong>states</strong> of <CurrentComponent /> such as:<br />
-                                <strong>active</strong>/<strong>passive</strong> and <strong>all states</strong> inherited from <CurrentBaseComponents />.
+                                Returns a <code>Rule</code> object represents the <strong>states</strong> of <CurrentComponent />.
+                            </p>
+                            <p>
+                                Currently the states are equivalent to <CurrentBaseComponents />&apos;s states.
                             </p>
                         </DetailSpecItem>
                     </SpecList>
                 }>{`
-import { mainComposition, style, imports, variants, states, rule } from '@cssfn/cssfn'
+import { mainComposition, style, imports, children } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
-import { isActive } from '@nodestrap/indicator'
-import { Dropdown, usesDropdownLayout, usesDropdownVariants, usesDropdownStates } from '@nodestrap/dropdown'
+import {
+    Dropdown,
+    DropdownProps,
+    
+    usesDropdownLayout,
+    usesDropdownVariants,
+    usesDropdownStates,
+    
+    DropdownComponentProps,
+    DropdownCloseType,
+} from '@nodestrap/dropdown'
+import Form from '@nodestrap/form'
 
 
 const useDropdownLoginFormSheet = createUseSheet(() => [
@@ -929,32 +941,15 @@ const useDropdownLoginFormSheet = createUseSheet(() => [
         ]),
         style({
             // then overwrite with your style:
-            display : 'grid',
-            margin  : '1em',
-            /* ... */
             
-            ...variants([
-                rule('.big', {
-                    // define the style at 'big' variant:
-                    fontSize: 'xx-large',
-                    /* ... */
-                }),
-                rule('.dark', {
-                    // define the style at 'dark' variant:
-                    background-color : 'black',
-                    color            : 'white',
-                    /* ... */
-                }),
+            ...children('form', {
+                display             : 'grid',
+                gridTemplateColumns : '1fr 1fr',
+                gridAutoFlow        : 'row',
+                gap                 : '1rem',
+                outline             : 'none',
                 /* ... */
-            ]),
-            ...states([
-                isActive({
-                    // define the style at 'being/fully active' state:
-                    border-color: 'red',
-                    /* ... */
-                }),
-                /* ... */
-            ]),
+            }),
             
             /* ... */
         }),
@@ -965,9 +960,40 @@ export default function DropdownLoginForm(props) {
     const sheet = useDropdownLoginFormSheet();
     return (
         <Dropdown {...props} mainClass={sheet.main}>
-            { props.children }
+            { props.children ?? <LoginForm /> }
         </Dropdown>
     )
+}
+
+type LoginFormCloseType = DropdownCloseType | 'closeBySubmit'|'closeByCancel';
+interface LoginFormProps extends DropdownComponentProps<HTMLFormElement, LoginFormCloseType> {
+}
+const LoginForm = ({ elmRef, tabIndex = -1, onActiveChange }: LoginFormProps) => {
+    return (
+        <Form
+            elmRef={elmRef}
+            tabIndex={tabIndex}
+            theme='primary'
+            enableValidation={false}
+        >
+            <TextInput  placeholder='John Smith'     size='sm' style={{ gridColumnEnd: 'span 2' }} />
+            <EmailInput placeholder='john@smith.com' size='sm' style={{ gridColumnEnd: 'span 2' }} />
+            <Button
+                theme='primary'
+                size='sm'
+                onClick={() => onActiveChange?.(false, 'closeBySubmit')}
+            >
+                Submit
+            </Button>
+            <Button
+                theme='secondary'
+                size='sm'
+                onClick={() => onActiveChange?.(false, 'closeByCancel')}
+            >
+                Cancel
+            </Button>
+        </Form>
+    );
 }
                 `}</SectionCustomizingCss>
             </SectionDerivering>
