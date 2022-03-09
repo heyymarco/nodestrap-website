@@ -9,17 +9,14 @@ import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
 import { Section } from '../../../components/Section'
-import { SectionInheritedProps, LinkDropdownButtonPage, LinkDropdownPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkCardPage } from '../../../components/common'
+import { SectionInheritedProps, LinkDropdownButtonPage, LinkDropdownPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkButtonIconPage, SectionConfigureDependsOnIcon } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 import { Tips } from '../../../components/Info'
 
-import Label from '@nodestrap/label'
 import { DropdownComponentProps } from '@nodestrap/dropdown'
 import DropdownButtonOri, { DropdownButtonProps, OrientationName, DropdownCloseType } from '@nodestrap/dropdown-button'
-import Basic from '@nodestrap/basic'
 import Form from '@nodestrap/form'
 import Button from '@nodestrap/button'
-import { setRef } from '@nodestrap/utilities'
 import { TextInput, EmailInput } from '@nodestrap/input'
 import SelectPopupPlacement from '../../../components/SelectPopupPlacement';
 import {
@@ -36,7 +33,6 @@ import {
     SectionPropertyEnabled,
     SectionPropertyActive,
     
-    SectionPropertyTargetRef,
     SectionPropertyPopupPlacement,
     SectionPropertyPopupOffset,
     SectionPropertyPopupShift,
@@ -508,10 +504,10 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    Turns any component to <strong>dropdownButtonable</strong> component.
+                    Turns any component to <strong>dropdownable</strong> component.
                 </p>
                 <p>
-                    Similar to <CurrentBaseComponents /> but <em>listens</em> for <kbd>Esc</kbd> key, blur event, and click event to close the <CurrentComponent />.
+                    Similar to <CurrentBaseComponents /> but has a toggleable <LinkButtonIconPage />.
                 </p>
                 <p>
                     Here the preview:
@@ -521,6 +517,7 @@ const Page: NextPage = () => {
             <SectionDemo>
                 <DemoDropdownButtonLazy fallback={<BusyBar />} />
             </SectionDemo>
+            <SectionConfigureDependsOnIcon />
             <SectionPropertyChildren>
                 <DropdownButtonFormChildPreview />
                 <p></p>
