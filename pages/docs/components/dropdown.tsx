@@ -16,7 +16,7 @@ import { Tips } from '../../../components/Info'
 import Label from '@nodestrap/label'
 import Dropdown, { OrientationName, DropdownComponentProps, DropdownCloseType } from '@nodestrap/dropdown'
 import Basic from '@nodestrap/basic'
-import Content from '@nodestrap/content'
+import Form from '@nodestrap/form'
 import Button from '@nodestrap/button'
 import { TextInput, EmailInput } from '@nodestrap/input'
 import SelectPopupPlacement from '../../../components/SelectPopupPlacement';
@@ -56,33 +56,40 @@ const DemoDropdownLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@D
 
 
 
-interface ExampleDropdownUiProps extends DropdownComponentProps<HTMLElement, DropdownCloseType | 'close-by-btn'> {
+interface ExampleDropdownUiProps extends DropdownComponentProps<HTMLFormElement, DropdownCloseType | 'closeBySubmit'|'closeByCancel'> {
 }
 const ExampleDropdownUi = ({ elmRef, tabIndex = -1, onActiveChange }: ExampleDropdownUiProps) => {
     return (
-        <Content<HTMLElement>
+        <Form
             elmRef={elmRef}
-            {...{
-                tabIndex,
-            }}
+            tabIndex={tabIndex}
             theme='primary'
+            enableValidation={false}
             style={{
-                display       : 'flex',
-                flexDirection : 'column',
-                gap           : '1rem',
-                outline       : 'none',
+                display             : 'grid',
+                gridTemplateColumns : '1fr 1fr',
+                gridAutoFlow        : 'row',
+                gap                 : '1rem',
+                outline             : 'none',
             }}
         >
-            <TextInput  placeholder='John Smith'     size='sm' enableValidation={false} />
-            <EmailInput placeholder='john@smith.com' size='sm' enableValidation={false} />
+            <TextInput  placeholder='John Smith'     size='sm' style={{ gridColumnEnd: 'span 2' }} />
+            <EmailInput placeholder='john@smith.com' size='sm' style={{ gridColumnEnd: 'span 2' }} />
+            <Button
+                theme='primary'
+                size='sm'
+                onClick={() => onActiveChange?.(false, 'closeBySubmit')}
+            >
+                Submit
+            </Button>
             <Button
                 theme='secondary'
                 size='sm'
-                onClick={() => onActiveChange?.(false, 'close-by-btn')}
+                onClick={() => onActiveChange?.(false, 'closeByCancel')}
             >
-                Close
+                Cancel
             </Button>
-        </Content>
+        </Form>
     );
 }
 
@@ -812,45 +819,11 @@ const Page: NextPage = () => {
             <SectionPropertyLazy />
             <SectionCustomizing specList={
                 <SpecList>
-                    <DetailSpecItem title='Animations'>
+                    <DetailSpecItem title='Foregrounds, Backgrounds &amp; Borders'>
                         <SubSpecList>
                             <SimpleSpecItem>
-                                <code>filterActive</code>
-                                <p>A <code>filter</code> to apply when <code>{`active={true}`}</code>.</p>
-                            </SimpleSpecItem>
-                            
-                            <SimpleSpecItem>
-                                <code>@keyframes active</code>
-                                <p>A default keyframes name represents <em>showing keyframes</em>, transition from <code>{`active={false}`}</code> to <code>{`active={true}`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>@keyframes passive</code>
-                                <p>A default keyframes name represents <em>hiding keyframes</em>, transition from <code>{`active={true}`}</code> to <code>{`active={false}`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>animActive</code>
-                                <p>A default animation represents <em>showing animation</em>, transition from <code>{`active={false}`}</code> to <code>{`active={true}`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>animPassive</code>
-                                <p>A default animation represents <em>hiding animation</em>, transition from <code>{`active={true}`}</code> to <code>{`active={false}`}</code>.</p>
-                            </SimpleSpecItem>
-                            
-                            <SimpleSpecItem>
-                                <code>@keyframes activeInline</code>
-                                <p>A keyframes name represents <em>showing keyframes</em> when <code>{`orientation='inline'`}</code>, transition from <code>{`active={false}`}</code> to <code>{`active={true}`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>@keyframes passiveInline</code>
-                                <p>A keyframes name represents <em>hiding keyframes</em> when <code>{`orientation='inline'`}</code>, transition from <code>{`active={true}`}</code> to <code>{`active={false}`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>animActiveInline</code>
-                                <p>An animation represents <em>showing animation</em> when <code>{`orientation='inline'`}</code>, transition from <code>{`active={false}`}</code> to <code>{`active={true}`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>animPassiveInline</code>
-                                <p>An animation represents <em>hiding animation</em> when <code>{`orientation='inline'`}</code>, transition from <code>{`active={true}`}</code> to <code>{`active={false}`}</code>.</p>
+                                <code>boxShadow</code>
+                                <p>A <code>boxShadow</code> to apply, so the <CurrentComponent /> appears hovered.</p>
                             </SimpleSpecItem>
                         </SubSpecList>
                     </DetailSpecItem>
@@ -860,16 +833,12 @@ const Page: NextPage = () => {
                 <SectionOverridingDefaults>{`
 import { Dropdown } from '@nodestrap/dropdown'
 
-export default function PopupLoginForm(props) {
+export default function DropdownLoginForm(props) {
     return (
         <Dropdown
             {...props} // preserves other properties
-
-            semanticRole={props.semanticRole ?? 'form'} // override default value of semanticRole to 'form'
-            semantictag={props.semanticTag ?? 'form'}   // override default value of semanticTag  to 'form'
             
             theme={props.theme ?? 'primary'} // override default value of theme to 'primary'
-            mild={props.mild ?? false}       // override default value of mild  to false
         >
             { props.children }
         </Dropdown>
@@ -904,7 +873,7 @@ import { isActive } from '@nodestrap/indicator'
 import { Dropdown, usesDropdownLayout, usesDropdownVariants, usesDropdownStates } from '@nodestrap/dropdown'
 
 
-const usePopupLoginFormSheet = createUseSheet(() => [
+const useDropdownLoginFormSheet = createUseSheet(() => [
     mainComposition(
         imports([
             // import some stuff from <Dropdown>:
@@ -946,8 +915,8 @@ const usePopupLoginFormSheet = createUseSheet(() => [
     ),
 ]);
 
-export default function PopupLoginForm(props) {
-    const sheet = usePopupLoginFormSheet();
+export default function DropdownLoginForm(props) {
+    const sheet = useDropdownLoginFormSheet();
     return (
         <Dropdown {...props} mainClass={sheet.main}>
             { props.children }
