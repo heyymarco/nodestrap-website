@@ -42,6 +42,8 @@ import {
     SectionPropertyLazy,
 } from '../../../components/common@Popup'
 import {
+    SectionPropertyChildren,
+    
     SectionPropertyNude,
     SectionPropertyOrientation,
     SectionPropertyOrientationBlock,
@@ -418,11 +420,6 @@ const Page: NextPage = () => {
                     Similar to <CurrentBaseComponents /> but <em>listens</em> for <kbd>Esc</kbd> key, blur event, and click event to close the <CurrentComponent />.
                 </p>
                 <p>
-                    By default, the <CurrentComponent /> is <code>{`nude={true}`}</code>, so
-                    you should add a <strong>visible container element</strong> to <em>visualize</em> the <strong>dropdowned UI</strong>.<br />
-                    For example: A <LinkCardPage /> inside <CurrentComponent />, it becomes a <u>dropdownable <LinkCardPage /></u>.
-                </p>
-                <p>
                     Here the preview:
                 </p>
                 <OverlayDropdownPreview />
@@ -430,6 +427,7 @@ const Page: NextPage = () => {
             <SectionDemo>
                 <DemoDropdownLazy fallback={<BusyBar />} />
             </SectionDemo>
+            <SectionPropertyChildren />
             <Section title={<>Overlaying <CurrentComponent /></>}>
                 <p>
                     By default the <CurrentComponent /> flows as a normal document element, thus
