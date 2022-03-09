@@ -31,7 +31,7 @@ export const SectionPropertyChildren = ({ titleTag = 'h2', propertySuffix = fals
                     Customizes the <code>UI element</code> to <em>dropdown</em>.
                 </p>
                 <p>
-                    By default, the <CurrentComponent /> is <code>{`nude={true}`}</code>, so
+                    By default, a <CurrentComponent /> has <strong>no visual appearance</strong> by its default property of <code>{`nude={true}`}</code>, so
                     you should add a <strong>visible container element</strong> to <em>visualize</em> the <strong>dropdowned UI</strong>.<br />
                     For example: A <LinkFormPage /> inside <CurrentComponent />, it becomes a <u>dropdownable <LinkFormPage /></u>.
                 </p>
@@ -57,7 +57,7 @@ export const SectionPropertyChildren = ({ titleTag = 'h2', propertySuffix = fals
                                 Usually it modifies the <code>outline</code> and/or <code>outline-offset</code> of the css.
                             </p>
                             <p>
-                                If the <em>focus state indicator</em> disrupts your css design, you can remove it by importing <code>stripoutFocusableElement()</code> on <LinkStripoutsPage /> to your css.
+                                If the <em>focus state indicator</em> disrupts your css design, you can remove it by importing <code>stripoutFocusableElement()</code> to your css.
                             </p>
                         </Warning>
                     </DetailSpecItem>

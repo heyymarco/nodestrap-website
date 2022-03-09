@@ -18,6 +18,7 @@ import Dropdown, { OrientationName, DropdownComponentProps, DropdownCloseType } 
 import Basic from '@nodestrap/basic'
 import Form from '@nodestrap/form'
 import Button from '@nodestrap/button'
+import { setRef } from '@nodestrap/utilities'
 import { TextInput, EmailInput } from '@nodestrap/input'
 import SelectPopupPlacement from '../../../components/SelectPopupPlacement';
 import {
@@ -108,11 +109,20 @@ const OverlayDropdownPreview = ({ overlay = true }: OverlayDropdownPreviewProps)
     
     return (
         <Preview
-            elmRef={containerRef}
             blockDisplay={true}
             preventShift={!overlay}
         >{(isLoaded) => <>
-            <Basic elmRef={contentRef} theme='secondary' mild={true} style={{ textAlign: 'center' }}>
+            <Basic
+                elmRef={(elm) => {
+                    setRef(containerRef, elm);
+                    setRef(contentRef, elm);
+                }}
+                theme='secondary'
+                mild={true}
+                style={{
+                    textAlign: 'center',
+                }}
+            >
                 A content
             </Basic>
             <Dropdown
@@ -480,13 +490,13 @@ const Page: NextPage = () => {
                 <TypeScriptCode>{`
 /* ... */
 
-const [dropdownVisible, setDropdownVisible] = useState(false);
+const [isDropdownVisible, setDropdownVisible] = useState(false);
 
 /* ... */
 
 <Dropdown
-    active={dropdownVisible}
-    onActiveChange={(newActive, arg) => setDropdownVisible(newActive)}
+    active={isDropdownVisible}
+    onActiveChange={(newActive, reason) => setDropdownVisible(newActive)}
 >
     <LoginForm />
 </Dropdown>
@@ -809,17 +819,7 @@ const LoginForm = (props) => {
     active={true}
     theme='primary'
 >
-    <div>
-        <p style={{ whiteSpace: 'nowrap' }}>
-            Hello everyone!
-        </p>
-        <p style={{ whiteSpace: 'nowrap' }}>
-            This is an awesome message!
-        </p>
-        <p style={{ whiteSpace: 'nowrap' }}>
-            It supports <strong>any HTML</strong> tags.
-        </p>
-    </div>
+    <LoginForm />
 </Dropdown>
                         `}</TypeScriptCode>
                     </SectionPropertyOrientationBlock>
@@ -832,17 +832,7 @@ const LoginForm = (props) => {
     active={true}
     theme='primary'
 >
-    <div>
-        <p style={{ whiteSpace: 'nowrap' }}>
-            Hello everyone!
-        </p>
-        <p style={{ whiteSpace: 'nowrap' }}>
-            This is an awesome message!
-        </p>
-        <p style={{ whiteSpace: 'nowrap' }}>
-            It supports <strong>any HTML</strong> tags.
-        </p>
-    </div>
+    <LoginForm />
 </Dropdown>
                         `}</TypeScriptCode>
                     </SectionPropertyOrientationInline>
