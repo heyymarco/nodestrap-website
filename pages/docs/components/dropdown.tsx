@@ -325,12 +325,16 @@ const DropdownAutoFlip = () => {
     
     
     useEffect(() => {
-        const container = contentRef.current?.parentElement;
-        if (!container) return;
-        if (container.style.height) return;
-        container.style.boxSizing = 'content-box';
-        container.style.height = `${container.clientHeight / 3}px`;
-        container.scrollTop = (container.scrollHeight - container.clientHeight) / 2;
+        const timeoutHanlder = setTimeout(() => {
+            const container = contentRef.current?.parentElement;
+            if (!container) return;
+            if (container.style.height) return;
+            container.style.boxSizing = 'content-box';
+            container.style.height = `${container.clientHeight / 3}px`;
+            container.scrollTop = (container.scrollHeight - container.clientHeight) / 2;
+        }, 0);
+        
+        return () => clearTimeout(timeoutHanlder);
     }, []);
     
     
@@ -381,12 +385,16 @@ const DropdownAutoShift = () => {
     
     
     useEffect(() => {
-        const container = contentRef.current?.parentElement;
-        if (!container) return;
-        if (container.style.height) return;
-        container.style.boxSizing = 'content-box';
-        container.style.height = `${container.clientHeight / 3}px`;
-        container.scrollTop = (container.scrollHeight - container.clientHeight) / 2;
+        const timeoutHanlder = setTimeout(() => {
+            const container = contentRef.current?.parentElement;
+            if (!container) return;
+            if (container.style.height) return;
+            container.style.boxSizing = 'content-box';
+            container.style.height = `${container.clientHeight / 3}px`;
+            container.scrollTop = (container.scrollHeight - container.clientHeight) / 2;
+        }, 0);
+        
+        return () => clearTimeout(timeoutHanlder);
     }, []);
     
     

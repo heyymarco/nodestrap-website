@@ -93,11 +93,12 @@ export const useSelectPopupPlacementSheet = createUseSheet(() => [
 const Option = (props: RadioProps) => <Radio {...props} enableValidation={false} nude={true} mild={true} size='lg' />
 
 export interface PopupSelectPopupPlacement extends Omit<BasicProps, 'children'> {
-    children ?: (popupPlacement: PopupPlacement) => React.ReactElement
+    children         ?: (popupPlacement: PopupPlacement) => React.ReactElement
+    initialPlacement ?: PopupPlacement
 }
 export const SelectPopupPlacement = (props: PopupSelectPopupPlacement) => {
     const sheet = useSelectPopupPlacementSheet();
-    const [popupPlacement, setPopupPlacement] = useState<PopupPlacement>('top')
+    const [popupPlacement, setPopupPlacement] = useState<PopupPlacement>(props.initialPlacement ?? 'top')
     
     
     

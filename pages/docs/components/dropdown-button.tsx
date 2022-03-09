@@ -15,7 +15,7 @@ import { Tips } from '../../../components/Info'
 
 import Label from '@nodestrap/label'
 import { DropdownComponentProps } from '@nodestrap/dropdown'
-import DropdownButton, { OrientationName, DropdownCloseType } from '@nodestrap/dropdown-button'
+import DropdownButtonOri, { DropdownButtonProps, OrientationName, DropdownCloseType } from '@nodestrap/dropdown-button'
 import Basic from '@nodestrap/basic'
 import Form from '@nodestrap/form'
 import Button from '@nodestrap/button'
@@ -60,6 +60,9 @@ import {
 import loadable from '@loadable/component'
 const DemoDropdownButtonLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@DropdownButton' */'../../../components/DemoPanel@DropdownButton'))
 
+
+
+const DropdownButton = (props: DropdownButtonProps) => <DropdownButtonOri {...props} buttonChildren={props.buttonChildren ?? 'Toggle dropdown'} />
 
 
 type LoginFormCloseType = DropdownCloseType | 'closeBySubmit'|'closeByCancel';
@@ -133,7 +136,7 @@ const OverlayDropdownButtonPreview = ({ overlay = true }: OverlayDropdownButtonP
                 onActiveChange={() => {
                     setFlip(!flip);
                 }}
-                theme='success'
+                theme='primary'
                 
                 targetRef={overlay ? contentRef : undefined}
                 popupPlacement='bottom'
@@ -179,7 +182,7 @@ const DropdownButtonFormChildPreview = () => {
                 <DropdownButton
                     active={isLoaded ? showDropdownButton : true}
                     onActiveChange={(newActive) => setShowDropdownButton(newActive)}
-                    theme='success'
+                    theme='primary'
                     
                     targetRef={buttonRef}
                     popupPlacement='bottom'
@@ -211,22 +214,19 @@ const DropdownButtonFormChildPreview = () => {
 };
 
 const DropdownButtonPlacementPreview = () => {
-    const contentRef = useRef<HTMLElement>(null);
-    
+    const [showDropdown, setShowDropdown] = useState(true);
+
     
     
     return (
-        <SelectPopupPlacement>{(popupPlacement) => <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <Label elmRef={contentRef} theme='primary' size='lg' style={{ width: '50%', height: '50%' }}>
-                A content
-            </Label>
+        <SelectPopupPlacement initialPlacement='bottom'>{(popupPlacement) => <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <DropdownButton
-                active={true}
+                active={showDropdown}
+                onClick={() => setShowDropdown(!showDropdown)}
                 nude={false}
-                theme='success'
+                theme='primary'
                 size='sm'
                 
-                targetRef={contentRef}
                 popupPlacement={popupPlacement}
                 
                 popupAutoFlip={false}
@@ -241,7 +241,7 @@ const DropdownButtonPlacementPreview = () => {
 };
 
 const DropdownButtonOffset = () => {
-    const contentRef = useRef<HTMLElement>(null);
+    const [showDropdown, setShowDropdown] = useState(true);
     
     
     
@@ -253,19 +253,19 @@ const DropdownButtonOffset = () => {
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
             </p>
-            <Label elmRef={contentRef} theme='primary' size='lg'>
-                A content
-            </Label>
             <DropdownButton
-                active={true}
+                active={showDropdown}
+                onClick={() => setShowDropdown(!showDropdown)}
                 nude={false}
-                theme='success'
+                theme='primary'
                 
-                targetRef={contentRef}
-                popupPlacement='top'
                 popupOffset={30}
                 popupAutoFlip={false}
                 popupAutoShift={false}
+                
+                style={{
+                    justifySelf: 'center',
+                }}
             >
                 <p>
                     hello world!
@@ -281,7 +281,7 @@ const DropdownButtonOffset = () => {
     )
 };
 const DropdownButtonShift = () => {
-    const contentRef = useRef<HTMLElement>(null);
+    const [showDropdown, setShowDropdown] = useState(true);
     
     
     
@@ -293,19 +293,19 @@ const DropdownButtonShift = () => {
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
             </p>
-            <Label elmRef={contentRef} theme='primary' size='lg'>
-                A content
-            </Label>
             <DropdownButton
-                active={true}
+                active={showDropdown}
+                onClick={() => setShowDropdown(!showDropdown)}
                 nude={false}
-                theme='success'
+                theme='primary'
                 
-                targetRef={contentRef}
-                popupPlacement='top'
                 popupShift={100}
                 popupAutoFlip={false}
                 popupAutoShift={false}
+                
+                style={{
+                    justifySelf: 'center',
+                }}
             >
                 <p>
                     hello world!
@@ -321,17 +321,22 @@ const DropdownButtonShift = () => {
     )
 };
 const DropdownButtonAutoFlip = () => {
-    const contentRef = useRef<HTMLElement>(null);
+    const buttonRef = useRef<HTMLButtonElement>(null);
+    const [showDropdown, setShowDropdown] = useState(true);
     
     
     
     useEffect(() => {
-        const container = contentRef.current?.parentElement;
-        if (!container) return;
-        if (container.style.height) return;
-        container.style.boxSizing = 'content-box';
-        container.style.height = `${container.clientHeight / 3}px`;
-        container.scrollTop = (container.scrollHeight - container.clientHeight) / 2;
+        const timeoutHanlder = setTimeout(() => {
+            const container = buttonRef.current?.parentElement;
+            if (!container) return;
+            if (container.style.height) return;
+            container.style.boxSizing = 'content-box';
+            container.style.height = `${container.clientHeight / 3}px`;
+            container.scrollTop = (container.scrollHeight - container.clientHeight) / 2;
+        }, 0);
+        
+        return () => clearTimeout(timeoutHanlder);
     }, []);
     
     
@@ -347,18 +352,20 @@ const DropdownButtonAutoFlip = () => {
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
             </p>
-            <Label elmRef={contentRef} theme='primary' size='lg'>
-                A content
-            </Label>
             <DropdownButton
-                active={true}
-                nude={false}
-                theme='success'
+                elmRef={buttonRef}
                 
-                targetRef={contentRef}
-                popupPlacement='top'
+                active={showDropdown}
+                onClick={() => setShowDropdown(!showDropdown)}
+                nude={false}
+                theme='primary'
+                
                 popupAutoFlip={true}
                 popupAutoShift={false}
+                
+                style={{
+                    justifySelf: 'center',
+                }}
             >
                 <p>
                     hello world!
@@ -377,17 +384,22 @@ const DropdownButtonAutoFlip = () => {
     )
 };
 const DropdownButtonAutoShift = () => {
-    const contentRef = useRef<HTMLElement>(null);
+    const buttonRef = useRef<HTMLButtonElement>(null);
+    const [showDropdown, setShowDropdown] = useState(true);
     
     
     
     useEffect(() => {
-        const container = contentRef.current?.parentElement;
-        if (!container) return;
-        if (container.style.height) return;
-        container.style.boxSizing = 'content-box';
-        container.style.height = `${container.clientHeight / 3}px`;
-        container.scrollTop = (container.scrollHeight - container.clientHeight) / 2;
+        const timeoutHanlder = setTimeout(() => {
+            const container = buttonRef.current?.parentElement;
+            if (!container) return;
+            if (container.style.height) return;
+            container.style.boxSizing = 'content-box';
+            container.style.height = `${container.clientHeight / 3}px`;
+            container.scrollTop = (container.scrollHeight - container.clientHeight) / 2;
+        }, 0);
+        
+        return () => clearTimeout(timeoutHanlder);
     }, []);
     
     
@@ -403,18 +415,21 @@ const DropdownButtonAutoShift = () => {
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
             </p>
-            <Label elmRef={contentRef} theme='primary' size='lg' style={{ width: '50%' }}>
-                A content
-            </Label>
             <DropdownButton
-                active={true}
-                nude={false}
-                theme='success'
+                elmRef={buttonRef}
                 
-                targetRef={contentRef}
+                active={showDropdown}
+                onClick={() => setShowDropdown(!showDropdown)}
+                nude={false}
+                theme='primary'
+                
                 popupPlacement='right'
                 popupAutoFlip={false}
                 popupAutoShift={true}
+                
+                style={{
+                    justifySelf: 'center',
+                }}
             >
                 <p>
                     hello<br />
@@ -448,13 +463,12 @@ const DropdownButtonOrientation = ({ orientation }: DropdownButtonOrientationPro
     return (
         <Preview
             elmRef={containerRef}
-            blockDisplay={true}
-            preventShift={true}
+            gap='12rem'
         >{(isLoaded) => <>
             <DropdownButton
                 orientation={orientation}
                 active={isLoaded ? isActiveFlip : true}
-                theme='success'
+                theme='primary'
             >
                 <LoginForm />
             </DropdownButton>
@@ -556,23 +570,10 @@ const LoginForm = (props) => {
 };
                 `}</TypeScriptCode>
             </SectionPropertyChildren>
-            <Section title={<>Overlaying <CurrentComponent /></>}>
+            <Section title='Customizing the Dropdown'>
                 <p>
-                    By default the <CurrentComponent /> flows as a normal document element, thus
-                    during <em>showing</em>/<em>hiding</em> transition, the <CurrentComponent /> <strong>shifts</strong> the position of <em>next siblings</em>.
+                    There are some properties for customizing the behavior of the dropdown, they are:
                 </p>
-                <p>
-                    The preview below illustrates the <CurrentComponent /> <strong>shifts</strong> the position of the <strong>paragraphs</strong>:
-                </p>
-                <OverlayDropdownButtonPreview overlay={false} />
-                <p>
-                    To workaround for the shifting problem, <CurrentComponent /> can be configured as an <em>overlaying element</em>, like this:
-                </p>
-                <OverlayDropdownButtonPreview />
-                <p>
-                    To make the <CurrentComponent /> overlaying on a specific element, configure the following properties:
-                </p>
-                <SectionPropertyTargetRef />
                 <SectionPropertyPopupPlacement>
                     <Tips>
                         <p>
@@ -593,7 +594,7 @@ const LoginForm = (props) => {
                     <Tips>
                         <p>
                             The <code>popupPlacement</code> is on <code>{`'top'`}</code>,
-                            but if you scroll down the <strong>container below</strong>, the <code>popupPlacement</code> will change to <code>{`'bottom'`}</code>.
+                            but if you scroll up the <strong>container below</strong>, the <code>popupPlacement</code> will change to <code>{`'bottom'`}</code>.
                         </p>
                     </Tips>
                     <p></p>
@@ -613,7 +614,7 @@ const LoginForm = (props) => {
             <SectionInheritedProps />
             <SectionVariants>
                 <SectionPropertyTheme>
-                    <Preview>
+                    <Preview gap='4rem'>
                         {themeNames.map((themeName, index) =>
                             <DropdownButton
                                 theme={themeName}
@@ -645,7 +646,7 @@ const LoginForm = (props) => {
                     </TypeScriptCode>
                 </SectionPropertyTheme>
                 <SectionPropertySize>
-                    <Preview>
+                    <Preview gap='5rem'>
                         <DropdownButton
                             size='sm'
                             active={true}
@@ -714,9 +715,8 @@ const LoginForm = (props) => {
                     `}</TypeScriptCode>
                 </SectionPropertySize>
                 <SectionPropertyNude>
-                    <TransparentPreview>
+                    <TransparentPreview gap='4rem'>
                         <DropdownButton
-                            nude={true}
                             active={true}
                             theme='primary'
                         >
@@ -728,7 +728,6 @@ const LoginForm = (props) => {
                     <p></p>
                     <TypeScriptCode>{`
 <DropdownButton
-    nude={true}
     active={true}
     theme='primary'
 >
@@ -739,7 +738,7 @@ const LoginForm = (props) => {
                     `}</TypeScriptCode>
                 </SectionPropertyNude>
                 <SectionPropertyGradient>
-                    <Preview>
+                    <Preview gap='4rem'>
                         {themeNames.map((themeName, index) =>
                             <DropdownButton
                                 gradient={true}
@@ -773,7 +772,7 @@ const LoginForm = (props) => {
                     </TypeScriptCode>
                 </SectionPropertyGradient>
                 <SectionPropertyOutlined>
-                    <TransparentPreview>
+                    <TransparentPreview gap='4rem'>
                         {themeNames.map((themeName, index) =>
                             <DropdownButton
                                 outlined={true}
@@ -807,7 +806,7 @@ const LoginForm = (props) => {
                     </TypeScriptCode>
                 </SectionPropertyOutlined>
                 <SectionPropertyMild>
-                    <Preview>
+                    <Preview gap='4rem'>
                         {themeNames.map((themeName, index) =>
                             <DropdownButton
                                 mild={false}
@@ -871,7 +870,7 @@ const LoginForm = (props) => {
             </SectionVariants>
             <SectionStates>
                 <SectionPropertyActive>
-                    <Preview>
+                    <Preview gap='4rem'>
                         <DropdownButton
                             active={true}
                             nude={false}
@@ -895,7 +894,7 @@ const LoginForm = (props) => {
 </DropdownButton>
                     `}</TypeScriptCode>
                     <SectionPropertyOnActiveChange>
-                        <Preview preventShift={true}>
+                        <Preview gap='12rem'>
                             <DropdownButtonWithOnActiveChange />
                         </Preview>
                         <p></p>
@@ -931,7 +930,7 @@ export default function App() {
                     </SectionPropertyOnActiveChange>
                 </SectionPropertyActive>
                 <SectionPropertyEnabled>
-                    <Preview>
+                    <Preview gap='4rem'>
                         <DropdownButton
                             enabled={false}
                             active={true}

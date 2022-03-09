@@ -62,13 +62,13 @@ export const usePreviewSheet = createUseSheet(() => [
                     
                     gridAutoFlow : 'row',
                     
-                    gap          : spacers.default,
+                    gap          : `var(--gap, ${spacers.default})`,
                 }),
                 ...rule('.block&', {
                     display  : 'block',
                 }),
                 
-                padding      : spacers.lg,
+                padding      : `var(--gap, ${spacers.lg})`,
                 background   : colors.secondaryMild,
                 ...rule('.transp&', {
                     background: [
@@ -88,10 +88,11 @@ export interface PreviewProps extends CardProps {
     blockDisplay ?: boolean
     stretch      ?: boolean
     preventShift ?: boolean
+    gap          ?: string
     
     children     ?: React.ReactNode | ((isLoaded: boolean) => React.ReactNode)
 }
-export const Preview = ({blockDisplay = false, stretch = true, preventShift = false, children, ...restProps}: PreviewProps) => {
+export const Preview = ({blockDisplay = false, stretch = true, preventShift = false, gap, children, ...restProps}: PreviewProps) => {
     const cardRef = useRef<HTMLElement>(null);
     const [isLoaded, setLoaded] = useState<boolean>(false);
     useEffect(() => {
@@ -156,6 +157,9 @@ export const Preview = ({blockDisplay = false, stretch = true, preventShift = fa
                 blockDisplay ? 'block'   : null,
                 stretch      ? 'stretch' : null,
             ]}
+            style={gap ? ({
+                ['--gap' as any]: gap,
+            }) : {}}
             
             
             header={restProps.header ?? 'Preview'}
