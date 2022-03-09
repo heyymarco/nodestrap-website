@@ -478,75 +478,36 @@ const Page: NextPage = () => {
                 <DropdownFormChildPreview />
                 <p></p>
                 <TypeScriptCode>{`
-import React, { useRef, useState } from 'react'
-import {
-    Dropdown,
-    DropdownProps,
-    
-    DropdownComponentProps,
-    DropdownCloseType,
-} from '@nodestrap/dropdown'
-import Form from '@nodestrap/form'
+/* ... */
 
-export default function App() {
-    const [showDropdown, setShowDropdown] = useState(false);
-    const buttonRef = useRef<HTMLButtonElement>(null);
+const [dropdownVisible, setDropdownVisible] = useState(false);
+
+/* ... */
+
+<Dropdown
+    active={dropdownVisible}
+    onActiveChange={(newActive, arg) => setDropdownVisible(newActive)}
+>
+    <LoginForm />
+</Dropdown>
+
+/* ... */
+
+const LoginForm = (props) => {
+    const {
+        elmRef,
+        tabIndex = -1,
+        onActiveChange,
+    } = props;
     
     return (
-        <>
-            <Button elmRef={buttonRef} theme='primary' onClick={() => setShowDropdown(!showDropdown)}>
-                Toggle dropdown
-            </Button>
-            <Dropdown
-                active={showDropdown}
-                onActiveChange={(newActive) => setShowDropdown(newActive)}
-                theme='success'
-                
-                targetRef={buttonRef}
-                popupPlacement='bottom'
-                popupOffset={5}
-                
-                popupAutoFlip={false}
-                popupAutoShift={false}
-            >
-                <LoginForm />
-            </Dropdown>
-        </>
-    );
-};
-
-type LoginFormCloseType = DropdownCloseType | 'closeBySubmit'|'closeByCancel';
-interface LoginFormProps extends DropdownComponentProps<HTMLFormElement, LoginFormCloseType> {
-}
-const LoginForm = ({ elmRef, tabIndex = -1, onActiveChange }: LoginFormProps) => {
-    return (
-        <Form
-            elmRef={elmRef}
-            tabIndex={tabIndex}
-            theme='primary'
-            enableValidation={false}
-            style={{
-                display             : 'grid',
-                gridTemplateColumns : '1fr 1fr',
-                gridAutoFlow        : 'row',
-                gap                 : '1rem',
-                outline             : 'none',
-            }}
-        >
-            <TextInput  placeholder='John Smith'     size='sm' style={{ gridColumnEnd: 'span 2' }} />
-            <EmailInput placeholder='john@smith.com' size='sm' style={{ gridColumnEnd: 'span 2' }} />
-            <Button
-                theme='primary'
-                size='sm'
-                onClick={() => onActiveChange?.(false, 'closeBySubmit')}
-            >
+        <Form elmRef={elmRef} tabIndex={tabIndex} >
+            <TextInput  placeholder='John Smith'     />
+            <EmailInput placeholder='john@smith.com' />
+            <Button onClick={() => onActiveChange?.(false, 'closeBySubmit')} >
                 Submit
             </Button>
-            <Button
-                theme='secondary'
-                size='sm'
-                onClick={() => onActiveChange?.(false, 'closeByCancel')}
-            >
+            <Button onClick={() => onActiveChange?.(false, 'closeByCancel')} >
                 Cancel
             </Button>
         </Form>
