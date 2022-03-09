@@ -760,6 +760,7 @@ const Page: NextPage = () => {
                     <Preview>
                         <Dropdown
                             active={true}
+                            nude={false}
                             theme='primary'
                         >
                             <p>
@@ -771,6 +772,7 @@ const Page: NextPage = () => {
                     <TypeScriptCode>{`
 <Dropdown
     active={true}
+    nude={false}
     theme='primary'
 >
     <p>
@@ -784,6 +786,7 @@ const Page: NextPage = () => {
                         <Dropdown
                             enabled={false}
                             active={true}
+                            nude={false}
                             theme='primary'
                         >
                             <p>
@@ -796,6 +799,7 @@ const Page: NextPage = () => {
 <Dropdown
     enabled={false}
     active={true}
+    nude={false}
     theme='primary'
 >
     <p>

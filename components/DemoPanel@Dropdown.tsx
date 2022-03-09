@@ -4,7 +4,7 @@ import { useResetableState, Option, ResetButton } from './DemoPanel';
 import { CollapseInitials, CollapseOptionProps, CollapseOptions, useCollapseStates } from './DemoPanel@Collapse';
 
 import { Dropdown } from '@nodestrap/dropdown'
-import { ThemeName } from '@nodestrap/basic';
+import { Button } from '@nodestrap/button';
 import { TypeScriptCode } from './Code';
 
 
@@ -58,9 +58,9 @@ export const DemoDropdown = () => {
                     outlined={states.outlined[0]}
                     mild={states.mild[0]}
                 >
-                    <p style={{ background: '#fbf3d5', whiteSpace: 'nowrap' }}>
+                    <Button theme='primary' style={{ whiteSpace: 'nowrap' }}>
                         Hello world!
-                    </p>
+                    </Button>
                 </Dropdown>
                 <TypeScriptCode collapsable={false}>{`
 <Dropdown
@@ -76,9 +76,9 @@ export const DemoDropdown = () => {
     outlined={${states.outlined[0]}}
     mild={${states.mild[0]}}
 >
-    <p style={{ background: '#fafee2' }}>
+    <Button theme='primary' style={{ whiteSpace: 'nowrap' }}>
         Hello world!
-    </p>
+    </Button>
 </Dropdown>
                 `}</TypeScriptCode>
             </div>
