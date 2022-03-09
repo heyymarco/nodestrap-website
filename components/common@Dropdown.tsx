@@ -1,9 +1,11 @@
 import React from 'react'
 
-import { CurrentNestedComponent, useComponentInfo, SectionPreviewPropertyProps, ParagraphDefaultValue, SectionPreviewProperty, CurrentComponent, SectionPropertyProps } from './common'
-import { DetailSpecItem, SpecList } from './SpecList';
+import { SectionPreviewPropertyProps, SectionPropertyProps } from './common'
 
 import {
+    SectionPropertyNudeProps,
+    SectionPropertyNude                    as BasicSectionPropertyNude,
+    
     SectionPropertyOrientationProps,
     SectionPropertyOrientation             as BasicSectionPropertyOrientation,
     SectionPropertyOrientationBlock        as BasicSectionPropertyOrientationBlock,
@@ -17,19 +19,11 @@ import {
 
 
 
-export const SectionPropertyPopupAutoFlip  = ({ defaultValue = true, ...props }: SectionPreviewPropertyProps) => {
+export const SectionPropertyNude = ({ defaultValue = true, ...restProps }: SectionPropertyNudeProps) => {
     return (
-        <PopupSectionPropertyPopupAutoFlip {...props} defaultValue={defaultValue} />
+        <BasicSectionPropertyNude {...restProps} defaultValue={defaultValue} />
     );
 };
-export const SectionPropertyPopupAutoShift = ({ defaultValue = true, ...props }: SectionPreviewPropertyProps) => {
-    return (
-        <PopupSectionPropertyPopupAutoShift {...props} defaultValue={defaultValue} />
-    );
-};
-
-
-
 export const SectionPropertyOrientation       = ({ orientationStuff = 'collapsing', ...restProps }: SectionPropertyProps & SectionPropertyOrientationProps) => {
     return (
         <BasicSectionPropertyOrientation {...restProps} orientationStuff={orientationStuff} />
@@ -45,3 +39,16 @@ export const SectionPropertyOrientationInline = ({ orientationStuff = 'collapsin
         <BasicSectionPropertyOrientationInline {...restProps} orientationStuff={orientationStuff} />
     );
 }; 
+
+
+
+export const SectionPropertyPopupAutoFlip  = ({ defaultValue = true, ...props }: SectionPreviewPropertyProps) => {
+    return (
+        <PopupSectionPropertyPopupAutoFlip {...props} defaultValue={defaultValue} />
+    );
+};
+export const SectionPropertyPopupAutoShift = ({ defaultValue = true, ...props }: SectionPreviewPropertyProps) => {
+    return (
+        <PopupSectionPropertyPopupAutoShift {...props} defaultValue={defaultValue} />
+    );
+};

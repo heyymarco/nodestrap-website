@@ -24,7 +24,6 @@ import {
     themeNames,
     SectionPropertyTheme,
     SectionPropertySize,
-    SectionPropertyNude,
     SectionPropertyGradient,
     SectionPropertyOutlined,
 } from '../../../components/common@Basic'
@@ -43,12 +42,13 @@ import {
     SectionPropertyLazy,
 } from '../../../components/common@Popup'
 import {
-    SectionPropertyPopupAutoFlip,
-    SectionPropertyPopupAutoShift,
-    
+    SectionPropertyNude,
     SectionPropertyOrientation,
     SectionPropertyOrientationBlock,
     SectionPropertyOrientationInline,
+    
+    SectionPropertyPopupAutoFlip,
+    SectionPropertyPopupAutoShift,
 } from '../../../components/common@Dropdown'
 
 import loadable from '@loadable/component'
