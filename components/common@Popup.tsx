@@ -175,31 +175,34 @@ export default function FooComponent() {
         } />
     );
 };
-export const SectionPropertyPopupPlacement = ({ propertySuffix = true, property = 'popupPlacement', properties = 'Placements'    , description, children, ...restProps }: SectionPreviewPropertyProps) => {
+export interface SectionPropertyPopupPlacementProps extends SectionPreviewPropertyProps {
+    relativeTo ?: React.ReactNode
+}
+export const SectionPropertyPopupPlacement = ({ propertySuffix = true, property = 'popupPlacement', properties = 'Placements'    , description, relativeTo = <strong>target element</strong>, children, ...restProps }: SectionPropertyPopupPlacementProps) => {
     return (
         <SectionPreviewProperty {...restProps} propertySuffix={propertySuffix} property={property} properties={properties} specList={children} description={
             description
             ??
             <>
                 <p>
-                    Decides which location (relative to the <strong>target element</strong>) for the <CurrentComponent /> to hover.
+                    Decides which location (relative to the {relativeTo}) for the <CurrentComponent /> to hover.
                 </p>
             </>
         } />
     );
 };
-export const SectionPropertyPopupOffset    = ({ propertySuffix = true, property = 'popupOffset'   , properties = 'Offset'        , description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyPopupOffset    = ({ propertySuffix = true, property = 'popupOffset'   , properties = 'Offset'        , description, relativeTo = <strong>target element</strong>, ...restProps }: SectionPropertyPopupPlacementProps) => {
     return (
         <SectionPreviewProperty {...restProps} propertySuffix={propertySuffix} property={property} properties={properties} description={
             description
             ??
             <>
                 <p>
-                    Makes a gap between the <CurrentComponent /> and the <strong>target element</strong>.
+                    Makes a gap between the <CurrentComponent /> and the {relativeTo}.
                 </p>
                 <p>
                     Assign a <strong>positive number</strong> to make a gap.<br />
-                    Assign a <strong>negative number</strong> to make the <CurrentComponent /> inset to the <strong>target element</strong>.
+                    Assign a <strong>negative number</strong> to make the <CurrentComponent /> inset to the {relativeTo}.
                 </p>
                 <p>
                     Currently, the <code>{property}</code> only accepts a <code>Number</code> represents the distance in <strong>pixel unit</strong>.
@@ -209,14 +212,14 @@ export const SectionPropertyPopupOffset    = ({ propertySuffix = true, property 
         } />
     );
 };
-export const SectionPropertyPopupShift     = ({ propertySuffix = true, property = 'popupShift'    , properties = 'Shift'         , description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyPopupShift     = ({ propertySuffix = true, property = 'popupShift'    , properties = 'Shift'         , description, relativeTo = <strong>target element</strong>, ...restProps }: SectionPropertyPopupPlacementProps) => {
     return (
         <SectionPreviewProperty {...restProps} propertySuffix={propertySuffix} property={property} properties={properties} description={
             description
             ??
             <>
                 <p>
-                    Adjusts the <em>cross axis location</em> of the <CurrentComponent /> relative to the <strong>target element</strong>.
+                    Adjusts the <em>cross axis location</em> of the <CurrentComponent /> relative to the {relativeTo}.
                 </p>
                 <p>
                     Assign a <strong>positive number</strong> to make the location more <code>forward</code> (relative to the writing direction).<br />

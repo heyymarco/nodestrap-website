@@ -33,10 +33,6 @@ import {
     SectionPropertyEnabled,
     SectionPropertyActive,
     
-    SectionPropertyPopupPlacement,
-    SectionPropertyPopupOffset,
-    SectionPropertyPopupShift,
-    
     SectionPropertyLazy,
 } from '../../../components/common@Popup'
 import {
@@ -52,6 +48,11 @@ import {
     
     SectionPropertyOnActiveChange,
 } from '../../../components/common@Dropdown'
+import {
+    SectionPropertyPopupPlacement,
+    SectionPropertyPopupOffset,
+    SectionPropertyPopupShift,
+} from '../../../components/common@DropdownButton'
 
 import loadable from '@loadable/component'
 const DemoDropdownButtonLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@DropdownButton' */'../../../components/DemoPanel@DropdownButton'))
@@ -69,12 +70,13 @@ const DropdownButton = (props: DropdownButtonProps) => <DropdownButtonOri
 
 type LoginFormCloseType = DropdownCloseType | 'closeBySubmit'|'closeByCancel';
 interface LoginFormProps extends DropdownComponentProps<HTMLFormElement, LoginFormCloseType> {
+    focusable ?: boolean
 }
-const LoginForm = ({ elmRef, tabIndex = -1, onActiveChange }: LoginFormProps) => {
+const LoginForm = ({ elmRef, focusable = false, tabIndex = -1, onActiveChange }: LoginFormProps) => {
     return (
         <Form
             elmRef={elmRef}
-            tabIndex={tabIndex}
+            tabIndex={focusable ? tabIndex : undefined}
             theme='primary'
             enableValidation={false}
             style={{
@@ -105,10 +107,7 @@ const LoginForm = ({ elmRef, tabIndex = -1, onActiveChange }: LoginFormProps) =>
     );
 }
 
-interface OverlayDropdownButtonPreviewProps {
-    overlay ?: boolean
-}
-const OverlayDropdownButtonPreview = ({ overlay = true }: OverlayDropdownButtonPreviewProps) => {
+const DropdownButtonPreview = () => {
     const [containerRef, isActiveFlip] = useFlipFlop({ defaultState: true });
     const [flip, setFlip] = useState(false);
     
@@ -127,9 +126,6 @@ const OverlayDropdownButtonPreview = ({ overlay = true }: OverlayDropdownButtonP
                         setFlip(!flip);
                     }}
                     theme='primary'
-                    
-                    popupPlacement='bottom'
-                    popupOffset={10}
                     
                     popupAutoFlip={false}
                     popupAutoShift={false}
@@ -173,13 +169,10 @@ const DropdownButtonFormChildPreview = () => {
                     onActiveChange={(newActive) => setShowDropdownButton(newActive)}
                     theme='primary'
                     
-                    popupPlacement='bottom'
-                    popupOffset={5}
-                    
                     popupAutoFlip={false}
                     popupAutoShift={false}
                 >
-                    <LoginForm />
+                    <LoginForm focusable={true} />
                 </DropdownButton>
             </div>
             <p>
@@ -411,6 +404,8 @@ const DropdownButtonAutoShift = () => {
                 nude={false}
                 theme='primary'
                 
+                orientation='inline'
+                buttonOrientation='inline'
                 popupPlacement='right'
                 popupAutoFlip={false}
                 popupAutoShift={true}
@@ -512,7 +507,7 @@ const Page: NextPage = () => {
                 <p>
                     Here the preview:
                 </p>
-                <OverlayDropdownButtonPreview />
+                <DropdownButtonPreview />
             </SectionIntro>
             <SectionDemo>
                 <DemoDropdownButtonLazy fallback={<BusyBar />} />
@@ -583,7 +578,7 @@ const LoginForm = (props) => {
                     <Tips>
                         <p>
                             The <code>popupPlacement</code> is on <code>{`'bottom'`}</code>,
-                            but if you scroll up the <strong>container below</strong>, the <code>popupPlacement</code> will change to <code>{`'bottom'`}</code>.
+                            but if you scroll up the <strong>container below</strong>, the <code>popupPlacement</code> will change to <code>{`'top'`}</code>.
                         </p>
                     </Tips>
                     <p></p>

@@ -56,6 +56,10 @@ export const DemoDropdownButton = () => {
                     gradient={states.gradient[0]}
                     outlined={states.outlined[0]}
                     mild={states.mild[0]}
+                    
+                    buttonChildren={<>
+                        Toggle dropdown
+                    </>}
                 >
                     <Button theme='primary' style={{ whiteSpace: 'nowrap' }}>
                         Hello world!
@@ -74,6 +78,10 @@ export const DemoDropdownButton = () => {
     gradient={${states.gradient[0]}}
     outlined={${states.outlined[0]}}
     mild={${states.mild[0]}}
+    
+    buttonChildren={<>
+        Toggle dropdown
+    </>}
 >
     <Button theme='primary' style={{ whiteSpace: 'nowrap' }}>
         Hello world!

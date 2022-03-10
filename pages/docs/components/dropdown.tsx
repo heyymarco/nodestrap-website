@@ -63,12 +63,13 @@ const DemoDropdownLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@D
 
 type LoginFormCloseType = DropdownCloseType | 'closeBySubmit'|'closeByCancel';
 interface LoginFormProps extends DropdownComponentProps<HTMLFormElement, LoginFormCloseType> {
+    focusable ?: boolean
 }
-const LoginForm = ({ elmRef, tabIndex = -1, onActiveChange }: LoginFormProps) => {
+const LoginForm = ({ elmRef, focusable = false, tabIndex = -1, onActiveChange }: LoginFormProps) => {
     return (
         <Form
             elmRef={elmRef}
-            tabIndex={tabIndex}
+            tabIndex={focusable ? tabIndex : undefined}
             theme='primary'
             enableValidation={false}
             style={{
@@ -187,7 +188,7 @@ const DropdownFormChildPreview = () => {
                     popupAutoFlip={false}
                     popupAutoShift={false}
                 >
-                    <LoginForm />
+                    <LoginForm focusable={true} />
                 </Dropdown>
             </div>
             <p>
@@ -600,7 +601,7 @@ const LoginForm = (props) => {
                     <Tips>
                         <p>
                             The <code>popupPlacement</code> is on <code>{`'bottom'`}</code>,
-                            but if you scroll up the <strong>container below</strong>, the <code>popupPlacement</code> will change to <code>{`'bottom'`}</code>.
+                            but if you scroll up the <strong>container below</strong>, the <code>popupPlacement</code> will change to <code>{`'top'`}</code>.
                         </p>
                     </Tips>
                     <p></p>
