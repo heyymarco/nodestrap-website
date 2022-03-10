@@ -5,21 +5,17 @@ import Head from 'next/head'
 
 import { useFlipFlop } from '../../../components/hooks'
 
-import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
-
 import { Preview, TransparentPreview } from '../../../components/Preview'
 import { Section } from '../../../components/Section'
-import { SectionInheritedProps, LinkDropdownListPage, LinkDropdownPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents } from '../../../components/common'
+import { SectionInheritedProps, LinkDropdownListPage, LinkDropdownPage, SectionOverridingDefaults, ComponentInfoProvider, SectionDerivering, SectionCustomizingParent, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 import { Tips } from '../../../components/Info'
 
 import Label from '@nodestrap/label'
 import DropdownList, { OrientationName, ListItem, ListSeparatorItem } from '@nodestrap/dropdown-list'
 import Basic from '@nodestrap/basic'
-import Form from '@nodestrap/form'
 import Button from '@nodestrap/button'
 import { setRef } from '@nodestrap/utilities'
-import { TextInput, EmailInput } from '@nodestrap/input'
 import SelectPopupPlacement from '../../../components/SelectPopupPlacement';
 import {
     themeNames,
@@ -518,31 +514,23 @@ const [isDropdownListVisible, setDropdownListVisible] = useState(false);
     active={isDropdownListVisible}
     onActiveChange={(newActive, reason) => setDropdownListVisible(newActive)}
 >
-    <LoginForm />
+    <ListItem>
+        A first item (inherit theme)
+    </ListItem>
+    <ListItem>
+        A second item (inherit theme)
+    </ListItem>
+    <ListSeparatorItem />
+    <ListItem>
+        A third item (inherit theme)
+    </ListItem>
+    <ListItem theme='danger'>
+        A fourth item (danger theme)
+    </ListItem>
+    <ListItem theme='success'>
+        A fifth item (success theme)
+    </ListItem>
 </DropdownList>
-
-/* ... */
-
-const LoginForm = (props) => {
-    const {
-        elmRef,
-        tabIndex = -1,
-        onActiveChange,
-    } = props;
-    
-    return (
-        <Form elmRef={elmRef} tabIndex={tabIndex} >
-            <TextInput  placeholder='John Smith'     />
-            <EmailInput placeholder='john@smith.com' />
-            <Button onClick={() => onActiveChange?.(false, 'closeBySubmit')} >
-                Submit
-            </Button>
-            <Button onClick={() => onActiveChange?.(false, 'closeByCancel')} >
-                Cancel
-            </Button>
-        </Form>
-    );
-};
                 `}</TypeScriptCode>
             </SectionPropertyChildren>
             <Section title={<>Overlaying <CurrentComponent /></>}>
@@ -873,7 +861,22 @@ const LoginForm = (props) => {
     active={true}
     theme='primary'
 >
-    <LoginForm />
+    <ListItem>
+        A first item (inherit theme)
+    </ListItem>
+    <ListItem>
+        A second item (inherit theme)
+    </ListItem>
+    <ListSeparatorItem />
+    <ListItem>
+        A third item (inherit theme)
+    </ListItem>
+    <ListItem theme='danger'>
+        A fourth item (danger theme)
+    </ListItem>
+    <ListItem theme='success'>
+        A fifth item (success theme)
+    </ListItem>
 </DropdownList>
                         `}</TypeScriptCode>
                     </SectionPropertyOrientationBlock>
@@ -886,7 +889,22 @@ const LoginForm = (props) => {
     active={true}
     theme='primary'
 >
-    <LoginForm />
+    <ListItem>
+        A first item (inherit theme)
+    </ListItem>
+    <ListItem>
+        A second item (inherit theme)
+    </ListItem>
+    <ListSeparatorItem />
+    <ListItem>
+        A third item (inherit theme)
+    </ListItem>
+    <ListItem theme='danger'>
+        A fourth item (danger theme)
+    </ListItem>
+    <ListItem theme='success'>
+        A fifth item (success theme)
+    </ListItem>
 </DropdownList>
                         `}</TypeScriptCode>
                     </SectionPropertyOrientationInline>
@@ -950,7 +968,22 @@ export default function App() {
             onActiveChange={() => setDropdownListActive(false)}
             theme='primary'
         >
-            <LoginForm />
+            <ListItem>
+                A first item (inherit theme)
+            </ListItem>
+            <ListItem>
+                A second item (inherit theme)
+            </ListItem>
+            <ListSeparatorItem />
+            <ListItem>
+                A third item (inherit theme)
+            </ListItem>
+            <ListItem theme='danger'>
+                A fourth item (danger theme)
+            </ListItem>
+            <ListItem theme='success'>
+                A fifth item (success theme)
+            </ListItem>
         </DropdownList>
     );
 }
@@ -990,26 +1023,12 @@ export default function App() {
                 </SectionPropertyEnabled>
             </SectionStates>
             <SectionPropertyLazy />
-            <SectionCustomizing specList={
-                <SpecList>
-                    <DetailSpecItem title='Foregrounds, Backgrounds &amp; Borders'>
-                        <SubSpecList>
-                            <SimpleSpecItem>
-                                <code>boxShadow</code>
-                                <p>A <code>boxShadow</code> to apply, so the <CurrentComponent /> appears hovered.</p>
-                            </SimpleSpecItem>
-                        </SubSpecList>
-                    </DetailSpecItem>
-                </SpecList>
-            }/>
+            <SectionCustomizingParent />
             <SectionDerivering>
                 <SectionOverridingDefaults>{`
 import {
     DropdownList,
     DropdownListProps,
-    
-    DropdownListComponentProps,
-    DropdownListCloseType,
 } from '@nodestrap/dropdownList'
 import Form from '@nodestrap/form'
 
@@ -1020,154 +1039,26 @@ export default function DropdownListLoginForm(props: DropdownListProps) {
             
             theme={props.theme ?? 'primary'} // override default value of theme to 'primary'
         >
-            { props.children ?? <LoginForm /> }
+            <ListItem>
+                A first item (inherit theme)
+            </ListItem>
+            <ListItem>
+                A second item (inherit theme)
+            </ListItem>
+            <ListSeparatorItem />
+            <ListItem>
+                A third item (inherit theme)
+            </ListItem>
+            <ListItem theme='danger'>
+                A fourth item (danger theme)
+            </ListItem>
+            <ListItem theme='success'>
+                A fifth item (success theme)
+            </ListItem>
         </DropdownList>
-    );
-}
-
-type LoginFormCloseType = DropdownListCloseType | 'closeBySubmit'|'closeByCancel';
-interface LoginFormProps extends DropdownListComponentProps<HTMLFormElement, LoginFormCloseType> {
-}
-const LoginForm = ({ elmRef, tabIndex = -1, onActiveChange }: LoginFormProps) => {
-    return (
-        <Form
-            elmRef={elmRef}
-            tabIndex={tabIndex}
-            theme='primary'
-            enableValidation={false}
-            style={{
-                display             : 'grid',
-                gridTemplateColumns : '1fr 1fr',
-                gridAutoFlow        : 'row',
-                gap                 : '1rem',
-                outline             : 'none',
-            }}
-        >
-            <TextInput  placeholder='John Smith'     size='sm' style={{ gridColumnEnd: 'span 2' }} />
-            <EmailInput placeholder='john@smith.com' size='sm' style={{ gridColumnEnd: 'span 2' }} />
-            <Button
-                theme='primary'
-                size='sm'
-                onClick={() => onActiveChange?.(false, 'closeBySubmit')}
-            >
-                Submit
-            </Button>
-            <Button
-                theme='secondary'
-                size='sm'
-                onClick={() => onActiveChange?.(false, 'closeByCancel')}
-            >
-                Cancel
-            </Button>
-        </Form>
     );
 }
                 `}</SectionOverridingDefaults>
-
-                <SectionCustomizingCss specList={
-                    <SpecList>
-                        <DetailSpecItem code='usesDropdownListLayout()'>
-                            <p>
-                                Returns a <code>Rule</code> object represents a complete <CurrentComponent /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
-                            </p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='usesDropdownListVariants()'>
-                            <p>
-                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentComponent /> such as:<br />
-                                <code>SizeVariant</code> and <strong>all variants</strong> inherited from <CurrentBaseComponents />.
-                            </p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='usesDropdownListStates()'>
-                            <p>
-                                Returns a <code>Rule</code> object represents the <strong>states</strong> of <CurrentComponent />.
-                            </p>
-                            <p>
-                                Currently the states are equivalent to <CurrentBaseComponents />&apos;s states.
-                            </p>
-                        </DetailSpecItem>
-                    </SpecList>
-                }>{`
-import { mainComposition, style, imports, children } from '@cssfn/cssfn'
-import { createUseSheet } from '@cssfn/react-cssfn'
-import {
-    DropdownList,
-    DropdownListProps,
-    
-    usesDropdownListLayout,
-    usesDropdownListVariants,
-    usesDropdownListStates,
-    
-    DropdownListComponentProps,
-    DropdownListCloseType,
-} from '@nodestrap/dropdownList'
-import Form from '@nodestrap/form'
-
-
-const useDropdownListLoginFormSheet = createUseSheet(() => [
-    mainComposition(
-        imports([
-            // import some stuff from <DropdownList>:
-            usesDropdownListLayout(),
-            usesDropdownListVariants(),
-            usesDropdownListStates(),
-        ]),
-        style({
-            // then overwrite with your style:
-            
-            ...children('form', {
-                display             : 'grid',
-                gridTemplateColumns : '1fr 1fr',
-                gridAutoFlow        : 'row',
-                gap                 : '1rem',
-                outline             : 'none',
-                /* ... */
-            }),
-            
-            /* ... */
-        }),
-    ),
-]);
-
-export default function DropdownListLoginForm(props: DropdownListProps) {
-    const sheet = useDropdownListLoginFormSheet();
-    return (
-        <DropdownList {...props} mainClass={sheet.main}>
-            { props.children ?? <LoginForm /> }
-        </DropdownList>
-    )
-}
-
-type LoginFormCloseType = DropdownListCloseType | 'closeBySubmit'|'closeByCancel';
-interface LoginFormProps extends DropdownListComponentProps<HTMLFormElement, LoginFormCloseType> {
-}
-const LoginForm = ({ elmRef, tabIndex = -1, onActiveChange }: LoginFormProps) => {
-    return (
-        <Form
-            elmRef={elmRef}
-            tabIndex={tabIndex}
-            theme='primary'
-            enableValidation={false}
-        >
-            <TextInput  placeholder='John Smith'     size='sm' style={{ gridColumnEnd: 'span 2' }} />
-            <EmailInput placeholder='john@smith.com' size='sm' style={{ gridColumnEnd: 'span 2' }} />
-            <Button
-                theme='primary'
-                size='sm'
-                onClick={() => onActiveChange?.(false, 'closeBySubmit')}
-            >
-                Submit
-            </Button>
-            <Button
-                theme='secondary'
-                size='sm'
-                onClick={() => onActiveChange?.(false, 'closeByCancel')}
-            >
-                Cancel
-            </Button>
-        </Form>
-    );
-}
-                `}</SectionCustomizingCss>
             </SectionDerivering>
         </ComponentInfoProvider>
     );
