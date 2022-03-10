@@ -585,7 +585,7 @@ export const SectionCustomizingParent = ({ title = <>Customizing <CurrentCompone
         <Section {...restProps} title={title}>
             <p>
                 There is no global configuration of <CurrentComponent /> you can tweak, <em>but</em> you can
-                customize the <strong>global configuration</strong> of <CommaSeparated components={bases} /> which {([bases].flat().length > 2) ? 'are': 'is'} <strong>shared to</strong> <CurrentComponent />.
+                customize the <strong>global configuration</strong> of <CommaSeparated components={bases} /> which {([bases].flat().length >= 2) ? 'are': 'is'} <strong>shared to</strong> <CurrentComponent />.
             </p>
         </Section>
     );

@@ -5,11 +5,9 @@ import Head from 'next/head'
 
 import { useFlipFlop } from '../../../components/hooks'
 
-import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
-
 import { Preview, TransparentPreview } from '../../../components/Preview'
 import { Section } from '../../../components/Section'
-import { SectionInheritedProps, LinkDropdownButtonPage, LinkDropdownPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkButtonIconPage, SectionConfigureDependsOnIcon } from '../../../components/common'
+import { SectionInheritedProps, LinkDropdownButtonPage, LinkDropdownPage, SectionOverridingDefaults, ComponentInfoProvider, SectionDerivering, SectionCustomizingParent, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, LinkButtonIconPage, SectionConfigureDependsOnIcon, CurrentDominantBaseComponent } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 import { Tips } from '../../../components/Info'
 
@@ -405,7 +403,6 @@ const DropdownButtonAutoShift = () => {
                 theme='primary'
                 
                 orientation='inline'
-                buttonOrientation='inline'
                 popupPlacement='right'
                 popupAutoFlip={false}
                 popupAutoShift={true}
@@ -482,7 +479,7 @@ const DropdownButtonWithOnActiveChange = () => {
             onActiveChange={() => setDropdownButtonActive(false)}
             theme='primary'
         >
-            <LoginForm />
+            <LoginForm focusable={true} />
         </DropdownButton>
     );
 };
@@ -491,7 +488,7 @@ const DropdownButtonWithOnActiveChange = () => {
 
 const Page: NextPage = () => {
     return (
-        <ComponentInfoProvider packageName='@nodestrap/dropdownButton' component={<LinkDropdownButtonPage />} bases={<LinkDropdownPage />}>
+        <ComponentInfoProvider packageName='@nodestrap/dropdownButton' component={<LinkDropdownButtonPage />} bases={[<LinkDropdownPage key={0} />, <LinkButtonIconPage key={1} />]}>
             <Head>
                 <title>&lt;DropdownButton&gt; Component</title>
                 <meta name="description" content="Using <DropdownButton> component" />
@@ -502,7 +499,7 @@ const Page: NextPage = () => {
                     Turns any component to <strong>dropdownable</strong> component.
                 </p>
                 <p>
-                    Similar to <CurrentBaseComponents /> but has a toggleable <LinkButtonIconPage />.
+                    Similar to <CurrentDominantBaseComponent /> but has a toggleable <LinkButtonIconPage />.
                 </p>
                 <p>
                     Here the preview:
@@ -942,18 +939,7 @@ export default function App() {
                 </SectionPropertyEnabled>
             </SectionStates>
             <SectionPropertyLazy />
-            <SectionCustomizing specList={
-                <SpecList>
-                    <DetailSpecItem title='Foregrounds, Backgrounds &amp; Borders'>
-                        <SubSpecList>
-                            <SimpleSpecItem>
-                                <code>boxShadow</code>
-                                <p>A <code>boxShadow</code> to apply, so the <CurrentComponent /> appears hovered.</p>
-                            </SimpleSpecItem>
-                        </SubSpecList>
-                    </DetailSpecItem>
-                </SpecList>
-            }/>
+            <SectionCustomizingParent />
             <SectionDerivering>
                 <SectionOverridingDefaults>{`
 import {
@@ -965,12 +951,16 @@ import {
 } from '@nodestrap/dropdownButton'
 import Form from '@nodestrap/form'
 
-export default function DropdownButtonLoginForm(props: DropdownButtonProps) {
+export default function LoginButton(props: DropdownButtonProps) {
     return (
         <DropdownButton
             {...props} // preserves other properties
             
             theme={props.theme ?? 'primary'} // override default value of theme to 'primary'
+            
+            buttonChildren={props.buttonChildren ?? <>
+                Login
+            </>}
         >
             { props.children ?? <LoginForm /> }
         </DropdownButton>
@@ -1015,111 +1005,6 @@ const LoginForm = ({ elmRef, tabIndex = -1, onActiveChange }: LoginFormProps) =>
     );
 }
                 `}</SectionOverridingDefaults>
-
-                <SectionCustomizingCss specList={
-                    <SpecList>
-                        <DetailSpecItem code='usesDropdownButtonLayout()'>
-                            <p>
-                                Returns a <code>Rule</code> object represents a complete <CurrentComponent /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
-                            </p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='usesDropdownButtonVariants()'>
-                            <p>
-                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentComponent /> such as:<br />
-                                <code>SizeVariant</code> and <strong>all variants</strong> inherited from <CurrentBaseComponents />.
-                            </p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='usesDropdownButtonStates()'>
-                            <p>
-                                Returns a <code>Rule</code> object represents the <strong>states</strong> of <CurrentComponent />.
-                            </p>
-                            <p>
-                                Currently the states are equivalent to <CurrentBaseComponents />&apos;s states.
-                            </p>
-                        </DetailSpecItem>
-                    </SpecList>
-                }>{`
-import { mainComposition, style, imports, children } from '@cssfn/cssfn'
-import { createUseSheet } from '@cssfn/react-cssfn'
-import {
-    DropdownButton,
-    DropdownButtonProps,
-    
-    usesDropdownButtonLayout,
-    usesDropdownButtonVariants,
-    usesDropdownButtonStates,
-    
-    DropdownComponentProps,
-    DropdownCloseType,
-} from '@nodestrap/dropdownButton'
-import Form from '@nodestrap/form'
-
-
-const useDropdownButtonLoginFormSheet = createUseSheet(() => [
-    mainComposition(
-        imports([
-            // import some stuff from <DropdownButton>:
-            usesDropdownButtonLayout(),
-            usesDropdownButtonVariants(),
-            usesDropdownButtonStates(),
-        ]),
-        style({
-            // then overwrite with your style:
-            
-            ...children('form', {
-                display             : 'grid',
-                gridTemplateColumns : '1fr 1fr',
-                gridAutoFlow        : 'row',
-                gap                 : '1rem',
-                outline             : 'none',
-                /* ... */
-            }),
-            
-            /* ... */
-        }),
-    ),
-]);
-
-export default function DropdownButtonLoginForm(props: DropdownButtonProps) {
-    const sheet = useDropdownButtonLoginFormSheet();
-    return (
-        <DropdownButton {...props} mainClass={sheet.main}>
-            { props.children ?? <LoginForm /> }
-        </DropdownButton>
-    )
-}
-
-type LoginFormCloseType = DropdownCloseType | 'closeBySubmit'|'closeByCancel';
-interface LoginFormProps extends DropdownComponentProps<HTMLFormElement, LoginFormCloseType> {
-}
-const LoginForm = ({ elmRef, tabIndex = -1, onActiveChange }: LoginFormProps) => {
-    return (
-        <Form
-            elmRef={elmRef}
-            tabIndex={tabIndex}
-            theme='primary'
-            enableValidation={false}
-        >
-            <TextInput  placeholder='John Smith'     size='sm' style={{ gridColumnEnd: 'span 2' }} />
-            <EmailInput placeholder='john@smith.com' size='sm' style={{ gridColumnEnd: 'span 2' }} />
-            <Button
-                theme='primary'
-                size='sm'
-                onClick={() => onActiveChange?.(false, 'closeBySubmit')}
-            >
-                Submit
-            </Button>
-            <Button
-                theme='secondary'
-                size='sm'
-                onClick={() => onActiveChange?.(false, 'closeByCancel')}
-            >
-                Cancel
-            </Button>
-        </Form>
-    );
-}
-                `}</SectionCustomizingCss>
             </SectionDerivering>
         </ComponentInfoProvider>
     );
