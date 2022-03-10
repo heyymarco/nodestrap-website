@@ -9,17 +9,17 @@ import {
 
 
 
-export const SectionPropertyPopupPlacement  = ({ relativeTo = <>button</>, ...props }: SectionPropertyPopupPlacementProps) => {
+export const SectionPropertyPopupPlacement = ({ relativeTo = <>button</>, ...props }: SectionPropertyPopupPlacementProps) => {
     return (
         <BasicSectionPropertyPopupPlacement {...props} relativeTo={relativeTo} />
     );
 };
-export const SectionPropertyPopupOffset  = ({ relativeTo = <>button</>, ...props }: SectionPropertyPopupPlacementProps) => {
+export const SectionPropertyPopupOffset    = ({ relativeTo = <>button</>, ...props }: SectionPropertyPopupPlacementProps) => {
     return (
         <BasicSectionPropertyPopupOffset {...props} relativeTo={relativeTo} />
     );
 };
-export const SectionPropertyPopupShift  = ({ relativeTo = <>button</>, ...props }: SectionPropertyPopupPlacementProps) => {
+export const SectionPropertyPopupShift     = ({ relativeTo = <>button</>, ...props }: SectionPropertyPopupPlacementProps) => {
     return (
         <BasicSectionPropertyPopupShift {...props} relativeTo={relativeTo} />
     );
