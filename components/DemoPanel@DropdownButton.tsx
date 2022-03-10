@@ -31,7 +31,6 @@ export const DropdownButtonOptions = (props: DropdownButtonOptionProps) => {
     return (<>
         <DropdownOptions
             {...props}
-            warningEitherMildOutlined={false}
         />
     </>);
 }
