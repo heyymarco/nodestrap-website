@@ -1011,7 +1011,7 @@ export default function App() {
                             Hello world!
                         </p>
                     </DropdownButton>
-            </Preview>
+                </Preview>
                 <p></p>
                 <TypeScriptCode>{`
 <DropdownButton
