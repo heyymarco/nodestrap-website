@@ -50,6 +50,8 @@ import {
     SectionPropertyPopupPlacement,
     SectionPropertyPopupOffset,
     SectionPropertyPopupShift,
+    
+    SectionCustomizingButton,
 } from '../../../components/common@DropdownButton'
 
 import loadable from '@loadable/component'
@@ -995,6 +997,37 @@ export default function App() {
                 </SectionPropertyEnabled>
             </SectionStates>
             <SectionPropertyLazy />
+            <SectionCustomizingButton>
+                <Preview gap='4rem'>
+                    <DropdownButton
+                        button={<Button theme='warning' size='lg' active={false}>
+                            A custom button
+                        </Button>}
+                        nude={false}
+                        active={true}
+                        theme='primary'
+                    >
+                        <p>
+                            Hello world!
+                        </p>
+                    </DropdownButton>
+            </Preview>
+                <p></p>
+                <TypeScriptCode>{`
+<DropdownButton
+    button={<Button theme='warning' size='lg' active={false}>
+        A custom button
+    </Button>}
+    nude={false}
+    active={true}
+    theme='primary'
+>
+    <p>
+        Hello world!
+    </p>
+</DropdownButton>
+                `}</TypeScriptCode>
+            </SectionCustomizingButton>
             <SectionCustomizingParent />
             <SectionDerivering>
                 <SectionOverridingDefaults>{`

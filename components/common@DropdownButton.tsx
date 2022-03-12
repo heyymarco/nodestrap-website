@@ -1,4 +1,5 @@
 import React from 'react'
+import { LinkButtonIconPage, SectionPreviewProperty, SectionPreviewPropertyProps } from './common';
 
 import {
     SectionPropertyPopupPlacementProps,
@@ -22,5 +23,24 @@ export const SectionPropertyPopupOffset    = ({ relativeTo = <>button</>, ...pro
 export const SectionPropertyPopupShift     = ({ relativeTo = <>button</>, ...props }: SectionPropertyPopupPlacementProps) => {
     return (
         <BasicSectionPropertyPopupShift {...props} relativeTo={relativeTo} />
+    );
+};
+
+
+
+export const SectionCustomizingButton = ({ titleTag = 'h2', propertySuffix = false, property = 'button', properties = 'Customizing the Button', description, ...restProps }: SectionPreviewPropertyProps) => {
+    return (
+        <SectionPreviewProperty {...restProps} titleTag={titleTag} propertySuffix={propertySuffix} property={property} properties={properties} description={
+            description
+            ??
+            <>
+                <p>
+                    You can replace the default <LinkButtonIconPage /> with your <strong>custom button</strong>.
+                </p>
+                <p>
+                    Assign the <code>{property}</code> property with your <strong>custom button JSX</strong>.
+                </p>
+            </>
+        } />
     );
 };
