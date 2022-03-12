@@ -568,7 +568,7 @@ const LoginForm = (props) => {
 };
                 `}</TypeScriptCode>
             </SectionPropertyChildren>
-            <Section title='Customizing the Dropdown'>
+            <Section title='Customizing the Dropdown Behavior'>
                 <p>
                     There are some properties for customizing the behavior of the dropdown, they are:
                 </p>
