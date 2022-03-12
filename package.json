@@ -28,7 +28,7 @@
     "@nodestrap/dropdown": "^4.0.8",
     "@nodestrap/dropdown-button": "^4.0.11",
     "@nodestrap/dropdown-list": "^4.0.9",
-    "@nodestrap/dropdown-list-button": "^4.0.7",
+    "@nodestrap/dropdown-list-button": "^4.0.8",
     "@nodestrap/editable-text-control": "^4.0.7",
     "@nodestrap/element": "^4.0.7",
     "@nodestrap/form": "^4.0.4",
