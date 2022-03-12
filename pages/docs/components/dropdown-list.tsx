@@ -49,6 +49,9 @@ import {
     
     SectionPropertyOnActiveChange,
 } from '../../../components/common@Dropdown'
+import {
+    SectionCustomizingList,
+} from '../../../components/common@DropdownList'
 
 import loadable from '@loadable/component'
 const DemoDropdownListLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@DropdownList' */'../../../components/DemoPanel@DropdownList'))
@@ -977,6 +980,37 @@ export default function App() {
                 </SectionPropertyEnabled>
             </SectionStates>
             <SectionPropertyLazy />
+            <SectionCustomizingList>
+                <Preview>
+                    <DropdownList
+                        list={<List listStyle={['content', 'numbered']} />}
+                        active={true}
+                        theme='primary'
+                    >
+                        <ListItem>
+                            A list item
+                        </ListItem>
+                        <ListItem>
+                            A list item
+                        </ListItem>
+                    </DropdownList>
+                </Preview>
+                <p></p>
+                <TypeScriptCode>{`
+<DropdownList
+    list={<List listStyle={['content', 'numbered']} />}
+    active={true}
+    theme='primary'
+>
+    <ListItem>
+        A list item
+    </ListItem>
+    <ListItem>
+        A list item
+    </ListItem>
+</DropdownList>
+                `}</TypeScriptCode>
+            </SectionCustomizingList>
             <SectionCustomizingParent />
             <SectionDerivering>
                 <SectionOverridingDefaults>{`
