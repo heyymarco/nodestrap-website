@@ -7,7 +7,7 @@ import { useFlipFlop, useInViewport } from '../../../components/hooks'
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
 import { Section } from '../../../components/Section'
-import { SectionInheritedProps, LinkDropdownListButtonPage, LinkDropdownPage, SectionOverridingDefaults, ComponentInfoProvider, SectionDerivering, SectionCustomizingParent, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, LinkButtonIconPage, SectionConfigureDependsOnIcon, CurrentDominantBaseComponent } from '../../../components/common'
+import { SectionInheritedProps, LinkDropdownListButtonPage, LinkDropdownPage, SectionOverridingDefaults, ComponentInfoProvider, SectionDerivering, SectionCustomizingParent, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, LinkButtonIconPage, SectionConfigureDependsOnIcon, CurrentDominantBaseComponent, LinkListPage, LinkDropdownListPage } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 import { Tips } from '../../../components/Info'
 
@@ -475,7 +475,7 @@ const DropdownListButtonWithOnActiveChange = () => {
 
 const Page: NextPage = () => {
     return (
-        <ComponentInfoProvider packageName='@nodestrap/dropdownListButton' component={<LinkDropdownListButtonPage />} bases={[<LinkDropdownPage key={0} />, <LinkButtonIconPage key={1} />]}>
+        <ComponentInfoProvider packageName='@nodestrap/dropdownListButton' component={<LinkDropdownListButtonPage />} bases={[<LinkDropdownPage key={0} />, <LinkListPage key={1} />, <LinkButtonIconPage key={2} />]}>
             <Head>
                 <title>&lt;DropdownListButton&gt; Component</title>
                 <meta name="description" content="Using <DropdownListButton> component" />
@@ -483,10 +483,10 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    Turns any component to <strong>dropdownable</strong> component.
+                    A <strong>dropdownable</strong> <LinkListPage /> component.
                 </p>
                 <p>
-                    Similar to <CurrentDominantBaseComponent /> but has a toggleable <LinkButtonIconPage />.
+                    Similar to <LinkDropdownListPage /> but has a toggleable <LinkButtonIconPage />.
                 </p>
                 <p>
                     Here the preview:
