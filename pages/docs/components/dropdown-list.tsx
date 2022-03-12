@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { useFlipFlop } from '../../../components/hooks'
+import { useFlipFlop, useInViewport } from '../../../components/hooks'
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
 import { Section } from '../../../components/Section'
@@ -15,6 +15,7 @@ import Label from '@nodestrap/label'
 import DropdownList, { OrientationName, ListItem, ListSeparatorItem } from '@nodestrap/dropdown-list'
 import Basic from '@nodestrap/basic'
 import Button from '@nodestrap/button'
+import { List, ListProps } from '@nodestrap/list'
 import { setRef } from '@nodestrap/utilities'
 import SelectPopupPlacement from '../../../components/SelectPopupPlacement';
 import {
@@ -57,6 +58,21 @@ const DemoDropdownListLazy = loadable(() => import(/* webpackChunkName: 'DemoPan
 
 
 
+interface CustomListProps extends ListProps {
+    focusable ?: boolean
+    tabIndex  ?: number
+}
+const CustomList = ({ focusable = false, tabIndex, ...restProps}: CustomListProps) => {
+    return (
+        <List
+            {...restProps}
+            
+            {...(focusable ? {
+                tabIndex,
+            } : {})}
+        />
+    );
+}
 const SampleListItems = () => {
     return ([
         <ListItem key={0}>
@@ -82,7 +98,7 @@ interface OverlayDropdownListPreviewProps {
     overlay ?: boolean
 }
 const OverlayDropdownListPreview = ({ overlay = true }: OverlayDropdownListPreviewProps) => {
-    const [containerRef, isActiveFlip] = useFlipFlop({ defaultState: true });
+    const [containerRef, isActiveFlip, isInViewport] = useFlipFlop({ defaultState: true });
     const [flip, setFlip] = useState(false);
     const contentRef = useRef<HTMLElement>(null);
     
@@ -118,6 +134,8 @@ const OverlayDropdownListPreview = ({ overlay = true }: OverlayDropdownListPrevi
                 
                 popupAutoFlip={false}
                 popupAutoShift={false}
+                
+                list={<CustomList focusable={isInViewport} />}
             >
                 { SampleListItems() }
             </DropdownList>
@@ -141,8 +159,8 @@ const OverlayDropdownListPreview = ({ overlay = true }: OverlayDropdownListPrevi
 };
 
 const DropdownListFormChildPreview = () => {
+    const [buttonRef, isInViewport] = useInViewport();
     const [showDropdownList, setShowDropdownList] = useState(false);
-    const buttonRef = useRef<HTMLButtonElement>(null);
     
     return (
         <Preview
@@ -163,6 +181,8 @@ const DropdownListFormChildPreview = () => {
                     
                     popupAutoFlip={false}
                     popupAutoShift={false}
+                    
+                    list={<CustomList focusable={isInViewport} />}
                 >
                     { SampleListItems() }
                 </DropdownList>
@@ -205,9 +225,11 @@ const DropdownListPlacementPreview = () => {
                 
                 popupAutoFlip={false}
                 popupAutoShift={false}
+                
+                list={<CustomList />}
             >
                 <ListItem>
-                    A list item
+                    {`popupPlacement='${popupPlacement}'`}
                 </ListItem>
             </DropdownList>
         </div>}</SelectPopupPlacement>
@@ -238,6 +260,8 @@ const DropdownListOffset = () => {
                 popupOffset={30}
                 popupAutoFlip={false}
                 popupAutoShift={false}
+                
+                list={<CustomList />}
             >
                 <ListItem>
                     A list item
@@ -279,6 +303,8 @@ const DropdownListShift = () => {
                 popupShift={100}
                 popupAutoFlip={false}
                 popupAutoShift={false}
+                
+                list={<CustomList />}
             >
                 <ListItem>
                     A list item
@@ -337,6 +363,8 @@ const DropdownListAutoFlip = () => {
                 popupPlacement='bottom'
                 popupAutoFlip={true}
                 popupAutoShift={false}
+                
+                list={<CustomList />}
             >
                 <ListItem>
                     A list item
@@ -398,6 +426,8 @@ const DropdownListAutoShift = () => {
                 popupPlacement='right'
                 popupAutoFlip={false}
                 popupAutoShift={true}
+                
+                list={<CustomList />}
             >
                 <ListItem>
                     A list item
@@ -427,7 +457,7 @@ interface DropdownListOrientationProps {
     orientation : OrientationName
 }
 const DropdownListOrientation = ({ orientation }: DropdownListOrientationProps) => {
-    const [containerRef, isActiveFlip] = useFlipFlop({ defaultState: true });
+    const [containerRef, isActiveFlip, isInViewport] = useFlipFlop({ defaultState: true });
     
     
     
@@ -440,6 +470,8 @@ const DropdownListOrientation = ({ orientation }: DropdownListOrientationProps) 
             <DropdownList
                 orientation={orientation}
                 active={isLoaded ? isActiveFlip : true}
+                
+                list={<CustomList focusable={isInViewport} />}
             >
                 { SampleListItems().slice(0, 5) }
             </DropdownList>
@@ -448,11 +480,13 @@ const DropdownListOrientation = ({ orientation }: DropdownListOrientationProps) 
 };
 
 const DropdownListWithOnActiveChange = () => {
+    const [containerRef, isInViewport] = useInViewport();
     const [dropdownListActive, setDropdownListActive] = useState(true);
     
     // re-show the <DropdownList> after 2 seconds:
     useEffect(() => {
         // conditions:
+        if (!isInViewport) return;
         if (dropdownListActive) return;
         
         // setups:
@@ -462,17 +496,21 @@ const DropdownListWithOnActiveChange = () => {
         return () => {
             clearTimeout(timerHandler);
         };
-    }, [dropdownListActive]);
+    }, [isInViewport, dropdownListActive]);
     
-    return (
+    return (<>
+        <div ref={containerRef}>
+        </div>
         <DropdownList
             active={dropdownListActive}
             onActiveChange={() => setDropdownListActive(false)}
             theme='primary'
+            
+            list={<CustomList focusable={isInViewport} />}
         >
             { SampleListItems() }
         </DropdownList>
-    );
+    </>);
 };
 
 
@@ -1032,7 +1070,7 @@ import {
 } from '@nodestrap/dropdownList'
 import Form from '@nodestrap/form'
 
-export default function DropdownListLoginForm(props: DropdownListProps) {
+export default function DropdownMenu(props: DropdownListProps) {
     return (
         <DropdownList
             {...props} // preserves other properties

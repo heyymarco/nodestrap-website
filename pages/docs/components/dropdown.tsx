@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { useFlipFlop } from '../../../components/hooks'
+import { useFlipFlop, useInViewport } from '../../../components/hooks'
 
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
@@ -104,7 +104,7 @@ interface OverlayDropdownPreviewProps {
     overlay ?: boolean
 }
 const OverlayDropdownPreview = ({ overlay = true }: OverlayDropdownPreviewProps) => {
-    const [containerRef, isActiveFlip] = useFlipFlop({ defaultState: true });
+    const [containerRef, isActiveFlip, isInViewport] = useFlipFlop({ defaultState: true });
     const [flip, setFlip] = useState(false);
     const contentRef = useRef<HTMLElement>(null);
     
@@ -142,7 +142,7 @@ const OverlayDropdownPreview = ({ overlay = true }: OverlayDropdownPreviewProps)
                 popupAutoFlip={false}
                 popupAutoShift={false}
             >
-                <LoginForm />
+                <LoginForm focusable={isInViewport} />
             </Dropdown>
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dolorum laborum quos magni accusamus.
@@ -164,8 +164,8 @@ const OverlayDropdownPreview = ({ overlay = true }: OverlayDropdownPreviewProps)
 };
 
 const DropdownFormChildPreview = () => {
+    const [buttonRef, isInViewport] = useInViewport();
     const [showDropdown, setShowDropdown] = useState(false);
-    const buttonRef = useRef<HTMLButtonElement>(null);
     
     return (
         <Preview
@@ -188,7 +188,7 @@ const DropdownFormChildPreview = () => {
                     popupAutoFlip={false}
                     popupAutoShift={false}
                 >
-                    <LoginForm focusable={true} />
+                    <LoginForm focusable={isInViewport} />
                 </Dropdown>
             </div>
             <p>
@@ -449,7 +449,7 @@ interface DropdownOrientationProps {
     orientation : OrientationName
 }
 const DropdownOrientation = ({ orientation }: DropdownOrientationProps) => {
-    const [containerRef, isActiveFlip] = useFlipFlop({ defaultState: true });
+    const [containerRef, isActiveFlip, isInViewport] = useFlipFlop({ defaultState: true });
     
     
     
@@ -464,18 +464,20 @@ const DropdownOrientation = ({ orientation }: DropdownOrientationProps) => {
                 active={isLoaded ? isActiveFlip : true}
                 theme='success'
             >
-                <LoginForm />
+                <LoginForm focusable={isInViewport} />
             </Dropdown>
         </>}</Preview>
     )
 };
 
 const DropdownWithOnActiveChange = () => {
+    const [containerRef, isInViewport] = useInViewport();
     const [dropdownActive, setDropdownActive] = useState(true);
     
     // re-show the <Dropdown> after 2 seconds:
     useEffect(() => {
         // conditions:
+        if (!isInViewport) return;
         if (dropdownActive) return;
         
         // setups:
@@ -485,17 +487,19 @@ const DropdownWithOnActiveChange = () => {
         return () => {
             clearTimeout(timerHandler);
         };
-    }, [dropdownActive]);
+    }, [isInViewport, dropdownActive]);
     
-    return (
+    return (<>
+        <div ref={containerRef}>
+        </div>
         <Dropdown
             active={dropdownActive}
             onActiveChange={() => setDropdownActive(false)}
             theme='primary'
         >
-            <LoginForm />
+            <LoginForm focusable={isInViewport} />
         </Dropdown>
-    );
+    </>);
 };
 
 

@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { useFlipFlop } from '../../../components/hooks'
+import { useFlipFlop, useInViewport } from '../../../components/hooks'
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
 import { Section } from '../../../components/Section'
@@ -106,7 +106,7 @@ const LoginForm = ({ elmRef, focusable = false, tabIndex = -1, onActiveChange }:
 }
 
 const DropdownButtonPreview = () => {
-    const [containerRef, isActiveFlip] = useFlipFlop({ defaultState: true });
+    const [containerRef, isActiveFlip, isInViewport] = useFlipFlop({ defaultState: true });
     const [flip, setFlip] = useState(false);
     
     
@@ -117,7 +117,7 @@ const DropdownButtonPreview = () => {
         >{(isLoaded) => <>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <DropdownButton
-                    elmRef={containerRef}
+                    buttonRef={containerRef}
                     
                     active={isLoaded ? (isActiveFlip === flip) : true}
                     onActiveChange={() => {
@@ -132,7 +132,7 @@ const DropdownButtonPreview = () => {
                         justifySelf: 'center',
                     }}
                 >
-                    <LoginForm />
+                    <LoginForm focusable={isInViewport} />
                 </DropdownButton>
             </div>
             <p>
@@ -155,6 +155,7 @@ const DropdownButtonPreview = () => {
 };
 
 const DropdownButtonFormChildPreview = () => {
+    const [buttonRef, isInViewport] = useInViewport();
     const [showDropdownButton, setShowDropdownButton] = useState(false);
     
     return (
@@ -163,6 +164,8 @@ const DropdownButtonFormChildPreview = () => {
         >{(isLoaded) => <>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <DropdownButton
+                    buttonRef={buttonRef}
+                    
                     active={isLoaded ? showDropdownButton : true}
                     onActiveChange={(newActive) => setShowDropdownButton(newActive)}
                     theme='primary'
@@ -170,7 +173,7 @@ const DropdownButtonFormChildPreview = () => {
                     popupAutoFlip={false}
                     popupAutoShift={false}
                 >
-                    <LoginForm focusable={true} />
+                    <LoginForm focusable={isInViewport} />
                 </DropdownButton>
             </div>
             <p>
@@ -332,7 +335,7 @@ const DropdownButtonAutoFlip = () => {
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
             </p>
             <DropdownButton
-                elmRef={buttonRef}
+                buttonRef={buttonRef}
                 
                 active={showDropdown}
                 onClick={() => setShowDropdown(!showDropdown)}
@@ -395,7 +398,7 @@ const DropdownButtonAutoShift = () => {
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
             </p>
             <DropdownButton
-                elmRef={buttonRef}
+                buttonRef={buttonRef}
                 
                 active={showDropdown}
                 onClick={() => setShowDropdown(!showDropdown)}
@@ -436,32 +439,39 @@ interface DropdownButtonOrientationProps {
     orientation : OrientationName
 }
 const DropdownButtonOrientation = ({ orientation }: DropdownButtonOrientationProps) => {
-    const [containerRef, isActiveFlip] = useFlipFlop({ defaultState: true });
+    const [containerRef, isActiveFlip, isInViewport] = useFlipFlop({ defaultState: true });
+    const [flip, setFlip] = useState(false);
     
     
     
     return (
         <Preview
-            elmRef={containerRef}
             gap='12rem'
         >{(isLoaded) => <>
             <DropdownButton
+                buttonRef={containerRef}
+                
                 orientation={orientation}
-                active={isLoaded ? isActiveFlip : true}
+                active={isLoaded ? (isActiveFlip === flip) : true}
+                onActiveChange={() => {
+                    setFlip(!flip);
+                }}
                 theme='primary'
             >
-                <LoginForm />
+                <LoginForm focusable={isInViewport} />
             </DropdownButton>
         </>}</Preview>
     )
 };
 
 const DropdownButtonWithOnActiveChange = () => {
+    const [buttonRef, isInViewport] = useInViewport();
     const [dropdownButtonActive, setDropdownButtonActive] = useState(true);
     
     // re-show the <DropdownButton> after 2 seconds:
     useEffect(() => {
         // conditions:
+        if (!isInViewport) return;
         if (dropdownButtonActive) return;
         
         // setups:
@@ -471,15 +481,17 @@ const DropdownButtonWithOnActiveChange = () => {
         return () => {
             clearTimeout(timerHandler);
         };
-    }, [dropdownButtonActive]);
+    }, [isInViewport, dropdownButtonActive]);
     
     return (
         <DropdownButton
+            buttonRef={buttonRef}
+            
             active={dropdownButtonActive}
             onActiveChange={() => setDropdownButtonActive(false)}
             theme='primary'
         >
-            <LoginForm focusable={true} />
+            <LoginForm focusable={isInViewport} />
         </DropdownButton>
     );
 };

@@ -2,10 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 
 
 
-export interface FlipFlopOptions<TState> {
-    defaultState : TState
-}
-export const useFlipFlop = <TState,>({ defaultState } : FlipFlopOptions<TState>) => {
+export const useInViewport = () => {
     const elmRef = useRef(null);
     const [isInViewport, setIsInViewport] = useState(false);
     useEffect(() => {
@@ -27,6 +24,20 @@ export const useFlipFlop = <TState,>({ defaultState } : FlipFlopOptions<TState>)
             observer.disconnect();
         };
     }, []);
+    
+    
+    
+    return [
+        elmRef,
+        isInViewport,
+    ] as const;
+};
+
+export interface FlipFlopOptions<TState> {
+    defaultState : TState
+}
+export const useFlipFlop = <TState,>({ defaultState } : FlipFlopOptions<TState>) => {
+    const [elmRef, isInViewport] = useInViewport();
     
     
     
@@ -65,5 +76,6 @@ export const useFlipFlop = <TState,>({ defaultState } : FlipFlopOptions<TState>)
     return [
         elmRef,
         !isInViewport ? defaultState : isFlip,
+        isInViewport,
     ] as const;
 };
