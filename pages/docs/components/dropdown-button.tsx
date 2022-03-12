@@ -488,7 +488,7 @@ const DropdownButtonWithOnActiveChange = () => {
             buttonRef={buttonRef}
             
             active={dropdownButtonActive}
-            onActiveChange={() => setDropdownButtonActive(false)}
+            onActiveChange={(newActive, reason) => setDropdownButtonActive(newActive)}
             theme='primary'
         >
             <LoginForm focusable={isInViewport} />
@@ -710,6 +710,7 @@ const LoginForm = (props) => {
                 <SectionPropertyNude>
                     <TransparentPreview gap='4rem'>
                         <DropdownButton
+                            nude={true}
                             active={true}
                             theme='primary'
                         >
@@ -721,6 +722,7 @@ const LoginForm = (props) => {
                     <p></p>
                     <TypeScriptCode>{`
 <DropdownButton
+    nude={true}
     active={true}
     theme='primary'
 >
@@ -912,7 +914,7 @@ export default function App() {
     return (
         <DropdownButton
             active={dropdownButtonActive}
-            onActiveChange={() => setDropdownButtonActive(false)}
+            onActiveChange={(newActive, reason) => setDropdownButtonActive(newActive)}
             theme='primary'
         >
             <LoginForm />

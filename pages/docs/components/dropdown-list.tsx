@@ -7,7 +7,7 @@ import { useFlipFlop, useInViewport } from '../../../components/hooks'
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
 import { Section } from '../../../components/Section'
-import { SectionInheritedProps, LinkDropdownListPage, LinkDropdownPage, SectionOverridingDefaults, ComponentInfoProvider, SectionDerivering, SectionCustomizingParent, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents } from '../../../components/common'
+import { SectionInheritedProps, LinkDropdownListPage, LinkDropdownPage, SectionOverridingDefaults, ComponentInfoProvider, SectionDerivering, SectionCustomizingParent, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkListPage, CurrentDominantBaseComponent } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 import { Tips } from '../../../components/Info'
 
@@ -156,54 +156,6 @@ const OverlayDropdownListPreview = ({ overlay = true }: OverlayDropdownListPrevi
             </p>
         </>}</Preview>
     )
-};
-
-const DropdownListFormChildPreview = () => {
-    const [buttonRef, isInViewport] = useInViewport();
-    const [showDropdownList, setShowDropdownList] = useState(false);
-    
-    return (
-        <Preview
-            blockDisplay={true}
-            preventShift={true}
-        >{(isLoaded) => <>
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <Button elmRef={buttonRef} theme='primary' onClick={() => setShowDropdownList(!showDropdownList)}>
-                    Toggle dropdownList
-                </Button>
-                <DropdownList
-                    active={isLoaded ? showDropdownList : true}
-                    onActiveChange={(newActive) => setShowDropdownList(newActive)}
-                    
-                    targetRef={buttonRef}
-                    popupPlacement='bottom'
-                    popupOffset={5}
-                    
-                    popupAutoFlip={false}
-                    popupAutoShift={false}
-                    
-                    list={<CustomList focusable={isInViewport} />}
-                >
-                    { SampleListItems() }
-                </DropdownList>
-            </div>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dolorum laborum quos magni accusamus.
-            </p>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dolorum laborum quos magni accusamus.
-            </p>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dolorum laborum quos magni accusamus.
-            </p>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dolorum laborum quos magni accusamus.
-            </p>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dolorum laborum quos magni accusamus.
-            </p>
-        </>}</Preview>
-    );
 };
 
 const DropdownListPlacementPreview = () => {
@@ -503,7 +455,7 @@ const DropdownListWithOnActiveChange = () => {
         </div>
         <DropdownList
             active={dropdownListActive}
-            onActiveChange={() => setDropdownListActive(false)}
+            onActiveChange={(newActive, reason) => setDropdownListActive(newActive)}
             theme='primary'
             
             list={<CustomList focusable={isInViewport} />}
@@ -517,7 +469,7 @@ const DropdownListWithOnActiveChange = () => {
 
 const Page: NextPage = () => {
     return (
-        <ComponentInfoProvider packageName='@nodestrap/dropdownList' component={<LinkDropdownListPage />} bases={<LinkDropdownPage />}>
+        <ComponentInfoProvider packageName='@nodestrap/dropdownList' component={<LinkDropdownListPage />} bases={[<LinkDropdownPage key={0} />, <LinkListPage key={1} />]}>
             <Head>
                 <title>&lt;DropdownList&gt; Component</title>
                 <meta name="description" content="Using <DropdownList> component" />
@@ -525,10 +477,10 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    Turns any component to <strong>dropdownListable</strong> component.
+                    A <strong>dropdownable</strong> <LinkListPage /> component.
                 </p>
                 <p>
-                    Similar to <CurrentBaseComponents /> but <em>listens</em> for <kbd>Esc</kbd> key, blur event, and click event to close the <CurrentComponent />.
+                    Similar to <CurrentDominantBaseComponent /> but uses <LinkListPage /> as the <em>dropdown UI</em>.
                 </p>
                 <p>
                     Here the preview:
@@ -538,39 +490,6 @@ const Page: NextPage = () => {
             <SectionDemo>
                 <DemoDropdownListLazy fallback={<BusyBar />} />
             </SectionDemo>
-            <SectionPropertyChildren>
-                <DropdownListFormChildPreview />
-                <p></p>
-                <TypeScriptCode>{`
-/* ... */
-
-const [isDropdownListVisible, setDropdownListVisible] = useState(false);
-
-/* ... */
-
-<DropdownList
-    active={isDropdownListVisible}
-    onActiveChange={(newActive, reason) => setDropdownListVisible(newActive)}
->
-    <ListItem>
-        A first item (inherit theme)
-    </ListItem>
-    <ListItem>
-        A second item (inherit theme)
-    </ListItem>
-    <ListSeparatorItem />
-    <ListItem>
-        A third item (inherit theme)
-    </ListItem>
-    <ListItem theme='danger'>
-        A fourth item (danger theme)
-    </ListItem>
-    <ListItem theme='success'>
-        A fifth item (success theme)
-    </ListItem>
-</DropdownList>
-                `}</TypeScriptCode>
-            </SectionPropertyChildren>
             <Section title={<>Overlaying <CurrentComponent /></>}>
                 <p>
                     By default the <CurrentComponent /> flows as a normal document element, thus
@@ -1003,7 +922,7 @@ export default function App() {
     return (
         <DropdownList
             active={dropdownListActive}
-            onActiveChange={() => setDropdownListActive(false)}
+            onActiveChange={(newActive, reason) => setDropdownListActive(newActive)}
             theme='primary'
         >
             <ListItem>

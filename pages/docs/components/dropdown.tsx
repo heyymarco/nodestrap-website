@@ -494,7 +494,7 @@ const DropdownWithOnActiveChange = () => {
         </div>
         <Dropdown
             active={dropdownActive}
-            onActiveChange={() => setDropdownActive(false)}
+            onActiveChange={(newActive, reason) => setDropdownActive(newActive)}
             theme='primary'
         >
             <LoginForm focusable={isInViewport} />
@@ -932,7 +932,7 @@ export default function App() {
     return (
         <Dropdown
             active={dropdownActive}
-            onActiveChange={() => setDropdownActive(false)}
+            onActiveChange={(newActive, reason) => setDropdownActive(newActive)}
             theme='primary'
         >
             <LoginForm />
