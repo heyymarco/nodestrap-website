@@ -7,14 +7,13 @@ import { useFlipFlop, useInViewport } from '../../../components/hooks'
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
 import { Section } from '../../../components/Section'
-import { SectionInheritedProps, LinkDropdownListPage, LinkDropdownPage, SectionOverridingDefaults, ComponentInfoProvider, SectionDerivering, SectionCustomizingParent, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkListPage, CurrentDominantBaseComponent } from '../../../components/common'
+import { SectionInheritedProps, LinkDropdownListPage, LinkDropdownPage, SectionOverridingDefaults, ComponentInfoProvider, SectionDerivering, SectionCustomizingParent, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, LinkListPage, CurrentDominantBaseComponent } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 import { Tips } from '../../../components/Info'
 
 import Label from '@nodestrap/label'
 import DropdownList, { OrientationName, ListItem, ListSeparatorItem } from '@nodestrap/dropdown-list'
 import Basic from '@nodestrap/basic'
-import Button from '@nodestrap/button'
 import { List, ListProps } from '@nodestrap/list'
 import { setRef } from '@nodestrap/utilities'
 import SelectPopupPlacement from '../../../components/SelectPopupPlacement';
@@ -40,8 +39,6 @@ import {
     SectionPropertyLazy,
 } from '../../../components/common@Popup'
 import {
-    SectionPropertyChildren,
-    
     SectionPropertyNude,
     SectionPropertyOrientation,
     SectionPropertyOrientationBlock,
