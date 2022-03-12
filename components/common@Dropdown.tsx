@@ -21,7 +21,7 @@ import { Warning } from './Info';
 
 
 
-export const SectionPropertyChildren = ({ titleTag = 'h2', propertySuffix = false, property = 'children', properties = <>Customizing <CurrentComponent /> UI</>, specList, description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyChildren = ({ titleTag = 'h2', propertySuffix = false, property = 'children', properties = <>Customizing the Dropdown UI</>, specList, description, ...restProps }: SectionPreviewPropertyProps) => {
     return (
         <SectionPreviewProperty {...restProps} titleTag={titleTag} propertySuffix={propertySuffix} property={property} properties={properties} description={
             description

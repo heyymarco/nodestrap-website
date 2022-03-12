@@ -535,6 +535,9 @@ const [isDropdownButtonVisible, setDropdownButtonVisible] = useState(false);
 <DropdownButton
     active={isDropdownButtonVisible}
     onActiveChange={(newActive, reason) => setDropdownButtonVisible(newActive)}
+    buttonChildren={<>
+        Toggle dropdown
+    </>}
 >
     <LoginForm />
 </DropdownButton>
@@ -629,6 +632,9 @@ const LoginForm = (props) => {
     theme='${themeName}'
     active={true}
     nude={false}
+    buttonChildren={<>
+        Toggle dropdown
+    </>}
 >
     <p>
         A <code>{'<DropdownButton>'}</code> with ${themeName} theme.
@@ -678,6 +684,9 @@ const LoginForm = (props) => {
     active={true}
     nude={false}
     theme='primary'
+    buttonChildren={<>
+        Toggle dropdown
+    </>}
 >
     <p>
         A <code>{'<DropdownButton>'}</code> with smaller size.
@@ -689,6 +698,9 @@ const LoginForm = (props) => {
     active={true}
     nude={false}
     theme='primary'
+    buttonChildren={<>
+        Toggle dropdown
+    </>}
 >
     <p>
         A <code>{'<DropdownButton>'}</code> with default size.
@@ -700,6 +712,9 @@ const LoginForm = (props) => {
     active={true}
     nude={false}
     theme='primary'
+    buttonChildren={<>
+        Toggle dropdown
+    </>}
 >
     <p>
         A <code>{'<DropdownButton>'}</code> with larger size.
@@ -725,6 +740,9 @@ const LoginForm = (props) => {
     nude={true}
     active={true}
     theme='primary'
+    buttonChildren={<>
+        Toggle dropdown
+    </>}
 >
     <p>
         A nude <code>{'<DropdownButton>'}</code> 😋
@@ -757,6 +775,9 @@ const LoginForm = (props) => {
     active={true}
     nude={false}
     theme='${themeName}'
+    buttonChildren={<>
+        Toggle dropdown
+    </>}
 >
     <p>
         Hello world!
@@ -791,6 +812,9 @@ const LoginForm = (props) => {
     active={true}
     nude={false}
     theme='${themeName}'
+    buttonChildren={<>
+        Toggle dropdown
+    </>}
 >
     <p>
         Hello world!
@@ -825,6 +849,9 @@ const LoginForm = (props) => {
     active={true}
     nude={false}
     theme='${themeName}'
+    buttonChildren={<>
+        Toggle dropdown
+    </>}
 >
     <p>
         Hello world!
@@ -843,6 +870,9 @@ const LoginForm = (props) => {
     orientation='block'
     active={true}
     theme='primary'
+    buttonChildren={<>
+        Toggle dropdown
+    </>}
 >
     <LoginForm />
 </DropdownButton>
@@ -856,6 +886,9 @@ const LoginForm = (props) => {
     orientation='inline'
     active={true}
     theme='primary'
+    buttonChildren={<>
+        Toggle dropdown
+    </>}
 >
     <LoginForm />
 </DropdownButton>
@@ -882,6 +915,9 @@ const LoginForm = (props) => {
     active={true}
     nude={false}
     theme='primary'
+    buttonChildren={<>
+        Toggle dropdown
+    </>}
 >
     <p>
         Hello world!
@@ -916,6 +952,9 @@ export default function App() {
             active={dropdownButtonActive}
             onActiveChange={(newActive, reason) => setDropdownButtonActive(newActive)}
             theme='primary'
+            buttonChildren={<>
+                Toggle dropdown
+            </>}
         >
             <LoginForm />
         </DropdownButton>
@@ -944,6 +983,9 @@ export default function App() {
     active={true}
     nude={false}
     theme='primary'
+    buttonChildren={<>
+        Toggle dropdown
+    </>}
 >
     <p>
         Hello world!
