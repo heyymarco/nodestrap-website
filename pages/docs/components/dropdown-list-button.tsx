@@ -7,14 +7,14 @@ import { useFlipFlop, useInViewport } from '../../../components/hooks'
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
 import { Section } from '../../../components/Section'
-import { SectionInheritedProps, LinkDropdownListButtonPage, LinkDropdownPage, SectionOverridingDefaults, ComponentInfoProvider, SectionDerivering, SectionCustomizingParent, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, LinkButtonIconPage, SectionConfigureDependsOnIcon, CurrentDominantBaseComponent, LinkListPage, LinkDropdownListPage } from '../../../components/common'
+import { SectionInheritedProps, LinkDropdownListButtonPage, LinkDropdownPage, SectionOverridingDefaults, ComponentInfoProvider, SectionDerivering, SectionCustomizingParent, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, LinkButtonIconPage, SectionConfigureDependsOnIcon, LinkListPage, LinkDropdownListPage } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 import { Tips } from '../../../components/Info'
 
 import DropdownListButtonOri, { DropdownListButtonProps, OrientationName, ListItem, ListSeparatorItem } from '@nodestrap/dropdown-list-button'
 import Button from '@nodestrap/button'
 import { List, ListProps } from '@nodestrap/list'
-import ButtonIcon from '@nodestrap/button-icon'
+import { ButtonIcon, ButtonIconProps } from '@nodestrap/button-icon'
 import SelectPopupPlacement from '../../../components/SelectPopupPlacement';
 import {
     themeNames,
@@ -59,14 +59,19 @@ const DemoDropdownListButtonLazy = loadable(() => import(/* webpackChunkName: 'D
 
 
 
+const CenteredButton = (props: ButtonIconProps) => <ButtonIcon {...props} style={{
+    justifySelf: 'center',
+    ...props.style,
+}} />
+
 const DropdownListButton = (props: DropdownListButtonProps) => <DropdownListButtonOri
     popupAutoFlip={false}
     popupAutoShift={false}
     {...props}
     
+    button={props.button ?? <CenteredButton />}
     buttonChildren={props.buttonChildren ?? 'Toggle dropdown'}
 />
-
 
 interface CustomListProps extends ListProps {
     focusable ?: boolean
@@ -127,10 +132,6 @@ const DropdownListButtonPreview = () => {
                     
                     popupAutoFlip={false}
                     popupAutoShift={false}
-                    
-                    button={<ButtonIcon style={{
-                        justifySelf: 'center',
-                    }} />}
                 >
                     { SampleListItems() }
                 </DropdownListButton>
@@ -205,9 +206,6 @@ const DropdownListButtonOffset = () => {
                 popupAutoFlip={false}
                 popupAutoShift={false}
                 
-                button={<ButtonIcon style={{
-                    justifySelf: 'center',
-                }} />}
                 list={<CustomList />}
             >
                 <ListItem>
@@ -248,9 +246,6 @@ const DropdownListButtonShift = () => {
                 popupAutoFlip={false}
                 popupAutoShift={false}
                 
-                button={<ButtonIcon style={{
-                    justifySelf: 'center',
-                }} />}
                 list={<CustomList />}
             >
                 <ListItem>
@@ -311,9 +306,6 @@ const DropdownListButtonAutoFlip = () => {
                 popupAutoFlip={true}
                 popupAutoShift={false}
                 
-                button={<ButtonIcon style={{
-                    justifySelf: 'center',
-                }} />}
                 list={<CustomList />}
             >
                 <ListItem>
@@ -379,9 +371,6 @@ const DropdownListButtonAutoShift = () => {
                 popupAutoFlip={false}
                 popupAutoShift={true}
                 
-                button={<ButtonIcon style={{
-                    justifySelf: 'center',
-                }} />}
                 list={<CustomList orientation='block' style={{ whiteSpace: 'nowrap' }} />}
             >
                 <ListItem>
@@ -539,7 +528,7 @@ const Page: NextPage = () => {
             <SectionInheritedProps />
             <SectionVariants>
                 <SectionPropertyTheme>
-                    <Preview gap='4rem'>
+                    <Preview gap='6rem'>
                         {themeNames.map((themeName, index) =>
                             <DropdownListButton
                                 theme={themeName}
@@ -578,7 +567,7 @@ const Page: NextPage = () => {
                     </TypeScriptCode>
                 </SectionPropertyTheme>
                 <SectionPropertySize>
-                    <Preview gap='5rem'>
+                    <Preview gap='7rem'>
                         <DropdownListButton
                             size='sm'
                             active={true}
@@ -668,7 +657,7 @@ const Page: NextPage = () => {
                     `}</TypeScriptCode>
                 </SectionPropertySize>
                 <SectionPropertyNude>
-                    <TransparentPreview gap='4rem'>
+                    <TransparentPreview gap='7rem'>
                         <DropdownListButton
                             nude={false}
                             active={true}
@@ -702,7 +691,7 @@ const Page: NextPage = () => {
                     `}</TypeScriptCode>
                 </SectionPropertyNude>
                 <SectionPropertyGradient>
-                    <Preview gap='4rem'>
+                    <Preview gap='6rem'>
                         {themeNames.map((themeName, index) =>
                             <DropdownListButton
                                 gradient={true}
@@ -743,7 +732,7 @@ const Page: NextPage = () => {
                     </TypeScriptCode>
                 </SectionPropertyGradient>
                 <SectionPropertyOutlined>
-                    <TransparentPreview gap='4rem'>
+                    <TransparentPreview gap='6rem'>
                         {themeNames.map((themeName, index) =>
                             <DropdownListButton
                                 outlined={true}
@@ -784,7 +773,7 @@ const Page: NextPage = () => {
                     </TypeScriptCode>
                 </SectionPropertyOutlined>
                 <SectionPropertyMild>
-                    <Preview gap='4rem'>
+                    <Preview gap='6rem'>
                         {themeNames.map((themeName, index) =>
                             <DropdownListButton
                                 mild={false}
@@ -891,7 +880,7 @@ const Page: NextPage = () => {
             </SectionVariants>
             <SectionStates>
                 <SectionPropertyActive>
-                    <Preview gap='4rem'>
+                    <Preview gap='6rem'>
                         <DropdownListButton
                             active={true}
                             theme='primary'
@@ -922,7 +911,7 @@ const Page: NextPage = () => {
 </DropdownListButton>
                     `}</TypeScriptCode>
                     <SectionPropertyOnActiveChange>
-                        <Preview gap='12rem'>
+                        <Preview gap='13rem'>
                             <DropdownListButtonWithOnActiveChange />
                         </Preview>
                         <p></p>
@@ -976,7 +965,7 @@ export default function App() {
                     </SectionPropertyOnActiveChange>
                 </SectionPropertyActive>
                 <SectionPropertyEnabled>
-                    <Preview gap='4rem'>
+                    <Preview gap='6rem'>
                         <DropdownListButton
                             enabled={false}
                             active={true}
@@ -1012,7 +1001,7 @@ export default function App() {
             </SectionStates>
             <SectionPropertyLazy />
             <SectionCustomizingButton>
-                <Preview gap='4rem'>
+                <Preview gap='6rem'>
                     <DropdownListButton
                         button={<Button theme='warning' size='lg' active={false}>
                             A custom button
@@ -1047,9 +1036,9 @@ export default function App() {
                 `}</TypeScriptCode>
             </SectionCustomizingButton>
             <SectionCustomizingList>
-                <Preview>
+                <Preview gap='9rem'>
                     <DropdownListButton
-                        list={<List listStyle={['content', 'numbered']} />}
+                        list={<List theme='warning' mild={false} listStyle={['content', 'numbered']} />}
                         active={true}
                         theme='primary'
                     >
@@ -1064,7 +1053,7 @@ export default function App() {
                 <p></p>
                 <TypeScriptCode>{`
 <DropdownListButton
-    list={<List listStyle={['content', 'numbered']} />}
+    list={<List theme='warning' mild={false} listStyle={['content', 'numbered']} />}
     active={true}
     theme='primary'
     buttonChildren={<>

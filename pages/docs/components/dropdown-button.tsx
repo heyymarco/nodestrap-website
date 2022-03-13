@@ -15,7 +15,7 @@ import { DropdownComponentProps } from '@nodestrap/dropdown'
 import DropdownButtonOri, { DropdownButtonProps, OrientationName, DropdownCloseType } from '@nodestrap/dropdown-button'
 import Form from '@nodestrap/form'
 import Button from '@nodestrap/button'
-import ButtonIcon from '@nodestrap/button-icon'
+import { ButtonIcon, ButtonIconProps } from '@nodestrap/button-icon'
 import { TextInput, EmailInput } from '@nodestrap/input'
 import SelectPopupPlacement from '../../../components/SelectPopupPlacement';
 import {
@@ -60,14 +60,19 @@ const DemoDropdownButtonLazy = loadable(() => import(/* webpackChunkName: 'DemoP
 
 
 
+const CenteredButton = (props: ButtonIconProps) => <ButtonIcon {...props} style={{
+    justifySelf: 'center',
+    ...props.style,
+}} />
+
 const DropdownButton = (props: DropdownButtonProps) => <DropdownButtonOri
     popupAutoFlip={false}
     popupAutoShift={false}
     {...props}
     
+    button={props.button ?? <CenteredButton />}
     buttonChildren={props.buttonChildren ?? 'Toggle dropdown'}
 />
-
 
 type LoginFormCloseType = DropdownCloseType | 'closeBySubmit'|'closeByCancel';
 interface LoginFormProps extends DropdownComponentProps<HTMLFormElement, LoginFormCloseType> {
@@ -130,10 +135,6 @@ const DropdownButtonPreview = () => {
                     
                     popupAutoFlip={false}
                     popupAutoShift={false}
-                    
-                    button={<ButtonIcon style={{
-                        justifySelf: 'center',
-                    }} />}
                 >
                     <LoginForm focusable={isInViewport} />
                 </DropdownButton>
@@ -249,10 +250,6 @@ const DropdownButtonOffset = () => {
                 popupOffset={30}
                 popupAutoFlip={false}
                 popupAutoShift={false}
-                
-                button={<ButtonIcon style={{
-                    justifySelf: 'center',
-                }} />}
             >
                 <p>
                     hello world!
@@ -289,10 +286,6 @@ const DropdownButtonShift = () => {
                 popupShift={100}
                 popupAutoFlip={false}
                 popupAutoShift={false}
-                
-                button={<ButtonIcon style={{
-                    justifySelf: 'center',
-                }} />}
             >
                 <p>
                     hello world!
@@ -349,10 +342,6 @@ const DropdownButtonAutoFlip = () => {
                 
                 popupAutoFlip={true}
                 popupAutoShift={false}
-                
-                button={<ButtonIcon style={{
-                    justifySelf: 'center',
-                }} />}
             >
                 <p>
                     hello world!
@@ -414,10 +403,6 @@ const DropdownButtonAutoShift = () => {
                 popupPlacement='right'
                 popupAutoFlip={false}
                 popupAutoShift={true}
-                
-                button={<ButtonIcon style={{
-                    justifySelf: 'center',
-                }} />}
             >
                 <p>
                     hello<br />
