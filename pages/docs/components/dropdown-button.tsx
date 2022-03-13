@@ -15,6 +15,7 @@ import { DropdownComponentProps } from '@nodestrap/dropdown'
 import DropdownButtonOri, { DropdownButtonProps, OrientationName, DropdownCloseType } from '@nodestrap/dropdown-button'
 import Form from '@nodestrap/form'
 import Button from '@nodestrap/button'
+import ButtonIcon from '@nodestrap/button-icon'
 import { TextInput, EmailInput } from '@nodestrap/input'
 import SelectPopupPlacement from '../../../components/SelectPopupPlacement';
 import {
@@ -130,9 +131,9 @@ const DropdownButtonPreview = () => {
                     popupAutoFlip={false}
                     popupAutoShift={false}
                     
-                    style={{
+                    button={<ButtonIcon style={{
                         justifySelf: 'center',
-                    }}
+                    }} />}
                 >
                     <LoginForm focusable={isInViewport} />
                 </DropdownButton>
@@ -215,6 +216,8 @@ const DropdownButtonPlacementPreview = () => {
                 
                 popupAutoFlip={false}
                 popupAutoShift={false}
+                
+                button={<ButtonIcon size='lg' style={{ width: '50%', height: '50%' }} />}
             >
                 <p>
                     {`popupPlacement='${popupPlacement}'`}
@@ -247,9 +250,9 @@ const DropdownButtonOffset = () => {
                 popupAutoFlip={false}
                 popupAutoShift={false}
                 
-                style={{
+                button={<ButtonIcon style={{
                     justifySelf: 'center',
-                }}
+                }} />}
             >
                 <p>
                     hello world!
@@ -287,9 +290,9 @@ const DropdownButtonShift = () => {
                 popupAutoFlip={false}
                 popupAutoShift={false}
                 
-                style={{
+                button={<ButtonIcon style={{
                     justifySelf: 'center',
-                }}
+                }} />}
             >
                 <p>
                     hello world!
@@ -347,9 +350,9 @@ const DropdownButtonAutoFlip = () => {
                 popupAutoFlip={true}
                 popupAutoShift={false}
                 
-                style={{
+                button={<ButtonIcon style={{
                     justifySelf: 'center',
-                }}
+                }} />}
             >
                 <p>
                     hello world!
@@ -412,9 +415,9 @@ const DropdownButtonAutoShift = () => {
                 popupAutoFlip={false}
                 popupAutoShift={true}
                 
-                style={{
+                button={<ButtonIcon style={{
                     justifySelf: 'center',
-                }}
+                }} />}
             >
                 <p>
                     hello<br />
@@ -575,7 +578,7 @@ const LoginForm = (props) => {
                 <SectionPropertyPopupPlacement>
                     <Tips>
                         <p>
-                            <strong>Click on the dots</strong> to place the <CurrentComponent />.
+                            <strong>Click on the dots</strong> to place the <em>dropdown</em>.
                             There are 12 different placements to choose from.
                         </p>
                     </Tips>

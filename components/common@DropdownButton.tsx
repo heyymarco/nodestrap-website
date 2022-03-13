@@ -10,19 +10,19 @@ import {
 
 
 
-export const SectionPropertyPopupPlacement = ({ relativeTo = <>button</>, ...props }: SectionPropertyPopupPlacementProps) => {
+export const SectionPropertyPopupPlacement = ({ relativeTo = <em>button</em>, hoverElm = <em>dropdown</em>, ...props }: SectionPropertyPopupPlacementProps) => {
     return (
-        <BasicSectionPropertyPopupPlacement {...props} relativeTo={relativeTo} />
+        <BasicSectionPropertyPopupPlacement {...props} relativeTo={relativeTo} hoverElm={hoverElm} />
     );
 };
-export const SectionPropertyPopupOffset    = ({ relativeTo = <>button</>, ...props }: SectionPropertyPopupPlacementProps) => {
+export const SectionPropertyPopupOffset    = ({ relativeTo = <em>button</em>, hoverElm = <em>dropdown</em>, ...props }: SectionPropertyPopupPlacementProps) => {
     return (
-        <BasicSectionPropertyPopupOffset {...props} relativeTo={relativeTo} />
+        <BasicSectionPropertyPopupOffset {...props} relativeTo={relativeTo} hoverElm={hoverElm} />
     );
 };
-export const SectionPropertyPopupShift     = ({ relativeTo = <>button</>, ...props }: SectionPropertyPopupPlacementProps) => {
+export const SectionPropertyPopupShift     = ({ relativeTo = <em>button</em>, hoverElm = <em>dropdown</em>, ...props }: SectionPropertyPopupPlacementProps) => {
     return (
-        <BasicSectionPropertyPopupShift {...props} relativeTo={relativeTo} />
+        <BasicSectionPropertyPopupShift {...props} relativeTo={relativeTo} hoverElm={hoverElm} />
     );
 };
 

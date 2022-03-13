@@ -7,10 +7,13 @@ import { DropdownListInitials, DropdownListOptionProps, DropdownListOptions, use
 import { DropdownListButton, ListItem } from '@nodestrap/dropdown-list-button'
 import { Button } from '@nodestrap/button';
 import { TypeScriptCode } from './Code';
+import { ThemeName } from '@nodestrap/basic';
 
 
 
 export const dropdownListButtonInitials = {
+    theme    : 'primary' as ThemeName|undefined,
+    active   : undefined as boolean|undefined,
 };
 export type DropdownListButtonInitials = typeof dropdownListButtonInitials & Partial<DropdownButtonInitials> & Partial<DropdownListInitials>
 export const useDropdownListButtonStates = (initials ?: Partial<DropdownListButtonInitials>) => {

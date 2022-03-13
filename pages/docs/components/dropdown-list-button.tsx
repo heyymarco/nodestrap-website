@@ -14,6 +14,7 @@ import { Tips } from '../../../components/Info'
 import DropdownListButtonOri, { DropdownListButtonProps, OrientationName, ListItem, ListSeparatorItem } from '@nodestrap/dropdown-list-button'
 import Button from '@nodestrap/button'
 import { List, ListProps } from '@nodestrap/list'
+import ButtonIcon from '@nodestrap/button-icon'
 import SelectPopupPlacement from '../../../components/SelectPopupPlacement';
 import {
     themeNames,
@@ -127,9 +128,9 @@ const DropdownListButtonPreview = () => {
                     popupAutoFlip={false}
                     popupAutoShift={false}
                     
-                    style={{
+                    button={<ButtonIcon style={{
                         justifySelf: 'center',
-                    }}
+                    }} />}
                 >
                     { SampleListItems() }
                 </DropdownListButton>
@@ -171,6 +172,7 @@ const DropdownListButtonPlacementPreview = () => {
                 popupAutoFlip={false}
                 popupAutoShift={false}
                 
+                button={<ButtonIcon size='lg' style={{ width: '50%', height: '50%' }} />}
                 list={<CustomList />}
             >
                 <ListItem>
@@ -203,11 +205,10 @@ const DropdownListButtonOffset = () => {
                 popupAutoFlip={false}
                 popupAutoShift={false}
                 
-                list={<CustomList />}
-                
-                style={{
+                button={<ButtonIcon style={{
                     justifySelf: 'center',
-                }}
+                }} />}
+                list={<CustomList />}
             >
                 <ListItem>
                     A list item
@@ -247,11 +248,10 @@ const DropdownListButtonShift = () => {
                 popupAutoFlip={false}
                 popupAutoShift={false}
                 
-                list={<CustomList />}
-                
-                style={{
+                button={<ButtonIcon style={{
                     justifySelf: 'center',
-                }}
+                }} />}
+                list={<CustomList />}
             >
                 <ListItem>
                     A list item
@@ -311,11 +311,10 @@ const DropdownListButtonAutoFlip = () => {
                 popupAutoFlip={true}
                 popupAutoShift={false}
                 
-                list={<CustomList />}
-                
-                style={{
+                button={<ButtonIcon style={{
                     justifySelf: 'center',
-                }}
+                }} />}
+                list={<CustomList />}
             >
                 <ListItem>
                     A list item
@@ -380,11 +379,10 @@ const DropdownListButtonAutoShift = () => {
                 popupAutoFlip={false}
                 popupAutoShift={true}
                 
-                list={<CustomList />}
-                
-                style={{
+                button={<ButtonIcon style={{
                     justifySelf: 'center',
-                }}
+                }} />}
+                list={<CustomList orientation='block' style={{ whiteSpace: 'nowrap' }} />}
             >
                 <ListItem>
                     A list item
@@ -504,7 +502,7 @@ const Page: NextPage = () => {
                 <SectionPropertyPopupPlacement>
                     <Tips>
                         <p>
-                            <strong>Click on the dots</strong> to place the <CurrentComponent />.
+                            <strong>Click on the dots</strong> to place the <em>dropdown</em>.
                             There are 12 different placements to choose from.
                         </p>
                     </Tips>
