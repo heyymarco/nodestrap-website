@@ -12,7 +12,7 @@ import { TypeScriptCode } from '../../../components/Code'
 import { Tips } from '../../../components/Info'
 
 import Label from '@nodestrap/label'
-import DropdownList, { OrientationName, ListItem, ListSeparatorItem } from '@nodestrap/dropdown-list'
+import DropdownListOri, { DropdownListProps, OrientationName, ListItem, ListSeparatorItem } from '@nodestrap/dropdown-list'
 import Basic from '@nodestrap/basic'
 import { List, ListProps } from '@nodestrap/list'
 import { setRef } from '@nodestrap/utilities'
@@ -62,7 +62,7 @@ interface CustomListProps extends ListProps {
     focusable ?: boolean
     tabIndex  ?: number
 }
-const CustomList = ({ focusable = false, tabIndex, ...restProps}: CustomListProps) => {
+const CustomList = ({ focusable = false, tabIndex, style, ...restProps}: CustomListProps) => {
     return (
         <List
             {...restProps}
@@ -70,9 +70,24 @@ const CustomList = ({ focusable = false, tabIndex, ...restProps}: CustomListProp
             {...(focusable ? {
                 tabIndex,
             } : {})}
+            
+            style={{
+                whiteSpace: 'nowrap',
+                ...style,
+            }}
         />
     );
 }
+
+const DropdownList = (props: DropdownListProps) => <DropdownListOri
+    popupAutoFlip={false}
+    popupAutoShift={false}
+    {...props}
+    
+    list={props.list ?? <CustomList />}
+/>
+
+
 const SampleListItems = () => {
     return ([
         <ListItem key={0}>
@@ -93,6 +108,7 @@ const SampleListItems = () => {
         </ListItem>,
     ]);
 }
+
 
 interface OverlayDropdownListPreviewProps {
     overlay ?: boolean
@@ -177,8 +193,6 @@ const DropdownListPlacementPreview = () => {
                 
                 popupAutoFlip={false}
                 popupAutoShift={false}
-                
-                list={<CustomList />}
             >
                 <ListItem>
                     {`popupPlacement='${popupPlacement}'`}
@@ -212,8 +226,6 @@ const DropdownListOffset = () => {
                 popupOffset={30}
                 popupAutoFlip={false}
                 popupAutoShift={false}
-                
-                list={<CustomList />}
             >
                 <ListItem>
                     A list item
@@ -255,8 +267,6 @@ const DropdownListShift = () => {
                 popupShift={100}
                 popupAutoFlip={false}
                 popupAutoShift={false}
-                
-                list={<CustomList />}
             >
                 <ListItem>
                     A list item
@@ -315,8 +325,6 @@ const DropdownListAutoFlip = () => {
                 popupPlacement='bottom'
                 popupAutoFlip={true}
                 popupAutoShift={false}
-                
-                list={<CustomList />}
             >
                 <ListItem>
                     A list item
@@ -378,8 +386,6 @@ const DropdownListAutoShift = () => {
                 popupPlacement='right'
                 popupAutoFlip={false}
                 popupAutoShift={true}
-                
-                list={<CustomList />}
             >
                 <ListItem>
                     A list item
@@ -983,7 +989,7 @@ export default function App() {
             <SectionCustomizingList>
                 <Preview>
                     <DropdownList
-                        list={<List listStyle={['content', 'numbered']} />}
+                        list={<List theme='warning' mild={false} listStyle={['content', 'numbered']} />}
                         active={true}
                         theme='primary'
                     >
@@ -998,7 +1004,7 @@ export default function App() {
                 <p></p>
                 <TypeScriptCode>{`
 <DropdownList
-    list={<List listStyle={['content', 'numbered']} />}
+    list={<List theme='warning' mild={false} listStyle={['content', 'numbered']} />}
     active={true}
     theme='primary'
 >

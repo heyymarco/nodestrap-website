@@ -64,20 +64,11 @@ const CenteredButton = (props: ButtonIconProps) => <ButtonIcon {...props} style=
     ...props.style,
 }} />
 
-const DropdownListButton = (props: DropdownListButtonProps) => <DropdownListButtonOri
-    popupAutoFlip={false}
-    popupAutoShift={false}
-    {...props}
-    
-    button={props.button ?? <CenteredButton />}
-    buttonChildren={props.buttonChildren ?? 'Toggle dropdown'}
-/>
-
 interface CustomListProps extends ListProps {
     focusable ?: boolean
     tabIndex  ?: number
 }
-const CustomList = ({ focusable = false, tabIndex, ...restProps}: CustomListProps) => {
+const CustomList = ({ focusable = false, tabIndex, style, ...restProps}: CustomListProps) => {
     return (
         <List
             {...restProps}
@@ -85,9 +76,27 @@ const CustomList = ({ focusable = false, tabIndex, ...restProps}: CustomListProp
             {...(focusable ? {
                 tabIndex,
             } : {})}
+            
+            style={{
+                whiteSpace: 'nowrap',
+                ...style,
+            }}
         />
     );
 }
+
+const DropdownListButton = (props: DropdownListButtonProps) => <DropdownListButtonOri
+    popupAutoFlip={false}
+    popupAutoShift={false}
+    {...props}
+    
+    button={props.button ?? <CenteredButton />}
+    buttonChildren={props.buttonChildren ?? 'Toggle dropdown'}
+    
+    list={props.list ?? <CustomList />}
+/>
+
+
 const SampleListItems = () => {
     return ([
         <ListItem key={0}>
@@ -132,6 +141,8 @@ const DropdownListButtonPreview = () => {
                     
                     popupAutoFlip={false}
                     popupAutoShift={false}
+                    
+                    list={<CustomList focusable={isInViewport} />}
                 >
                     { SampleListItems() }
                 </DropdownListButton>
@@ -174,7 +185,6 @@ const DropdownListButtonPlacementPreview = () => {
                 popupAutoShift={false}
                 
                 button={<ButtonIcon size='lg' style={{ width: '50%', height: '50%' }} />}
-                list={<CustomList />}
             >
                 <ListItem>
                     {`popupPlacement='${popupPlacement}'`}
@@ -205,8 +215,6 @@ const DropdownListButtonOffset = () => {
                 popupOffset={30}
                 popupAutoFlip={false}
                 popupAutoShift={false}
-                
-                list={<CustomList />}
             >
                 <ListItem>
                     A list item
@@ -245,8 +253,6 @@ const DropdownListButtonShift = () => {
                 popupShift={100}
                 popupAutoFlip={false}
                 popupAutoShift={false}
-                
-                list={<CustomList />}
             >
                 <ListItem>
                     A list item
@@ -305,8 +311,6 @@ const DropdownListButtonAutoFlip = () => {
                 
                 popupAutoFlip={true}
                 popupAutoShift={false}
-                
-                list={<CustomList />}
             >
                 <ListItem>
                     A list item
@@ -370,8 +374,6 @@ const DropdownListButtonAutoShift = () => {
                 popupPlacement='right'
                 popupAutoFlip={false}
                 popupAutoShift={true}
-                
-                list={<CustomList orientation='block' style={{ whiteSpace: 'nowrap' }} />}
             >
                 <ListItem>
                     A list item
@@ -419,6 +421,8 @@ const DropdownListButtonOrientation = ({ orientation }: DropdownListButtonOrient
                     setFlip(!flip);
                 }}
                 theme='primary'
+                
+                list={<CustomList focusable={isInViewport} />}
             >
                 { SampleListItems().slice(0, 5) }
             </DropdownListButton>
@@ -452,6 +456,8 @@ const DropdownListButtonWithOnActiveChange = () => {
             active={dropdownListButtonActive}
             onActiveChange={(newActive, reason) => setDropdownListButtonActive(newActive)}
             theme='primary'
+            
+            list={<CustomList focusable={isInViewport} />}
         >
             { SampleListItems() }
         </DropdownListButton>
