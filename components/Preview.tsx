@@ -52,12 +52,12 @@ export const usePreviewSheet = createUseSheet(() => [
                     ...rule(':not(.stretch)&', {
                         justifyItems   : 'center',
                         alignItems     : 'center',
+                        justifyContent : 'center', // for unstretchable item => do not stretch the group's width
+                        alignContent   : 'start', // for unstretchable item => do not stretch the group's height
                     }),
                     ...rule('.stretch&', {
                         justifyItems   : 'stretch',
                         alignItems     : 'stretch',
-                        justifyContent : 'center', // for unstretchable item => do not stretch the group's width
-                        alignContent   : 'start', // for unstretchable item => do not stretch the group's height
                     }),
                     
                     gridAutoFlow : 'row',

@@ -23,7 +23,7 @@ import {
     SectionPropertyOrientationBlock,
     SectionPropertyOrientationInline,
 } from '../../../components/common@Progress'
-import { Progress, ProgressBar } from '@nodestrap/progress'
+import { Progress as ProgressOri, ProgressProps, ProgressBar } from '@nodestrap/progress'
 
 import loadable from '@loadable/component'
 const DemoProgressLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Progress' */'../../../components/DemoPanel@Progress'))
@@ -38,6 +38,11 @@ const WarnNotImplementExited = () => (
         </p>
     </Warning>
 );
+const Progress = (props: ProgressProps) => <ProgressOri {...props} style={{ justifySelf: 'stretch' }}>
+    {props.children ?? <>
+        <ProgressBar value={30} />
+    </>}
+</ProgressOri>
 
 
 
@@ -51,12 +56,19 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    <CurrentComponent /> is the most progress component in Nodestrap components after the <CurrentBaseComponents />.
-                    It provides the progress styling and some progress essentials.
+                    Displays the completion progress of a task.
                 </p>
                 <p>
-                    Unlike <CurrentBaseComponents />, <CurrentComponent /> has a default style that you can see visually.
+                    Here the preview:
                 </p>
+                <Progress theme='primary'>
+                    <ProgressBar value={30}>
+                        Part 1: 30%
+                    </ProgressBar>
+                    <ProgressBar value={40} progressBarStyle='striped' running={true}>
+                        Part 2: 40%
+                    </ProgressBar>
+                </Progress>
             </SectionIntro>
             <SectionDemo>
                 <DemoProgressLazy fallback={<BusyBar />} />
@@ -69,9 +81,7 @@ const Page: NextPage = () => {
                             <Progress
                                 theme={themeName}
                                 key={index}
-                            >
-                                A {'<Progress>'} with {themeName} theme
-                            </Progress>
+                            />
                         )}
                     </Preview>
                     <p></p>
@@ -81,7 +91,7 @@ const Page: NextPage = () => {
 <Progress
     theme='${themeName}'
 >
-    A {'<Progress>'} with ${themeName} theme
+    <ProgressBar value={30} />
 </Progress>
 `
                         ).join('')}
@@ -93,19 +103,19 @@ const Page: NextPage = () => {
                             size='sm'
                             theme='primary'
                         >
-                            A {'<Progress>'} with smaller size
+                            <ProgressBar value={30} />
                         </Progress>
                         <Progress
                             size={undefined}
                             theme='primary'
                         >
-                            A {'<Progress>'} with default size
+                            <ProgressBar value={30} />
                         </Progress>
                         <Progress
                             size='lg'
                             theme='primary'
                         >
-                            A {'<Progress>'} with larger size
+                            <ProgressBar value={30} />
                         </Progress>
                     </Preview>
                     <p></p>
@@ -114,21 +124,21 @@ const Page: NextPage = () => {
     size='sm'
     theme='primary'
 >
-    A {'<Progress>'} with smaller size
+    <ProgressBar value={30} />
 </Progress>
 
 <Progress
     size={undefined}
     theme='primary'
 >
-    A {'<Progress>'} with default size
+    <ProgressBar value={30} />
 </Progress>
 
 <Progress
     size='lg'
     theme='primary'
 >
-    A {'<Progress>'} with larger size
+    <ProgressBar value={30} />
 </Progress>
                     `}</TypeScriptCode>
                 </SectionPropertySize>
@@ -136,18 +146,20 @@ const Page: NextPage = () => {
                     <TransparentPreview>
                         <Progress
                             nude={true}
-                            theme='warning'
+                            theme='primary'
                         >
-                            hello world
+                            <ProgressBar value={30} />
+                            <ProgressBar value={40} progressBarStyle='striped' running={true} />
                         </Progress>
                     </TransparentPreview>
                     <p></p>
                     <TypeScriptCode>{`
 <Progress
     nude={true}
-    theme='warning'
+    theme='primary'
 >
-    hello world
+    <ProgressBar value={30} />
+    <ProgressBar value={40} progressBarStyle='striped' running={true} />
 </Progress>
                     `}</TypeScriptCode>
                 </SectionPropertyNude>
@@ -158,9 +170,7 @@ const Page: NextPage = () => {
                                 gradient={true}
                                 theme={themeName}
                                 key={index}
-                            >
-                                hello world
-                            </Progress>
+                            />
                         )}
                     </Preview>
                     <p></p>
@@ -171,7 +181,7 @@ const Page: NextPage = () => {
     gradient={true}
     theme='${themeName}'
 >
-    hello world
+    <ProgressBar value={30} />
 </Progress>
 `
                         ).join('')}
@@ -184,9 +194,7 @@ const Page: NextPage = () => {
                                 outlined={true}
                                 theme={themeName}
                                 key={index}
-                            >
-                                hello world
-                            </Progress>
+                            />
                         )}
                     </TransparentPreview>
                     <p></p>
@@ -197,7 +205,7 @@ const Page: NextPage = () => {
     outlined={true}
     theme='${themeName}'
 >
-    hello world
+    <ProgressBar value={30} />
 </Progress>
 `
                         ).join('')}
@@ -210,9 +218,7 @@ const Page: NextPage = () => {
                                 mild={true}
                                 theme={themeName}
                                 key={index}
-                            >
-                                hello world
-                            </Progress>
+                            />
                         )}
                     </Preview>
                     <p></p>
@@ -223,7 +229,7 @@ const Page: NextPage = () => {
     mild={true}
     theme='${themeName}'
 >
-    hello world
+    <ProgressBar value={30} />
 </Progress>
 `
                         ).join('')}
@@ -231,15 +237,11 @@ const Page: NextPage = () => {
                 </SectionPropertyMild>
                 <SectionPropertyOrientation>
                     <SectionPropertyOrientationBlock>
-                        <Preview>
+                        <Preview stretch={false}>
                             <Progress
                                 orientation='block'
                                 theme='primary'
-                            >
-                                <ProgressBar value={30}>
-                                    30%
-                                </ProgressBar>
-                            </Progress>
+                            />
                         </Preview>
                         <p></p>
                         <TypeScriptCode>{`
@@ -247,9 +249,7 @@ const Page: NextPage = () => {
     orientation='block'
     theme='primary'
 >
-    <ProgressBar value={30}>
-        30%
-    </ProgressBar>
+    <ProgressBar value={30} />
 </Progress>
                         `}</TypeScriptCode>
                     </SectionPropertyOrientationBlock>
@@ -258,11 +258,7 @@ const Page: NextPage = () => {
                             <Progress
                                 orientation='inline'
                                 theme='primary'
-                            >
-                                <ProgressBar value={30}>
-                                    30%
-                                </ProgressBar>
-                            </Progress>
+                            />
                         </Preview>
                         <p></p>
                         <TypeScriptCode>{`
@@ -270,9 +266,7 @@ const Page: NextPage = () => {
     orientation='inline'
     theme='primary'
 >
-    <ProgressBar value={30}>
-        30%
-    </ProgressBar>
+    <ProgressBar value={30} />
 </Progress>
                         `}</TypeScriptCode>
                     </SectionPropertyOrientationInline>

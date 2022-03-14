@@ -58,6 +58,7 @@ export const ProgressOptions = (props: ProgressOptionProps) => {
 
 export const DemoProgress = () => {
     const states = useProgressStates();
+    const hasChildren = (states.size[0] !== 'sm') && (states.orientation[0] !== 'block');
     
     return (
         <>
@@ -74,11 +75,14 @@ export const DemoProgress = () => {
                     mild={states.mild[0]}
                     
                     style={{
-                        alignSelf: 'stretch',
+                        alignSelf: (states.orientation[0] !== 'block') ? 'stretch' : undefined,
                     }}
                 >
                     <ProgressBar value={30}>
-                        30%
+                        {hasChildren && <>30%</>}
+                    </ProgressBar>
+                    <ProgressBar value={40} theme='danger' progressBarStyle='striped' running={true}>
+                        {hasChildren && <>40%</>}
                     </ProgressBar>
                 </Progress>
                 <TypeScriptCode collapsable={false}>{`
@@ -93,9 +97,12 @@ export const DemoProgress = () => {
     outlined={${states.outlined[0]}}
     mild={${states.mild[0]}}
 >
-    <ProgressBar value={30}>
+    <ProgressBar value={30}${hasChildren ? `>
         30%
-    </ProgressBar>
+    </ProgressBar>` : ' />'}
+    <ProgressBar value={40} theme='danger' progressBarStyle='striped' running={true}${hasChildren ? `>
+        40%
+    </ProgressBar>` : ' />'}
 </Progress>
                 `}</TypeScriptCode>
             </div>
