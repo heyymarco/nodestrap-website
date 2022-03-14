@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { CurrentNestedComponent, useComponentInfo, SectionPreviewPropertyProps, ParagraphDefaultValue, SectionPreviewProperty, CurrentComponent } from './common'
+import { CurrentNestedComponent, SectionPreviewPropertyProps, ParagraphDefaultValue, SectionPreviewProperty, CurrentComponent } from './common'
 import { DetailSpecItem, SpecList } from './SpecList';
 
 import {
@@ -26,10 +26,6 @@ export const SectionPropertyPopupAutoShift = ({ defaultValue = true, ...props }:
 
 
 export const SectionPropertyActive  = ({ specList, description, ...restProps }: SectionPreviewPropertyProps) => {
-    const { nestedComponentName } = useComponentInfo();
-    
-    
-    
     return (
         <PopupSectionPropertyActive {...restProps} specList={
             specList

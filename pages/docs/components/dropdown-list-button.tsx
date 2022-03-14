@@ -28,7 +28,6 @@ import {
 } from '../../../components/common@Indicator'
 import {
     SectionPropertyEnabled,
-    SectionPropertyActive,
     
     SectionPropertyLazy,
 } from '../../../components/common@Popup'
@@ -47,6 +46,8 @@ import {
     SectionPropertyPopupPlacement,
     SectionPropertyPopupOffset,
     SectionPropertyPopupShift,
+    
+    SectionPropertyActive,
     
     SectionCustomizingButton,
 } from '../../../components/common@DropdownButton'
