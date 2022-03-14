@@ -65,7 +65,7 @@ export const SectionPropertyProgressBarStyle = ({ styleName = progressBarStyle, 
     );
 };
 export const SectionPropertyStripedStyle     = ({ styleName = progressBarStyle, property = 'striped', description, ...restProps }: SectionPropertyItemStyleProps) => {
-    const { componentName } = useComponentInfo();
+    const { nestedComponentName } = useComponentInfo();
     
     
     
@@ -75,7 +75,7 @@ export const SectionPropertyStripedStyle     = ({ styleName = progressBarStyle, 
             ??
             <>
                 <p>
-                    Set <code>{`<${componentName} ${styleName}='${property}'>`}</code> to apply a stripe pattern.
+                    Set <code>{`<${nestedComponentName} ${styleName}='${property}'>`}</code> to apply a stripe pattern.
                 </p>
             </>
         } />
