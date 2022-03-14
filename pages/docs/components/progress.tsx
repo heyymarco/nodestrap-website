@@ -7,7 +7,7 @@ import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../
 import { Warning } from '../../../components/Info'
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
-import { SectionInheritedProps, LinkProgressPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkProgressBarPage, CurrentNestedComponent } from '../../../components/common'
+import { SectionInheritedProps, LinkProgressPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkProgressBarPage, CurrentNestedComponent, SectionStates } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 import {
     themeNames,
@@ -30,6 +30,8 @@ import {
     
     SectionPropertyProgressBarStyle,
     SectionPropertyStripedStyle,
+    
+    SectionPropertyRunning,
 } from '../../../components/common@Progress'
 import { Progress as ProgressOri, ProgressProps, ProgressBar } from '@nodestrap/progress'
 
@@ -345,13 +347,13 @@ const Page: NextPage = () => {
                 </SectionPropertyProgressStyle>
                 <SectionPropertyProgressBarStyle>
                     <SectionPropertyStripedStyle>
-                        <TransparentPreview>
+                        <Preview>
                             <Progress
                                 theme='primary'
                             >
                                 <ProgressBar value={30} progressBarStyle='striped' />
                             </Progress>
-                        </TransparentPreview>
+                        </Preview>
                         <p></p>
                         <TypeScriptCode>{`
 <Progress
@@ -363,6 +365,25 @@ const Page: NextPage = () => {
                     </SectionPropertyStripedStyle>
                 </SectionPropertyProgressBarStyle>
             </SectionVariants>
+            <SectionStates>
+                <SectionPropertyRunning>
+                    <Preview>
+                        <Progress
+                            theme='primary'
+                        >
+                            <ProgressBar value={30} progressBarStyle='striped' running={true} />
+                        </Progress>
+                    </Preview>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Progress
+    theme='primary'
+>
+    <ProgressBar value={30} progressBarStyle='striped' running={true} />
+</Progress>
+                    `}</TypeScriptCode>
+                </SectionPropertyRunning>
+            </SectionStates>
             <SectionCustomizing specList={
                 <SpecList>
                     <DetailSpecItem title='Foregrounds, Backgrounds &amp; Borders'>

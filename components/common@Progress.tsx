@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { CurrentComponent, CurrentNestedComponent, SectionPreviewPropertyProps, useComponentInfo } from './common'
+import { CurrentComponent, CurrentNestedComponent, SectionPreviewProperty, SectionPreviewPropertyProps, useComponentInfo } from './common'
 
 import {
     SectionPropertyOrientationProps,
@@ -16,6 +16,7 @@ import {
     SectionPropertyJoinedStyle as BasicSectionPropertyJoinedStyle,
     SectionPropertyItemStyle,
 } from './common@Basic'
+import { Warning } from './Info';
 
 
 
@@ -58,14 +59,13 @@ export const SectionPropertyJoinedStyle = ({ styleName = progressStyle, ...restP
 
 
 const progressBarStyle = 'progressBarStyle';
-export const SectionPropertyProgressBarStyle   = ({ styleName = progressBarStyle, properties = <><CurrentNestedComponent /> Styles</>, component = <CurrentNestedComponent />, ...restProps }: SectionPropertyStyleProps) => {
+export const SectionPropertyProgressBarStyle = ({ styleName = progressBarStyle, properties = <><CurrentNestedComponent /> Styles</>, component = <CurrentNestedComponent />, ...restProps }: SectionPropertyStyleProps) => {
     return (
         <SectionPropertyStyle {...restProps} styleName={styleName} properties={properties} component={component} />
     );
 };
-export const SectionPropertyStripedStyle   = ({ property = 'striped'  , description, ...restProps }: SectionPropertyItemStyleProps) => {
+export const SectionPropertyStripedStyle     = ({ styleName = progressBarStyle, property = 'striped', description, ...restProps }: SectionPropertyItemStyleProps) => {
     const { componentName } = useComponentInfo();
-    const styleName = restProps.styleName;
     
     
     
@@ -77,6 +77,31 @@ export const SectionPropertyStripedStyle   = ({ property = 'striped'  , descript
                 <p>
                     Set <code>{`<${componentName} ${styleName}='${property}'>`}</code> to apply a stripe pattern.
                 </p>
+            </>
+        } />
+    );
+};
+
+
+
+export const SectionPropertyRunning = ({ property = 'running', properties = 'Running', description, ...restProps }: SectionPreviewPropertyProps) => {
+    const { nestedComponentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPreviewProperty {...restProps} property={property} properties={properties} description={
+            description
+            ??
+            <>
+                <p>
+                    To make <CurrentNestedComponent /> appear running (busy), set <code>{`<${nestedComponentName} progressBarStyle='striped' running={true}>`}</code>.
+                </p>
+                <Warning>
+                    <p>
+                        Currently, you need to combine <code>{`running={true}`}</code> with <code>{`progressBarStyle='striped'`}</code> to make the animation visible.
+                    </p>
+                </Warning>
             </>
         } />
     );
