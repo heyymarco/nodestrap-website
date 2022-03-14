@@ -4,10 +4,10 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
-import { Warning } from '../../../components/Info'
+import { Section } from '../../../components/Section'
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
-import { SectionInheritedProps, LinkProgressPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkProgressBarPage, CurrentNestedComponent, SectionStates } from '../../../components/common'
+import { SectionInheritedProps, LinkProgressPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkProgressBarPage, CurrentNestedComponent, SectionStates, SectionPreviewProperty } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 import {
     themeNames,
@@ -74,11 +74,79 @@ const Page: NextPage = () => {
                 <p>
                     Here the preview:
                 </p>
-                <ProgressPlus theme='primary' />
+                <Preview>
+                    <Progress theme='primary'>
+                        <ProgressBar value={70} progressBarStyle='striped' running={true}>
+                            Loading - 70%
+                        </ProgressBar>
+                    </Progress>
+                </Preview>
             </SectionIntro>
             <SectionDemo>
                 <DemoProgressLazy fallback={<BusyBar />} />
             </SectionDemo>
+            <SectionPreviewProperty propertySuffix={false} property='children' properties='Labels' description={<>
+                <p>
+                    Add labels to your progress bars by placing text (or any <code>JSX.Element</code>) within the <CurrentNestedComponent />.
+                </p>
+            </>}>
+                <Preview>
+                    <Progress
+                        theme='primary'
+                    >
+                        <ProgressBar value={70}>
+                            Hello world
+                        </ProgressBar>
+                    </Progress>
+                </Preview>
+                <p></p>
+                <TypeScriptCode>{`
+<Progress
+    theme='primary'
+>
+    <ProgressBar value={70}>
+        Hello world
+    </ProgressBar>
+</Progress>
+                `}</TypeScriptCode>
+            </SectionPreviewProperty>
+            <SectionPreviewProperty propertySuffix={false} property='children' properties='Multiple Bars' description={<>
+                <p>
+                Include multiple <CurrentNestedComponent /> in a <CurrentComponent /> component if you need.
+                </p>
+            </>}>
+                <Preview>
+                    <Progress
+                        theme='primary'
+                    >
+                        <ProgressBar value={30}>
+                            Part 1: 30%
+                        </ProgressBar>
+                        <ProgressBar value={40} theme='warning'>
+                            Part 2: 40%
+                        </ProgressBar>
+                        <ProgressBar value={20} theme='success'>
+                            Part 3: 20%
+                        </ProgressBar>
+                    </Progress>
+                </Preview>
+                <p></p>
+                <TypeScriptCode>{`
+<Progress
+    theme='primary'
+>
+    <ProgressBar value={30}>
+        Part 1: 30%
+    </ProgressBar>
+    <ProgressBar value={40} theme='warning'>
+        Part 2: 40%
+    </ProgressBar>
+    <ProgressBar value={20} theme='success'>
+        Part 3: 20%
+    </ProgressBar>
+</Progress>
+                `}</TypeScriptCode>
+            </SectionPreviewProperty>
             <SectionInheritedProps />
             <SectionVariants>
                 <SectionPropertyTheme>
