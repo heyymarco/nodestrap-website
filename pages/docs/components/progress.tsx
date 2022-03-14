@@ -30,14 +30,6 @@ const DemoProgressLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@P
 
 
 
-const WarnNotImplementExited = () => (
-    <Warning>
-        <p>
-            By default <CurrentComponent /> is doesn&apos;t implement this feature, but
-            the derived components may do.
-        </p>
-    </Warning>
-);
 const Progress = (props: ProgressProps) => <ProgressOri {...props} style={{ justifySelf: 'stretch' }}>
     {props.children ?? <>
         <ProgressBar value={30} />
@@ -404,16 +396,13 @@ const Page: NextPage = () => {
                 <SectionOverridingDefaults>{`
 import { Progress } from '@nodestrap/progress'
 
-export default function SiteSidebar(props) {
+export default function CustomProgress(props) {
     return (
         <Progress
             {...props} // preserves other properties
-
-            semanticRole={props.semanticRole ?? 'complementary'} // override default value of semanticRole to 'complementary'
-            semantictag={props.semanticTag ?? 'aside'}           // override default value of semanticTag  to 'aside'
             
-            theme={props.theme ?? 'secondary'} // override default value of theme to 'secondary'
-            mild={props.mild ?? true}          // override default value of mild  to true
+            theme={props.theme ?? 'success'} // override default value of theme to 'success'
+            mild={props.mild ?? false}       // override default value of mild  to false
         >
             { props.children }
         </Progress>
@@ -425,22 +414,40 @@ export default function SiteSidebar(props) {
                     <SpecList>
                         <DetailSpecItem code='usesProgressLayout()'>
                             <p>
-                                Returns a <code>Rule</code> object represents a complete <CurrentComponent /> <strong>layout</strong> except its <strong>variants</strong>.
+                                Returns a <code>Rule</code> object represents a complete <CurrentComponent /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesProgressVariants()'>
                             <p>
                                 Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentComponent /> such as:<br />
-                                <code>SizeVariant</code>, <code>NudeVariant</code>, <code>ThemeVariant</code>, <code>GradientVariant</code>, <code>OutlinedVariant</code>, and <code>MildVariant</code>.
+                                <code>SizeVariant</code>, <code>ProgressVariant</code>, and <strong>all variants</strong> inherited from <CurrentBaseComponents />.
+                            </p>
+                        </DetailSpecItem>
+                        
+                        <DetailSpecItem code='usesProgressBarLayout()'>
+                            <p>
+                                Returns a <code>Rule</code> object represents a complete <CurrentNestedComponent /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='usesProgressBarVariants()'>
+                            <p>
+                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentNestedComponent /> such as:<br />
+                                <code>ProgressBarVariant</code> and maybe <em>other variants</em> added in the future.
+                            </p>
+                        </DetailSpecItem>
+                        <DetailSpecItem code='usesProgressBarStates()'>
+                            <p>
+                                Returns a <code>Rule</code> object represents the <strong>states</strong> of <CurrentNestedComponent /> such as:<br />
+                                <strong>running state</strong> and maybe <em>other states</em> added in the future.
                             </p>
                         </DetailSpecItem>
                     </SpecList>
                 }>{`
 import { mainComposition, style, imports, variants, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
-import { Progress, usesProgressLayout, usesProgressVariants } from '@nodestrap/progress'
+import { Progress, usesProgressLayout, usesProgressVariants, usesProgressBarLayout, usesProgressBarVariants, usesProgressBarStates } from '@nodestrap/progress'
 
-const useCustomComponentSheet = createUseSheet(() => [
+const useCustomProgressSheet = createUseSheet(() => [
     mainComposition(
         imports([
             // import some stuff from <Progress>:
@@ -449,32 +456,39 @@ const useCustomComponentSheet = createUseSheet(() => [
         ]),
         style({
             // then overwrite with your style:
-            display : 'inline-block',
             margin  : '1em',
             /* ... */
             
-            ...variants([
-                rule('.big', {
-                    // define the style at 'big' variant:
-                    fontSize: 'xx-large',
+            ...children('*', {
+                ...imports([
+                    // import some stuff from <ProgressBar>:
+                    usesProgressBarLayout(),
+                    usesProgressBarVariants(),
+                    usesProgressBarStates(),
+                ]),
+                ...variants([
+                    rule('.big', {
+                        // define the style at 'big' variant:
+                        fontSize: 'xx-large',
+                        /* ... */
+                    }),
+                    rule('.dark', {
+                        // define the style at 'dark' variant:
+                        background-color : 'black',
+                        color            : 'white',
+                        /* ... */
+                    }),
                     /* ... */
-                }),
-                rule('.dark', {
-                    // define the style at 'dark' variant:
-                    background-color : 'black',
-                    color            : 'white',
-                    /* ... */
-                }),
-                /* ... */
-            ]),
+                ]),
+            }),
             
             /* ... */
         }),
     ),
 ]);
 
-export default function CustomComponent(props) {
-    const sheet = useCustomComponentSheet();
+export default function CustomProgress(props) {
+    const sheet = useCustomProgressSheet();
     return (
         <Progress {...props} mainClass={sheet.main}>
             { props.children }
