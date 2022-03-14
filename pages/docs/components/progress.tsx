@@ -7,7 +7,7 @@ import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../
 import { Warning } from '../../../components/Info'
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
-import { SectionInheritedProps, LinkProgressPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents } from '../../../components/common'
+import { SectionInheritedProps, LinkProgressPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkProgressBarPage, CurrentNestedComponent } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 import {
     themeNames,
@@ -48,7 +48,7 @@ const Progress = (props: ProgressProps) => <ProgressOri {...props} style={{ just
 
 const Page: NextPage = () => {
     return (
-        <ComponentInfoProvider packageName='@nodestrap/progress' component={<LinkProgressPage />} bases={<LinkBasicPage />}>
+        <ComponentInfoProvider packageName='@nodestrap/progress' component={<LinkProgressPage />} nestedComponent={<LinkProgressBarPage />} bases={<LinkBasicPage />}>
             <Head>
                 <title>&lt;Progress&gt; Component</title>
                 <meta name="description" content="Using <Progress> component" />
@@ -277,143 +277,124 @@ const Page: NextPage = () => {
                     <DetailSpecItem title='Foregrounds, Backgrounds &amp; Borders'>
                         <SubSpecList>
                             <SimpleSpecItem>
-                                <code>foreg</code>
-                                <p>The text color.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>backg</code>
-                                <p>The background color.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
                                 <code>backgGrad</code>
-                                <p>The background gradient when <code>{`gradient={true}`}</code>.</p>
+                                <p>The default background gradient when <code>{`gradient={true}`}</code>.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
-                                <code>border</code>
-                                <p>The default border-style, border-width and border-color.</p>
+                                <code>backgGradBlock</code>
+                                <p>The background gradient when <code>{`gradient={true}`}</code> and <code>{`orientation='block'`}</code>.</p>
+                            </SimpleSpecItem>
+                            
+                            
+                            <SimpleSpecItem>
+                                <code>itemBackgStrippedImg</code>
+                                <p>The tiled overlay background when <code>{`progressBarStyle='striped'`}</code>.</p>
+                            </SimpleSpecItem>
+                            
+                            <SimpleSpecItem>
+                                <code>itemBackgStrippedSize</code>
+                                <p>The default tiled overlay background size when <code>{`progressBarStyle='striped'`}</code>.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
-                                <code>borderWidth</code>
-                                <p>The thickness of border.</p>
+                                <code>itemBackgStrippedSizeSm</code>
+                                <p>The tiled overlay background size when <code>{`progressBarStyle='striped'`}</code> and <code>{`size='sm'`}</code>.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
-                                <code>borderColor</code>
-                                <p>The color of border when <strong>un-themed</strong>.</p>
+                                <code>itemBackgStrippedSizeLg</code>
+                                <p>The tiled overlay background size when <code>{`progressBarStyle='striped'`}</code> and <code>{`size='lg'`}</code>.</p>
+                            </SimpleSpecItem>
+                        </SubSpecList>
+                    </DetailSpecItem>
+                    <DetailSpecItem title='Sizes'>
+                        <SubSpecList>
+                            <SimpleSpecItem>
+                                <code>minInlineSize</code>
+                                <p>The default minimum width of <CurrentComponent />.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
-                                <code>borderRadius</code>
-                                <p>The default border-radius.</p>
+                                <code>minBlockSize</code>
+                                <p>The default minimum height of <CurrentComponent />.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
-                                <code>borderRadiusSm</code>
-                                <p>The border-radius when <code>{`size='sm'`}</code>.</p>
+                                <code>minInlineSizeBlock</code>
+                                <p>The minimum width of <CurrentComponent /> when <code>{`orientation='block'`}</code>.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
-                                <code>borderRadiusLg</code>
-                                <p>The border-radius when <code>{`size='lg'`}</code>.</p>
+                                <code>minBlockSizeBlock</code>
+                                <p>The minimum height of <CurrentComponent /> when <code>{`orientation='block'`}</code>.</p>
+                            </SimpleSpecItem>
+                            
+                            <SimpleSpecItem>
+                                <code>itemBoxSizing</code>
+                                <p>Defines how the total width and height of <CurrentNestedComponent /> is calculated.</p>
+                            </SimpleSpecItem>
+                            
+                            <SimpleSpecItem>
+                                <code>itemMinInlineSize</code>
+                                <p>The default minimum width of <CurrentNestedComponent />.</p>
+                            </SimpleSpecItem>
+                            
+                            <SimpleSpecItem>
+                                <code>itemMinBlockSize</code>
+                                <p>The default minimum height of <CurrentNestedComponent />.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>itemMinBlockSizeSm</code>
+                                <p>The minimum height of <CurrentNestedComponent /> when <code>{`size='sm'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>itemMinBlockSizeLg</code>
+                                <p>The minimum height of <CurrentNestedComponent /> when <code>{`size='lg'`}</code>.</p>
+                            </SimpleSpecItem>
+                            
+                            <SimpleSpecItem>
+                                <code>itemMinBlockSizeBlock</code>
+                                <p>The default minimum height of <CurrentNestedComponent /> when <code>{`orientation='block'`}</code>.</p>
+                            </SimpleSpecItem>
+                            
+                            <SimpleSpecItem>
+                                <code>itemMinInlineSizeBlock</code>
+                                <p>The default minimum width of <CurrentNestedComponent /> when <code>{`orientation='block'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>itemMinInlineSizeBlockSm</code>
+                                <p>The minimum width of <CurrentNestedComponent /> when <code>{`orientation='block'`}</code> and <code>{`size='sm'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>itemMinInlineSizeBlockLg</code>
+                                <p>The minimum width of <CurrentNestedComponent /> when <code>{`orientation='block'`}</code> and <code>{`size='lg'`}</code>.</p>
                             </SimpleSpecItem>
                         </SubSpecList>
                     </DetailSpecItem>
                     <DetailSpecItem title='Spacings'>
                         <SubSpecList>
                             <SimpleSpecItem>
-                                <code>paddingInline</code>
-                                <p>The default inner spacing on the left &amp; right.</p>
+                                <code>itemPaddingInline</code>
+                                <p>The inner spacing on the left &amp; right of <CurrentNestedComponent />.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
-                                <code>paddingBlock</code>
-                                <p>The default inner spacing on the top &amp; bottom.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>paddingInlineSm</code>
-                                <p>The inner spacing on the left &amp; right when <code>{`size='sm'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>paddingBlockSm</code>
-                                <p>The inner spacing on the top &amp; bottom when <code>{`size='sm'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>paddingInlineLg</code>
-                                <p>The inner spacing on the left &amp; right when <code>{`size='lg'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>paddingBlockLg</code>
-                                <p>The inner spacing on the top &amp; bottom when <code>{`size='lg'`}</code>.</p>
-                            </SimpleSpecItem>
-                        </SubSpecList>
-                    </DetailSpecItem>
-                    <DetailSpecItem title='Appearances'>
-                        <SubSpecList>
-                            <SimpleSpecItem>
-                                <code>opacity</code>
-                                <p>
-                                    The opacity level.<br />
-                                    <code>{`opacity=0`}</code> is fully transparent, <code>{`opacity=1`}</code> is fully opaque.
-                                </p>
-                            </SimpleSpecItem>
-                        </SubSpecList>
-                    </DetailSpecItem>
-                    <DetailSpecItem title='Typos'>
-                        <SubSpecList>
-                            <SimpleSpecItem>
-                                <code>fontSize</code>
-                                <p>The default text size.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>fontSizeSm</code>
-                                <p>The text size when <code>{`size='sm'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>fontSizeLg</code>
-                                <p>The text size when <code>{`size='lg'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>fontFamily</code>
-                                <p>The text appearance.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>fontWeight</code>
-                                <p>The text thickness.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>fontStyle</code> &amp; <code>textDecoration</code>
-                                <p>The text style such as <em>italic</em>, <em>underline</em>, <em>dashed</em>, etc.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>lineHeight</code>
-                                <p>The text height (including the gap between text rows).</p>
+                                <code>itemPaddingBlock</code>
+                                <p>The inner spacing on the top &amp; bottom of <CurrentNestedComponent />.</p>
                             </SimpleSpecItem>
                         </SubSpecList>
                     </DetailSpecItem>
                     <DetailSpecItem title='Animations'>
                         <SubSpecList>
                             <SimpleSpecItem>
-                                <code>transDuration</code>
-                                <p>The default <code>transition-duration</code>.</p>
+                                <code>@keyframes itemRunning</code>
+                                <p>A default keyframes name represents <em>running progress keyframes</em> <code>{`running={true}`}</code>.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
-                                <code>transition</code>
-                                <p>The default <code>transition</code>.</p>
+                                <code>itemAnimRunning</code>
+                                <p>A default animation represents <em>running progress animation</em> <code>{`running={true}`}</code>.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
-                                <code>@keyframes none</code>
-                                <p>A keyframes name represents <em>an empty keyframes</em>.</p>
-                                <p>You should <strong>not to modify</strong> this property (in most cases).</p>
+                                <code>@keyframes itemRunningBlock</code>
+                                <p>A keyframes name represents <em>running progress keyframes</em> <code>{`running={true}`}</code> and <code>{`orientation='block'`}</code>.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
-                                <code>filterExcited</code>
-                                <p>A <code>filter</code> to apply when <code>{`excited={true}`}</code>.</p>
-                                <WarnNotImplementExited />
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>@keyframes excited</code>
-                                <p>A keyframes name represents <em>an excited keyframes</em>.</p>
-                                <WarnNotImplementExited />
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>animExcited</code>
-                                <p>An animation represents <em>excited animation</em>.</p>
-                                <WarnNotImplementExited />
+                                <code>itemAnimRunningBlock</code>
+                                <p>An animation represents <em>running progress animation</em> <code>{`running={true}`}</code> and <code>{`orientation='block'`}</code>.</p>
                             </SimpleSpecItem>
                         </SubSpecList>
                     </DetailSpecItem>
