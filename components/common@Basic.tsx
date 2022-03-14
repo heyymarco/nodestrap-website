@@ -1,6 +1,7 @@
 import React from 'react'
 
 
+import { Component } from './common'
 import { SpecList, DetailSpecItem } from './SpecList'
 import { Warning } from './Info'
 
@@ -315,12 +316,13 @@ export const SectionPropertyOrientationResponsive = ({ titleTag='h4', orientatio
 };
 export interface SectionPropertyStyleProps extends SectionPropertyProps {
     styleName ?: string
+    component ?: Component
 }
-export const SectionPropertyStyle = ({ propertySuffix = defaultPropertySuffix, styleName, property = styleName, properties = 'Styles', children, ...restProps }: SectionPropertyStyleProps) => {
+export const SectionPropertyStyle = ({ propertySuffix = defaultPropertySuffix, styleName, property = styleName, properties = 'Styles', component = <CurrentComponent />, children, ...restProps }: SectionPropertyStyleProps) => {
     return (
         <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property} properties={properties}>
             <p>
-                The appearance alternatives of <CurrentComponent />.
+                The appearance alternatives of {component}.
             </p>
             { children }
         </SectionSubProperty>

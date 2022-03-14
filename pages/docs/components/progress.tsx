@@ -22,6 +22,14 @@ import {
 import {
     SectionPropertyOrientationBlock,
     SectionPropertyOrientationInline,
+    
+    SectionPropertyProgressStyle,
+    SectionPropertyFlatStyle,
+    SectionPropertyFlushStyle,
+    SectionPropertyJoinedStyle,
+    
+    SectionPropertyProgressBarStyle,
+    SectionPropertyStripedStyle,
 } from '../../../components/common@Progress'
 import { Progress as ProgressOri, ProgressProps, ProgressBar } from '@nodestrap/progress'
 
@@ -31,10 +39,21 @@ const DemoProgressLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@P
 
 
 const Progress = (props: ProgressProps) => <ProgressOri {...props} style={{ justifySelf: 'stretch' }}>
-    {props.children ?? <>
-        <ProgressBar value={30} />
-    </>}
+    {props.children ?? [
+        <ProgressBar key={0} value={30} />
+    ]}
 </ProgressOri>
+
+const ProgressPlus = (props: ProgressProps) => <Progress {...props}>
+    {props.children ?? [
+        <ProgressBar key={0} value={30}>
+            Part 1: 30%
+        </ProgressBar>,
+        <ProgressBar key={1} value={40} progressBarStyle='striped' running={true}>
+            Part 2: 40%
+        </ProgressBar>
+    ]}
+</Progress>
 
 
 
@@ -53,14 +72,7 @@ const Page: NextPage = () => {
                 <p>
                     Here the preview:
                 </p>
-                <Progress theme='primary'>
-                    <ProgressBar value={30}>
-                        Part 1: 30%
-                    </ProgressBar>
-                    <ProgressBar value={40} progressBarStyle='striped' running={true}>
-                        Part 2: 40%
-                    </ProgressBar>
-                </Progress>
+                <ProgressPlus theme='primary' />
             </SectionIntro>
             <SectionDemo>
                 <DemoProgressLazy fallback={<BusyBar />} />
@@ -263,6 +275,93 @@ const Page: NextPage = () => {
                         `}</TypeScriptCode>
                     </SectionPropertyOrientationInline>
                 </SectionPropertyOrientation>
+                <SectionPropertyProgressStyle>
+                    <SectionPropertyFlatStyle>
+                        <TransparentPreview>
+                            <ProgressPlus
+                                progressStyle='flat'
+                                theme='primary'
+                            />
+                        </TransparentPreview>
+                        <p></p>
+                        <TypeScriptCode>{`
+<Progress
+    progressStyle='flat'
+    theme='primary'
+>
+    <ProgressBar value={30}>
+        Part 1: 30%
+    </ProgressBar>
+    <ProgressBar value={40} progressBarStyle='striped' running={true}>
+        Part 2: 40%
+    </ProgressBar>
+</Progress>
+                        `}</TypeScriptCode>
+                    </SectionPropertyFlatStyle>
+                    <SectionPropertyFlushStyle>
+                        <TransparentPreview>
+                            <ProgressPlus
+                                progressStyle='flush'
+                                theme='primary'
+                            />
+                        </TransparentPreview>
+                        <p></p>
+                        <TypeScriptCode>{`
+<Progress
+    progressStyle='flush'
+    theme='primary'
+>
+    <ProgressBar value={30}>
+        Part 1: 30%
+    </ProgressBar>
+    <ProgressBar value={40} progressBarStyle='striped' running={true}>
+        Part 2: 40%
+    </ProgressBar>
+</Progress>
+                        `}</TypeScriptCode>
+                    </SectionPropertyFlushStyle>
+                    <SectionPropertyJoinedStyle>
+                        <TransparentPreview>
+                            <ProgressPlus
+                                progressStyle='joined'
+                                theme='primary'
+                            />
+                        </TransparentPreview>
+                        <p></p>
+                        <TypeScriptCode>{`
+<Progress
+    progressStyle='joined'
+    theme='primary'
+>
+    <ProgressBar value={30}>
+        Part 1: 30%
+    </ProgressBar>
+    <ProgressBar value={40} progressBarStyle='striped' running={true}>
+        Part 2: 40%
+    </ProgressBar>
+</Progress>
+                        `}</TypeScriptCode>
+                    </SectionPropertyJoinedStyle>
+                </SectionPropertyProgressStyle>
+                <SectionPropertyProgressBarStyle>
+                    <SectionPropertyStripedStyle>
+                        <TransparentPreview>
+                            <Progress
+                                theme='primary'
+                            >
+                                <ProgressBar value={30} progressBarStyle='striped' />
+                            </Progress>
+                        </TransparentPreview>
+                        <p></p>
+                        <TypeScriptCode>{`
+<Progress
+    theme='primary'
+>
+    <ProgressBar value={30} progressBarStyle='striped' />
+</Progress>
+                        `}</TypeScriptCode>
+                    </SectionPropertyStripedStyle>
+                </SectionPropertyProgressBarStyle>
             </SectionVariants>
             <SectionCustomizing specList={
                 <SpecList>

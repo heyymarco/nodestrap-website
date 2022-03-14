@@ -11,8 +11,8 @@ import { useCurrentActive } from '@nodestrap/nav-button';
 
 
 
-type SpecList  = React.ReactElement<SpecListProps, React.FunctionComponent<SpecListProps>>
-type Component = React.ReactElement<PageLinkProps, React.FunctionComponent<PageLinkProps>>
+export type SpecList  = React.ReactElement<SpecListProps, React.FunctionComponent<SpecListProps>>
+export type Component = React.ReactElement<PageLinkProps, React.FunctionComponent<PageLinkProps>>
 
 
 
@@ -682,7 +682,7 @@ export const SectionMoreCustomizingCss = ({ titleTag = 'h3', title = 'Advanced C
 export const BusyBar = () => {
     return (
         <Progress classes={['busy']} theme='primary'>
-            <ProgressBar value={100} progressBarStyle={['striped', 'running']} />
+            <ProgressBar value={100} progressBarStyle='striped' running={true} />
         </Progress>
     );
 }
