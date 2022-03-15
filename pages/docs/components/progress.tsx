@@ -641,7 +641,7 @@ export default function CustomProgress(props) {
                         </DetailSpecItem>
                     </SpecList>
                 }>{`
-import { mainComposition, style, imports, variants, rule } from '@cssfn/cssfn'
+import { mainComposition, style, imports, variants, rule, children } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
 import { Progress, usesProgressLayout, usesProgressVariants, usesProgressBarLayout, usesProgressBarVariants, usesProgressBarStates } from '@nodestrap/progress'
 
