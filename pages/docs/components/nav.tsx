@@ -163,7 +163,7 @@ const Page: NextPage = () => {
                 <p>
                     Here the preview:
                 </p>
-                <Preview>
+                <Preview stretch={false}>
                     <Nav theme='primary'>
                         <NavItem>
                             <Link href='/'>
@@ -195,7 +195,7 @@ const Page: NextPage = () => {
             <SectionVariants>
                 <SectionPropertyTheme>
                     <Preview>
-                        <Nav theme='primary'>
+                        <Nav theme='primary' orientation='block'>
                             <NavItem>
                                 An inherit theme
                             </NavItem>
@@ -230,7 +230,7 @@ const Page: NextPage = () => {
                     </Preview>
                     <p></p>
                     <TypeScriptCode>{`
-<Nav theme='primary'>
+<Nav theme='primary' orientation='block'>
     <NavItem>
         An inherit theme
     </NavItem>
@@ -267,12 +267,6 @@ const Page: NextPage = () => {
                 <SectionPropertySize>
                     <Preview>
                         <Nav theme='primary'>
-                            <NavItem>
-                                An inherit size
-                            </NavItem>
-                            <NavItem>
-                                An inherit size
-                            </NavItem>
                             <NavItem size='sm'>
                                 A smaller size
                             </NavItem>
@@ -287,12 +281,6 @@ const Page: NextPage = () => {
                     <p></p>
                     <TypeScriptCode>{`
 <Nav theme='primary'>
-    <NavItem>
-        An inherit size
-    </NavItem>
-    <NavItem>
-        An inherit size
-    </NavItem>
     <NavItem size='sm'>
         A smaller size
     </NavItem>
