@@ -164,7 +164,7 @@ const Page: NextPage = () => {
                 <p>
                     Here the preview:
                 </p>
-                <Preview stretch={false}>
+                <Preview>
                     <Nav theme='primary'>
                         <NavItem>
                             <Link href='/'>
