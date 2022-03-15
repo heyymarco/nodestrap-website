@@ -144,6 +144,9 @@ export const LinkDropdownListButtonPage     = (props: PageLinkProps) => <LinkCod
 
 export const LinkProgressPage               = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/progress'>Progress</LinkCode>
 export const LinkProgressBarPage            = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/progress'>ProgressBar</LinkCode>
+export const LinkNavPage                    = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/nav'>Nav</LinkCode>
+export const LinkNavItemPage                = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/nav'>NavItem</LinkCode>
+export const LinkNavSeparatorItemPage       = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/nav'>NavSeparatorItem</LinkCode>
 export const LinkGroupPage                  = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/group'>Group</LinkCode>
 export const LinkNavbarPage                 = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/navbar'>Navbar</LinkCode>
 
