@@ -10,7 +10,7 @@ import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
 import { SectionInheritedProps, LinkNavPage, LinkListPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentNestedComponent, CurrentBaseComponents, LinkNavItemPage, SectionVariants, SectionStates, LinkNavSeparatorItemPage, LinkUsesIndicatorVariantsPage, SectionPreviewProperty, CurrentDominantBaseComponent } from '../../../components/common'
-import { Nav, NavItem, NavSeparatorItem, OrientationName } from '@nodestrap/nav'
+import { Nav as NavOri, NavProps, NavItem, NavSeparatorItem, OrientationName } from '@nodestrap/nav'
 import { TypeScriptCode } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
 import { Tips } from '../../../components/Info'
@@ -53,6 +53,7 @@ const DemoNavLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Nav' *
 
 
 
+const Nav = (props: NavProps) => <NavOri {...props} orientation={props.orientation ?? 'block'} />
 const FunctionalTabNav = () => {
     const [activeTabIndex, setActiveTabIndex] = useState(3);
     
@@ -195,7 +196,7 @@ const Page: NextPage = () => {
             <SectionVariants>
                 <SectionPropertyTheme>
                     <Preview>
-                        <Nav theme='primary' orientation='block'>
+                        <Nav theme='primary'>
                             <NavItem>
                                 An inherit theme
                             </NavItem>
@@ -230,7 +231,7 @@ const Page: NextPage = () => {
                     </Preview>
                     <p></p>
                     <TypeScriptCode>{`
-<Nav theme='primary' orientation='block'>
+<Nav theme='primary'>
     <NavItem>
         An inherit theme
     </NavItem>
