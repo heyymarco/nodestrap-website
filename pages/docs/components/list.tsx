@@ -154,7 +154,7 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    <CurrentComponent /> is a presentation component for displaying a series of content.
+                    Displays a series of content.
                 </p>
             </SectionIntro>
             <SectionDemo>
