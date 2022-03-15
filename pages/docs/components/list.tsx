@@ -258,12 +258,6 @@ const Page: NextPage = () => {
                 <SectionPropertySize>
                     <Preview>
                         <List theme='primary'>
-                            <ListItem>
-                                An inherit size
-                            </ListItem>
-                            <ListItem>
-                                An inherit size
-                            </ListItem>
                             <ListItem size='sm'>
                                 A smaller size
                             </ListItem>
@@ -278,12 +272,6 @@ const Page: NextPage = () => {
                     <p></p>
                     <TypeScriptCode>{`
 <List theme='primary'>
-    <ListItem>
-        An inherit size
-    </ListItem>
-    <ListItem>
-        An inherit size
-    </ListItem>
     <ListItem size='sm'>
         A smaller size
     </ListItem>
