@@ -157,6 +157,35 @@ const Page: NextPage = () => {
 </Progress>
                 `}</TypeScriptCode>
             </SectionPreviewProperty>
+            <SectionPreviewProperty propertySuffix={false} property='value' properties='Range and Value' description={<>
+                <p>
+                    By default, the <CurrentNestedComponent />&apos;s range is between <code>0</code> and <code>100</code>.
+                </p>
+                <p>
+                    You can change the range by assigning the <code>min</code> and <code>max</code> to the <CurrentNestedComponent />.<br />
+                    The <code>value</code> must between/equal to <code>min</code> to <code>max</code>.
+                </p>
+                <p>
+                    The <code>min</code> is allowed to be greater than <code>max</code>.<br />
+                    For example <code>{`<ProgressBar min={0} max={-10} value={-3}>`}</code>, the <CurrentNestedComponent />&apos;s length will be <code>30%</code> of <CurrentComponent />&apos;s length.
+                </p>
+            </>}>
+                <Preview>
+                    <Progress
+                        theme='primary'
+                    >
+                        <ProgressBar min={-10} max={-20} value={-13} />
+                    </Progress>
+                </Preview>
+                <p></p>
+                <TypeScriptCode>{`
+<Progress
+    theme='primary'
+>
+    <ProgressBar min={-10} max={-20} value={-13} />
+</Progress>
+                `}</TypeScriptCode>
+            </SectionPreviewProperty>
             <SectionInheritedProps />
             <SectionVariants>
                 <SectionPropertyTheme>
