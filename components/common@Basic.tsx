@@ -21,13 +21,13 @@ export const themeNames: ThemeName[] = [
     'light',
     'dark',
 ];
-export const SectionPropertyTheme = ({ property = 'theme', properties = 'Themes', specList, description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyTheme    = ({ property = 'theme'   , properties = 'Themes'  , nestedable = true, specList, description, ...restProps }: SectionPreviewPropertyProps) => {
     const { hasNestedComponent } = useComponentInfo();
     
     
     
     return (
-        <SectionPreviewProperty {...restProps} property={property} properties={properties} specList={
+        <SectionPreviewProperty {...restProps} property={property} properties={properties} nestedable={nestedable} specList={
             specList
             ??
             <SpecList>
@@ -72,9 +72,9 @@ export const SectionPropertyTheme = ({ property = 'theme', properties = 'Themes'
             ??
             <>
                 <p>
-                    Changes the <strong>contextual theme</strong> of <CurrentNestedComponent />.
+                    Changes the <strong>contextual theme</strong> of {nestedable ? <CurrentNestedComponent /> : <CurrentComponent />}.
                 </p>
-                {hasNestedComponent && <>
+                {hasNestedComponent && nestedable && <>
                     <p>
                         By default, the <code>theme</code> of <CurrentNestedComponent /> is <strong>inherit</strong> from <CurrentComponent />, but
                         you can set the individual <code>theme</code> of <strong>each</strong> <CurrentNestedComponent />.
@@ -87,13 +87,13 @@ export const SectionPropertyTheme = ({ property = 'theme', properties = 'Themes'
         } />
     );
 };
-export const SectionPropertySize = ({ property = 'size', properties = 'Sizes', specList, description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertySize     = ({ property = 'size'    , properties = 'Sizes'   , nestedable = true, specList, description, ...restProps }: SectionPreviewPropertyProps) => {
     const { hasNestedComponent } = useComponentInfo();
     
     
     
     return (
-        <SectionPreviewProperty {...restProps} property={property} properties={properties} specList={
+        <SectionPreviewProperty {...restProps} property={property} properties={properties} nestedable={nestedable} specList={
             specList
             ??
             <SpecList>
@@ -112,9 +112,9 @@ export const SectionPropertySize = ({ property = 'size', properties = 'Sizes', s
             ??
             <>
                 <p>
-                    Changes the <strong>default size</strong> of <CurrentNestedComponent />.
+                    Changes the <strong>default size</strong> of {nestedable ? <CurrentNestedComponent /> : <CurrentComponent />}.
                 </p>
-                {hasNestedComponent && <>
+                {hasNestedComponent && nestedable && <>
                     <p>
                         By default, the <code>size</code> of <CurrentNestedComponent /> is <strong>inherit</strong> from <CurrentComponent />, but
                         you can set the individual <code>size</code> of <strong>each</strong> <CurrentNestedComponent />.
@@ -130,8 +130,10 @@ export const SectionPropertySize = ({ property = 'size', properties = 'Sizes', s
 export interface SectionPropertyNudeProps extends SectionPreviewPropertyProps {
     noBorder ?: boolean
 }
-export const SectionPropertyNude = ({ property = 'nude', properties = 'Nude', description, defaultValue = false, noBorder, ...restProps }: SectionPropertyNudeProps) => {
+export const SectionPropertyNude     = ({ property = 'nude'    , properties = 'Nude'    , nestedable = true, description, defaultValue = false, noBorder, ...restProps }: SectionPropertyNudeProps) => {
     const { componentName, nestedComponentName } = useComponentInfo();
+    const theComponentName    = nestedable ? nestedComponentName : componentName;
+    const TheCurrentComponent = nestedable ? CurrentNestedComponent : CurrentComponent;
     
     
     
@@ -141,10 +143,10 @@ export const SectionPropertyNude = ({ property = 'nude', properties = 'Nude', de
             ??
             <>
                 <p>
-                    Assigning <code>{`<${nestedComponentName} nude={true}>`}</code> makes the <CurrentNestedComponent /> lose its {!noBorder && <><code>border</code>, </>}<code>padding</code> and <code>background</code>.
+                    Assigning <code>{`<${theComponentName} nude={true}>`}</code> makes the <TheCurrentComponent /> lose its {!noBorder && <><code>border</code>, </>}<code>padding</code> and <code>background</code>.
                 </p>
                 <p>
-                    This is useful if you want to fill the whole <CurrentNestedComponent /> with a custom component.
+                    This is useful if you want to fill the whole <TheCurrentComponent /> into a custom component.
                 </p>
                 {defaultValue && <p>
                     Note: the <code>{`nude={true}`}</code> is <strong>already set by default</strong> at <CurrentComponent />, so to disable it assign <code>{`<${componentName} nude={false}>`}</code>.
@@ -153,8 +155,10 @@ export const SectionPropertyNude = ({ property = 'nude', properties = 'Nude', de
         } />
     );
 };
-export const SectionPropertyGradient = ({ property = 'gradient', properties = 'Gradient', description, defaultValue = false, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyGradient = ({ property = 'gradient', properties = 'Gradient', nestedable = true, description, defaultValue = false, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName, hasNestedComponent, nestedComponentName } = useComponentInfo();
+    const theComponentName    = nestedable ? nestedComponentName : componentName;
+    const TheCurrentComponent = nestedable ? CurrentNestedComponent : CurrentComponent;
     
     
     
@@ -164,9 +168,9 @@ export const SectionPropertyGradient = ({ property = 'gradient', properties = 'G
             ??
             <>
                 <p>
-                    To make <CurrentNestedComponent /> appear 3D, set <code>{`<${nestedComponentName} gradient={true}>`}</code>.
+                    To make <TheCurrentComponent /> appear 3D, set <code>{`<${theComponentName} gradient={true}>`}</code>.
                 </p>
-                {hasNestedComponent && <p>
+                {hasNestedComponent && nestedable && <p>
                     You can also set the <code>gradient</code> at <code>{`<${componentName} gradient={true}>`}</code>, so the entire <CurrentNestedComponent />s are 3D.
                 </p>}
                 {defaultValue && <p>
@@ -176,8 +180,10 @@ export const SectionPropertyGradient = ({ property = 'gradient', properties = 'G
         } />
     );
 };
-export const SectionPropertyOutlined = ({ property = 'outlined', properties = 'Outlined', description, defaultValue = false, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyOutlined = ({ property = 'outlined', properties = 'Outlined', nestedable = true, description, defaultValue = false, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName, hasNestedComponent, nestedComponentName } = useComponentInfo();
+    const theComponentName    = nestedable ? nestedComponentName : componentName;
+    const TheCurrentComponent = nestedable ? CurrentNestedComponent : CurrentComponent;
     
     
     
@@ -187,9 +193,9 @@ export const SectionPropertyOutlined = ({ property = 'outlined', properties = 'O
             ??
             <>
                 <p>
-                    To make <CurrentNestedComponent /> appear transparent and make the <code>border</code> and <code>text color</code> more contrast, set <code>{`<${nestedComponentName} outlined={true}>`}</code>.
+                    To make <TheCurrentComponent /> appear transparent and make the <code>border</code> and <code>text color</code> more contrast, set <code>{`<${theComponentName} outlined={true}>`}</code>.
                 </p>
-                {hasNestedComponent && <p>
+                {hasNestedComponent && nestedable && <p>
                     You can also set the <code>outlined</code> at <code>{`<${componentName} outlined={true}>`}</code>, so the entire <CurrentNestedComponent />s are transparent.
                 </p>}
                 {defaultValue && <p>
@@ -199,8 +205,10 @@ export const SectionPropertyOutlined = ({ property = 'outlined', properties = 'O
         } />
     );
 };
-export const SectionPropertyMild = ({ property = 'mild', properties = 'Mild', description, defaultValue = false, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyMild     = ({ property = 'mild'    , properties = 'Mild'    , nestedable = true, description, defaultValue = false, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName, hasNestedComponent, nestedComponentName } = useComponentInfo();
+    const theComponentName    = nestedable ? nestedComponentName : componentName;
+    const TheCurrentComponent = nestedable ? CurrentNestedComponent : CurrentComponent;
     
     
     
@@ -210,9 +218,9 @@ export const SectionPropertyMild = ({ property = 'mild', properties = 'Mild', de
             ??
             <>
                 <p>
-                    To make <CurrentNestedComponent /> look smoother (text friendly) and make the <code>text color</code> more contrast, set <code>{`<${nestedComponentName} mild={true}>`}</code>.
+                    To make <TheCurrentComponent /> look smoother (text friendly) and make the <code>text color</code> more contrast, set <code>{`<${theComponentName} mild={true}>`}</code>.
                 </p>
-                {hasNestedComponent && <p>
+                {hasNestedComponent && nestedable && <p>
                     You can also set the <code>mild</code> at <code>{`<${componentName} mild={true}>`}</code>, so the entire <CurrentNestedComponent />s look smoother.
                 </p>}
                 {defaultValue && <p>

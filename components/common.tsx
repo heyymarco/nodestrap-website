@@ -454,6 +454,7 @@ export interface SectionPropertyProps extends SectionProps {
     properties     ?: string|React.ReactElement
     propertySuffix ?: boolean
     defaultValue   ?: boolean|number|string|React.ReactNode
+    nestedable     ?: boolean
     specList       ?: SpecList|React.ReactNode
     moreInfo       ?: React.ReactNode
     preview        ?: React.ReactNode

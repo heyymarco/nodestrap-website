@@ -4,7 +4,6 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
-import { Section } from '../../../components/Section'
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
 import { SectionInheritedProps, LinkProgressPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkProgressBarPage, CurrentNestedComponent, SectionStates, SectionPreviewProperty } from '../../../components/common'
@@ -12,14 +11,14 @@ import { TypeScriptCode } from '../../../components/Code'
 import {
     themeNames,
     SectionPropertyTheme,
+    SectionPropertyOrientation,
+} from '../../../components/common@Basic'
+import {
     SectionPropertySize,
     SectionPropertyNude,
     SectionPropertyGradient,
     SectionPropertyOutlined,
     SectionPropertyMild,
-    SectionPropertyOrientation,
-} from '../../../components/common@Basic'
-import {
     SectionPropertyOrientationBlock,
     SectionPropertyOrientationInline,
     
@@ -47,6 +46,17 @@ const Progress = (props: ProgressProps) => <ProgressOri {...props} style={{ just
 </ProgressOri>
 
 const ProgressPlus = (props: ProgressProps) => <Progress {...props}>
+    {props.children ?? [
+        <ProgressBar key={0} value={30}>
+            Part 1: 30%
+        </ProgressBar>,
+        <ProgressBar key={1} value={40} theme='danger'>
+            Part 2: 40%
+        </ProgressBar>
+    ]}
+</Progress>
+
+const ProgressPlusStriped = (props: ProgressProps) => <Progress {...props}>
     {props.children ?? [
         <ProgressBar key={0} value={30}>
             Part 1: 30%
@@ -362,7 +372,7 @@ const Page: NextPage = () => {
     <ProgressBar value={30}>
         Part 1: 30%
     </ProgressBar>
-    <ProgressBar value={40} progressBarStyle='striped' running={true}>
+    <ProgressBar value={40} theme='danger'>
         Part 2: 40%
     </ProgressBar>
 </Progress>
@@ -384,7 +394,7 @@ const Page: NextPage = () => {
     <ProgressBar value={30}>
         Part 1: 30%
     </ProgressBar>
-    <ProgressBar value={40} progressBarStyle='striped' running={true}>
+    <ProgressBar value={40} theme='danger'>
         Part 2: 40%
     </ProgressBar>
 </Progress>
@@ -406,7 +416,7 @@ const Page: NextPage = () => {
     <ProgressBar value={30}>
         Part 1: 30%
     </ProgressBar>
-    <ProgressBar value={40} progressBarStyle='striped' running={true}>
+    <ProgressBar value={40} theme='danger'>
         Part 2: 40%
     </ProgressBar>
 </Progress>

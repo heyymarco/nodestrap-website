@@ -3,6 +3,11 @@ import React from 'react'
 import { CurrentComponent, CurrentNestedComponent, SectionPreviewProperty, SectionPreviewPropertyProps, useComponentInfo } from './common'
 
 import {
+    SectionPropertySize              as BasicSectionPropertySize,
+    SectionPropertyNude              as BasicSectionPropertyNude,
+    SectionPropertyGradient          as BasicSectionPropertyGradient,
+    SectionPropertyOutlined          as BasicSectionPropertyOutlined,
+    SectionPropertyMild              as BasicSectionPropertyMild,
     SectionPropertyOrientationProps,
     SectionPropertyOrientationBlock  as BasicSectionPropertyOrientationBlock,
     SectionPropertyOrientationInlineProps,
@@ -20,12 +25,36 @@ import { Warning } from './Info';
 
 
 
+export const SectionPropertySize  = ({ nestedable = false, ...restProps }: SectionPreviewPropertyProps) => {
+    return (
+        <BasicSectionPropertySize {...restProps} nestedable={nestedable} />
+    );
+};
+export const SectionPropertyNude  = ({ nestedable = false, ...restProps }: SectionPreviewPropertyProps) => {
+    return (
+        <BasicSectionPropertyNude {...restProps} nestedable={nestedable} />
+    );
+};
+export const SectionPropertyGradient  = ({ nestedable = false, ...restProps }: SectionPreviewPropertyProps) => {
+    return (
+        <BasicSectionPropertyGradient {...restProps} nestedable={nestedable} />
+    );
+};
+export const SectionPropertyOutlined  = ({ nestedable = false, ...restProps }: SectionPreviewPropertyProps) => {
+    return (
+        <BasicSectionPropertyOutlined {...restProps} nestedable={nestedable} />
+    );
+};
+export const SectionPropertyMild      = ({ nestedable = false, ...restProps }: SectionPreviewPropertyProps) => {
+    return (
+        <BasicSectionPropertyMild {...restProps} nestedable={nestedable} />
+    );
+};
 export const SectionPropertyOrientationBlock = ({ defaultValue = false, ...props }: SectionPreviewPropertyProps & SectionPropertyOrientationProps) => {
     return (
         <BasicSectionPropertyOrientationBlock {...props} defaultValue={defaultValue} />
     );
 };
-
 export const SectionPropertyOrientationInline = ({ defaultValue = true, ...props }: SectionPropertyOrientationInlineProps & SectionPropertyOrientationProps) => {
     return (
         <BasicSectionPropertyOrientationInline {...props} defaultValue={defaultValue} />
