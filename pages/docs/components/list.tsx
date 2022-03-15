@@ -156,6 +156,28 @@ const Page: NextPage = () => {
                 <p>
                     Displays a series of content.
                 </p>
+                <p>
+                    Here the preview:
+                </p>
+                <Preview>
+                    <List theme='primary'>
+                        <ListItem>
+                            A first item
+                        </ListItem>
+                        <ListItem>
+                            A second item
+                        </ListItem>
+                        <ListItem active={true}>
+                            A third item
+                        </ListItem>
+                        <ListItem>
+                            A fourth item
+                        </ListItem>
+                        <ListItem theme='danger'>
+                            A fifth item
+                        </ListItem>
+                    </List>
+                </Preview>
             </SectionIntro>
             <SectionDemo>
                 <DemoListLazy fallback={<BusyBar />} />
