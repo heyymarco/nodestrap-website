@@ -95,7 +95,7 @@ const Page: NextPage = () => {
             <SectionDemo>
                 <DemoProgressLazy fallback={<BusyBar />} />
             </SectionDemo>
-            <SectionPreviewProperty propertySuffix={false} property='children' properties='Labels' description={<>
+            <SectionPreviewProperty titleTag='h2' propertySuffix={false} property='children' properties='Labels' description={<>
                 <p>
                     Add labels to your progress bars by placing text (or any <code>JSX.Element</code>) within the <CurrentNestedComponent />.
                 </p>
@@ -120,7 +120,7 @@ const Page: NextPage = () => {
 </Progress>
                 `}</TypeScriptCode>
             </SectionPreviewProperty>
-            <SectionPreviewProperty propertySuffix={false} property='children' properties='Multiple Bars' description={<>
+            <SectionPreviewProperty titleTag='h2' propertySuffix={false} property='children' properties='Multiple Bars' description={<>
                 <p>
                 Include multiple <CurrentNestedComponent /> in a <CurrentComponent /> component if you need.
                 </p>
@@ -157,7 +157,7 @@ const Page: NextPage = () => {
 </Progress>
                 `}</TypeScriptCode>
             </SectionPreviewProperty>
-            <SectionPreviewProperty propertySuffix={false} property='value' properties='Range and Value' description={<>
+            <SectionPreviewProperty titleTag='h2' propertySuffix={false} property='value' properties='Range and Value' description={<>
                 <p>
                     By default, the <CurrentNestedComponent />&apos;s range is between <code>0</code> and <code>100</code>.
                 </p>

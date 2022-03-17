@@ -32,6 +32,7 @@ import {
 } from '../../../components/common@Indicator'
 import {
     SectionPropertyActive,
+    SectionPropertyChildren,
 } from '../../../components/common@NavButton'
 import {
     SectionPropertyNude,
@@ -190,6 +191,106 @@ const Page: NextPage = () => {
             <SectionDemo>
                 <DemoNavLazy fallback={<BusyBar />} />
             </SectionDemo>
+            <SectionPropertyChildren>
+                <Preview>
+                    <Nav theme='primary'>
+                        <NavItem>
+                            <Link href='/'>
+                                Home
+                            </Link>
+                        </NavItem>
+                        <NavItem>
+                            <Link href='/about'>
+                                About
+                            </Link>
+                        </NavItem>
+                        <NavItem>
+                            <Link href='/docs/components/nav'>
+                                {'<Nav>'} Component
+                            </Link>
+                        </NavItem>
+                        <NavItem>
+                            <Link href='/docs/components/list'>
+                                {'<List>'} Component
+                            </Link>
+                        </NavItem>
+                    </Nav>
+                </Preview>
+                <p></p>
+                <TypeScriptCode label={<>Show code for <strong>Next JS</strong> user</>}>{`
+import { Nav, NavItem } from '@nodestrap/nav'
+import Link from 'next/link'
+
+export default function MyPage() {
+    return (
+        <Nav theme='primary'>
+            <NavItem>
+                <Link href='/'>
+                    Home
+                </Link>
+            </NavItem>
+            <NavItem>
+                <Link href='/about'>
+                    About
+                </Link>
+            </NavItem>
+            <NavItem>
+                <Link href='/docs/components/nav'>
+                    {'<Nav>'} Component
+                </Link>
+            </NavItem>
+            <NavItem>
+                <Link href='/docs/components/list'>
+                    {'<List>'} Component
+                </Link>
+            </NavItem>
+        </Nav>
+    );
+}
+                `}</TypeScriptCode>
+                <p></p>
+                <TypeScriptCode label={<>Show code for <strong>Gatsby JS</strong> user</>}>{`
+// coming soon
+                `}</TypeScriptCode>
+                <p></p>
+                <TypeScriptCode label={<>Show code for <strong>React Router</strong> user</>}>{`
+import { Nav, NavItem } from '@nodestrap/nav'
+
+// import { Link } from 'react-router-dom'          // do not use the original <Link>
+import { Link } from '@nodestrap/react-router-link' // instead use our compatible <Link>
+
+export default function MyPage() {
+    return (
+        <Nav theme='primary'>
+            <NavItem>
+                <Link to='/'>
+                    Home
+                </Link>
+            </NavItem>
+            <NavItem>
+                <Link to='/about'>
+                    About
+                </Link>
+            </NavItem>
+            <NavItem>
+                <Link to='/docs/components/nav'>
+                    {'<Nav>'} Component
+                </Link>
+            </NavItem>
+            <NavItem>
+                <Link to='/docs/components/list'>
+                    {'<List>'} Component
+                </Link>
+            </NavItem>
+        </Nav>
+    );
+}
+                `}</TypeScriptCode>
+                <p></p>
+                <TypeScriptCode label={<>Show code for <strong>React Remix</strong> user</>}>{`
+// coming soon
+                `}</TypeScriptCode>
+            </SectionPropertyChildren>
             <SectionInheritedProps />
             <SectionVariants>
                 <SectionPropertyTheme>

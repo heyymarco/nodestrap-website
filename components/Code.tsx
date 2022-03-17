@@ -18,7 +18,7 @@ const CodeHighlighterLazy = loadable(() => import(/* webpackChunkName: 'CodeHigh
 export interface CodeProps extends CodeHighlighterProps {
     collapsable ?: boolean
     collapse    ?: boolean
-    label       ?: string
+    label       ?: React.ReactNode
 }
 export function Code(props: CodeProps) {
     const {
