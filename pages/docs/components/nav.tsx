@@ -26,11 +26,13 @@ import {
     SectionPropertyOrientationResponsive,
 } from '../../../components/common@Basic'
 import {
-    SectionPropertyActive,
     SectionPropertyActiveNoOutlined,
     SectionPropertyActiveNoMild,
     SectionPropertyEnabled,
 } from '../../../components/common@Indicator'
+import {
+    SectionPropertyActive,
+} from '../../../components/common@NavButton'
 import {
     SectionPropertyNude,
     SectionPropertyMild,

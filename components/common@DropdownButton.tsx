@@ -32,7 +32,7 @@ export const SectionPropertyPopupShift     = ({ relativeTo = <em>button</em>, ho
 
 
 
-export const SectionPropertyActive  = ({ specList, description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyActive  = ({ specList, ...restProps }: SectionPreviewPropertyProps) => {
     return (
         <PopupSectionPropertyActive {...restProps} specList={
             specList
