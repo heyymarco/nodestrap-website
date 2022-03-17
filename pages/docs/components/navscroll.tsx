@@ -1,8 +1,32 @@
-import React from 'react'
-import Link from 'next/link'
+import React, { useRef } from 'react'
 
 import type { NextPage } from 'next'
 import Head from 'next/head'
+
+// cssfn:
+import {
+    // compositions:
+    mainComposition,
+    
+    
+    
+    // styles:
+    style,
+    
+    
+    
+    // rules:
+    rule,
+    
+    
+    
+    // combinators:
+    children,
+}                           from '@cssfn/cssfn'       // cssfn core
+import {
+    // hooks:
+    createUseSheet,
+}                           from '@cssfn/react-cssfn' // cssfn for react
 
 import { useFlipFlop } from '../../../components/hooks'
 
@@ -49,6 +73,63 @@ import {
 
 import loadable from '@loadable/component'
 const DemoNavscrollLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Navscroll' */'../../../components/DemoPanel@Navscroll'))
+
+
+
+const useDummyArticleSheet = createUseSheet(() => [
+    mainComposition(
+        style({
+            display       : 'flex',
+            flexDirection : 'column',
+            gap           : 0,
+            height        : '150px',
+            overflowY     : 'auto',
+            
+            padding       : '10px',
+            
+            ...children('section', {
+                flex    : [[0, 0, 'auto']],
+                padding : '10px',
+                
+                ...rule(':nth-child(3n+1)', {
+                    background : 'pink',
+                }),
+                ...rule(':nth-child(3n+2)', {
+                    background : 'green',
+                }),
+                ...rule(':nth-child(3n+3)', {
+                    background : 'orange',
+                }),
+                
+                ...rule(':nth-child(4)', {
+                    display       : 'flex',
+                    flexDirection : 'column',
+                    gap           : 0,
+                    height        : '240px',
+                    overflowY     : 'auto',
+                    
+                    padding       : '10px',
+                    
+                    ...children('section', {
+                        flex    : [[0, 0, 'auto']],
+                        padding : '10px',
+                        
+                        ...rule(':nth-child(3n+1)', {
+                            background : 'greenyellow',
+                        }),
+                        ...rule(':nth-child(3n+2)', {
+                            background : 'mediumpurple',
+                        }),
+                        ...rule(':nth-child(3n+3)', {
+                            background : 'sandybrown',
+                        }),
+                    }),
+                }),
+            }),
+        })
+    ),
+], /*sheetId :*/'bqyb2t7n2i'); // an unique salt for SSR support, ensures the server-side & client-side have the same generated class names
+
 
 
 
@@ -108,6 +189,11 @@ const NavscrollWithActiveMild     = () => {
 
 
 const Page: NextPage = () => {
+    const articleSheet = useDummyArticleSheet();
+    const articleRef = useRef<HTMLElement>(null);
+    
+    
+    
     return (
         <ComponentInfoProvider packageName='@nodestrap/navscroll' component={<LinkNavscrollPage />} nestedComponent={<LinkNavscrollItemPage />} bases={<LinkNavPage />}>
             <Head>
@@ -126,12 +212,18 @@ const Page: NextPage = () => {
                     Here the preview:
                 </p>
                 <Preview>
-                    <Navscroll theme='primary'>
+                    <Navscroll targetRef={articleRef} theme='primary'>
                         <NavscrollItem>
                             First section
                         </NavscrollItem>
                         <NavscrollItem>
                             Second section
+                        </NavscrollItem>
+                        <NavscrollItem>
+                            Third section
+                        </NavscrollItem>
+                        <NavscrollItem>
+                            Fourth section
                             <Navscroll>
                                 <NavscrollItem>
                                     Sub 2-1
@@ -147,25 +239,43 @@ const Page: NextPage = () => {
                                 </NavscrollItem>
                             </Navscroll>
                         </NavscrollItem>
-                        <NavscrollItem theme='success'>
-                            Thrid section
-                        </NavscrollItem>
-                        <NavscrollItem>
-                            Fourth section
-                        </NavscrollItem>
-                        <NavscrollItem>
-                            Fifth section
-                        </NavscrollItem>
-                        <NavscrollItem>
-                            Sixth section
-                        </NavscrollItem>
-                        <NavscrollItem actionCtrl={false}>
-                            Seventh section (not clickable)
-                        </NavscrollItem>
                         <NavscrollItem>
                             Last section
                         </NavscrollItem>
                     </Navscroll>
+                    <article
+                        ref={articleRef}
+                        
+                        className={articleSheet.main}
+                    >
+                        <section style={{ height: '80px' }}>
+                            <p>First heading</p>
+                        </section>
+                        <section style={{ height: '200px' }}>
+                            <p>Second heading</p>
+                        </section>
+                        <section style={{ height: '300px' }}>
+                            <p>Third heading</p>
+                        </section>
+                        <section>
+                            <p>Fourth heading</p>
+                            <section style={{ height: '200px' }}>
+                                Fourth sub heading 1
+                            </section>
+                            <section style={{ height: '100px' }}>
+                                Fourth sub heading 2
+                            </section>
+                            <section style={{ height: '160px' }}>
+                                Fourth sub heading 3
+                            </section>
+                            <section style={{ height: '100px' }}>
+                                Fourth sub heading 4
+                            </section>
+                        </section>
+                        <section style={{ height: '80px' }}>
+                            <p>Last heading</p>
+                        </section>
+                    </article>
                 </Preview>
                 <p>
                     The <strong>Active</strong> item above is <strong>automatically highlighted</strong> because the <em>current URL</em> matches the <code>{`<Link href='/docs/components/navscroll'>`}</code>.<br />
