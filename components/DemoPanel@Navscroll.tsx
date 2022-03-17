@@ -65,10 +65,10 @@ export const DemoNavscroll = () => {
                     mild={states.mild[0]}
                 >
                     <NavscrollItem>
-                        First heading
+                        First section
                     </NavscrollItem>
                     <NavscrollItem>
-                        Second heading
+                        Second section
                         <Navscroll>
                             <NavscrollItem>
                                 Sub 2-1
@@ -85,22 +85,22 @@ export const DemoNavscroll = () => {
                         </Navscroll>
                     </NavscrollItem>
                     <NavscrollItem theme='success'>
-                        Thrid heading
+                        Thrid section
                     </NavscrollItem>
                     <NavscrollItem>
-                        Fourth heading
+                        Fourth section
                     </NavscrollItem>
                     <NavscrollItem>
-                        Fifth heading
+                        Fifth section
                     </NavscrollItem>
                     <NavscrollItem>
-                        Sixth heading
+                        Sixth section
                     </NavscrollItem>
                     <NavscrollItem actionCtrl={false}>
-                        Seventh heading (not clickable)
+                        Seventh section (not clickable)
                     </NavscrollItem>
                     <NavscrollItem>
-                        Last heading
+                        Last section
                     </NavscrollItem>
                 </Navscroll>
                 <TypeScriptCode collapsable={false}>{`
@@ -120,10 +120,10 @@ export const DemoNavscroll = () => {
     mild={${states.mild[0]}}
 >
     <NavscrollItem>
-        First heading
+        First section
     </NavscrollItem>
     <NavscrollItem>
-        Second heading
+        Second section
         <Navscroll>
             <NavscrollItem>
                 Sub 2-1
@@ -140,22 +140,22 @@ export const DemoNavscroll = () => {
         </Navscroll>
     </NavscrollItem>
     <NavscrollItem theme='success'>
-        Thrid heading
+        Thrid section
     </NavscrollItem>
     <NavscrollItem>
-        Fourth heading
+        Fourth section
     </NavscrollItem>
     <NavscrollItem>
-        Fifth heading
+        Fifth section
     </NavscrollItem>
     <NavscrollItem>
-        Sixth heading
+        Sixth section
     </NavscrollItem>
     <NavscrollItem actionCtrl={false}>
-        Seventh heading (not clickable)
+        Seventh section (not clickable)
     </NavscrollItem>
     <NavscrollItem>
-        Last heading
+        Last section
     </NavscrollItem>
 </Navscroll>
                 `}</TypeScriptCode>

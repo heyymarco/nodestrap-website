@@ -117,10 +117,10 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    Displays a series of navscrolligation link.
+                    Displays a series of navigation link.
                 </p>
                 <p>
-                    Similar to <CurrentDominantBaseComponent /> but with <u><code>active</code> property managed automatically</u> based on <em>current URL</em>.
+                    Similar to <CurrentDominantBaseComponent /> but for navigating sections within a scrollable container (usually a page).
                 </p>
                 <p>
                     Here the preview:
@@ -128,27 +128,42 @@ const Page: NextPage = () => {
                 <Preview>
                     <Navscroll theme='primary'>
                         <NavscrollItem>
-                            <Link href='/'>
-                                Home
-                            </Link>
+                            First section
                         </NavscrollItem>
                         <NavscrollItem>
-                            <Link href='/about'>
-                                About
-                            </Link>
+                            Second section
+                            <Navscroll>
+                                <NavscrollItem>
+                                    Sub 2-1
+                                </NavscrollItem>
+                                <NavscrollItem>
+                                    Sub 2-2
+                                </NavscrollItem>
+                                <NavscrollItem>
+                                    Sub 2-3
+                                </NavscrollItem>
+                                <NavscrollItem>
+                                    Sub 2-4
+                                </NavscrollItem>
+                            </Navscroll>
+                        </NavscrollItem>
+                        <NavscrollItem theme='success'>
+                            Thrid section
                         </NavscrollItem>
                         <NavscrollItem>
-                            <Link href='/docs/components/navscroll'>
-                                Active
-                            </Link>
+                            Fourth section
                         </NavscrollItem>
                         <NavscrollItem>
-                            <Link href='/download'>
-                                Download
-                            </Link>
+                            Fifth section
                         </NavscrollItem>
-                        <NavscrollItem enabled={false} href='https://github.com/nodestrap'>
-                            Disabled
+                        <NavscrollItem>
+                            Sixth section
+                        </NavscrollItem>
+                        <NavscrollItem actionCtrl={false}>
+                            Seventh section (not clickable)
+                        </NavscrollItem>
+                        <NavscrollItem>
+                            Last section
                         </NavscrollItem>
                     </Navscroll>
                 </Preview>
