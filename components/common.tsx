@@ -147,6 +147,12 @@ export const LinkProgressBarPage            = (props: PageLinkProps) => <LinkCod
 export const LinkNavPage                    = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/nav'>Nav</LinkCode>
 export const LinkNavItemPage                = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/nav'>NavItem</LinkCode>
 export const LinkNavSeparatorItemPage       = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/nav'>NavSeparatorItem</LinkCode>
+
+export const LinkNavscrollPage              = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/navscroll'>NavScroll</LinkCode>
+export const LinkNavscrollItemPage          = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/navscroll'>NavScrollItem</LinkCode>
+export const LinkNavscrollSeparatorItemPage = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/navscroll'>NavScrollSeparatorItem</LinkCode>
+
+
 export const LinkGroupPage                  = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/group'>Group</LinkCode>
 export const LinkNavbarPage                 = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/navbar'>Navbar</LinkCode>
 
