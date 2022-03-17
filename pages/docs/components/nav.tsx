@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Link from 'next/link'
 
 import type { NextPage } from 'next'
@@ -6,11 +6,9 @@ import Head from 'next/head'
 
 import { useFlipFlop } from '../../../components/hooks'
 
-import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
-
 import { Preview, TransparentPreview } from '../../../components/Preview'
-import { SectionInheritedProps, LinkNavPage, LinkListPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizingParent, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentNestedComponent, CurrentBaseComponents, LinkNavItemPage, SectionVariants, SectionStates, LinkNavSeparatorItemPage, LinkUsesIndicatorVariantsPage, SectionPreviewProperty, CurrentDominantBaseComponent } from '../../../components/common'
-import { Nav, NavProps, NavItem, NavSeparatorItem, OrientationName } from '@nodestrap/nav'
+import { SectionInheritedProps, LinkNavPage, LinkListPage, SectionOverridingDefaults, ComponentInfoProvider, SectionDerivering, SectionCustomizingParent, SectionIntro, SectionDemo, BusyBar, LinkNavItemPage, SectionVariants, SectionStates, LinkNavSeparatorItemPage, SectionPreviewProperty, CurrentDominantBaseComponent } from '../../../components/common'
+import { Nav, NavItem, NavSeparatorItem, OrientationName } from '@nodestrap/nav'
 import { TypeScriptCode } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
 import { Tips } from '../../../components/Info'
@@ -33,6 +31,10 @@ import {
 import {
     SectionPropertyActive,
     SectionPropertyChildren,
+    
+    SectionPropertyMatchingUrl,
+    SectionPropertyCaseSensitive,
+    SectionPropertyEnd,
 } from '../../../components/common@NavButton'
 import {
     SectionPropertyNude,
@@ -47,8 +49,6 @@ import {
     SectionPropertyBreadcrumbStyle,
     SectionPropertyBulletStyle,
     SectionPropertyNumberedStyle,
-    ContentMakeItemsClickable,
-    SectionPropertyActionCtrl,
 } from '../../../components/common@List'
 
 import loadable from '@loadable/component'
@@ -291,6 +291,90 @@ export default function MyPage() {
 // coming soon
                 `}</TypeScriptCode>
             </SectionPropertyChildren>
+            <SectionPropertyMatchingUrl>
+                <SectionPropertyCaseSensitive>
+                    <Preview>
+                        <Nav theme='primary'>
+                            <NavItem>
+                                <Link href='/'>
+                                    Home
+                                </Link>
+                            </NavItem>
+                            <NavItem>
+                                <Link href='/docs/components/nav'>
+                                    {'<Nav>'} Component
+                                </Link>
+                            </NavItem>
+                            <NavItem caseSensitive={true}>
+                                <Link href='/docs/components/NAV'>
+                                    {'<NAV>'} Component
+                                </Link>
+                            </NavItem>
+                        </Nav>
+                    </Preview>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Nav theme='primary'>
+    <NavItem>
+        <Link href='/'>
+            Home
+        </Link>
+    </NavItem>
+    <NavItem>
+        <Link href='/docs/components/nav'>
+            {'<Nav>'} Component
+        </Link>
+    </NavItem>
+    <NavItem caseSensitive={true}>
+        <Link href='/docs/components/NAV'>
+            {'<NAV>'} Component
+        </Link>
+    </NavItem>
+</Nav>
+                    `}</TypeScriptCode>
+                </SectionPropertyCaseSensitive>
+                <SectionPropertyEnd>
+                    <Preview>
+                        <Nav theme='primary'>
+                            <NavItem>
+                                <Link href='/'>
+                                    Home
+                                </Link>
+                            </NavItem>
+                            <NavItem end={true}>
+                                <Link href='/docs/components'>
+                                    Components
+                                </Link>
+                            </NavItem>
+                            <NavItem>
+                                <Link href='/docs/components/nav'>
+                                    {'<Nav>'} Component
+                                </Link>
+                            </NavItem>
+                        </Nav>
+                    </Preview>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Nav theme='primary'>
+    <NavItem>
+        <Link href='/'>
+            Home
+        </Link>
+    </NavItem>
+    <NavItem end={true}>
+        <Link href='/docs/components'>
+            Components
+        </Link>
+    </NavItem>
+    <NavItem>
+        <Link href='/docs/components/nav'>
+            {'<Nav>'} Component
+        </Link>
+    </NavItem>
+</Nav>
+                    `}</TypeScriptCode>
+                </SectionPropertyEnd>
+            </SectionPropertyMatchingUrl>
             <SectionInheritedProps />
             <SectionVariants>
                 <SectionPropertyTheme>
