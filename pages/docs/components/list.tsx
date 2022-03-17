@@ -298,7 +298,7 @@ const Page: NextPage = () => {
                             </ListItem>
                             <ListItem nude={true}>
                                 <div style={{ background: 'pink', padding: '1em', display: 'flex', justifyContent: 'center' }}>
-                                    hello world
+                                    a custom component
                                 </div>
                             </ListItem>
                             <ListItem nude={true}>
@@ -320,7 +320,7 @@ const Page: NextPage = () => {
     </ListItem>
     <ListItem nude={true}>
         <div style={{ background: 'pink', padding: '1em', display: 'flex', justifyContent: 'center' }}>
-            hello world
+            a custom component
         </div>
     </ListItem>
     <ListItem nude={true}>

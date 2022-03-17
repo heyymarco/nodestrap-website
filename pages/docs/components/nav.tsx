@@ -491,7 +491,7 @@ export default function MyPage() {
                             </NavItem>
                             <NavItem nude={true}>
                                 <div style={{ background: 'pink', padding: '1em', display: 'flex', justifyContent: 'center' }}>
-                                    hello world
+                                    a custom component
                                 </div>
                             </NavItem>
                             <NavItem nude={true}>
@@ -513,7 +513,7 @@ export default function MyPage() {
     </NavItem>
     <NavItem nude={true}>
         <div style={{ background: 'pink', padding: '1em', display: 'flex', justifyContent: 'center' }}>
-            hello world
+            a custom component
         </div>
     </NavItem>
     <NavItem nude={true}>
