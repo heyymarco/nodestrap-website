@@ -146,7 +146,7 @@ export const SectionPropertyNude     = ({ property = 'nude'    , properties = 'N
                     Assigning <code>{`<${theComponentName} nude={true}>`}</code> makes the <TheCurrentComponent /> lose its {!noBorder && <><code>border</code>, </>}<code>padding</code> and <code>background</code>.
                 </p>
                 <p>
-                    This is useful if you want to fill the whole <TheCurrentComponent /> into a custom component.
+                    This is useful if you want to fill the whole <TheCurrentComponent /> with a custom component.
                 </p>
                 {defaultValue && <p>
                     Note: the <code>{`nude={true}`}</code> is <strong>already set by default</strong> at <CurrentComponent />, so to disable it assign <code>{`<${componentName} nude={false}>`}</code>.

@@ -62,25 +62,19 @@ const NavWithActiveOutlined = () => {
     return (
         <Nav elmRef={navRef} outlined={true} theme='primary'>
             <NavItem>
-                A first item (not clickable)
+                A first item
+            </NavItem>
+            <NavItem>
+                A second item
             </NavItem>
             <NavItem active={isActive}>
-                A second item (not clickable + { activeLabel })
+                A third item ({ activeLabel })
             </NavItem>
-            <NavItem active={isActive} actionCtrl={true} onClick={() => alert('hello world')}>
-                A third item (clickable + { activeLabel })
+            <NavItem active={isActive} actionCtrl={false}>
+                A fourth item ({ activeLabel } + not clickable)
             </NavItem>
-            <NavItem active={isActive} actionCtrl={true} href='https://www.google.com'>
-                A fourth item (clickable + { activeLabel })
-            </NavItem>
-            <NavItem active={isActive} enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
-                A fifth item item (clickable + { activeLabel } + disabled)
-            </NavItem>
-            <NavItem active={isActive} enabled={false} theme='danger' actionCtrl={true} href='https://www.google.com'>
-                A seventh item item (clickable + { activeLabel } + disabled)
-                <p>
-                    <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-                </p>
+            <NavItem active={isActive} enabled={false}>
+                A fifth item item ({ activeLabel } + disabled)
             </NavItem>
         </Nav>
     );
@@ -94,25 +88,19 @@ const NavWithActiveMild     = () => {
     return (
         <Nav elmRef={navRef} mild={true} theme='primary'>
             <NavItem>
-                A first item (not clickable)
+                A first item
+            </NavItem>
+            <NavItem>
+                A second item
             </NavItem>
             <NavItem active={isActive}>
-                A second item (not clickable + { activeLabel })
+                A third item ({ activeLabel })
             </NavItem>
-            <NavItem active={isActive} actionCtrl={true} onClick={() => alert('hello world')}>
-                A third item (clickable + { activeLabel })
+            <NavItem active={isActive} actionCtrl={false}>
+                A fourth item ({ activeLabel } + not clickable)
             </NavItem>
-            <NavItem active={isActive} actionCtrl={true} href='https://www.google.com'>
-                A fourth item (clickable + { activeLabel })
-            </NavItem>
-            <NavItem active={isActive} enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
-                A fifth item item (clickable + { activeLabel } + disabled)
-            </NavItem>
-            <NavItem active={isActive} enabled={false} theme='danger' actionCtrl={true} href='https://www.google.com'>
-                A seventh item item (clickable + { activeLabel } + disabled)
-                <p>
-                    <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-                </p>
+            <NavItem active={isActive} enabled={false}>
+                A fifth item item ({ activeLabel } + disabled)
             </NavItem>
         </Nav>
     );
@@ -133,7 +121,7 @@ const Page: NextPage = () => {
                     Displays a series of navigation link.
                 </p>
                 <p>
-                    Similar to <CurrentDominantBaseComponent /> but with <code>active</code> property managed automatically based on <em>current URL</em>.
+                    Similar to <CurrentDominantBaseComponent /> but with <u><code>active</code> property managed automatically</u> based on <em>current URL</em>.
                 </p>
                 <p>
                     Here the preview:
@@ -155,13 +143,47 @@ const Page: NextPage = () => {
                                 Active
                             </Link>
                         </NavItem>
-                        <NavItem enabled={false}>
+                        <NavItem>
                             <Link href='/download'>
-                                Disabled
+                                Download
                             </Link>
+                        </NavItem>
+                        <NavItem enabled={false} href='https://github.com/nodestrap'>
+                            Disabled
                         </NavItem>
                     </Nav>
                 </Preview>
+                <p>
+                    The <strong>Active</strong> item above is <strong>automatically highlighted</strong> because the <em>current URL</em> matches the <code>{`<Link href='/docs/components/nav'>`}</code>.<br />
+                    See the code below:
+                </p>
+                <TypeScriptCode>{`
+<Nav theme='primary'>
+    <NavItem>
+        <Link href='/'>
+            Home
+        </Link>
+    </NavItem>
+    <NavItem>
+        <Link href='/about'>
+            About
+        </Link>
+    </NavItem>
+    <NavItem>
+        <Link href='/docs/components/nav'>
+            Active
+        </Link>
+    </NavItem>
+    <NavItem>
+        <Link href='/download'>
+            Download
+        </Link>
+    </NavItem>
+    <NavItem enabled={false} href='https://github.com/nodestrap'>
+        Disabled
+    </NavItem>
+</Nav>
+                `}</TypeScriptCode>
             </SectionIntro>
             <SectionDemo>
                 <DemoNavLazy fallback={<BusyBar />} />
@@ -1046,25 +1068,19 @@ const Page: NextPage = () => {
                     <Preview>
                         <Nav theme='primary'>
                             <NavItem>
-                                A first item (not clickable)
+                                A first item
+                            </NavItem>
+                            <NavItem>
+                                A second item
                             </NavItem>
                             <NavItem active={true}>
-                                A second item (not clickable + active)
+                                A third item (active)
                             </NavItem>
-                            <NavItem active={true} actionCtrl={true} onClick={() => alert('hello world')}>
-                                A third item (clickable + active)
+                            <NavItem active={true} actionCtrl={false}>
+                                A fourth item (active + not clickable)
                             </NavItem>
-                            <NavItem active={true} actionCtrl={true} href='https://www.google.com'>
-                                A fourth item (clickable + active)
-                            </NavItem>
-                            <NavItem active={true} enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
-                                A fifth item item (clickable + active + disabled)
-                            </NavItem>
-                            <NavItem active={true} enabled={false} theme='danger' actionCtrl={true} href='https://www.google.com'>
-                                A seventh item item (clickable + active + disabled)
-                                <p>
-                                    <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-                                </p>
+                            <NavItem active={true} enabled={false}>
+                                A fifth item item (active + disabled)
                             </NavItem>
                         </Nav>
                     </Preview>
@@ -1072,50 +1088,19 @@ const Page: NextPage = () => {
                     <TypeScriptCode>{`
 <Nav theme='primary'>
     <NavItem>
-        A first item (not clickable)
-    </NavItem>
-    <NavItem active={true}>
-        A second item (not clickable + active)
-    </NavItem>
-    <NavItem active={true} actionCtrl={true} onClick={() => alert('hello world')}>
-        A third item (clickable + active)
-    </NavItem>
-    <NavItem active={true} actionCtrl={true} href='https://www.google.com'>
-        A fourth item (clickable + active)
-    </NavItem>
-    <NavItem active={true} enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
-        A fifth item item (clickable + active + disabled)
-    </NavItem>
-    <NavItem active={true} enabled={false} theme='danger' actionCtrl={true} href='https://www.google.com'>
-        A seventh item item (clickable + active + disabled)
-        <p>
-            <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-        </p>
-    </NavItem>
-</Nav>
-
-/* alternate code but with the similar result: */
-<Nav active={true} theme='primary'>
-    <NavItem active={false} inheritActive={false}>
-        A first item (not clickable)
+        A first item
     </NavItem>
     <NavItem>
-        A second item (not clickable + active)
+        A second item
     </NavItem>
-    <NavItem actionCtrl={true} onClick={() => alert('hello world')}>
-        A third item (clickable + active)
+    <NavItem active={true}>
+        A third item (active)
     </NavItem>
-    <NavItem actionCtrl={true} href='https://www.google.com'>
-        A fourth item (clickable + active)
+    <NavItem active={true} actionCtrl={false}>
+        A fourth item (active + not clickable)
     </NavItem>
-    <NavItem enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
-        A fifth item item (clickable + active + disabled)
-    </NavItem>
-    <NavItem enabled={false} theme='danger' actionCtrl={true} href='https://www.google.com'>
-        A seventh item item (clickable + active + disabled)
-        <p>
-            <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-        </p>
+    <NavItem active={true} enabled={false}>
+        A fifth item item (active + disabled)
     </NavItem>
 </Nav>
                     `}</TypeScriptCode>
@@ -1127,25 +1112,19 @@ const Page: NextPage = () => {
                         <TypeScriptCode>{`
 <Nav outlined={true} theme='primary'>
     <NavItem>
-        A first item (not clickable)
+        A first item
+    </NavItem>
+    <NavItem>
+        A second item
     </NavItem>
     <NavItem active={true}>
-        A second item (not clickable + active)
+        A third item (active)
     </NavItem>
-    <NavItem active={true} actionCtrl={true} onClick={() => alert('hello world')}>
-        A third item (clickable + active)
+    <NavItem active={true} actionCtrl={false}>
+        A fourth item (active + not clickable)
     </NavItem>
-    <NavItem active={true} actionCtrl={true} href='https://www.google.com'>
-        A fourth item (clickable + active)
-    </NavItem>
-    <NavItem active={true} enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
-        A fifth item item (clickable + active + disabled)
-    </NavItem>
-    <NavItem active={true} enabled={false} theme='danger' actionCtrl={true} href='https://www.google.com'>
-        A seventh item item (clickable + active + disabled)
-        <p>
-            <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-        </p>
+    <NavItem active={true} enabled={false}>
+        A fifth item item (active + disabled)
     </NavItem>
 </Nav>
                         `}</TypeScriptCode>
@@ -1158,25 +1137,19 @@ const Page: NextPage = () => {
                         <TypeScriptCode>{`
 <Nav mild={true} theme='primary'>
     <NavItem>
-        A first item (not clickable)
+        A first item
+    </NavItem>
+    <NavItem>
+        A second item
     </NavItem>
     <NavItem active={true}>
-        A second item (not clickable + active)
+        A third item (active)
     </NavItem>
-    <NavItem active={true} actionCtrl={true} onClick={() => alert('hello world')}>
-        A third item (clickable + active)
+    <NavItem active={true} actionCtrl={false}>
+        A fourth item (active + not clickable)
     </NavItem>
-    <NavItem active={true} actionCtrl={true} href='https://www.google.com'>
-        A fourth item (clickable + active)
-    </NavItem>
-    <NavItem active={true} enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
-        A fifth item item (clickable + active + disabled)
-    </NavItem>
-    <NavItem active={true} enabled={false} theme='danger' actionCtrl={true} href='https://www.google.com'>
-        A seventh item item (clickable + active + disabled)
-        <p>
-            <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-        </p>
+    <NavItem active={true} enabled={false}>
+        A fifth item item (active + disabled)
     </NavItem>
 </Nav>
                         `}</TypeScriptCode>
@@ -1186,28 +1159,16 @@ const Page: NextPage = () => {
                     <Preview>
                         <Nav theme='primary'>
                             <NavItem>
-                                A first item (not clickable)
+                                A first item
                             </NavItem>
                             <NavItem enabled={false}>
-                                A second item (not clickable + disabled)
+                                A second item (disabled)
                             </NavItem>
-                            <NavItem enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
-                                A third item (clickable + disabled)
+                            <NavItem enabled={false} active={true}>
+                                A third item (disabled + active)
                             </NavItem>
-                            <NavItem enabled={false} actionCtrl={true} href='https://www.google.com'>
-                                A fourth item (clickable + disabled)
-                                <p>
-                                    <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-                                </p>
-                            </NavItem>
-                            <NavItem enabled={false} active={true} actionCtrl={true} onClick={() => alert('hello world')}>
-                                A fifth item item (clickable + disabled + active)
-                            </NavItem>
-                            <NavItem enabled={false} active={true} theme='danger' actionCtrl={true} href='https://www.google.com'>
-                                A seventh item item (clickable + disabled + active)
-                                <p>
-                                    <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-                                </p>
+                            <NavItem enabled={false} active={true} actionCtrl={false}>
+                                A fourth item (disabled + active + not clickable)
                             </NavItem>
                         </Nav>
                     </Preview>
@@ -1215,56 +1176,16 @@ const Page: NextPage = () => {
                     <TypeScriptCode>{`
 <Nav theme='primary'>
     <NavItem>
-        A first item (not clickable)
+        A first item
     </NavItem>
     <NavItem enabled={false}>
-        A second item (not clickable + disabled)
+        A second item (disabled)
     </NavItem>
-    <NavItem enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
-        A third item (clickable + disabled)
+    <NavItem enabled={false} active={true}>
+        A third item (disabled + active)
     </NavItem>
-    <NavItem enabled={false} actionCtrl={true} href='https://www.google.com'>
-        A fourth item (clickable + disabled)
-        <p>
-            <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-        </p>
-    </NavItem>
-    <NavItem enabled={false} active={true} actionCtrl={true} onClick={() => alert('hello world')}>
-        A fifth item item (clickable + disabled + active)
-    </NavItem>
-    <NavItem enabled={false} active={true} theme='danger' actionCtrl={true} href='https://www.google.com'>
-        A seventh item item (clickable + disabled + active)
-        <p>
-            <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-        </p>
-    </NavItem>
-</Nav>
-
-/* alternate code but with the similar result: */
-<Nav enabled={false} theme='primary'>
-    <NavItem enabled={true} inheritEnabled={false}>
-        A first item (not clickable)
-    </NavItem>
-    <NavItem>
-        A second item (not clickable + disabled)
-    </NavItem>
-    <NavItem actionCtrl={true} onClick={() => alert('hello world')}>
-        A third item (clickable + disabled)
-    </NavItem>
-    <NavItem actionCtrl={true} href='https://www.google.com'>
-        A fourth item (clickable + disabled)
-        <p>
-            <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-        </p>
-    </NavItem>
-    <NavItem active={true} actionCtrl={true} onClick={() => alert('hello world')}>
-        A fifth item item (clickable + disabled + active)
-    </NavItem>
-    <NavItem active={true} theme='danger' actionCtrl={true} href='https://www.google.com'>
-        A seventh item item (clickable + disabled + active)
-        <p>
-            <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-        </p>
+    <NavItem enabled={false} active={true} actionCtrl={false}>
+        A fourth item (disabled + active + not clickable)
     </NavItem>
 </Nav>
                     `}</TypeScriptCode>
@@ -1275,7 +1196,7 @@ const Page: NextPage = () => {
                 <SectionOverridingDefaults>{`
 import { Nav } from '@nodestrap/nav'
 
-export default function ProductNav(props) {
+export default function SiteNav(props) {
     return (
         <Nav
             {...props} // preserves other properties
