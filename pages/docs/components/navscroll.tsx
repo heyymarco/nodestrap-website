@@ -6,7 +6,7 @@ import Head from 'next/head'
 // cssfn:
 import {
     // compositions:
-    mainComposition,
+    compositionOf,
     
     
     
@@ -77,59 +77,66 @@ const DemoNavscrollLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@
 
 
 const useDummyArticleSheet = createUseSheet(() => [
-    mainComposition(
+    compositionOf('dummyArticle',
         style({
-            display       : 'flex',
-            flexDirection : 'column',
-            gap           : 0,
-            height        : '150px',
-            overflowY     : 'auto',
+            border: 'solid 1px black',
+            background : 'hsl(200, 90%, 75%)',
             
-            padding       : '10px',
+            ...children(['&', 'section:nth-child(4)'], {
+                display       : 'flex',
+                flexDirection : 'column',
+                gap           : 0,
+                overflowY     : 'auto',
+                
+                padding       : '10px',
+
+                ...children('section', {
+                    flex      : [[0, 0, 'auto']],
+                    padding   : '10px',
+                }),
+            }),
+            height            : '250px',
+            ...children('section:nth-child(4)', {
+                height        : '200px',
+            }),
             
             ...children('section', {
-                flex    : [[0, 0, 'auto']],
-                padding : '10px',
-                
                 ...rule(':nth-child(3n+1)', {
-                    background : 'pink',
+                    background : 'hsl(350, 90%, 75%)',
                 }),
                 ...rule(':nth-child(3n+2)', {
-                    background : 'green',
+                    background : 'hsl(120, 90%, 75%)',
                 }),
                 ...rule(':nth-child(3n+3)', {
-                    background : 'orange',
+                    background : 'hsl(39, 90%, 75%)',
                 }),
-                
                 ...rule(':nth-child(4)', {
-                    display       : 'flex',
-                    flexDirection : 'column',
-                    gap           : 0,
-                    height        : '240px',
-                    overflowY     : 'auto',
-                    
-                    padding       : '10px',
-                    
                     ...children('section', {
-                        flex    : [[0, 0, 'auto']],
-                        padding : '10px',
-                        
                         ...rule(':nth-child(3n+1)', {
-                            background : 'greenyellow',
+                            background : 'hsl(084, 90%, 75%)',
                         }),
                         ...rule(':nth-child(3n+2)', {
-                            background : 'mediumpurple',
+                            background : 'hsl(260, 90%, 75%)',
                         }),
                         ...rule(':nth-child(3n+3)', {
-                            background : 'sandybrown',
+                            background : 'hsl(028, 90%, 75%)',
                         }),
                     }),
                 }),
             }),
-        })
+        }),
+    ),
+    compositionOf('wrapper',
+        style({
+            display             : 'grid',
+            gridTemplateColumns : [['1fr', '1fr']],
+            gridTemplateRows    : [['1fr']],
+            gridAutoFlow        : 'column',
+            gap                 : '1rem',
+            alignItems          : 'center',
+        }),
     ),
 ], /*sheetId :*/'bqyb2t7n2i'); // an unique salt for SSR support, ensures the server-side & client-side have the same generated class names
-
 
 
 
@@ -212,70 +219,81 @@ const Page: NextPage = () => {
                     Here the preview:
                 </p>
                 <Preview>
-                    <Navscroll targetRef={articleRef} theme='primary'>
-                        <NavscrollItem>
-                            First section
-                        </NavscrollItem>
-                        <NavscrollItem>
-                            Second section
-                        </NavscrollItem>
-                        <NavscrollItem>
-                            Third section
-                        </NavscrollItem>
-                        <NavscrollItem>
-                            Fourth section
-                            <Navscroll>
-                                <NavscrollItem>
-                                    Sub 2-1
-                                </NavscrollItem>
-                                <NavscrollItem>
-                                    Sub 2-2
-                                </NavscrollItem>
-                                <NavscrollItem>
-                                    Sub 2-3
-                                </NavscrollItem>
-                                <NavscrollItem>
-                                    Sub 2-4
-                                </NavscrollItem>
-                            </Navscroll>
-                        </NavscrollItem>
-                        <NavscrollItem>
-                            Last section
-                        </NavscrollItem>
-                    </Navscroll>
-                    <article
-                        ref={articleRef}
-                        
-                        className={articleSheet.main}
-                    >
-                        <section style={{ height: '80px' }}>
-                            <p>First heading</p>
-                        </section>
-                        <section style={{ height: '200px' }}>
-                            <p>Second heading</p>
-                        </section>
-                        <section style={{ height: '300px' }}>
-                            <p>Third heading</p>
-                        </section>
-                        <section>
-                            <p>Fourth heading</p>
+                    <div className={articleSheet.wrapper}>
+                        <Navscroll
+                            targetRef={articleRef}
+                            targetSelector='section'
+                            theme='primary'>
+                            <NavscrollItem>
+                                First section
+                            </NavscrollItem>
+                            <NavscrollItem>
+                                Second section
+                            </NavscrollItem>
+                            <NavscrollItem>
+                                Third section
+                            </NavscrollItem>
+                            <NavscrollItem>
+                                Fourth section
+                                <Navscroll>
+                                    <NavscrollItem>
+                                        Sub 2-1
+                                    </NavscrollItem>
+                                    <NavscrollItem>
+                                        Sub 2-2
+                                    </NavscrollItem>
+                                    <NavscrollItem>
+                                        Sub 2-3
+                                    </NavscrollItem>
+                                    <NavscrollItem>
+                                        Sub 2-4
+                                    </NavscrollItem>
+                                </Navscroll>
+                            </NavscrollItem>
+                            <NavscrollItem>
+                                Fifth section
+                            </NavscrollItem>
+                            <NavscrollItem>
+                                Last section
+                            </NavscrollItem>
+                        </Navscroll>
+                        <article
+                            ref={articleRef}
+                            
+                            className={articleSheet.dummyArticle}
+                        >
+                            <section style={{ height: '80px' }}>
+                                <p>First heading</p>
+                            </section>
                             <section style={{ height: '200px' }}>
-                                Fourth sub heading 1
+                                <p>Second heading</p>
+                            </section>
+                            <section style={{ height: '400px' }}>
+                                <p>Third heading</p>
+                            </section>
+                            <section>
+                                <p>Fourth heading</p>
+                                <section style={{ height: '200px' }}>
+                                    Fourth sub heading 1
+                                </section>
+                                <section style={{ height: '100px' }}>
+                                    Fourth sub heading 2
+                                </section>
+                                <section style={{ height: '160px' }}>
+                                    Fourth sub heading 3
+                                </section>
+                                <section style={{ height: '100px' }}>
+                                    Fourth sub heading 4
+                                </section>
+                            </section>
+                            <section style={{ height: '300px' }}>
+                                <p>Fifth heading</p>
                             </section>
                             <section style={{ height: '100px' }}>
-                                Fourth sub heading 2
+                                <p>Last heading</p>
                             </section>
-                            <section style={{ height: '160px' }}>
-                                Fourth sub heading 3
-                            </section>
-                            <section style={{ height: '100px' }}>
-                                Fourth sub heading 4
-                            </section>
-                        </section>
-                        <section style={{ height: '80px' }}>
-                            <p>Last heading</p>
-                        </section>
-                    </article>
+                        </article>
+                    </div>
                 </Preview>
                 <p>
                     The <strong>Active</strong> item above is <strong>automatically highlighted</strong> because the <em>current URL</em> matches the <code>{`<Link href='/docs/components/navscroll'>`}</code>.<br />
