@@ -55,9 +55,6 @@ import {
     SectionPropertyEnabled,
 } from '../../../components/common@Indicator'
 import {
-    SectionPropertyActive,
-} from '../../../components/common@NavButton'
-import {
     SectionPropertyNude,
     SectionPropertyMild,
     SectionPropertyListStyle,
@@ -71,6 +68,9 @@ import {
     SectionPropertyBulletStyle,
     SectionPropertyNumberedStyle,
 } from '../../../components/common@List'
+import {
+    SectionPropertyActive,
+} from '../../../components/common@Navscroll'
 
 import loadable from '@loadable/component'
 const DemoNavscrollLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Navscroll' */'../../../components/DemoPanel@Navscroll'))
@@ -381,7 +381,7 @@ const Page: NextPage = () => {
                     </div>
                 </Preview>
                 <p>
-                    The <strong>Active</strong> item above is <strong>automatically highlighted</strong> based on the <u>visibility of the target sections</u> on the right panel.<br />
+                    The <strong>Active</strong> item above is <strong>automatically highlighted</strong> based on the visibility of the <strong>related sections</strong> on the right panel.<br />
                     See the code below:
                 </p>
                 <TypeScriptCode>{`
