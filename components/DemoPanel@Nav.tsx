@@ -10,8 +10,8 @@ import { TypeScriptCode } from './Code';
 
 
 export const navInitials = {
-    orientation : 'inline' as OrientationName|undefined,
-    actionCtrl  : true     as boolean|undefined,
+    orientation : 'inline'  as OrientationName|undefined,
+    actionCtrl  : undefined as boolean|undefined,
 };
 export type NavInitials = typeof navInitials & Partial<ListInitials>
 export const useNavStates = (initials ?: Partial<NavInitials>) => {

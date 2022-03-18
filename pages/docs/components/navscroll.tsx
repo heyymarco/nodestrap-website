@@ -22,6 +22,7 @@ import {
     
     // combinators:
     children,
+    descendants,
 }                           from '@cssfn/cssfn'       // cssfn core
 import {
     // hooks:
@@ -82,6 +83,7 @@ const useDummyArticleSheet = createUseSheet(() => [
             border: 'solid 1px black',
             background : 'hsl(200, 90%, 75%)',
             
+            
             ...children(['&', 'section:nth-child(4)'], {
                 display       : 'flex',
                 flexDirection : 'column',
@@ -99,6 +101,7 @@ const useDummyArticleSheet = createUseSheet(() => [
             ...children('section:nth-child(4)', {
                 height        : '200px',
             }),
+            
             
             ...children('section', {
                 ...rule(':nth-child(3n+1)', {
@@ -124,19 +127,75 @@ const useDummyArticleSheet = createUseSheet(() => [
                     }),
                 }),
             }),
+            
+            
+            ...descendants(['h1', 'h2'], {
+                textAlign: 'center',
+            }),
+            ...descendants('h1', {
+                fontSize: '1.25rem',
+            }),
+            ...descendants('h2', {
+                fontSize: '1rem',
+            }),
+            
+            
+            ...children('section:nth-child(1)', {
+                height : '80px',
+            }),
+            ...children('section:nth-child(2)', {
+                height : '200px',
+            }),
+            ...children('section:nth-child(3)', {
+                height : '400px',
+            }),
+            ...children('section:nth-child(4)', {
+                ...children('section:nth-child(1)', {
+                    height: '200px',
+                }),
+                ...children('section:nth-child(2)', {
+                    height: '100px',
+                }),
+                ...children('section:nth-child(3)', {
+                    height: '150px',
+                }),
+                ...children('section:nth-child(4)', {
+                    height: '100px',
+                }),
+            }),
+            ...children('section:nth-child(5)', {
+                height : '300px',
+            }),
+            ...children('section:nth-child(6)', {
+                height : '100px',
+            }),
         }),
     ),
-    compositionOf('wrapper',
+    compositionOf('container',
         style({
             display             : 'grid',
             gridTemplateColumns : [['1fr', '1fr']],
-            gridTemplateRows    : [['1fr']],
-            gridAutoFlow        : 'column',
+            gridTemplateRows    : [['1fr', 'min-content']],
+            gridTemplateAreas   : [[
+                '"nav-1 dummy-article"',
+                '"nav-1    nav-2     "',
+            ]],
             gap                 : '1rem',
             alignItems          : 'center',
+            
+            ...children('.nav-1', {
+                gridArea    : 'nav-1',
+            }),
+            ...children('.nav-2', {
+                gridArea    : 'nav-2',
+                justifySelf : 'center',
+            }),
+            ...children('.dummy-article', { 
+                gridArea    : 'dummy-article',
+            }),
         }),
     ),
-], /*sheetId :*/'bqyb2t7n2i'); // an unique salt for SSR support, ensures the server-side & client-side have the same generated class names
+], /*sheetId :*/'2jq3megb8r'); // an unique salt for SSR support, ensures the server-side & client-side have the same generated class names
 
 
 
@@ -213,17 +272,20 @@ const Page: NextPage = () => {
                     Displays a series of navigation link.
                 </p>
                 <p>
-                    Similar to <CurrentDominantBaseComponent /> but for navigating sections within a scrollable container (usually a page).
+                    Similar to <CurrentDominantBaseComponent /> but for <u>navigating sections within a scrollable container</u> (usually a page).
                 </p>
                 <p>
                     Here the preview:
                 </p>
                 <Preview>
-                    <div className={articleSheet.wrapper}>
+                    <div className={articleSheet.container}>
                         <Navscroll
                             targetRef={articleRef}
                             targetSelector='section'
-                            theme='primary'>
+                            theme='primary'
+                            
+                            classes={['nav-1']}
+                        >
                             <NavscrollItem>
                                 First section
                             </NavscrollItem>
@@ -260,71 +322,144 @@ const Page: NextPage = () => {
                         <article
                             ref={articleRef}
                             
-                            className={articleSheet.dummyArticle}
+                            className={`${articleSheet.dummyArticle} dummy-article`}
                         >
-                            <section style={{ height: '80px' }}>
-                                <p>First heading</p>
-                            </section>
-                            <section style={{ height: '200px' }}>
-                                <p>Second heading</p>
-                            </section>
-                            <section style={{ height: '400px' }}>
-                                <p>Third heading</p>
+                            <section>
+                                <h1>First section</h1>
                             </section>
                             <section>
-                                <p>Fourth heading</p>
-                                <section style={{ height: '200px' }}>
-                                    Fourth sub heading 1
+                                <h1>Second section</h1>
+                            </section>
+                            <section>
+                                <h1>Third section</h1>
+                            </section>
+                            <section>
+                                <h1>Fourth section</h1>
+                                <section>
+                                    <h2>Fourth sub section 1</h2>
                                 </section>
-                                <section style={{ height: '100px' }}>
-                                    Fourth sub heading 2
+                                <section>
+                                   <h2> Fourth sub section 2</h2>
                                 </section>
-                                <section style={{ height: '160px' }}>
-                                    Fourth sub heading 3
+                                <section>
+                                    <h2>Fourth sub section 3</h2>
                                 </section>
-                                <section style={{ height: '100px' }}>
-                                    Fourth sub heading 4
+                                <section>
+                                    <h2>Fourth sub section 4</h2>
                                 </section>
                             </section>
-                            <section style={{ height: '300px' }}>
-                                <p>Fifth heading</p>
+                            <section>
+                                <h1>Fifth section</h1>
                             </section>
-                            <section style={{ height: '100px' }}>
-                                <p>Last heading</p>
+                            <section>
+                                <h1>Last section</h1>
                             </section>
                         </article>
+                        <Navscroll
+                            targetRef={articleRef}
+                            targetSelector='section'
+                            theme='primary'
+                            
+                            orientation='inline'
+                            listStyle='bullet'
+                            classes={['nav-2']}
+                        >
+                            <NavscrollItem />
+                            <NavscrollItem />
+                            <NavscrollItem />
+                            <NavscrollItem>
+                                <Navscroll>
+                                    <NavscrollItem />
+                                    <NavscrollItem />
+                                    <NavscrollItem />
+                                    <NavscrollItem />
+                                </Navscroll>
+                            </NavscrollItem>
+                            <NavscrollItem />
+                            <NavscrollItem />
+                        </Navscroll>
                     </div>
                 </Preview>
                 <p>
-                    The <strong>Active</strong> item above is <strong>automatically highlighted</strong> because the <em>current URL</em> matches the <code>{`<Link href='/docs/components/navscroll'>`}</code>.<br />
+                    The <strong>Active</strong> item above is <strong>automatically highlighted</strong> based on the <u>visibility of the target sections</u> on the right panel.<br />
                     See the code below:
                 </p>
                 <TypeScriptCode>{`
-<Navscroll theme='primary'>
+<Navscroll
+    targetRef={articleRef}
+    targetSelector='section'
+    theme='primary'
+>
     <NavscrollItem>
-        <Link href='/'>
-            Home
-        </Link>
+        First section
     </NavscrollItem>
     <NavscrollItem>
-        <Link href='/about'>
-            About
-        </Link>
+        Second section
     </NavscrollItem>
     <NavscrollItem>
-        <Link href='/docs/components/navscroll'>
-            Active
-        </Link>
+        Third section
     </NavscrollItem>
     <NavscrollItem>
-        <Link href='/download'>
-            Download
-        </Link>
+        Fourth section
+        <Navscroll>
+            <NavscrollItem>
+                Sub 2-1
+            </NavscrollItem>
+            <NavscrollItem>
+                Sub 2-2
+            </NavscrollItem>
+            <NavscrollItem>
+                Sub 2-3
+            </NavscrollItem>
+            <NavscrollItem>
+                Sub 2-4
+            </NavscrollItem>
+        </Navscroll>
     </NavscrollItem>
-    <NavscrollItem enabled={false} href='https://github.com/nodestrap'>
-        Disabled
+    <NavscrollItem>
+        Fifth section
+    </NavscrollItem>
+    <NavscrollItem>
+        Last section
     </NavscrollItem>
 </Navscroll>
+
+/* ... */
+
+<article
+    ref={articleRef}
+>
+    <section>
+        <h1>First section</h1>
+    </section>
+    <section>
+        <h1>Second section</h1>
+    </section>
+    <section>
+        <h1>Third section</h1>
+    </section>
+    <section>
+        <h1>Fourth section</h1>
+        <section>
+            <h2>Fourth sub section 1</h2>
+        </section>
+        <section>
+            <h2> Fourth sub section 2</h2>
+        </section>
+        <section>
+            <h2>Fourth sub section 3</h2>
+        </section>
+        <section>
+            <h2>Fourth sub section 4</h2>
+        </section>
+    </section>
+    <section>
+        <h1>Fifth section</h1>
+    </section>
+    <section>
+        <h1>Last section</h1>
+    </section>
+</article>
                 `}</TypeScriptCode>
             </SectionIntro>
             <SectionDemo>
