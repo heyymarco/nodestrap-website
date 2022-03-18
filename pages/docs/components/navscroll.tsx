@@ -72,6 +72,7 @@ import {
     SectionPropertyActive,
     
     SectionPropertyChildren,
+    SectionPropertyNestedChildren,
 } from '../../../components/common@Navscroll'
 
 import loadable from '@loadable/component'
@@ -267,6 +268,7 @@ const Page: NextPage = () => {
     const articleSheet = useDummyArticleSheet();
     const articleRef  = useRef<HTMLElement>(null);
     const articleRef2 = useRef<HTMLElement>(null);
+    const articleRef3 = useRef<HTMLElement>(null);
     
     
     
@@ -616,6 +618,192 @@ const Page: NextPage = () => {
     </section>
 </article>
                 `}</TypeScriptCode>
+                <SectionPropertyNestedChildren>
+                    <Preview>
+                        <div className={articleSheet.container} style={{ rowGap: 0 }}>
+                            <Navscroll
+                                targetRef={articleRef3}
+                                targetSelector='section'
+                                theme='primary'
+                                
+                                classes={['nav-1']}
+                            >
+                                <NavscrollItem>
+                                    First section
+                                </NavscrollItem>
+                                <NavscrollItem>
+                                    Second section
+                                </NavscrollItem>
+                                <NavscrollItem>
+                                    Third section
+                                </NavscrollItem>
+                                <NavscrollItem>
+                                    Fourth section
+                                    <Navscroll>
+                                        <NavscrollItem>
+                                            Sub 4-1
+                                        </NavscrollItem>
+                                        <NavscrollItem>
+                                            Sub 4-2
+                                        </NavscrollItem>
+                                        <NavscrollItem>
+                                            Sub 4-3
+                                        </NavscrollItem>
+                                        <NavscrollItem>
+                                            Sub 4-4
+                                        </NavscrollItem>
+                                    </Navscroll>
+                                </NavscrollItem>
+                                <NavscrollItem>
+                                    Fifth section
+                                </NavscrollItem>
+                                <NavscrollItem>
+                                    Last section
+                                </NavscrollItem>
+                            </Navscroll>
+                            <article
+                                ref={articleRef3}
+                                
+                                className={`${articleSheet.dummyArticle} dummy-article`}
+                            >
+                                <section>
+                                    <h1>First section</h1>
+                                    <ParagraphLorem words={10} />
+                                </section>
+                                <section>
+                                    <h1>Second section</h1>
+                                    <ParagraphLorem words={10} />
+                                    <ParagraphLorem words={10} />
+                                    <ParagraphLorem words={10} />
+                                </section>
+                                <section>
+                                    <h1>Third section</h1>
+                                    <ParagraphLorem words={10} />
+                                    <ParagraphLorem words={10} />
+                                    <ParagraphLorem words={10} />
+                                </section>
+                                <section>
+                                    <h1>Fourth section</h1>
+                                    <ParagraphLorem words={10} />
+                                    <section>
+                                        <h2>Fourth sub section 1</h2>
+                                        <ParagraphLorem words={10} />
+                                    </section>
+                                    <section>
+                                    <h2> Fourth sub section 2</h2>
+                                        <ParagraphLorem words={10} />
+                                    </section>
+                                    <section>
+                                        <h2>Fourth sub section 3</h2>
+                                        <ParagraphLorem words={10} />
+                                    </section>
+                                    <section>
+                                        <h2>Fourth sub section 4</h2>
+                                        <ParagraphLorem words={10} />
+                                    </section>
+                                </section>
+                                <section>
+                                    <h1>Fifth section</h1>
+                                    <ParagraphLorem words={10} />
+                                    <ParagraphLorem words={10} />
+                                    <ParagraphLorem words={10} />
+                                </section>
+                                <section>
+                                    <h1>Last section</h1>
+                                    <ParagraphLorem words={10} />
+                                </section>
+                            </article>
+                        </div>
+                    </Preview>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Navscroll>
+    <NavscrollItem>
+        First section
+    </NavscrollItem>
+    <NavscrollItem>
+        Second section
+    </NavscrollItem>
+    <NavscrollItem>
+        Third section
+    </NavscrollItem>
+    <NavscrollItem>
+        Fourth section
+        <Navscroll>
+            <NavscrollItem>
+                Sub 4-1
+            </NavscrollItem>
+            <NavscrollItem>
+                Sub 4-2
+            </NavscrollItem>
+            <NavscrollItem>
+                Sub 4-3
+            </NavscrollItem>
+            <NavscrollItem>
+                Sub 4-4
+            </NavscrollItem>
+        </Navscroll>
+    </NavscrollItem>
+    <NavscrollItem>
+        Fifth section
+    </NavscrollItem>
+    <NavscrollItem>
+        Last section
+    </NavscrollItem>
+</Navscroll>
+
+/* ... */
+
+<article>
+    <section>
+        <h1>First section</h1>
+        <p>...</p>
+    </section>
+    <section>
+        <h1>Second section</h1>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
+    </section>
+    <section>
+        <h1>Third section</h1>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
+    </section>
+    <section>
+        <h1>Fourth section</h1>
+        <p>...</p>
+        <section>
+            <h2>Fourth sub section 1</h2>
+            <p>...</p>
+        </section>
+        <section>
+        <h2> Fourth sub section 2</h2>
+            <p>...</p>
+        </section>
+        <section>
+            <h2>Fourth sub section 3</h2>
+            <p>...</p>
+        </section>
+        <section>
+            <h2>Fourth sub section 4</h2>
+            <p>...</p>
+        </section>
+    </section>
+    <section>
+        <h1>Fifth section</h1>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
+    </section>
+    <section>
+        <h1>Last section</h1>
+        <p>...</p>
+    </section>
+</article>
+                    `}</TypeScriptCode>
+                </SectionPropertyNestedChildren>
             </SectionPropertyChildren>
             <SectionInheritedProps />
             <SectionVariants>
