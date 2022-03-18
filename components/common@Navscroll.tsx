@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { CurrentNestedComponent, ParagraphDefaultValue, SectionPreviewProperty, SectionPreviewPropertyProps, useComponentInfo } from './common';
+import { CurrentComponent, CurrentNestedComponent, ParagraphDefaultValue, SectionPreviewProperty, SectionPreviewPropertyProps, useComponentInfo } from './common';
 import { DetailSpecItem, SpecList } from './SpecList';
 
 import {
@@ -18,17 +18,17 @@ export const SectionPropertyActive  = ({ specList, description, highlightBasedOn
 
 
 
-export const SectionPropertyChildren = ({ titleTag = 'h2', property = 'children', properties = 'Client Side Navigation', description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyChildren = ({ titleTag = 'h2', property = 'children', properties = 'Mapping the Related Sections', description, ...restProps }: SectionPreviewPropertyProps) => {
     return (
         <SectionPreviewProperty {...restProps} titleTag={titleTag} property={property} properties={properties} description={
             description
             ??
             <>
                 <p>
-                    Place a <code>{`<Link>`}</code> in <CurrentNestedComponent /> to make <CurrentNestedComponent /> <strong>automatically highlighted</strong> based on <em>current URL</em> and the <em>target URL</em>.
+                    In order to the <CurrentComponent /> works correctly, you must define <CurrentNestedComponent />s in the <strong>exact structure</strong> as the <strong>related sections</strong>.
                 </p>
                 <p>
-                    It works well with <strong>Next JS</strong>, <strong>Gatsby JS</strong>, <strong>React Router</strong> and <strong>React Remix</strong>.
+                    For example if you have <strong>6 sections</strong>, you should define <strong>6 <CurrentNestedComponent /></strong> inside the <CurrentComponent />.
                 </p>
             </>
         } />

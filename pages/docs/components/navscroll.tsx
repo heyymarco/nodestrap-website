@@ -32,7 +32,7 @@ import {
 import { useFlipFlop } from '../../../components/hooks'
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
-import { SectionInheritedProps, LinkNavscrollPage, LinkNavPage, SectionOverridingDefaults, ComponentInfoProvider, SectionDerivering, SectionCustomizingParent, SectionIntro, SectionDemo, BusyBar, LinkNavscrollItemPage, SectionVariants, SectionStates, LinkNavscrollSeparatorItemPage, SectionPreviewProperty, CurrentDominantBaseComponent } from '../../../components/common'
+import { SectionInheritedProps, LinkNavscrollPage, LinkNavPage, SectionOverridingDefaults, ComponentInfoProvider, SectionDerivering, SectionCustomizingParent, SectionIntro, SectionDemo, BusyBar, LinkNavscrollItemPage, SectionVariants, SectionStates, LinkNavscrollSeparatorItemPage, SectionPreviewProperty, CurrentDominantBaseComponent, ParagraphLorem } from '../../../components/common'
 import { ListSeparatorItem as NavscrollSeparatorItem } from '@nodestrap/list'
 import { Navscroll, NavscrollItem, /*NavscrollSeparatorItem,*/ OrientationName } from '@nodestrap/navscroll'
 import { TypeScriptCode } from '../../../components/Code'
@@ -70,6 +70,8 @@ import {
 } from '../../../components/common@List'
 import {
     SectionPropertyActive,
+    
+    SectionPropertyChildren,
 } from '../../../components/common@Navscroll'
 
 import loadable from '@loadable/component'
@@ -84,7 +86,7 @@ const useDummyArticleSheet = createUseSheet(() => [
             background : 'hsl(200, 90%, 75%)',
             
             
-            ...children(['&', 'section:nth-child(4)'], {
+            ...children(['&', 'section:nth-of-type(4)'], {
                 display       : 'flex',
                 flexDirection : 'column',
                 gap           : 0,
@@ -98,30 +100,30 @@ const useDummyArticleSheet = createUseSheet(() => [
                 }),
             }),
             height            : '250px',
-            ...children('section:nth-child(4)', {
+            ...children('section:nth-of-type(4)', {
                 height        : '200px',
             }),
             
             
             ...children('section', {
-                ...rule(':nth-child(3n+1)', {
+                ...rule(':nth-of-type(3n+1)', {
                     background : 'hsl(350, 90%, 75%)',
                 }),
-                ...rule(':nth-child(3n+2)', {
+                ...rule(':nth-of-type(3n+2)', {
                     background : 'hsl(120, 90%, 75%)',
                 }),
-                ...rule(':nth-child(3n+3)', {
+                ...rule(':nth-of-type(3n+3)', {
                     background : 'hsl(39, 90%, 75%)',
                 }),
-                ...rule(':nth-child(4)', {
+                ...rule(':nth-of-type(4)', {
                     ...children('section', {
-                        ...rule(':nth-child(3n+1)', {
+                        ...rule(':nth-of-type(3n+1)', {
                             background : 'hsl(084, 90%, 75%)',
                         }),
-                        ...rule(':nth-child(3n+2)', {
+                        ...rule(':nth-of-type(3n+2)', {
                             background : 'hsl(260, 90%, 75%)',
                         }),
-                        ...rule(':nth-child(3n+3)', {
+                        ...rule(':nth-of-type(3n+3)', {
                             background : 'hsl(028, 90%, 75%)',
                         }),
                     }),
@@ -129,6 +131,9 @@ const useDummyArticleSheet = createUseSheet(() => [
             }),
             
             
+            ...descendants('section', {
+                overflow: 'hidden',
+            }),
             ...descendants(['h1', 'h2'], {
                 textAlign: 'center',
             }),
@@ -138,35 +143,39 @@ const useDummyArticleSheet = createUseSheet(() => [
             ...descendants('h2', {
                 fontSize: '1rem',
             }),
+            ...descendants('p', {
+                fontSize: '0.5rem',
+                textOverflow: 'ellipsis'
+            }),
             
             
-            ...children('section:nth-child(1)', {
+            ...children('section:nth-of-type(1)', {
                 height : '80px',
             }),
-            ...children('section:nth-child(2)', {
+            ...children('section:nth-of-type(2)', {
                 height : '200px',
             }),
-            ...children('section:nth-child(3)', {
+            ...children('section:nth-of-type(3)', {
                 height : '400px',
             }),
-            ...children('section:nth-child(4)', {
-                ...children('section:nth-child(1)', {
+            ...children('section:nth-of-type(4)', {
+                ...children('section:nth-of-type(1)', {
                     height: '200px',
                 }),
-                ...children('section:nth-child(2)', {
+                ...children('section:nth-of-type(2)', {
                     height: '100px',
                 }),
-                ...children('section:nth-child(3)', {
+                ...children('section:nth-of-type(3)', {
                     height: '150px',
                 }),
-                ...children('section:nth-child(4)', {
+                ...children('section:nth-of-type(4)', {
                     height: '100px',
                 }),
             }),
-            ...children('section:nth-child(5)', {
+            ...children('section:nth-of-type(5)', {
                 height : '300px',
             }),
-            ...children('section:nth-child(6)', {
+            ...children('section:nth-of-type(6)', {
                 height : '100px',
             }),
         }),
@@ -256,7 +265,8 @@ const NavscrollWithActiveMild     = () => {
 
 const Page: NextPage = () => {
     const articleSheet = useDummyArticleSheet();
-    const articleRef = useRef<HTMLElement>(null);
+    const articleRef  = useRef<HTMLElement>(null);
+    const articleRef2 = useRef<HTMLElement>(null);
     
     
     
@@ -299,16 +309,16 @@ const Page: NextPage = () => {
                                 Fourth section
                                 <Navscroll>
                                     <NavscrollItem>
-                                        Sub 2-1
+                                        Sub 4-1
                                     </NavscrollItem>
                                     <NavscrollItem>
-                                        Sub 2-2
+                                        Sub 4-2
                                     </NavscrollItem>
                                     <NavscrollItem>
-                                        Sub 2-3
+                                        Sub 4-3
                                     </NavscrollItem>
                                     <NavscrollItem>
-                                        Sub 2-4
+                                        Sub 4-4
                                     </NavscrollItem>
                                 </Navscroll>
                             </NavscrollItem>
@@ -326,33 +336,49 @@ const Page: NextPage = () => {
                         >
                             <section>
                                 <h1>First section</h1>
+                                <ParagraphLorem words={10} />
                             </section>
                             <section>
                                 <h1>Second section</h1>
+                                <ParagraphLorem words={10} />
+                                <ParagraphLorem words={10} />
+                                <ParagraphLorem words={10} />
                             </section>
                             <section>
                                 <h1>Third section</h1>
+                                <ParagraphLorem words={10} />
+                                <ParagraphLorem words={10} />
+                                <ParagraphLorem words={10} />
                             </section>
                             <section>
                                 <h1>Fourth section</h1>
+                                <ParagraphLorem words={10} />
                                 <section>
                                     <h2>Fourth sub section 1</h2>
+                                    <ParagraphLorem words={10} />
                                 </section>
                                 <section>
                                    <h2> Fourth sub section 2</h2>
+                                    <ParagraphLorem words={10} />
                                 </section>
                                 <section>
                                     <h2>Fourth sub section 3</h2>
+                                    <ParagraphLorem words={10} />
                                 </section>
                                 <section>
                                     <h2>Fourth sub section 4</h2>
+                                    <ParagraphLorem words={10} />
                                 </section>
                             </section>
                             <section>
                                 <h1>Fifth section</h1>
+                                <ParagraphLorem words={10} />
+                                <ParagraphLorem words={10} />
+                                <ParagraphLorem words={10} />
                             </section>
                             <section>
                                 <h1>Last section</h1>
+                                <ParagraphLorem words={10} />
                             </section>
                         </article>
                         <Navscroll
@@ -465,6 +491,132 @@ const Page: NextPage = () => {
             <SectionDemo>
                 <DemoNavscrollLazy fallback={<BusyBar />} />
             </SectionDemo>
+            <SectionPropertyChildren>
+                <Preview>
+                    <div className={articleSheet.container} style={{ rowGap: 0 }}>
+                        <Navscroll
+                            targetRef={articleRef2}
+                            targetSelector='section'
+                            theme='primary'
+                            
+                            classes={['nav-1']}
+                        >
+                            <NavscrollItem>
+                                First section
+                            </NavscrollItem>
+                            <NavscrollItem>
+                                Second section
+                            </NavscrollItem>
+                            <NavscrollItem>
+                                Third section
+                            </NavscrollItem>
+                            <NavscrollItem>
+                                Fourth section
+                            </NavscrollItem>
+                            <NavscrollItem>
+                                Fifth section
+                            </NavscrollItem>
+                            <NavscrollItem>
+                                Last section
+                            </NavscrollItem>
+                        </Navscroll>
+                        <article
+                            ref={articleRef2}
+                            
+                            className={`${articleSheet.dummyArticle} dummy-article`}
+                        >
+                            <section>
+                                <h1>First section</h1>
+                                <ParagraphLorem words={10} />
+                            </section>
+                            <section>
+                                <h1>Second section</h1>
+                                <ParagraphLorem words={10} />
+                                <ParagraphLorem words={10} />
+                                <ParagraphLorem words={10} />
+                            </section>
+                            <section>
+                                <h1>Third section</h1>
+                                <ParagraphLorem words={10} />
+                                <ParagraphLorem words={10} />
+                                <ParagraphLorem words={10} />
+                            </section>
+                            <section>
+                                <h1>Fourth section</h1>
+                                <ParagraphLorem words={10} />
+                            </section>
+                            <section>
+                                <h1>Fifth section</h1>
+                                <ParagraphLorem words={10} />
+                                <ParagraphLorem words={10} />
+                                <ParagraphLorem words={10} />
+                            </section>
+                            <section>
+                                <h1>Last section</h1>
+                                <ParagraphLorem words={10} />
+                            </section>
+                        </article>
+                    </div>
+                </Preview>
+                <p></p>
+                <TypeScriptCode>{`
+<Navscroll>
+    <NavscrollItem>
+        First section
+    </NavscrollItem>
+    <NavscrollItem>
+        Second section
+    </NavscrollItem>
+    <NavscrollItem>
+        Third section
+    </NavscrollItem>
+    <NavscrollItem>
+        Fourth section
+    </NavscrollItem>
+    <NavscrollItem>
+        Fifth section
+    </NavscrollItem>
+    <NavscrollItem>
+        Last section
+    </NavscrollItem>
+</Navscroll>
+
+/* ... */
+
+<article>
+    <section>
+        <h1>First section</h1>
+        <p>...</p>
+    </section>
+    <section>
+        <h1>Second section</h1>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
+    </section>
+    <section>
+        <h1>Third section</h1>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
+    </section>
+    <section>
+        <h1>Fourth section</h1>
+        <p>...</p>
+    </section>
+    <section>
+        <h1>Fifth section</h1>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
+    </section>
+    <section>
+        <h1>Last section</h1>
+        <p>...</p>
+    </section>
+</article>
+                `}</TypeScriptCode>
+            </SectionPropertyChildren>
             <SectionInheritedProps />
             <SectionVariants>
                 <SectionPropertyTheme>

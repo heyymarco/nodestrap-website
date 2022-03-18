@@ -243,16 +243,16 @@ export const DemoNavscroll = () => {
                             Fourth section
                             <Navscroll>
                                 <NavscrollItem>
-                                    Sub 2-1
+                                    Sub 4-1
                                 </NavscrollItem>
                                 <NavscrollItem>
-                                    Sub 2-2
+                                    Sub 4-2
                                 </NavscrollItem>
                                 <NavscrollItem>
-                                    Sub 2-3
+                                    Sub 4-3
                                 </NavscrollItem>
                                 <NavscrollItem>
-                                    Sub 2-4
+                                    Sub 4-4
                                 </NavscrollItem>
                             </Navscroll>
                         </NavscrollItem>
