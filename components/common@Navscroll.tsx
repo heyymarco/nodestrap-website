@@ -59,8 +59,7 @@ export const SectionPropertyNestedChildren = ({ titleTag = 'h3', property = 'chi
         } />
     );
 };
-
-export const SectionPropertyMatchingUrl = ({ titleTag = 'h2', property = 'children', properties = 'Configuring the Matching URL', description, children, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyTargetSelector = ({ titleTag = 'h3', property = 'targetSelector', properties = 'Filters Out Non-Section Elements', description, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName } = useComponentInfo();
     
     
@@ -71,83 +70,20 @@ export const SectionPropertyMatchingUrl = ({ titleTag = 'h2', property = 'childr
             ??
             <>
                 <p>
-                    There are 2 additional properties for <u>determining the matching URL</u>:
+                    To filter out the <strong>foreign elements</strong> (in this case the <code>{`<h1>`}</code> and <code>{`<p>`}</code>), you should define the <strong>section selector</strong> (in this case the <strong>section</strong> is <code>{`<section>`}</code>).
                 </p>
-                
-                { children }
-            </>
-        } />
-    );
-};
-export const SectionPropertyCaseSensitive = ({ propertySuffix = true, property = 'caseSensitive', properties = 'Case Sensitivity', specList, description, ...restProps }: SectionPreviewPropertyProps) => {
-    return (
-        <SectionPreviewProperty {...restProps} propertySuffix={propertySuffix} property={property} properties={properties} specList={
-            specList
-            ??
-            <SpecList>
-                <DetailSpecItem code='false'>
-                    <p>
-                        The string comparison is <strong>case insensitive</strong>.
-                        A lowercase character and uppercase character are treated as the <strong>same</strong> thing.
-                    </p>
-                    <ParagraphDefaultValue property={property} />
-                </DetailSpecItem>
-                <DetailSpecItem code='true'>
-                    <p>
-                        The string comparison is <strong>case sensitive</strong>.
-                        A lowercase character and uppercase character are treated as the <strong>different</strong> thing.
-                    </p>
-                </DetailSpecItem>
-            </SpecList>
-        } description={
-            description
-            ??
-            <>
                 <p>
-                    Defines how the <strong>current page url</strong> and <strong>destination url</strong> are compared by <strong>string sensivity</strong>.
+                    Assign <code>{`<${componentName} targetSelector='section'>`}</code>, so the <strong>section</strong> is defined as <code>{`<section>`}</code>.
                 </p>
-            </>
-        } />
-    );
-};
-export const SectionPropertyEnd = ({ propertySuffix = true, property = 'end', properties = 'End of URL', specList, description, ...restProps }: SectionPreviewPropertyProps) => {
-    return (
-        <SectionPreviewProperty {...restProps} propertySuffix={propertySuffix} property={property} properties={properties} specList={
-            specList
-            ??
-            <SpecList>
-                <DetailSpecItem code='false'>
-                    <p>
-                        The <strong>destination url</strong> is an <strong>exact path</strong> or a <strong>sub path</strong>.<br />
-                        It may <strong>have</strong> one/more sub path(s).
-                    </p>
-                    <p>
-                        If the <strong>current page url</strong> is more specific (has more sub path(s)) than <strong>destination url</strong>, it still <strong>matches</strong>.
-                    </p>
-                    <p>
-                        This is the <strong>default</strong> value if the <code>{property}</code> value is not specified and the <strong>destination url</strong> is other than <strong>home page</strong> (<code>{`'/'`}</code> or <code>{`''`}</code>).
-                    </p>
-                </DetailSpecItem>
-                <DetailSpecItem code='true'>
-                    <p>
-                        The <strong>destination url</strong> is an <strong>exact path</strong>.<br />
-                        It may <strong>not</strong> have sub path(s).
-                    </p>
-                    <p>
-                        If the <strong>current page url</strong> is more specific (has more sub path(s)) than <strong>destination url</strong>, it does <strong>not</strong> match.
-                    </p>
-                    <p>
-                        This is the <strong>default</strong> value if the <code>{property}</code> value is not specified and the <strong>destination url</strong> is a <strong>home page</strong> (<code>{`'/'`}</code> or <code>{`''`}</code>).
-                    </p>
-                </DetailSpecItem>
-            </SpecList>
-        } description={
-            description
-            ??
-            <>
                 <p>
-                    Defines whether the <strong>destination url</strong> is a <strong>sub path</strong> or an <strong>exact path</strong>.
+                    If <strong>your sections</strong> are other than <code>{`<section>`}</code>, for example <code>{`<div className='chapter'>`}</code> and <code>{`<div className='section'>`}</code>, assign <code>{`<${componentName} targetSelector='div.chapter, div.section'>`}</code>.
                 </p>
+                <Warning>
+                    <p>
+                        If you not define the <code>{property}</code> property, the <code>'*'</code> (universal selector) will be used.<br />
+                        So <strong>any elements</strong> inside the <code>targetRef</code> will be assumed as <em>the sections</em>.
+                    </p>
+                </Warning>
             </>
         } />
     );

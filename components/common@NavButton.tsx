@@ -78,10 +78,6 @@ export const SectionPropertyChildren = ({ titleTag = 'h2', property = 'children'
 };
 
 export const SectionPropertyMatchingUrl = ({ titleTag = 'h2', property = 'children', properties = 'Configuring the Matching URL', description, children, ...restProps }: SectionPreviewPropertyProps) => {
-    const { componentName } = useComponentInfo();
-    
-    
-    
     return (
         <SectionPreviewProperty {...restProps} titleTag={titleTag} property={property} properties={properties} description={
             description

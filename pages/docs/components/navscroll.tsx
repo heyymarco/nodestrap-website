@@ -73,6 +73,7 @@ import {
     
     SectionPropertyChildren,
     SectionPropertyNestedChildren,
+    SectionPropertyTargetSelector,
 } from '../../../components/common@Navscroll'
 
 import loadable from '@loadable/component'
@@ -804,6 +805,7 @@ const Page: NextPage = () => {
 </article>
                     `}</TypeScriptCode>
                 </SectionPropertyNestedChildren>
+                <SectionPropertyTargetSelector />
             </SectionPropertyChildren>
             <SectionInheritedProps />
             <SectionVariants>
