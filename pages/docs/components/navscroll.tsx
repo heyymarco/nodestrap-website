@@ -74,6 +74,9 @@ import {
     SectionPropertyChildren,
     SectionPropertyNestedChildren,
     SectionPropertyTargetSelector,
+    SectionPropertyTargetFilter,
+    SectionPropertyTargetRef,
+    SectionPropertyMultipleTargetRef,
 } from '../../../components/common@Navscroll'
 
 import loadable from '@loadable/component'
@@ -267,9 +270,10 @@ const NavscrollWithActiveMild     = () => {
 
 const Page: NextPage = () => {
     const articleSheet = useDummyArticleSheet();
-    const articleRef  = useRef<HTMLElement>(null);
-    const articleRef2 = useRef<HTMLElement>(null);
-    const articleRef3 = useRef<HTMLElement>(null);
+    const scrollableContainerRef  = useRef<HTMLElement>(null);
+    const scrollableContainerRef2 = useRef<HTMLElement>(null);
+    const scrollableContainerRef3 = useRef<HTMLElement>(null);
+    const scrollableContainerRef4 = useRef<HTMLElement>(null);
     
     
     
@@ -292,48 +296,8 @@ const Page: NextPage = () => {
                 </p>
                 <Preview>
                     <div className={articleSheet.container}>
-                        <Navscroll
-                            targetRef={articleRef}
-                            targetSelector='section'
-                            theme='primary'
-                            
-                            classes={['nav-1']}
-                        >
-                            <NavscrollItem>
-                                First section
-                            </NavscrollItem>
-                            <NavscrollItem>
-                                Second section
-                            </NavscrollItem>
-                            <NavscrollItem>
-                                Third section
-                            </NavscrollItem>
-                            <NavscrollItem>
-                                Fourth section
-                                <Navscroll>
-                                    <NavscrollItem>
-                                        Sub 4-1
-                                    </NavscrollItem>
-                                    <NavscrollItem>
-                                        Sub 4-2
-                                    </NavscrollItem>
-                                    <NavscrollItem>
-                                        Sub 4-3
-                                    </NavscrollItem>
-                                    <NavscrollItem>
-                                        Sub 4-4
-                                    </NavscrollItem>
-                                </Navscroll>
-                            </NavscrollItem>
-                            <NavscrollItem>
-                                Fifth section
-                            </NavscrollItem>
-                            <NavscrollItem>
-                                Last section
-                            </NavscrollItem>
-                        </Navscroll>
                         <article
-                            ref={articleRef}
+                            ref={scrollableContainerRef}
                             
                             className={`${articleSheet.dummyArticle} dummy-article`}
                         >
@@ -385,7 +349,47 @@ const Page: NextPage = () => {
                             </section>
                         </article>
                         <Navscroll
-                            targetRef={articleRef}
+                            targetRef={scrollableContainerRef}
+                            targetSelector='section'
+                            theme='primary'
+                            
+                            classes={['nav-1']}
+                        >
+                            <NavscrollItem>
+                                First section
+                            </NavscrollItem>
+                            <NavscrollItem>
+                                Second section
+                            </NavscrollItem>
+                            <NavscrollItem>
+                                Third section
+                            </NavscrollItem>
+                            <NavscrollItem>
+                                Fourth section
+                                <Navscroll>
+                                    <NavscrollItem>
+                                        Sub 4-1
+                                    </NavscrollItem>
+                                    <NavscrollItem>
+                                        Sub 4-2
+                                    </NavscrollItem>
+                                    <NavscrollItem>
+                                        Sub 4-3
+                                    </NavscrollItem>
+                                    <NavscrollItem>
+                                        Sub 4-4
+                                    </NavscrollItem>
+                                </Navscroll>
+                            </NavscrollItem>
+                            <NavscrollItem>
+                                Fifth section
+                            </NavscrollItem>
+                            <NavscrollItem>
+                                Last section
+                            </NavscrollItem>
+                        </Navscroll>
+                        <Navscroll
+                            targetRef={scrollableContainerRef}
                             targetSelector='section'
                             theme='primary'
                             
@@ -414,8 +418,45 @@ const Page: NextPage = () => {
                     See the code below:
                 </p>
                 <TypeScriptCode>{`
+<article
+    ref={scrollableContainerRef}
+>
+    <section>
+        <h1>First section</h1>
+    </section>
+    <section>
+        <h1>Second section</h1>
+    </section>
+    <section>
+        <h1>Third section</h1>
+    </section>
+    <section>
+        <h1>Fourth section</h1>
+        <section>
+            <h2>Fourth sub section 1</h2>
+        </section>
+        <section>
+            <h2> Fourth sub section 2</h2>
+        </section>
+        <section>
+            <h2>Fourth sub section 3</h2>
+        </section>
+        <section>
+            <h2>Fourth sub section 4</h2>
+        </section>
+    </section>
+    <section>
+        <h1>Fifth section</h1>
+    </section>
+    <section>
+        <h1>Last section</h1>
+    </section>
+</article>
+
+/* ... */
+
 <Navscroll
-    targetRef={articleRef}
+    targetRef={scrollableContainerRef}
     targetSelector='section'
     theme='primary'
 >
@@ -452,43 +493,6 @@ const Page: NextPage = () => {
         Last section
     </NavscrollItem>
 </Navscroll>
-
-/* ... */
-
-<article
-    ref={articleRef}
->
-    <section>
-        <h1>First section</h1>
-    </section>
-    <section>
-        <h1>Second section</h1>
-    </section>
-    <section>
-        <h1>Third section</h1>
-    </section>
-    <section>
-        <h1>Fourth section</h1>
-        <section>
-            <h2>Fourth sub section 1</h2>
-        </section>
-        <section>
-            <h2> Fourth sub section 2</h2>
-        </section>
-        <section>
-            <h2>Fourth sub section 3</h2>
-        </section>
-        <section>
-            <h2>Fourth sub section 4</h2>
-        </section>
-    </section>
-    <section>
-        <h1>Fifth section</h1>
-    </section>
-    <section>
-        <h1>Last section</h1>
-    </section>
-</article>
                 `}</TypeScriptCode>
             </SectionIntro>
             <SectionDemo>
@@ -497,34 +501,8 @@ const Page: NextPage = () => {
             <SectionPropertyChildren>
                 <Preview>
                     <div className={articleSheet.container} style={{ rowGap: 0 }}>
-                        <Navscroll
-                            targetRef={articleRef2}
-                            targetSelector='section'
-                            theme='primary'
-                            
-                            classes={['nav-1']}
-                        >
-                            <NavscrollItem>
-                                First section
-                            </NavscrollItem>
-                            <NavscrollItem>
-                                Second section
-                            </NavscrollItem>
-                            <NavscrollItem>
-                                Third section
-                            </NavscrollItem>
-                            <NavscrollItem>
-                                Fourth section
-                            </NavscrollItem>
-                            <NavscrollItem>
-                                Fifth section
-                            </NavscrollItem>
-                            <NavscrollItem>
-                                Last section
-                            </NavscrollItem>
-                        </Navscroll>
                         <article
-                            ref={articleRef2}
+                            ref={scrollableContainerRef2}
                             
                             className={`${articleSheet.dummyArticle} dummy-article`}
                         >
@@ -559,33 +537,36 @@ const Page: NextPage = () => {
                                 <ParagraphLorem words={10} />
                             </section>
                         </article>
+                        <Navscroll
+                            targetRef={scrollableContainerRef2}
+                            targetSelector='section'
+                            theme='primary'
+                            
+                            classes={['nav-1']}
+                        >
+                            <NavscrollItem>
+                                First section
+                            </NavscrollItem>
+                            <NavscrollItem>
+                                Second section
+                            </NavscrollItem>
+                            <NavscrollItem>
+                                Third section
+                            </NavscrollItem>
+                            <NavscrollItem>
+                                Fourth section
+                            </NavscrollItem>
+                            <NavscrollItem>
+                                Fifth section
+                            </NavscrollItem>
+                            <NavscrollItem>
+                                Last section
+                            </NavscrollItem>
+                        </Navscroll>
                     </div>
                 </Preview>
                 <p></p>
                 <TypeScriptCode>{`
-<Navscroll>
-    <NavscrollItem>
-        First section
-    </NavscrollItem>
-    <NavscrollItem>
-        Second section
-    </NavscrollItem>
-    <NavscrollItem>
-        Third section
-    </NavscrollItem>
-    <NavscrollItem>
-        Fourth section
-    </NavscrollItem>
-    <NavscrollItem>
-        Fifth section
-    </NavscrollItem>
-    <NavscrollItem>
-        Last section
-    </NavscrollItem>
-</Navscroll>
-
-/* ... */
-
 <article>
     <section>
         <h1>First section</h1>
@@ -618,52 +599,35 @@ const Page: NextPage = () => {
         <p>...</p>
     </section>
 </article>
+
+/* ... */
+
+<Navscroll>
+    <NavscrollItem>
+        First section
+    </NavscrollItem>
+    <NavscrollItem>
+        Second section
+    </NavscrollItem>
+    <NavscrollItem>
+        Third section
+    </NavscrollItem>
+    <NavscrollItem>
+        Fourth section
+    </NavscrollItem>
+    <NavscrollItem>
+        Fifth section
+    </NavscrollItem>
+    <NavscrollItem>
+        Last section
+    </NavscrollItem>
+</Navscroll>
                 `}</TypeScriptCode>
                 <SectionPropertyNestedChildren>
                     <Preview>
                         <div className={articleSheet.container} style={{ rowGap: 0 }}>
-                            <Navscroll
-                                targetRef={articleRef3}
-                                targetSelector='section'
-                                theme='primary'
-                                
-                                classes={['nav-1']}
-                            >
-                                <NavscrollItem>
-                                    First section
-                                </NavscrollItem>
-                                <NavscrollItem>
-                                    Second section
-                                </NavscrollItem>
-                                <NavscrollItem>
-                                    Third section
-                                </NavscrollItem>
-                                <NavscrollItem>
-                                    Fourth section
-                                    <Navscroll>
-                                        <NavscrollItem>
-                                            Sub 4-1
-                                        </NavscrollItem>
-                                        <NavscrollItem>
-                                            Sub 4-2
-                                        </NavscrollItem>
-                                        <NavscrollItem>
-                                            Sub 4-3
-                                        </NavscrollItem>
-                                        <NavscrollItem>
-                                            Sub 4-4
-                                        </NavscrollItem>
-                                    </Navscroll>
-                                </NavscrollItem>
-                                <NavscrollItem>
-                                    Fifth section
-                                </NavscrollItem>
-                                <NavscrollItem>
-                                    Last section
-                                </NavscrollItem>
-                            </Navscroll>
                             <article
-                                ref={articleRef3}
+                                ref={scrollableContainerRef3}
                                 
                                 className={`${articleSheet.dummyArticle} dummy-article`}
                             >
@@ -714,47 +678,50 @@ const Page: NextPage = () => {
                                     <ParagraphLorem words={10} />
                                 </section>
                             </article>
+                            <Navscroll
+                                targetRef={scrollableContainerRef3}
+                                targetSelector='section'
+                                theme='primary'
+                                
+                                classes={['nav-1']}
+                            >
+                                <NavscrollItem>
+                                    First section
+                                </NavscrollItem>
+                                <NavscrollItem>
+                                    Second section
+                                </NavscrollItem>
+                                <NavscrollItem>
+                                    Third section
+                                </NavscrollItem>
+                                <NavscrollItem>
+                                    Fourth section
+                                    <Navscroll>
+                                        <NavscrollItem>
+                                            Sub 4-1
+                                        </NavscrollItem>
+                                        <NavscrollItem>
+                                            Sub 4-2
+                                        </NavscrollItem>
+                                        <NavscrollItem>
+                                            Sub 4-3
+                                        </NavscrollItem>
+                                        <NavscrollItem>
+                                            Sub 4-4
+                                        </NavscrollItem>
+                                    </Navscroll>
+                                </NavscrollItem>
+                                <NavscrollItem>
+                                    Fifth section
+                                </NavscrollItem>
+                                <NavscrollItem>
+                                    Last section
+                                </NavscrollItem>
+                            </Navscroll>
                         </div>
                     </Preview>
                     <p></p>
                     <TypeScriptCode>{`
-<Navscroll>
-    <NavscrollItem>
-        First section
-    </NavscrollItem>
-    <NavscrollItem>
-        Second section
-    </NavscrollItem>
-    <NavscrollItem>
-        Third section
-    </NavscrollItem>
-    <NavscrollItem>
-        Fourth section
-        <Navscroll>
-            <NavscrollItem>
-                Sub 4-1
-            </NavscrollItem>
-            <NavscrollItem>
-                Sub 4-2
-            </NavscrollItem>
-            <NavscrollItem>
-                Sub 4-3
-            </NavscrollItem>
-            <NavscrollItem>
-                Sub 4-4
-            </NavscrollItem>
-        </Navscroll>
-    </NavscrollItem>
-    <NavscrollItem>
-        Fifth section
-    </NavscrollItem>
-    <NavscrollItem>
-        Last section
-    </NavscrollItem>
-</Navscroll>
-
-/* ... */
-
 <article>
     <section>
         <h1>First section</h1>
@@ -803,9 +770,290 @@ const Page: NextPage = () => {
         <p>...</p>
     </section>
 </article>
+
+/* ... */
+
+<Navscroll>
+    <NavscrollItem>
+        First section
+    </NavscrollItem>
+    <NavscrollItem>
+        Second section
+    </NavscrollItem>
+    <NavscrollItem>
+        Third section
+    </NavscrollItem>
+    <NavscrollItem>
+        Fourth section
+        <Navscroll>
+            <NavscrollItem>
+                Sub 4-1
+            </NavscrollItem>
+            <NavscrollItem>
+                Sub 4-2
+            </NavscrollItem>
+            <NavscrollItem>
+                Sub 4-3
+            </NavscrollItem>
+            <NavscrollItem>
+                Sub 4-4
+            </NavscrollItem>
+        </Navscroll>
+    </NavscrollItem>
+    <NavscrollItem>
+        Fifth section
+    </NavscrollItem>
+    <NavscrollItem>
+        Last section
+    </NavscrollItem>
+</Navscroll>
                     `}</TypeScriptCode>
                 </SectionPropertyNestedChildren>
-                <SectionPropertyTargetSelector />
+                <SectionPropertyTargetSelector>
+                    <SectionPropertyTargetFilter />
+                </SectionPropertyTargetSelector>
+                <SectionPropertyTargetRef>
+                    <SectionPropertyMultipleTargetRef>
+                        <Preview>
+                            <div className={articleSheet.container}>
+                                <article
+                                    ref={scrollableContainerRef4}
+                                    
+                                    className={`${articleSheet.dummyArticle} dummy-article`}
+                                >
+                                    <section>
+                                        <h1>First section</h1>
+                                        <ParagraphLorem words={10} />
+                                    </section>
+                                    <section>
+                                        <h1>Second section</h1>
+                                        <ParagraphLorem words={10} />
+                                        <ParagraphLorem words={10} />
+                                        <ParagraphLorem words={10} />
+                                    </section>
+                                    <section>
+                                        <h1>Third section</h1>
+                                        <ParagraphLorem words={10} />
+                                        <ParagraphLorem words={10} />
+                                        <ParagraphLorem words={10} />
+                                    </section>
+                                    <section>
+                                        <h1>Fourth section</h1>
+                                        <ParagraphLorem words={10} />
+                                        <section>
+                                            <h2>Fourth sub section 1</h2>
+                                            <ParagraphLorem words={10} />
+                                        </section>
+                                        <section>
+                                        <h2> Fourth sub section 2</h2>
+                                            <ParagraphLorem words={10} />
+                                        </section>
+                                        <section>
+                                            <h2>Fourth sub section 3</h2>
+                                            <ParagraphLorem words={10} />
+                                        </section>
+                                        <section>
+                                            <h2>Fourth sub section 4</h2>
+                                            <ParagraphLorem words={10} />
+                                        </section>
+                                    </section>
+                                    <section>
+                                        <h1>Fifth section</h1>
+                                        <ParagraphLorem words={10} />
+                                        <ParagraphLorem words={10} />
+                                        <ParagraphLorem words={10} />
+                                    </section>
+                                    <section>
+                                        <h1>Last section</h1>
+                                        <ParagraphLorem words={10} />
+                                    </section>
+                                </article>
+                                <Navscroll
+                                    targetRef={scrollableContainerRef4}
+                                    targetSelector='section'
+                                    theme='primary'
+                                    
+                                    classes={['nav-1']}
+                                >
+                                    <NavscrollItem>
+                                        First section
+                                    </NavscrollItem>
+                                    <NavscrollItem>
+                                        Second section
+                                    </NavscrollItem>
+                                    <NavscrollItem>
+                                        Third section
+                                    </NavscrollItem>
+                                    <NavscrollItem>
+                                        Fourth section
+                                        <Navscroll>
+                                            <NavscrollItem>
+                                                Sub 4-1
+                                            </NavscrollItem>
+                                            <NavscrollItem>
+                                                Sub 4-2
+                                            </NavscrollItem>
+                                            <NavscrollItem>
+                                                Sub 4-3
+                                            </NavscrollItem>
+                                            <NavscrollItem>
+                                                Sub 4-4
+                                            </NavscrollItem>
+                                        </Navscroll>
+                                    </NavscrollItem>
+                                    <NavscrollItem>
+                                        Fifth section
+                                    </NavscrollItem>
+                                    <NavscrollItem>
+                                        Last section
+                                    </NavscrollItem>
+                                </Navscroll>
+                                <Navscroll
+                                    targetRef={scrollableContainerRef4}
+                                    targetSelector='section'
+                                    theme='primary'
+                                    
+                                    orientation='inline'
+                                    listStyle='bullet'
+                                    classes={['nav-2']}
+                                >
+                                    <NavscrollItem />
+                                    <NavscrollItem />
+                                    <NavscrollItem />
+                                    <NavscrollItem>
+                                        <Navscroll>
+                                            <NavscrollItem />
+                                            <NavscrollItem />
+                                            <NavscrollItem />
+                                            <NavscrollItem />
+                                        </Navscroll>
+                                    </NavscrollItem>
+                                    <NavscrollItem />
+                                    <NavscrollItem />
+                                </Navscroll>
+                            </div>
+                        </Preview>
+                        <p></p>
+                        <TypeScriptCode>{`
+<article
+    ref={scrollableContainerRef}
+>
+    <section>
+        <h1>First section</h1>
+        <p>...</p>
+    </section>
+    <section>
+        <h1>Second section</h1>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
+    </section>
+    <section>
+        <h1>Third section</h1>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
+    </section>
+    <section>
+        <h1>Fourth section</h1>
+        <p>...</p>
+        <section>
+            <h2>Fourth sub section 1</h2>
+            <p>...</p>
+        </section>
+        <section>
+        <h2> Fourth sub section 2</h2>
+            <p>...</p>
+        </section>
+        <section>
+            <h2>Fourth sub section 3</h2>
+            <p>...</p>
+        </section>
+        <section>
+            <h2>Fourth sub section 4</h2>
+            <p>...</p>
+        </section>
+    </section>
+    <section>
+        <h1>Fifth section</h1>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
+    </section>
+    <section>
+        <h1>Last section</h1>
+        <p>...</p>
+    </section>
+</article>
+
+/* ... */
+
+<Navscroll
+    targetRef={scrollableContainerRef}
+    targetSelector='section'
+    theme='primary'
+>
+    <NavscrollItem>
+        First section
+    </NavscrollItem>
+    <NavscrollItem>
+        Second section
+    </NavscrollItem>
+    <NavscrollItem>
+        Third section
+    </NavscrollItem>
+    <NavscrollItem>
+        Fourth section
+        <Navscroll>
+            <NavscrollItem>
+                Sub 4-1
+            </NavscrollItem>
+            <NavscrollItem>
+                Sub 4-2
+            </NavscrollItem>
+            <NavscrollItem>
+                Sub 4-3
+            </NavscrollItem>
+            <NavscrollItem>
+                Sub 4-4
+            </NavscrollItem>
+        </Navscroll>
+    </NavscrollItem>
+    <NavscrollItem>
+        Fifth section
+    </NavscrollItem>
+    <NavscrollItem>
+        Last section
+    </NavscrollItem>
+</Navscroll>
+
+/* ... */
+
+<Navscroll
+    targetRef={scrollableContainerRef}
+    targetSelector='section'
+    theme='primary'
+    
+    orientation='inline'
+    listStyle='bullet'
+>
+    <NavscrollItem />
+    <NavscrollItem />
+    <NavscrollItem />
+    <NavscrollItem>
+        <Navscroll>
+            <NavscrollItem />
+            <NavscrollItem />
+            <NavscrollItem />
+            <NavscrollItem />
+        </Navscroll>
+    </NavscrollItem>
+    <NavscrollItem />
+    <NavscrollItem />
+</Navscroll>
+                        `}</TypeScriptCode>
+                    </SectionPropertyMultipleTargetRef>
+                </SectionPropertyTargetRef>
             </SectionPropertyChildren>
             <SectionInheritedProps />
             <SectionVariants>

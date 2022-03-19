@@ -199,7 +199,7 @@ export const DemoNavscroll = () => {
     const hasChildren = states.listStyle2[0] !== 'bullet';
     
     const articleSheet = useDummyArticleSheet();
-    const articleRef = useRef<HTMLElement>(null);
+    const scrollableContainerRef = useRef<HTMLElement>(null);
     
     const listStyle : ListStyle[] = [
         states.listStyle1[0],
@@ -210,7 +210,7 @@ export const DemoNavscroll = () => {
             <div className='preview'>
                 <div className={articleSheet.container}>
                     <Navscroll
-                        targetRef={articleRef}
+                        targetRef={scrollableContainerRef}
                         targetSelector='section'
                         interpolation={states.interpolation[0]}
                         
@@ -264,7 +264,7 @@ export const DemoNavscroll = () => {
                         </NavscrollItem>
                     </Navscroll>
                     <article
-                        ref={articleRef}
+                        ref={scrollableContainerRef}
                         
                         className={`${articleSheet.dummyArticle} dummy-article`}
                     >
@@ -302,7 +302,7 @@ export const DemoNavscroll = () => {
                 </div>
                 <TypeScriptCode collapsable={false}>{`
 <Navscroll
-    targetRef={articleRef}
+    targetRef={scrollableContainerRef}
     targetSelector='section'
     interpolation={${states.interpolation[0]}}
     
@@ -357,7 +357,7 @@ export const DemoNavscroll = () => {
 /* ... */
 
 <article
-    ref={articleRef}
+    ref={scrollableContainerRef}
 >
     <section>
         <h1>First section</h1>
