@@ -286,7 +286,7 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    Displays a series of navigation link.
+                    Displays a series of navigation link for a <em>scrollable container</em>.
                 </p>
                 <p>
                     Similar to <CurrentDominantBaseComponent /> but for <u>navigating sections within a scrollable container</u> (usually a page).
@@ -414,7 +414,7 @@ const Page: NextPage = () => {
                     </div>
                 </Preview>
                 <p>
-                    The <strong>Active</strong> item above is <strong>automatically highlighted</strong> based on the visibility of the <strong>related sections</strong> on the right panel.<br />
+                    The <strong>highlighted item</strong> above is <strong>automatically highlighted</strong> based on the visibility of the <strong>related sections</strong> on the right panel.<br />
                     See the code below:
                 </p>
                 <TypeScriptCode>{`
@@ -477,16 +477,16 @@ const scrollableContainerRef = useRef(null);
         Fourth section
         <Navscroll>
             <NavscrollItem>
-                Sub 2-1
+                Sub 4-1
             </NavscrollItem>
             <NavscrollItem>
-                Sub 2-2
+                Sub 4-2
             </NavscrollItem>
             <NavscrollItem>
-                Sub 2-3
+                Sub 4-3
             </NavscrollItem>
             <NavscrollItem>
-                Sub 2-4
+                Sub 4-4
             </NavscrollItem>
         </Navscroll>
     </NavscrollItem>

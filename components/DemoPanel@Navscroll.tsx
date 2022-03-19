@@ -231,36 +231,36 @@ export const DemoNavscroll = () => {
                         classes={['nav-1']}
                     >
                         <NavscrollItem>
-                            First section
+                            {hasChildren && 'First section'}
                         </NavscrollItem>
                         <NavscrollItem>
-                            Second section
+                            {hasChildren && 'Second section'}
                         </NavscrollItem>
                         <NavscrollItem>
-                            Third section
+                            {hasChildren && 'Third section'}
                         </NavscrollItem>
                         <NavscrollItem>
-                            Fourth section
+                            {hasChildren && 'Fourth section'}
                             <Navscroll>
                                 <NavscrollItem>
-                                    Sub 4-1
+                                    {hasChildren && 'Sub 4-1'}
                                 </NavscrollItem>
                                 <NavscrollItem>
-                                    Sub 4-2
+                                    {hasChildren && 'Sub 4-2'}
                                 </NavscrollItem>
                                 <NavscrollItem>
-                                    Sub 4-3
+                                    {hasChildren && 'Sub 4-3'}
                                 </NavscrollItem>
                                 <NavscrollItem>
-                                    Sub 4-4
+                                    {hasChildren && 'Sub 4-4'}
                                 </NavscrollItem>
                             </Navscroll>
                         </NavscrollItem>
                         <NavscrollItem>
-                            Fifth section
+                            {hasChildren && 'Fifth section'}
                         </NavscrollItem>
                         <NavscrollItem>
-                            Last section
+                            {hasChildren && 'Last section'}
                         </NavscrollItem>
                     </Navscroll>
                     <article
@@ -301,6 +301,10 @@ export const DemoNavscroll = () => {
                     </article>
                 </div>
                 <TypeScriptCode collapsable={false}>{`
+const scrollableContainerRef = useRef(null);
+
+/* ... */
+
 <Navscroll
     targetRef={scrollableContainerRef}
     targetSelector='section'
@@ -320,38 +324,38 @@ export const DemoNavscroll = () => {
     outlined={${states.outlined[0]}}
     mild={${states.mild[0]}}
 >
-    <NavscrollItem>
+    <NavscrollItem${hasChildren ? `>
         First section
-    </NavscrollItem>
-    <NavscrollItem>
+    </NavscrollItem>` : ' />'}
+    <NavscrollItem${hasChildren ? `>
         Second section
-    </NavscrollItem>
-    <NavscrollItem>
+    </NavscrollItem>` : ' />'}
+    <NavscrollItem${hasChildren ? `>
         Third section
-    </NavscrollItem>
-    <NavscrollItem>
-        Fourth section
+    </NavscrollItem>` : ' />'}
+    <NavscrollItem>${hasChildren ? `
+        Fourth section` : ''}
         <Navscroll>
-            <NavscrollItem>
-                Sub 2-1
-            </NavscrollItem>
-            <NavscrollItem>
-                Sub 2-2
-            </NavscrollItem>
-            <NavscrollItem>
-                Sub 2-3
-            </NavscrollItem>
-            <NavscrollItem>
-                Sub 2-4
-            </NavscrollItem>
+            <NavscrollItem${hasChildren ? `>
+                Sub 4-1
+            </NavscrollItem>` : ' />'}
+            <NavscrollItem${hasChildren ? `>
+                Sub 4-2
+            </NavscrollItem>` : ' />'}
+            <NavscrollItem${hasChildren ? `>
+                Sub 4-3
+            </NavscrollItem>` : ' />'}
+            <NavscrollItem${hasChildren ? `>
+                Sub 4-4
+            </NavscrollItem>` : ' />'}
         </Navscroll>
     </NavscrollItem>
-    <NavscrollItem>
+    <NavscrollItem${hasChildren ? `>
         Fifth section
-    </NavscrollItem>
-    <NavscrollItem>
+    </NavscrollItem>` : ' />'}
+    <NavscrollItem${hasChildren ? `>
         Last section
-    </NavscrollItem>
+    </NavscrollItem>` : ' />'}
 </Navscroll>
 
 /* ... */

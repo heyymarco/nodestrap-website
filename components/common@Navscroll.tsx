@@ -26,7 +26,7 @@ export const SectionPropertyChildren          = ({ titleTag = 'h2', property = '
             ??
             <>
                 <p>
-                    In order to the <CurrentComponent /> works correctly, you must define <CurrentNestedComponent />s in the <strong>exact number</strong> as the <strong>related sections</strong>.
+                    In order to the <CurrentComponent /> works correctly, you must define <CurrentNestedComponent />s in the <strong>exact number</strong> of the <strong>related sections</strong>.
                 </p>
                 <p>
                     For example if you have <strong>6 sections</strong>, you should define <strong>6 <CurrentNestedComponent /></strong> inside the <CurrentComponent />.
@@ -45,7 +45,7 @@ export const SectionPropertyNestedChildren    = ({ titleTag = 'h3', property = '
                     <em>Optionally</em>, you can map the <strong>related nested sections</strong>.
                 </p>
                 <p>
-                    To do that, place a nested <CurrentComponent /> in the related <CurrentNestedComponent /> and then define <CurrentNestedComponent />s in the <strong>exact number</strong> as the <strong>related nested sections</strong>.
+                    To do that, place a nested <CurrentComponent /> in the related <CurrentNestedComponent /> and then define <CurrentNestedComponent />s in the <strong>exact number</strong> of the <strong>related nested sections</strong>.
                 </p>
                 <Warning>
                     <p>
@@ -125,7 +125,7 @@ const sectionFilter = (elm) => (elm.tagName === 'DIV') && ['chapter', 'section']
                     </p>
                     <p>
                         If you assign an <em>unstable by reference</em>, for example a function declared in another function, <em>it still works</em> but at the cost of triggering unnecessary renders.<br />
-                        It can be fixed by wrapping the function with <code>useCallback</code> hook.
+                        It can be fixed by wrapping the function with <code>useCallback()</code> hook.
                     </p>
                 </Warning>
             </>
