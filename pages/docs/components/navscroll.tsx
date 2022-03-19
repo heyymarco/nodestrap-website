@@ -418,6 +418,10 @@ const Page: NextPage = () => {
                     See the code below:
                 </p>
                 <TypeScriptCode>{`
+const scrollableContainerRef = useRef(null);
+
+/* ... */
+
 <article
     ref={scrollableContainerRef}
 >
@@ -935,6 +939,10 @@ const Page: NextPage = () => {
                         </Preview>
                         <p></p>
                         <TypeScriptCode>{`
+const scrollableContainerRef = useRef(null);
+
+/* ... */
+
 <article
     ref={scrollableContainerRef}
 >
