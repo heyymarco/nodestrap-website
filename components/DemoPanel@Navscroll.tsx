@@ -1,5 +1,4 @@
 import { useRef } from 'react';
-import Link from 'next/link'
 
 import { useResetableState, Option, ResetButton } from './DemoPanel';
 import { NavInitials, NavOptionProps, NavOptions, useNavStates } from './DemoPanel@Nav';
@@ -134,7 +133,7 @@ const useDummyArticleSheet = createUseSheet(() => [
     compositionOf('container',
         style({
             display             : 'grid',
-            gridTemplateColumns : [['1fr', '1fr']],
+            gridTemplateColumns : [['3fr', '2fr']],
             gridTemplateAreas   : [[
                 '"nav-1 dummy-article"',
             ]],

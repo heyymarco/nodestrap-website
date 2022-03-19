@@ -236,3 +236,30 @@ export const SectionPropertyMultipleTargetRef = ({ titleTag = 'h4', property = '
         } />
     );
 };
+
+
+
+export const SectionPropertyInterpolation     = ({ titleTag = 'h2', property = 'interpolation', properties = 'Highlighting Behaviors', description, ...restProps }: SectionPreviewPropertyProps) => {
+    const { componentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPreviewProperty {...restProps} titleTag={titleTag} property={property} properties={properties} description={
+            description
+            ??
+            <>
+                <p>
+                    By default, the <em>highlighting behavior</em> of the <CurrentComponent /> is <strong>interpolation mode</strong>.<br />
+                    Basically, it uses a complex algorithm to determine the most dominant section shown in the <em>scrollable container</em>.
+                    If there are multiple visible sections exist, the widest one wins, with a few exceptions for small sections and the last section.
+                </p>
+                <p>
+                    The alternate mode is using <em>the first visible section</em>. It highlights the first section having at least 1 pixel visibility of the width &amp; height.<br />
+                    If there are multiple visible sections, the first one wins.<br />
+                    Assign <code>{`<${componentName} interpolation={false}>`}</code> to use this mode.
+                </p>
+            </>
+        } />
+    );
+};

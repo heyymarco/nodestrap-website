@@ -76,6 +76,8 @@ import {
     SectionPropertyTargetFilter,
     SectionPropertyTargetRef,
     SectionPropertyMultipleTargetRef,
+    
+    SectionPropertyInterpolation,
 } from '../../../components/common@Navscroll'
 
 import loadable from '@loadable/component'
@@ -187,7 +189,7 @@ const useDummyArticleSheet = createUseSheet(() => [
     compositionOf('container',
         style({
             display             : 'grid',
-            gridTemplateColumns : [['1fr', '1fr']],
+            gridTemplateColumns : [['minmax(min-content, 3fr)', 'minmax(min-content, 2fr)']],
             gridTemplateRows    : [['1fr', 'min-content']],
             gridTemplateAreas   : [[
                 '"nav-1 dummy-article"',
@@ -195,6 +197,7 @@ const useDummyArticleSheet = createUseSheet(() => [
             ]],
             gap                 : '1rem',
             alignItems          : 'center',
+            overflow            : 'auto',
             
             ...children('.nav-1', {
                 gridArea    : 'nav-1',
@@ -205,6 +208,20 @@ const useDummyArticleSheet = createUseSheet(() => [
             }),
             ...children('.dummy-article', { 
                 gridArea    : 'dummy-article',
+            }),
+        }),
+    ),
+    compositionOf('split2columns',
+        style({
+            display             : 'grid',
+            gridTemplateColumns : [['1fr', '1fr']],
+            gridTemplateRows    : [['min-content', '1fr']],
+            gridAutoFlow        : 'column',
+            columnGap           : '1rem',
+            rowGap              : '0.25rem',
+            
+            ...children('code', {
+                textAlign: 'center',
             }),
         }),
     ),
@@ -273,6 +290,7 @@ const Page: NextPage = () => {
     const scrollableContainerRef2 = useRef<HTMLElement>(null);
     const scrollableContainerRef3 = useRef<HTMLElement>(null);
     const scrollableContainerRef4 = useRef<HTMLElement>(null);
+    const scrollableContainerRef5 = useRef<HTMLElement>(null);
     
     
     
@@ -1062,6 +1080,233 @@ const scrollableContainerRef = useRef(null);
                     </SectionPropertyMultipleTargetRef>
                 </SectionPropertyTargetRef>
             </SectionPropertyChildren>
+            <SectionPropertyInterpolation>
+                <Preview>
+                    <div className={articleSheet.container} style={{ rowGap: 0 }}>
+                        <article
+                            ref={scrollableContainerRef5}
+                            
+                            className={`${articleSheet.dummyArticle} dummy-article`}
+                        >
+                            <section>
+                                <h1>First section</h1>
+                                <ParagraphLorem words={10} />
+                            </section>
+                            <section>
+                                <h1>Second section</h1>
+                                <ParagraphLorem words={10} />
+                                <ParagraphLorem words={10} />
+                                <ParagraphLorem words={10} />
+                            </section>
+                            <section>
+                                <h1>Third section</h1>
+                                <ParagraphLorem words={10} />
+                                <ParagraphLorem words={10} />
+                                <ParagraphLorem words={10} />
+                            </section>
+                            <section>
+                                <h1>Fourth section</h1>
+                                <ParagraphLorem words={10} />
+                                <section>
+                                    <h2>Fourth sub section 1</h2>
+                                    <ParagraphLorem words={10} />
+                                </section>
+                                <section>
+                                <h2> Fourth sub section 2</h2>
+                                    <ParagraphLorem words={10} />
+                                </section>
+                                <section>
+                                    <h2>Fourth sub section 3</h2>
+                                    <ParagraphLorem words={10} />
+                                </section>
+                                <section>
+                                    <h2>Fourth sub section 4</h2>
+                                    <ParagraphLorem words={10} />
+                                </section>
+                            </section>
+                            <section>
+                                <h1>Fifth section</h1>
+                                <ParagraphLorem words={10} />
+                                <ParagraphLorem words={10} />
+                                <ParagraphLorem words={10} />
+                            </section>
+                            <section>
+                                <h1>Last section</h1>
+                                <ParagraphLorem words={10} />
+                            </section>
+                        </article>
+                        <div className={articleSheet.split2columns}>
+                            <code>{`interpolation={true}`}</code>
+                            <Navscroll
+                                interpolation={true}
+                                targetRef={scrollableContainerRef5}
+                                targetSelector='section'
+                                theme='primary'
+                                size='sm'
+                                
+                                classes={['nav-1']}
+                            >
+                                <NavscrollItem>
+                                    First section
+                                </NavscrollItem>
+                                <NavscrollItem>
+                                    Second section
+                                </NavscrollItem>
+                                <NavscrollItem>
+                                    Third section
+                                </NavscrollItem>
+                                <NavscrollItem>
+                                    Fourth section
+                                    <Navscroll>
+                                        <NavscrollItem>
+                                            Sub 4-1
+                                        </NavscrollItem>
+                                        <NavscrollItem>
+                                            Sub 4-2
+                                        </NavscrollItem>
+                                        <NavscrollItem>
+                                            Sub 4-3
+                                        </NavscrollItem>
+                                        <NavscrollItem>
+                                            Sub 4-4
+                                        </NavscrollItem>
+                                    </Navscroll>
+                                </NavscrollItem>
+                                <NavscrollItem>
+                                    Fifth section
+                                </NavscrollItem>
+                                <NavscrollItem>
+                                    Last section
+                                </NavscrollItem>
+                            </Navscroll>
+                            
+                            <code>{`interpolation={false}`}</code>
+                            <Navscroll
+                                interpolation={false}
+                                targetRef={scrollableContainerRef5}
+                                targetSelector='section'
+                                theme='primary'
+                                size='sm'
+                                
+                                classes={['nav-1']}
+                            >
+                                <NavscrollItem>
+                                    First section
+                                </NavscrollItem>
+                                <NavscrollItem>
+                                    Second section
+                                </NavscrollItem>
+                                <NavscrollItem>
+                                    Third section
+                                </NavscrollItem>
+                                <NavscrollItem>
+                                    Fourth section
+                                    <Navscroll>
+                                        <NavscrollItem>
+                                            Sub 4-1
+                                        </NavscrollItem>
+                                        <NavscrollItem>
+                                            Sub 4-2
+                                        </NavscrollItem>
+                                        <NavscrollItem>
+                                            Sub 4-3
+                                        </NavscrollItem>
+                                        <NavscrollItem>
+                                            Sub 4-4
+                                        </NavscrollItem>
+                                    </Navscroll>
+                                </NavscrollItem>
+                                <NavscrollItem>
+                                    Fifth section
+                                </NavscrollItem>
+                                <NavscrollItem>
+                                    Last section
+                                </NavscrollItem>
+                            </Navscroll>
+                        </div>
+                    </div>
+                </Preview>
+                <p></p>
+                <TypeScriptCode>{`
+<Navscroll
+    interpolation={true}
+    targetRef={scrollableContainerRef}
+    targetSelector='section'
+>
+    <NavscrollItem>
+        First section
+    </NavscrollItem>
+    <NavscrollItem>
+        Second section
+    </NavscrollItem>
+    <NavscrollItem>
+        Third section
+    </NavscrollItem>
+    <NavscrollItem>
+        Fourth section
+        <Navscroll>
+            <NavscrollItem>
+                Sub 4-1
+            </NavscrollItem>
+            <NavscrollItem>
+                Sub 4-2
+            </NavscrollItem>
+            <NavscrollItem>
+                Sub 4-3
+            </NavscrollItem>
+            <NavscrollItem>
+                Sub 4-4
+            </NavscrollItem>
+        </Navscroll>
+    </NavscrollItem>
+    <NavscrollItem>
+        Fifth section
+    </NavscrollItem>
+    <NavscrollItem>
+        Last section
+    </NavscrollItem>
+</Navscroll>
+
+<Navscroll
+    interpolation={false}
+    targetRef={scrollableContainerRef}
+    targetSelector='section'
+>
+    <NavscrollItem>
+        First section
+    </NavscrollItem>
+    <NavscrollItem>
+        Second section
+    </NavscrollItem>
+    <NavscrollItem>
+        Third section
+    </NavscrollItem>
+    <NavscrollItem>
+        Fourth section
+        <Navscroll>
+            <NavscrollItem>
+                Sub 4-1
+            </NavscrollItem>
+            <NavscrollItem>
+                Sub 4-2
+            </NavscrollItem>
+            <NavscrollItem>
+                Sub 4-3
+            </NavscrollItem>
+            <NavscrollItem>
+                Sub 4-4
+            </NavscrollItem>
+        </Navscroll>
+    </NavscrollItem>
+    <NavscrollItem>
+        Fifth section
+    </NavscrollItem>
+    <NavscrollItem>
+        Last section
+    </NavscrollItem>
+</Navscroll>
+                `}</TypeScriptCode>
+            </SectionPropertyInterpolation>
             <SectionInheritedProps />
             <SectionVariants>
                 <SectionPropertyTheme>
