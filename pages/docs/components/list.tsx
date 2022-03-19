@@ -187,23 +187,7 @@ const Page: NextPage = () => {
                     Here the preview:
                 </p>
                 <Preview>
-                    <List theme='primary'>
-                        <ListItem>
-                            A first item
-                        </ListItem>
-                        <ListItem>
-                            A second item
-                        </ListItem>
-                        <ListItem active={true}>
-                            A third item
-                        </ListItem>
-                        <ListItem>
-                            A fourth item
-                        </ListItem>
-                        <ListItem theme='danger'>
-                            A fifth item
-                        </ListItem>
-                    </List>
+                    <List />
                 </Preview>
             </SectionIntro>
             <SectionDemo>
