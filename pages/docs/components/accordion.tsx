@@ -9,7 +9,7 @@ import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
 import { SectionInheritedProps, LinkAccordionPage, LinkListPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentNestedComponent, CurrentBaseComponents, LinkAccordionItemPage, SectionVariants, SectionStates, LinkAccordionSeparatorItemPage, LinkUsesIndicatorVariantsPage, SectionPreviewProperty } from '../../../components/common'
-import { Accordion, AccordionItem, AccordionSeparatorItem, OrientationName } from '@nodestrap/accordion'
+import { Accordion as AccordionOri, AccordionProps, AccordionItem, AccordionSeparatorItem, OrientationName } from '@nodestrap/accordion'
 import { TypeScriptCode } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
 import { Tips } from '../../../components/Info'
@@ -51,6 +51,33 @@ import loadable from '@loadable/component'
 const DemoAccordionLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Accordion' */'../../../components/DemoPanel@Accordion'))
 
 
+
+const Accordion = (props: AccordionProps) => <AccordionOri
+    {...props}
+    theme={props.theme ?? 'primary'}
+>
+    {
+        props.children
+        ??
+        [
+            <AccordionItem key={0}>
+                A first item
+            </AccordionItem>,
+            <AccordionItem key={1}>
+                A second item
+            </AccordionItem>,
+            <AccordionItem key={2} theme='success'>
+                A third item
+            </AccordionItem>,
+            <AccordionItem key={3} active={true}>
+                A fourth item
+            </AccordionItem>,
+            <AccordionItem key={4} theme='danger'>
+                A fifth item
+            </AccordionItem>,
+        ]
+    }
+</AccordionOri>
 
 const FunctionalTabAccordion = () => {
     const [activeTabIndex, setActiveTabIndex] = useState(3);
@@ -659,23 +686,7 @@ const Page: NextPage = () => {
                 <SectionPropertyListStyle>
                     <SectionPropertyFlatStyle>
                         <TransparentPreview>
-                            <Accordion listStyle='flat' theme='primary'>
-                                <AccordionItem>
-                                    A first item
-                                </AccordionItem>
-                                <AccordionItem>
-                                    A second item
-                                </AccordionItem>
-                                <AccordionItem theme='success'>
-                                    A third item
-                                </AccordionItem>
-                                <AccordionItem active={true}>
-                                    A fourth item
-                                </AccordionItem>
-                                <AccordionItem theme='danger'>
-                                    A fifth item
-                                </AccordionItem>
-                            </Accordion>
+                            <Accordion listStyle='flat' />
                         </TransparentPreview>
                         <p></p>
                         <TypeScriptCode>{`
@@ -700,23 +711,7 @@ const Page: NextPage = () => {
                     </SectionPropertyFlatStyle>
                     <SectionPropertyFlushStyle>
                         <TransparentPreview>
-                            <Accordion listStyle='flush' theme='primary'>
-                                <AccordionItem>
-                                    A first item
-                                </AccordionItem>
-                                <AccordionItem>
-                                    A second item
-                                </AccordionItem>
-                                <AccordionItem theme='success'>
-                                    A third item
-                                </AccordionItem>
-                                <AccordionItem active={true}>
-                                    A fourth item
-                                </AccordionItem>
-                                <AccordionItem theme='danger'>
-                                    A fifth item
-                                </AccordionItem>
-                            </Accordion>
+                            <Accordion listStyle='flush' />
                         </TransparentPreview>
                         <p></p>
                         <TypeScriptCode>{`
@@ -741,23 +736,7 @@ const Page: NextPage = () => {
                     </SectionPropertyFlushStyle>
                     <SectionPropertyJoinedStyle>
                         <TransparentPreview>
-                            <Accordion listStyle='joined' theme='primary'>
-                                <AccordionItem>
-                                    A first item
-                                </AccordionItem>
-                                <AccordionItem>
-                                    A second item
-                                </AccordionItem>
-                                <AccordionItem theme='success'>
-                                    A third item
-                                </AccordionItem>
-                                <AccordionItem active={true}>
-                                    A fourth item
-                                </AccordionItem>
-                                <AccordionItem theme='danger'>
-                                    A fifth item
-                                </AccordionItem>
-                            </Accordion>
+                            <Accordion listStyle='joined' />
                         </TransparentPreview>
                         <p></p>
                         <TypeScriptCode>{`
@@ -783,23 +762,7 @@ const Page: NextPage = () => {
                     
                     <SectionPropertyContentStyle>
                         <Preview>
-                            <Accordion listStyle='content' theme='primary'>
-                                <AccordionItem>
-                                    A first item
-                                </AccordionItem>
-                                <AccordionItem>
-                                    A second item
-                                </AccordionItem>
-                                <AccordionItem theme='success'>
-                                    A third item
-                                </AccordionItem>
-                                <AccordionItem active={true}>
-                                    A fourth item
-                                </AccordionItem>
-                                <AccordionItem theme='danger'>
-                                    A fifth item
-                                </AccordionItem>
-                            </Accordion>
+                            <Accordion listStyle='content' />
                         </Preview>
                         <p></p>
                         <TypeScriptCode>{`
@@ -825,23 +788,7 @@ const Page: NextPage = () => {
                     
                     <SectionPropertyBtnStyle>
                         <Preview>
-                            <Accordion listStyle='btn' theme='primary'>
-                                <AccordionItem>
-                                    A first item
-                                </AccordionItem>
-                                <AccordionItem>
-                                    A second item
-                                </AccordionItem>
-                                <AccordionItem theme='success'>
-                                    A third item
-                                </AccordionItem>
-                                <AccordionItem active={true}>
-                                    A fourth item
-                                </AccordionItem>
-                                <AccordionItem theme='danger'>
-                                    A fifth item
-                                </AccordionItem>
-                            </Accordion>
+                            <Accordion listStyle='btn' />
                         </Preview>
                         <p></p>
                         <TypeScriptCode>{`
@@ -909,23 +856,7 @@ const Page: NextPage = () => {
                     </SectionPropertyBtnStyle>
                     <SectionPropertyTabStyle>
                         <Preview blockDisplay={true}>
-                            <Accordion listStyle='tab' orientation='inline' theme='primary'>
-                                <AccordionItem>
-                                    A first item
-                                </AccordionItem>
-                                <AccordionItem>
-                                    A second item
-                                </AccordionItem>
-                                <AccordionItem theme='success'>
-                                    A third item
-                                </AccordionItem>
-                                <AccordionItem active={true}>
-                                    A fourth item
-                                </AccordionItem>
-                                <AccordionItem theme='danger'>
-                                    A fifth item
-                                </AccordionItem>
-                            </Accordion>
+                            <Accordion listStyle='tab' orientation='inline' />
                         </Preview>
                         <p></p>
                         <TypeScriptCode>{`
@@ -983,23 +914,7 @@ const TabControl = () => {
                     </SectionPropertyTabStyle>
                     <SectionPropertyBreadcrumbStyle>
                         <TransparentPreview blockDisplay={true}>
-                            <Accordion listStyle='breadcrumb' orientation='inline' theme='primary'>
-                                <AccordionItem>
-                                    A first item
-                                </AccordionItem>
-                                <AccordionItem>
-                                    A second item
-                                </AccordionItem>
-                                <AccordionItem theme='success'>
-                                    A third item
-                                </AccordionItem>
-                                <AccordionItem active={true}>
-                                    A fourth item
-                                </AccordionItem>
-                                <AccordionItem theme='danger'>
-                                    A fifth item
-                                </AccordionItem>
-                            </Accordion>
+                            <Accordion listStyle='breadcrumb' orientation='inline' />
                         </TransparentPreview>
                         <p></p>
                         <TypeScriptCode>{`
@@ -1045,23 +960,7 @@ const TabControl = () => {
                     </SectionPropertyBulletStyle>
                     <SectionPropertyNumberedStyle>
                         <Preview>
-                            <Accordion listStyle='numbered' theme='primary'>
-                                <AccordionItem>
-                                    A first item
-                                </AccordionItem>
-                                <AccordionItem>
-                                    A second item
-                                </AccordionItem>
-                                <AccordionItem theme='success'>
-                                    A third item
-                                </AccordionItem>
-                                <AccordionItem active={true}>
-                                    A fourth item
-                                </AccordionItem>
-                                <AccordionItem theme='danger'>
-                                    A fifth item
-                                </AccordionItem>
-                            </Accordion>
+                            <Accordion listStyle='numbered' />
                         </Preview>
                         <p></p>
                         <TypeScriptCode>{`
