@@ -8,7 +8,7 @@ import { useFlipFlop } from '../../../components/hooks'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
-import { SectionInheritedProps, LinkAccordionPage, LinkListPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentNestedComponent, CurrentBaseComponents, LinkAccordionItemPage, SectionVariants, SectionStates, LinkAccordionSeparatorItemPage, LinkUsesIndicatorVariantsPage, SectionPreviewProperty } from '../../../components/common'
+import { SectionInheritedProps, LinkAccordionPage, LinkListPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentNestedComponent, CurrentBaseComponents, LinkAccordionItemPage, SectionVariants, SectionStates, LinkAccordionSeparatorItemPage, LinkUsesIndicatorVariantsPage, SectionPreviewProperty, ParagraphLorem } from '../../../components/common'
 import { Accordion as AccordionOri, AccordionProps, AccordionItem, AccordionSeparatorItem, OrientationName } from '@nodestrap/accordion'
 import { TypeScriptCode } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
@@ -60,20 +60,25 @@ const Accordion = (props: AccordionProps) => <AccordionOri
         props.children
         ??
         [
-            <AccordionItem key={0}>
-                A first item
+            <AccordionItem key={0} label='A first item'>
+                <p>The detail of first item.</p>
+                <ParagraphLorem />
             </AccordionItem>,
-            <AccordionItem key={1}>
-                A second item
+            <AccordionItem key={1} label='A second item'>
+                <p>The detail of second item.</p>
+                <ParagraphLorem />
             </AccordionItem>,
-            <AccordionItem key={2} theme='success'>
-                A third item
+            <AccordionItem key={2} label='A third item' theme='success'>
+                <p>The detail of third item.</p>
+                <ParagraphLorem />
             </AccordionItem>,
-            <AccordionItem key={3} active={true}>
-                A fourth item
+            <AccordionItem key={3} label='A fourth item' defaultActive={true}>
+                <p>The detail of fourth item.</p>
+                <ParagraphLorem />
             </AccordionItem>,
-            <AccordionItem key={4} theme='danger'>
-                A fifth item
+            <AccordionItem key={4} label='A fifth item' theme='danger'>
+                <p>The detail of fifth item.</p>
+                <ParagraphLorem />
             </AccordionItem>,
         ]
     }
@@ -187,23 +192,7 @@ const Page: NextPage = () => {
                     Here the preview:
                 </p>
                 <Preview>
-                    <Accordion theme='primary'>
-                        <AccordionItem>
-                            A first item
-                        </AccordionItem>
-                        <AccordionItem>
-                            A second item
-                        </AccordionItem>
-                        <AccordionItem active={true}>
-                            A third item
-                        </AccordionItem>
-                        <AccordionItem>
-                            A fourth item
-                        </AccordionItem>
-                        <AccordionItem theme='danger'>
-                            A fifth item
-                        </AccordionItem>
-                    </Accordion>
+                    <Accordion />
                 </Preview>
             </SectionIntro>
             <SectionDemo>
