@@ -9,7 +9,7 @@ import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
 import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentNestedComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, LinkListSeparatorItemPage, LinkUsesIndicatorVariantsPage, SectionPreviewProperty } from '../../../components/common'
-import { List, ListItem, ListSeparatorItem, OrientationName } from '@nodestrap/list'
+import { List as ListOri, ListProps, ListItem, ListSeparatorItem, OrientationName } from '@nodestrap/list'
 import { TypeScriptCode } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
 import { Tips } from '../../../components/Info'
@@ -51,6 +51,33 @@ import loadable from '@loadable/component'
 const DemoListLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@List' */'../../../components/DemoPanel@List'))
 
 
+
+const List = (props: ListProps) => <ListOri
+    {...props}
+    theme={props.theme ?? 'primary'}
+>
+    {
+        props.children
+        ??
+        [
+            <ListItem key={0}>
+                A first item
+            </ListItem>,
+            <ListItem key={1}>
+                A second item
+            </ListItem>,
+            <ListItem key={2} theme='success'>
+                A third item
+            </ListItem>,
+            <ListItem key={3} active={true}>
+                A fourth item
+            </ListItem>,
+            <ListItem key={4} theme='danger'>
+                A fifth item
+            </ListItem>,
+        ]
+    }
+</ListOri>
 
 const FunctionalTabList = () => {
     const [activeTabIndex, setActiveTabIndex] = useState(3);
@@ -659,23 +686,7 @@ const Page: NextPage = () => {
                 <SectionPropertyListStyle>
                     <SectionPropertyFlatStyle>
                         <TransparentPreview>
-                            <List listStyle='flat' theme='primary'>
-                                <ListItem>
-                                    A first item
-                                </ListItem>
-                                <ListItem>
-                                    A second item
-                                </ListItem>
-                                <ListItem theme='success'>
-                                    A third item
-                                </ListItem>
-                                <ListItem active={true}>
-                                    A fourth item
-                                </ListItem>
-                                <ListItem theme='danger'>
-                                    A fifth item
-                                </ListItem>
-                            </List>
+                            <List listStyle='flat' />
                         </TransparentPreview>
                         <p></p>
                         <TypeScriptCode>{`
@@ -700,23 +711,7 @@ const Page: NextPage = () => {
                     </SectionPropertyFlatStyle>
                     <SectionPropertyFlushStyle>
                         <TransparentPreview>
-                            <List listStyle='flush' theme='primary'>
-                                <ListItem>
-                                    A first item
-                                </ListItem>
-                                <ListItem>
-                                    A second item
-                                </ListItem>
-                                <ListItem theme='success'>
-                                    A third item
-                                </ListItem>
-                                <ListItem active={true}>
-                                    A fourth item
-                                </ListItem>
-                                <ListItem theme='danger'>
-                                    A fifth item
-                                </ListItem>
-                            </List>
+                            <List listStyle='flush' />
                         </TransparentPreview>
                         <p></p>
                         <TypeScriptCode>{`
@@ -741,23 +736,7 @@ const Page: NextPage = () => {
                     </SectionPropertyFlushStyle>
                     <SectionPropertyJoinedStyle>
                         <TransparentPreview>
-                            <List listStyle='joined' theme='primary'>
-                                <ListItem>
-                                    A first item
-                                </ListItem>
-                                <ListItem>
-                                    A second item
-                                </ListItem>
-                                <ListItem theme='success'>
-                                    A third item
-                                </ListItem>
-                                <ListItem active={true}>
-                                    A fourth item
-                                </ListItem>
-                                <ListItem theme='danger'>
-                                    A fifth item
-                                </ListItem>
-                            </List>
+                            <List listStyle='joined' />
                         </TransparentPreview>
                         <p></p>
                         <TypeScriptCode>{`
@@ -783,23 +762,7 @@ const Page: NextPage = () => {
                     
                     <SectionPropertyContentStyle>
                         <Preview>
-                            <List listStyle='content' theme='primary'>
-                                <ListItem>
-                                    A first item
-                                </ListItem>
-                                <ListItem>
-                                    A second item
-                                </ListItem>
-                                <ListItem theme='success'>
-                                    A third item
-                                </ListItem>
-                                <ListItem active={true}>
-                                    A fourth item
-                                </ListItem>
-                                <ListItem theme='danger'>
-                                    A fifth item
-                                </ListItem>
-                            </List>
+                            <List listStyle='content' />
                         </Preview>
                         <p></p>
                         <TypeScriptCode>{`
@@ -825,23 +788,7 @@ const Page: NextPage = () => {
                     
                     <SectionPropertyBtnStyle>
                         <Preview>
-                            <List listStyle='btn' theme='primary'>
-                                <ListItem>
-                                    A first item
-                                </ListItem>
-                                <ListItem>
-                                    A second item
-                                </ListItem>
-                                <ListItem theme='success'>
-                                    A third item
-                                </ListItem>
-                                <ListItem active={true}>
-                                    A fourth item
-                                </ListItem>
-                                <ListItem theme='danger'>
-                                    A fifth item
-                                </ListItem>
-                            </List>
+                            <List listStyle='btn' />
                         </Preview>
                         <p></p>
                         <TypeScriptCode>{`
@@ -909,23 +856,7 @@ const Page: NextPage = () => {
                     </SectionPropertyBtnStyle>
                     <SectionPropertyTabStyle>
                         <Preview blockDisplay={true}>
-                            <List listStyle='tab' orientation='inline' theme='primary'>
-                                <ListItem>
-                                    A first item
-                                </ListItem>
-                                <ListItem>
-                                    A second item
-                                </ListItem>
-                                <ListItem theme='success'>
-                                    A third item
-                                </ListItem>
-                                <ListItem active={true}>
-                                    A fourth item
-                                </ListItem>
-                                <ListItem theme='danger'>
-                                    A fifth item
-                                </ListItem>
-                            </List>
+                            <List listStyle='tab' orientation='inline' />
                         </Preview>
                         <p></p>
                         <TypeScriptCode>{`
@@ -983,23 +914,7 @@ const TabControl = () => {
                     </SectionPropertyTabStyle>
                     <SectionPropertyBreadcrumbStyle>
                         <TransparentPreview blockDisplay={true}>
-                            <List listStyle='breadcrumb' orientation='inline' theme='primary'>
-                                <ListItem>
-                                    A first item
-                                </ListItem>
-                                <ListItem>
-                                    A second item
-                                </ListItem>
-                                <ListItem theme='success'>
-                                    A third item
-                                </ListItem>
-                                <ListItem active={true}>
-                                    A fourth item
-                                </ListItem>
-                                <ListItem theme='danger'>
-                                    A fifth item
-                                </ListItem>
-                            </List>
+                            <List listStyle='breadcrumb' orientation='inline' />
                         </TransparentPreview>
                         <p></p>
                         <TypeScriptCode>{`
@@ -1045,23 +960,7 @@ const TabControl = () => {
                     </SectionPropertyBulletStyle>
                     <SectionPropertyNumberedStyle>
                         <Preview>
-                            <List listStyle='numbered' theme='primary'>
-                                <ListItem>
-                                    A first item
-                                </ListItem>
-                                <ListItem>
-                                    A second item
-                                </ListItem>
-                                <ListItem theme='success'>
-                                    A third item
-                                </ListItem>
-                                <ListItem active={true}>
-                                    A fourth item
-                                </ListItem>
-                                <ListItem theme='danger'>
-                                    A fifth item
-                                </ListItem>
-                            </List>
+                            <List listStyle='numbered' />
                         </Preview>
                         <p></p>
                         <TypeScriptCode>{`
