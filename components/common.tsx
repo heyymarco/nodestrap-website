@@ -147,10 +147,13 @@ export const LinkProgressBarPage            = (props: PageLinkProps) => <LinkCod
 export const LinkNavPage                    = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/nav'>Nav</LinkCode>
 export const LinkNavItemPage                = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/nav'>NavItem</LinkCode>
 export const LinkNavSeparatorItemPage       = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/nav'>NavSeparatorItem</LinkCode>
-
 export const LinkNavscrollPage              = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/navscroll'>Navscroll</LinkCode>
 export const LinkNavscrollItemPage          = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/navscroll'>NavscrollItem</LinkCode>
 export const LinkNavscrollSeparatorItemPage = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/navscroll'>NavscrollSeparatorItem</LinkCode>
+
+export const LinkAccordionPage              = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/accordion'>Accordion</LinkCode>
+export const LinkAccordionItemPage          = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/accordion'>AccordionItem</LinkCode>
+export const LinkAccordionSeparatorItemPage = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/accordion'>AccordionSeparatorItem</LinkCode>
 
 
 export const LinkGroupPage                  = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/group'>Group</LinkCode>

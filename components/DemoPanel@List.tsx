@@ -23,7 +23,7 @@ export const useListStates = (initials ?: Partial<ListInitials>) => {
     
     const orientation = useResetableState(initials2.orientation);
     const listStyle1  = useResetableState(initials2.listStyle1);
-    const listStyle2  = useResetableState(initials2.listStyle1);
+    const listStyle2  = useResetableState(initials2.listStyle2);
     const actionCtrl  = useResetableState(initials2.actionCtrl);
 
     return {
