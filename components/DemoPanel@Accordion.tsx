@@ -84,15 +84,6 @@ export const DemoAccordion = () => {
                     <AccordionItem label='A seventh item (active + disabled)' active={true} enabled={false}>
                         {hasChildren && <ParagraphLorem />}
                     </AccordionItem>
-                    <AccordionItem label='A eighth item (clickable + active)' actionCtrl={true} active={true}>
-                        {hasChildren && <ParagraphLorem />}
-                    </AccordionItem>
-                    <AccordionItem label='A nineth item (clickable + disabled)' actionCtrl={true} enabled={false}>
-                        {hasChildren && <ParagraphLorem />}
-                    </AccordionItem>
-                    <AccordionItem label='A tenth item (clickable + active + disabled)' actionCtrl={true} active={true} enabled={false}>
-                        {hasChildren && <ParagraphLorem />}
-                    </AccordionItem>
                 </Accordion>
                 <TypeScriptCode collapsable={false}>{`
 <Accordion
@@ -117,9 +108,6 @@ export const DemoAccordion = () => {
     <AccordionItem label='A fifth item (active)' active={true}${                                                         hasChildren ? '>\n        <p>...</p>\n    </AccordionItem>'                         : ' />'}
     <AccordionItem label='A sixth item (disabled)' enabled={false}${                                                     hasChildren ? '>\n        <p>...</p>\n    </AccordionItem>'                       : ' />'}
     <AccordionItem label='A seventh item (active + disabled)' active={true} enabled={false}${                            hasChildren ? '>\n        <p>...</p>\n    </AccordionItem>'            : ' />'}
-    <AccordionItem label='A eighth item (clickable + active)' actionCtrl={true} active={true}${                          hasChildren ? '>\n        <p>...</p>\n    </AccordionItem>'           : ' />'}
-    <AccordionItem label='A nineth item (clickable + disabled)' actionCtrl={true} enabled={false}${                      hasChildren ? '>\n        <p>...</p>\n    </AccordionItem>'         : ' />'}
-    <AccordionItem label='A tenth item (clickable + active + disabled)' actionCtrl={true} active={true} enabled={false}${hasChildren ? '>\n        <p>...</p>\n    </AccordionItem>' : ' />'}
 </Accordion>
                 `}</TypeScriptCode>
             </div>
