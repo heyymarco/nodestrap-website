@@ -90,7 +90,7 @@ const FunctionalTabAccordion = () => {
     
     
     return (
-        <Accordion listStyle='tab' actionCtrl={true} orientation='inline' theme='primary'>
+        <Accordion listStyle='tab' actionCtrl={true} orientation='inline'>
             <AccordionItem active={activeTabIndex === 0} onClick={() => setActiveTabIndex(0)}>
                 A first item
             </AccordionItem>
@@ -116,7 +116,7 @@ const AccordionWithActiveOutlined = () => {
     
     const activeLabel = <Element tag={isActive ? 'span' : 'del'}>active</Element>
     return (
-        <Accordion elmRef={accordionRef} outlined={true} theme='primary'>
+        <Accordion elmRef={accordionRef} outlined={true}>
             <AccordionItem>
                 A first item (not clickable)
             </AccordionItem>
@@ -148,7 +148,7 @@ const AccordionWithActiveMild     = () => {
     
     const activeLabel = <Element tag={isActive ? 'span' : 'del'}>active</Element>
     return (
-        <Accordion elmRef={accordionRef} mild={true} theme='primary'>
+        <Accordion elmRef={accordionRef} mild={true}>
             <AccordionItem>
                 A first item (not clickable)
             </AccordionItem>

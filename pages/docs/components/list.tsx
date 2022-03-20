@@ -85,7 +85,7 @@ const FunctionalTabList = () => {
     
     
     return (
-        <List listStyle='tab' actionCtrl={true} orientation='inline' theme='primary'>
+        <List listStyle='tab' actionCtrl={true} orientation='inline'>
             <ListItem active={activeTabIndex === 0} onClick={() => setActiveTabIndex(0)}>
                 A first item
             </ListItem>
@@ -111,7 +111,7 @@ const ListWithActiveOutlined = () => {
     
     const activeLabel = <Element tag={isActive ? 'span' : 'del'}>active</Element>
     return (
-        <List elmRef={listRef} outlined={true} theme='primary'>
+        <List elmRef={listRef} outlined={true}>
             <ListItem>
                 A first item (not clickable)
             </ListItem>
@@ -143,7 +143,7 @@ const ListWithActiveMild     = () => {
     
     const activeLabel = <Element tag={isActive ? 'span' : 'del'}>active</Element>
     return (
-        <List elmRef={listRef} mild={true} theme='primary'>
+        <List elmRef={listRef} mild={true}>
             <ListItem>
                 A first item (not clickable)
             </ListItem>
