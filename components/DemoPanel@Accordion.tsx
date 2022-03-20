@@ -5,6 +5,7 @@ import { ListInitials, ListOptionProps, ListOptions, useListStates } from './Dem
 
 import { Accordion, AccordionItem, ListStyle, OrientationName } from '@nodestrap/accordion'
 import { TypeScriptCode } from './Code';
+import { ParagraphLorem } from './common';
 
 
 
@@ -62,35 +63,35 @@ export const DemoAccordion = () => {
                     outlined={states.outlined[0]}
                     mild={states.mild[0]}
                 >
-                    <AccordionItem>
-                        {hasChildren && 'A first item (inherit theme)'}
+                    <AccordionItem label='A first item (inherit theme)'>
+                        {hasChildren && <ParagraphLorem />}
                     </AccordionItem>
-                    <AccordionItem>
-                        {hasChildren && 'A second item (inherit theme)'}
+                    <AccordionItem label='A second item (inherit theme)'>
+                        {hasChildren && <ParagraphLorem />}
                     </AccordionItem>
-                    <AccordionItem theme='danger'>
-                        {hasChildren && 'A third item (danger theme)'}
+                    <AccordionItem label='A third item (danger theme)' theme='danger'>
+                        {hasChildren && <ParagraphLorem />}
                     </AccordionItem>
-                    <AccordionItem theme='success'>
-                        {hasChildren && 'A fourth item (success theme)'}
+                    <AccordionItem label='A fourth item (success theme)' theme='success'>
+                        {hasChildren && <ParagraphLorem />}
                     </AccordionItem>
-                    <AccordionItem active={true}>
-                        {hasChildren && 'A fifth item (active)'}
+                    <AccordionItem label='A fifth item (active)' active={true}>
+                        {hasChildren && <ParagraphLorem />}
                     </AccordionItem>
-                    <AccordionItem enabled={false}>
-                        {hasChildren && 'A sixth item (disabled)'}
+                    <AccordionItem label='A sixth item (disabled)' enabled={false}>
+                        {hasChildren && <ParagraphLorem />}
                     </AccordionItem>
-                    <AccordionItem active={true} enabled={false}>
-                        {hasChildren && 'A seventh item (active + disabled)'}
+                    <AccordionItem label='A seventh item (active + disabled)' active={true} enabled={false}>
+                        {hasChildren && <ParagraphLorem />}
                     </AccordionItem>
-                    <AccordionItem actionCtrl={true} active={true}>
-                        {hasChildren && 'A eighth item (clickable + active)'}
+                    <AccordionItem label='A eighth item (clickable + active)' actionCtrl={true} active={true}>
+                        {hasChildren && <ParagraphLorem />}
                     </AccordionItem>
-                    <AccordionItem actionCtrl={true} enabled={false}>
-                        {hasChildren && 'A nineth item (clickable + disabled)'}
+                    <AccordionItem label='A nineth item (clickable + disabled)' actionCtrl={true} enabled={false}>
+                        {hasChildren && <ParagraphLorem />}
                     </AccordionItem>
-                    <AccordionItem actionCtrl={true} active={true} enabled={false}>
-                        {hasChildren && 'A tenth item (clickable + active + disabled)'}
+                    <AccordionItem label='A tenth item (clickable + active + disabled)' actionCtrl={true} active={true} enabled={false}>
+                        {hasChildren && <ParagraphLorem />}
                     </AccordionItem>
                 </Accordion>
                 <TypeScriptCode collapsable={false}>{`
@@ -109,16 +110,16 @@ export const DemoAccordion = () => {
     outlined={${states.outlined[0]}}
     mild={${states.mild[0]}}
 >
-    <AccordionItem${                                                hasChildren ? '>\n        A first item (inherit theme)\n    </AccordionItem>'                  : ' />'}
-    <AccordionItem${                                                hasChildren ? '>\n        A second item (inherit theme)\n    </AccordionItem>'                 : ' />'}
-    <AccordionItem theme='danger'${                                 hasChildren ? '>\n        A third item (danger theme)\n    </AccordionItem>'                   : ' />'}
-    <AccordionItem theme='success'${                                hasChildren ? '>\n        A fourth item (success theme)\n    </AccordionItem>'                 : ' />'}
-    <AccordionItem active={true}${                                  hasChildren ? '>\n        A fifth item (active)\n    </AccordionItem>'                         : ' />'}
-    <AccordionItem enabled={false}${                                hasChildren ? '>\n        A sixth item (disabled)\n    </AccordionItem>'                       : ' />'}
-    <AccordionItem active={true} enabled={false}${                  hasChildren ? '>\n        A seventh item (active + disabled)\n    </AccordionItem>'            : ' />'}
-    <AccordionItem actionCtrl={true} active={true}${                hasChildren ? '>\n        A eighth item (clickable + active)\n    </AccordionItem>'           : ' />'}
-    <AccordionItem actionCtrl={true} enabled={false}${              hasChildren ? '>\n        A nineth item (clickable + disabled)\n    </AccordionItem>'         : ' />'}
-    <AccordionItem actionCtrl={true} active={true} enabled={false}${hasChildren ? '>\n        A tenth item (clickable + active + disabled)\n    </AccordionItem>' : ' />'}
+    <AccordionItem label='A first item (inherit theme)'${                                                                hasChildren ? '>\n        <p>...</p>\n    </AccordionItem>'                  : ' />'}
+    <AccordionItem label='A second item (inherit theme)'${                                                               hasChildren ? '>\n        <p>...</p>\n    </AccordionItem>'                 : ' />'}
+    <AccordionItem label='A third item (danger theme)' theme='danger'${                                                  hasChildren ? '>\n        <p>...</p>\n    </AccordionItem>'                   : ' />'}
+    <AccordionItem label='A fourth item (success theme)' theme='success'${                                               hasChildren ? '>\n        <p>...</p>\n    </AccordionItem>'                 : ' />'}
+    <AccordionItem label='A fifth item (active)' active={true}${                                                         hasChildren ? '>\n        <p>...</p>\n    </AccordionItem>'                         : ' />'}
+    <AccordionItem label='A sixth item (disabled)' enabled={false}${                                                     hasChildren ? '>\n        <p>...</p>\n    </AccordionItem>'                       : ' />'}
+    <AccordionItem label='A seventh item (active + disabled)' active={true} enabled={false}${                            hasChildren ? '>\n        <p>...</p>\n    </AccordionItem>'            : ' />'}
+    <AccordionItem label='A eighth item (clickable + active)' actionCtrl={true} active={true}${                          hasChildren ? '>\n        <p>...</p>\n    </AccordionItem>'           : ' />'}
+    <AccordionItem label='A nineth item (clickable + disabled)' actionCtrl={true} enabled={false}${                      hasChildren ? '>\n        <p>...</p>\n    </AccordionItem>'         : ' />'}
+    <AccordionItem label='A tenth item (clickable + active + disabled)' actionCtrl={true} active={true} enabled={false}${hasChildren ? '>\n        <p>...</p>\n    </AccordionItem>' : ' />'}
 </Accordion>
                 `}</TypeScriptCode>
             </div>

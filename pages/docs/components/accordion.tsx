@@ -1,19 +1,18 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { useFlipFlop } from '../../../components/hooks'
 
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
 import { SectionInheritedProps, LinkAccordionPage, LinkListPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentNestedComponent, CurrentBaseComponents, LinkAccordionItemPage, SectionVariants, SectionStates, LinkAccordionSeparatorItemPage, LinkUsesIndicatorVariantsPage, SectionPreviewProperty, ParagraphLorem } from '../../../components/common'
+import { ListItem } from '@nodestrap/list'
 import { Accordion as AccordionOri, AccordionProps, AccordionItem, AccordionSeparatorItem, OrientationName } from '@nodestrap/accordion'
 import { TypeScriptCode } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
 import { Tips } from '../../../components/Info'
-import Element from '@nodestrap/element'
 import {
     SectionPropertyTheme,
     SectionPropertySize,
@@ -26,8 +25,6 @@ import {
 } from '../../../components/common@Basic'
 import {
     SectionPropertyActive,
-    SectionPropertyActiveNoOutlined,
-    SectionPropertyActiveNoMild,
     SectionPropertyEnabled,
 } from '../../../components/common@Indicator'
 import {
@@ -39,12 +36,8 @@ import {
     SectionPropertyJoinedStyle,
     SectionPropertyContentStyle,
     SectionPropertyBtnStyle,
-    SectionPropertyTabStyle,
     SectionPropertyBreadcrumbStyle,
-    SectionPropertyBulletStyle,
     SectionPropertyNumberedStyle,
-    ContentMakeItemsClickable,
-    SectionPropertyActionCtrl,
 } from '../../../components/common@List'
 
 import loadable from '@loadable/component'
@@ -63,116 +56,36 @@ const Accordion = (props: AccordionProps) => <AccordionOri
             <AccordionItem key={0} label='A first item'>
                 <p>The detail of first item.</p>
                 <ParagraphLorem />
+                <ParagraphLorem />
             </AccordionItem>,
             <AccordionItem key={1} label='A second item'>
                 <p>The detail of second item.</p>
+                <ParagraphLorem />
                 <ParagraphLorem />
             </AccordionItem>,
             <AccordionItem key={2} label='A third item' theme='success'>
                 <p>The detail of third item.</p>
                 <ParagraphLorem />
+                <ParagraphLorem />
             </AccordionItem>,
             <AccordionItem key={3} label='A fourth item' defaultActive={true}>
                 <p>The detail of fourth item.</p>
+                <ParagraphLorem />
                 <ParagraphLorem />
             </AccordionItem>,
             <AccordionItem key={4} label='A fifth item' theme='danger'>
                 <p>The detail of fifth item.</p>
                 <ParagraphLorem />
+                <ParagraphLorem />
             </AccordionItem>,
         ]
     }
 </AccordionOri>
-
-const FunctionalTabAccordion = () => {
-    const [activeTabIndex, setActiveTabIndex] = useState(3);
-    
-    
-    
-    return (
-        <Accordion listStyle='tab' actionCtrl={true} orientation='inline'>
-            <AccordionItem active={activeTabIndex === 0} onClick={() => setActiveTabIndex(0)}>
-                A first item
-            </AccordionItem>
-            <AccordionItem active={activeTabIndex === 1} onClick={() => setActiveTabIndex(1)}>
-                A second item
-            </AccordionItem>
-            <AccordionItem active={activeTabIndex === 2} onClick={() => setActiveTabIndex(2)} theme='success'>
-                A third item
-            </AccordionItem>
-            <AccordionItem active={activeTabIndex === 3} onClick={() => setActiveTabIndex(3)}>
-                A fourth item
-            </AccordionItem>
-            <AccordionItem active={activeTabIndex === 4} onClick={() => setActiveTabIndex(4)} theme='danger'>
-                A fifth item
-            </AccordionItem>
-        </Accordion>
-    );
-};
-const AccordionWithActiveOutlined = () => {
-    const [accordionRef, isActive] = useFlipFlop({ defaultState: true });
-    
-    
-    
-    const activeLabel = <Element tag={isActive ? 'span' : 'del'}>active</Element>
-    return (
-        <Accordion elmRef={accordionRef} outlined={true}>
-            <AccordionItem>
-                A first item (not clickable)
-            </AccordionItem>
-            <AccordionItem active={isActive}>
-                A second item (not clickable + { activeLabel })
-            </AccordionItem>
-            <AccordionItem active={isActive} actionCtrl={true} onClick={() => alert('hello world')}>
-                A third item (clickable + { activeLabel })
-            </AccordionItem>
-            <AccordionItem active={isActive} actionCtrl={true} href='https://www.google.com'>
-                A fourth item (clickable + { activeLabel })
-            </AccordionItem>
-            <AccordionItem active={isActive} enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
-                A fifth item item (clickable + { activeLabel } + disabled)
-            </AccordionItem>
-            <AccordionItem active={isActive} enabled={false} theme='danger' actionCtrl={true} href='https://www.google.com'>
-                A seventh item item (clickable + { activeLabel } + disabled)
-                <p>
-                    <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-                </p>
-            </AccordionItem>
-        </Accordion>
-    );
-};
-const AccordionWithActiveMild     = () => {
-    const [accordionRef, isActive] = useFlipFlop({ defaultState: true });
-    
-    
-    
-    const activeLabel = <Element tag={isActive ? 'span' : 'del'}>active</Element>
-    return (
-        <Accordion elmRef={accordionRef} mild={true}>
-            <AccordionItem>
-                A first item (not clickable)
-            </AccordionItem>
-            <AccordionItem active={isActive}>
-                A second item (not clickable + { activeLabel })
-            </AccordionItem>
-            <AccordionItem active={isActive} actionCtrl={true} onClick={() => alert('hello world')}>
-                A third item (clickable + { activeLabel })
-            </AccordionItem>
-            <AccordionItem active={isActive} actionCtrl={true} href='https://www.google.com'>
-                A fourth item (clickable + { activeLabel })
-            </AccordionItem>
-            <AccordionItem active={isActive} enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
-                A fifth item item (clickable + { activeLabel } + disabled)
-            </AccordionItem>
-            <AccordionItem active={isActive} enabled={false} theme='danger' actionCtrl={true} href='https://www.google.com'>
-                A seventh item item (clickable + { activeLabel } + disabled)
-                <p>
-                    <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-                </p>
-            </AccordionItem>
-        </Accordion>
-    );
-};
+const DummyContents = () => <>
+    <ParagraphLorem />
+    <ParagraphLorem />
+    <ParagraphLorem />
+</>
 
 
 
@@ -203,70 +116,90 @@ const Page: NextPage = () => {
                 <SectionPropertyTheme>
                     <Preview>
                         <Accordion theme='primary'>
-                            <AccordionItem>
-                                An inherit theme
+                            <AccordionItem label='An inherit theme' >
+                                <DummyContents />
                             </AccordionItem>
-                            <AccordionItem>
-                                An inherit theme
+                            <AccordionItem label='An inherit theme' >
+                                <DummyContents />
                             </AccordionItem>
-                            <AccordionItem theme='primary'>
-                                A primary theme
+                            <AccordionItem theme='primary'   label='A primary theme'>
+                                <DummyContents />
                             </AccordionItem>
-                            <AccordionItem theme='secondary'>
-                                A secondary theme
+                            <AccordionItem theme='secondary' label='A secondary theme'>
+                                <DummyContents />
                             </AccordionItem>
-                            <AccordionItem theme='success'>
-                                A success theme
+                            <AccordionItem theme='success'   label='A success theme'>
+                                <DummyContents />
                             </AccordionItem>
-                            <AccordionItem theme='info'>
-                                A info theme
+                            <AccordionItem theme='info'      label='A info theme'>
+                                <DummyContents />
                             </AccordionItem>
-                            <AccordionItem theme='warning'>
-                                A warning theme
+                            <AccordionItem theme='warning'   label='A warning theme'>
+                                <DummyContents />
                             </AccordionItem>
-                            <AccordionItem theme='danger'>
-                                A danger theme
+                            <AccordionItem theme='danger'    label='A danger theme'>
+                                <DummyContents />
                             </AccordionItem>
-                            <AccordionItem theme='light'>
-                                A light theme
+                            <AccordionItem theme='light'     label='A light theme'>
+                                <DummyContents />
                             </AccordionItem>
-                            <AccordionItem theme='dark'>
-                                A dark theme
+                            <AccordionItem theme='dark'      label='A dark theme'>
+                                <DummyContents />
                             </AccordionItem>
                         </Accordion>
                     </Preview>
                     <p></p>
                     <TypeScriptCode>{`
 <Accordion theme='primary'>
-    <AccordionItem>
-        An inherit theme
+    <AccordionItem label='An inherit theme' >
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem>
-        An inherit theme
+    <AccordionItem label='An inherit theme' >
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem theme='primary'>
-        A primary theme
+    <AccordionItem theme='primary'   label='A primary theme'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem theme='secondary'>
-        A secondary theme
+    <AccordionItem theme='secondary' label='A secondary theme'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem theme='success'>
-        A success theme
+    <AccordionItem theme='success'   label='A success theme'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem theme='info'>
-        A info theme
+    <AccordionItem theme='info'      label='A info theme'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem theme='warning'>
-        A warning theme
+    <AccordionItem theme='warning'   label='A warning theme'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem theme='danger'>
-        A danger theme
+    <AccordionItem theme='danger'    label='A danger theme'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem theme='light'>
-        A light theme
+    <AccordionItem theme='light'     label='A light theme'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem theme='dark'>
-        A dark theme
+    <AccordionItem theme='dark'      label='A dark theme'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
 </Accordion>
                     `}</TypeScriptCode>
@@ -274,28 +207,34 @@ const Page: NextPage = () => {
                 <SectionPropertySize>
                     <Preview>
                         <Accordion theme='primary'>
-                            <AccordionItem size='sm'>
-                                A smaller size
+                            <AccordionItem size='sm'        label='A smaller size'>
+                                <DummyContents />
                             </AccordionItem>
-                            <AccordionItem size={undefined}>
-                                A default size
+                            <AccordionItem size={undefined} label='A default size'>
+                                <DummyContents />
                             </AccordionItem>
-                            <AccordionItem size='lg'>
-                                A larger size
+                            <AccordionItem size='lg'        label='A larger size'>
+                                <DummyContents />
                             </AccordionItem>
                         </Accordion>
                     </Preview>
                     <p></p>
                     <TypeScriptCode>{`
 <Accordion theme='primary'>
-    <AccordionItem size='sm'>
-        A smaller size
+    <AccordionItem size='sm'        label='A smaller size'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem size={undefined}>
-        A default size
+    <AccordionItem size={undefined} label='A default size'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem size='lg'>
-        A larger size
+    <AccordionItem size='lg'        label='A larger size'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
 </Accordion>
                     `}</TypeScriptCode>
@@ -303,44 +242,58 @@ const Page: NextPage = () => {
                 <SectionPropertyNude>
                     <TransparentPreview>
                         <Accordion theme='primary'>
-                            <AccordionItem>
-                                A first item
+                            <AccordionItem label='A first item'>
+                                <DummyContents />
                             </AccordionItem>
-                            <AccordionItem>
-                                A second item
+                            <AccordionItem label='A second item'>
+                                <DummyContents />
                             </AccordionItem>
-                            <AccordionItem nude={true}>
-                                A third item (nude)
+                            <AccordionItem nude={true} label='A third item (nude)'>
+                                <DummyContents />
                             </AccordionItem>
-                            <AccordionItem nude={true}>
-                                <div style={{ background: 'pink', padding: '1em', display: 'flex', justifyContent: 'center' }}>
+                            <AccordionItem nude={true} label={<>
+                                <div style={{ background: 'pink', color: 'black', padding: '1em', display: 'flex', justifyContent: 'center' }}>
                                     a custom component
                                 </div>
+                            </>}>
+                                <DummyContents />
                             </AccordionItem>
-                            <AccordionItem nude={true}>
-                                A fifth item (nude)
+                            <AccordionItem nude={true} label='A fifth item (nude)'>
+                                <DummyContents />
                             </AccordionItem>
                         </Accordion>
                     </TransparentPreview>
                     <p></p>
                     <TypeScriptCode>{`
 <Accordion theme='primary'>
-    <AccordionItem>
-        A first item
+    <AccordionItem label='A first item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem>
-        A second item
+    <AccordionItem label='A second item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem nude={true}>
-        A third item (nude)
+    <AccordionItem nude={true} label='A third item (nude)'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem nude={true}>
-        <div style={{ background: 'pink', padding: '1em', display: 'flex', justifyContent: 'center' }}>
+    <AccordionItem nude={true} label={<>
+        <div style={{ background: 'pink', color: 'black', padding: '1em', display: 'flex', justifyContent: 'center' }}>
             a custom component
         </div>
+    </>}>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem nude={true}>
-        A fifth item (nude)
+    <AccordionItem nude={true} label='A fifth item (nude)'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
 </Accordion>
                     `}</TypeScriptCode>
@@ -348,50 +301,66 @@ const Page: NextPage = () => {
                 <SectionPropertyGradient>
                     <Preview>
                         <Accordion theme='primary'>
-                            <AccordionItem>
-                                A first item
+                            <AccordionItem label='A first item'>
+                                <DummyContents />
                             </AccordionItem>
-                            <AccordionItem>
-                                A second item
+                            <AccordionItem label='A second item'>
+                                <DummyContents />
                             </AccordionItem>
-                            <AccordionItem gradient={true}>
-                                A third item (gradient)
+                            <AccordionItem gradient={true} label='A third item (gradient)'>
+                                <DummyContents />
                             </AccordionItem>
-                            <AccordionItem gradient={true}>
-                                A fourth item (gradient)
+                            <AccordionItem gradient={true} label='A fourth item (gradient)'>
+                                <DummyContents />
                             </AccordionItem>
                         </Accordion>
                     </Preview>
                     <p></p>
                     <TypeScriptCode>{`
 <Accordion theme='primary'>
-    <AccordionItem>
-        A first item
+    <AccordionItem label='A first item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem>
-        A second item
+    <AccordionItem label='A second item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem gradient={true}>
-        A third item (gradient)
+    <AccordionItem gradient={true} label='A third item (gradient)'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem gradient={true}>
-        A fourth item (gradient)
+    <AccordionItem gradient={true} label='A fourth item (gradient)'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
 </Accordion>
 
 /* enabling gradient at <Accordion> level: */
 <Accordion gradient={true} theme='primary'>
-    <AccordionItem>
-        A first item (gradient)
+    <AccordionItem label='A first item (gradient)'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem>
-        A second item (gradient)
+    <AccordionItem label='A second item (gradient)'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem>
-        A third item (gradient)
+    <AccordionItem label='A third item (gradient)'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem>
-        A fourth item (gradient)
+    <AccordionItem label='A fourth item (gradient)'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
 </Accordion>
                     `}</TypeScriptCode>
@@ -399,59 +368,79 @@ const Page: NextPage = () => {
                 <SectionPropertyOutlined>
                     <TransparentPreview>
                         <Accordion theme='primary'>
-                            <AccordionItem>
-                                A first item
+                            <AccordionItem label='A first item'>
+                                <DummyContents />
                             </AccordionItem>
-                            <AccordionItem>
-                                A second item
+                            <AccordionItem label='A second item'>
+                                <DummyContents />
                             </AccordionItem>
-                            <AccordionItem outlined={true}>
-                                A third item (outlined)
+                            <AccordionItem outlined={true}  label='A third item (outlined)'>
+                                <DummyContents />
                             </AccordionItem>
-                            <AccordionItem outlined={true}>
-                                A fourth item (outlined)
+                            <AccordionItem outlined={true}  label='A fourth item (outlined)'>
+                                <DummyContents />
                             </AccordionItem>
-                            <AccordionItem outlined={false}>
-                                A fifth item
+                            <AccordionItem outlined={false} label='A fifth item'>
+                                <DummyContents />
                             </AccordionItem>
                         </Accordion>
                     </TransparentPreview>
                     <p></p>
                     <TypeScriptCode>{`
 <Accordion theme='primary'>
-    <AccordionItem>
-        A first item
+    <AccordionItem label='A first item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem>
-        A second item
+    <AccordionItem label='A second item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem outlined={true}>
-        A third item (outlined)
+    <AccordionItem outlined={true}  label='A third item (outlined)'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem outlined={true}>
-        A fourth item (outlined)
+    <AccordionItem outlined={true}  label='A fourth item (outlined)'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem outlined={false}>
-        A fifth item
+    <AccordionItem outlined={false} label='A fifth item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
 </Accordion>
 
 /* enabling outlined at <Accordion> level: */
 <Accordion outlined={true} theme='primary'>
-    <AccordionItem>
-        A first item (outlined)
+    <AccordionItem label='A first item (outlined)'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem>
-        A second item (outlined)
+    <AccordionItem label='A second item (outlined)'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem>
-        A third item (outlined)
+    <AccordionItem label='A third item (outlined)'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem>
-        A fourth item (outlined)
+    <AccordionItem label='A fourth item (outlined)'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem>
-        A fifth item (outlined)
+    <AccordionItem label='A fifth item (outlined)'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
 </Accordion>
                     `}</TypeScriptCode>
@@ -459,59 +448,79 @@ const Page: NextPage = () => {
                 <SectionPropertyMild>
                     <Preview>
                         <Accordion mild={false} theme='primary'>
-                            <AccordionItem>
-                                A first item
+                            <AccordionItem label='A first item'>
+                                <DummyContents />
                             </AccordionItem>
-                            <AccordionItem>
-                                A second item
+                            <AccordionItem label='A second item'>
+                                <DummyContents />
                             </AccordionItem>
-                            <AccordionItem mild={true}>
-                                A third item (mild)
+                            <AccordionItem mild={true}  label='A third item (mild)'>
+                                <DummyContents />
                             </AccordionItem>
-                            <AccordionItem mild={true}>
-                                A fourth item (mild)
+                            <AccordionItem mild={true}  label='A fourth item (mild)'>
+                                <DummyContents />
                             </AccordionItem>
-                            <AccordionItem mild={false}>
-                                A fifth item
+                            <AccordionItem mild={false} label='A fifth item'>
+                                <DummyContents />
                             </AccordionItem>
                         </Accordion>
                     </Preview>
                     <p></p>
                     <TypeScriptCode>{`
 <Accordion mild={false} theme='primary'>
-    <AccordionItem>
-        A first item
+    <AccordionItem label='A first item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem>
-        A second item
+    <AccordionItem label='A second item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem mild={true}>
-        A third item (mild)
+    <AccordionItem mild={true}  label='A third item (mild)'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem mild={true}>
-        A fourth item (mild)
+    <AccordionItem mild={true}  label='A fourth item (mild)'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem mild={false}>
-        A fifth item
+    <AccordionItem mild={false} label='A fifth item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
 </Accordion>
 
 /* disabling mild at <Accordion> level: */
 <Accordion mild={false} theme='primary'>
-    <AccordionItem>
-        A first item
+    <AccordionItem label='A first item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem>
-        A second item
+    <AccordionItem label='A second item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem>
-        A third item
+    <AccordionItem label='A third item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem>
-        A fourth item
+    <AccordionItem label='A fourth item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem>
-        A fifth item
+    <AccordionItem label='A fifth item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
 </Accordion>
                     `}</TypeScriptCode>
@@ -520,40 +529,50 @@ const Page: NextPage = () => {
                     <SectionPropertyOrientationBlock>
                         <Preview>
                             <Accordion orientation='block' theme='primary'>
-                                <AccordionItem>
-                                    A first item
+                                <AccordionItem label='A first item'>
+                                    <DummyContents />
                                 </AccordionItem>
-                                <AccordionItem>
-                                    A second item
+                                <AccordionItem label='A second item'>
+                                    <DummyContents />
                                 </AccordionItem>
-                                <AccordionItem>
-                                    A third item
+                                <AccordionItem label='A third item'>
+                                    <DummyContents />
                                 </AccordionItem>
-                                <AccordionItem>
-                                    A fourth item
+                                <AccordionItem label='A fourth item'>
+                                    <DummyContents />
                                 </AccordionItem>
-                                <AccordionItem>
-                                    A fifth item
+                                <AccordionItem label='A fifth item'>
+                                    <DummyContents />
                                 </AccordionItem>
                             </Accordion>
                         </Preview>
                         <p></p>
                         <TypeScriptCode>{`
 <Accordion orientation='block' theme='primary'>
-    <AccordionItem>
-        A first item
+    <AccordionItem label='A first item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem>
-        A second item
+    <AccordionItem label='A second item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem>
-        A third item
+    <AccordionItem label='A third item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem>
-        A fourth item
+    <AccordionItem label='A fourth item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem>
-        A fifth item
+    <AccordionItem label='A fifth item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
 </Accordion>
                         `}</TypeScriptCode>
@@ -561,40 +580,50 @@ const Page: NextPage = () => {
                     <SectionPropertyOrientationInline>
                         <Preview blockDisplay={true}>
                             <Accordion orientation='inline' theme='primary'>
-                                <AccordionItem>
-                                    A first item
+                                <AccordionItem label='A first item'>
+                                    <DummyContents />
                                 </AccordionItem>
-                                <AccordionItem>
-                                    A second item
+                                <AccordionItem label='A second item'>
+                                    <DummyContents />
                                 </AccordionItem>
-                                <AccordionItem>
-                                    A third item
+                                <AccordionItem label='A third item'>
+                                    <DummyContents />
                                 </AccordionItem>
-                                <AccordionItem>
-                                    A fourth item
+                                <AccordionItem label='A fourth item'>
+                                    <DummyContents />
                                 </AccordionItem>
-                                <AccordionItem>
-                                    A fifth item
+                                <AccordionItem label='A fifth item'>
+                                    <DummyContents />
                                 </AccordionItem>
                             </Accordion>
                         </Preview>
                         <p></p>
                         <TypeScriptCode>{`
 <Accordion orientation='inline' theme='primary'>
-    <AccordionItem>
-        A first item
+    <AccordionItem label='A first item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem>
-        A second item
+    <AccordionItem label='A second item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem>
-        A third item
+    <AccordionItem label='A third item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem>
-        A fourth item
+    <AccordionItem label='A fourth item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem>
-        A fifth item
+    <AccordionItem label='A fifth item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
 </Accordion>
                         `}</TypeScriptCode>
@@ -621,17 +650,17 @@ const Page: NextPage = () => {
                                     maxWidth   : '100%',
                                 }}>
                                     <Accordion orientation={currentFallback} theme='primary'>
-                                        <AccordionItem>
-                                            A_first_item
+                                        <AccordionItem label='A_first_item'>
+                                            <DummyContents />
                                         </AccordionItem>
-                                        <AccordionItem>
-                                            A_second_item
+                                        <AccordionItem label='A_second_item'>
+                                            <DummyContents />
                                         </AccordionItem>
-                                        <AccordionItem>
-                                            A_third_item
+                                        <AccordionItem label='A_third_item'>
+                                            <DummyContents />
                                         </AccordionItem>
-                                        <AccordionItem>
-                                            A_fourth_item
+                                        <AccordionItem label='A_fourth_item'>
+                                            <DummyContents />
                                         </AccordionItem>
                                     </Accordion>
                                 </div>
@@ -654,17 +683,25 @@ const Page: NextPage = () => {
         maxWidth   : '100%',
     }}>
         <Accordion orientation={currentFallback} theme='primary'>
-            <AccordionItem>
-                A_first_item
+            <AccordionItem label='A_first_item'>
+                <p>...</p>
+                <p>...</p>
+                <p>...</p>
             </AccordionItem>
-            <AccordionItem>
-                A_second_item
+            <AccordionItem label='A_second_item'>
+                <p>...</p>
+                <p>...</p>
+                <p>...</p>
             </AccordionItem>
-            <AccordionItem>
-                A_third_item
+            <AccordionItem label='A_third_item'>
+                <p>...</p>
+                <p>...</p>
+                <p>...</p>
             </AccordionItem>
-            <AccordionItem>
-                A_fourth_item
+            <AccordionItem label='A_fourth_item'>
+                <p>...</p>
+                <p>...</p>
+                <p>...</p>
             </AccordionItem>
         </Accordion>
     </div>
@@ -680,20 +717,30 @@ const Page: NextPage = () => {
                         <p></p>
                         <TypeScriptCode>{`
 <Accordion listStyle='flat' theme='primary'>
-    <AccordionItem>
-        A first item
+    <AccordionItem label='A first item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem>
-        A second item
+    <AccordionItem label='A second item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem theme='success'>
-        A third item
+    <AccordionItem label='A third item' theme='success'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem active={true}>
-        A fourth item
+    <AccordionItem label='A fourth item' defaultActive={true}>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem theme='danger'>
-        A fifth item
+    <AccordionItem label='A fifth item' theme='danger'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
 </Accordion>
                         `}</TypeScriptCode>
@@ -705,20 +752,30 @@ const Page: NextPage = () => {
                         <p></p>
                         <TypeScriptCode>{`
 <Accordion listStyle='flush' theme='primary'>
-    <AccordionItem>
-        A first item
+    <AccordionItem label='A first item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem>
-        A second item
+    <AccordionItem label='A second item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem theme='success'>
-        A third item
+    <AccordionItem label='A third item' theme='success'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem active={true}>
-        A fourth item
+    <AccordionItem label='A fourth item' defaultActive={true}>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem theme='danger'>
-        A fifth item
+    <AccordionItem label='A fifth item' theme='danger'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
 </Accordion>
                         `}</TypeScriptCode>
@@ -730,20 +787,30 @@ const Page: NextPage = () => {
                         <p></p>
                         <TypeScriptCode>{`
 <Accordion listStyle='joined' theme='primary'>
-    <AccordionItem>
-        A first item
+    <AccordionItem label='A first item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem>
-        A second item
+    <AccordionItem label='A second item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem theme='success'>
-        A third item
+    <AccordionItem label='A third item' theme='success'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem active={true}>
-        A fourth item
+    <AccordionItem label='A fourth item' defaultActive={true}>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem theme='danger'>
-        A fifth item
+    <AccordionItem label='A fifth item' theme='danger'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
 </Accordion>
                         `}</TypeScriptCode>
@@ -756,20 +823,30 @@ const Page: NextPage = () => {
                         <p></p>
                         <TypeScriptCode>{`
 <Accordion listStyle='content' theme='primary'>
-    <AccordionItem>
-        A first item
+    <AccordionItem label='A first item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem>
-        A second item
+    <AccordionItem label='A second item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem theme='success'>
-        A third item
+    <AccordionItem label='A third item' theme='success'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem active={true}>
-        A fourth item
+    <AccordionItem label='A fourth item' defaultActive={true}>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem theme='danger'>
-        A fifth item
+    <AccordionItem label='A fifth item' theme='danger'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
 </Accordion>
                         `}</TypeScriptCode>
@@ -782,125 +859,34 @@ const Page: NextPage = () => {
                         <p></p>
                         <TypeScriptCode>{`
 <Accordion listStyle='btn' theme='primary'>
-    <AccordionItem>
-        A first item
+    <AccordionItem label='A first item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem>
-        A second item
+    <AccordionItem label='A second item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem theme='success'>
-        A third item
+    <AccordionItem label='A third item' theme='success'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem active={true}>
-        A fourth item
+    <AccordionItem label='A fourth item' defaultActive={true}>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem theme='danger'>
-        A fifth item
+    <AccordionItem label='A fifth item' theme='danger'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
 </Accordion>
                         `}</TypeScriptCode>
-                        <SectionPreviewProperty titleTag='h5' property={`actionCtrl={true}`} properties='Make the Buttons Functional' description={
-                            <ContentMakeItemsClickable />
-                        }>
-                            <Preview>
-                                <Accordion listStyle='btn' actionCtrl={true} theme='primary'>
-                                    <AccordionItem>
-                                        A first item
-                                    </AccordionItem>
-                                    <AccordionItem actionCtrl={false}>
-                                        A second item (not clickable)
-                                    </AccordionItem>
-                                    <AccordionItem theme='success'>
-                                        A third item
-                                    </AccordionItem>
-                                    <AccordionItem active={true} href='https://www.google.com'>
-                                        A fourth item
-                                    </AccordionItem>
-                                    <AccordionItem theme='danger' onClick={() => alert('hello world')}>
-                                        A fifth item
-                                    </AccordionItem>
-                                </Accordion>
-                            </Preview>
-                            <p></p>
-                            <TypeScriptCode>{`
-<Accordion listStyle='btn' actionCtrl={true} theme='primary'>
-    <AccordionItem>
-        A first item
-    </AccordionItem>
-    <AccordionItem actionCtrl={false}>
-        A second item (not clickable)
-    </AccordionItem>
-    <AccordionItem theme='success'>
-        A third item
-    </AccordionItem>
-    <AccordionItem active={true} href='https://www.google.com'>
-        A fourth item
-    </AccordionItem>
-    <AccordionItem theme='danger' onClick={() => alert('hello world')}>
-        A fifth item
-    </AccordionItem>
-</Accordion>
-                            `}</TypeScriptCode>
-                        </SectionPreviewProperty>
                     </SectionPropertyBtnStyle>
-                    <SectionPropertyTabStyle>
-                        <Preview blockDisplay={true}>
-                            <Accordion listStyle='tab' orientation='inline' />
-                        </Preview>
-                        <p></p>
-                        <TypeScriptCode>{`
-<Accordion listStyle='tab' orientation='inline' theme='primary'>
-    <AccordionItem>
-        A first item
-    </AccordionItem>
-    <AccordionItem>
-        A second item
-    </AccordionItem>
-    <AccordionItem theme='success'>
-        A third item
-    </AccordionItem>
-    <AccordionItem active={true}>
-        A fourth item
-    </AccordionItem>
-    <AccordionItem theme='danger'>
-        A fifth item
-    </AccordionItem>
-</Accordion>
-                        `}</TypeScriptCode>
-                        <SectionPreviewProperty titleTag='h5' property={`actionCtrl={true}`} properties='Make the Tabs Functional' description={
-                            <ContentMakeItemsClickable />
-                        }>
-                            <Preview blockDisplay={true}>
-                                <FunctionalTabAccordion />
-                            </Preview>
-                            <p></p>
-                            <TypeScriptCode>{`
-const TabControl = () => {
-    const [activeTabIndex, setActiveTabIndex] = useState(3);
-    
-    return (
-        <Accordion listStyle='tab' actionCtrl={true} orientation='inline' theme='primary'>
-            <AccordionItem active={activeTabIndex === 0} onClick={() => setActiveTabIndex(0)}>
-                A first item
-            </AccordionItem>
-            <AccordionItem active={activeTabIndex === 1} onClick={() => setActiveTabIndex(1)}>
-                A second item
-            </AccordionItem>
-            <AccordionItem active={activeTabIndex === 2} onClick={() => setActiveTabIndex(2)} theme='success'>
-                A third item
-            </AccordionItem>
-            <AccordionItem active={activeTabIndex === 3} onClick={() => setActiveTabIndex(3)}>
-                A fourth item
-            </AccordionItem>
-            <AccordionItem active={activeTabIndex === 4} onClick={() => setActiveTabIndex(4)} theme='danger'>
-                A fifth item
-            </AccordionItem>
-        </Accordion>
-    );
-};
-                            `}</TypeScriptCode>
-                        </SectionPreviewProperty>
-                    </SectionPropertyTabStyle>
                     <SectionPropertyBreadcrumbStyle>
                         <TransparentPreview blockDisplay={true}>
                             <Accordion listStyle='breadcrumb' orientation='inline' />
@@ -908,45 +894,34 @@ const TabControl = () => {
                         <p></p>
                         <TypeScriptCode>{`
 <Accordion listStyle='breadcrumb' orientation='inline' theme='primary'>
-    <AccordionItem>
-        A first item
+    <AccordionItem label='A first item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem>
-        A second item
+    <AccordionItem label='A second item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem theme='success'>
-        A third item
+    <AccordionItem label='A third item' theme='success'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem active={true}>
-        A fourth item
+    <AccordionItem label='A fourth item' defaultActive={true}>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem theme='danger'>
-        A fifth item
+    <AccordionItem label='A fifth item' theme='danger'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
 </Accordion>
                         `}</TypeScriptCode>
                     </SectionPropertyBreadcrumbStyle>
-                    <SectionPropertyBulletStyle>
-                        <Preview blockDisplay={true}>
-                            <Accordion listStyle='bullet' orientation='inline' theme='primary'>
-                                <AccordionItem />
-                                <AccordionItem />
-                                <AccordionItem theme='success' />
-                                <AccordionItem active={true} />
-                                <AccordionItem theme='danger' />
-                            </Accordion>
-                        </Preview>
-                        <p></p>
-                        <TypeScriptCode>{`
-<Accordion listStyle='bullet' orientation='inline' theme='primary'>
-    <AccordionItem />
-    <AccordionItem />
-    <AccordionItem theme='success' />
-    <AccordionItem active={true} />
-    <AccordionItem theme='danger' />
-</Accordion>
-                        `}</TypeScriptCode>
-                    </SectionPropertyBulletStyle>
                     <SectionPropertyNumberedStyle>
                         <Preview>
                             <Accordion listStyle='numbered' />
@@ -954,20 +929,30 @@ const TabControl = () => {
                         <p></p>
                         <TypeScriptCode>{`
 <Accordion listStyle='numbered' theme='primary'>
-    <AccordionItem>
-        A first item
+    <AccordionItem label='A first item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem>
-        A second item
+    <AccordionItem label='A second item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem theme='success'>
-        A third item
+    <AccordionItem label='A third item' theme='success'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem active={true}>
-        A fourth item
+    <AccordionItem label='A fourth item' defaultActive={true}>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem theme='danger'>
-        A fifth item
+    <AccordionItem label='A fifth item' theme='danger'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
 </Accordion>
                         `}</TypeScriptCode>
@@ -978,42 +963,50 @@ const TabControl = () => {
                         }>
                             <Preview>
                                 <Accordion listStyle={['numbered', 'joined']} theme='primary'>
-                                    <AccordionItem>
-                                        A first item
+                                    <AccordionItem label='A first item'>
+                                        <DummyContents />
                                     </AccordionItem>
-                                    <AccordionItem>
-                                        A second item
+                                    <AccordionItem label='A second item'>
+                                        <DummyContents />
                                     </AccordionItem>
                                     <AccordionSeparatorItem />
-                                    <AccordionItem theme='success'>
-                                        A third item
+                                    <AccordionItem theme='success' label='A third item'>
+                                        <DummyContents />
                                     </AccordionItem>
-                                    <AccordionItem theme='warning' classes={['void']}>
+                                    <ListItem theme='warning' classes={['void']}>
                                         An advertisement
-                                    </AccordionItem>
-                                    <AccordionItem theme='danger'>
-                                        A fourth item
+                                    </ListItem>
+                                    <AccordionItem theme='danger' label='A fourth item'>
+                                        <DummyContents />
                                     </AccordionItem>
                                 </Accordion>
                             </Preview>
                             <p></p>
                             <TypeScriptCode>{`
 <Accordion listStyle={['numbered', 'joined']} theme='primary'>
-    <AccordionItem>
-        A first item
+    <AccordionItem label='A first item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem>
-        A second item
+    <AccordionItem label='A second item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
     <AccordionSeparatorItem />
-    <AccordionItem theme='success'>
-        A third item
+    <AccordionItem theme='success' label='A third item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem theme='warning' classes={['void']}>
+    <ListItem theme='warning' classes={['void']}>
         An advertisement
-    </AccordionItem>
-    <AccordionItem theme='danger'>
-        A fourth item
+    </ListItem>
+    <AccordionItem theme='danger' label='A fourth item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
 </Accordion>
                             `}</TypeScriptCode>
@@ -1022,298 +1015,124 @@ const TabControl = () => {
                 </SectionPropertyListStyle>
             </SectionVariants>
             <SectionStates>
-                <SectionPropertyActionCtrl>
-                    <Preview>
-                        <Accordion theme='primary'>
-                            <AccordionItem>
-                                A first item (not clickable)
-                            </AccordionItem>
-                            <AccordionItem>
-                                A second item (not clickable)
-                            </AccordionItem>
-                            <AccordionItem actionCtrl={true} onClick={() => alert('hello world')}>
-                                A third item (clickable)
-                            </AccordionItem>
-                            <AccordionItem actionCtrl={true} href='https://www.google.com'>
-                                A fourth item (clickable)
-                            </AccordionItem>
-                            <AccordionItem active={true} actionCtrl={true} onClick={() => alert('hello world')}>
-                                A fifth item item (clickable)
-                            </AccordionItem>
-                            <AccordionItem active={true} theme='danger' actionCtrl={true} href='https://www.google.com'>
-                                A seventh item item (clickable)
-                            </AccordionItem>
-                        </Accordion>
-                    </Preview>
-                    <p></p>
-                    <TypeScriptCode>{`
-<Accordion theme='primary'>
-    <AccordionItem>
-        A first item (not clickable)
-    </AccordionItem>
-    <AccordionItem>
-        A second item (not clickable)
-    </AccordionItem>
-    <AccordionItem actionCtrl={true} onClick={() => alert('hello world')}>
-        A third item (clickable)
-    </AccordionItem>
-    <AccordionItem actionCtrl={true} href='https://www.google.com'>
-        A fourth item (clickable)
-    </AccordionItem>
-    <AccordionItem active={true} actionCtrl={true} onClick={() => alert('hello world')}>
-        A fifth item item (clickable)
-    </AccordionItem>
-    <AccordionItem active={true} theme='danger' actionCtrl={true} href='https://www.google.com'>
-        A seventh item item (clickable)
-    </AccordionItem>
-</Accordion>
-
-/* alternate code but with the similar result: */
-<Accordion theme='primary' actionCtrl={true}>
-    <AccordionItem actionCtrl={false}>
-        A first item (not clickable)
-    </AccordionItem>
-    <AccordionItem actionCtrl={false}>
-        A second item (not clickable)
-    </AccordionItem>
-    <AccordionItem  onClick={() => alert('hello world')}>
-        A third item (clickable)
-    </AccordionItem>
-    <AccordionItem href='https://www.google.com'>
-        A fourth item (clickable)
-    </AccordionItem>
-    <AccordionItem active={true} onClick={() => alert('hello world')}>
-        A fifth item item (clickable)
-    </AccordionItem>
-    <AccordionItem active={true} theme='danger' href='https://www.google.com'>
-        A seventh item item (clickable)
-    </AccordionItem>
-</Accordion>
-                    `}</TypeScriptCode>
-                </SectionPropertyActionCtrl>
                 <SectionPropertyActive>
                     <Preview>
                         <Accordion theme='primary'>
-                            <AccordionItem>
-                                A first item (not clickable)
+                            <AccordionItem label='A first item'>
+                                <p>The detail of first item.</p>
+                                <ParagraphLorem />
+                                <ParagraphLorem />
                             </AccordionItem>
-                            <AccordionItem active={true}>
-                                A second item (not clickable + active)
+                            <AccordionItem label='A second item'>
+                                <p>The detail of second item.</p>
+                                <ParagraphLorem />
+                                <ParagraphLorem />
                             </AccordionItem>
-                            <AccordionItem active={true} actionCtrl={true} onClick={() => alert('hello world')}>
-                                A third item (clickable + active)
+                            <AccordionItem label='A third item (active)' active={true} theme='success'>
+                                <p>The detail of third item.</p>
+                                <ParagraphLorem />
+                                <ParagraphLorem />
                             </AccordionItem>
-                            <AccordionItem active={true} actionCtrl={true} href='https://www.google.com'>
-                                A fourth item (clickable + active)
+                            <AccordionItem label='A fourth item (active)' active={true}>
+                                <p>The detail of fourth item.</p>
+                                <ParagraphLorem />
+                                <ParagraphLorem />
                             </AccordionItem>
-                            <AccordionItem active={true} enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
-                                A fifth item item (clickable + active + disabled)
-                            </AccordionItem>
-                            <AccordionItem active={true} enabled={false} theme='danger' actionCtrl={true} href='https://www.google.com'>
-                                A seventh item item (clickable + active + disabled)
-                                <p>
-                                    <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-                                </p>
+                            <AccordionItem label='A fifth item (active + disabled)' active={true} enabled={false} theme='danger'>
+                                <p>The detail of fifth item.</p>
+                                <ParagraphLorem />
+                                <ParagraphLorem />
                             </AccordionItem>
                         </Accordion>
                     </Preview>
                     <p></p>
                     <TypeScriptCode>{`
 <Accordion theme='primary'>
-    <AccordionItem>
-        A first item (not clickable)
+    <AccordionItem label='A first item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem active={true}>
-        A second item (not clickable + active)
+    <AccordionItem label='A second item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem active={true} actionCtrl={true} onClick={() => alert('hello world')}>
-        A third item (clickable + active)
+    <AccordionItem label='A third item (active)' active={true} theme='success'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem active={true} actionCtrl={true} href='https://www.google.com'>
-        A fourth item (clickable + active)
+    <AccordionItem label='A fourth item (active)' active={true}>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem active={true} enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
-        A fifth item item (clickable + active + disabled)
-    </AccordionItem>
-    <AccordionItem active={true} enabled={false} theme='danger' actionCtrl={true} href='https://www.google.com'>
-        A seventh item item (clickable + active + disabled)
-        <p>
-            <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-        </p>
-    </AccordionItem>
-</Accordion>
-
-/* alternate code but with the similar result: */
-<Accordion active={true} theme='primary'>
-    <AccordionItem active={false} inheritActive={false}>
-        A first item (not clickable)
-    </AccordionItem>
-    <AccordionItem>
-        A second item (not clickable + active)
-    </AccordionItem>
-    <AccordionItem actionCtrl={true} onClick={() => alert('hello world')}>
-        A third item (clickable + active)
-    </AccordionItem>
-    <AccordionItem actionCtrl={true} href='https://www.google.com'>
-        A fourth item (clickable + active)
-    </AccordionItem>
-    <AccordionItem enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
-        A fifth item item (clickable + active + disabled)
-    </AccordionItem>
-    <AccordionItem enabled={false} theme='danger' actionCtrl={true} href='https://www.google.com'>
-        A seventh item item (clickable + active + disabled)
-        <p>
-            <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-        </p>
+    <AccordionItem label='A fifth item (active + disabled)' active={true} enabled={false} theme='danger'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
 </Accordion>
                     `}</TypeScriptCode>
-                    <SectionPropertyActiveNoOutlined>
-                        <TransparentPreview>
-                            <AccordionWithActiveOutlined />
-                        </TransparentPreview>
-                        <p></p>
-                        <TypeScriptCode>{`
-<Accordion outlined={true} theme='primary'>
-    <AccordionItem>
-        A first item (not clickable)
-    </AccordionItem>
-    <AccordionItem active={true}>
-        A second item (not clickable + active)
-    </AccordionItem>
-    <AccordionItem active={true} actionCtrl={true} onClick={() => alert('hello world')}>
-        A third item (clickable + active)
-    </AccordionItem>
-    <AccordionItem active={true} actionCtrl={true} href='https://www.google.com'>
-        A fourth item (clickable + active)
-    </AccordionItem>
-    <AccordionItem active={true} enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
-        A fifth item item (clickable + active + disabled)
-    </AccordionItem>
-    <AccordionItem active={true} enabled={false} theme='danger' actionCtrl={true} href='https://www.google.com'>
-        A seventh item item (clickable + active + disabled)
-        <p>
-            <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-        </p>
-    </AccordionItem>
-</Accordion>
-                        `}</TypeScriptCode>
-                    </SectionPropertyActiveNoOutlined>
-                    <SectionPropertyActiveNoMild>
-                        <Preview>
-                            <AccordionWithActiveMild />
-                        </Preview>
-                        <p></p>
-                        <TypeScriptCode>{`
-<Accordion mild={true} theme='primary'>
-    <AccordionItem>
-        A first item (not clickable)
-    </AccordionItem>
-    <AccordionItem active={true}>
-        A second item (not clickable + active)
-    </AccordionItem>
-    <AccordionItem active={true} actionCtrl={true} onClick={() => alert('hello world')}>
-        A third item (clickable + active)
-    </AccordionItem>
-    <AccordionItem active={true} actionCtrl={true} href='https://www.google.com'>
-        A fourth item (clickable + active)
-    </AccordionItem>
-    <AccordionItem active={true} enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
-        A fifth item item (clickable + active + disabled)
-    </AccordionItem>
-    <AccordionItem active={true} enabled={false} theme='danger' actionCtrl={true} href='https://www.google.com'>
-        A seventh item item (clickable + active + disabled)
-        <p>
-            <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-        </p>
-    </AccordionItem>
-</Accordion>
-                        `}</TypeScriptCode>
-                    </SectionPropertyActiveNoMild>
                 </SectionPropertyActive>
                 <SectionPropertyEnabled>
                     <Preview>
                         <Accordion theme='primary'>
-                            <AccordionItem>
-                                A first item (not clickable)
+                            <AccordionItem label='A first item'>
+                                <p>The detail of first item.</p>
+                                <ParagraphLorem />
+                                <ParagraphLorem />
                             </AccordionItem>
-                            <AccordionItem enabled={false}>
-                                A second item (not clickable + disabled)
+                            <AccordionItem label='A second item'>
+                                <p>The detail of second item.</p>
+                                <ParagraphLorem />
+                                <ParagraphLorem />
                             </AccordionItem>
-                            <AccordionItem enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
-                                A third item (clickable + disabled)
+                            <AccordionItem label='A third item (disabled)' enabled={false} theme='success'>
+                                <p>The detail of third item.</p>
+                                <ParagraphLorem />
+                                <ParagraphLorem />
                             </AccordionItem>
-                            <AccordionItem enabled={false} actionCtrl={true} href='https://www.google.com'>
-                                A fourth item (clickable + disabled)
-                                <p>
-                                    <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-                                </p>
+                            <AccordionItem label='A fourth item (disabled)' enabled={false}>
+                                <p>The detail of fourth item.</p>
+                                <ParagraphLorem />
+                                <ParagraphLorem />
                             </AccordionItem>
-                            <AccordionItem enabled={false} active={true} actionCtrl={true} onClick={() => alert('hello world')}>
-                                A fifth item item (clickable + disabled + active)
-                            </AccordionItem>
-                            <AccordionItem enabled={false} active={true} theme='danger' actionCtrl={true} href='https://www.google.com'>
-                                A seventh item item (clickable + disabled + active)
-                                <p>
-                                    <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-                                </p>
+                            <AccordionItem label='A fifth item (disabled + active)' enabled={false} active={true} theme='danger'>
+                                <p>The detail of fifth item.</p>
+                                <ParagraphLorem />
+                                <ParagraphLorem />
                             </AccordionItem>
                         </Accordion>
                     </Preview>
                     <p></p>
                     <TypeScriptCode>{`
 <Accordion theme='primary'>
-    <AccordionItem>
-        A first item (not clickable)
+    <AccordionItem label='A first item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem enabled={false}>
-        A second item (not clickable + disabled)
+    <AccordionItem label='A second item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem enabled={false} actionCtrl={true} onClick={() => alert('hello world')}>
-        A third item (clickable + disabled)
+    <AccordionItem label='A third item (disabled)' enabled={false} theme='success'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem enabled={false} actionCtrl={true} href='https://www.google.com'>
-        A fourth item (clickable + disabled)
-        <p>
-            <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-        </p>
+    <AccordionItem label='A fourth item (disabled)' enabled={false}>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
-    <AccordionItem enabled={false} active={true} actionCtrl={true} onClick={() => alert('hello world')}>
-        A fifth item item (clickable + disabled + active)
-    </AccordionItem>
-    <AccordionItem enabled={false} active={true} theme='danger' actionCtrl={true} href='https://www.google.com'>
-        A seventh item item (clickable + disabled + active)
-        <p>
-            <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-        </p>
-    </AccordionItem>
-</Accordion>
-
-/* alternate code but with the similar result: */
-<Accordion enabled={false} theme='primary'>
-    <AccordionItem enabled={true} inheritEnabled={false}>
-        A first item (not clickable)
-    </AccordionItem>
-    <AccordionItem>
-        A second item (not clickable + disabled)
-    </AccordionItem>
-    <AccordionItem actionCtrl={true} onClick={() => alert('hello world')}>
-        A third item (clickable + disabled)
-    </AccordionItem>
-    <AccordionItem actionCtrl={true} href='https://www.google.com'>
-        A fourth item (clickable + disabled)
-        <p>
-            <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-        </p>
-    </AccordionItem>
-    <AccordionItem active={true} actionCtrl={true} onClick={() => alert('hello world')}>
-        A fifth item item (clickable + disabled + active)
-    </AccordionItem>
-    <AccordionItem active={true} theme='danger' actionCtrl={true} href='https://www.google.com'>
-        A seventh item item (clickable + disabled + active)
-        <p>
-            <small>note: only appear disabled, but still functional because this is a link, the disabled state is not supported in link.</small>
-        </p>
+    <AccordionItem label='A fifth item (disabled + active)' enabled={false} active={true} theme='danger'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
     </AccordionItem>
 </Accordion>
                     `}</TypeScriptCode>
