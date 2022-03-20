@@ -3,11 +3,10 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-
-import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
+import { SpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
-import { SectionInheritedProps, LinkAccordionPage, LinkListPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentNestedComponent, CurrentBaseComponents, LinkAccordionItemPage, SectionVariants, SectionStates, LinkAccordionSeparatorItemPage, LinkUsesIndicatorVariantsPage, SectionPreviewProperty, ParagraphLorem } from '../../../components/common'
+import { SectionInheritedProps, LinkAccordionPage, LinkListPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentNestedComponent, LinkAccordionItemPage, SectionVariants, SectionStates, LinkAccordionSeparatorItemPage, SectionPreviewProperty, ParagraphLorem, LinkListItemPage, LinkCollapsePage } from '../../../components/common'
 import { ListItem } from '@nodestrap/list'
 import { Accordion as AccordionOri, AccordionProps, AccordionItem, AccordionSeparatorItem, OrientationName } from '@nodestrap/accordion'
 import { TypeScriptCode } from '../../../components/Code'
@@ -1140,129 +1139,16 @@ const Page: NextPage = () => {
             </SectionStates>
             <SectionCustomizing specList={
                 <SpecList>
-                    <DetailSpecItem title='Button Styles'>
-                        <SubSpecList>
-                            <SimpleSpecItem>
-                                <code>btnSpacing</code>
-                                <p>The default spacing between buttons.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>btnSpacingSm</code>
-                                <p>The spacing between buttons when <code>{`size='sm'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>btnSpacingLg</code>
-                                <p>The spacing between buttons when <code>{`size='lg'`}</code>.</p>
-                            </SimpleSpecItem>
-                        </SubSpecList>
-                    </DetailSpecItem>
-                    <DetailSpecItem title='Tab Styles'>
-                        <SubSpecList>
-                            <SimpleSpecItem>
-                                <code>tabTextAlign</code>
-                                <p>The text alignment of tabs.</p>
-                            </SimpleSpecItem>
-                            
-                            <SimpleSpecItem>
-                                <code>tabBorderRadius</code>
-                                <p>The default border-radius of tabs.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>tabBorderRadiusSm</code>
-                                <p>The border-radius of tabs when <code>{`size='sm'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>tabBorderRadiusLg</code>
-                                <p>The border-radius of tabs when <code>{`size='lg'`}</code>.</p>
-                            </SimpleSpecItem>
-                        </SubSpecList>
-                    </DetailSpecItem>
-                    <DetailSpecItem title='Breadcrumb Styles'>
-                        <SubSpecList>
-                            <SimpleSpecItem>
-                                <code>breadcrumbPaddingInline</code>
-                                <p>The default inner spacing on the left &amp; right of breadcrumb items.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>breadcrumbPaddingBlock</code>
-                                <p>The default inner spacing on the top &amp; bottom of breadcrumb items.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>breadcrumbPaddingInlineSm</code>
-                                <p>The inner spacing on the left &amp; right of breadcrumb items when <code>{`size='sm'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>breadcrumbPaddingBlockSm</code>
-                                <p>The inner spacing on the top &amp; bottom of breadcrumb items when <code>{`size='sm'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>breadcrumbPaddingInlineLg</code>
-                                <p>The inner spacing on the left &amp; right of breadcrumb items when <code>{`size='lg'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>breadcrumbPaddingBlockLg</code>
-                                <p>The inner spacing on the top &amp; bottom of breadcrumb items when <code>{`size='lg'`}</code>.</p>
-                            </SimpleSpecItem>
-                            
-                            <SimpleSpecItem>
-                                <code>breadcrumbSeparatorImg</code>
-                                <p>The background-image of separator.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>breadcrumbSeparatorInlineSize</code>
-                                <p>The width of separator.</p>
-                                <p>The height is calculated automatically by its <code>aspect-ratio</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>breadcrumbSeparatorMarginInline</code>
-                                <p>The left &amp; right margin of separator.</p>
-                            </SimpleSpecItem>
-                        </SubSpecList>
-                    </DetailSpecItem>
-                    <DetailSpecItem title='Bullet Styles'>
-                        <SubSpecList>
-                            <SimpleSpecItem>
-                                <code>bulletSpacing</code>
-                                <p>The default spacing between bullets.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>bulletSpacingSm</code>
-                                <p>The spacing between bullets when <code>{`size='sm'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>bulletSpacingLg</code>
-                                <p>The spacing between bullets when <code>{`size='lg'`}</code>.</p>
-                            </SimpleSpecItem>
-                            
-                            <SimpleSpecItem>
-                                <code>bulletPadding</code>
-                                <p>The default inner spacing of bullets.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>bulletPaddingSm</code>
-                                <p>The inner spacing of bullets when <code>{`size='sm'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>bulletPaddingLg</code>
-                                <p>The inner spacing of bullets when <code>{`size='lg'`}</code>.</p>
-                            </SimpleSpecItem>
-                        </SubSpecList>
-                    </DetailSpecItem>
-                    <DetailSpecItem title='Numbered Styles'>
-                        <SubSpecList>
-                            <SimpleSpecItem>
-                                <code>numberedContent</code>
-                                <p>A custom content of <code>::before</code> element of each <CurrentNestedComponent />.</p>
-                            </SimpleSpecItem>
-                        </SubSpecList>
-                    </DetailSpecItem>
+                    <SimpleSpecItem>
+                        -- no config yet --
+                    </SimpleSpecItem>
                 </SpecList>
             }/>
             <SectionDerivering>
                 <SectionOverridingDefaults>{`
 import { Accordion } from '@nodestrap/accordion'
 
-export default function ProductAccordion(props) {
+export default function ToDoList(props) {
     return (
         <Accordion
             {...props} // preserves other properties
@@ -1278,49 +1164,38 @@ export default function ProductAccordion(props) {
 
                 <SectionCustomizingCss specList={
                     <SpecList>
-                        <DetailSpecItem code='usesAccordionLayout()'>
+                        <DetailSpecItem code='usesAccordionItemLayout()'>
                             <p>
-                                Returns a <code>Rule</code> object represents a complete <CurrentComponent /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
+                                Returns a <code>Rule</code> object represents a complete <CurrentNestedComponent /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
                             </p>
                         </DetailSpecItem>
-                        <DetailSpecItem code='usesAccordionBasicVariants()'>
+                        <DetailSpecItem code='usesAccordionItemVariants()'>
                             <p>
-                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentComponent /> but <strong>excluding variants</strong> from <LinkUsesIndicatorVariantsPage />.
-                            </p>
-                            <p>
-                                Equivalent to <code>usesAccordionVariants()</code> <strong>minus</strong> <LinkUsesIndicatorVariantsPage />.
+                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentNestedComponent /> such as:<br />
+                                <code>SizeVariant</code> and <strong>all variants</strong> inherited from <LinkCollapsePage /> and <LinkListItemPage />.
                             </p>
                         </DetailSpecItem>
-                        <DetailSpecItem code='usesAccordionVariants()'>
+                        <DetailSpecItem code='usesAccordionItemStates()'>
                             <p>
-                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentComponent /> such as:<br />
-                                <code>SizeVariant</code>, <code>AccordionVariant</code>, and <strong>all variants</strong> inherited from <CurrentBaseComponents />.
+                                Returns a <code>Rule</code> object represents the <strong>states</strong> of <CurrentNestedComponent />.
                             </p>
                             <p>
-                                Equivalent to <code>usesAccordionBasicVariants()</code> <strong>plus</strong> <LinkUsesIndicatorVariantsPage />.
-                            </p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='usesAccordionStates()'>
-                            <p>
-                                Returns a <code>Rule</code> object represents the <strong>states</strong> of <CurrentComponent />.
-                            </p>
-                            <p>
-                                Currently the states are equivalent to <CurrentBaseComponents />&apos;s states.
+                                Currently the states are equivalent to <LinkCollapsePage />&apos;s states.
                             </p>
                         </DetailSpecItem>
                     </SpecList>
                 }>{`
 import { mainComposition, style, imports, variants, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
-import { Accordion, usesAccordionLayout, usesAccordionVariants, usesAccordionStates } from '@nodestrap/accordion'
+import { Accordion, AccordionItem, usesAccordionItemLayout, usesAccordionItemVariants, usesAccordionItemStates } from '@nodestrap/accordion'
 
-const useProductAccordionSheet = createUseSheet(() => [
+const useToDoListItemSheet = createUseSheet(() => [
     mainComposition(
         imports([
-            // import some stuff from <Accordion>:
-            usesAccordionLayout(),
-            usesAccordionVariants(),
-            usesAccordionStates(),
+            // import some stuff from <AccordionItem>:
+            usesAccordionItemLayout(),
+            usesAccordionItemVariants(),
+            usesAccordionItemStates(),
         ]),
         style({
             // then overwrite with your style:
@@ -1347,14 +1222,15 @@ const useProductAccordionSheet = createUseSheet(() => [
     ),
 ]);
 
-export default function ProductAccordion(props) {
-    const sheet = useProductAccordionSheet();
+export default function ToDoListItem(props) {
+    const sheet = useToDoListItemSheet();
     return (
-        <Accordion {...props} mainClass={sheet.main}>
+        <AccordionItem {...props} mainClass={sheet.main}>
             { props.children }
-        </Accordion>
+        </AccordionItem>
     )
 }
+export { Accordion as ToDoList }
                 `}</SectionCustomizingCss>
             </SectionDerivering>
         </ComponentInfoProvider>
