@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { useResetableState, Option, ResetButton } from './DemoPanel';
 import { ListInitials, ListOptionProps, ListOptions, useListStates } from './DemoPanel@List';
 
-import { Accordion, AccordionItem, ListStyle, OrientationName } from '@nodestrap/accordion'
+import { Accordion, AccordionItem, ListStyleMod, OrientationName } from '@nodestrap/accordion'
 import { TypeScriptCode } from './Code';
 import { ParagraphLorem } from './common';
 
@@ -43,10 +43,10 @@ export const DemoAccordion = () => {
     const states = useAccordionStates();
     const hasChildren = states.listStyle2[0] !== 'bullet';
     
-    const listStyle : ListStyle[] = [
+    const listStyle : ListStyleMod[] = [
         states.listStyle1[0],
         states.listStyle2[0]
-    ].filter((ls): ls is ListStyle => !!ls);
+    ].filter((ls): ls is ListStyleMod => !!ls);
     return (
         <>
             <div className='preview'>

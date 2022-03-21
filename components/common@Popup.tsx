@@ -281,7 +281,11 @@ export const SectionPropertyPopupAutoShift = ({ propertySuffix = true, property 
 
 
 
-export const SectionPropertyLazy = ({ titleTag = 'h2', propertySuffix = true, property = 'lazy', specList, description, ...restProps }: SectionPreviewPropertyProps) => {
+export interface SectionPropertyLazyProps extends SectionPreviewPropertyProps {
+    activeAlias  ?: string
+    passiveAlias ?: string
+}
+export const SectionPropertyLazy = ({ titleTag = 'h2', propertySuffix = true, property = 'lazy', specList, description, activeAlias = 'shown', passiveAlias = 'hidden', ...restProps }: SectionPropertyLazyProps) => {
     return (
         <SectionPreviewProperty {...restProps} titleTag={titleTag} propertySuffix={propertySuffix} property={property} specList={
             specList
@@ -289,7 +293,7 @@ export const SectionPropertyLazy = ({ titleTag = 'h2', propertySuffix = true, pr
             <SpecList>
                 <DetailSpecItem code='true'>
                     <p>
-                        The <CurrentComponent />&apos;s <code>children</code> are rendered <em>only if</em> the <CurrentComponent /> is <strong>shown</strong>.
+                        The <CurrentComponent />&apos;s <code>children</code> are rendered <em>only if</em> the <CurrentComponent /> is <strong>{activeAlias}</strong>.
                     </p>
                 </DetailSpecItem>
                 <DetailSpecItem code='false'>
@@ -304,7 +308,7 @@ export const SectionPropertyLazy = ({ titleTag = 'h2', propertySuffix = true, pr
             ??
             <>
                 <p>
-                    Prevents an unnecessary rendering of <CurrentComponent />&apos;s <code>children</code>, <em>when</em> the <CurrentComponent /> is currently <strong>hidden</strong>.
+                    Prevents an unnecessary rendering of <CurrentComponent />&apos;s <code>children</code>, <em>when</em> the <CurrentComponent /> is currently <strong>{passiveAlias}</strong>.
                 </p>
                 <p>
                     This is useful to combine with <LinkReactLazyLinkPage /> or <LinkLoadableComponentsLinkPage />.

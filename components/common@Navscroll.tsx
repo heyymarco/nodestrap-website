@@ -81,7 +81,7 @@ export const SectionPropertyTargetSelector    = ({ titleTag = 'h3', property = '
                     </p>
                     <Warning>
                         <p>
-                            If you not define the <code>{property}</code> property, the <code>'*'</code> (universal selector) will be used.<br />
+                            If you not define the <code>{property}</code> property, the <code>{`'*'`}</code> (universal selector) will be used.<br />
                             So <strong>any elements</strong> inside the <code>targetRef</code> will be assumed as <em>the sections</em>.
                         </p>
                     </Warning>

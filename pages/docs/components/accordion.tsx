@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import type { NextPage } from 'next'
 import Head from 'next/head'
@@ -8,10 +8,9 @@ import { SpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/Sp
 import { Preview, TransparentPreview } from '../../../components/Preview'
 import { SectionInheritedProps, LinkAccordionPage, LinkListPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentNestedComponent, LinkAccordionItemPage, SectionVariants, SectionStates, LinkAccordionSeparatorItemPage, SectionPreviewProperty, ParagraphLorem, LinkListItemPage, LinkCollapsePage } from '../../../components/common'
 import { ListItem } from '@nodestrap/list'
-import { Accordion as AccordionOri, AccordionProps, AccordionItem, AccordionSeparatorItem, OrientationName } from '@nodestrap/accordion'
+import { Accordion as AccordionOri, AccordionProps, AccordionItem, AccordionSeparatorItem } from '@nodestrap/accordion'
+import { Collapse } from '@nodestrap/collapse'
 import { TypeScriptCode } from '../../../components/Code'
-import ResponsiveProvider from '@nodestrap/responsive'
-import { Tips } from '../../../components/Info'
 import {
     SectionPropertyTheme,
     SectionPropertySize,
@@ -20,7 +19,6 @@ import {
     SectionPropertyOrientation,
     SectionPropertyOrientationBlock,
     SectionPropertyOrientationInline,
-    SectionPropertyOrientationResponsive,
 } from '../../../components/common@Basic'
 import {
     SectionPropertyEnabled,
@@ -42,6 +40,8 @@ import {
 } from '../../../components/common@List'
 import {
     SectionPropertyOnActiveChange,
+    SectionPropertyLazy,
+    SectionCustomizingCollapse,
 } from '../../../components/common@Accordion'
 
 import loadable from '@loadable/component'
@@ -1131,6 +1131,48 @@ export default function App() {
                     `}</TypeScriptCode>
                 </SectionPropertyEnabled>
             </SectionStates>
+            <SectionPropertyLazy />
+            <SectionCustomizingCollapse>
+                <TransparentPreview>
+                    <Accordion>
+                        <AccordionItem label='A first item'>
+                            <DummyContents />
+                        </AccordionItem>
+                        <AccordionItem
+                            collapse={<Collapse theme='warning' size='lg'>
+                                A custom collapse
+                            </Collapse>}
+                            label='A second item'
+                            defaultActive={true}
+                        />
+                        <AccordionItem label='A third item'>
+                            <DummyContents />
+                        </AccordionItem>
+                    </Accordion>
+                </TransparentPreview>
+                <p></p>
+                <TypeScriptCode>{`
+<Accordion theme='primary'>
+    <AccordionItem label='A first item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
+    </AccordionItem>
+    <AccordionItem
+        collapse={<Collapse theme='warning' size='lg'>
+            A custom collapse
+        </Collapse>}
+        label='A second item'
+        defaultActive={true}
+    />
+    <AccordionItem label='A third item'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
+    </AccordionItem>
+</Accordion>
+                `}</TypeScriptCode>
+            </SectionCustomizingCollapse>
             <SectionCustomizing specList={
                 <SpecList>
                     <SimpleSpecItem>
