@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import type { NextPage } from 'next'
 import Head from 'next/head'
@@ -40,6 +40,9 @@ import {
     SectionPropertyBreadcrumbStyle,
     SectionPropertyNumberedStyle,
 } from '../../../components/common@List'
+import {
+    SectionPropertyOnActiveChange,
+} from '../../../components/common@Accordion'
 
 import loadable from '@loadable/component'
 const DemoAccordionLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Accordion' */'../../../components/DemoPanel@Accordion'))
@@ -87,6 +90,36 @@ const DummyContents = () => <>
     <ParagraphLorem />
     <ParagraphLorem />
 </>
+
+const AccordionWithOnActiveChange = () => {
+    const [item2Active, setItem2Active] = useState(true);  
+    
+    return (<>
+        <p>
+            The second item is <strong>{item2Active ? 'expanded' : 'folded'}</strong>.
+        </p>
+        <Accordion theme='primary'>
+            <AccordionItem label='A first item'>
+                <ParagraphLorem />
+                <ParagraphLorem />
+                <ParagraphLorem />
+            </AccordionItem>
+            <AccordionItem label='A second item'
+                active={item2Active}
+                onActiveChange={(newActive) => setItem2Active(newActive)}
+            >
+                <ParagraphLorem />
+                <ParagraphLorem />
+                <ParagraphLorem />
+            </AccordionItem>
+            <AccordionItem label='A third item'>
+                <ParagraphLorem />
+                <ParagraphLorem />
+                <ParagraphLorem />
+            </AccordionItem>
+        </Accordion>
+    </>);
+}
 
 
 
@@ -998,6 +1031,43 @@ const Page: NextPage = () => {
     </AccordionItem>
 </Accordion>
                     `}</TypeScriptCode>
+                    <SectionPropertyOnActiveChange>
+                        <Preview>
+                            <AccordionWithOnActiveChange />
+                        </Preview>
+                        <p></p>
+                        <TypeScriptCode>{`
+export default function App() {
+    const [item2Active, setItem2Active] = useState(true);  
+    
+    return (<>
+        <p>
+            The second item is <strong>{item2Active ? 'expanded' : 'folded'}</strong>.
+        </p>
+        <Accordion theme='primary'>
+            <AccordionItem label='A first item'>
+                <p>...</p>
+                <p>...</p>
+                <p>...</p>
+            </AccordionItem>
+            <AccordionItem label='A second item'
+                active={item2Active}
+                onActiveChange={(newActive) => setItem2Active(newActive)}
+            >
+                <p>...</p>
+                <p>...</p>
+                <p>...</p>
+            </AccordionItem>
+            <AccordionItem label='A third item'>
+                <p>...</p>
+                <p>...</p>
+                <p>...</p>
+            </AccordionItem>
+        </Accordion>
+    </>);
+}
+                        `}</TypeScriptCode>
+                    </SectionPropertyOnActiveChange>
                 </SectionPropertyActive>
                 <SectionPropertyEnabled>
                     <Preview>
