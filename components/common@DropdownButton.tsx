@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { CurrentNestedComponent, LinkButtonIconPage, ParagraphDefaultValue, SectionPreviewProperty, SectionPreviewPropertyProps } from './common';
+import { CurrentNestedComponent, LinkButtonIconPage, ParagraphDefaultValue, SectionPreviewProperty, SectionPreviewPropertyProps, useComponentInfo } from './common';
 import { DetailSpecItem, SpecList } from './SpecList';
 
 import {
@@ -32,7 +32,11 @@ export const SectionPropertyPopupShift     = ({ relativeTo = <em>button</em>, ho
 
 
 
-export const SectionPropertyActive  = ({ specList, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyActive  = ({ specList, description, ...restProps }: SectionPreviewPropertyProps) => {
+    const { nestedComponentName } = useComponentInfo();
+    
+    
+    
     return (
         <PopupSectionPropertyActive {...restProps} specList={
             specList
@@ -55,6 +59,21 @@ export const SectionPropertyActive  = ({ specList, ...restProps }: SectionPrevie
                     </p>
                 </DetailSpecItem>
             </SpecList>
+        } description={
+            description
+            ??
+            <>
+                <p>
+                    <em>Manually</em> shows/hides the <CurrentNestedComponent />.
+                </p>
+                <p>
+                    To show <CurrentNestedComponent />, set <code>{`<${nestedComponentName} active={true}>`}</code>.
+                </p>
+                <p>
+                    To <em>automatically</em> toggle the visibility of the <CurrentNestedComponent />, do not assign <code>active</code> property -or- assign <code>{`active={undefined}`}</code>.<br />
+                    The initial visibility can be set on <code>defaultActive</code> property.
+                </p>
+            </>
         } />
     );
 };

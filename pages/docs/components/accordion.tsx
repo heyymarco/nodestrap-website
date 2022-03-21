@@ -23,9 +23,11 @@ import {
     SectionPropertyOrientationResponsive,
 } from '../../../components/common@Basic'
 import {
-    SectionPropertyActive,
     SectionPropertyEnabled,
 } from '../../../components/common@Indicator'
+import {
+    SectionPropertyActive,
+} from '../../../components/common@DropdownButton'
 import {
     SectionPropertyNude,
     SectionPropertyMild,
@@ -98,7 +100,7 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    Displays a series of content.
+                    Displays a series of <em>foldable</em> content.
                 </p>
                 <p>
                     Here the preview:

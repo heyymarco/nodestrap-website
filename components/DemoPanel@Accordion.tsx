@@ -31,6 +31,8 @@ export const AccordionOptions = (props: AccordionOptionProps) => {
     return (<>
         <ListOptions
             {...props}
+            enableTabStyle={false}
+            enableBulletStyle={false}
         />
     </>);
 }

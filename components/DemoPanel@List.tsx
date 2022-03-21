@@ -35,7 +35,10 @@ export const useListStates = (initials ?: Partial<ListInitials>) => {
         actionCtrl,
     }
 }
-export type ListOptionProps = { states: ReturnType<typeof useListStates> } & IndicatorOptionProps
+export type ListOptionProps = { states: ReturnType<typeof useListStates> } & IndicatorOptionProps & {
+    enableTabStyle    ?: boolean
+    enableBulletStyle ?: boolean
+}
 export const ListOptions = (props: ListOptionProps) => {
     const { states } = props;
     const prevListStyle1 = useRef(states.listStyle1[0]);
@@ -101,7 +104,16 @@ export const ListOptions = (props: ListOptionProps) => {
         <Option
             orientation='block'
             name='listStyle'
-            options={[undefined, 'content','btn','tab','breadcrumb','bullet','numbered']}
+            options={[undefined,
+                ...[
+                    'content',
+                    'btn',
+                    (props.enableTabStyle    ?? true) && 'tab',
+                    'breadcrumb',
+                    (props.enableBulletStyle ?? true) && 'bullet',
+                    'numbered'
+                ].filter((s) => (s !== false))
+            ]}
             value={states.listStyle2[0]}
             setValue={states.listStyle2[1]}
         />
