@@ -257,7 +257,9 @@ const Page: NextPage = () => {
                                     a custom component
                                 </div>
                             </>}>
-                                <DummyContents />
+                                <div style={{ background: 'lightgreen', color: 'black', padding: '1em', display: 'flex', justifyContent: 'center' }}>
+                                    an another custom component
+                                </div>
                             </AccordionItem>
                             <AccordionItem nude={true} label='A fifth item (nude)'>
                                 <DummyContents />
@@ -287,9 +289,9 @@ const Page: NextPage = () => {
             a custom component
         </div>
     </>}>
-        <p>...</p>
-        <p>...</p>
-        <p>...</p>
+        <div style={{ background: 'lightgreen', color: 'black', padding: '1em', display: 'flex', justifyContent: 'center' }}>
+            an another custom component
+        </div>
     </AccordionItem>
     <AccordionItem nude={true} label='A fifth item (nude)'>
         <p>...</p>
@@ -449,10 +451,10 @@ const Page: NextPage = () => {
                 <SectionPropertyMild>
                     <Preview>
                         <Accordion mild={false} theme='primary'>
-                            <AccordionItem label='A first item'>
+                            <AccordionItem label='A first item (default)'>
                                 <DummyContents />
                             </AccordionItem>
-                            <AccordionItem label='A second item'>
+                            <AccordionItem label='A second item (default)'>
                                 <DummyContents />
                             </AccordionItem>
                             <AccordionItem mild={true}  label='A third item (mild)'>
@@ -461,7 +463,7 @@ const Page: NextPage = () => {
                             <AccordionItem mild={true}  label='A fourth item (mild)'>
                                 <DummyContents />
                             </AccordionItem>
-                            <AccordionItem mild={false} label='A fifth item'>
+                            <AccordionItem mild={false} label='A fifth item (not mild)'>
                                 <DummyContents />
                             </AccordionItem>
                         </Accordion>
@@ -469,12 +471,12 @@ const Page: NextPage = () => {
                     <p></p>
                     <TypeScriptCode>{`
 <Accordion mild={false} theme='primary'>
-    <AccordionItem label='A first item'>
+    <AccordionItem label='A first item (default)'>
         <p>...</p>
         <p>...</p>
         <p>...</p>
     </AccordionItem>
-    <AccordionItem label='A second item'>
+    <AccordionItem label='A second item (default)'>
         <p>...</p>
         <p>...</p>
         <p>...</p>
@@ -489,7 +491,7 @@ const Page: NextPage = () => {
         <p>...</p>
         <p>...</p>
     </AccordionItem>
-    <AccordionItem mild={false} label='A fifth item'>
+    <AccordionItem mild={false} label='A fifth item (not mild)'>
         <p>...</p>
         <p>...</p>
         <p>...</p>
@@ -580,48 +582,48 @@ const Page: NextPage = () => {
                     </SectionPropertyOrientationBlock>
                     <SectionPropertyOrientationInline>
                         <Preview blockDisplay={true}>
-                            <Accordion orientation='inline' theme='primary'>
-                                <AccordionItem label='A first item'>
-                                    <DummyContents />
+                            <Accordion orientation='inline' theme='primary' style={{ wordBreak: 'keep-all', overflowWrap: 'normal' }}>
+                                <AccordionItem label={<>A<br />first<br />item</>}>
+                                    <p>hello<br />horizontal<br />accordion</p>
                                 </AccordionItem>
-                                <AccordionItem label='A second item'>
-                                    <DummyContents />
+                                <AccordionItem label={<>A<br />second<br />item</>}>
+                                    <p>hello<br />horizontal<br />accordion</p>
                                 </AccordionItem>
-                                <AccordionItem label='A third item'>
-                                    <DummyContents />
+                                <AccordionItem label={<>A<br />third<br />item</>}>
+                                    <p>hello<br />horizontal<br />accordion</p>
                                 </AccordionItem>
-                                <AccordionItem label='A fourth item'>
-                                    <DummyContents />
+                                <AccordionItem label={<>A<br />fourth<br />item</>}>
+                                    <p>hello<br />horizontal<br />accordion</p>
                                 </AccordionItem>
-                                <AccordionItem label='A fifth item'>
-                                    <DummyContents />
+                                <AccordionItem label={<>A<br />fifth<br />item</>}>
+                                    <p>hello<br />horizontal<br />accordion</p>
                                 </AccordionItem>
                             </Accordion>
                         </Preview>
                         <p></p>
                         <TypeScriptCode>{`
 <Accordion orientation='inline' theme='primary'>
-    <AccordionItem label='A first item'>
+    <AccordionItem label={<>A<br />first<br />item</>}>
         <p>...</p>
         <p>...</p>
         <p>...</p>
     </AccordionItem>
-    <AccordionItem label='A second item'>
+    <AccordionItem label={<>A<br />second<br />item</>}>
         <p>...</p>
         <p>...</p>
         <p>...</p>
     </AccordionItem>
-    <AccordionItem label='A third item'>
+    <AccordionItem label={<>A<br />third<br />item</>}>
         <p>...</p>
         <p>...</p>
         <p>...</p>
     </AccordionItem>
-    <AccordionItem label='A fourth item'>
+    <AccordionItem label={<>A<br />fourth<br />item</>}>
         <p>...</p>
         <p>...</p>
         <p>...</p>
     </AccordionItem>
-    <AccordionItem label='A fifth item'>
+    <AccordionItem label={<>A<br />fifth<br />item</>}>
         <p>...</p>
         <p>...</p>
         <p>...</p>
@@ -629,86 +631,6 @@ const Page: NextPage = () => {
 </Accordion>
                         `}</TypeScriptCode>
                     </SectionPropertyOrientationInline>
-                    <SectionPropertyOrientationResponsive>
-                        <Preview>
-                            <Tips>
-                                <p>
-                                    Try to <strong>resize</strong> the <span style={{ background :'pink', border : 'solid 1px darkred', padding: '0.15em' }}>red container</span> below:
-                                </p>
-                            </Tips>
-                            <ResponsiveProvider<OrientationName> fallbacks={[
-                                'inline', // the first try, if overflow is detected, then try next
-                                'block',  // the last try
-                            ]}>{(currentFallback) => (
-                                // a <div> to watch for overflows
-                                <div style={{
-                                    display    : 'block',
-                                    overflow   : 'hidden',
-                                    background : 'pink',
-                                    border     : 'solid 1px darkred',
-                                    resize     : 'horizontal',
-                                    padding    : '1rem',
-                                    maxWidth   : '100%',
-                                }}>
-                                    <Accordion orientation={currentFallback} theme='primary'>
-                                        <AccordionItem label='A_first_item'>
-                                            <DummyContents />
-                                        </AccordionItem>
-                                        <AccordionItem label='A_second_item'>
-                                            <DummyContents />
-                                        </AccordionItem>
-                                        <AccordionItem label='A_third_item'>
-                                            <DummyContents />
-                                        </AccordionItem>
-                                        <AccordionItem label='A_fourth_item'>
-                                            <DummyContents />
-                                        </AccordionItem>
-                                    </Accordion>
-                                </div>
-                            )}</ResponsiveProvider>
-                        </Preview>
-                        <p></p>
-                        <TypeScriptCode>{`
-<ResponsiveProvider fallbacks={[
-    'inline', // the first try, if overflow is detected, then try next
-    'block',  // the last try
-]}>{(currentFallback) => (
-    // a <div> to watch for overflows
-    <div style={{
-        display    : 'block',
-        overflow   : 'hidden',
-        background : 'pink',
-        border     : 'solid 1px darkred',
-        resize     : 'horizontal',
-        padding    : '1rem',
-        maxWidth   : '100%',
-    }}>
-        <Accordion orientation={currentFallback} theme='primary'>
-            <AccordionItem label='A_first_item'>
-                <p>...</p>
-                <p>...</p>
-                <p>...</p>
-            </AccordionItem>
-            <AccordionItem label='A_second_item'>
-                <p>...</p>
-                <p>...</p>
-                <p>...</p>
-            </AccordionItem>
-            <AccordionItem label='A_third_item'>
-                <p>...</p>
-                <p>...</p>
-                <p>...</p>
-            </AccordionItem>
-            <AccordionItem label='A_fourth_item'>
-                <p>...</p>
-                <p>...</p>
-                <p>...</p>
-            </AccordionItem>
-        </Accordion>
-    </div>
-)}</ResponsiveProvider>
-                        `}</TypeScriptCode>
-                    </SectionPropertyOrientationResponsive>
                 </SectionPropertyOrientation>
                 <SectionPropertyListStyle>
                     <SectionPropertyFlatStyle>
@@ -890,11 +812,11 @@ const Page: NextPage = () => {
                     </SectionPropertyBtnStyle>
                     <SectionPropertyBreadcrumbStyle>
                         <TransparentPreview blockDisplay={true}>
-                            <Accordion listStyle='breadcrumb' orientation='inline' />
+                            <Accordion listStyle='breadcrumb' />
                         </TransparentPreview>
                         <p></p>
                         <TypeScriptCode>{`
-<Accordion listStyle='breadcrumb' orientation='inline' theme='primary'>
+<Accordion listStyle='breadcrumb' theme='primary'>
     <AccordionItem label='A first item'>
         <p>...</p>
         <p>...</p>

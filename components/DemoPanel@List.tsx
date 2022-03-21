@@ -79,10 +79,6 @@ export const ListOptions = (props: ListOptionProps) => {
                 } // if
                 break;
         } // switch
-
-        if (states.listStyle2[0] === 'breadcrumb') {
-            if (states.orientation[0] !== 'inline') states.orientation[1]('inline');
-        } // if
     } // if
     
     

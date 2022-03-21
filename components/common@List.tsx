@@ -118,9 +118,6 @@ export const SectionPropertyBreadcrumbStyle = ({ styleName = listStyle, property
                 <p>
                     Set <code>{`<${componentName} ${styleName}='${property}'>`}</code> to style the <CurrentNestedComponent /> to look similar to <em>a breadcrumb</em>.
                 </p>
-                <p>
-                    Requires <code>{`<${componentName} orientation='inline'>`}</code>.
-                </p>
             </>
         } />
     );

@@ -293,9 +293,6 @@ export const SectionPropertyOrientationInline = ({ titleTag='h4', orientationStu
                     <p>
                         Insufficient page width can cause distorion of your site&apos;s design.
                     </p>
-                    <p>
-                        You may need a <LinkResponsiveProviderPage /> to create a <strong>responsive orientation</strong> based on <em>overflow detection</em>.
-                    </p>
                 </Warning>}
             </>
         } />
