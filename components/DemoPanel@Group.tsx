@@ -31,7 +31,7 @@ export type GroupOptionProps = { states: ReturnType<typeof useGroupStates> } & L
     enableBulletStyle ?: boolean
 }
 export const GroupOptions = (props: GroupOptionProps) => {
-    const { states } = props;
+    // const { states } = props;
     
     
     
@@ -40,6 +40,7 @@ export const GroupOptions = (props: GroupOptionProps) => {
             {...props}
             enableListstyle2={false}
             enableActionCtrl={false}
+            warningEitherMildOutlined={false}
         />
     </>);
 }
@@ -48,7 +49,6 @@ export const GroupOptions = (props: GroupOptionProps) => {
 
 export const DemoGroup = () => {
     const states = useGroupStates();
-    const hasChildren = states.listStyle2[0] !== 'bullet';
     
     const listStyle : ListBasicStyle[] = [
         states.listStyle1[0],

@@ -143,7 +143,7 @@ const Page: NextPage = () => {
             <SectionInheritedProps />
             <SectionVariants>
                 <SectionPropertyTheme>
-                    <Preview>
+                    <Preview stretch={false}>
                         {themeNames.map((themeName, index) =>
                             <Group
                                 theme={themeName}
@@ -175,7 +175,7 @@ const Page: NextPage = () => {
                     </TypeScriptCode>
                 </SectionPropertyTheme>
                 <SectionPropertySize>
-                    <Preview>
+                    <Preview stretch={false}>
                         <Group
                             size='sm'
                             theme='primary'
@@ -267,7 +267,7 @@ const Page: NextPage = () => {
                     `}</TypeScriptCode>
                 </SectionPropertyNude>
                 <SectionPropertyGradient>
-                    <TransparentPreview>
+                    <TransparentPreview stretch={false}>
                         <Group
                             gradient={true}
                             theme='primary'
@@ -293,7 +293,7 @@ const Page: NextPage = () => {
                     `}</TypeScriptCode>
                 </SectionPropertyGradient>
                 <SectionPropertyOutlined>
-                    <TransparentPreview>
+                    <TransparentPreview stretch={false}>
                         <Group
                             outlined={true}
                             theme='primary'
@@ -319,7 +319,7 @@ const Page: NextPage = () => {
                     `}</TypeScriptCode>
                 </SectionPropertyOutlined>
                 <SectionPropertyMild>
-                    <TransparentPreview>
+                    <TransparentPreview stretch={false}>
                         <Group
                             mild={true}
                             theme='primary'
@@ -346,8 +346,8 @@ const Page: NextPage = () => {
                 </SectionPropertyMild>
                 <SectionPropertyOrientation>
                     <SectionPropertyOrientationBlock>
-                        <Preview>
-                            <Group
+                        <Preview stretch={false}>
+                            <GroupVert
                                 orientation='block'
                                 theme='primary'
                             />
@@ -358,22 +358,21 @@ const Page: NextPage = () => {
     orientation='block'
     theme='primary'
 >
-    <Label>
-        $
-    </Label>
-    <NumberInput placeholder='price' enableValidation={false} />
-    <Label>
-        .00
-    </Label>
-    <Button>
-        Update
-    </Button>
+    <Radio name='sizeOpt' nude={false} enableValidation={false}>
+        Small
+    </Radio>
+    <Radio name='sizeOpt' nude={false} enableValidation={false}>
+        Medium
+    </Radio>
+    <Radio name='sizeOpt' nude={false} enableValidation={false}>
+        Large
+    </Radio>
 </Group>
                         `}</TypeScriptCode>
                     </SectionPropertyOrientationBlock>
                     <SectionPropertyOrientationInline>
-                        <Preview>
-                            <Group
+                        <Preview stretch={false}>
+                            <GroupVert
                                 orientation='inline'
                                 theme='primary'
                             />
@@ -384,16 +383,15 @@ const Page: NextPage = () => {
     orientation='inline'
     theme='primary'
 >
-    <Label>
-        $
-    </Label>
-    <NumberInput placeholder='price' enableValidation={false} />
-    <Label>
-        .00
-    </Label>
-    <Button>
-        Update
-    </Button>
+    <Radio name='sizeOpt' nude={false} enableValidation={false}>
+        Small
+    </Radio>
+    <Radio name='sizeOpt' nude={false} enableValidation={false}>
+        Medium
+    </Radio>
+    <Radio name='sizeOpt' nude={false} enableValidation={false}>
+        Large
+    </Radio>
 </Group>
                         `}</TypeScriptCode>
                     </SectionPropertyOrientationInline>
@@ -418,7 +416,7 @@ const Page: NextPage = () => {
                                     padding    : '1rem',
                                     maxWidth   : '100%',
                                 }}>
-                                    <Group
+                                    <GroupVert
                                         orientation={currentFallback}
                                         theme='primary'
                                     />
@@ -445,16 +443,15 @@ const Page: NextPage = () => {
             orientation={currentFallback}
             theme='primary'
         >
-            <Label>
-                $
-            </Label>
-            <NumberInput placeholder='price' enableValidation={false} />
-            <Label>
-                .00
-            </Label>
-            <Button>
-                Update
-            </Button>
+            <Radio name='sizeOpt' nude={false} enableValidation={false}>
+                Small
+            </Radio>
+            <Radio name='sizeOpt' nude={false} enableValidation={false}>
+                Medium
+            </Radio>
+            <Radio name='sizeOpt' nude={false} enableValidation={false}>
+                Large
+            </Radio>
         </Group>
     </div>
 )}</ResponsiveProvider>
@@ -463,7 +460,7 @@ const Page: NextPage = () => {
                 </SectionPropertyOrientation>
                 <SectionPropertyListStyle>
                     <SectionPropertyFlatStyle>
-                        <TransparentPreview>
+                        <TransparentPreview stretch={false}>
                             <Group listStyle='flat' />
                         </TransparentPreview>
                         <p></p>
@@ -483,7 +480,7 @@ const Page: NextPage = () => {
                         `}</TypeScriptCode>
                     </SectionPropertyFlatStyle>
                     <SectionPropertyFlushStyle>
-                        <TransparentPreview>
+                        <TransparentPreview stretch={false}>
                             <Group listStyle='flush' />
                         </TransparentPreview>
                         <p></p>
@@ -503,7 +500,7 @@ const Page: NextPage = () => {
                         `}</TypeScriptCode>
                     </SectionPropertyFlushStyle>
                     <SectionPropertyJoinedStyle>
-                        <TransparentPreview>
+                        <TransparentPreview stretch={false}>
                             <Group listStyle='joined' />
                         </TransparentPreview>
                         <p></p>
@@ -526,7 +523,7 @@ const Page: NextPage = () => {
             </SectionVariants>
             <SectionStates>
                 <SectionPropertyActive>
-                    <Preview>
+                    <Preview stretch={false}>
                         <Group
                             active={true}
                             theme='primary'
@@ -552,7 +549,7 @@ const Page: NextPage = () => {
                     `}</TypeScriptCode>
                 </SectionPropertyActive>
                 <SectionPropertyEnabled>
-                    <Preview>
+                    <Preview stretch={false}>
                         <Group
                             enabled={false}
                             theme='primary'
@@ -580,122 +577,9 @@ const Page: NextPage = () => {
             </SectionStates>
             <SectionCustomizing specList={
                 <SpecList>
-                    <DetailSpecItem title='Button Styles'>
-                        <SubSpecList>
-                            <SimpleSpecItem>
-                                <code>btnSpacing</code>
-                                <p>The default spacing between buttons.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>btnSpacingSm</code>
-                                <p>The spacing between buttons when <code>{`size='sm'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>btnSpacingLg</code>
-                                <p>The spacing between buttons when <code>{`size='lg'`}</code>.</p>
-                            </SimpleSpecItem>
-                        </SubSpecList>
-                    </DetailSpecItem>
-                    <DetailSpecItem title='Tab Styles'>
-                        <SubSpecList>
-                            <SimpleSpecItem>
-                                <code>tabTextAlign</code>
-                                <p>The text alignment of tabs.</p>
-                            </SimpleSpecItem>
-                            
-                            <SimpleSpecItem>
-                                <code>tabBorderRadius</code>
-                                <p>The default border-radius of tabs.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>tabBorderRadiusSm</code>
-                                <p>The border-radius of tabs when <code>{`size='sm'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>tabBorderRadiusLg</code>
-                                <p>The border-radius of tabs when <code>{`size='lg'`}</code>.</p>
-                            </SimpleSpecItem>
-                        </SubSpecList>
-                    </DetailSpecItem>
-                    <DetailSpecItem title='Breadcrumb Styles'>
-                        <SubSpecList>
-                            <SimpleSpecItem>
-                                <code>breadcrumbPaddingInline</code>
-                                <p>The default inner spacing on the left &amp; right of breadcrumb items.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>breadcrumbPaddingBlock</code>
-                                <p>The default inner spacing on the top &amp; bottom of breadcrumb items.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>breadcrumbPaddingInlineSm</code>
-                                <p>The inner spacing on the left &amp; right of breadcrumb items when <code>{`size='sm'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>breadcrumbPaddingBlockSm</code>
-                                <p>The inner spacing on the top &amp; bottom of breadcrumb items when <code>{`size='sm'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>breadcrumbPaddingInlineLg</code>
-                                <p>The inner spacing on the left &amp; right of breadcrumb items when <code>{`size='lg'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>breadcrumbPaddingBlockLg</code>
-                                <p>The inner spacing on the top &amp; bottom of breadcrumb items when <code>{`size='lg'`}</code>.</p>
-                            </SimpleSpecItem>
-                            
-                            <SimpleSpecItem>
-                                <code>breadcrumbSeparatorImg</code>
-                                <p>The background-image of separator.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>breadcrumbSeparatorInlineSize</code>
-                                <p>The width of separator.</p>
-                                <p>The height is calculated automatically by its <code>aspect-ratio</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>breadcrumbSeparatorMarginInline</code>
-                                <p>The left &amp; right margin of separator.</p>
-                            </SimpleSpecItem>
-                        </SubSpecList>
-                    </DetailSpecItem>
-                    <DetailSpecItem title='Bullet Styles'>
-                        <SubSpecList>
-                            <SimpleSpecItem>
-                                <code>bulletSpacing</code>
-                                <p>The default spacing between bullets.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>bulletSpacingSm</code>
-                                <p>The spacing between bullets when <code>{`size='sm'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>bulletSpacingLg</code>
-                                <p>The spacing between bullets when <code>{`size='lg'`}</code>.</p>
-                            </SimpleSpecItem>
-                            
-                            <SimpleSpecItem>
-                                <code>bulletPadding</code>
-                                <p>The default inner spacing of bullets.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>bulletPaddingSm</code>
-                                <p>The inner spacing of bullets when <code>{`size='sm'`}</code>.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>bulletPaddingLg</code>
-                                <p>The inner spacing of bullets when <code>{`size='lg'`}</code>.</p>
-                            </SimpleSpecItem>
-                        </SubSpecList>
-                    </DetailSpecItem>
-                    <DetailSpecItem title='Numbered Styles'>
-                        <SubSpecList>
-                            <SimpleSpecItem>
-                                <code>numberedContent</code>
-                                <p>A custom content of <code>::before</code> element of each <CurrentNestedComponent />.</p>
-                            </SimpleSpecItem>
-                        </SubSpecList>
-                    </DetailSpecItem>
+                    <SimpleSpecItem>
+                        -- no config yet --
+                    </SimpleSpecItem>
                 </SpecList>
             }/>
             <SectionDerivering>
