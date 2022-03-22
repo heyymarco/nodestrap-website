@@ -151,16 +151,16 @@ export const DemoForm = () => {
                         states.enableValidation[1](true)
                     }}
                 >
-                    <Label theme='secondary'>username</Label>
+                    <Label>username</Label>
                     <TextInput name='usr' placeholder='smith123' required={true} minLength={3} maxLength={20} />
                     
-                    <Label theme='secondary'>Password</Label>
+                    <Label>Password</Label>
                     <PasswordInput name='pwd' placeholder='secret' required={true} minLength={6} maxLength={20} />
                     
-                    <Label theme='secondary'>Email</Label>
+                    <Label>Email</Label>
                     <EmailInput name='email' placeholder='your@company.com' required={true} />
                     
-                    <Label theme='secondary'>Age</Label>
+                    <Label>Age</Label>
                     <NumberInput name='age' placeholder='29' required={false} min={12} max={199} />
 
                     <Button type='submit' theme='primary'>Submit</Button>

@@ -35,11 +35,11 @@ const Page: NextPage = () => {
                 </p>
                 <p>
                     <Group theme='primary'>
-                        <Label theme='secondary'>
+                        <Label>
                             $
                         </Label>
                         <NumberInput placeholder='price' enableValidation={false} />
-                        <Label theme='secondary'>
+                        <Label>
                             .00
                         </Label>
                         <Button theme='primary'>
@@ -49,11 +49,11 @@ const Page: NextPage = () => {
                 </p>
                 <p>
                     <Group theme='primary'>
-                        <Label theme='secondary'>
+                        <Label>
                             https://example.com/users/
                         </Label>
                         <TextInput placeholder='username' enableValidation={false} />
-                        <Label theme='secondary'>
+                        <Label>
                             @
                         </Label>
                         <TextInput placeholder='company' enableValidation={false} />

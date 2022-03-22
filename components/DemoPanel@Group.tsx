@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { useResetableState, Option, ResetButton } from './DemoPanel';
 import { ListInitials, ListOptionProps, ListOptions, useListStates } from './DemoPanel@List';
 
-import { Group, ListStyle, OrientationName } from '@nodestrap/group'
+import { Group, ListBasicStyle, OrientationName } from '@nodestrap/group'
 import { TypeScriptCode } from './Code';
 import { Label } from '@nodestrap/label';
 import { NumberInput } from '@nodestrap/input';
@@ -48,17 +48,16 @@ export const DemoGroup = () => {
     const states = useGroupStates();
     const hasChildren = states.listStyle2[0] !== 'bullet';
     
-    const listStyle : ListStyle[] = [
+    const listStyle : ListBasicStyle[] = [
         states.listStyle1[0],
         states.listStyle2[0]
-    ].filter((ls): ls is ListStyle => !!ls);
+    ].filter((ls): ls is ListBasicStyle => !!ls);
     return (
         <>
             <div className='preview'>
                 <Group
                     orientation={states.orientation[0]}
-                    listStyle={listStyle}
-                    actionCtrl={states.actionCtrl[0]}
+                    listStyle={listStyle[0]}
                     
                     enabled={states.enabled[0]}
                     active={states.active[0]}
@@ -70,11 +69,11 @@ export const DemoGroup = () => {
                     outlined={states.outlined[0]}
                     mild={states.mild[0]}
                 >
-                    <Label theme='secondary'>
+                    <Label>
                         $
                     </Label>
                     <NumberInput placeholder='price' enableValidation={false} />
-                    <Label theme='secondary'>
+                    <Label>
                         .00
                     </Label>
                     <Button theme='primary'>
@@ -97,11 +96,11 @@ export const DemoGroup = () => {
     outlined={${states.outlined[0]}}
     mild={${states.mild[0]}}
 >
-    <Label theme='secondary'>
+    <Label>
         $
     </Label>
     <NumberInput placeholder='price' enableValidation={false} />
-    <Label theme='secondary'>
+    <Label>
         .00
     </Label>
     <Button theme='primary'>

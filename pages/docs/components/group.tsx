@@ -13,6 +13,7 @@ import { Group as GroupOri, GroupProps, OrientationName } from '@nodestrap/group
 import { Label } from '@nodestrap/label';
 import { NumberInput } from '@nodestrap/input';
 import { Button } from '@nodestrap/button';
+import { Radio } from '@nodestrap/radio'
 import { TypeScriptCode } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
 import { Tips } from '../../../components/Info'
@@ -64,11 +65,11 @@ const Group = (props: GroupProps) => <GroupOri
         props.children
         ??
         [
-            <Label key={0} theme='secondary'>
+            <Label key={0}>
                 $
             </Label>,
             <NumberInput key={1} placeholder='price' enableValidation={false} />,
-            <Label key={2} theme='secondary'>
+            <Label key={2}>
                 .00
             </Label>,
             <Button key={3} theme={props.theme ? undefined : 'primary'}>
@@ -77,6 +78,42 @@ const Group = (props: GroupProps) => <GroupOri
         ]
     }
 </GroupOri>
+
+const GroupVert = (props: GroupProps) => <Group
+    {...props}
+    orientation={props.orientation ?? 'block'}
+>
+{
+        props.children
+        ??
+        [
+            <Radio key={0} name='sizeOpt' nude={false} enableValidation={false}>
+                Small
+            </Radio>,
+            <Radio key={1} name='sizeOpt' nude={false} enableValidation={false}>
+                Medium
+            </Radio>,
+            <Radio key={2} name='sizeOpt' nude={false} enableValidation={false}>
+                Large
+            </Radio>,
+        ]
+    }
+</Group>
+
+const GroupMixed = (props: GroupProps) => <Group
+    orientation={props.orientation ?? 'inline'}
+>
+{
+        props.children
+        ??
+        [
+            <Label key={0}>
+                Size
+            </Label>,
+            <GroupVert key={1} />
+        ]
+    }
+</Group>
 
 
 
@@ -95,8 +132,9 @@ const Page: NextPage = () => {
                 <p>
                     Here the preview:
                 </p>
-                <Preview>
+                <Preview stretch={false}>
                     <Group />
+                    <GroupMixed />
                 </Preview>
             </SectionIntro>
             <SectionDemo>
@@ -121,11 +159,11 @@ const Page: NextPage = () => {
 <Group
     theme='${themeName}'
 >
-    <Label theme='secondary'>
+    <Label>
         $
     </Label>
     <NumberInput placeholder='price' enableValidation={false} />
-    <Label theme='secondary'>
+    <Label>
         .00
     </Label>
     <Button>
@@ -157,11 +195,11 @@ const Page: NextPage = () => {
     size='sm'
     theme='primary'
 >
-    <Label theme='secondary'>
+    <Label>
         $
     </Label>
     <NumberInput placeholder='price' enableValidation={false} />
-    <Label theme='secondary'>
+    <Label>
         .00
     </Label>
     <Button>
@@ -173,11 +211,11 @@ const Page: NextPage = () => {
     size={undefined}
     theme='primary'
 >
-    <Label theme='secondary'>
+    <Label>
         $
     </Label>
     <NumberInput placeholder='price' enableValidation={false} />
-    <Label theme='secondary'>
+    <Label>
         .00
     </Label>
     <Button>
@@ -189,11 +227,11 @@ const Page: NextPage = () => {
     size='lg'
     theme='primary'
 >
-    <Label theme='secondary'>
+    <Label>
         $
     </Label>
     <NumberInput placeholder='price' enableValidation={false} />
-    <Label theme='secondary'>
+    <Label>
         .00
     </Label>
     <Button>
@@ -215,11 +253,11 @@ const Page: NextPage = () => {
     nude={true}
     theme='primary'
 >
-    <Label theme='secondary'>
+    <Label>
         $
     </Label>
     <NumberInput placeholder='price' enableValidation={false} />
-    <Label theme='secondary'>
+    <Label>
         .00
     </Label>
     <Button>
@@ -241,11 +279,11 @@ const Page: NextPage = () => {
     gradient={true}
     theme='primary'
 >
-    <Label theme='secondary'>
+    <Label>
         $
     </Label>
     <NumberInput placeholder='price' enableValidation={false} />
-    <Label theme='secondary'>
+    <Label>
         .00
     </Label>
     <Button>
@@ -267,11 +305,11 @@ const Page: NextPage = () => {
     outlined={true}
     theme='primary'
 >
-    <Label theme='secondary'>
+    <Label>
         $
     </Label>
     <NumberInput placeholder='price' enableValidation={false} />
-    <Label theme='secondary'>
+    <Label>
         .00
     </Label>
     <Button>
@@ -293,11 +331,11 @@ const Page: NextPage = () => {
     mild={true}
     theme='primary'
 >
-    <Label theme='secondary'>
+    <Label>
         $
     </Label>
     <NumberInput placeholder='price' enableValidation={false} />
-    <Label theme='secondary'>
+    <Label>
         .00
     </Label>
     <Button>
@@ -320,11 +358,11 @@ const Page: NextPage = () => {
     orientation='block'
     theme='primary'
 >
-    <Label theme='secondary'>
+    <Label>
         $
     </Label>
     <NumberInput placeholder='price' enableValidation={false} />
-    <Label theme='secondary'>
+    <Label>
         .00
     </Label>
     <Button>
@@ -346,11 +384,11 @@ const Page: NextPage = () => {
     orientation='inline'
     theme='primary'
 >
-    <Label theme='secondary'>
+    <Label>
         $
     </Label>
     <NumberInput placeholder='price' enableValidation={false} />
-    <Label theme='secondary'>
+    <Label>
         .00
     </Label>
     <Button>
@@ -407,11 +445,11 @@ const Page: NextPage = () => {
             orientation={currentFallback}
             theme='primary'
         >
-            <Label theme='secondary'>
+            <Label>
                 $
             </Label>
             <NumberInput placeholder='price' enableValidation={false} />
-            <Label theme='secondary'>
+            <Label>
                 .00
             </Label>
             <Button>
@@ -431,11 +469,11 @@ const Page: NextPage = () => {
                         <p></p>
                         <TypeScriptCode>{`
 <Group listStyle='flat' theme='primary'>
-    <Label theme='secondary'>
+    <Label>
         $
     </Label>
     <NumberInput placeholder='price' enableValidation={false} />
-    <Label theme='secondary'>
+    <Label>
         .00
     </Label>
     <Button>
@@ -451,11 +489,11 @@ const Page: NextPage = () => {
                         <p></p>
                         <TypeScriptCode>{`
 <Group listStyle='flush' theme='primary'>
-    <Label theme='secondary'>
+    <Label>
         $
     </Label>
     <NumberInput placeholder='price' enableValidation={false} />
-    <Label theme='secondary'>
+    <Label>
         .00
     </Label>
     <Button>
@@ -471,11 +509,11 @@ const Page: NextPage = () => {
                         <p></p>
                         <TypeScriptCode>{`
 <Group listStyle='joined' theme='primary'>
-    <Label theme='secondary'>
+    <Label>
         $
     </Label>
     <NumberInput placeholder='price' enableValidation={false} />
-    <Label theme='secondary'>
+    <Label>
         .00
     </Label>
     <Button>
@@ -500,11 +538,11 @@ const Page: NextPage = () => {
     active={true}
     theme='primary'
 >
-    <Label theme='secondary'>
+    <Label>
         $
     </Label>
     <NumberInput placeholder='price' enableValidation={false} />
-    <Label theme='secondary'>
+    <Label>
         .00
     </Label>
     <Button>
@@ -526,11 +564,11 @@ const Page: NextPage = () => {
     enabled={false}
     theme='primary'
 >
-    <Label theme='secondary'>
+    <Label>
         $
     </Label>
     <NumberInput placeholder='price' enableValidation={false} />
-    <Label theme='secondary'>
+    <Label>
         .00
     </Label>
     <Button>

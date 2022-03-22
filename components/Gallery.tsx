@@ -149,7 +149,7 @@ export const Gallery = ({ collection, children: itemMap, classes }: GalleryProps
             <div className='limiter'>
                 <Element classes={['flow', orientation]}>
                     <Group orientation='inline' size='sm'>
-                        <Label theme='secondary' mild={true}>
+                        <Label mild={true}>
                             <Icon icon='color_lens' />
                         </Label>
                         <ThemeOption orientation='inline' name='' showName={false} size='sm' value={theme} setValue={setTheme} />
@@ -160,7 +160,7 @@ export const Gallery = ({ collection, children: itemMap, classes }: GalleryProps
                             ?
                             <ButtonIcon theme='secondary' mild={true} icon='clear' onClick={() => { setSearch(''); searchRef.current?.focus(); }} />
                             :
-                            <Label theme='secondary' mild={true}>
+                            <Label mild={true}>
                                 <Icon icon='search' />
                             </Label>
                         }

@@ -57,7 +57,7 @@ export const IndicatorOptions = (props: IndicatorOptionProps) => {
         <BasicOptions
             {...props}
             warning={(!states.outlined[0] && !states.mild[0]) && warningEitherMildOutlined && <>
-                <Label theme='secondary'>Warning</Label>
+                <Label>Warning</Label>
                 <Warning>
                     Either <code>outlined</code> or <code>mild</code> should be <code>true</code> to
                     be able to see the effect of <code>active=true</code>.

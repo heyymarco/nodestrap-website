@@ -82,7 +82,7 @@ export const BasicOptions = (props: BasicOptionProps) => {
         { warning }
 
         {(states.outlined[0] && states.mild[0]) && warningBothMildOutlined && <>
-            <Label theme='secondary'>Warning</Label>
+            <Label>Warning</Label>
             <Warning>
                 If both <code>outlined</code> and <code>mild</code> are <code>true</code>, the <code>outlined</code> is
                 always <strong>dominant</strong> than <code>mild</code>.

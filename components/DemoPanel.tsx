@@ -207,7 +207,7 @@ export const Option = (props: OptionProps) => {
     
     
     return (<>
-        {name && <Label theme='secondary'>{ name }</Label>}
+        {name && <Label>{ name }</Label>}
         <ResponsiveGroup            
             {...groupProps}
         >
@@ -256,7 +256,7 @@ export const ThemeOption = (props: ThemeOptionProps) => {
     
     
     return (<>
-        {name && <Label theme='secondary'>{ name }</Label>}
+        {name && <Label>{ name }</Label>}
         <Group
             orientation={currentFallback}
             
@@ -308,7 +308,7 @@ export const Slider = (props: SliderProps) => {
     
     
     return (<>
-        {name && <Label theme='secondary'>{ name }</Label>}
+        {name && <Label>{ name }</Label>}
         <Range
             nude={false}
             
@@ -356,7 +356,7 @@ export const ResetButton = (props: ButtonIconProps & { states: Dictionary<Reseta
     
     
     return (<>
-        <Label theme='secondary'>Reset</Label>
+        <Label>Reset</Label>
         <ButtonIcon
             {...props}
             theme={props.theme ?? 'success'}
