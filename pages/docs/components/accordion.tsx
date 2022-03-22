@@ -10,6 +10,7 @@ import { SectionInheritedProps, LinkAccordionPage, LinkListPage, SectionOverridi
 import { ListItem } from '@nodestrap/list'
 import { Accordion as AccordionOri, AccordionProps, AccordionItem, AccordionSeparatorItem } from '@nodestrap/accordion'
 import { Collapse } from '@nodestrap/collapse'
+import Button from '@nodestrap/button'
 import { TypeScriptCode } from '../../../components/Code'
 import {
     SectionPropertyTheme,
@@ -39,6 +40,10 @@ import {
     SectionPropertyNumberedStyle,
 } from '../../../components/common@List'
 import {
+    SectionPropertyLabelAndContent,
+    SectionPropertyLabel,
+    SectionPropertyChildren,
+    
     SectionPropertyOnActiveChange,
     SectionPropertyLazy,
     SectionCustomizingCollapse,
@@ -145,6 +150,81 @@ const Page: NextPage = () => {
             <SectionDemo>
                 <DemoAccordionLazy fallback={<BusyBar />} />
             </SectionDemo>
+            <SectionPropertyLabelAndContent>
+                <SectionPropertyLabel>
+                    <Preview>
+                        <Accordion>
+                            <AccordionItem label='The Interesting Thing'>
+                                <DummyContents />
+                            </AccordionItem>
+                            <AccordionItem label={<>Another <em>Interesting</em> Thing</>}>
+                                <DummyContents />
+                            </AccordionItem>
+                            <AccordionItem label='The Something Else' tag='div' title='See more interesting things here.'>
+                                <DummyContents />
+                            </AccordionItem>
+                        </Accordion>
+                    </Preview>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Accordion theme='primary'>
+    <AccordionItem label='The Interesting Thing'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
+    </AccordionItem>
+    <AccordionItem label={<>Another <em>Interesting</em> Thing</>}>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
+    </AccordionItem>
+    <AccordionItem label='The Something Else' tag='div' title='See more interesting things here.'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
+    </AccordionItem>
+</Accordion>
+                    `}</TypeScriptCode>
+                </SectionPropertyLabel>
+                <SectionPropertyChildren>
+                    <Preview>
+                        <Accordion>
+                            <AccordionItem label='The Interesting Thing'>
+                                <DummyContents />
+                            </AccordionItem>
+                            <AccordionItem label={<>Another <em>Interesting</em> Thing</>}>
+                                <DummyContents />
+                                <p>
+                                    Click here: <Button theme='primary'>Click me!</Button>
+                                </p>
+                                <DummyContents />
+                            </AccordionItem>
+                        </Accordion>
+                    </Preview>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Accordion theme='primary'>
+    <AccordionItem label='The Interesting Thing'>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
+    </AccordionItem>
+    <AccordionItem label={<>Another <em>Interesting</em> Thing</>}>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
+        <p>
+            Click here: <Button theme='primary'>Click me!</Button>
+        </p>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
+    </AccordionItem>
+</Accordion>
+                    `}</TypeScriptCode>
+                    <SectionPropertyLazy titleTag='h4' />
+                </SectionPropertyChildren>
+            </SectionPropertyLabelAndContent>
             <SectionInheritedProps />
             <SectionVariants>
                 <SectionPropertyTheme>
@@ -1131,7 +1211,6 @@ export default function App() {
                     `}</TypeScriptCode>
                 </SectionPropertyEnabled>
             </SectionStates>
-            <SectionPropertyLazy />
             <SectionCustomizingCollapse>
                 <TransparentPreview>
                     <Accordion>

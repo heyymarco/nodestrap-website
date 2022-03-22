@@ -1,11 +1,73 @@
 import React from 'react'
 
-import { CurrentComponent, LinkCollapsePage, SectionPreviewProperty, SectionPreviewPropertyProps } from './common'
+import { CurrentComponent, LinkCollapsePage, SectionPreviewProperty, SectionPreviewPropertyProps, useComponentInfo } from './common'
 
 import {
     SectionPropertyLazyProps,
     SectionPropertyLazy         as PopupSectionPropertyLazy,
 } from './common@Popup'
+
+
+
+export const SectionPropertyLabelAndContent = ({ titleTag = 'h2', propertySuffix = false, property = 'label', properties = 'Labels and Contents', description, children, ...restProps }: SectionPreviewPropertyProps) => {
+    return (
+        <SectionPreviewProperty {...restProps} titleTag={titleTag} propertySuffix={propertySuffix} property={property} properties={properties} description={
+            description
+            ??
+            <>
+                <p>
+                    A <strong>label</strong> and <strong>content</strong> are the most important part of the <CurrentComponent />.
+                    You should to define them for the <CurrentComponent /> to be meaningful.
+                </p>
+                
+                {children}
+            </>
+        } />
+    );
+}
+export const SectionPropertyLabel = ({ titleTag = 'h3', propertySuffix = false, property = 'label', properties = 'Labels', description, ...restProps }: SectionPreviewPropertyProps) => {
+    const { nestedComponentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPreviewProperty {...restProps} titleTag={titleTag} propertySuffix={propertySuffix} property={property} properties={properties} description={
+            description
+            ??
+            <>
+                <p>
+                    Place the <strong>title</strong> or a <strong>short label</strong> on a <code>{`<${nestedComponentName} label='The Interesting Thing'>`}</code>.<br />
+                    You can use a <strong>JSX expression</strong> like this one: <code>{`<${nestedComponentName} label={<>The <em>Interesting</em> Thing</>}>`}</code>.
+                </p>
+                <p>
+                    We named this property <code>label</code> because we wanted to <em>preserve</em> the original HTML <code>title</code> property.
+                </p>
+                <p>
+                    The default <strong>tag</strong> of the <code>label</code> will be <code>h1</code>.<br />
+                    You can change the <strong>tag</strong> and/or the <strong>role</strong> by assigning: <code>{`<${nestedComponentName} tag='div' role='heading'>`}</code>.
+                </p>
+            </>
+        } />
+    );
+};
+export const SectionPropertyChildren = ({ titleTag = 'h3', propertySuffix = false, property = 'children', properties = 'Contents', description, ...restProps }: SectionPreviewPropertyProps) => {
+    const { nestedComponentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPreviewProperty {...restProps} titleTag={titleTag} propertySuffix={propertySuffix} property={property} properties={properties} description={
+            description
+            ??
+            <>
+                <p>
+                    Place a detailed content between the <code>{`<${nestedComponentName}>`}</code> and <code>{`</${nestedComponentName}>`}</code>.
+                    The content can be mixed of strings, paragraphs, articles, and a complex <em>JSX elements</em>.
+                </p>
+            </>
+        } />
+    );
+};
 
 
 

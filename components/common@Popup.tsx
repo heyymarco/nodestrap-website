@@ -308,7 +308,7 @@ export const SectionPropertyLazy = ({ titleTag = 'h2', propertySuffix = true, pr
             ??
             <>
                 <p>
-                    Prevents an unnecessary rendering of <CurrentComponent />&apos;s <code>children</code>, <em>when</em> the <CurrentComponent /> is currently <strong>{passiveAlias}</strong>.
+                    Prevents an unnecessary rendering of <CurrentNestedComponent />&apos;s <code>children</code>, <em>when</em> the <CurrentNestedComponent /> is currently <strong>{passiveAlias}</strong>.
                 </p>
                 <p>
                     This is useful to combine with <LinkReactLazyLinkPage /> or <LinkLoadableComponentsLinkPage />.
