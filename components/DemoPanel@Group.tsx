@@ -38,6 +38,8 @@ export const GroupOptions = (props: GroupOptionProps) => {
     return (<>
         <ListOptions
             {...props}
+            enableListstyle2={false}
+            enableActionCtrl={false}
         />
     </>);
 }
@@ -76,7 +78,7 @@ export const DemoGroup = () => {
                     <Label>
                         .00
                     </Label>
-                    <Button theme='primary'>
+                    <Button>
                         Update
                     </Button>
                 </Group>
@@ -103,7 +105,7 @@ export const DemoGroup = () => {
     <Label>
         .00
     </Label>
-    <Button theme='primary'>
+    <Button>
         Update
     </Button>
 </Group>
