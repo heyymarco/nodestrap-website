@@ -293,12 +293,12 @@ export const SectionPropertyLazy = ({ titleTag = 'h2', propertySuffix = true, pr
             <SpecList>
                 <DetailSpecItem code='true'>
                     <p>
-                        The <CurrentComponent />&apos;s <code>children</code> are rendered <em>only if</em> the <CurrentComponent /> is <strong>{activeAlias}</strong>.
+                        The <CurrentNestedComponent />&apos;s <code>children</code> are rendered <em>only if</em> the <CurrentNestedComponent /> is <strong>{activeAlias}</strong>.
                     </p>
                 </DetailSpecItem>
                 <DetailSpecItem code='false'>
                     <p>
-                        The <CurrentComponent />&apos;s <code>children</code> are <em>always</em> rendered.
+                        The <CurrentNestedComponent />&apos;s <code>children</code> are <em>always</em> rendered.
                     </p>
                     <ParagraphDefaultValue property='lazy' />
                 </DetailSpecItem>
