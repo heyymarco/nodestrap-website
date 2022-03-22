@@ -154,13 +154,13 @@ const Page: NextPage = () => {
                 <SectionPropertyLabel>
                     <Preview>
                         <Accordion>
-                            <AccordionItem label='The Interesting Thing'>
+                            <AccordionItem label='An Interesting Thing'>
                                 <DummyContents />
                             </AccordionItem>
                             <AccordionItem label={<>Another <em>Interesting</em> Thing</>}>
                                 <DummyContents />
                             </AccordionItem>
-                            <AccordionItem label='The Something Else' tag='div' title='See more interesting things here.'>
+                            <AccordionItem label='A Something Else' tag='div' title='See more interesting things here.'>
                                 <DummyContents />
                             </AccordionItem>
                         </Accordion>
@@ -168,7 +168,7 @@ const Page: NextPage = () => {
                     <p></p>
                     <TypeScriptCode>{`
 <Accordion theme='primary'>
-    <AccordionItem label='The Interesting Thing'>
+    <AccordionItem label='An Interesting Thing'>
         <p>...</p>
         <p>...</p>
         <p>...</p>
@@ -178,7 +178,7 @@ const Page: NextPage = () => {
         <p>...</p>
         <p>...</p>
     </AccordionItem>
-    <AccordionItem label='The Something Else' tag='div' title='See more interesting things here.'>
+    <AccordionItem label='A Something Else' tag='div' title='See more interesting things here.'>
         <p>...</p>
         <p>...</p>
         <p>...</p>
@@ -189,7 +189,7 @@ const Page: NextPage = () => {
                 <SectionPropertyChildren>
                     <Preview>
                         <Accordion>
-                            <AccordionItem label='The Interesting Thing'>
+                            <AccordionItem label='An Interesting Thing'>
                                 <DummyContents />
                             </AccordionItem>
                             <AccordionItem label={<>Another <em>Interesting</em> Thing</>}>
@@ -204,7 +204,7 @@ const Page: NextPage = () => {
                     <p></p>
                     <TypeScriptCode>{`
 <Accordion theme='primary'>
-    <AccordionItem label='The Interesting Thing'>
+    <AccordionItem label='An Interesting Thing'>
         <p>...</p>
         <p>...</p>
         <p>...</p>
