@@ -130,10 +130,10 @@ export const SectionPropertySize     = ({ property = 'size'    , properties = 'S
 export interface SectionPropertyNudeProps extends SectionPreviewPropertyProps {
     noBorder ?: boolean
 }
-export const SectionPropertyNude     = ({ property = 'nude'    , properties = 'Nude'    , nestedable = true, description, defaultValue = false, noBorder, ...restProps }: SectionPropertyNudeProps) => {
+export const SectionPropertyNude     = ({ property = 'nude'    , properties = 'Nude'    , nestedable = true, effectNestedable, description, defaultValue = false, noBorder, ...restProps }: SectionPropertyNudeProps) => {
     const { componentName, nestedComponentName } = useComponentInfo();
     const theComponentName    = nestedable ? nestedComponentName : componentName;
-    const TheCurrentComponent = nestedable ? CurrentNestedComponent : CurrentComponent;
+    const TheCurrentComponent = (effectNestedable ?? nestedable) ? CurrentNestedComponent : CurrentComponent;
     
     
     
@@ -155,10 +155,10 @@ export const SectionPropertyNude     = ({ property = 'nude'    , properties = 'N
         } />
     );
 };
-export const SectionPropertyGradient = ({ property = 'gradient', properties = 'Gradient', nestedable = true, description, defaultValue = false, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyGradient = ({ property = 'gradient', properties = 'Gradient', nestedable = true, effectNestedable, description, defaultValue = false, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName, hasNestedComponent, nestedComponentName } = useComponentInfo();
     const theComponentName    = nestedable ? nestedComponentName : componentName;
-    const TheCurrentComponent = nestedable ? CurrentNestedComponent : CurrentComponent;
+    const TheCurrentComponent = (effectNestedable ?? nestedable) ? CurrentNestedComponent : CurrentComponent;
     
     
     
@@ -180,10 +180,10 @@ export const SectionPropertyGradient = ({ property = 'gradient', properties = 'G
         } />
     );
 };
-export const SectionPropertyOutlined = ({ property = 'outlined', properties = 'Outlined', nestedable = true, description, defaultValue = false, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyOutlined = ({ property = 'outlined', properties = 'Outlined', nestedable = true, effectNestedable, description, defaultValue = false, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName, hasNestedComponent, nestedComponentName } = useComponentInfo();
     const theComponentName    = nestedable ? nestedComponentName : componentName;
-    const TheCurrentComponent = nestedable ? CurrentNestedComponent : CurrentComponent;
+    const TheCurrentComponent = (effectNestedable ?? nestedable) ? CurrentNestedComponent : CurrentComponent;
     
     
     
@@ -205,10 +205,10 @@ export const SectionPropertyOutlined = ({ property = 'outlined', properties = 'O
         } />
     );
 };
-export const SectionPropertyMild     = ({ property = 'mild'    , properties = 'Mild'    , nestedable = true, description, defaultValue = false, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyMild     = ({ property = 'mild'    , properties = 'Mild'    , nestedable = true, effectNestedable, description, defaultValue = false, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName, hasNestedComponent, nestedComponentName } = useComponentInfo();
     const theComponentName    = nestedable ? nestedComponentName : componentName;
-    const TheCurrentComponent = nestedable ? CurrentNestedComponent : CurrentComponent;
+    const TheCurrentComponent = (effectNestedable ?? nestedable) ? CurrentNestedComponent : CurrentComponent;
     
     
     

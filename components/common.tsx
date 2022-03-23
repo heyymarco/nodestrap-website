@@ -157,6 +157,8 @@ export const LinkAccordionSeparatorItemPage = (props: PageLinkProps) => <LinkCod
 
 
 export const LinkGroupPage                  = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/group'>Group</LinkCode>
+export const LinkGroupChildrenPage          = () => <em><LinkGroupPage />&apos;s nested component</em>
+
 export const LinkNavbarPage                 = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/navbar'>Navbar</LinkCode>
 
 export const LinkModalPage                  = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/modal'>Modal</LinkCode>
@@ -471,15 +473,16 @@ export const SectionStates = ({ title = 'State Properties', children, ...restPro
 }
 
 export interface SectionPropertyProps extends SectionProps {
-    titleTag       ?: 'h1'|'h2'|'h3'|'h4'|'h5'|'h6'
-    property       ?: string|React.ReactElement
-    properties     ?: string|React.ReactElement
-    propertySuffix ?: boolean
-    defaultValue   ?: boolean|number|string|React.ReactNode
-    nestedable     ?: boolean
-    specList       ?: SpecList|React.ReactNode
-    moreInfo       ?: React.ReactNode
-    preview        ?: React.ReactNode
+    titleTag          ?: 'h1'|'h2'|'h3'|'h4'|'h5'|'h6'
+    property          ?: string|React.ReactElement
+    properties        ?: string|React.ReactElement
+    propertySuffix    ?: boolean
+    defaultValue      ?: boolean|number|string|React.ReactNode
+    nestedable        ?: boolean
+    effectNestedable ?: boolean
+    specList          ?: SpecList|React.ReactNode
+    moreInfo          ?: React.ReactNode
+    preview           ?: React.ReactNode
 }
 export const SectionProperty = ({ titleTag = 'h2', title, property, properties, propertySuffix = true, specList, moreInfo, preview, children }: SectionPropertyProps) => {
     return (
@@ -530,9 +533,10 @@ export const SectionSubProperty = ({ titleTag = 'h3', ...restProps }: SectionPro
     );
 }
 export interface SectionPreviewPropertyProps extends Omit<SectionPropertyProps, 'preview'> {
-    description ?: React.ReactNode
+    description     ?: React.ReactNode
+    moreDescription ?: React.ReactNode
 }
-export const SectionPreviewProperty = ({ titleTag = 'h3', propertySuffix = false, description, children, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPreviewProperty = ({ titleTag = 'h3', propertySuffix = false, description, moreDescription, children, ...restProps }: SectionPreviewPropertyProps) => {
     return (
         <SectionProperty {...restProps} titleTag={titleTag}
             
@@ -541,6 +545,7 @@ export const SectionPreviewProperty = ({ titleTag = 'h3', propertySuffix = false
             preview={children}
         >
             {description}
+            {moreDescription}
         </SectionProperty>
     );
 }

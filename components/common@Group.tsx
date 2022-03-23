@@ -1,45 +1,90 @@
 import React from 'react'
 
-import { CurrentNestedComponent, LinkContentPage, LinkButtonPage, useComponentInfo, SectionPreviewProperty, SectionPreviewPropertyProps, CurrentComponent } from './common'
-import { Warning } from './Info'
+import { SectionPreviewPropertyProps } from './common'
 import {
+    SectionPropertyTheme    as ListSectionPropertyTheme,
+    SectionPropertySize     as ListSectionPropertySize,
     SectionPropertyNudeProps,
+    SectionPropertyGradient as ListSectionPropertyGradient,
+    SectionPropertyOutlined as ListSectionPropertyOutlined,
 } from './common@Basic'
 import {
-    SectionPropertyNude as ListSectionPropertyNude,
-    SectionPropertyMild as ListSectionPropertyMild,
+    SectionPropertyNude     as ListSectionPropertyNude,
+    SectionPropertyMild     as ListSectionPropertyMild,
 } from './common@List'
 
 
 
-export const SectionPropertyNude = ({ description, ...props }: SectionPropertyNudeProps) => {
+const ParagraphIgnoreProperty = () => (
+    <p>
+        Note: one/more <em>nested component</em> may <em>override</em> or <em>ignore</em> this property.
+    </p>
+);
+
+
+
+export const SectionPropertyTheme    = ({ moreDescription, ...props }: SectionPreviewPropertyProps) => {
     return (
-        <ListSectionPropertyNude {...props} description={
-            description
+        <ListSectionPropertyTheme {...props} moreDescription={
+            moreDescription
             ??
             <>
-                <p>
-                    Changes the default value of <code>nude</code> property of <CurrentComponent />&apos;s children.
-                </p>
-                <p>
-                    Note: one/more children may <em>override</em> or <em>ignore</em> this property.
-                </p>
+                <ParagraphIgnoreProperty />
             </>
         } />
     );
 };
-export const SectionPropertyMild = ({ description, ...props }: SectionPropertyNudeProps) => {
+export const SectionPropertySize     = ({ moreDescription, ...props }: SectionPreviewPropertyProps) => {
     return (
-        <ListSectionPropertyMild {...props} description={
-            description
+        <ListSectionPropertySize {...props} moreDescription={
+            moreDescription
             ??
             <>
-                <p>
-                    Changes the default value of <code>mild</code> property of <CurrentComponent />&apos;s children.
-                </p>
-                <p>
-                    Note: one/more children may <em>override</em> or <em>ignore</em> this property.
-                </p>
+                <ParagraphIgnoreProperty />
+            </>
+        } />
+    );
+};
+export const SectionPropertyNude     = ({ nestedable = false, effectNestedable = true, moreDescription, ...props }: SectionPropertyNudeProps) => {
+    return (
+        <ListSectionPropertyNude {...props} nestedable={nestedable} effectNestedable={effectNestedable} moreDescription={
+            moreDescription
+            ??
+            <>
+                <ParagraphIgnoreProperty />
+            </>
+        } />
+    );
+};
+export const SectionPropertyGradient = ({ nestedable = false, effectNestedable = true, moreDescription, ...props }: SectionPreviewPropertyProps) => {
+    return (
+        <ListSectionPropertyGradient {...props} nestedable={nestedable} effectNestedable={effectNestedable} moreDescription={
+            moreDescription
+            ??
+            <>
+                <ParagraphIgnoreProperty />
+            </>
+        } />
+    );
+};
+export const SectionPropertyOutlined = ({ nestedable = false, effectNestedable = true, moreDescription, ...props }: SectionPreviewPropertyProps) => {
+    return (
+        <ListSectionPropertyOutlined {...props} nestedable={nestedable} effectNestedable={effectNestedable} moreDescription={
+            moreDescription
+            ??
+            <>
+                <ParagraphIgnoreProperty />
+            </>
+        } />
+    );
+};
+export const SectionPropertyMild     = ({ nestedable = false, effectNestedable = true, moreDescription, defaultValue = false, ...props }: SectionPreviewPropertyProps) => {
+    return (
+        <ListSectionPropertyMild {...props} nestedable={nestedable} effectNestedable={effectNestedable} defaultValue={defaultValue} moreDescription={
+            moreDescription
+            ??
+            <>
+                <ParagraphIgnoreProperty />
             </>
         } />
     );

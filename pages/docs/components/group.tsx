@@ -8,7 +8,7 @@ import { useFlipFlop } from '../../../components/hooks'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
-import { SectionInheritedProps, LinkGroupPage, LinkListPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentNestedComponent, CurrentBaseComponents, SectionVariants, SectionStates, LinkUsesIndicatorVariantsPage, SectionPreviewProperty } from '../../../components/common'
+import { SectionInheritedProps, LinkGroupPage, LinkListPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentNestedComponent, CurrentBaseComponents, SectionVariants, SectionStates, LinkUsesIndicatorVariantsPage, SectionPreviewProperty, LinkGroupChildrenPage } from '../../../components/common'
 import { Group as GroupOri, GroupProps, OrientationName } from '@nodestrap/group'
 import { Label } from '@nodestrap/label';
 import { NumberInput } from '@nodestrap/input';
@@ -20,10 +20,6 @@ import { Tips } from '../../../components/Info'
 import Element from '@nodestrap/element'
 import {
     themeNames,
-    SectionPropertyTheme,
-    SectionPropertySize,
-    SectionPropertyGradient,
-    SectionPropertyOutlined,
     SectionPropertyOrientation,
     SectionPropertyOrientationBlock,
     SectionPropertyOrientationInline,
@@ -50,7 +46,11 @@ import {
     SectionPropertyActionCtrl,
 } from '../../../components/common@List'
 import {
+    SectionPropertyTheme,
+    SectionPropertySize,
     SectionPropertyNude,
+    SectionPropertyGradient,
+    SectionPropertyOutlined,
     SectionPropertyMild,
 } from '../../../components/common@Group'
 
@@ -121,7 +121,7 @@ const GroupMixed = (props: GroupProps) => <Group
 
 const Page: NextPage = () => {
     return (
-        <ComponentInfoProvider packageName='@nodestrap/group' component={<LinkGroupPage />} bases={<LinkListPage />}>
+        <ComponentInfoProvider packageName='@nodestrap/group' component={<LinkGroupPage />} nestedComponent={<LinkGroupChildrenPage />} bases={<LinkListPage />}>
             <Head>
                 <title>&lt;Group&gt; Component</title>
                 <meta name="description" content="Using <Group> component" />

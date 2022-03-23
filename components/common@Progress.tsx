@@ -35,9 +35,9 @@ export const SectionPropertyNude  = ({ nestedable = false, ...restProps }: Secti
         <BasicSectionPropertyNude {...restProps} nestedable={nestedable} />
     );
 };
-export const SectionPropertyGradient  = ({ nestedable = false, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyGradient  = ({ nestedable = false, effectNestedable = true, ...restProps }: SectionPreviewPropertyProps) => {
     return (
-        <BasicSectionPropertyGradient {...restProps} nestedable={nestedable} />
+        <BasicSectionPropertyGradient {...restProps} nestedable={nestedable} effectNestedable={effectNestedable} />
     );
 };
 export const SectionPropertyOutlined  = ({ nestedable = false, ...restProps }: SectionPreviewPropertyProps) => {
