@@ -36,8 +36,6 @@ import {
     SectionPropertyEnabled,
 } from '../../../components/common@Indicator'
 import {
-    SectionPropertyNude,
-    SectionPropertyMild,
     SectionPropertyListStyle,
     SectionPropertyFlatStyle,
     SectionPropertyFlushStyle,
@@ -51,6 +49,10 @@ import {
     ContentMakeItemsClickable,
     SectionPropertyActionCtrl,
 } from '../../../components/common@List'
+import {
+    SectionPropertyNude,
+    SectionPropertyMild,
+} from '../../../components/common@Group'
 
 import loadable from '@loadable/component'
 const DemoGroupLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Group' */'../../../components/DemoPanel@Group'))
@@ -324,11 +326,31 @@ const Page: NextPage = () => {
                             mild={true}
                             theme='primary'
                         />
+                        <Group
+                            mild={false}
+                            theme='primary'
+                        />
                     </TransparentPreview>
                     <p></p>
                     <TypeScriptCode>{`
 <Group
     mild={true}
+    theme='primary'
+>
+    <Label>
+        $
+    </Label>
+    <NumberInput placeholder='price' enableValidation={false} />
+    <Label>
+        .00
+    </Label>
+    <Button>
+        Update
+    </Button>
+</Group>
+
+<Group
+    mild={false}
     theme='primary'
 >
     <Label>
