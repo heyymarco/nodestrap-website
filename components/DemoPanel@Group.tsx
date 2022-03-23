@@ -12,8 +12,9 @@ import { Button } from '@nodestrap/button';
 
 
 export const groupInitials = {
-    orientation : 'inline' as OrientationName|undefined,
-    mild        : false,
+    orientation : 'inline'  as OrientationName|undefined,
+    nude        : undefined as boolean|undefined,
+    mild        : undefined as boolean|undefined,
 };
 export type GroupInitials = typeof groupInitials & Partial<ListInitials>
 export const useGroupStates = (initials ?: Partial<GroupInitials>) => {
@@ -41,6 +42,8 @@ export const GroupOptions = (props: GroupOptionProps) => {
             enableListstyle2={false}
             enableActionCtrl={false}
             warningEitherMildOutlined={false}
+            enableUndefinedNude={true}
+            enableUndefinedMild={true}
         />
     </>);
 }

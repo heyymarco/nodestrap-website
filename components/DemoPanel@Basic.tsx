@@ -10,11 +10,11 @@ import { TypeScriptCode } from './Code';
 
 export const basicInitials = {
     size     : undefined as SizeName|undefined,
-    nude     : false,
+    nude     : false     as boolean|undefined,
     theme    : 'primary' as ThemeName|undefined,
     gradient : false,
     outlined : false,
-    mild     : false,
+    mild     : false     as boolean|undefined,
 };
 export type BasicInitials = typeof basicInitials
 export const useBasicStates = (initials ?: Partial<BasicInitials>) => {
@@ -39,7 +39,10 @@ export const useBasicStates = (initials ?: Partial<BasicInitials>) => {
         mild,
     };
 }
-export type BasicOptionProps = { states: ReturnType<typeof useBasicStates>, warning?: React.ReactChild|false, warningBothMildOutlined?: boolean }
+export type BasicOptionProps = { states: ReturnType<typeof useBasicStates>, warning?: React.ReactChild|false, warningBothMildOutlined?: boolean } & {
+    enableUndefinedNude ?: boolean,
+    enableUndefinedMild ?: boolean,
+}
 export const BasicOptions = (props: BasicOptionProps) => {
     const { states, warning, warningBothMildOutlined = true } = props;
     
@@ -55,7 +58,7 @@ export const BasicOptions = (props: BasicOptionProps) => {
         
         <Option
             name='nude'
-            options={[false, true]}
+            options={[...((props.enableUndefinedNude ?? false) ? [undefined] : []), false, true]}
             value={states.nude[0]}
             setValue={states.nude[1]}
         />
@@ -91,7 +94,7 @@ export const BasicOptions = (props: BasicOptionProps) => {
         
         <Option
             name='mild'
-            options={[false, true]}
+            options={[...((props.enableUndefinedMild ?? false) ? [undefined] : []), false, true]}
             value={states.mild[0]}
             setValue={states.mild[1]}
         />
