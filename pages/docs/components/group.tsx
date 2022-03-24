@@ -42,6 +42,7 @@ import {
     SectionPropertyEnabled,
     
     SectionPropertyChildren,
+    SectionPropertyNestedChildren,
 } from '../../../components/common@Group'
 
 import loadable from '@loadable/component'
@@ -172,6 +173,105 @@ const Page: NextPage = () => {
     </Label>
 </Group>
                 `}</TypeScriptCode>
+                <SectionPropertyNestedChildren>
+                    <Preview stretch={false}>
+                        <Group
+                            theme='primary'
+                            orientation='block'
+                        >
+                            <Label theme='' mild={false}>
+                                Super Mario
+                            </Label>
+                            <Group
+                                orientation='inline'
+                            >
+                                <Label theme=''>
+                                    Power
+                                </Label>
+                                <Group
+                                    orientation='block'
+                                >
+                                    <Group
+                                        orientation='inline'
+                                        theme='danger'
+                                    >
+                                        <Range theme='' nude={false} value={80} style={{ minWidth: '100px' }} />
+                                        <Label theme='' style={{ width: '5em' }}>
+                                            Stamina
+                                        </Label>
+                                    </Group>
+                                    <Group
+                                        orientation='inline'
+                                        theme='success'
+                                    >
+                                        <Range theme='' nude={false} value={40} style={{ minWidth: '100px' }} />
+                                        <Label theme='' style={{ width: '5em' }}>
+                                            Vision
+                                        </Label>
+                                    </Group>
+                                    <Group
+                                        orientation='inline'
+                                        theme='warning'
+                                    >
+                                        <Range theme='' nude={false} value={70} style={{ minWidth: '100px' }} />
+                                        <Label theme='' style={{ width: '5em' }}>
+                                            Healing
+                                        </Label>
+                                    </Group>
+                                </Group>
+                            </Group>
+                        </Group>
+                    </Preview>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Group
+    theme='primary'
+    orientation='block'
+>
+    <Label theme='' mild={false}>
+        Super Mario
+    </Label>
+    <Group
+        orientation='inline'
+    >
+        <Label theme=''>
+            Power
+        </Label>
+        <Group
+            orientation='block'
+        >
+            <Group
+                orientation='inline'
+                theme='danger'
+            >
+                <Range theme='' nude={false} value={80} style={{ minWidth: '100px' }} />
+                <Label theme='' style={{ width: '5em' }}>
+                    Stamina
+                </Label>
+            </Group>
+            <Group
+                orientation='inline'
+                theme='success'
+            >
+                <Range theme='' nude={false} value={40} style={{ minWidth: '100px' }} />
+                <Label theme='' style={{ width: '5em' }}>
+                    Vision
+                </Label>
+            </Group>
+            <Group
+                orientation='inline'
+                theme='warning'
+            >
+                <Range theme='' nude={false} value={70} style={{ minWidth: '100px' }} />
+                <Label theme='' style={{ width: '5em' }}>
+                    Healing
+                </Label>
+            </Group>
+        </Group>
+    </Group>
+</Group>
+                    `}</TypeScriptCode>
+                </SectionPropertyNestedChildren>
             </SectionPropertyChildren>
             <SectionInheritedProps />
             <SectionVariants>

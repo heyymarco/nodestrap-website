@@ -137,3 +137,16 @@ export const SectionPropertyChildren = ({ titleTag = 'h2', property = 'children'
         } />
     );
 };
+export const SectionPropertyNestedChildren = ({ titleTag = 'h2', property = 'children', properties = 'Multi Level Groups', description, ...restProps }: SectionPreviewPropertyProps) => {
+    return (
+        <SectionPreviewProperty {...restProps} titleTag={titleTag} property={property} properties={properties} description={
+            description
+            ??
+            <>
+                <p>
+                    You can place several <strong>nested</strong> <CurrentComponent />s at any depth with mixed <code>orientation</code>s, <code>theme</code>s, etc.
+                </p>
+            </>
+        } />
+    );
+};
