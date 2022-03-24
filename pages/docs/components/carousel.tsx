@@ -27,7 +27,7 @@ const DemoCarouselLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@C
 const Carousel = (props: CarouselProps) => <CarouselOri
     {...props}
     theme={props.theme ?? 'primary'}
-    style={{ width: '400px', height: '300px' }}
+    style={{ maxWidth: '400px', maxHeight: '300px' }}
 >
     <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />

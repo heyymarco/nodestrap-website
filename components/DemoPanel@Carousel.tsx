@@ -43,8 +43,16 @@ export const DemoCarousel = () => {
                     gradient={states.gradient[0]}
                     outlined={states.outlined[0]}
                     mild={states.mild[0]}
+                    
+                    style={{ maxWidth: '300px', maxHeight: '250px' }}
                 >
-                    hello world
+                    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg'  />
+                    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
+                    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
+                    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
+                    <img alt='lorem image' src='/images/lorem-img/tulip-700x400.jpg'  />
+                    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
+                    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
                 </Carousel>
                 <TypeScriptCode collapsable={false}>{`
 <Carousel
@@ -56,12 +64,12 @@ export const DemoCarousel = () => {
     mild={${states.mild[0]}}
 >
     <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/tulip-700x800.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/tulip-700x400.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/wood-600x800.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
 </Carousel>
                 `}</TypeScriptCode>
             </div>
