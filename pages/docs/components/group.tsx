@@ -1,14 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { useFlipFlop } from '../../../components/hooks'
-
-import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
+import { SpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
-import { SectionInheritedProps, LinkGroupPage, LinkListPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentNestedComponent, CurrentBaseComponents, SectionVariants, SectionStates, LinkUsesIndicatorVariantsPage, SectionPreviewProperty, LinkGroupChildrenPage } from '../../../components/common'
+import { SectionInheritedProps, LinkGroupPage, LinkListPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, SectionStates, LinkUsesIndicatorVariantsPage, LinkGroupChildrenPage } from '../../../components/common'
 import { Group as GroupOri, GroupProps, OrientationName } from '@nodestrap/group'
 import { Label } from '@nodestrap/label';
 import { NumberInput } from '@nodestrap/input';
@@ -17,7 +15,6 @@ import { Radio } from '@nodestrap/radio'
 import { TypeScriptCode } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
 import { Tips } from '../../../components/Info'
-import Element from '@nodestrap/element'
 import {
     themeNames,
     SectionPropertyOrientation,
@@ -26,24 +23,10 @@ import {
     SectionPropertyOrientationResponsive,
 } from '../../../components/common@Basic'
 import {
-    SectionPropertyActive,
-    SectionPropertyActiveNoOutlined,
-    SectionPropertyActiveNoMild,
-    SectionPropertyEnabled,
-} from '../../../components/common@Indicator'
-import {
     SectionPropertyListStyle,
     SectionPropertyFlatStyle,
     SectionPropertyFlushStyle,
     SectionPropertyJoinedStyle,
-    SectionPropertyContentStyle,
-    SectionPropertyBtnStyle,
-    SectionPropertyTabStyle,
-    SectionPropertyBreadcrumbStyle,
-    SectionPropertyBulletStyle,
-    SectionPropertyNumberedStyle,
-    ContentMakeItemsClickable,
-    SectionPropertyActionCtrl,
 } from '../../../components/common@List'
 import {
     SectionPropertyTheme,
@@ -52,6 +35,9 @@ import {
     SectionPropertyGradient,
     SectionPropertyOutlined,
     SectionPropertyMild,
+    
+    SectionPropertyActive,
+    SectionPropertyEnabled,
 } from '../../../components/common@Group'
 
 import loadable from '@loadable/component'
@@ -70,7 +56,7 @@ const Group = (props: GroupProps) => <GroupOri
             <Label key={0}>
                 $
             </Label>,
-            <NumberInput key={1} placeholder='price' enableValidation={false} />,
+            <NumberInput key={1} placeholder='price' />,
             <Label key={2}>
                 .00
             </Label>,
@@ -89,13 +75,13 @@ const GroupVert = (props: GroupProps) => <Group
         props.children
         ??
         [
-            <Radio key={0} name='sizeOpt' nude={false} enableValidation={false}>
+            <Radio key={0} name='sizeOpt' nude={false}>
                 Small
             </Radio>,
-            <Radio key={1} name='sizeOpt' nude={false} enableValidation={false}>
+            <Radio key={1} name='sizeOpt' nude={false}>
                 Medium
             </Radio>,
-            <Radio key={2} name='sizeOpt' nude={false} enableValidation={false}>
+            <Radio key={2} name='sizeOpt' nude={false}>
                 Large
             </Radio>,
         ]
@@ -164,7 +150,7 @@ const Page: NextPage = () => {
     <Label>
         $
     </Label>
-    <NumberInput placeholder='price' enableValidation={false} />
+    <NumberInput placeholder='price' />
     <Label>
         .00
     </Label>
@@ -200,7 +186,7 @@ const Page: NextPage = () => {
     <Label>
         $
     </Label>
-    <NumberInput placeholder='price' enableValidation={false} />
+    <NumberInput placeholder='price' />
     <Label>
         .00
     </Label>
@@ -216,7 +202,7 @@ const Page: NextPage = () => {
     <Label>
         $
     </Label>
-    <NumberInput placeholder='price' enableValidation={false} />
+    <NumberInput placeholder='price' />
     <Label>
         .00
     </Label>
@@ -232,7 +218,7 @@ const Page: NextPage = () => {
     <Label>
         $
     </Label>
-    <NumberInput placeholder='price' enableValidation={false} />
+    <NumberInput placeholder='price' />
     <Label>
         .00
     </Label>
@@ -258,7 +244,7 @@ const Page: NextPage = () => {
     <Label>
         $
     </Label>
-    <NumberInput placeholder='price' enableValidation={false} />
+    <NumberInput placeholder='price' />
     <Label>
         .00
     </Label>
@@ -284,7 +270,7 @@ const Page: NextPage = () => {
     <Label>
         $
     </Label>
-    <NumberInput placeholder='price' enableValidation={false} />
+    <NumberInput placeholder='price' />
     <Label>
         .00
     </Label>
@@ -310,7 +296,7 @@ const Page: NextPage = () => {
     <Label>
         $
     </Label>
-    <NumberInput placeholder='price' enableValidation={false} />
+    <NumberInput placeholder='price' />
     <Label>
         .00
     </Label>
@@ -340,7 +326,7 @@ const Page: NextPage = () => {
     <Label>
         $
     </Label>
-    <NumberInput placeholder='price' enableValidation={false} />
+    <NumberInput placeholder='price' />
     <Label>
         .00
     </Label>
@@ -356,7 +342,7 @@ const Page: NextPage = () => {
     <Label>
         $
     </Label>
-    <NumberInput placeholder='price' enableValidation={false} />
+    <NumberInput placeholder='price' />
     <Label>
         .00
     </Label>
@@ -380,13 +366,13 @@ const Page: NextPage = () => {
     orientation='block'
     theme='primary'
 >
-    <Radio name='sizeOpt' nude={false} enableValidation={false}>
+    <Radio name='sizeOpt' nude={false}>
         Small
     </Radio>
-    <Radio name='sizeOpt' nude={false} enableValidation={false}>
+    <Radio name='sizeOpt' nude={false}>
         Medium
     </Radio>
-    <Radio name='sizeOpt' nude={false} enableValidation={false}>
+    <Radio name='sizeOpt' nude={false}>
         Large
     </Radio>
 </Group>
@@ -405,13 +391,13 @@ const Page: NextPage = () => {
     orientation='inline'
     theme='primary'
 >
-    <Radio name='sizeOpt' nude={false} enableValidation={false}>
+    <Radio name='sizeOpt' nude={false}>
         Small
     </Radio>
-    <Radio name='sizeOpt' nude={false} enableValidation={false}>
+    <Radio name='sizeOpt' nude={false}>
         Medium
     </Radio>
-    <Radio name='sizeOpt' nude={false} enableValidation={false}>
+    <Radio name='sizeOpt' nude={false}>
         Large
     </Radio>
 </Group>
@@ -465,13 +451,13 @@ const Page: NextPage = () => {
             orientation={currentFallback}
             theme='primary'
         >
-            <Radio name='sizeOpt' nude={false} enableValidation={false}>
+            <Radio name='sizeOpt' nude={false}>
                 Small
             </Radio>
-            <Radio name='sizeOpt' nude={false} enableValidation={false}>
+            <Radio name='sizeOpt' nude={false}>
                 Medium
             </Radio>
-            <Radio name='sizeOpt' nude={false} enableValidation={false}>
+            <Radio name='sizeOpt' nude={false}>
                 Large
             </Radio>
         </Group>
@@ -491,7 +477,7 @@ const Page: NextPage = () => {
     <Label>
         $
     </Label>
-    <NumberInput placeholder='price' enableValidation={false} />
+    <NumberInput placeholder='price' />
     <Label>
         .00
     </Label>
@@ -511,7 +497,7 @@ const Page: NextPage = () => {
     <Label>
         $
     </Label>
-    <NumberInput placeholder='price' enableValidation={false} />
+    <NumberInput placeholder='price' />
     <Label>
         .00
     </Label>
@@ -531,7 +517,7 @@ const Page: NextPage = () => {
     <Label>
         $
     </Label>
-    <NumberInput placeholder='price' enableValidation={false} />
+    <NumberInput placeholder='price' />
     <Label>
         .00
     </Label>
@@ -560,7 +546,7 @@ const Page: NextPage = () => {
     <Label>
         $
     </Label>
-    <NumberInput placeholder='price' enableValidation={false} />
+    <NumberInput placeholder='price' />
     <Label>
         .00
     </Label>
@@ -586,7 +572,7 @@ const Page: NextPage = () => {
     <Label>
         $
     </Label>
-    <NumberInput placeholder='price' enableValidation={false} />
+    <NumberInput placeholder='price' />
     <Label>
         .00
     </Label>

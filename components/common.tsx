@@ -157,7 +157,7 @@ export const LinkAccordionSeparatorItemPage = (props: PageLinkProps) => <LinkCod
 
 
 export const LinkGroupPage                  = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/group'>Group</LinkCode>
-export const LinkGroupChildrenPage          = () => <em><LinkGroupPage />&apos;s nested component</em>
+export const LinkGroupChildrenPage          = () => <em><LinkGroupPage />&apos;s child component</em>
 
 export const LinkNavbarPage                 = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/navbar'>Navbar</LinkCode>
 

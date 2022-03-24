@@ -31,7 +31,7 @@
     "@nodestrap/dropdown-list-button": "^4.0.9",
     "@nodestrap/editable-text-control": "^4.0.7",
     "@nodestrap/element": "^4.0.7",
-    "@nodestrap/form": "^4.0.4",
+    "@nodestrap/form": "^4.0.5",
     "@nodestrap/group": "^4.0.7",
     "@nodestrap/icon": "^4.0.12",
     "@nodestrap/input": "^4.0.5",

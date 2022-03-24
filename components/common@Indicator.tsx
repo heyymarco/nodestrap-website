@@ -18,8 +18,10 @@ export const SectionPropertyMild = ({ defaultValue = true, ...props }: SectionPr
 
 
 
-export const SectionPropertyActive           = ({ property = 'active'    , properties = 'Active State'                         , specList, description, ...restProps }: SectionPreviewPropertyProps) => {
-    const { nestedComponentName } = useComponentInfo();
+export const SectionPropertyActive           = ({ property = 'active'    , properties = 'Active State'                         , nestedable = true, effectNestedable, specList, description, ...restProps }: SectionPreviewPropertyProps) => {
+    const { componentName, hasNestedComponent, nestedComponentName } = useComponentInfo();
+    const theComponentName    = nestedable ? nestedComponentName : componentName;
+    const TheCurrentComponent = (effectNestedable ?? nestedable) ? CurrentNestedComponent : CurrentComponent;
     
     
     
@@ -30,12 +32,12 @@ export const SectionPropertyActive           = ({ property = 'active'    , prope
             <SpecList>
                 <DetailSpecItem code='true'>
                     <p>
-                        At this state, the <CurrentNestedComponent /> is currently <strong>selected</strong> or <strong>on</strong> state.
+                        At this state, the <TheCurrentComponent /> is currently <strong>selected</strong> or <strong>on</strong> state.
                     </p>
                 </DetailSpecItem>
                 <DetailSpecItem code='false'>
                     <p>
-                        At this state, the <CurrentNestedComponent /> is currently in <strong>normal</strong> state.
+                        At this state, the <TheCurrentComponent /> is currently in <strong>normal</strong> state.
                     </p>
                     <ParagraphDefaultValue property='active' />
                 </DetailSpecItem>
@@ -45,12 +47,12 @@ export const SectionPropertyActive           = ({ property = 'active'    , prope
             ??
             <>
                 <p>
-                    Decides the <CurrentNestedComponent /> is currently <strong>selected</strong> or <strong>on</strong> state.
+                    Decides the <TheCurrentComponent /> is currently <strong>selected</strong> or <strong>on</strong> state.
                 </p>
                 <p>
-                    To make <CurrentNestedComponent /> active, set <code>{`<${nestedComponentName} active={true}>`}</code>.
+                    To make <TheCurrentComponent /> active, set <code>{`<${theComponentName} active={true}>`}</code>.
                 </p>
-                <ParagraphSetParentActive />
+                {hasNestedComponent && nestedable && <ParagraphSetParentActive />}
             </>
         } />
     );
@@ -110,8 +112,10 @@ export const SectionPropertyActiveNoMild     = ({ property = 'mild'      , prope
     );
 };
 
-export const SectionPropertyEnabled          = ({ property = 'enabled'   , properties = 'Disabled State'                       , specList, description, ...restProps }: SectionPreviewPropertyProps) => {
-    const { nestedComponentName } = useComponentInfo();
+export const SectionPropertyEnabled          = ({ property = 'enabled'   , properties = 'Disabled State'                       , nestedable = true, effectNestedable, specList, description, ...restProps }: SectionPreviewPropertyProps) => {
+    const { componentName, hasNestedComponent, nestedComponentName } = useComponentInfo();
+    const theComponentName    = nestedable ? nestedComponentName : componentName;
+    const TheCurrentComponent = (effectNestedable ?? nestedable) ? CurrentNestedComponent : CurrentComponent;
     
     
     
@@ -122,13 +126,13 @@ export const SectionPropertyEnabled          = ({ property = 'enabled'   , prope
             <SpecList>
                 <DetailSpecItem code='true'>
                     <p>
-                        At this state, all functionality of <CurrentNestedComponent /> are <strong>preserved</strong>.
+                        At this state, all functionality of <TheCurrentComponent /> are <strong>preserved</strong>.
                     </p>
                     <ParagraphDefaultValue property='enabled' />
                 </DetailSpecItem>
                 <DetailSpecItem code='false'>
                     <p>
-                        At this state, all/almost all functionality of <CurrentNestedComponent /> are <strong>disabled</strong>.
+                        At this state, all/almost all functionality of <TheCurrentComponent /> are <strong>disabled</strong>.
                     </p>
                 </DetailSpecItem>
             </SpecList>
@@ -137,12 +141,12 @@ export const SectionPropertyEnabled          = ({ property = 'enabled'   , prope
             ??
             <>
                 <p>
-                    Disables the <CurrentNestedComponent /> <strong>functionality</strong>.
+                    Disables the <TheCurrentComponent /> <strong>functionality</strong>.
                 </p>
                 <p>
-                    To make <CurrentNestedComponent /> disabled, set <code>{`<${nestedComponentName} enabled={false}>`}</code>.
+                    To make <TheCurrentComponent /> disabled, set <code>{`<${theComponentName} enabled={false}>`}</code>.
                 </p>
-                <ParagraphSetParentDisabled />
+                {hasNestedComponent && nestedable && <ParagraphSetParentDisabled />}
             </>
         } />
     );

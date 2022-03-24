@@ -9,6 +9,10 @@ import {
     SectionPropertyOutlined as ListSectionPropertyOutlined,
 } from './common@Basic'
 import {
+    SectionPropertyActive   as IndicatorSectionPropertyActive,
+    SectionPropertyEnabled  as IndicatorSectionPropertyEnabled,
+} from './common@Indicator'
+import {
     SectionPropertyNude     as ListSectionPropertyNude,
     SectionPropertyMild     as ListSectionPropertyMild,
 } from './common@List'
@@ -81,6 +85,31 @@ export const SectionPropertyOutlined = ({ nestedable = false, effectNestedable =
 export const SectionPropertyMild     = ({ nestedable = false, effectNestedable = true, moreDescription, defaultValue = false, ...props }: SectionPreviewPropertyProps) => {
     return (
         <ListSectionPropertyMild {...props} nestedable={nestedable} effectNestedable={effectNestedable} defaultValue={defaultValue} moreDescription={
+            moreDescription
+            ??
+            <>
+                <ParagraphIgnoreProperty />
+            </>
+        } />
+    );
+};
+
+
+
+export const SectionPropertyActive     = ({ nestedable = false, effectNestedable = true, moreDescription, defaultValue = false, ...props }: SectionPreviewPropertyProps) => {
+    return (
+        <IndicatorSectionPropertyActive {...props} nestedable={nestedable} effectNestedable={effectNestedable} defaultValue={defaultValue} moreDescription={
+            moreDescription
+            ??
+            <>
+                <ParagraphIgnoreProperty />
+            </>
+        } />
+    );
+};
+export const SectionPropertyEnabled     = ({ nestedable = false, effectNestedable = true, moreDescription, defaultValue = false, ...props }: SectionPreviewPropertyProps) => {
+    return (
+        <IndicatorSectionPropertyEnabled {...props} nestedable={nestedable} effectNestedable={effectNestedable} defaultValue={defaultValue} moreDescription={
             moreDescription
             ??
             <>
