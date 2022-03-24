@@ -38,7 +38,7 @@ const Page: NextPage = () => {
                         <Label>
                             $
                         </Label>
-                        <NumberInput placeholder='price' enableValidation={false} />
+                        <NumberInput placeholder='price' />
                         <Label>
                             .00
                         </Label>
@@ -52,11 +52,11 @@ const Page: NextPage = () => {
                         <Label>
                             https://example.com/users/
                         </Label>
-                        <TextInput placeholder='username' enableValidation={false} />
+                        <TextInput placeholder='username' />
                         <Label>
                             @
                         </Label>
-                        <TextInput placeholder='company' enableValidation={false} />
+                        <TextInput placeholder='company' />
                     </Group>
                 </p>
                 <p>

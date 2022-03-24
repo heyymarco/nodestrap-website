@@ -77,7 +77,7 @@ export const DemoGroup = () => {
                     <Label>
                         $
                     </Label>
-                    <NumberInput placeholder='price' enableValidation={false} />
+                    <NumberInput placeholder='price' />
                     <Label>
                         .00
                     </Label>
@@ -104,7 +104,7 @@ export const DemoGroup = () => {
     <Label>
         $
     </Label>
-    <NumberInput placeholder='price' enableValidation={false} />
+    <NumberInput placeholder='price' />
     <Label>
         .00
     </Label>

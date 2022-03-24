@@ -218,7 +218,6 @@ export const Option = (props: OptionProps) => {
                         key={index}
                         theme='primary'
                         mild={true}
-                        enableValidation={false}
                         nude={false}
                         
                         name={name}
@@ -269,7 +268,6 @@ export const ThemeOption = (props: ThemeOptionProps) => {
                         key={index}
                         theme={option ?? 'secondary'}
                         mild={showName ? true : false}
-                        enableValidation={false}
                         nude={false}
                         checkStyle={showName ? 'togglerBtn' : undefined}
                         
@@ -311,8 +309,6 @@ export const Slider = (props: SliderProps) => {
         {name && <Label>{ name }</Label>}
         <Range
             nude={false}
-            
-            enableValidation={false}
             
             min={min}
             max={max}

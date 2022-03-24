@@ -391,40 +391,6 @@ export const SectionConfigureDependsOnIcon = ({ title = <>Configuring the <Curre
 
 
 
-export const SectionThemingProblem = ({ title = 'A Theming Problem', ...restProps }: SectionProps) => {
-    const { componentName } = useComponentInfo();
-    
-    
-    
-    return (
-        <Section {...restProps} title={title}>
-            <p>
-                By design, a <CurrentComponent /> is <strong>unlikely</strong> to get an <strong>invalid state</strong>.
-                So the <CurrentComponent /> is always in <strong>valid state</strong> (the default of <code>{`'success'`}</code> theme is green).
-                So that the <CurrentComponent /> is always colored green, no matter the <code>theme</code> property you have set.
-            </p>
-            <p>
-                To workaround the <em>theming problem</em>, do the following approach:
-            </p>
-            <p>
-                If you use <CurrentComponent /> <strong>outside</strong> <LinkFormPage />,
-                it&apos;s better to set <code>{`<${componentName} enableValidation={false}>`}</code>.
-                By turning off the <code>enableValidation</code>, you can change the <code>theme</code> property to the desired theme color.
-            </p>
-            <p>
-                If you use <CurrentComponent /> <strong>inside</strong> <LinkFormPage />,
-                you can set <code>{`<Form enableValidation={false}>`}</code> via <code>useState()</code>,
-                so you can change the <code>theme</code> property to the desired theme color.
-                At the <code>{`<Form onSubmit={() => { /*...*/ }}>`}</code> event,
-                set back <code>{`<Form enableValidation={true}>`}</code> so that the <CurrentComponent />&apos;s theme color is forced to <code>{`'success'`}</code> (default is green),
-                indicating the <LinkFormPage />&apos;s submission was successful.
-            </p>
-        </Section>
-    );
-}
-
-
-
 export const SectionInheritedProps = ({ title = 'Inherited Properties', ...restProps }: SectionProps) => {
     const { bases } = useComponentInfo();
     

@@ -90,7 +90,7 @@ export const useSelectPopupPlacementSheet = createUseSheet(() => [
 
 
 
-const Option = (props: RadioProps) => <Radio {...props} enableValidation={false} nude={true} mild={true} size='lg' />
+const Option = (props: RadioProps) => <Radio {...props} nude={true} mild={true} size='lg' />
 
 export interface PopupSelectPopupPlacement extends Omit<BasicProps, 'children'> {
     children         ?: (popupPlacement: PopupPlacement) => React.ReactElement

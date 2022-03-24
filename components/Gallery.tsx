@@ -164,7 +164,7 @@ export const Gallery = ({ collection, children: itemMap, classes }: GalleryProps
                                 <Icon icon='search' />
                             </Label>
                         }
-                        <Search elmRef={searchRef} enableValidation={false} placeholder='search' value={search} onChange={(e) => setSearch(e.currentTarget.value)} />
+                        <Search elmRef={searchRef} placeholder='search' value={search} onChange={(e) => setSearch(e.currentTarget.value)} />
                     </Group>
                 </Element>
             </div>
@@ -176,6 +176,7 @@ export const Gallery = ({ collection, children: itemMap, classes }: GalleryProps
                 <Pagination
                     theme={theme}
                     size='sm'
+                    orientation='inline'
                     
                     itemsLimit={limit}
                     prevItems={
