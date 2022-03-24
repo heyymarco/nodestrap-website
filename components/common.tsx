@@ -155,9 +155,10 @@ export const LinkAccordionPage              = (props: PageLinkProps) => <LinkCod
 export const LinkAccordionItemPage          = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/accordion'>AccordionItem</LinkCode>
 export const LinkAccordionSeparatorItemPage = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/accordion'>AccordionSeparatorItem</LinkCode>
 
-
 export const LinkGroupPage                  = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/group'>Group</LinkCode>
 export const LinkGroupChildrenPage          = () => <em><LinkGroupPage />&apos;s child component</em>
+
+export const LinkCarouselPage               = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/carousel'>Carousel</LinkCode>
 
 export const LinkNavbarPage                 = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/navbar'>Navbar</LinkCode>
 
