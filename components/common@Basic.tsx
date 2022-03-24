@@ -21,8 +21,9 @@ export const themeNames: ThemeName[] = [
     'light',
     'dark',
 ];
-export const SectionPropertyTheme    = ({ property = 'theme'   , properties = 'Themes'  , nestedable = true, specList, description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyTheme    = ({ property = 'theme'   , properties = 'Themes'  , nestedable = true, effectNestedable, specList, description, ...restProps }: SectionPreviewPropertyProps) => {
     const { hasNestedComponent } = useComponentInfo();
+    const TheCurrentComponent = (effectNestedable ?? nestedable) ? CurrentNestedComponent : CurrentComponent;
     
     
     
@@ -72,7 +73,7 @@ export const SectionPropertyTheme    = ({ property = 'theme'   , properties = 'T
             ??
             <>
                 <p>
-                    Changes the <strong>contextual theme</strong> of {nestedable ? <CurrentNestedComponent /> : <CurrentComponent />}.
+                    Changes the <strong>contextual theme</strong> of <TheCurrentComponent />.
                 </p>
                 {hasNestedComponent && nestedable && <>
                     <p>
@@ -87,8 +88,9 @@ export const SectionPropertyTheme    = ({ property = 'theme'   , properties = 'T
         } />
     );
 };
-export const SectionPropertySize     = ({ property = 'size'    , properties = 'Sizes'   , nestedable = true, specList, description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertySize     = ({ property = 'size'    , properties = 'Sizes'   , nestedable = true, effectNestedable, specList, description, ...restProps }: SectionPreviewPropertyProps) => {
     const { hasNestedComponent } = useComponentInfo();
+    const TheCurrentComponent = (effectNestedable ?? nestedable) ? CurrentNestedComponent : CurrentComponent;
     
     
     
@@ -112,7 +114,7 @@ export const SectionPropertySize     = ({ property = 'size'    , properties = 'S
             ??
             <>
                 <p>
-                    Changes the <strong>default size</strong> of {nestedable ? <CurrentNestedComponent /> : <CurrentComponent />}.
+                    Changes the <strong>default size</strong> of <TheCurrentComponent />.
                 </p>
                 {hasNestedComponent && nestedable && <>
                     <p>

@@ -6,11 +6,12 @@ import Head from 'next/head'
 import { SpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
-import { SectionInheritedProps, LinkGroupPage, LinkListPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, SectionVariants, SectionStates, LinkGroupChildrenPage } from '../../../components/common'
+import { SectionInheritedProps, LinkGroupPage, LinkListPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, SectionVariants, SectionStates, LinkGroupChildrenPage, CurrentNestedComponent } from '../../../components/common'
 import { Group as GroupOri, GroupProps, OrientationName } from '@nodestrap/group'
 import { Label } from '@nodestrap/label';
 import { NumberInput } from '@nodestrap/input';
 import { Button } from '@nodestrap/button';
+import { Check } from '@nodestrap/check'
 import { Radio } from '@nodestrap/radio'
 import { TypeScriptCode } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
@@ -115,7 +116,7 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    Displays a series of content.
+                    Merges several components into <strong>single layout component</strong>.
                 </p>
                 <p>
                     Here the preview:
@@ -535,7 +536,20 @@ const Page: NextPage = () => {
                         <Group
                             active={true}
                             theme='primary'
-                        />
+                        >
+                            <Label>
+                                Orders
+                            </Label>
+                            <Check nude={false} inheritActive={true}>
+                                Foods
+                            </Check>
+                            <Check nude={false} inheritActive={true}>
+                                Drinks
+                            </Check>
+                            <Check nude={false} inheritActive={false}>
+                                Snacks
+                            </Check>
+                        </Group>
                     </Preview>
                     <p></p>
                     <TypeScriptCode>{`
@@ -544,15 +558,17 @@ const Page: NextPage = () => {
     theme='primary'
 >
     <Label>
-        $
+        Orders
     </Label>
-    <NumberInput placeholder='price' />
-    <Label>
-        .00
-    </Label>
-    <Button>
-        Update
-    </Button>
+    <Check nude={false} inheritActive={true}>
+        Foods
+    </Check>
+    <Check nude={false} inheritActive={true}>
+        Drinks
+    </Check>
+    <Check nude={false} inheritActive={false}>
+        Snacks
+    </Check>
 </Group>
                     `}</TypeScriptCode>
                 </SectionPropertyActive>
@@ -621,12 +637,12 @@ export default function SelectSize(props) {
                     <SpecList>
                         <DetailSpecItem code='usesGroupItemLayout()'>
                             <p>
-                                Returns a <code>Rule</code> object represents a complete <CurrentComponent /> <strong>layout</strong> except its <strong>variants</strong>.
+                                Returns a <code>Rule</code> object represents a complete <CurrentNestedComponent /> <strong>layout</strong> except its <strong>variants</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesGroupItemVariants()'>
                             <p>
-                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentComponent /> such as:<br />
+                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentNestedComponent /> such as:<br />
                                 <code>SizeVariant</code> and other variant added in the future.
                             </p>
                         </DetailSpecItem>

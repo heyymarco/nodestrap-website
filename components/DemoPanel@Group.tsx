@@ -89,7 +89,6 @@ export const DemoGroup = () => {
 <Group
     orientation=${states.orientation[0] ? `'${states.orientation[0]}'` : '{undefined}'}
     listStyle=${listStyle.length ? ((listStyle.length === 1) ? `'${listStyle}'` : `{[${listStyle.map((ls) => `'${ls}'`).join(', ')}]}`) : '{undefined}'}
-    actionCtrl={${states.actionCtrl[0]}}
     
     enabled={${states.enabled[0]}}
     active={${states.active[0]}}

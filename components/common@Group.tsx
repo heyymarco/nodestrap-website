@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { SectionPreviewPropertyProps } from './common'
+import { CurrentNestedComponent, SectionPreviewPropertyProps } from './common'
 import {
     SectionPropertyTheme    as ListSectionPropertyTheme,
     SectionPropertySize     as ListSectionPropertySize,
@@ -21,15 +21,15 @@ import {
 
 const ParagraphIgnoreProperty = () => (
     <p>
-        Note: one/more <em>nested component</em> may <em>override</em> or <em>ignore</em> this property.
+        Note: one/more <CurrentNestedComponent />s may <em>override</em> or <em>ignore</em> this property.
     </p>
 );
 
 
 
-export const SectionPropertyTheme    = ({ moreDescription, ...props }: SectionPreviewPropertyProps) => {
+export const SectionPropertyTheme    = ({ nestedable = false, effectNestedable = true, moreDescription, ...props }: SectionPreviewPropertyProps) => {
     return (
-        <ListSectionPropertyTheme {...props} moreDescription={
+        <ListSectionPropertyTheme {...props} nestedable={nestedable} effectNestedable={effectNestedable} moreDescription={
             moreDescription
             ??
             <>
@@ -38,9 +38,9 @@ export const SectionPropertyTheme    = ({ moreDescription, ...props }: SectionPr
         } />
     );
 };
-export const SectionPropertySize     = ({ moreDescription, ...props }: SectionPreviewPropertyProps) => {
+export const SectionPropertySize     = ({ nestedable = false, effectNestedable = true, moreDescription, ...props }: SectionPreviewPropertyProps) => {
     return (
-        <ListSectionPropertySize {...props} moreDescription={
+        <ListSectionPropertySize {...props} nestedable={nestedable} effectNestedable={effectNestedable} moreDescription={
             moreDescription
             ??
             <>
@@ -96,7 +96,7 @@ export const SectionPropertyMild     = ({ nestedable = false, effectNestedable =
 
 
 
-export const SectionPropertyActive     = ({ nestedable = false, effectNestedable = true, moreDescription, defaultValue = false, ...props }: SectionPreviewPropertyProps) => {
+export const SectionPropertyActive   = ({ nestedable = false, effectNestedable = true, moreDescription, defaultValue = false, ...props }: SectionPreviewPropertyProps) => {
     return (
         <IndicatorSectionPropertyActive {...props} nestedable={nestedable} effectNestedable={effectNestedable} defaultValue={defaultValue} moreDescription={
             moreDescription
@@ -107,7 +107,7 @@ export const SectionPropertyActive     = ({ nestedable = false, effectNestedable
         } />
     );
 };
-export const SectionPropertyEnabled     = ({ nestedable = false, effectNestedable = true, moreDescription, defaultValue = false, ...props }: SectionPreviewPropertyProps) => {
+export const SectionPropertyEnabled  = ({ nestedable = false, effectNestedable = true, moreDescription, defaultValue = false, ...props }: SectionPreviewPropertyProps) => {
     return (
         <IndicatorSectionPropertyEnabled {...props} nestedable={nestedable} effectNestedable={effectNestedable} defaultValue={defaultValue} moreDescription={
             moreDescription
