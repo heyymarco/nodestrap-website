@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { CurrentNestedComponent, SectionPreviewPropertyProps } from './common'
+import { CurrentComponent, CurrentNestedComponent, LinkCollapsePage, LinkDropdownPage, LinkPopupPage, SectionPreviewProperty, SectionPreviewPropertyProps } from './common'
 import {
     SectionPropertyTheme    as ListSectionPropertyTheme,
     SectionPropertySize     as ListSectionPropertySize,
@@ -114,6 +114,25 @@ export const SectionPropertyEnabled  = ({ nestedable = false, effectNestedable =
             ??
             <>
                 <ParagraphIgnoreProperty />
+            </>
+        } />
+    );
+};
+
+
+
+export const SectionPropertyChildren = ({ titleTag = 'h2', property = 'children', properties = 'Merges Any Components', description, ...restProps }: SectionPreviewPropertyProps) => {
+    return (
+        <SectionPreviewProperty {...restProps} titleTag={titleTag} property={property} properties={properties} description={
+            description
+            ??
+            <>
+                <p>
+                    <u>Almost all Nodestrap&apos;s components</u> can be <CurrentComponent />ed, with some exceptions such as <LinkPopupPage />, <LinkCollapsePage /> and <LinkDropdownPage />.
+                </p>
+                <p>
+                    If you created a custom component that inherits from our component, your component is likely can be <CurrentComponent />ed.
+                </p>
             </>
         } />
     );

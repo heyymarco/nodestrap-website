@@ -13,6 +13,7 @@ import { NumberInput } from '@nodestrap/input';
 import { Button } from '@nodestrap/button';
 import { Check } from '@nodestrap/check'
 import { Radio } from '@nodestrap/radio'
+import { Range } from '@nodestrap/range'
 import { TypeScriptCode } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
 import { Tips } from '../../../components/Info'
@@ -39,6 +40,8 @@ import {
     
     SectionPropertyActive,
     SectionPropertyEnabled,
+    
+    SectionPropertyChildren,
 } from '../../../components/common@Group'
 
 import loadable from '@loadable/component'
@@ -129,6 +132,47 @@ const Page: NextPage = () => {
             <SectionDemo>
                 <DemoGroupLazy fallback={<BusyBar />} />
             </SectionDemo>
+            <SectionPropertyChildren>
+                <Preview stretch={false}>
+                    <Group theme='primary'>
+                        <Check nude={false} />
+                        <NumberInput placeholder='price' />
+                        <Button>
+                            Update
+                        </Button>
+                    </Group>
+                    
+                    <Group theme='primary'>
+                        <Label>
+                            low
+                        </Label>
+                        <Range nude={false} style={{ minWidth: '100px' }} />
+                        <Label>
+                            hi
+                        </Label>
+                    </Group>
+                </Preview>
+                <p></p>
+                <TypeScriptCode>{`
+<Group theme='primary'>
+    <Check nude={false} />
+    <NumberInput placeholder='price' />
+    <Button>
+        Update
+    </Button>
+</Group>
+
+<Group theme='primary'>
+    <Label>
+        low
+    </Label>
+    <Range nude={false} style={{ minWidth: '100px' }} />
+    <Label>
+        hi
+    </Label>
+</Group>
+                `}</TypeScriptCode>
+            </SectionPropertyChildren>
             <SectionInheritedProps />
             <SectionVariants>
                 <SectionPropertyTheme>
