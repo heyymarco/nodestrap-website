@@ -128,7 +128,7 @@ export const SectionPropertyChildren = ({ titleTag = 'h2', property = 'children'
             ??
             <>
                 <p>
-                    <u>Almost all Nodestrap&apos;s components</u> can be <CurrentComponent />ed, with some exceptions such as <LinkPopupPage />, <LinkCollapsePage /> and <LinkDropdownPage />.
+                    <strong>Almost all Nodestrap&apos;s components</strong> can be <CurrentComponent />ed, with some exceptions such as <LinkPopupPage />, <LinkCollapsePage /> and <LinkDropdownPage />.
                 </p>
                 <p>
                     If you created a custom component that inherits from our component, your component is likely can be <CurrentComponent />ed.
@@ -144,7 +144,7 @@ export const SectionPropertyNestedChildren = ({ titleTag = 'h2', property = 'chi
             ??
             <>
                 <p>
-                    You can place several <strong>nested</strong> <CurrentComponent />s at any depth with mixed <code>orientation</code>s, <code>theme</code>s, etc.
+                    You can place <strong>several nested</strong> <CurrentComponent />s at any depth with mixed <code>orientation</code>s, <code>theme</code>s, etc.
                 </p>
             </>
         } />
