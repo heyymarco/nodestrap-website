@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { SpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
-import { SectionInheritedProps, LinkGroupPage, LinkListPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, SectionStates, LinkUsesIndicatorVariantsPage, LinkGroupChildrenPage } from '../../../components/common'
+import { SectionInheritedProps, LinkGroupPage, LinkListPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, SectionVariants, SectionStates, LinkGroupChildrenPage } from '../../../components/common'
 import { Group as GroupOri, GroupProps, OrientationName } from '@nodestrap/group'
 import { Label } from '@nodestrap/label';
 import { NumberInput } from '@nodestrap/input';
@@ -593,16 +593,25 @@ const Page: NextPage = () => {
             <SectionDerivering>
                 <SectionOverridingDefaults>{`
 import { Group } from '@nodestrap/group'
+import { Radio } from '@nodestrap/radio'
 
-export default function ProductGroup(props) {
+export default function SelectSize(props) {
     return (
         <Group
             {...props} // preserves other properties
             
             theme={props.theme ?? 'success'} // override default value of theme to 'success'
-            mild={props.mild ?? false}       // override default value of mild  to false
+            mild={props.mild ?? true}        // override default value of mild  to true
         >
-            { props.children }
+            <Radio name='sizeOpt' nude={false}>
+                Small
+            </Radio>
+            <Radio name='sizeOpt' nude={false}>
+                Medium
+            </Radio>
+            <Radio name='sizeOpt' nude={false}>
+                Large
+            </Radio>
         </Group>
     );
 }
@@ -610,49 +619,29 @@ export default function ProductGroup(props) {
 
                 <SectionCustomizingCss specList={
                     <SpecList>
-                        <DetailSpecItem code='usesGroupLayout()'>
+                        <DetailSpecItem code='usesGroupItemLayout()'>
                             <p>
-                                Returns a <code>Rule</code> object represents a complete <CurrentComponent /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
+                                Returns a <code>Rule</code> object represents a complete <CurrentComponent /> <strong>layout</strong> except its <strong>variants</strong>.
                             </p>
                         </DetailSpecItem>
-                        <DetailSpecItem code='usesGroupBasicVariants()'>
-                            <p>
-                                Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentComponent /> but <strong>excluding variants</strong> from <LinkUsesIndicatorVariantsPage />.
-                            </p>
-                            <p>
-                                Equivalent to <code>usesGroupVariants()</code> <strong>minus</strong> <LinkUsesIndicatorVariantsPage />.
-                            </p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='usesGroupVariants()'>
+                        <DetailSpecItem code='usesGroupItemVariants()'>
                             <p>
                                 Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentComponent /> such as:<br />
-                                <code>SizeVariant</code>, <code>GroupVariant</code>, and <strong>all variants</strong> inherited from <CurrentBaseComponents />.
-                            </p>
-                            <p>
-                                Equivalent to <code>usesGroupBasicVariants()</code> <strong>plus</strong> <LinkUsesIndicatorVariantsPage />.
-                            </p>
-                        </DetailSpecItem>
-                        <DetailSpecItem code='usesGroupStates()'>
-                            <p>
-                                Returns a <code>Rule</code> object represents the <strong>states</strong> of <CurrentComponent />.
-                            </p>
-                            <p>
-                                Currently the states are equivalent to <CurrentBaseComponents />&apos;s states.
+                                <code>SizeVariant</code> and other variant added in the future.
                             </p>
                         </DetailSpecItem>
                     </SpecList>
                 }>{`
 import { mainComposition, style, imports, variants, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
-import { Group, usesGroupLayout, usesGroupVariants, usesGroupStates } from '@nodestrap/group'
+import { Group, GroupItem, usesGroupItemLayout, usesGroupItemVariants } from '@nodestrap/group'
 
-const useProductGroupSheet = createUseSheet(() => [
+const useCustomGroupItemSheet = createUseSheet(() => [
     mainComposition(
         imports([
-            // import some stuff from <Group>:
-            usesGroupLayout(),
-            usesGroupVariants(),
-            usesGroupStates(),
+            // import some stuff from <GroupItem>:
+            usesGroupItemLayout(),
+            usesGroupItemVariants(),
         ]),
         style({
             // then overwrite with your style:
@@ -679,14 +668,16 @@ const useProductGroupSheet = createUseSheet(() => [
     ),
 ]);
 
-export default function ProductGroup(props) {
-    const sheet = useProductGroupSheet();
+export function CustomGroupItem(props) {
+    const sheet = useCustomGroupItemSheet();
     return (
-        <Group {...props} mainClass={sheet.main}>
+        <GroupItem {...props} mainClass={sheet.main}>
             { props.children }
-        </Group>
+        </GroupItem>
     )
 }
+
+export { Group as CustomGroup }
                 `}</SectionCustomizingCss>
             </SectionDerivering>
         </ComponentInfoProvider>
