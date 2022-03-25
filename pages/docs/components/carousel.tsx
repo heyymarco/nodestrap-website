@@ -3,7 +3,6 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { Section, SubSection } from '../../../components/Section'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
