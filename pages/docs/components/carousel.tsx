@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 
 import type { NextPage } from 'next'
 import Head from 'next/head'
@@ -9,6 +9,8 @@ import { Preview, TransparentPreview } from '../../../components/Preview'
 import { SectionInheritedProps, LinkCarouselPage, LinkElementPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionConfigureDependsOnIcon, ParagraphLorem } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 import { Carousel as CarouselOri, CarouselProps } from '@nodestrap/carousel'
+import { ButtonIcon } from '@nodestrap/button-icon'
+import { Navscroll, NavscrollItem } from '@nodestrap/navscroll'
 import {
     themeNames,
     SectionPropertyTheme,
@@ -23,6 +25,12 @@ import {
     SectionPropertyMedia,
     SectionPropertyMediaCustom,
     SectionPropertyMediaExcluding,
+    
+    SectionPropertyInfiniteLoop,
+    
+    SectionCustomizingButtons,
+    SectionCustomizingNav,
+    SectionCustomizingNavExternal,
 } from '../../../components/common@Carousel'
 
 import loadable from '@loadable/component'
@@ -49,6 +57,44 @@ const Carousel = (props: CarouselProps) => <CarouselOri
         ]
     }
 </CarouselOri>
+
+const CarouselWithExternalNav = () => {
+    const carouselRef = useRef(null);
+    
+    return (
+        <div style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'row', gap: '1rem' }}>
+            <Carousel
+                scrollRef={carouselRef}
+            />
+            <Navscroll
+                targetRef={carouselRef}
+                theme='primary'
+            >
+                <NavscrollItem>
+                    Waves
+                </NavscrollItem>
+                <NavscrollItem>
+                    Leaf
+                </NavscrollItem>
+                <NavscrollItem>
+                    Building
+                </NavscrollItem>
+                <NavscrollItem>
+                    Street
+                </NavscrollItem>
+                <NavscrollItem>
+                    Tulip
+                </NavscrollItem>
+                <NavscrollItem>
+                    Water
+                </NavscrollItem>
+                <NavscrollItem>
+                    Wood
+                </NavscrollItem>
+            </Navscroll>
+        </div>
+    );
+}
 
 
 const Page: NextPage = () => {
@@ -143,6 +189,23 @@ const Page: NextPage = () => {
                     `}</TypeScriptCode>
                 </SectionPropertyMediaExcluding>
             </SectionPropertyMedia>
+            <SectionPropertyInfiniteLoop>
+                <Preview stretch={false}>
+                    <Carousel infiniteLoop={true} />
+                </Preview>
+                <p></p>
+                <TypeScriptCode>{`
+<Carousel infiniteLoop={true} theme='primary'>
+    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/tulip-700x400.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
+</Carousel>
+                `}</TypeScriptCode>
+            </SectionPropertyInfiniteLoop>
             <SectionInheritedProps />
             <SectionVariants>
                 <SectionPropertyTheme>
@@ -341,6 +404,104 @@ const Page: NextPage = () => {
                     </TypeScriptCode>
                 </SectionPropertyMild>
             </SectionVariants>
+            <SectionCustomizingButtons>
+                <Preview stretch={false}>
+                    <Carousel
+                        prevBtn={<ButtonIcon theme='warning' size='lg' icon={undefined} style={{ opacity: 0.5 }}>prev</ButtonIcon>}
+                        nextBtn={<ButtonIcon theme='warning' size='lg' icon={undefined} style={{ opacity: 0.5 }}>next</ButtonIcon>}
+                    />
+                </Preview>
+                <p></p>
+                <TypeScriptCode>{`
+<Carousel
+    prevBtn={<ButtonIcon theme='warning' size='lg' icon={undefined} style={{ opacity: 0.5 }}>prev</ButtonIcon>}
+    nextBtn={<ButtonIcon theme='warning' size='lg' icon={undefined} style={{ opacity: 0.5 }}>next</ButtonIcon>}
+    theme='primary'
+>
+    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/tulip-700x400.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
+</Carousel>
+                `}</TypeScriptCode>
+            </SectionCustomizingButtons>
+            <SectionCustomizingNav>
+                <Preview stretch={false}>
+                    <Carousel
+                        nav={<Navscroll theme='warning' size='sm' orientation='inline' listStyle='btn' />}
+                    />
+                </Preview>
+                <p></p>
+                <TypeScriptCode>{`
+<Carousel
+    nav={<Navscroll theme='warning' size='sm' orientation='inline' listStyle='btn' />}
+    theme='primary'
+>
+    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/tulip-700x400.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
+</Carousel>
+                `}</TypeScriptCode>
+                
+                <SectionCustomizingNavExternal>
+                    <Preview stretch={false}>
+                        <CarouselWithExternalNav />
+                    </Preview>
+                    <p></p>
+                    <TypeScriptCode>{`
+const carouselRef = useRef(null);
+
+/* ... */
+
+<Carousel
+    scrollRef={carouselRef}
+    theme='primary'
+>
+    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/tulip-700x400.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
+</Carousel>
+
+<Navscroll
+    targetRef={carouselRef}
+    theme='primary'
+>
+    <NavscrollItem>
+        Waves
+    </NavscrollItem>
+    <NavscrollItem>
+        Leaf
+    </NavscrollItem>
+    <NavscrollItem>
+        Building
+    </NavscrollItem>
+    <NavscrollItem>
+        Street
+    </NavscrollItem>
+    <NavscrollItem>
+        Tulip
+    </NavscrollItem>
+    <NavscrollItem>
+        Water
+    </NavscrollItem>
+    <NavscrollItem>
+        Wood
+    </NavscrollItem>
+</Navscroll>
+                    `}</TypeScriptCode>
+                </SectionCustomizingNavExternal>
+            </SectionCustomizingNav>
             <SectionCustomizing specList={
                 <SpecList>
                     <DetailSpecItem title='Spacings'>
