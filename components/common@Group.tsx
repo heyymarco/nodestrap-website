@@ -137,7 +137,7 @@ export const SectionPropertyChildren = ({ titleTag = 'h2', property = 'children'
         } />
     );
 };
-export const SectionPropertyNestedChildren = ({ titleTag = 'h2', property = 'children', properties = 'Multi Level Groups', description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyNestedChildren = ({ titleTag = 'h3', property = 'children', properties = 'Multi Level Groups', description, ...restProps }: SectionPreviewPropertyProps) => {
     return (
         <SectionPreviewProperty {...restProps} titleTag={titleTag} property={property} properties={properties} description={
             description

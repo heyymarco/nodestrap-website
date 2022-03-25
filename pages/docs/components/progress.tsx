@@ -641,7 +641,7 @@ export default function CustomProgress(props) {
                     <SpecList>
                         <DetailSpecItem code='usesProgressLayout()'>
                             <p>
-                                Returns a <code>Rule</code> object represents a complete <CurrentComponent /> <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
+                                Returns a <code>Rule</code> object represents a complete <CurrentComponent /> <strong>layout</strong> except its <strong>variants</strong>.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesProgressVariants()'>

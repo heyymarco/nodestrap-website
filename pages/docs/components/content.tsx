@@ -6,24 +6,31 @@ import Head from 'next/head'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { TransparentPreview } from '../../../components/Preview'
-import { Section, SubSection } from '../../../components/Section'
-import { SectionInheritedProps, LinkContentPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, LinkUsesBasicLayoutPage, LinkUsesBasicVariantsPage, CommaSeparated, SectionDemo, BusyBar, SectionMoreCustomizingCss, LinkGroupPage, LinkCardPage, LinkButtonPage, CurrentComponent, CurrentBaseComponents } from '../../../components/common'
+import { SectionInheritedProps, LinkContentPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, LinkUsesBasicLayoutPage, LinkUsesBasicVariantsPage, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents } from '../../../components/common'
+import { TypeScriptCode } from '../../../components/Code'
+
+import {
+    MediaList,
+    LinkList,
+    
+    SectionPropertyMedia,
+    SectionPropertyMediaBeginEnd,
+    SectionPropertyMediaSequences,
+    SectionPropertyMediaCustom,
+    SectionPropertyMediaExcluding,
+    
+    SectionPropertyLinks,
+    SectionPropertyLinksCustom,
+    SectionPropertyLinksExcluding,
+} from '../../../components/common@Content'
 
 import loadable from '@loadable/component'
-import { TypeScriptCode } from '../../../components/Code'
-import { Warning } from '../../../components/Info'
 const DemoContentLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Content' */'../../../components/DemoPanel@Content'))
 
 import { Content } from '@nodestrap/content'
 import { Carousel } from '@nodestrap/carousel'
 import { Basic } from '@nodestrap/basic'
 import { Button } from '@nodestrap/button'
-
-
-
-const MediaList = (props: { includeCustom ?: boolean }) => <CommaSeparated components={['figure', 'img', 'svg', 'video', 'picture', 'embed', 'object', ...(props.includeCustom ? ['.media'] : [])].map((item, index) => <code key={index}>{ item.startsWith('.') ? item : `<${item}>` }</code>)} />;
-const LinkList  = (props: { includeCustom ?: boolean }) => <CommaSeparated components={['a', ...(props.includeCustom ? ['.link'] : [])].map((item, index) => <code key={index}>{ item.startsWith('.') ? item : `<${item}>` }</code>)} />;
-
 
 
 const Page: NextPage = () => {
@@ -42,13 +49,7 @@ const Page: NextPage = () => {
             <SectionDemo>
                 <DemoContentLazy fallback={<BusyBar />} />
             </SectionDemo>
-            <Section title='Images &amp; Media'>
-                <p>
-                    Media elements such as  <MediaList includeCustom={true} /> are <strong>styled to full width</strong> inside <CurrentComponent />, ignoring <CurrentComponent />&apos;s paddings.
-                </p>
-                <p>
-                    Here the preview:
-                </p>
+            <SectionPropertyMedia>
                 <TransparentPreview>
                     <Content theme='primary'>
                         <p>
@@ -81,13 +82,7 @@ const Page: NextPage = () => {
 </Content>
                 `}</TypeScriptCode>
                 
-                <SubSection title='Images &amp; Media at the Beginning and End'>
-                    <p>
-                        If the media position is at the first or the last, at the corners, the media (image) are bit clipped by <CurrentComponent />&apos;s border radius.
-                    </p>
-                    <p>
-                        Here the preview:
-                    </p>
+                <SectionPropertyMediaBeginEnd>
                     <TransparentPreview>
                         <Content theme='secondary' size='lg'>
                             <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
@@ -113,14 +108,8 @@ const Page: NextPage = () => {
     <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
 </Content>
                     `}</TypeScriptCode>
-                </SubSection>
-                <SubSection title='The Sequence of Images &amp; Media'>
-                    <p>
-                        If there are multiple images in a sequence (without being inserted by another types), the images are joined together with borders as separator.
-                    </p>
-                    <p>
-                        Here the preview:
-                    </p>
+                </SectionPropertyMediaBeginEnd>
+                <SectionPropertyMediaSequences>
                     <TransparentPreview>
                         <Content theme='primary'>
                             <p>
@@ -154,25 +143,8 @@ const Page: NextPage = () => {
     </p>
 </Content>
                     `}</TypeScriptCode>
-                </SubSection>
-                <SubSection title='Custom Media'>
-                    <p>
-                        If you need a custom element to be treated as media, add <code>media</code> class to the desired element.<br />
-                        Set <code>{`classes={['boo', 'media', 'foo']}`}</code> for Nodestrap component -or- <code>{`className='boo media foo'`}</code> for regular component.
-                    </p>
-                    <Warning>
-                        <p>
-                            The <code>display</code> property of the custom media need to have <strong>block flow layout</strong> (<code>block</code>, <code>flex</code>, <code>grid</code>).<br />
-                            If the display property is <strong>inline flow layout</strong> (<code>inline</code>, <code>inline-flex</code>, <code>inline-grid</code>), an <strong>unexpected</strong> <code>margin-block-start</code> may occur, if <code>padding-block-start</code> is less than <code>margin-block-start</code>.
-                        </p>
-                        <p>
-                            We use a <strong>negative <code>margin-block-start</code></strong> to cancel out the previous <code>margin-block-end</code>.<br />
-                            We may change the better algorithm in the future to fix this issue.
-                        </p>
-                    </Warning>
-                    <p>
-                        Here the preview:
-                    </p>
+                </SectionPropertyMediaSequences>
+                <SectionPropertyMediaCustom>
                     <TransparentPreview>
                         <Content theme='primary'>
                             <p>
@@ -220,20 +192,8 @@ const Page: NextPage = () => {
     </p>
 </Content>
                     `}</TypeScriptCode>
-                </SubSection>
-                <SubSection title='Excluding Media'>
-                    <p>
-                        Sometimes we need to put a media (<MediaList />) <strong>but not</strong> styled to full width.
-                        For example an emoji of <code>{`<img>`}</code>.
-                    </p>
-                    <p>
-                        Add <code>not-media</code> class to the desired element.<br />
-                        Set <code>{`classes={['boo', 'not-media', 'foo']}`}</code> for Nodestrap component -or- <code>{`className='boo not-media foo'`}</code> for regular component.{' '}
-                        <strong>No style are injected</strong> into that component, thus you should implement your own style for making good looking.
-                    </p>
-                    <p>
-                        Here the preview:
-                    </p>
+                </SectionPropertyMediaCustom>
+                <SectionPropertyMediaExcluding>
                     <TransparentPreview>
                         <Content theme='primary'>
                             <p>
@@ -265,23 +225,9 @@ const Page: NextPage = () => {
     </p>
 </Content>
                     `}</TypeScriptCode>
-                </SubSection>
-            </Section>
-            <Section title='Links'>
-                <p>
-                    Link elements such as <LinkList includeCustom={true} /> are styled and automatically get separated from each other.
-                </p>
-                <Warning>
-                    <p>
-                        Actually we don&apos;t style the link elements, instead we mutate them with <LinkButtonPage><code>{`<Button btnStyle='link'>`}</code></LinkButtonPage> and styled them for adding margin.
-                    </p>
-                    <p>
-                        If the link elements are <strong>function component</strong> or <strong>class component</strong>, we don&apos;t mutate them.
-                    </p>
-                </Warning>
-                <p>
-                    Here the preview:
-                </p>
+                </SectionPropertyMediaExcluding>
+            </SectionPropertyMedia>
+            <SectionPropertyLinks>
                 <TransparentPreview>
                     <Content theme='primary'>
                         <p>
@@ -316,18 +262,7 @@ const Page: NextPage = () => {
 </Content>
                 `}</TypeScriptCode>
                 
-                <SubSection title='Custom Link'>
-                    <p>
-                        If you need a custom element to be treated as link, add <code>link</code> class to the desired element.<br />
-                        Set <code>{`classes={['boo', 'link', 'foo']}`}</code> for Nodestrap component -or- <code>{`className='boo link foo'`}</code> for regular component.
-                    </p>
-                    <p>
-                        For <LinkButtonPage /> component, just set <code>{`btnStyle='link'`}</code>.
-                        The <code>link</code> class will be automatically added for you.
-                    </p>
-                    <p>
-                        Here the preview:
-                    </p>
+                <SectionPropertyLinksCustom>
                     <TransparentPreview>
                         <Content theme='primary'>
                             <p>
@@ -363,20 +298,8 @@ const Page: NextPage = () => {
     </p>
 </Content>
                     `}</TypeScriptCode>
-                </SubSection>
-                <SubSection title='Excluding Links'>
-                    <p>
-                        Sometimes we need to put a link (<LinkList />) <strong>but not</strong> styled to full width.
-                        For example a custom button of <code>{`<a>`}</code>.
-                    </p>
-                    <p>
-                        Add <code>not-link</code> class to the desired element.<br />
-                        Set <code>{`classes={['boo', 'not-link', 'foo']}`}</code> for Nodestrap component -or- <code>{`className='boo not-link foo'`}</code> for regular component.{' '}
-                        <strong>No style are injected</strong> into that component, thus you should implement your own style for making good looking.
-                    </p>
-                    <p>
-                        Here the preview:
-                    </p>
+                </SectionPropertyLinksCustom>
+                <SectionPropertyLinksExcluding>
                     <TransparentPreview>
                         <Content theme='primary'>
                             <p>
@@ -410,8 +333,8 @@ const Page: NextPage = () => {
     </p>
 </Content>
                     `}</TypeScriptCode>
-                </SubSection>
-            </Section>
+                </SectionPropertyLinksExcluding>
+            </SectionPropertyLinks>
             <SectionInheritedProps />
             <SectionCustomizing specList={
                 <SpecList>

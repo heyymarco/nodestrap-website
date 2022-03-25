@@ -3,11 +3,13 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
+import { Section, SubSection } from '../../../components/Section'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
-import { SectionInheritedProps, LinkCarouselPage, LinkElementPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionIntro, SectionDemo, BusyBar, CurrentComponent } from '../../../components/common'
+import { SectionInheritedProps, LinkCarouselPage, LinkElementPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionConfigureDependsOnIcon, ParagraphLorem } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
+import { Carousel as CarouselOri, CarouselProps } from '@nodestrap/carousel'
 import {
     themeNames,
     SectionPropertyTheme,
@@ -15,9 +17,17 @@ import {
     SectionPropertyNude,
     SectionPropertyGradient,
     SectionPropertyOutlined,
-    SectionPropertyMild,
 } from '../../../components/common@Basic'
-import { Carousel as CarouselOri, CarouselProps } from '@nodestrap/carousel'
+import {
+    MediaList,
+} from '../../../components/common@Content'
+import {
+    SectionPropertyMild,
+    
+    SectionPropertyMedia,
+    SectionPropertyMediaCustom,
+    SectionPropertyMediaExcluding,
+} from '../../../components/common@Carousel'
 
 import loadable from '@loadable/component'
 const DemoCarouselLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Carousel' */'../../../components/DemoPanel@Carousel'))
@@ -29,13 +39,19 @@ const Carousel = (props: CarouselProps) => <CarouselOri
     theme={props.theme ?? 'primary'}
     style={{ maxWidth: '400px', maxHeight: '300px' }}
 >
-    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/tulip-700x400.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
+    {
+        props.children
+        ??
+        [
+            <img key={0} alt='lorem image' src='/images/lorem-img/waves-800x600.jpg'  />,
+            <img key={1} alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />,
+            <img key={2} alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />,
+            <img key={3} alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />,
+            <img key={4} alt='lorem image' src='/images/lorem-img/tulip-700x400.jpg'  />,
+            <img key={5} alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />,
+            <img key={6} alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />,
+        ]
+    }
 </CarouselOri>
 
 
@@ -61,6 +77,76 @@ const Page: NextPage = () => {
             <SectionDemo>
                 <DemoCarouselLazy fallback={<BusyBar />} />
             </SectionDemo>
+            <SectionConfigureDependsOnIcon />
+            <SectionPropertyMedia>
+                <Preview stretch={false}>
+                    <Carousel />
+                </Preview>
+                <p></p>
+                <TypeScriptCode>{`
+<Carousel theme='primary'>
+    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/tulip-700x400.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
+</Carousel>
+                `}</TypeScriptCode>
+                <SectionPropertyMediaCustom>
+                    <Preview stretch={false}>
+                        <Carousel>
+                            <div className='media' style={{ background: 'hsl(20, 100%, 60%)', width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                A custom media
+                            </div>
+                            <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg'  />
+                            <img alt='lorem image' src='/images/lorem-img/tulip-700x400.jpg'  />
+                            <article className='media' style={{ background: 'hsl(150, 100%, 60%)', width: '100%', height: '100%', padding: '1rem' }}>
+                                <h1>
+                                    An Article
+                                </h1>
+                                <ParagraphLorem words={10} />
+                                <ParagraphLorem words={10} />
+                            </article>
+                        </Carousel>
+                    </Preview>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Carousel theme='primary'>
+    <div className='media' style={{ background: 'hsl(20, 100%, 60%)', width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        A custom media
+    </div>
+    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/tulip-700x400.jpg'  />
+    <article className='media' style={{ background: 'hsl(150, 100%, 60%)', width: '100%', height: '100%', padding: '1rem' }}>
+        <h1>
+            An Article
+        </h1>
+        <p>...</p>
+        <p>...</p>
+    </article>
+</Carousel>
+                    `}</TypeScriptCode>
+                </SectionPropertyMediaCustom>
+                <SectionPropertyMediaExcluding>
+                    <Preview stretch={false}>
+                        <Carousel>
+                            <img className='not-media' alt='lorem image' src='/images/lorem-image-1.svg' style={{ width: '150px', height: '50px' }} />
+                            <img alt='lorem image' src='/images/lorem-img/tulip-700x400.jpg'  />
+                            <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
+                        </Carousel>
+                    </Preview>
+                    <p></p>
+                    <TypeScriptCode>{`
+<Carousel theme='primary'>
+    <img className='not-media' alt='lorem image' src='/images/lorem-image-1.svg' style={{ width: '150px', height: '50px' }} />
+    <img alt='lorem image' src='/images/lorem-img/tulip-700x400.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
+</Carousel>
+                    `}</TypeScriptCode>
+                </SectionPropertyMediaExcluding>
+            </SectionPropertyMedia>
             <SectionInheritedProps />
             <SectionVariants>
                 <SectionPropertyTheme>
@@ -273,24 +359,49 @@ const Page: NextPage = () => {
                             </SimpleSpecItem>
                         </SubSpecList>
                     </DetailSpecItem>
+                    <DetailSpecItem title='Navigation Buttons'>
+                        <SubSpecList>
+                            <SimpleSpecItem>
+                                <code>navBtnBorderRadius</code>
+                                <p>The border-radius of navigation buttons (prev &amp; next).</p>
+                            </SimpleSpecItem>
+                        </SubSpecList>
+                    </DetailSpecItem>
+                    <DetailSpecItem title='Navigation List'>
+                        <SubSpecList>
+                            <SimpleSpecItem>
+                                <code>navMarginBlockEnd</code>
+                                <p>The default outer spacing on the bottom.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>navMarginBlockEndSm</code>
+                                <p>The default outer spacing on the bottom when <code>{`size='sm'`}</code>.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>navMarginBlockEndSm</code>
+                                <p>The default outer spacing on the bottom when <code>{`size='lg'`}</code>.</p>
+                            </SimpleSpecItem>
+                        </SubSpecList>
+                    </DetailSpecItem>
                 </SpecList>
             }/>
             <SectionDerivering>
                 <SectionOverridingDefaults>{`
 import { Carousel } from '@nodestrap/carousel'
 
-export default function SiteSidebar(props) {
+export default function ProductGallery(props) {
     return (
         <Carousel
             {...props} // preserves other properties
-
-            semanticRole={props.semanticRole ?? 'complementary'} // override default value of semanticRole to 'complementary'
-            semantictag={props.semanticTag ?? 'aside'}           // override default value of semanticTag  to 'aside'
             
-            theme={props.theme ?? 'secondary'} // override default value of theme to 'secondary'
-            mild={props.mild ?? true}          // override default value of mild  to true
+            theme={props.theme ?? 'primary'} // override default value of theme to 'primary'
+            size={props.size ?? 'lg'}        // override default value of size  to 'lg'
         >
-            { props.children }
+            { React.Children.map(props.children, (child) => (
+                <div className='product'>
+                    { child }
+                </div>
+            )) }
         </Carousel>
     );
 }
@@ -306,7 +417,7 @@ export default function SiteSidebar(props) {
                         <DetailSpecItem code='usesCarouselVariants()'>
                             <p>
                                 Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentComponent /> such as:<br />
-                                <code>SizeVariant</code>, <code>NudeVariant</code>, <code>ThemeVariant</code>, <code>GradientVariant</code>, <code>OutlinedVariant</code>, and <code>MildVariant</code>.
+                                <code>SizeVariant</code>, <code>CarouselVariant</code>, and <strong>all variants</strong> inherited from <CurrentBaseComponents />.
                             </p>
                         </DetailSpecItem>
                     </SpecList>
@@ -315,7 +426,7 @@ import { mainComposition, style, imports, variants, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
 import { Carousel, usesCarouselLayout, usesCarouselVariants } from '@nodestrap/carousel'
 
-const useCustomComponentSheet = createUseSheet(() => [
+const useProductGallerySheet = createUseSheet(() => [
     mainComposition(
         imports([
             // import some stuff from <Carousel>:
@@ -324,7 +435,6 @@ const useCustomComponentSheet = createUseSheet(() => [
         ]),
         style({
             // then overwrite with your style:
-            display : 'inline-block',
             margin  : '1em',
             /* ... */
             
@@ -348,8 +458,8 @@ const useCustomComponentSheet = createUseSheet(() => [
     ),
 ]);
 
-export default function CustomComponent(props) {
-    const sheet = useCustomComponentSheet();
+export default function ProductGallery(props) {
+    const sheet = useProductGallerySheet();
     return (
         <Carousel {...props} mainClass={sheet.main}>
             { props.children }
