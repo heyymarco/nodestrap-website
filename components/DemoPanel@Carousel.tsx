@@ -7,6 +7,7 @@ import { TypeScriptCode } from './Code';
 
 
 export const carouselInitials = {
+    infiniteLoop : true,
 };
 export type CarouselInitials = typeof carouselInitials & Partial<ContentInitials>
 export const useCarouselStates = (initials ?: Partial<CarouselInitials>) => {
@@ -14,14 +15,26 @@ export const useCarouselStates = (initials ?: Partial<CarouselInitials>) => {
         ...carouselInitials,
         ...initials
     };
-
+    
+    const infiniteLoop = useResetableState(initials2.infiniteLoop);
+    
     return {
         ...useContentStates(initials2),
+        infiniteLoop,
     }
 }
 export type CarouselOptionProps =  { states: ReturnType<typeof useCarouselStates> } & ContentOptionProps
 export const CarouselOptions = (props: CarouselOptionProps) => {
+    const { states } = props;
+    
     return (<>
+        <Option
+            name='infiniteLoop'
+            options={[false, true]}
+            value={states.infiniteLoop[0]}
+            setValue={states.infiniteLoop[1]}
+        />
+        
         <ContentOptions
             {...props}
         />
@@ -37,6 +50,8 @@ export const DemoCarousel = () => {
         <>
             <div className='preview'>
                 <Carousel
+                    infiniteLoop={states.infiniteLoop[0]}
+                    
                     size={states.size[0]}
                     nude={states.nude[0]}
                     theme={states.theme[0]}
@@ -56,6 +71,8 @@ export const DemoCarousel = () => {
                 </Carousel>
                 <TypeScriptCode collapsable={false}>{`
 <Carousel
+    infiniteLoop={${states.infiniteLoop[0]}}
+    
     size=${states.size[0] ? `'${states.size[0]}'` : '{undefined}'}
     nude={${states.nude[0]}}
     theme='${states.theme[0]}'
