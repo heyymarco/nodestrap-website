@@ -51,7 +51,7 @@ const Carousel = (props: CarouselProps) => <CarouselOri
             <img key={1} alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />,
             <img key={2} alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />,
             <img key={3} alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />,
-            <img key={4} alt='lorem image' src='/images/lorem-img/tulip-700x400.jpg'  />,
+            <img key={4} alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />,
             <img key={5} alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />,
             <img key={6} alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />,
         ]
@@ -83,7 +83,7 @@ const CarouselWithExternalNav = () => {
                     Street
                 </NavscrollItem>
                 <NavscrollItem>
-                    Tulip
+                    Flower
                 </NavscrollItem>
                 <NavscrollItem>
                     Water
@@ -131,7 +131,7 @@ const Page: NextPage = () => {
     <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/tulip-700x400.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
 </Carousel>
@@ -143,7 +143,7 @@ const Page: NextPage = () => {
                                 A custom media
                             </div>
                             <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg'  />
-                            <img alt='lorem image' src='/images/lorem-img/tulip-700x400.jpg'  />
+                            <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
                             <article className='media' style={{ background: 'hsl(150, 100%, 60%)', width: '100%', height: '100%', padding: '1rem' }}>
                                 <h1>
                                     An Article
@@ -160,7 +160,7 @@ const Page: NextPage = () => {
         A custom media
     </div>
     <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/tulip-700x400.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
     <article className='media' style={{ background: 'hsl(150, 100%, 60%)', width: '100%', height: '100%', padding: '1rem' }}>
         <h1>
             An Article
@@ -175,7 +175,7 @@ const Page: NextPage = () => {
                     <Preview stretch={false}>
                         <Carousel>
                             <img className='not-media' alt='lorem image' src='/images/lorem-image-1.svg' style={{ width: '150px', height: '50px' }} />
-                            <img alt='lorem image' src='/images/lorem-img/tulip-700x400.jpg'  />
+                            <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
                             <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
                         </Carousel>
                     </Preview>
@@ -183,7 +183,7 @@ const Page: NextPage = () => {
                     <TypeScriptCode>{`
 <Carousel theme='primary'>
     <img className='not-media' alt='lorem image' src='/images/lorem-image-1.svg' style={{ width: '150px', height: '50px' }} />
-    <img alt='lorem image' src='/images/lorem-img/tulip-700x400.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
 </Carousel>
                     `}</TypeScriptCode>
@@ -200,7 +200,7 @@ const Page: NextPage = () => {
     <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/tulip-700x400.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
 </Carousel>
@@ -228,7 +228,7 @@ const Page: NextPage = () => {
     <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/tulip-700x400.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
 </Carousel>
@@ -258,7 +258,7 @@ const Page: NextPage = () => {
     <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/tulip-700x400.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
 </Carousel>
@@ -271,7 +271,7 @@ const Page: NextPage = () => {
     <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/tulip-700x400.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
 </Carousel>
@@ -284,7 +284,7 @@ const Page: NextPage = () => {
     <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/tulip-700x400.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
 </Carousel>
@@ -307,7 +307,7 @@ const Page: NextPage = () => {
     <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/tulip-700x400.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
 </Carousel>
@@ -335,7 +335,7 @@ const Page: NextPage = () => {
     <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/tulip-700x400.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
 </Carousel>
@@ -365,7 +365,7 @@ const Page: NextPage = () => {
     <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/tulip-700x400.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
 </Carousel>
@@ -395,7 +395,7 @@ const Page: NextPage = () => {
     <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/tulip-700x400.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
 </Carousel>
@@ -422,7 +422,7 @@ const Page: NextPage = () => {
     <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/tulip-700x400.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
 </Carousel>
@@ -444,7 +444,7 @@ const Page: NextPage = () => {
     <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/tulip-700x400.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
 </Carousel>
@@ -468,7 +468,7 @@ const carouselRef = useRef(null);
     <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/tulip-700x400.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
 </Carousel>
@@ -490,7 +490,7 @@ const carouselRef = useRef(null);
         Street
     </NavscrollItem>
     <NavscrollItem>
-        Tulip
+        Flower
     </NavscrollItem>
     <NavscrollItem>
         Water

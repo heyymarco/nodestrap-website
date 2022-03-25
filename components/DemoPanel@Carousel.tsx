@@ -50,7 +50,7 @@ export const DemoCarousel = () => {
                     <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
                     <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
                     <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
-                    <img alt='lorem image' src='/images/lorem-img/tulip-700x400.jpg'  />
+                    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
                     <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
                     <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
                 </Carousel>
@@ -67,7 +67,7 @@ export const DemoCarousel = () => {
     <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/tulip-700x400.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
     <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
 </Carousel>
