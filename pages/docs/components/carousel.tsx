@@ -18,9 +18,6 @@ import {
     SectionPropertyOutlined,
 } from '../../../components/common@Basic'
 import {
-    MediaList,
-} from '../../../components/common@Content'
-import {
     SectionPropertyMild,
     
     SectionPropertyMedia,
