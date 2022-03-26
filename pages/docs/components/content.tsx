@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { TransparentPreview } from '../../../components/Preview'
-import { SectionInheritedProps, LinkContentPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, LinkUsesBasicLayoutPage, LinkUsesBasicVariantsPage, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents } from '../../../components/common'
+import { SectionInheritedProps, LinkContentPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionVariables, SectionIntro, LinkUsesBasicLayoutPage, LinkUsesBasicVariantsPage, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 
 import {
@@ -336,7 +336,7 @@ const Page: NextPage = () => {
                 </SectionPropertyLinksExcluding>
             </SectionPropertyLinks>
             <SectionInheritedProps />
-            <SectionCustomizing specList={
+            <SectionVariables specList={
                 <SpecList>
                     <DetailSpecItem title='Spacings'>
                         <SubSpecList>

@@ -9,7 +9,7 @@ import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
 import GenericSection, { Section } from '../../../components/Section'
-import { SectionInheritedProps, LinkAlertPage, LinkPopupPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkContentPage, CurrentDominantBaseComponent, SectionCustomizingUi, SectionConfigureDependsOnIcon } from '../../../components/common'
+import { SectionInheritedProps, LinkAlertPage, LinkPopupPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionVariables, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkContentPage, CurrentDominantBaseComponent, SectionCustomizingUi, SectionConfigureDependsOnIcon } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 import { Tips } from '../../../components/Info'
 
@@ -775,7 +775,7 @@ export default function App() {
                     `}</TypeScriptCode>
                 </SectionPropertyControl>
             </SectionCustomizingUi>
-            <SectionCustomizing specList={
+            <SectionVariables specList={
                 <SpecList>
                     <DetailSpecItem title='Spacings'>
                         <SubSpecList>

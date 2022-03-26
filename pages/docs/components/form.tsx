@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { SpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Section } from '../../../components/Section'
-import { SectionInheritedProps, LinkFormPage, LinkContentPage, ParagraphDefaultValue, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionSubProperty, SectionStates, SectionIntro, LinkValidationProviderPage, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkInputPage, LinkCheckPage, LinkRangePage, LinkRadioPage } from '../../../components/common'
+import { SectionInheritedProps, LinkFormPage, LinkContentPage, ParagraphDefaultValue, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionVariables, SectionSubProperty, SectionStates, SectionIntro, LinkValidationProviderPage, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkInputPage, LinkCheckPage, LinkRangePage, LinkRadioPage } from '../../../components/common'
 
 import loadable from '@loadable/component'
 const DemoFormLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Form' */'../../../components/DemoPanel@Form'))
@@ -167,7 +167,7 @@ const Page: NextPage = () => {
                     </p>
                 </SectionSubProperty>
             </Section>
-            <SectionCustomizing specList={
+            <SectionVariables specList={
                 <SpecList>
                 <SimpleSpecItem>
                     -- no config yet --

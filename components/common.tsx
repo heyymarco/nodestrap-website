@@ -560,15 +560,30 @@ export const SectionCustomizingUi = ({ title = <>Customizing <CurrentComponent /
 export interface SectionCustomizingProps extends SectionProps {
     specList    : SpecList
 }
-export const SectionCustomizing = ({ title = <>Customizing <CurrentComponent /> Component</>, specList, ...restProps }: SectionCustomizingProps) => {
+export const SectionVariables = ({ title = 'Variables', specList, ...restProps }: SectionCustomizingProps) => {
+    const { packageName } = useComponentInfo();
+    
+    
+    
     return (
         <Section {...restProps} title={title}>
             <p>
-                There is a <strong>global configuration</strong> of <CurrentComponent /> you can tweak.
-                Changing the global configuration <strong>affects all</strong> <CurrentComponent /> and <strong>other components</strong> depend on <CurrentComponent />.
-                Here several properties in <code>cssProps</code> of <code>import {`{ cssProps }`} from <CurrentPackageName /></code> you can customize:
+                There are several <em>variables</em> of <CurrentComponent /> you can customize.
+                Changing the variables <strong>affects all</strong> <CurrentComponent /> instance and <strong>other components</strong> depend on <CurrentComponent />.
             </p>
-            
+            <p>
+                To access the variables, import a <code>cssProps</code> object from <code>{packageName}</code> module.<br />
+                See the example below:
+            </p>
+            <TypeScriptCode>{`
+import { cssProps } from '${packageName}';
+
+cssProps.variableName = 'variable value'; // assigning the variable updates the corresponding \`css variable's value\` in the DOM.
+console.log('value is: ', cssProps.variableName); // value is: var(--pfx-variableName) // accessing the variable gets the expression of css variable, not the direct value itself.
+`}</TypeScriptCode>
+            <p>
+                Here the exported variables:
+            </p>
             { specList }
         </Section>
     );

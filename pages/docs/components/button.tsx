@@ -5,7 +5,7 @@ import Head from 'next/head'
 
 import { SpecList, DetailSpecItem, SimpleSpecItem, SubSpecList } from '../../../components/SpecList'
 
-import { SectionInheritedProps, LinkButtonPage, LinkActionControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, LinkGroupPage, LinkInputPage, SeeDocumentations, LinkCheckPage, LinkRangePage, SectionSubPropertyStyle, SectionSubPropertyOrientation, ParagraphDefaultValue } from '../../../components/common'
+import { SectionInheritedProps, LinkButtonPage, LinkActionControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionVariables, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, LinkGroupPage, LinkInputPage, SeeDocumentations, LinkCheckPage, LinkRangePage, SectionSubPropertyStyle, SectionSubPropertyOrientation, ParagraphDefaultValue } from '../../../components/common'
 
 import { TypeScriptCode } from '../../../components/Code'
 import { Button } from '@nodestrap/button'
@@ -230,7 +230,7 @@ const Page: NextPage = () => {
                     </SpecList>
                 } />
             </SectionVariants>
-            <SectionCustomizing specList={
+            <SectionVariables specList={
                 <SpecList>
                     <DetailSpecItem title='Spacings'>
                         <SubSpecList>

@@ -8,7 +8,7 @@ import { useFlipFlop } from '../../../components/hooks'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
-import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentNestedComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, LinkListSeparatorItemPage, LinkUsesIndicatorVariantsPage, SectionPreviewProperty } from '../../../components/common'
+import { SectionInheritedProps, LinkListPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionVariables, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentNestedComponent, CurrentBaseComponents, LinkListItemPage, SectionVariants, SectionStates, LinkListSeparatorItemPage, LinkUsesIndicatorVariantsPage, SectionPreviewProperty } from '../../../components/common'
 import { List as ListOri, ListProps, ListItem, ListSeparatorItem, OrientationName } from '@nodestrap/list'
 import { TypeScriptCode } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
@@ -1314,7 +1314,7 @@ const TabControl = () => {
                     `}</TypeScriptCode>
                 </SectionPropertyEnabled>
             </SectionStates>
-            <SectionCustomizing specList={
+            <SectionVariables specList={
                 <SpecList>
                     <DetailSpecItem title='Button Styles'>
                         <SubSpecList>

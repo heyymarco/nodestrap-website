@@ -5,7 +5,7 @@ import Head from 'next/head'
 
 import { SpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
-import { SectionInheritedProps, LinkLabelPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, LinkButtonPage, LinkContentPage, LinkGroupPage, LinkInputPage, SeeDocumentations, LinkCheckPage, LinkRangePage, SectionSubPropertyStyle, ParagraphDefaultValue } from '../../../components/common'
+import { SectionInheritedProps, LinkLabelPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionVariables, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, LinkButtonPage, LinkContentPage, LinkGroupPage, LinkInputPage, SeeDocumentations, LinkCheckPage, LinkRangePage, SectionSubPropertyStyle, ParagraphDefaultValue } from '../../../components/common'
 
 import { Label } from '@nodestrap/label'
 import { Group } from '@nodestrap/group'
@@ -87,7 +87,7 @@ const Page: NextPage = () => {
                     </SpecList>
                 } />
             </SectionVariants>
-            <SectionCustomizing specList={
+            <SectionVariables specList={
                 <SpecList>
                     <SimpleSpecItem>
                         -- no config yet --

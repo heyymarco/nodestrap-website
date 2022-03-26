@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { SpecList, DetailSpecItem, SubSpecList, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Section } from '../../../components/Section'
-import { SectionInheritedProps, LinkButtonIconPage, LinkButtonPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkIconPage, SectionCustomizing, SectionVariants, SectionSubProperty, LinkBasicPage, SectionConfigureDependsOnIcon } from '../../../components/common'
+import { SectionInheritedProps, LinkButtonIconPage, LinkButtonPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkIconPage, SectionVariables, SectionVariants, SectionSubProperty, LinkBasicPage, SectionConfigureDependsOnIcon } from '../../../components/common'
 
 import loadable from '@loadable/component'
 import { Detail } from '../../../components/Detail'
@@ -75,7 +75,7 @@ const Page: NextPage = () => {
                     </p>
                 </SectionSubProperty>
             </SectionVariants>
-            <SectionCustomizing specList={
+            <SectionVariables specList={
                 <SpecList>
                     <DetailSpecItem title='Foregrounds, Backgrounds &amp; Borders'>
                         <SubSpecList>

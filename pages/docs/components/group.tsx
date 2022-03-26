@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { SpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
-import { SectionInheritedProps, LinkGroupPage, LinkListPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, SectionVariants, SectionStates, LinkGroupChildrenPage, CurrentNestedComponent } from '../../../components/common'
+import { SectionInheritedProps, LinkGroupPage, LinkListPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionVariables, SectionIntro, SectionDemo, BusyBar, CurrentComponent, SectionVariants, SectionStates, LinkGroupChildrenPage, CurrentNestedComponent } from '../../../components/common'
 import { Group as GroupOri, GroupProps, OrientationName } from '@nodestrap/group'
 import { Label } from '@nodestrap/label';
 import { NumberInput } from '@nodestrap/input';
@@ -743,7 +743,7 @@ const Page: NextPage = () => {
                     `}</TypeScriptCode>
                 </SectionPropertyEnabled>
             </SectionStates>
-            <SectionCustomizing specList={
+            <SectionVariables specList={
                 <SpecList>
                     <SimpleSpecItem>
                         -- no config yet --

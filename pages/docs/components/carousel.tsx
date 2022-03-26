@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
-import { SectionInheritedProps, LinkCarouselPage, LinkContentPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionConfigureDependsOnIcon, ParagraphLorem } from '../../../components/common'
+import { SectionInheritedProps, LinkCarouselPage, LinkContentPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionVariables, SectionVariants, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionConfigureDependsOnIcon, ParagraphLorem } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 import { Carousel as CarouselOri, CarouselProps } from '@nodestrap/carousel'
 import { ButtonIcon } from '@nodestrap/button-icon'
@@ -502,7 +502,7 @@ const carouselRef = useRef(null);
                     `}</TypeScriptCode>
                 </SectionCustomizingNavExternal>
             </SectionCustomizingNav>
-            <SectionCustomizing specList={
+            <SectionVariables specList={
                 <SpecList>
                     <DetailSpecItem title='Spacings'>
                         <SubSpecList>

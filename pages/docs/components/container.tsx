@@ -7,7 +7,7 @@ import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../
 
 import { TransparentPreview } from '../../../components/Preview'
 import { Section, SubSection } from '../../../components/Section'
-import { SectionInheritedProps, LinkContainerPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, SectionMoreCustomizingCss, LinkBreakpointsPage, CurrentComponent, CurrentBaseComponents } from '../../../components/common'
+import { SectionInheritedProps, LinkContainerPage, LinkBasicPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionVariables, SectionIntro, SectionDemo, BusyBar, SectionMoreCustomizingCss, LinkBreakpointsPage, CurrentComponent, CurrentBaseComponents } from '../../../components/common'
 
 import { TypeScriptCode } from '../../../components/Code'
 import { Warning } from '../../../components/Info'
@@ -255,7 +255,7 @@ const Page: NextPage = () => {
                 </SubSection>
             </Section>
             <SectionInheritedProps />
-            <SectionCustomizing specList={
+            <SectionVariables specList={
                 <SpecList>
                     <DetailSpecItem title='Borders'>
                         <SubSpecList>

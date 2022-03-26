@@ -5,7 +5,7 @@ import Head from 'next/head'
 
 import { SpecList, DetailSpecItem, SimpleSpecItem, SubSpecList } from '../../../components/SpecList'
 
-import { SectionInheritedProps, LinkMasonryPage, LinkContentPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, SectionSubPropertyOrientation, ParagraphDefaultValue } from '../../../components/common'
+import { SectionInheritedProps, LinkMasonryPage, LinkContentPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionVariables, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, SectionSubPropertyOrientation, ParagraphDefaultValue } from '../../../components/common'
 
 
 import loadable from '@loadable/component'
@@ -58,7 +58,7 @@ const Page: NextPage = () => {
                     </SpecList>
                 } />
             </SectionVariants>
-            <SectionCustomizing specList={
+            <SectionVariables specList={
                 <SpecList>
                     <DetailSpecItem title='Spacings'>
                         <SubSpecList>

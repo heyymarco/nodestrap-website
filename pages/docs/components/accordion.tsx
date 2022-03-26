@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { SpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
-import { SectionInheritedProps, LinkAccordionPage, LinkListPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentNestedComponent, LinkAccordionItemPage, SectionVariants, SectionStates, LinkAccordionSeparatorItemPage, SectionPreviewProperty, ParagraphLorem, LinkListItemPage, LinkCollapsePage } from '../../../components/common'
+import { SectionInheritedProps, LinkAccordionPage, LinkListPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionVariables, SectionIntro, SectionDemo, BusyBar, CurrentNestedComponent, LinkAccordionItemPage, SectionVariants, SectionStates, LinkAccordionSeparatorItemPage, SectionPreviewProperty, ParagraphLorem, LinkListItemPage, LinkCollapsePage } from '../../../components/common'
 import { ListItem } from '@nodestrap/list'
 import { Accordion as AccordionOri, AccordionProps, AccordionItem, AccordionSeparatorItem } from '@nodestrap/accordion'
 import { Collapse } from '@nodestrap/collapse'
@@ -1252,7 +1252,7 @@ export default function App() {
 </Accordion>
                 `}</TypeScriptCode>
             </SectionCustomizingCollapse>
-            <SectionCustomizing specList={
+            <SectionVariables specList={
                 <SpecList>
                     <SimpleSpecItem>
                         -- no config yet --

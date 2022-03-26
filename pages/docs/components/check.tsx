@@ -5,7 +5,7 @@ import Head from 'next/head'
 
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
-import { SectionInheritedProps, LinkCheckPage, LinkEditableActionControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, SectionSubPropertyStyle, LinkButtonPage, ParagraphDefaultValue } from '../../../components/common'
+import { SectionInheritedProps, LinkCheckPage, LinkEditableActionControlPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionVariables, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionVariants, SectionSubPropertyStyle, LinkButtonPage, ParagraphDefaultValue } from '../../../components/common'
 
 import loadable from '@loadable/component'
 const DemoCheckLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Check' */'../../../components/DemoPanel@Check'))
@@ -56,7 +56,7 @@ const Page: NextPage = () => {
                     </SpecList>
                 } />
             </SectionVariants>
-            <SectionCustomizing specList={
+            <SectionVariables specList={
                 <SpecList>
                     <DetailSpecItem title='Spacings'>
                         <SubSpecList>
