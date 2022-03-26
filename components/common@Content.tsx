@@ -83,14 +83,14 @@ export interface SectionPropertyMediaExcludingProps extends SectionPreviewProper
     notTreatment        ?: React.ReactNode
     notTreatmentExample ?: React.ReactNode
 }
-export const SectionPropertyMediaExcluding = ({ titleTag = 'h3', property = 'children', properties = 'Excluding Media'                        , description, notTreatment = <>styled to full width</>, notTreatmentExample = <>For example an emoji of <code>{`<img>`}</code></>, ...restProps }: SectionPropertyMediaExcludingProps) => {
+export const SectionPropertyMediaExcluding = ({ titleTag = 'h3', property = 'children', properties = 'Excluding Media'                        , description, notTreatment = <>apply any style</>, notTreatmentExample = <>For example an emoji of <code>{`<img>`}</code></>, ...restProps }: SectionPropertyMediaExcludingProps) => {
     return (
         <SectionPreviewProperty {...restProps} titleTag={titleTag} property={property} properties={properties} description={
             description
             ??
             <>
                 <p>
-                    Sometimes we need to put a media (<MediaList />) <strong>but not</strong> {notTreatment}.
+                    Sometimes we need to put a media (<MediaList />) <strong>but don&apos;t</strong> {notTreatment}.
                     {notTreatmentExample && <> {notTreatmentExample}.</>}
                 </p>
                 <p>

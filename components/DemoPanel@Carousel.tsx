@@ -61,13 +61,13 @@ export const DemoCarousel = () => {
                     
                     style={{ maxWidth: '300px', maxHeight: '250px' }}
                 >
-                    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg'  />
-                    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
-                    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
-                    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
-                    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
-                    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
-                    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
+                    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg' />
+                    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg' />
+                    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg' />
+                    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg' />
+                    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg' />
+                    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg' />
+                    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg' />
                 </Carousel>
                 <TypeScriptCode collapsable={false}>{`
 <Carousel
@@ -80,13 +80,13 @@ export const DemoCarousel = () => {
     outlined={${states.outlined[0]}}
     mild={${states.mild[0]}}
 >
-    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg' />
 </Carousel>
                 `}</TypeScriptCode>
             </div>

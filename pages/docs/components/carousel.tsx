@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
-import { SectionInheritedProps, LinkCarouselPage, LinkElementPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionConfigureDependsOnIcon, ParagraphLorem } from '../../../components/common'
+import { SectionInheritedProps, LinkCarouselPage, LinkContentPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionCustomizing, SectionVariants, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, SectionConfigureDependsOnIcon, ParagraphLorem } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 import { Carousel as CarouselOri, CarouselProps } from '@nodestrap/carousel'
 import { ButtonIcon } from '@nodestrap/button-icon'
@@ -47,13 +47,13 @@ const Carousel = (props: CarouselProps) => <CarouselOri
         props.children
         ??
         [
-            <img key={0} alt='lorem image' src='/images/lorem-img/waves-800x600.jpg'  />,
-            <img key={1} alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />,
-            <img key={2} alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />,
-            <img key={3} alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />,
-            <img key={4} alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />,
-            <img key={5} alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />,
-            <img key={6} alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />,
+            <img key={0} alt='lorem image' src='/images/lorem-img/waves-800x600.jpg' />,
+            <img key={1} alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg' />,
+            <img key={2} alt='lorem image' src='/images/lorem-img/building-800x500.jpg' />,
+            <img key={3} alt='lorem image' src='/images/lorem-img/street-800x800.jpg' />,
+            <img key={4} alt='lorem image' src='/images/lorem-img/flower-700x400.jpg' />,
+            <img key={5} alt='lorem image' src='/images/lorem-img/water-500x800.jpg' />,
+            <img key={6} alt='lorem image' src='/images/lorem-img/wood-700x600.jpg' />,
         ]
     }
 </CarouselOri>
@@ -99,7 +99,7 @@ const CarouselWithExternalNav = () => {
 
 const Page: NextPage = () => {
     return (
-        <ComponentInfoProvider packageName='@nodestrap/carousel' component={<LinkCarouselPage />} bases={<LinkElementPage />}>
+        <ComponentInfoProvider packageName='@nodestrap/carousel' component={<LinkCarouselPage />} bases={<LinkContentPage />}>
             <Head>
                 <title>&lt;Carousel&gt; Component</title>
                 <meta name="description" content="Using <Carousel> component" />
@@ -127,13 +127,13 @@ const Page: NextPage = () => {
                 <p></p>
                 <TypeScriptCode>{`
 <Carousel theme='primary'>
-    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg' />
 </Carousel>
                 `}</TypeScriptCode>
                 <SectionPropertyMediaCustom>
@@ -142,8 +142,8 @@ const Page: NextPage = () => {
                             <div className='media' style={{ background: 'hsl(20, 100%, 60%)', width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                 A custom media
                             </div>
-                            <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg'  />
-                            <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
+                            <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg' />
+                            <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg' />
                             <article className='media' style={{ background: 'hsl(150, 100%, 60%)', width: '100%', height: '100%', padding: '1rem' }}>
                                 <h1>
                                     An Article
@@ -159,8 +159,8 @@ const Page: NextPage = () => {
     <div className='media' style={{ background: 'hsl(20, 100%, 60%)', width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         A custom media
     </div>
-    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg' />
     <article className='media' style={{ background: 'hsl(150, 100%, 60%)', width: '100%', height: '100%', padding: '1rem' }}>
         <h1>
             An Article
@@ -175,16 +175,16 @@ const Page: NextPage = () => {
                     <Preview stretch={false}>
                         <Carousel>
                             <img className='not-media' alt='lorem image' src='/images/lorem-image-1.svg' style={{ width: '150px', height: '50px' }} />
-                            <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
-                            <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
+                            <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg' />
+                            <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg' />
                         </Carousel>
                     </Preview>
                     <p></p>
                     <TypeScriptCode>{`
 <Carousel theme='primary'>
     <img className='not-media' alt='lorem image' src='/images/lorem-image-1.svg' style={{ width: '150px', height: '50px' }} />
-    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg' />
 </Carousel>
                     `}</TypeScriptCode>
                 </SectionPropertyMediaExcluding>
@@ -196,13 +196,13 @@ const Page: NextPage = () => {
                 <p></p>
                 <TypeScriptCode>{`
 <Carousel infiniteLoop={true} theme='primary'>
-    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg' />
 </Carousel>
                 `}</TypeScriptCode>
             </SectionPropertyInfiniteLoop>
@@ -224,13 +224,13 @@ const Page: NextPage = () => {
 <Carousel
     theme='${themeName}'
 >
-    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg' />
 </Carousel>
 `
                         ).join('')}
@@ -254,39 +254,39 @@ const Page: NextPage = () => {
     size='sm'
     theme='primary'
 >
-    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg' />
 </Carousel>
 
 <Carousel
     size={undefined}
     theme='primary'
 >
-    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg' />
 </Carousel>
 
 <Carousel
     size='lg'
     theme='primary'
 >
-    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg' />
 </Carousel>
                     `}</TypeScriptCode>
                 </SectionPropertySize>
@@ -303,13 +303,13 @@ const Page: NextPage = () => {
     nude={true}
     theme='primary'
 >
-    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg' />
 </Carousel>
                     `}</TypeScriptCode>
                 </SectionPropertyNude>
@@ -331,13 +331,13 @@ const Page: NextPage = () => {
     gradient={true}
     theme='${themeName}'
 >
-    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg' />
 </Carousel>
 `
                         ).join('')}
@@ -361,13 +361,13 @@ const Page: NextPage = () => {
     outlined={true}
     theme='${themeName}'
 >
-    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg' />
 </Carousel>
 `
                         ).join('')}
@@ -391,13 +391,13 @@ const Page: NextPage = () => {
     mild={false}
     theme='${themeName}'
 >
-    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg' />
 </Carousel>
 `
                         ).join('')}
@@ -418,13 +418,13 @@ const Page: NextPage = () => {
     nextBtn={<ButtonIcon theme='warning' size='lg' icon={undefined} style={{ opacity: 0.5 }}>next</ButtonIcon>}
     theme='primary'
 >
-    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg' />
 </Carousel>
                 `}</TypeScriptCode>
             </SectionCustomizingButtons>
@@ -440,13 +440,13 @@ const Page: NextPage = () => {
     nav={<Navscroll theme='warning' size='sm' orientation='inline' listStyle='btn' />}
     theme='primary'
 >
-    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg' />
 </Carousel>
                 `}</TypeScriptCode>
                 
@@ -464,13 +464,13 @@ const carouselRef = useRef(null);
     scrollRef={carouselRef}
     theme='primary'
 >
-    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg'  />
-    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg'  />
+    <img alt='lorem image' src='/images/lorem-img/waves-800x600.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/leaf-800x700.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/building-800x500.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/street-800x800.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/flower-700x400.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/water-500x800.jpg' />
+    <img alt='lorem image' src='/images/lorem-img/wood-700x600.jpg' />
 </Carousel>
 
 <Navscroll
@@ -528,15 +528,15 @@ const carouselRef = useRef(null);
                         <SubSpecList>
                             <SimpleSpecItem>
                                 <code>navMarginBlockEnd</code>
-                                <p>The default outer spacing on the bottom.</p>
+                                <p>The default bottom spacing of navigation list.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>navMarginBlockEndSm</code>
-                                <p>The default outer spacing on the bottom when <code>{`size='sm'`}</code>.</p>
+                                <p>The bottom spacing of navigation list when <code>{`size='sm'`}</code>.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
                                 <code>navMarginBlockEndSm</code>
-                                <p>The default outer spacing on the bottom when <code>{`size='lg'`}</code>.</p>
+                                <p>The bottom spacing of navigation list when <code>{`size='lg'`}</code>.</p>
                             </SimpleSpecItem>
                         </SubSpecList>
                     </DetailSpecItem>
@@ -555,7 +555,7 @@ export default function ProductGallery(props) {
             size={props.size ?? 'lg'}        // override default value of size  to 'lg'
         >
             { React.Children.map(props.children, (child) => (
-                <div className='product'>
+                <div className='media product'>
                     { child }
                 </div>
             )) }

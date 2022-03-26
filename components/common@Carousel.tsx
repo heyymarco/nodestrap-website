@@ -24,9 +24,18 @@ export const SectionPropertyMild = ({ defaultValue = true, ...props }: SectionPr
 
 
 
-export const SectionPropertyMedia          = ({ treatment=<><strong>styled to fill the available width &amp;s height</strong> of <CurrentComponent />, while maintaining its <code>aspect-ratio</code></>, ...restProps }: SectionPropertyMediaProps) => {
+export const SectionPropertyMedia          = ({ treatment=<><strong>styled to fill the available width &amp; height</strong> of <CurrentComponent />, while maintaining its <code>aspect-ratio</code></>, moreDescription, ...restProps }: SectionPropertyMediaProps) => {
     return (
-        <ContentSectionPropertyMedia {...restProps} treatment={treatment} />
+        <ContentSectionPropertyMedia {...restProps} treatment={treatment} moreDescription={
+            moreDescription
+            ??
+            <>
+                <p>
+                    The media that are bigger than the <CurrentComponent />&apos; size will be shrinked down so they are not cropped.
+                    The media that are smaller than the <CurrentComponent />&apos; size remains unchanged.
+                </p>
+            </>
+        } />
     );
 };
 export const SectionPropertyMediaCustom    = ({ warnDisplayBlock = false, ...restProps }: SectionPropertyMediaCustomProps) => {
@@ -34,9 +43,15 @@ export const SectionPropertyMediaCustom    = ({ warnDisplayBlock = false, ...res
         <ContentSectionPropertyMediaCustom {...restProps} warnDisplayBlock={warnDisplayBlock} />
     );
 };
-export const SectionPropertyMediaExcluding = ({ ...restProps }: SectionPropertyMediaExcludingProps) => {
+export const SectionPropertyMediaExcluding = ({ notTreatmentExample, ...restProps }: SectionPropertyMediaExcludingProps) => {
     return (
-        <ContentSectionPropertyMediaExcluding {...restProps} />
+        <ContentSectionPropertyMediaExcluding {...restProps} notTreatmentExample={
+            notTreatmentExample
+            ??
+            <>
+                For example a custom <code>{`<img>`}</code>
+            </>
+        } />
     );
 };
 
