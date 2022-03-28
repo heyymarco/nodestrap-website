@@ -60,18 +60,20 @@ const Modal = (props: ModalProps) => {
             theme={props.theme ?? 'primary'}
             viewportRef={viewportRef}
         >
-            {
-                props.children
-                ??
-                <div style={{ background: 'white', padding: '1rem' }}>
-                    <p>
-                        Hello everyone!
-                    </p>
-                    <p>
-                        This is an awesome message!
-                    </p>
-                </div>
-            }
+            <div style={{ background: 'white', padding: '1rem' }}>
+                {
+                    props.children
+                    ??
+                    <>
+                        <p>
+                            Hello everyone!
+                        </p>
+                        <p>
+                            This is an awesome message!
+                        </p>
+                    </>
+                }
+            </div>
         </ModalOri>
         <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dolorum laborum quos magni accusamus.
