@@ -32,54 +32,60 @@ import {
 import colors from '@nodestrap/colors'
 import spacers from '@nodestrap/spacers'
 
+import { usesPadding } from '@nodestrap/basic';
 import { Card, CardProps } from '@nodestrap/card';
 import { useWindowSize } from '@nodestrap/dimensions';
 
 
 
-export const usePreviewSheet = createUseSheet(() => [
-    mainComposition(
-        style({
-            ...children('.header.header', {
-                padding   : spacers.xs,
-                textAlign : 'center',
-                filter    : 'none',
-            }),
-            ...children('.body.body', {
-                ...rule(':not(.block)&', {
-                    display: 'grid',
-                    
-                    ...rule(':not(.stretch)&', {
-                        justifyItems   : 'center',
-                        alignItems     : 'center',
-                        justifyContent : 'center', // for unstretchable item => do not stretch the group's width
-                        alignContent   : 'start', // for unstretchable item => do not stretch the group's height
+export const usePreviewSheet = createUseSheet(() => {
+    const [, , paddingDecls] = usesPadding();
+
+    return [
+        mainComposition(
+            style({
+                ...children('.header.header', {
+                    padding   : spacers.xs,
+                    textAlign : 'center',
+                    filter    : 'none',
+                }),
+                ...children('.body.body', {
+                    ...rule(':not(.block)&', {
+                        display: 'grid',
+                        
+                        ...rule(':not(.stretch)&', {
+                            justifyItems   : 'center',
+                            alignItems     : 'center',
+                            justifyContent : 'center', // for unstretchable item => do not stretch the group's width
+                            alignContent   : 'start', // for unstretchable item => do not stretch the group's height
+                        }),
+                        ...rule('.stretch&', {
+                            justifyItems   : 'stretch',
+                            alignItems     : 'stretch',
+                        }),
+                        
+                        gridAutoFlow : 'row',
+                        
+                        gap          : `var(--gap, ${spacers.default})`,
                     }),
-                    ...rule('.stretch&', {
-                        justifyItems   : 'stretch',
-                        alignItems     : 'stretch',
+                    ...rule('.block&', {
+                        display  : 'block',
                     }),
                     
-                    gridAutoFlow : 'row',
-                    
-                    gap          : `var(--gap, ${spacers.default})`,
+                    [paddingDecls.paddingInline] : `var(--gap, ${spacers.lg})`,
+                    [paddingDecls.paddingBlock ] : `var(--gap, ${spacers.lg})`,
+                    background   : colors.secondaryMild,
+                    ...rule('.transp&', {
+                        background: [
+                            'url("/images/tile-1.svg")',
+                            'url("/images/soft-rainbow.svg")',
+                        ],
+                    }),
                 }),
-                ...rule('.block&', {
-                    display  : 'block',
-                }),
-                
-                padding      : `var(--gap, ${spacers.lg})`,
-                background   : colors.secondaryMild,
-                ...rule('.transp&', {
-                    background: [
-                        'url("/images/tile-1.svg")',
-                        'url("/images/soft-rainbow.svg")',
-                    ],
-                }),
-            }),
-        })
-    ),
-], /*sheetId :*/'zjw8gwqkbq'); // an unique salt for SSR support, ensures the server-side & client-side have the same generated class names
+            })
+        ),
+    ];
+}, /*sheetId :*/'zjw8gwqkbq'); // an unique salt for SSR support, ensures the server-side & client-side have the same generated class names
 
 
 
