@@ -19,9 +19,9 @@ import {
 
 
 
-const ParagraphIgnoreProperty = () => (
+export const ParagraphIgnoreProperty = () => (
     <p>
-        Note: one/more <CurrentNestedComponent />s may <em>override</em> or <em>ignore</em> this property.
+        Note: <CurrentNestedComponent /> may <em>override</em> or <em>ignore</em> this property.
     </p>
 );
 

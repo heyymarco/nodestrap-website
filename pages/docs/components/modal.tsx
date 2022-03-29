@@ -9,7 +9,7 @@ import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
 import { Section } from '../../../components/Section'
-import { SectionInheritedProps, LinkModalPage, LinkPopupPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionVariables, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, ParagraphLorem } from '../../../components/common'
+import { SectionInheritedProps, LinkModalPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionVariables, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, ParagraphLorem, LinkModalDialogPage } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 import { Tips } from '../../../components/Info'
 
@@ -17,34 +17,26 @@ import Label from '@nodestrap/label'
 import { Modal as ModalOri, ModalProps } from '@nodestrap/modal'
 import Basic from '@nodestrap/basic'
 import Content from '@nodestrap/content'
-import SelectPopupPlacement from '../../../components/SelectPopupPlacement';
 import {
     themeNames,
+} from '../../../components/common@Basic'
+import {
     SectionPropertyTheme,
     SectionPropertySize,
     SectionPropertyNude,
     SectionPropertyGradient,
     SectionPropertyOutlined,
-    SectionPropertyOrientation,
-    SectionPropertyOrientationBlock,
-    SectionPropertyOrientationInline,
-} from '../../../components/common@Basic'
-import {
     SectionPropertyMild,
-} from '../../../components/common@Indicator'
-import {
-    SectionPropertyEnabled,
-    SectionPropertyActive,
     
-    SectionPropertyTargetRef,
-    SectionPropertyPopupPlacement,
-    SectionPropertyPopupOffset,
-    SectionPropertyPopupShift,
-    SectionPropertyPopupAutoFlip,
-    SectionPropertyPopupAutoShift,
+    // SectionPropertyChildren,
+    // SectionPropertyNestedChildren,
+} from '../../../components/common@Group'
+import {
+    SectionPropertyActive,
+    SectionPropertyEnabled,
     
     SectionPropertyLazy,
-} from '../../../components/common@Popup'
+} from '../../../components/common@Modal'
 
 import loadable from '@loadable/component'
 import Button from '@nodestrap/button'
@@ -108,7 +100,7 @@ const ModalPreview = () => {
 
 const Page: NextPage = () => {
     return (
-        <ComponentInfoProvider packageName='@nodestrap/modal' component={<LinkModalPage />} bases={<LinkPopupPage />}>
+        <ComponentInfoProvider packageName='@nodestrap/modal' component={<LinkModalPage />} nestedComponent={<LinkModalDialogPage />} bases={<LinkIndicatorPage />}>
             <Head>
                 <title>&lt;Modal&gt; Component</title>
                 <meta name="description" content="Using <Modal> component" />

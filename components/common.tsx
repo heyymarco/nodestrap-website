@@ -163,6 +163,7 @@ export const LinkCarouselPage               = (props: PageLinkProps) => <LinkCod
 export const LinkNavbarPage                 = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/navbar'>Navbar</LinkCode>
 
 export const LinkModalPage                  = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/modal'>Modal</LinkCode>
+export const LinkModalDialogPage            = () => <em><LinkModalPage />&apos;s dialog</em>
 export const LinkModalCardPage              = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/modal-card'>ModalCard</LinkCode>
 export const LinkModalSidePage              = (props: PageLinkProps) => <LinkCode text={props.children}     href='/docs/components/modal-side'>ModalSide</LinkCode>
 

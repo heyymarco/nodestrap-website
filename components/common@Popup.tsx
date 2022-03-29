@@ -14,8 +14,10 @@ import {
 
 
 
-export const SectionPropertyActive  = ({ specList, description, ...restProps }: SectionPreviewPropertyProps) => {
-    const { nestedComponentName } = useComponentInfo();
+export const SectionPropertyActive  = ({ nestedable = true, effectNestedable, specList, description, ...restProps }: SectionPreviewPropertyProps) => {
+    const { componentName, hasNestedComponent, nestedComponentName } = useComponentInfo();
+    const theComponentName    = nestedable ? nestedComponentName : componentName;
+    const TheCurrentComponent = (effectNestedable ?? nestedable) ? CurrentNestedComponent : CurrentComponent;
     
     
     
@@ -26,12 +28,12 @@ export const SectionPropertyActive  = ({ specList, description, ...restProps }: 
             <SpecList>
                 <DetailSpecItem code='true'>
                     <p>
-                        At this state, the <CurrentNestedComponent /> is currently <strong>shown</strong>.
+                        At this state, the <TheCurrentComponent /> is currently <strong>shown</strong>.
                     </p>
                 </DetailSpecItem>
                 <DetailSpecItem code='false'>
                     <p>
-                        At this state, the <CurrentNestedComponent /> is currently <strong>hidden</strong>.
+                        At this state, the <TheCurrentComponent /> is currently <strong>hidden</strong>.
                     </p>
                     <ParagraphDefaultValue property='active' />
                 </DetailSpecItem>
@@ -41,19 +43,21 @@ export const SectionPropertyActive  = ({ specList, description, ...restProps }: 
             ??
             <>
                 <p>
-                    Decides the <CurrentNestedComponent /> is currently <strong>shown</strong> or <strong>hidden</strong>.
+                    Decides the <TheCurrentComponent /> is currently <strong>shown</strong> or <strong>hidden</strong>.
                 </p>
                 <p>
-                    To show <CurrentNestedComponent />, set <code>{`<${nestedComponentName} active={true}>`}</code>.
+                    To show <TheCurrentComponent />, set <code>{`<${theComponentName} active={true}>`}</code>.
                 </p>
-                <ParagraphSetParentActive />
+                {hasNestedComponent && nestedable && <ParagraphSetParentActive />}
             </>
         } />
     );
 };
 
-export const SectionPropertyEnabled = ({ specList, description, ...restProps }: SectionPreviewPropertyProps) => {
-    const { nestedComponentName } = useComponentInfo();
+export const SectionPropertyEnabled = ({ nestedable = true, effectNestedable, specList, description, ...restProps }: SectionPreviewPropertyProps) => {
+    const { componentName, hasNestedComponent, nestedComponentName } = useComponentInfo();
+    const theComponentName    = nestedable ? nestedComponentName : componentName;
+    const TheCurrentComponent = (effectNestedable ?? nestedable) ? CurrentNestedComponent : CurrentComponent;
     
     
     
@@ -64,13 +68,13 @@ export const SectionPropertyEnabled = ({ specList, description, ...restProps }: 
             <SpecList>
                 <DetailSpecItem code='true'>
                     <p>
-                        At this state, the <CurrentNestedComponent /> is appear <strong>normal</strong>.
+                        At this state, the <TheCurrentComponent /> is appear <strong>normal</strong>.
                     </p>
                     <ParagraphDefaultValue property='enabled' />
                 </DetailSpecItem>
                 <DetailSpecItem code='false'>
                     <p>
-                        At this state, the <CurrentNestedComponent /> is appear <strong>disabled</strong>.
+                        At this state, the <TheCurrentComponent /> is appear <strong>disabled</strong>.
                     </p>
                 </DetailSpecItem>
             </SpecList>
@@ -79,12 +83,12 @@ export const SectionPropertyEnabled = ({ specList, description, ...restProps }: 
             ??
             <>
                 <p>
-                    Makes the <CurrentNestedComponent /> appear <strong>disabled</strong>.
+                    Makes the <TheCurrentComponent /> appear <strong>disabled</strong>.
                 </p>
                 <p>
-                    To make <CurrentNestedComponent /> appear disabled, set <code>{`<${nestedComponentName} enabled={false}>`}</code>.
+                    To make <TheCurrentComponent /> appear disabled, set <code>{`<${theComponentName} enabled={false}>`}</code>.
                 </p>
-                <ParagraphSetParentDisabled />
+                {hasNestedComponent && nestedable && <ParagraphSetParentDisabled />}
             </>
         } />
     );
@@ -282,10 +286,17 @@ export const SectionPropertyPopupAutoShift = ({ propertySuffix = true, property 
 
 
 export interface SectionPropertyLazyProps extends SectionPreviewPropertyProps {
-    activeAlias  ?: string
-    passiveAlias ?: string
+    activeAlias   ?: string
+    passiveAlias  ?: string
+    childrenAlias ?: React.ReactNode
 }
-export const SectionPropertyLazy = ({ titleTag = 'h2', propertySuffix = true, property = 'lazy', specList, description, activeAlias = 'shown', passiveAlias = 'hidden', ...restProps }: SectionPropertyLazyProps) => {
+export const SectionPropertyLazy = ({ titleTag = 'h2', propertySuffix = true, property = 'lazy', nestedable = true, effectNestedable, specList, description, activeAlias = 'shown', passiveAlias = 'hidden', childrenAlias = <code>children</code>, ...restProps }: SectionPropertyLazyProps) => {
+    const { componentName, hasNestedComponent, nestedComponentName } = useComponentInfo();
+    const theComponentName    = nestedable ? nestedComponentName : componentName;
+    const TheCurrentComponent = (effectNestedable ?? nestedable) ? CurrentNestedComponent : CurrentComponent;
+    
+    
+    
     return (
         <SectionPreviewProperty {...restProps} titleTag={titleTag} propertySuffix={propertySuffix} property={property} specList={
             specList
@@ -293,12 +304,12 @@ export const SectionPropertyLazy = ({ titleTag = 'h2', propertySuffix = true, pr
             <SpecList>
                 <DetailSpecItem code='true'>
                     <p>
-                        The <CurrentNestedComponent />&apos;s <code>children</code> are rendered <em>only if</em> the <CurrentNestedComponent /> is <strong>{activeAlias}</strong>.
+                        The <em><TheCurrentComponent />&apos;s {childrenAlias}</em> are rendered <em>only if</em> the <TheCurrentComponent /> is <strong>{activeAlias}</strong>.
                     </p>
                 </DetailSpecItem>
                 <DetailSpecItem code='false'>
                     <p>
-                        The <CurrentNestedComponent />&apos;s <code>children</code> are <em>always</em> rendered.
+                        The <em><TheCurrentComponent />&apos;s {childrenAlias}</em> are <em>always</em> rendered.
                     </p>
                     <ParagraphDefaultValue property='lazy' />
                 </DetailSpecItem>
@@ -308,7 +319,7 @@ export const SectionPropertyLazy = ({ titleTag = 'h2', propertySuffix = true, pr
             ??
             <>
                 <p>
-                    Prevents an unnecessary rendering of <CurrentNestedComponent />&apos;s <code>children</code>, <em>when</em> the <CurrentNestedComponent /> is currently <strong>{passiveAlias}</strong>.
+                    Prevents an unnecessary rendering of <em><TheCurrentComponent />&apos;s {childrenAlias}</em>, <em>when</em> the <TheCurrentComponent /> is currently <strong>{passiveAlias}</strong>.
                 </p>
                 <p>
                     This is useful to combine with <LinkReactLazyLinkPage /> or <LinkLoadableComponentsLinkPage />.
