@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { useFlipFlop } from '../../../components/hooks'
+import { useFlipFlop, useInViewport } from '../../../components/hooks'
 
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
@@ -14,10 +14,13 @@ import { TypeScriptCode } from '../../../components/Code'
 import { Tips } from '../../../components/Info'
 
 import Label from '@nodestrap/label'
-import { Modal as ModalOri, ModalProps } from '@nodestrap/modal'
+import { DialogProps, Modal as ModalOri, ModalCloseType, ModalProps } from '@nodestrap/modal'
 import Basic from '@nodestrap/basic'
 import Content from '@nodestrap/content'
 import Control from '@nodestrap/control'
+import Button from '@nodestrap/button'
+import Form from '@nodestrap/form'
+import { TextInput, EmailInput } from '@nodestrap/input'
 import {
     themeNames,
 } from '../../../components/common@Basic'
@@ -34,13 +37,13 @@ import {
 } from '../../../components/common@Group'
 import {
     SectionPropertyActive,
+    SectionPropertyOnActiveChange,
     SectionPropertyEnabled,
     
     SectionPropertyLazy,
 } from '../../../components/common@Modal'
 
 import loadable from '@loadable/component'
-import Button from '@nodestrap/button'
 const DemoModalLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Modal' */'../../../components/DemoPanel@Modal'))
 
 
@@ -75,8 +78,6 @@ const Modal = (props: ModalProps) => {
     </div>);
 }
 
-
-
 const ModalPreview = () => {
     const [containerRef, isActiveFlip] = useFlipFlop({ defaultState: true });
     
@@ -93,6 +94,83 @@ const ModalPreview = () => {
             />
         </>}</Preview>
     )
+};
+
+type LoginFormCloseType = ModalCloseType | 'closeBySubmit'|'closeByCancel';
+interface LoginFormProps extends DialogProps<HTMLFormElement, LoginFormCloseType> {
+    focusable ?: boolean
+}
+const LoginForm = ({ elmRef, focusable = false, tabIndex = -1, onActiveChange }: LoginFormProps) => {
+    return (
+        <Content>
+            <Form
+                elmRef={elmRef}
+                tabIndex={focusable ? tabIndex : undefined}
+                enableValidation={false}
+                style={{
+                    display             : 'grid',
+                    gridTemplateColumns : '1fr 1fr',
+                    gridAutoFlow        : 'row',
+                    gap                 : '1rem',
+                    outline             : 'none',
+                }}
+                nude={true}
+            >
+                <TextInput  placeholder='John Smith'     size='sm' style={{ gridColumnEnd: 'span 2' }} />
+                <EmailInput placeholder='john@smith.com' size='sm' style={{ gridColumnEnd: 'span 2' }} />
+                <Button
+                    theme='primary'
+                    size='sm'
+                    onClick={() => onActiveChange?.(false, 'closeBySubmit')}
+                >
+                    Submit
+                </Button>
+                <Button
+                    theme='secondary'
+                    size='sm'
+                    onClick={() => onActiveChange?.(false, 'closeByCancel')}
+                >
+                    Cancel
+                </Button>
+            </Form>
+        </Content>
+    );
+}
+
+const ModalWithOnActiveChange = () => {
+    const [viewportRef, isInViewport] = useInViewport();
+    const [modalActive, setModalActive] = useState(true);
+    
+    // re-show the <Modal> after 2 seconds:
+    useEffect(() => {
+        // conditions:
+        if (!isInViewport) return;
+        if (modalActive) return;
+        
+        // setups:
+        const timerHandler = setTimeout(() => setModalActive(true), 2000);
+        
+        // cleanups:
+        return () => {
+            clearTimeout(timerHandler);
+        };
+    }, [isInViewport, modalActive]);
+    
+    return (<div ref={viewportRef} style={{ position: 'relative', padding: '1rem', height: '15rem', overflow: 'hidden' }} className='media'>
+        <ModalOri
+            active={modalActive}
+            onActiveChange={(newActive, reason) => setModalActive(newActive)}
+            theme='primary'
+            viewportRef={viewportRef}
+        >
+            <LoginForm focusable={isInViewport} />
+        </ModalOri>
+        <ParagraphLorem />
+        <ParagraphLorem />
+        <ParagraphLorem />
+        <ParagraphLorem />
+        <ParagraphLorem />
+    </div>);
 };
 
 
@@ -378,6 +456,41 @@ const Page: NextPage = () => {
     </Content>
 </Modal>
                     `}</TypeScriptCode>
+                    <SectionPropertyOnActiveChange>
+                        <Preview blockDisplay={true}>
+                            <ModalWithOnActiveChange />
+                        </Preview>
+                        <p></p>
+                        <TypeScriptCode>{`
+export default function App() {
+    const [modalActive, setModalActive] = useState(true);
+    
+    // re-show the <Modal> after 2 seconds:
+    useEffect(() => {
+        // conditions:
+        if (modalActive) return;
+        
+        // setups:
+        const timerHandler = setTimeout(() => setModalActive(true), 2000);
+        
+        // cleanups:
+        return () => {
+            clearTimeout(timerHandler);
+        };
+    }, [modalActive]);
+    
+    return (
+        <Modal
+            active={modalActive}
+            onActiveChange={(newActive, reason) => setModalActive(newActive)}
+            theme='primary'
+        >
+            <LoginForm />
+        </Modal>
+    );
+};
+                        `}</TypeScriptCode>
+                    </SectionPropertyOnActiveChange>
                 </SectionPropertyActive>
                 <SectionPropertyEnabled>
                     <Preview>

@@ -927,7 +927,7 @@ export default function App() {
         return () => {
             clearTimeout(timerHandler);
         };
-    }, [dropdownActive]);    
+    }, [dropdownActive]);
     
     return (
         <Dropdown

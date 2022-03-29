@@ -30,6 +30,22 @@ export const SectionPropertyActive   = ({ nestedable = false, effectNestedable =
         <PopupSectionPropertyActive {...props} nestedable={nestedable} effectNestedable={effectNestedable} />
     );
 };
+export const SectionPropertyOnActiveChange = ({ titleTag = 'h4', propertySuffix = true, property = 'onActiveChange', specList, description, ...restProps }: SectionPreviewPropertyProps) => {
+    return (
+        <SectionPreviewProperty {...restProps} titleTag={titleTag} propertySuffix={propertySuffix} property={property} description={
+            description
+            ??
+            <>
+                <p>
+                    Fires when the user press <kbd>Esc</kbd> key when the <CurrentComponent /> is opened, the user clicks the <CurrentComponent />&apos;s backdrop, or the user clicks a close control (if any) on the <CurrentNestedComponent />.
+                </p>
+                <p>
+                    You have to implement an <em>event handler</em> to change your state, then the state changes the <code>active</code> property.
+                </p>
+            </>
+        } />
+    );
+};
 export const SectionPropertyEnabled  = ({ nestedable = false, effectNestedable = true, moreDescription, ...props }: SectionPreviewPropertyProps) => {
     return (
         <PopupSectionPropertyEnabled {...props} nestedable={nestedable} effectNestedable={effectNestedable} moreDescription={
