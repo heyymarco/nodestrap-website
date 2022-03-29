@@ -17,6 +17,7 @@ import Label from '@nodestrap/label'
 import { Modal as ModalOri, ModalProps } from '@nodestrap/modal'
 import Basic from '@nodestrap/basic'
 import Content from '@nodestrap/content'
+import Control from '@nodestrap/control'
 import {
     themeNames,
 } from '../../../components/common@Basic'
@@ -53,20 +54,18 @@ const Modal = (props: ModalProps) => {
             theme={props.theme ?? 'primary'}
             viewportRef={viewportRef}
         >
-            <Content>
-                {
-                    props.children
-                    ??
-                    <>
-                        <p>
-                            Hello everyone!
-                        </p>
-                        <p>
-                            This is an awesome message!
-                        </p>
-                    </>
-                }
-            </Content>
+            {
+                props.children
+                ??
+                <Content>
+                    <p>
+                        Hello everyone!
+                    </p>
+                    <p>
+                        This is an awesome message!
+                    </p>
+                </Content>
+            }
         </ModalOri>
         <ParagraphLorem />
         <ParagraphLorem />
@@ -131,9 +130,11 @@ const Page: NextPage = () => {
                                 active={true}
                                 key={index}
                             >
-                                <p>
-                                    A <CurrentComponent/> with {themeName} theme.
-                                </p>
+                                <Content>
+                                    <p>
+                                        A <CurrentComponent/> with {themeName} theme.
+                                    </p>
+                                </Content>
                             </Modal>
                         )}
                     </Preview>
@@ -160,27 +161,33 @@ const Page: NextPage = () => {
                             active={true}
                             theme='primary'
                         >
-                            <p>
-                                A <CurrentComponent/> with smaller size.
-                            </p>
+                            <Content>
+                                <p>
+                                    A <CurrentComponent/> with smaller size.
+                                </p>
+                            </Content>
                         </Modal>
                         <Modal
                             size={undefined}
                             active={true}
                             theme='primary'
                         >
-                            <p>
-                                A <CurrentComponent/> with default size.
-                            </p>
+                            <Content>
+                                <p>
+                                    A <CurrentComponent/> with default size.
+                                </p>
+                            </Content>
                         </Modal>
                         <Modal
                             size='lg'
                             active={true}
                             theme='primary'
                         >
-                            <p>
-                                A <CurrentComponent/> with larger size.
-                            </p>
+                            <Content>
+                                <p>
+                                    A <CurrentComponent/> with larger size.
+                                </p>
+                            </Content>
                         </Modal>
                     </Preview>
                     <p></p>
@@ -223,9 +230,11 @@ const Page: NextPage = () => {
                             active={true}
                             theme='primary'
                         >
-                            <p>
-                                A nude <CurrentComponent /> 😋
-                            </p>
+                            <Content>
+                                <p>
+                                    A nude <CurrentComponent /> 😋
+                                </p>
+                            </Content>
                         </Modal>
                     </TransparentPreview>
                     <p></p>
@@ -250,9 +259,11 @@ const Page: NextPage = () => {
                                 theme={themeName}
                                 key={index}
                             >
-                                <p>
-                                    Hello world!
-                                </p>
+                                <Content>
+                                    <p>
+                                        Hello world!
+                                    </p>
+                                </Content>
                             </Modal>
                         )}
                     </Preview>
@@ -282,9 +293,11 @@ const Page: NextPage = () => {
                                 theme={themeName}
                                 key={index}
                             >
-                                <p>
-                                    Hello world!
-                                </p>
+                                <Content>
+                                    <p>
+                                        Hello world!
+                                    </p>
+                                </Content>
                             </Modal>
                         )}
                     </TransparentPreview>
@@ -314,9 +327,11 @@ const Page: NextPage = () => {
                                 theme={themeName}
                                 key={index}
                             >
-                                <p>
-                                    Hello world!
-                                </p>
+                                <Content>
+                                    <p>
+                                        Hello world!
+                                    </p>
+                                </Content>
                             </Modal>
                         )}
                     </Preview>
@@ -345,9 +360,11 @@ const Page: NextPage = () => {
                             active={true}
                             theme='primary'
                         >
-                            <p>
-                                Hello world!
-                            </p>
+                            <Content>
+                                <p>
+                                    Hello world!
+                                </p>
+                            </Content>
                         </Modal>
                     </Preview>
                     <p></p>
@@ -369,9 +386,11 @@ const Page: NextPage = () => {
                             active={true}
                             theme='primary'
                         >
-                            <p>
-                                Hello world!
-                            </p>
+                            <Control>
+                                <p>
+                                    Hello world!
+                                </p>
+                            </Control>
                         </Modal>
                     </Preview>
                     <p></p>
@@ -381,9 +400,9 @@ const Page: NextPage = () => {
     active={true}
     theme='primary'
 >
-    <Content>
+    <Control>
         Hello world!
-    </Content>
+    </Control>
 </Modal>
                     `}</TypeScriptCode>
                 </SectionPropertyEnabled>
@@ -433,9 +452,6 @@ export default function LoginDialog(props) {
     return (
         <Modal
             {...props} // preserves other properties
-
-            semanticRole={props.semanticRole ?? 'form'} // override default value of semanticRole to 'form'
-            semantictag={props.semanticTag ?? 'form'}   // override default value of semanticTag  to 'form'
             
             theme={props.theme ?? 'primary'} // override default value of theme to 'primary'
             mild={props.mild ?? false}       // override default value of mild  to false
