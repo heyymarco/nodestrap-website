@@ -16,6 +16,7 @@ import { Tips } from '../../../components/Info'
 import Label from '@nodestrap/label'
 import { Modal as ModalOri, ModalProps } from '@nodestrap/modal'
 import Basic from '@nodestrap/basic'
+import Content from '@nodestrap/content'
 import SelectPopupPlacement from '../../../components/SelectPopupPlacement';
 import {
     themeNames,
@@ -60,7 +61,7 @@ const Modal = (props: ModalProps) => {
             theme={props.theme ?? 'primary'}
             viewportRef={viewportRef}
         >
-            <div style={{ background: 'white', padding: '1rem' }}>
+            <Content>
                 {
                     props.children
                     ??
@@ -73,23 +74,13 @@ const Modal = (props: ModalProps) => {
                         </p>
                     </>
                 }
-            </div>
+            </Content>
         </ModalOri>
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dolorum laborum quos magni accusamus.
-        </p>
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium cum nulla, tenetur nisi dolorem fuga ad dicta nobis, itaque, esse repellat. Sint commodi eum quos assumenda. Voluptatem quos facere officiis.
-        </p>
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium cum nulla, tenetur nisi dolorem fuga ad dicta nobis, itaque, esse repellat. Sint commodi eum quos assumenda. Voluptatem quos facere officiis.
-        </p>
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium cum nulla, tenetur nisi dolorem fuga ad dicta nobis, itaque, esse repellat. Sint commodi eum quos assumenda. Voluptatem quos facere officiis.
-        </p>
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium cum nulla, tenetur nisi dolorem fuga ad dicta nobis, itaque, esse repellat. Sint commodi eum quos assumenda. Voluptatem quos facere officiis.
-        </p>
+        <ParagraphLorem />
+        <ParagraphLorem />
+        <ParagraphLorem />
+        <ParagraphLorem />
+        <ParagraphLorem />
     </div>);
 }
 
