@@ -8,18 +8,13 @@ import { useFlipFlop, useInViewport } from '../../../components/hooks'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
-import { Section } from '../../../components/Section'
-import { SectionInheritedProps, LinkModalPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionVariables, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, ParagraphLorem, LinkModalDialogPage } from '../../../components/common'
+import { SectionInheritedProps, LinkModalPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionVariables, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, ParagraphLorem, LinkModalDialogPage } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
-import { Tips } from '../../../components/Info'
 
-import Label from '@nodestrap/label'
 import { DialogProps, Modal as ModalOri, ModalCloseType, ModalProps } from '@nodestrap/modal'
-import Basic from '@nodestrap/basic'
 import Content from '@nodestrap/content'
 import Control from '@nodestrap/control'
 import Button from '@nodestrap/button'
-import Form from '@nodestrap/form'
 import { TextInput, EmailInput } from '@nodestrap/input'
 import {
     themeNames,
@@ -43,6 +38,8 @@ import {
     SectionPropertyLazy,
     
     SectionPropertyChildren,
+    
+    SectionPropertyViewportRef,
 } from '../../../components/common@Modal'
 
 import loadable from '@loadable/component'
@@ -98,43 +95,73 @@ const ModalPreview = () => {
     )
 };
 
-type LoginFormCloseType = ModalCloseType | 'closeBySubmit'|'closeByCancel';
-interface LoginFormProps extends DialogProps<HTMLFormElement, LoginFormCloseType> {
+type LoginDialogCloseType = ModalCloseType | 'closeBySubmit'|'closeByCancel';
+interface LoginDialogProps extends DialogProps<HTMLFormElement, LoginDialogCloseType> {
     focusable ?: boolean
 }
-const LoginDialog = ({ elmRef, focusable = false, tabIndex = -1, onActiveChange }: LoginFormProps) => {
+const LoginDialog = ({ elmRef, focusable = false, tabIndex = -1, onActiveChange }: LoginDialogProps) => {
     return (
-        <Content>
-            <Form
-                elmRef={elmRef}
-                tabIndex={focusable ? tabIndex : undefined}
-                enableValidation={false}
-                style={{
-                    display             : 'grid',
-                    gridTemplateColumns : '1fr 1fr',
-                    gridAutoFlow        : 'row',
-                    gap                 : '1rem',
-                    outline             : 'none',
-                }}
-                nude={true}
+        <Content
+            elmRef={elmRef}
+            {...{ tabIndex: focusable ? tabIndex : undefined }}
+            style={{
+                display             : 'grid',
+                gridTemplateColumns : '1fr 1fr',
+                gridAutoFlow        : 'row',
+                gap                 : '1rem',
+                outline             : 'none',
+            }}
+        >
+            <TextInput  placeholder='John Smith'     size='sm' style={{ gridColumnEnd: 'span 2' }} />
+            <EmailInput placeholder='john@smith.com' size='sm' style={{ gridColumnEnd: 'span 2' }} />
+            <Button
+                theme='primary'
+                size='sm'
+                onClick={() => onActiveChange?.(false, 'closeBySubmit')}
             >
-                <TextInput  placeholder='John Smith'     size='sm' style={{ gridColumnEnd: 'span 2' }} />
-                <EmailInput placeholder='john@smith.com' size='sm' style={{ gridColumnEnd: 'span 2' }} />
+                Submit
+            </Button>
+            <Button
+                theme='secondary'
+                size='sm'
+                onClick={() => onActiveChange?.(false, 'closeByCancel')}
+            >
+                Cancel
+            </Button>
+        </Content>
+    );
+}
+
+type WelcomeDialogCloseType = ModalCloseType | 'closeByOK';
+interface WelcomeDialogProps extends DialogProps<HTMLFormElement, WelcomeDialogCloseType> {
+    focusable         ?: boolean
+    additionalMessage ?: string
+}
+const WelcomeDialog = ({ elmRef, focusable = false, tabIndex = -1, onActiveChange, additionalMessage }: WelcomeDialogProps) => {
+    return (
+        <Content
+            elmRef={elmRef}
+            {...{ tabIndex: focusable ? tabIndex : undefined }}
+            style={{
+                outline : 'none',
+            }}
+            theme='primary'
+        >
+            <p>
+                Welcome to Modal Dialog.
+            </p>
+            <p>
+                To dismiss this message, press <kbd>Esc</kbd> key or click the OK button below:
+            </p>
+            {additionalMessage && <p>{additionalMessage}</p>}
+            <p style={{ textAlign: 'center' }}>
                 <Button
                     theme='primary'
-                    size='sm'
-                    onClick={() => onActiveChange?.(false, 'closeBySubmit')}
+                    onClick={() => onActiveChange?.(false, 'closeByOK')}
                 >
-                    Submit
+                    OK
                 </Button>
-                <Button
-                    theme='secondary'
-                    size='sm'
-                    onClick={() => onActiveChange?.(false, 'closeByCancel')}
-                >
-                    Cancel
-                </Button>
-            </Form>
+            </p>
         </Content>
     );
 }
@@ -159,6 +186,40 @@ const ModalWithCustomUI = () => {
             viewportRef={viewportRef}
         >
             <LoginDialog focusable={isInViewport} />
+        </ModalOri>
+        <ParagraphLorem />
+        <ParagraphLorem />
+        <ParagraphLorem />
+        <ParagraphLorem />
+        <ParagraphLorem />
+    </div>);
+}
+
+interface ModalWithWelcomeUIProps {
+    viewportRef       ?: React.RefObject<HTMLElement> | HTMLElement | null;
+    showModalMessage  ?: string
+    additionalMessage ?: string
+}
+const ModalWithWelcomeUI = ({ viewportRef: modalViewportRef, showModalMessage, additionalMessage }: ModalWithWelcomeUIProps) => {
+    const [viewportRef, isInViewport] = useInViewport();
+    const [isModalVisible, setModalVisible] = useState(false);
+    
+    return (<div ref={viewportRef} style={{ position: 'relative', padding: '1rem', height: '15rem', overflow: 'hidden' }} className='media'>
+        <p style={{ textAlign: 'center' }}>
+            <Button
+                theme='primary'
+                onClick={() => setModalVisible(true)}
+            >
+                {showModalMessage ?? 'Show Modal'}
+            </Button>
+        </p>
+        <ModalOri
+            active={isModalVisible}
+            onActiveChange={(newActive, reason) => setModalVisible(newActive)}
+            theme='primary'
+            viewportRef={(modalViewportRef === undefined) ? viewportRef : (modalViewportRef ?? undefined)}
+        >
+            <WelcomeDialog focusable={isInViewport} additionalMessage={additionalMessage} />
         </ModalOri>
         <ParagraphLorem />
         <ParagraphLorem />
@@ -258,7 +319,7 @@ const LoginDialog = (props) => {
     } = props;
     
     return (
-        <Basic elmRef={elmRef} tabIndex={tabIndex} >
+        <Basic elmRef={elmRef} {...{ tabIndex }} theme={props.theme ?? 'primary'} >
             <TextInput  placeholder='John Smith'     />
             <EmailInput placeholder='john@smith.com' />
             <Button onClick={() => onActiveChange?.(false, 'closeBySubmit')} >
@@ -272,6 +333,15 @@ const LoginDialog = (props) => {
 };
                 `}</TypeScriptCode>
             </SectionPropertyChildren>
+            <SectionPropertyViewportRef>
+                <Preview>
+                    <ModalWithWelcomeUI showModalMessage='Show Modal on this <article>' />
+                </Preview>
+                <p></p>
+                <Preview>
+                    <ModalWithWelcomeUI showModalMessage='Show Modal on whole <body>' viewportRef={null} />
+                </Preview>
+            </SectionPropertyViewportRef>
             <SectionInheritedProps />
             <SectionVariants>
                 <SectionPropertyTheme>
@@ -747,7 +817,7 @@ const useLoginDialogSheet = createUseSheet(() => [
 function LoginDialog(props) {
     const sheet = useLoginDialogSheet();
     return (
-        <Basic {...props} rule='dialog' mainClass={sheet.main}>
+        <Basic {...props} rule='dialog' mainClass={sheet.main} theme={props.theme ?? 'primary'} >
             <TextInput  placeholder='John Smith'     size='sm' classes={['input]} />
             <EmailInput placeholder='john@smith.com' size='sm' classes={['input]} />
             <Button

@@ -163,7 +163,7 @@ export default function FooComponent() {
     return (
         <>
             <article
-                elmRef={scrollableContainerRef}
+                ref={scrollableContainerRef}
             >
                 <section></section>
                 <section></section>
@@ -190,7 +190,7 @@ export default function FooComponent() {
     return (
         <>
             <article
-                elmRef={setScrollableContainerRef}
+                ref={setScrollableContainerRef}
             >
                 <section></section>
                 <section></section>

@@ -1,13 +1,6 @@
 import React from 'react'
 
-import { CurrentComponent, CurrentNestedComponent, LinkBasicPage, LinkCollapsePage, LinkContentPage, LinkDropdownPage, LinkPopupPage, SectionPreviewProperty, SectionPreviewPropertyProps } from './common'
-import {
-    SectionPropertyTheme    as ListSectionPropertyTheme,
-    SectionPropertySize     as ListSectionPropertySize,
-    SectionPropertyNudeProps,
-    SectionPropertyGradient as ListSectionPropertyGradient,
-    SectionPropertyOutlined as ListSectionPropertyOutlined,
-} from './common@Basic'
+import { CurrentComponent, CurrentNestedComponent, LinkBasicPage, LinkCollapsePage, LinkContentPage, LinkDropdownPage, LinkPopupPage, SectionPreviewProperty, SectionPreviewPropertyProps, useComponentInfo } from './common'
 import {
     SectionPropertyActive   as PopupSectionPropertyActive,
     SectionPropertyEnabled  as PopupSectionPropertyEnabled,
@@ -16,14 +9,11 @@ import {
     SectionPropertyLazy     as PopupSectionPropertyLazy,
 } from './common@Popup'
 import {
-    SectionPropertyNude     as ListSectionPropertyNude,
-    SectionPropertyMild     as ListSectionPropertyMild,
-} from './common@List'
-import {
     ParagraphIgnoreProperty
 } from './common@Group'
 import { DetailSpecItem, SpecList } from './SpecList'
 import { Warning } from './Info'
+import { TypeScriptCode } from './Code'
 
 
 
@@ -145,15 +135,81 @@ export const SectionPropertyChildren = ({ titleTag = 'h2', propertySuffix = fals
         } />
     );
 };
-export const SectionPropertyNestedChildren = ({ titleTag = 'h3', property = 'children', properties = 'Multi Level Groups', description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyViewportRef = ({ titleTag = 'h2', propertySuffix = false, property = 'viewportRef', properties = <>Scoping the Backdrop</>, specList, description, ...restProps }: SectionPreviewPropertyProps) => {
+    const { componentName } = useComponentInfo();
+    
+    
+    
     return (
-        <SectionPreviewProperty {...restProps} titleTag={titleTag} property={property} properties={properties} description={
+        <SectionPreviewProperty {...restProps} titleTag={titleTag} propertySuffix={propertySuffix} property={property} properties={properties} description={
             description
             ??
             <>
                 <p>
-                    You can place <strong>several nested</strong> <CurrentComponent />s at any depth with mixed <code>orientation</code>s, <code>theme</code>s, etc.
+                    By default, when the <CurrentComponent /> is shown, the <em><CurrentComponent />&apos;s backdrop</em> will cover the <strong>whole <code>{`<body>`}</code></strong>.
                 </p>
+                <p>
+                    You can customize the specific area to be covered by <em>backdrop</em>.
+                    Assign <code>{`<${componentName} viewportRef={yourContainerRef}>`}</code> to the desired element.
+                </p>
+                <p>
+                    In most cases, using <code>useRef()</code> is <em>preferable</em>,
+                    as long as the <strong>target DOM element</strong> remains the same between renders.
+                </p>
+                <p>
+                    An example using <code>useRef()</code>:
+                </p>
+                <TypeScriptCode>{`
+export default function FooComponent() {
+    const containerRef = useRef(null);
+
+    return (
+        <Content
+            tag='article'
+            elmRef={containerRef}
+        >
+            <p>...</p>
+            <p>...</p>
+            
+            <${componentName}
+                targetRef={containerRef}
+            >
+                <WelcomeDialog />
+            </${componentName}>
+            
+            <p>...</p>
+            <p>...</p>
+        </Content>
+    );
+}
+                    `}</TypeScriptCode>
+                    <p>
+                        An example using <code>useState()</code>:
+                    </p>
+                    <TypeScriptCode>{`
+export default function FooComponent() {
+    const [containerRef, setContainerRef] = useState(null);
+
+    return (
+        <Content
+            tag='article'
+            elmRef={setContainerRef}
+        >
+            <p>...</p>
+            <p>...</p>
+            
+            <${componentName}
+                targetRef={containerRef}
+            >
+                <WelcomeDialog />
+            </${componentName}>
+            
+            <p>...</p>
+            <p>...</p>
+        </Content>
+    );
+}
+                `}</TypeScriptCode>
             </>
         } />
     );
