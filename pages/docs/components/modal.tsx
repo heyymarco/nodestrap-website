@@ -41,6 +41,8 @@ import {
     SectionPropertyEnabled,
     
     SectionPropertyLazy,
+    
+    SectionPropertyChildren,
 } from '../../../components/common@Modal'
 
 import loadable from '@loadable/component'
@@ -100,7 +102,7 @@ type LoginFormCloseType = ModalCloseType | 'closeBySubmit'|'closeByCancel';
 interface LoginFormProps extends DialogProps<HTMLFormElement, LoginFormCloseType> {
     focusable ?: boolean
 }
-const LoginForm = ({ elmRef, focusable = false, tabIndex = -1, onActiveChange }: LoginFormProps) => {
+const LoginDialog = ({ elmRef, focusable = false, tabIndex = -1, onActiveChange }: LoginFormProps) => {
     return (
         <Content>
             <Form
@@ -137,6 +139,35 @@ const LoginForm = ({ elmRef, focusable = false, tabIndex = -1, onActiveChange }:
     );
 }
 
+const ModalWithCustomUI = () => {
+    const [viewportRef, isInViewport] = useInViewport();
+    const [isModalVisible, setModalVisible] = useState(false);
+    
+    return (<div ref={viewportRef} style={{ position: 'relative', padding: '1rem', height: '15rem', overflow: 'hidden' }} className='media'>
+        <p style={{ textAlign: 'center' }}>
+            <Button
+                theme='primary'
+                onClick={() => setModalVisible(true)}
+            >
+                Show Modal
+            </Button>
+        </p>
+        <ModalOri
+            active={isModalVisible}
+            onActiveChange={(newActive, reason) => setModalVisible(newActive)}
+            theme='primary'
+            viewportRef={viewportRef}
+        >
+            <LoginDialog focusable={isInViewport} />
+        </ModalOri>
+        <ParagraphLorem />
+        <ParagraphLorem />
+        <ParagraphLorem />
+        <ParagraphLorem />
+        <ParagraphLorem />
+    </div>);
+}
+
 const ModalWithOnActiveChange = () => {
     const [viewportRef, isInViewport] = useInViewport();
     const [modalActive, setModalActive] = useState(true);
@@ -163,7 +194,7 @@ const ModalWithOnActiveChange = () => {
             theme='primary'
             viewportRef={viewportRef}
         >
-            <LoginForm focusable={isInViewport} />
+            <LoginDialog focusable={isInViewport} />
         </ModalOri>
         <ParagraphLorem />
         <ParagraphLorem />
@@ -198,6 +229,49 @@ const Page: NextPage = () => {
             <SectionDemo>
                 <DemoModalLazy fallback={<BusyBar />} />
             </SectionDemo>
+            <SectionPropertyChildren>
+                <Preview>
+                    <ModalWithCustomUI />
+                </Preview>
+                <p></p>
+                <TypeScriptCode>{`
+/* ... */
+
+const [isModalVisible, setModalVisible] = useState(false);
+
+/* ... */
+
+<Modal
+    active={isModalVisible}
+    onActiveChange={(newActive, reason) => setModalVisible(newActive)}
+>
+    <LoginDialog />
+</Modal>
+
+/* ... */
+
+const LoginDialog = (props) => {
+    const {
+        elmRef,
+        tabIndex = -1,
+        onActiveChange,
+    } = props;
+    
+    return (
+        <Basic elmRef={elmRef} tabIndex={tabIndex} >
+            <TextInput  placeholder='John Smith'     />
+            <EmailInput placeholder='john@smith.com' />
+            <Button onClick={() => onActiveChange?.(false, 'closeBySubmit')} >
+                Submit
+            </Button>
+            <Button onClick={() => onActiveChange?.(false, 'closeByCancel')} >
+                Cancel
+            </Button>
+        </Basic>
+    );
+};
+                `}</TypeScriptCode>
+            </SectionPropertyChildren>
             <SectionInheritedProps />
             <SectionVariants>
                 <SectionPropertyTheme>
@@ -485,7 +559,7 @@ export default function App() {
             onActiveChange={(newActive, reason) => setModalActive(newActive)}
             theme='primary'
         >
-            <LoginForm />
+            <LoginDialog />
         </Modal>
     );
 };
@@ -625,6 +699,7 @@ export default function LoginDialog(props) {
                 }>{`
 import { mainComposition, style, imports, variants, rule, children } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
+import { Basic } from '@nodestrap/basic'
 import { Modal, usesBackdropLayout, usesBackdropVariants, usesBackdropStates } from '@nodestrap/modal'
 
 
@@ -669,28 +744,34 @@ const useLoginDialogSheet = createUseSheet(() => [
     ),
 ]);
 
-export default function LoginDialog(props) {
+function LoginDialog(props) {
     const sheet = useLoginDialogSheet();
     return (
-        <Modal {...props}>
-            <Basic rule='dialog' mainClass={sheet.main}>
-                <TextInput  placeholder='John Smith'     size='sm' classes={['input]} />
-                <EmailInput placeholder='john@smith.com' size='sm' classes={['input]} />
-                <Button
-                    theme='primary'
-                    size='sm'
-                >
-                    Submit
-                </Button>
-                <Button
-                    theme='secondary'
-                    size='sm'
-                >
-                    Cancel
-                </Button>
-            </Basic>
-        </Modal>
+        <Basic {...props} rule='dialog' mainClass={sheet.main}>
+            <TextInput  placeholder='John Smith'     size='sm' classes={['input]} />
+            <EmailInput placeholder='john@smith.com' size='sm' classes={['input]} />
+            <Button
+                theme='primary'
+                size='sm'
+            >
+                Submit
+            </Button>
+            <Button
+                theme='secondary'
+                size='sm'
+            >
+                Cancel
+            </Button>
+        </Basic>
     )
+}
+
+export default function LoginModal(props) {
+    return (
+        <Modal {...props}>
+            <LoginDialog />
+        </Modal>
+    );
 }
                 `}</SectionCustomizingCss>
             </SectionDerivering>

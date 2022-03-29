@@ -46,10 +46,10 @@ export const SectionPropertyChildren = ({ titleTag = 'h2', propertySuffix = fals
                 <SpecList>
                     <DetailSpecItem code='tabIndex'>
                         <p>
-                            Forwards the <code>tabIndex</code> assigned from <CurrentComponent /> to the container element.
+                            Forwards the <code>tabIndex</code> assigned from <CurrentComponent /> to the <strong>Dropdown UI</strong>.
                         </p>
                         <p>
-                            If the container element is <strong>not a focusable element</strong>, then it should default to <code>{`tabIndex={props.tabIndex ?? -1}`}</code> so it becomes <strong>programatically focusable</strong>.
+                            If the <strong>Dropdown UI</strong> is <strong>not a focusable element</strong>, then it should default to <code>{`tabIndex={props.tabIndex ?? -1}`}</code> so it becomes <strong>programatically focusable</strong>.
                         </p>
                         <Warning>
                             <p>
@@ -63,7 +63,7 @@ export const SectionPropertyChildren = ({ titleTag = 'h2', propertySuffix = fals
                     </DetailSpecItem>
                     <DetailSpecItem code='elmRef'>
                         <p>
-                            Forwards the <strong>DOM reference</strong> of the container element to <code>focus()</code>.
+                            Forwards the <strong>DOM reference</strong> to the <strong>Dropdown UI</strong> to <code>focus()</code>.
                         </p>
                         <p>
                             The <code>focus()</code> will be automatically executed when the <CurrentComponent /> is shown.
@@ -76,7 +76,7 @@ export const SectionPropertyChildren = ({ titleTag = 'h2', propertySuffix = fals
                     </DetailSpecItem>
                     <DetailSpecItem code='onActiveChange(newActive: boolean, arg?: TCloseType)'>
                         <p>
-                            Notifies that the <strong>dropdowned UI</strong> wants to close, by executing <code>{`props?.onActiveChange(false, 'the-reason-of-closing')`}</code>.
+                            Notifies when the <strong>Dropdown UI</strong> wants to close, by executing <code>{`props?.onActiveChange(false, 'the-reason-of-closing')`}</code>.
                         </p>
                     </DetailSpecItem>
                 </SpecList>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { CurrentComponent, CurrentNestedComponent, LinkCollapsePage, LinkDropdownPage, LinkPopupPage, SectionPreviewProperty, SectionPreviewPropertyProps } from './common'
+import { CurrentComponent, CurrentNestedComponent, LinkBasicPage, LinkCollapsePage, LinkContentPage, LinkDropdownPage, LinkPopupPage, SectionPreviewProperty, SectionPreviewPropertyProps } from './common'
 import {
     SectionPropertyTheme    as ListSectionPropertyTheme,
     SectionPropertySize     as ListSectionPropertySize,
@@ -22,6 +22,8 @@ import {
 import {
     ParagraphIgnoreProperty
 } from './common@Group'
+import { DetailSpecItem, SpecList } from './SpecList'
+import { Warning } from './Info'
 
 
 
@@ -68,9 +70,9 @@ export const SectionPropertyLazy  = ({ nestedable = false, effectNestedable = fa
 
 
 
-export const SectionPropertyChildren = ({ titleTag = 'h2', property = 'children', properties = 'Merges Any Components', description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyChildren = ({ titleTag = 'h2', propertySuffix = false, property = 'children', properties = <>Customizing the Modal UI</>, specList, description, ...restProps }: SectionPreviewPropertyProps) => {
     return (
-        <SectionPreviewProperty {...restProps} titleTag={titleTag} property={property} properties={properties} description={
+        <SectionPreviewProperty {...restProps} titleTag={titleTag} propertySuffix={propertySuffix} property={property} properties={properties} description={
             description
             ??
             <>
@@ -78,8 +80,67 @@ export const SectionPropertyChildren = ({ titleTag = 'h2', property = 'children'
                     <strong>Almost all Nodestrap&apos;s components</strong> can be <CurrentComponent />ed, with some exceptions such as <LinkPopupPage />, <LinkCollapsePage /> and <LinkDropdownPage />.
                 </p>
                 <p>
-                    If you created a custom component that inherits from our component, your component is likely can be <CurrentComponent />ed.
+                    The <CurrentComponent /> should have a <strong>single child</strong> component.
+                    The child becomes the <code>UI element</code> of <CurrentComponent />.
+                    Placing a <em>multiple children</em> causes an <code>Error</code> to throw.
                 </p>
+                <p>
+                    The most common way of making the UI element is placing a <LinkBasicPage />, <LinkContentPage />, or any custom component derived from <LinkBasicPage />.
+                    The theme, size, and other variant properties are <em>automatically injected</em> to that component via <code>props</code>.
+                    You can re-override the properties by explicitly assigning the <code>props</code>.
+                </p>
+                <p>
+                    An aria <code>{`role='dialog'`}</code> also <em>automatically injected</em> to the component via <code>props</code> so that it behaves <em>semantically</em> like a native <code>{`<dialog>`}</code>.
+                </p>
+                <p>
+                    You can use a native <code>{`<dialog>`}</code> as well, but you should take care of <code>onCancel</code> and <code>onClose</code> events.
+                </p>
+                <p>
+                    The child component should <strong>implement these properties</strong> on its <code>props</code>:
+                </p>
+                <SpecList>
+                    <DetailSpecItem code='isVisible'>
+                        <p>
+                            When this property is <code>true</code>, the <strong>Modal UI</strong> should not in hidden state, otherwise the <strong>Modal UI</strong> may in hidden state or unrendered.
+                        </p>
+                        <p>
+                            This property is <code>true</code> when the <CurrentComponent /> is <strong>shown</strong> or <strong>still visible</strong> during <em>showing</em> or <em>hidding</em> transition.
+                        </p>
+                        <p>
+                            <em>In most cases</em>, you should not worry about this property, unless a performance optimization is needed.
+                        </p>
+                    </DetailSpecItem>
+                    <DetailSpecItem code='tabIndex'>
+                        <p>
+                            Forwards the <code>tabIndex</code> assigned from <CurrentComponent /> to the <strong>Modal UI</strong>.
+                        </p>
+                        <p>
+                            If the <strong>Modal UI</strong> is <strong>not a focusable element</strong>, then it should default to <code>{`tabIndex={props.tabIndex ?? -1}`}</code> so it becomes <strong>programatically focusable</strong>.
+                        </p>
+                        <Warning>
+                            <p>
+                                By default, every <strong>focusable element</strong> will be injected a css by user agent (browser), to indicate the <strong>focus state</strong>.<br />
+                                Usually it modifies the <code>outline</code> and/or <code>outline-offset</code> of the css.
+                            </p>
+                            <p>
+                                If the <em>focus state indicator</em> disrupts your css design, you can remove it by importing <code>stripoutFocusableElement()</code> to your css.
+                            </p>
+                        </Warning>
+                    </DetailSpecItem>
+                    <DetailSpecItem code='elmRef'>
+                        <p>
+                            Forwards the <strong>DOM reference</strong> to the <strong>Modal UI</strong> to <code>focus()</code>.
+                        </p>
+                        <p>
+                            The <code>focus()</code> will be automatically executed when the <CurrentComponent /> is shown.
+                        </p>
+                    </DetailSpecItem>
+                    <DetailSpecItem code='onActiveChange(newActive: boolean, arg?: TCloseType)'>
+                        <p>
+                            Notifies when the <strong>Modal UI</strong> wants to close, by executing <code>{`props?.onActiveChange(false, 'the-reason-of-closing')`}</code>.
+                        </p>
+                    </DetailSpecItem>
+                </SpecList>
             </>
         } />
     );
