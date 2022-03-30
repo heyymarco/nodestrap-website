@@ -404,6 +404,7 @@ const LoginDialog = (props) => {
                                     <p>
                                         A <CurrentComponent/> with {themeName} theme.
                                     </p>
+                                    <ParagraphLorem words={8} />
                                 </Content>
                             </Modal>
                         )}
@@ -420,6 +421,7 @@ const LoginDialog = (props) => {
         <p>
             A <code>{'<Modal>'}</code> with ${themeName} theme.
         </p>
+        <p>...</p>
     </Content>
 </Modal>
 `
@@ -437,6 +439,7 @@ const LoginDialog = (props) => {
                                 <p>
                                     A <CurrentComponent/> with smaller size.
                                 </p>
+                                <ParagraphLorem words={8} />
                             </Content>
                         </Modal>
                         <Modal
@@ -448,6 +451,7 @@ const LoginDialog = (props) => {
                                 <p>
                                     A <CurrentComponent/> with default size.
                                 </p>
+                                <ParagraphLorem words={8} />
                             </Content>
                         </Modal>
                         <Modal
@@ -459,6 +463,7 @@ const LoginDialog = (props) => {
                                 <p>
                                     A <CurrentComponent/> with larger size.
                                 </p>
+                                <ParagraphLorem words={8} />
                             </Content>
                         </Modal>
                     </Preview>
@@ -473,6 +478,7 @@ const LoginDialog = (props) => {
         <p>
             A <code>{'<Modal>'}</code> with smaller size.
         </p>
+        <p>...</p>
     </Content>
 </Modal>
 
@@ -485,6 +491,7 @@ const LoginDialog = (props) => {
         <p>
             A <code>{'<Modal>'}</code> with default size.
         </p>
+        <p>...</p>
     </Content>
 </Modal>
 
@@ -497,6 +504,7 @@ const LoginDialog = (props) => {
         <p>
             A <code>{'<Modal>'}</code> with larger size.
         </p>
+        <p>...</p>
     </Content>
 </Modal>
                     `}</TypeScriptCode>
@@ -512,6 +520,7 @@ const LoginDialog = (props) => {
                                 <p>
                                     A nude <CurrentComponent /> 😋
                                 </p>
+                                <ParagraphLorem words={8} />
                             </Content>
                         </Modal>
                     </TransparentPreview>
@@ -526,6 +535,7 @@ const LoginDialog = (props) => {
         <p>
             A nude <code>{'<Modal>'}</code> 😋
         </p>
+        <p>...</p>
     </Content>
 </Modal>
                     `}</TypeScriptCode>
@@ -538,13 +548,7 @@ const LoginDialog = (props) => {
                                 active={true}
                                 theme={themeName}
                                 key={index}
-                            >
-                                <Content>
-                                    <p>
-                                        Hello world!
-                                    </p>
-                                </Content>
-                            </Modal>
+                            />
                         )}
                     </Preview>
                     <p></p>
@@ -558,7 +562,10 @@ const LoginDialog = (props) => {
 >
     <Content>
         <p>
-            Hello world!
+            Hello everyone!
+        </p>
+        <p>
+            This is an awesome message!
         </p>
     </Content>
 </Modal>
@@ -574,13 +581,7 @@ const LoginDialog = (props) => {
                                 active={true}
                                 theme={themeName}
                                 key={index}
-                            >
-                                <Content>
-                                    <p>
-                                        Hello world!
-                                    </p>
-                                </Content>
-                            </Modal>
+                            />
                         )}
                     </TransparentPreview>
                     <p></p>
@@ -594,7 +595,10 @@ const LoginDialog = (props) => {
 >
     <Content>
         <p>
-            Hello world!
+            Hello everyone!
+        </p>
+        <p>
+            This is an awesome message!
         </p>
     </Content>
 </Modal>
@@ -610,13 +614,7 @@ const LoginDialog = (props) => {
                                 active={true}
                                 theme={themeName}
                                 key={index}
-                            >
-                                <Content>
-                                    <p>
-                                        Hello world!
-                                    </p>
-                                </Content>
-                            </Modal>
+                            />
                         )}
                     </Preview>
                     <p></p>
@@ -630,7 +628,10 @@ const LoginDialog = (props) => {
 >
     <Content>
         <p>
-            Hello world!
+            Hello everyone!
+        </p>
+        <p>
+            This is an awesome message!
         </p>
     </Content>
 </Modal>
@@ -779,13 +780,7 @@ const useContentPlusSheet = createUseSheet(() => [
                         <Modal
                             active={true}
                             theme='primary'
-                        >
-                            <Content>
-                                <p>
-                                    Hello world!
-                                </p>
-                            </Content>
-                        </Modal>
+                        />
                     </Preview>
                     <p></p>
                     <TypeScriptCode>{`
@@ -795,7 +790,10 @@ const useContentPlusSheet = createUseSheet(() => [
 >
     <Content>
         <p>
-            Hello world!
+            Hello everyone!
+        </p>
+        <p>
+            This is an awesome message!
         </p>
     </Content>
 </Modal>
@@ -845,7 +843,10 @@ export default function App() {
                         >
                             <Control>
                                 <p>
-                                    Hello world!
+                                    Hello everyone!
+                                </p>
+                                <p>
+                                    This is an awesome message!
                                 </p>
                             </Control>
                         </Modal>
@@ -858,7 +859,12 @@ export default function App() {
     theme='primary'
 >
     <Control>
-        Hello world!
+        <p>
+            Hello everyone!
+        </p>
+        <p>
+            This is an awesome message!
+        </p>
     </Control>
 </Modal>
                     `}</TypeScriptCode>
