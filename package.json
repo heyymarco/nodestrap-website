@@ -39,6 +39,7 @@
     "@nodestrap/list": "^4.0.13",
     "@nodestrap/masonry": "^4.0.7",
     "@nodestrap/modal": "^4.0.12",
+    "@nodestrap/modal-card": "^4.0.7",
     "@nodestrap/nav": "^4.0.7",
     "@nodestrap/nav-button": "^4.0.12",
     "@nodestrap/navbar": "^4.0.9",

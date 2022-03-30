@@ -176,7 +176,7 @@ const LoginDialog = ({ elmRef, focusable = false, tabIndex = -1, onActiveChange 
     );
 }
 
-type WelcomeDialogCloseType = ModalCloseType | 'closeByOK';
+type WelcomeDialogCloseType = ModalCloseType | 'closeByButton';
 interface WelcomeDialogProps extends DialogProps<HTMLFormElement, WelcomeDialogCloseType> {
     focusable         ?: boolean
     additionalMessage ?: string
@@ -195,15 +195,15 @@ const WelcomeDialog = ({ elmRef, focusable = false, tabIndex = -1, onActiveChang
                 Welcome to Modal Dialog.
             </p>
             <p>
-                To dismiss this message, press <kbd>Esc</kbd> key or click the OK button below:
+                To dismiss this message, press <kbd>Esc</kbd> key or click the Close button below:
             </p>
             {additionalMessage && <p>{additionalMessage}</p>}
             <p style={{ textAlign: 'center' }}>
                 <Button
                     theme='primary'
-                    onClick={() => onActiveChange?.(false, 'closeByOK')}
+                    onClick={() => onActiveChange?.(false, 'closeByButton')}
                 >
-                    OK
+                    Close
                 </Button>
             </p>
         </Content>
@@ -417,7 +417,9 @@ const LoginDialog = (props) => {
     active={true}
 >
     <Content>
-        A <code>{'<Modal>'}</code> with ${themeName} theme.
+        <p>
+            A <code>{'<Modal>'}</code> with ${themeName} theme.
+        </p>
     </Content>
 </Modal>
 `
@@ -468,7 +470,9 @@ const LoginDialog = (props) => {
     theme='primary'
 >
     <Content>
-        A <code>{'<Modal>'}</code> with smaller size.
+        <p>
+            A <code>{'<Modal>'}</code> with smaller size.
+        </p>
     </Content>
 </Modal>
 
@@ -478,7 +482,9 @@ const LoginDialog = (props) => {
     theme='primary'
 >
     <Content>
-        A <code>{'<Modal>'}</code> with default size.
+        <p>
+            A <code>{'<Modal>'}</code> with default size.
+        </p>
     </Content>
 </Modal>
 
@@ -488,7 +494,9 @@ const LoginDialog = (props) => {
     theme='primary'
 >
     <Content>
-        A <code>{'<Modal>'}</code> with larger size.
+        <p>
+            A <code>{'<Modal>'}</code> with larger size.
+        </p>
     </Content>
 </Modal>
                     `}</TypeScriptCode>
@@ -515,7 +523,9 @@ const LoginDialog = (props) => {
     theme='primary'
 >
     <Content>
-        A nude <code>{'<Modal>'}</code> 😋
+        <p>
+            A nude <code>{'<Modal>'}</code> 😋
+        </p>
     </Content>
 </Modal>
                     `}</TypeScriptCode>
@@ -547,7 +557,9 @@ const LoginDialog = (props) => {
     theme='${themeName}'
 >
     <Content>
-        Hello world!
+        <p>
+            Hello world!
+        </p>
     </Content>
 </Modal>
 `
@@ -581,7 +593,9 @@ const LoginDialog = (props) => {
     theme='${themeName}'
 >
     <Content>
-        Hello world!
+        <p>
+            Hello world!
+        </p>
     </Content>
 </Modal>
 `
@@ -615,7 +629,9 @@ const LoginDialog = (props) => {
     theme='${themeName}'
 >
     <Content>
-        Hello world!
+        <p>
+            Hello world!
+        </p>
     </Content>
 </Modal>
 `
@@ -778,7 +794,9 @@ const useContentPlusSheet = createUseSheet(() => [
     theme='primary'
 >
     <Content>
-        Hello world!
+        <p>
+            Hello world!
+        </p>
     </Content>
 </Modal>
                     `}</TypeScriptCode>
