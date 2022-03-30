@@ -8,7 +8,7 @@ import { useFlipFlop, useInViewport } from '../../../components/hooks'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
-import { SectionInheritedProps, LinkModalPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionVariables, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, ParagraphLorem, LinkModalDialogPage } from '../../../components/common'
+import { SectionInheritedProps, LinkModalPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionVariables, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, ParagraphLorem, LinkModalDialogPage, LinkModalCardPage, LinkModalSidePage } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 
 import { mainComposition, imports } from '@cssfn/cssfn'
@@ -329,6 +329,10 @@ const Page: NextPage = () => {
                 </p>
                 <p>
                     Similar to native <code>{`<dialog>`}</code> but this is the <em>polyfill</em> version with more rich features and fully controllable component.
+                </p>
+                <p>
+                    This is the base component for <LinkModalCardPage /> and <LinkModalSidePage />.<br />
+                    <em>In most cases</em>, you don&apos;t need <CurrentComponent /> component, unless you want to create a <strong>custom dialog</strong>.
                 </p>
                 <p>
                     Here the preview:

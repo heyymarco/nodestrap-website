@@ -159,10 +159,13 @@ export const SectionPropertyChildren = ({ titleTag = 'h2', propertySuffix = fals
                 <SpecList>
                     <DetailSpecItem code='isVisible'>
                         <p>
-                            When this property is <code>true</code>, the <strong>Modal UI</strong> should not in hidden state, otherwise the <strong>Modal UI</strong> may in hidden state or unrendered.
+                            When this property is <code>true</code>, the <strong>Modal UI</strong> should not in hidden state.
                         </p>
                         <p>
-                            This property is <code>true</code> when the <CurrentComponent /> is <strong>shown</strong> or <strong>still visible</strong> during <em>showing</em> or <em>hidding</em> transition.
+                            When this property is <code>false</code>, the <strong>Modal UI</strong> may in hidden state or unrendered.
+                        </p>
+                        <p>
+                            This property is <code>true</code> when the <CurrentComponent /> is <strong>shown</strong> or <strong>still visible</strong> during <em>showing</em> or <em>hidding</em> transition, otherwise is <code>false</code>.
                         </p>
                         <p>
                             <em>In most cases</em>, you should not worry about this property, unless a performance optimization is needed.
@@ -214,7 +217,7 @@ export const SectionPropertyViewportRef = ({ titleTag = 'h2', propertySuffix = f
             ??
             <>
                 <p>
-                    By default, when the <CurrentComponent /> is shown, the <em><CurrentComponent />&apos;s backdrop</em> will cover the <strong>whole <code>{`<body>`}</code></strong>.
+                    By default, when the <CurrentComponent /> is shown, the <em><CurrentComponent />&apos;s backdrop</em> will <strong>cover the whole <code>{`<body>`}</code></strong>.
                 </p>
                 <p>
                     You can customize the specific area to be covered by <em>backdrop</em>.
