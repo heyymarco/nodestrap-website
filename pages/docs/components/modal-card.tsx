@@ -55,29 +55,34 @@ const DemoModalCardLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@
 
 
 
+const ModalCardWithContent = (props: ModalCardProps) => <ModalCardOri
+    {...props}
+    theme={props.theme ?? 'primary'}
+    header={props.header ?? 'The Title'}
+>
+    {
+        props.children
+        ??
+        <>
+            <p>
+                Hello everyone!
+            </p>
+            <p>
+                This is an awesome message!
+            </p>
+            <ParagraphLorem words={8} />
+        </>
+    }
+</ModalCardOri>
+
 const ModalCard = (props: ModalCardProps) => {
     const viewportRef = useRef(null);
     
-    return (<div ref={viewportRef} style={{ position: 'relative', padding: '1rem', height: '25rem', overflow: 'hidden' }} className='media'>
-        <ModalCardOri
+    return (<div ref={viewportRef} style={{ position: 'relative', padding: '1rem', height: '28rem', overflow: 'hidden' }} className='media'>
+        <ModalCardWithContent
             {...props}
-            theme={props.theme ?? 'primary'}
             viewportRef={viewportRef}
-            header={props.header ?? 'The Title'}
-        >
-            {
-                props.children
-                ??
-                <>
-                    <p>
-                        Hello everyone!
-                    </p>
-                    <p>
-                        This is an awesome message!
-                    </p>
-                </>
-            }
-        </ModalCardOri>
+        />
         <ParagraphLorem />
         <ParagraphLorem />
         <ParagraphLorem />
@@ -113,7 +118,7 @@ const ModalCardWithWelcome = ({ viewportRef: modalCardViewportRef, showModalCard
     const [viewportRef, isInViewport] = useInViewport();
     const [isModalCardVisible, setModalCardVisible] = useState(false);
     
-    return (<div ref={viewportRef} style={{ position: 'relative', padding: '1rem', height: '25rem', overflow: 'hidden' }} className='media'>
+    return (<div ref={viewportRef} style={{ position: 'relative', padding: '1rem', height: '28rem', overflow: 'hidden' }} className='media'>
         <p style={{ textAlign: 'center' }}>
             <Button
                 theme='primary'
@@ -122,10 +127,9 @@ const ModalCardWithWelcome = ({ viewportRef: modalCardViewportRef, showModalCard
                 {showModalCardMessage ?? 'Show ModalCard'}
             </Button>
         </p>
-        <ModalCardOri
+        <ModalCardWithContent
             active={isModalCardVisible}
             onActiveChange={(newActive, reason) => setModalCardVisible(newActive)}
-            theme='primary'
             viewportRef={(modalCardViewportRef === undefined) ? viewportRef : (modalCardViewportRef ?? undefined)}
         >
             <p>
@@ -135,7 +139,8 @@ const ModalCardWithWelcome = ({ viewportRef: modalCardViewportRef, showModalCard
                 To dismiss this message, press <kbd>Esc</kbd> key or click the Close button below:
             </p>
             {additionalMessage && <p>{additionalMessage}</p>}
-        </ModalCardOri>
+            <ParagraphLorem words={8} />
+        </ModalCardWithContent>
         <ParagraphLorem />
         <ParagraphLorem />
         <ParagraphLorem />
@@ -163,8 +168,8 @@ const ModalCardWithOnActiveChange = () => {
         };
     }, [isInViewport, modalCardActive]);
     
-    return (<div ref={viewportRef} style={{ position: 'relative', padding: '1rem', height: '25rem', overflow: 'hidden' }} className='media'>
-        <ModalCard
+    return (<div ref={viewportRef} style={{ position: 'relative', padding: '1rem', height: '28rem', overflow: 'hidden' }} className='media'>
+        <ModalCardWithContent
             active={modalCardActive}
             onActiveChange={(newActive, reason) => setModalCardActive(newActive)}
             theme='primary'
@@ -228,6 +233,8 @@ const Page: NextPage = () => {
                                 <p>
                                     A <CurrentComponent/> with {themeName} theme.
                                 </p>
+                                <ParagraphLorem words={8} />
+                                <ParagraphLorem words={8} />
                             </ModalCard>
                         )}
                     </Preview>
@@ -242,6 +249,8 @@ const Page: NextPage = () => {
     <p>
         A <code>{'<ModalCard>'}</code> with ${themeName} theme.
     </p>
+    <p>...</p>
+    <p>...</p>
 </ModalCard>
 `
                         ).join('')}
@@ -257,6 +266,7 @@ const Page: NextPage = () => {
                             <p>
                                 A <CurrentComponent/> with smaller size.
                             </p>
+                            <ParagraphLorem words={8} />
                         </ModalCard>
                         <ModalCard
                             size={undefined}
@@ -266,6 +276,7 @@ const Page: NextPage = () => {
                             <p>
                                 A <CurrentComponent/> with default size.
                             </p>
+                            <ParagraphLorem words={8} />
                         </ModalCard>
                         <ModalCard
                             size='lg'
@@ -275,6 +286,7 @@ const Page: NextPage = () => {
                             <p>
                                 A <CurrentComponent/> with larger size.
                             </p>
+                            <ParagraphLorem words={8} />
                         </ModalCard>
                     </Preview>
                     <p></p>
@@ -287,6 +299,7 @@ const Page: NextPage = () => {
     <p>
         A <code>{'<ModalCard>'}</code> with smaller size.
     </p>
+    <p>...</p>
 </ModalCard>
 
 <ModalCard
@@ -297,6 +310,7 @@ const Page: NextPage = () => {
     <p>
         A <code>{'<ModalCard>'}</code> with default size.
     </p>
+    <p>...</p>
 </ModalCard>
 
 <ModalCard
@@ -307,6 +321,7 @@ const Page: NextPage = () => {
     <p>
         A <code>{'<ModalCard>'}</code> with larger size.
     </p>
+    <p>...</p>
 </ModalCard>
                     `}</TypeScriptCode>
                 </SectionPropertySize>
@@ -318,11 +333,7 @@ const Page: NextPage = () => {
                                 active={true}
                                 theme={themeName}
                                 key={index}
-                            >
-                                <p>
-                                    Hello world!
-                                </p>
-                            </ModalCard>
+                            />
                         )}
                     </Preview>
                     <p></p>
@@ -335,8 +346,12 @@ const Page: NextPage = () => {
     theme='${themeName}'
 >
     <p>
-        Hello world!
+        Hello everyone!
     </p>
+    <p>
+        This is an awesome message!
+    </p>
+    <p>...</p>
 </ModalCard>
 `
                         ).join('')}
@@ -350,11 +365,7 @@ const Page: NextPage = () => {
                                 active={true}
                                 theme={themeName}
                                 key={index}
-                            >
-                                <p>
-                                    Hello world!
-                                </p>
-                            </ModalCard>
+                            />
                         )}
                     </TransparentPreview>
                     <p></p>
@@ -367,8 +378,12 @@ const Page: NextPage = () => {
     theme='${themeName}'
 >
     <p>
-        Hello world!
+        Hello everyone!
     </p>
+    <p>
+        This is an awesome message!
+    </p>
+    <p>...</p>
 </ModalCard>
 `
                         ).join('')}
@@ -382,11 +397,7 @@ const Page: NextPage = () => {
                                 active={true}
                                 theme={themeName}
                                 key={index}
-                            >
-                                <p>
-                                    Hello world!
-                                </p>
-                            </ModalCard>
+                            />
                         )}
                     </Preview>
                     <p></p>
@@ -399,8 +410,12 @@ const Page: NextPage = () => {
     theme='${themeName}'
 >
     <p>
-        Hello world!
+        Hello everyone!
     </p>
+    <p>
+        This is an awesome message!
+    </p>
+    <p>...</p>
 </ModalCard>
 `
                         ).join('')}
@@ -428,6 +443,7 @@ const Page: NextPage = () => {
     <p>
         This is an awesome message!
     </p>
+    <p>...</p>
 </ModalCard>
                         `}</TypeScriptCode>
                     </SectionPropertyHiddenStyle>
@@ -452,6 +468,7 @@ const Page: NextPage = () => {
     <p>
         This is an awesome message!
     </p>
+    <p>...</p>
 </ModalCard>
                         `}</TypeScriptCode>
                     </SectionPropertyInteractiveStyle>
@@ -461,14 +478,7 @@ const Page: NextPage = () => {
                                 backdropStyle='static'
                                 active={true}
                                 theme='primary'
-                            >
-                                <p>
-                                    Hello everyone!
-                                </p>
-                                <p>
-                                    This is an awesome message!
-                                </p>
-                            </ModalCard>
+                            />
                         </Preview>
                         <p></p>
                         <TypeScriptCode>{`
@@ -483,6 +493,7 @@ const Page: NextPage = () => {
     <p>
         This is an awesome message!
     </p>
+    <p>...</p>
 </ModalCard>
                         `}</TypeScriptCode>
                     </SectionPropertyStaticStyle>
@@ -494,11 +505,7 @@ const Page: NextPage = () => {
                         <ModalCard
                             active={true}
                             theme='primary'
-                        >
-                            <p>
-                                Hello world!
-                            </p>
-                        </ModalCard>
+                        />
                     </Preview>
                     <p></p>
                     <TypeScriptCode>{`
@@ -507,8 +514,12 @@ const Page: NextPage = () => {
     theme='primary'
 >
     <p>
-        Hello world!
+        Hello everyone!
     </p>
+    <p>
+        This is an awesome message!
+    </p>
+    <p>...</p>
 </ModalCard>
                     `}</TypeScriptCode>
                     <SectionPropertyOnActiveChange>
@@ -546,6 +557,7 @@ export default function App() {
             <p>
                 This is an awesome message!
             </p>
+            <p>...</p>
         </ModalCard>
     );
 };
@@ -573,6 +585,7 @@ export default function App() {
     <p>
         This is an awesome message!
     </p>
+    <p>...</p>
 </ModalCard>
                     `}</TypeScriptCode>
                 </SectionPropertyEnabled>
