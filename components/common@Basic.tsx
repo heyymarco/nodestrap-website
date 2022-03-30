@@ -329,7 +329,7 @@ export const SectionPropertyStyle = ({ propertySuffix = defaultPropertySuffix, s
     return (
         <SectionSubProperty {...restProps} propertySuffix={propertySuffix} property={property} properties={properties}>
             <p>
-                The appearance alternatives of {component}.
+                The appearance and/or behavior alternatives of {component}.
             </p>
             { children }
         </SectionSubProperty>

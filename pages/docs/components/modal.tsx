@@ -11,8 +11,14 @@ import { Preview, TransparentPreview } from '../../../components/Preview'
 import { SectionInheritedProps, LinkModalPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionVariables, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, ParagraphLorem, LinkModalDialogPage } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 
+import { mainComposition, imports } from '@cssfn/cssfn'
+import { createUseSheet } from '@cssfn/react-cssfn'
+import { usesExcitedState } from '@nodestrap/basic'
+import { usesContentLayout, usesContentVariants, usesContentChildren } from '@nodestrap/content'
+
 import { DialogProps, Modal as ModalOri, ModalCloseType, ModalProps } from '@nodestrap/modal'
-import Content from '@nodestrap/content'
+import { Content, ContentProps } from '@nodestrap/content'
+import { TogglerExcitedProps, useExcitedState } from '@nodestrap/basic'
 import Control from '@nodestrap/control'
 import Button from '@nodestrap/button'
 import { TextInput, EmailInput } from '@nodestrap/input'
@@ -31,6 +37,11 @@ import {
     // SectionPropertyNestedChildren,
 } from '../../../components/common@Group'
 import {
+    SectionPropertyBackdropStyle,
+    SectionPropertyHiddenStyle,
+    SectionPropertyInteractiveStyle,
+    SectionPropertyStaticStyle,
+    
     SectionPropertyActive,
     SectionPropertyOnActiveChange,
     SectionPropertyEnabled,
@@ -47,6 +58,43 @@ const DemoModalLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Moda
 
 
 
+const useContentPlusSheet = createUseSheet(() => {
+    const [excited] = usesExcitedState();
+    
+    return [
+        mainComposition(
+            imports([
+                // import some stuff from <Content>:
+                usesContentLayout(),
+                usesContentVariants(),
+                usesContentChildren(),
+                
+                // import excited state
+                excited(),
+            ]),
+        ),
+    ];
+});
+const ContentPlus = (props: ContentProps & TogglerExcitedProps) => {
+    const sheet        = useContentPlusSheet();
+    const excitedState = useExcitedState(props);
+    
+    return (
+        <Content
+            {...props}
+            
+            mainClass={props.mainClass ?? sheet.main}
+            stateClasses={[...(props.stateClasses ?? []),
+                excitedState.class,
+            ]}
+            
+            onAnimationEnd={(e) => {
+                props.onAnimationEnd?.(e);
+                excitedState.handleAnimationEnd(e);
+            }}
+        />
+    )
+}
 const Modal = (props: ModalProps) => {
     const viewportRef = useRef(null);
     
@@ -574,6 +622,143 @@ const LoginDialog = (props) => {
                         ).join('')}
                     </TypeScriptCode>
                 </SectionPropertyMild>
+                <SectionPropertyBackdropStyle>
+                    <SectionPropertyHiddenStyle>
+                        <Preview>
+                            <Modal
+                                backdropStyle='hidden'
+                                active={true}
+                                theme='primary'
+                            />
+                        </Preview>
+                        <p></p>
+                        <TypeScriptCode>{`
+<Modal
+    backdropStyle='hidden'
+    active={true}
+    theme='primary'
+>
+    <Content>
+        <p>
+            Hello everyone!
+        </p>
+        <p>
+            This is an awesome message!
+        </p>
+    </Content>
+</Modal>
+                        `}</TypeScriptCode>
+                    </SectionPropertyHiddenStyle>
+                    <SectionPropertyInteractiveStyle>
+                        <Preview>
+                            <Modal
+                                backdropStyle='interactive'
+                                active={true}
+                                theme='primary'
+                            />
+                        </Preview>
+                        <p></p>
+                        <TypeScriptCode>{`
+<Modal
+    backdropStyle='interactive'
+    active={true}
+    theme='primary'
+>
+    <Content>
+        <p>
+            Hello everyone!
+        </p>
+        <p>
+            This is an awesome message!
+        </p>
+    </Content>
+</Modal>
+                        `}</TypeScriptCode>
+                    </SectionPropertyInteractiveStyle>
+                    <SectionPropertyStaticStyle>
+                        <Preview>
+                            <Modal
+                                backdropStyle='static'
+                                active={true}
+                                theme='primary'
+                            >
+                                <ContentPlus>
+                                    <p>
+                                        Hello everyone!
+                                    </p>
+                                    <p>
+                                        This is an awesome message!
+                                    </p>
+                                </ContentPlus>
+                            </Modal>
+                        </Preview>
+                        <p></p>
+                        <TypeScriptCode>{`
+import { mainComposition, imports } from '@cssfn/cssfn'
+import { createUseSheet } from '@cssfn/react-cssfn'
+import { TogglerExcitedProps, usesExcitedState, useExcitedState } from '@nodestrap/basic'
+import { Content, ContentProps, usesContentLayout, usesContentVariants, usesContentChildren } from '@nodestrap/content'
+import { Modal } from '@nodestrap/modal'
+
+/* ... */
+
+const ContentPlus = (props: ContentProps & TogglerExcitedProps) => {
+    const sheet        = useContentPlusSheet();
+    const excitedState = useExcitedState(props);
+    
+    return (
+        <Content
+            {...props}
+            
+            mainClass={props.mainClass ?? sheet.main}
+            stateClasses={[...(props.stateClasses ?? []),
+                excitedState.class,
+            ]}
+            
+            onAnimationEnd={(e) => {
+                props.onAnimationEnd?.(e);
+                excitedState.handleAnimationEnd(e);
+            }}
+        />
+    )
+};
+const useContentPlusSheet = createUseSheet(() => {
+    const [excited] = usesExcitedState();
+    
+    return [
+        mainComposition(
+            imports([
+                // import some stuff from <Content>:
+                usesContentLayout(),
+                usesContentVariants(),
+                usesContentChildren(),
+                
+                // import excited state
+                excited(),
+            ]),
+        ),
+    ];
+});
+
+/* ... */
+
+<Modal
+    backdropStyle='static'
+    active={true}
+    theme='primary'
+>
+    <ContentPlus>
+        <p>
+            Hello everyone!
+        </p>
+        <p>
+            This is an awesome message!
+        </p>
+    </ContentPlus>
+</Modal>
+                        `}</TypeScriptCode>
+                    </SectionPropertyStaticStyle>
+                </SectionPropertyBackdropStyle>
             </SectionVariants>
             <SectionStates>
                 <SectionPropertyActive>

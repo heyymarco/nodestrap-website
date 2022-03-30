@@ -2,6 +2,13 @@ import React from 'react'
 
 import { CurrentComponent, CurrentNestedComponent, LinkBasicPage, LinkCollapsePage, LinkContentPage, LinkDropdownPage, LinkPopupPage, SectionPreviewProperty, SectionPreviewPropertyProps, useComponentInfo } from './common'
 import {
+    SectionPropertyStyleProps,
+    SectionPropertyStyle,
+    
+    SectionPropertyItemStyleProps,
+    SectionPropertyItemStyle,
+} from './common@Basic'
+import {
     SectionPropertyActive   as PopupSectionPropertyActive,
     SectionPropertyEnabled  as PopupSectionPropertyEnabled,
     
@@ -14,6 +21,67 @@ import {
 import { DetailSpecItem, SpecList } from './SpecList'
 import { Warning } from './Info'
 import { TypeScriptCode } from './Code'
+
+
+
+const backdropStyle = 'backdropStyle';
+export const SectionPropertyBackdropStyle    = ({ styleName = backdropStyle, component = <><CurrentComponent />&apos;s backdrop</>, ...restProps }: SectionPropertyStyleProps) => {
+    return (
+        <SectionPropertyStyle {...restProps} styleName={styleName} component={component} />
+    );
+};
+export const SectionPropertyHiddenStyle      = ({ styleName = backdropStyle, property = 'hidden'   , description, ...restProps }: SectionPropertyItemStyleProps) => {
+    const { componentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPropertyItemStyle {...restProps} styleName={styleName} property={property} description={
+            description
+            ??
+            <>
+                <p>
+                    Set <code>{`<${componentName} ${styleName}='${property}'>`}</code> to remove the <CurrentComponent />&apos;s backdrop.
+                    While the <CurrentComponent /> is shown, the user can interact with any component behind it.
+                </p>
+            </>
+        } />
+    );
+};
+export const SectionPropertyInteractiveStyle = ({ styleName = backdropStyle, property = 'interactive'   , description, ...restProps }: SectionPropertyItemStyleProps) => {
+    const { componentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPropertyItemStyle {...restProps} styleName={styleName} property={property} description={
+            description
+            ??
+            <>
+                <p>
+                    Set <code>{`<${componentName} ${styleName}='${property}'>`}</code> to allow the user to interact with any component behind the <CurrentComponent />&apos;s backdrop.
+                </p>
+            </>
+        } />
+    );
+};
+export const SectionPropertyStaticStyle      = ({ styleName = backdropStyle, property = 'static'   , description, ...restProps }: SectionPropertyItemStyleProps) => {
+    const { componentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPropertyItemStyle {...restProps} styleName={styleName} property={property} description={
+            description
+            ??
+            <>
+                <p>
+                    Set <code>{`<${componentName} ${styleName}='${property}'>`}</code> to disallow the user to interact with any component behind the <CurrentComponent />&apos;s backdrop.
+                </p>
+            </>
+        } />
+    );
+};
 
 
 
