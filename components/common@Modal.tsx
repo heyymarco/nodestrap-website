@@ -25,9 +25,9 @@ import { TypeScriptCode } from './Code'
 
 
 const backdropStyle = 'backdropStyle';
-export const SectionPropertyBackdropStyle    = ({ styleName = backdropStyle, component = <><CurrentComponent />&apos;s backdrop</>, ...restProps }: SectionPropertyStyleProps) => {
+export const SectionPropertyBackdropStyle    = ({ styleName = backdropStyle, properties = 'Backdrop Styles', component = <><CurrentComponent />&apos;s backdrop</>, ...restProps }: SectionPropertyStyleProps) => {
     return (
-        <SectionPropertyStyle {...restProps} styleName={styleName} component={component} />
+        <SectionPropertyStyle {...restProps} styleName={styleName} properties={properties} component={component} />
     );
 };
 export const SectionPropertyHiddenStyle      = ({ styleName = backdropStyle, property = 'hidden'   , description, ...restProps }: SectionPropertyItemStyleProps) => {
@@ -97,7 +97,7 @@ export const SectionPropertyOnActiveChange = ({ titleTag = 'h4', propertySuffix 
             ??
             <>
                 <p>
-                    Fires when the user press <kbd>Esc</kbd> key when the <CurrentComponent /> is opened, the user clicks the <CurrentComponent />&apos;s backdrop, or the user clicks a close control (if any) on the <CurrentNestedComponent />.
+                    Fires when the user press <kbd>Esc</kbd> key when the <CurrentComponent /> is shown, the user clicks the <CurrentComponent />&apos;s backdrop, or the user clicks a close control (if any) on the <CurrentNestedComponent />.
                 </p>
                 <p>
                     You have to implement an <em>event handler</em> to change your state, then the state changes the <code>active</code> property.
@@ -148,7 +148,7 @@ export const SectionPropertyChildren = ({ titleTag = 'h2', propertySuffix = fals
                     You can re-override the properties by explicitly assigning the <code>props</code>.
                 </p>
                 <p>
-                    An aria <code>{`role='dialog'`}</code> also <em>automatically injected</em> to the component via <code>props</code> so that it behaves <em>semantically</em> like a native <code>{`<dialog>`}</code>.
+                    An aria <code>{`role='dialog'`}</code> is also <em>automatically injected</em> to the component via <code>props</code> so that it behaves <em>semantically</em> like a native <code>{`<dialog>`}</code>.
                 </p>
                 <p>
                     You can use a native <code>{`<dialog>`}</code> as well, but you should take care of <code>onCancel</code> and <code>onClose</code> events.
@@ -243,7 +243,7 @@ export default function FooComponent() {
             <p>...</p>
             
             <${componentName}
-                targetRef={containerRef}
+                viewportRef={containerRef}
             >
                 <WelcomeDialog />
             </${componentName}>
@@ -270,7 +270,7 @@ export default function FooComponent() {
             <p>...</p>
             
             <${componentName}
-                targetRef={containerRef}
+                viewportRef={containerRef}
             >
                 <WelcomeDialog />
             </${componentName}>

@@ -13,12 +13,11 @@ import { TypeScriptCode } from '../../../components/Code'
 
 import { mainComposition, imports } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
-import { usesExcitedState } from '@nodestrap/basic'
 import { usesContentLayout, usesContentVariants, usesContentChildren } from '@nodestrap/content'
 
-import { DialogProps, Modal as ModalOri, ModalCloseType, ModalProps } from '@nodestrap/modal'
+import { DialogProps, Modal as ModalOri, ModalCloseType, ModalProps, usesDialogLayout, usesDialogStates } from '@nodestrap/modal'
 import { Content, ContentProps } from '@nodestrap/content'
-import { TogglerExcitedProps, useExcitedState } from '@nodestrap/basic'
+import { useExcitedState } from '@nodestrap/basic'
 import Control from '@nodestrap/control'
 import Button from '@nodestrap/button'
 import { TextInput, EmailInput } from '@nodestrap/input'
@@ -58,24 +57,21 @@ const DemoModalLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Moda
 
 
 
-const useContentPlusSheet = createUseSheet(() => {
-    const [excited] = usesExcitedState();
-    
-    return [
-        mainComposition(
-            imports([
-                // import some stuff from <Content>:
-                usesContentLayout(),
-                usesContentVariants(),
-                usesContentChildren(),
-                
-                // import excited state
-                excited(),
-            ]),
-        ),
-    ];
-});
-const ContentPlus = (props: ContentProps & TogglerExcitedProps) => {
+const useContentPlusSheet = createUseSheet(() => [
+    mainComposition(
+        imports([
+            // import some stuff from <Modal>'s dialog:
+            usesDialogLayout(),
+            usesDialogStates(),
+            
+            // import some stuff from <Content>:
+            usesContentLayout(),
+            usesContentVariants(),
+            usesContentChildren(),
+        ]),
+    ),
+]);
+const ContentPlus = (props: DialogProps & ContentProps) => {
     const sheet        = useContentPlusSheet();
     const excitedState = useExcitedState(props);
     
@@ -700,13 +696,13 @@ const LoginDialog = (props) => {
                         <TypeScriptCode>{`
 import { mainComposition, imports } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
-import { TogglerExcitedProps, usesExcitedState, useExcitedState } from '@nodestrap/basic'
+import { useExcitedState } from '@nodestrap/basic'
 import { Content, ContentProps, usesContentLayout, usesContentVariants, usesContentChildren } from '@nodestrap/content'
-import { Modal } from '@nodestrap/modal'
+import { Modal, DialogProps } from '@nodestrap/modal'
 
 /* ... */
 
-const ContentPlus = (props: ContentProps & TogglerExcitedProps) => {
+const ContentPlus = (props: DialogProps & ContentProps) => {
     const sheet        = useContentPlusSheet();
     const excitedState = useExcitedState(props);
     
@@ -726,23 +722,20 @@ const ContentPlus = (props: ContentProps & TogglerExcitedProps) => {
         />
     )
 };
-const useContentPlusSheet = createUseSheet(() => {
-    const [excited] = usesExcitedState();
-    
-    return [
-        mainComposition(
-            imports([
-                // import some stuff from <Content>:
-                usesContentLayout(),
-                usesContentVariants(),
-                usesContentChildren(),
-                
-                // import excited state
-                excited(),
-            ]),
-        ),
-    ];
-});
+const useContentPlusSheet = createUseSheet(() => [
+    mainComposition(
+        imports([
+            // import some stuff from <Modal>'s dialog:
+            usesDialogLayout(),
+            usesDialogStates(),
+            
+            // import some stuff from <Content>:
+            usesContentLayout(),
+            usesContentVariants(),
+            usesContentChildren(),
+        ]),
+    ),
+]);
 
 /* ... */
 
@@ -893,8 +886,11 @@ export default function App() {
             <SectionDerivering>
                 <SectionOverridingDefaults>{`
 import { Modal } from '@nodestrap/modal'
+import { Basic } from '@nodestrap/basic'
+import { TextInput, EmailInput } from '@nodestrap/input'
+import { Button } from '@nodestrap/button'
 
-export default function LoginDialog(props) {
+export default function LoginModal(props) {
     return (
         <Modal
             {...props} // preserves other properties
@@ -902,25 +898,33 @@ export default function LoginDialog(props) {
             theme={props.theme ?? 'primary'} // override default value of theme to 'primary'
             mild={props.mild ?? false}       // override default value of mild  to false
         >
-            <div role='dialog'>
-                <TextInput  placeholder='John Smith'     size='sm' />
-                <EmailInput placeholder='john@smith.com' size='sm' />
-                <Button
-                    theme='primary'
-                    size='sm'
-                >
-                    Submit
-                </Button>
-                <Button
-                    theme='secondary'
-                    size='sm'
-                >
-                    Cancel
-                </Button>
-            </div>
+            <LoginDialog />
         </Modal>
     );
 }
+
+/* ... */
+
+const LoginDialog = (props) => {
+    const {
+        elmRef,
+        tabIndex = -1,
+        onActiveChange,
+    } = props;
+    
+    return (
+        <Basic elmRef={elmRef} {...{ tabIndex }} theme={props.theme ?? 'primary'} >
+            <TextInput  placeholder='John Smith'     />
+            <EmailInput placeholder='john@smith.com' />
+            <Button onClick={() => onActiveChange?.(false, 'closeBySubmit')} >
+                Submit
+            </Button>
+            <Button onClick={() => onActiveChange?.(false, 'closeByCancel')} >
+                Cancel
+            </Button>
+        </Basic>
+    );
+};
                 `}</SectionOverridingDefaults>
 
                 <SectionCustomizingCss specList={
@@ -958,8 +962,10 @@ export default function LoginDialog(props) {
                 }>{`
 import { mainComposition, style, imports, variants, rule, children } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
-import { Basic } from '@nodestrap/basic'
-import { Modal, usesBackdropLayout, usesBackdropVariants, usesBackdropStates } from '@nodestrap/modal'
+import { Modal, usesDialogLayout, usesDialogStates, ModalProps, DialogProps } from '@nodestrap/modal'
+import { Basic, BasicProps, usesBasicLayout, usesBasicVariants } from '@nodestrap/basic'
+import { TextInput, EmailInput } from '@nodestrap/input'
+import { Button } from '@nodestrap/button'
 
 
 const useLoginDialogSheet = createUseSheet(() => [
@@ -968,6 +974,10 @@ const useLoginDialogSheet = createUseSheet(() => [
             // import some stuff from <Modal>'s dialog:
             usesDialogLayout(),
             usesDialogStates(),
+            
+            // import some stuff from <Basic>:
+            usesBasicLayout(),
+            usesBasicVariants(),
         ]),
         style({
             // then overwrite with your style:
@@ -991,8 +1001,8 @@ const useLoginDialogSheet = createUseSheet(() => [
                 }),
                 rule('.dark', {
                     // define the style at 'dark' variant:
-                    background-color : 'black',
-                    color            : 'white',
+                    backgroundColor : 'black',
+                    color           : 'white',
                     /* ... */
                 }),
                 /* ... */
@@ -1003,12 +1013,12 @@ const useLoginDialogSheet = createUseSheet(() => [
     ),
 ]);
 
-function LoginDialog(props) {
+function LoginDialog(props: BasicProps & DialogProps) {
     const sheet = useLoginDialogSheet();
     return (
-        <Basic {...props} rule='dialog' mainClass={sheet.main} theme={props.theme ?? 'primary'} >
-            <TextInput  placeholder='John Smith'     size='sm' classes={['input]} />
-            <EmailInput placeholder='john@smith.com' size='sm' classes={['input]} />
+        <Basic {...props} role='dialog' mainClass={sheet.main} theme={props.theme ?? 'primary'} >
+            <TextInput  placeholder='John Smith'     size='sm' classes={['input']} />
+            <EmailInput placeholder='john@smith.com' size='sm' classes={['input']} />
             <Button
                 theme='primary'
                 size='sm'
@@ -1025,7 +1035,7 @@ function LoginDialog(props) {
     )
 }
 
-export default function LoginModal(props) {
+export default function LoginModal(props: ModalProps) {
     return (
         <Modal {...props}>
             <LoginDialog />

@@ -520,8 +520,8 @@ const useCustomComponentSheet = createUseSheet(() => [
                 }),
                 rule('.dark', {
                     // define the style at 'dark' variant:
-                    background-color : 'black',
-                    color            : 'white',
+                    backgroundColor : 'black',
+                    color           : 'white',
                     /* ... */
                 }),
                 /* ... */
