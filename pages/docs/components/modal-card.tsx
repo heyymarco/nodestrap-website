@@ -46,9 +46,10 @@ import {
     SectionPropertyEnabled,
     
     SectionPropertyLazy,
-    
-    SectionPropertyViewportRef,
 } from '../../../components/common@Modal'
+import {
+    SectionPropertyViewportRef,
+} from '../../../components/common@ModalCard'
 
 import loadable from '@loadable/component'
 const DemoModalCardLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@ModalCard' */'../../../components/DemoPanel@ModalCard'))
@@ -195,7 +196,7 @@ const Page: NextPage = () => {
 
             <SectionIntro>
                 <p>
-                    Turns any component to <strong>modalCard dialog</strong> component.
+                    Displays a <strong>secondary HTML document</strong> on the top of main HTML document.
                 </p>
                 <p>
                     Similar to native <code>{`<dialog>`}</code> but this is the <em>polyfill</em> version with more rich features and fully controllable component.

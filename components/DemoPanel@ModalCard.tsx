@@ -1,23 +1,24 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 import { useResetableState, Option, ResetButton } from './DemoPanel';
 import { ModalInitials, ModalOptionProps, ModalOptions, useModalStates } from './DemoPanel@Modal';
 
 import { ModalCardStyle, ModalCard } from '@nodestrap/modal-card'
-import { Content } from '@nodestrap/content'
 import type {
     Prop,
 }                           from '@cssfn/css-types'   // ts defs support for cssfn
-import { ThemeName } from '@nodestrap/basic';
+import { SizeName } from '@nodestrap/basic';
+import { Check } from '@nodestrap/check';
 import { TypeScriptCode } from './Code';
 import { ParagraphLorem } from './common';
 
 
 
 export const modalCardInitials = {
-    modalCardStyle : undefined as ModalCardStyle|undefined,
-    horzAlign      : 'center' as Prop.JustifyItems,
-    vertAlign      : 'center' as Prop.AlignItems,
+    size           : 'sm'         as SizeName,
+    modalCardStyle : 'scrollable' as ModalCardStyle|undefined,
+    horzAlign      : 'center'     as Prop.JustifyItems,
+    vertAlign      : 'center'     as Prop.AlignItems,
 };
 export type ModalCardInitials = typeof modalCardInitials & Partial<ModalInitials>
 export const useModalCardStates = (initials ?: Partial<ModalCardInitials>) => {
@@ -75,11 +76,13 @@ export const ModalCardOptions = (props: ModalCardOptionProps) => {
 export const DemoModalCard = () => {
     const states = useModalCardStates();
     const viewportRef = useRef(null);
+    const [simulateTall, setSimulateTall] = useState(false);
+    const [simulateWide, setSimulateWide] = useState(false);
     
     return (
         <>
             <div className='preview'>
-                <div ref={viewportRef} style={{ position: 'relative', padding: '1rem', width: '100%', height: '15rem', overflow: 'hidden', flex: '0 0 auto', background: 'white' }}>
+                <div ref={viewportRef} style={{ position: 'relative', padding: '0.5rem', width: '100%', height: '30rem', overflow: 'hidden', flex: '0 0 auto', background: 'white' }}>
                     <ModalCard
                         horzAlign={states.horzAlign[0]}
                         vertAlign={states.vertAlign[0]}
@@ -99,14 +102,27 @@ export const DemoModalCard = () => {
                         
                         viewportRef={viewportRef}
                     >
-                        <Content>
-                            <p>
-                                Hello everyone!
-                            </p>
-                            <p>
-                                This is an awesome message!
-                            </p>
-                        </Content>
+                        <p>
+                            Hello everyone!
+                        </p>
+                        <p>
+                            This is an awesome message!
+                        </p>
+                        <p>
+                            <Check active={simulateTall} onActiveChange={setSimulateTall}>
+                                Simulate tall content
+                            </Check>
+                            <br />
+                            <Check active={simulateWide} onActiveChange={setSimulateWide}>
+                                Simulate wide content
+                            </Check>
+                        </p>
+                        {simulateWide && <p style={{ whiteSpace: 'nowrap' }}>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi perspiciatis autem cum exercitationem illo nihil tempore nemo impedit.
+                        </p>}
+                        {simulateTall && <p style={{ whiteSpace: 'normal', width: '1px' }}>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi perspiciatis autem cum exercitationem illo nihil tempore nemo impedit.
+                        </p>}
                     </ModalCard>
                     <ParagraphLorem />
                     <ParagraphLorem />
@@ -116,8 +132,8 @@ export const DemoModalCard = () => {
                 </div>
                 <TypeScriptCode collapsable={false}>{`
 <ModalCard
-    horzAlign={${states.horzAlign[0]}}
-    vertAlign={${states.vertAlign[0]}}
+    horzAlign='${states.horzAlign[0]}'
+    vertAlign='${states.vertAlign[0]}'
     modalCardStyle=${states.modalCardStyle[0] ? `'${states.modalCardStyle[0]}'` : '{undefined}'}
     backdropStyle=${states.backdropStyle[0] ? `'${states.backdropStyle[0]}'` : '{undefined}'}
     
@@ -131,14 +147,12 @@ export const DemoModalCard = () => {
     outlined={${states.outlined[0]}}
     mild={${states.mild[0]}}
 >
-    <Content>
-        <p>
-            Hello everyone!
-        </p>
-        <p>
-            This is an awesome message!
-        </p>
-    </Content>
+    <p>
+        Hello everyone!
+    </p>
+    <p>
+        This is an awesome message!
+    </p>
 </ModalCard>
                 `}</TypeScriptCode>
             </div>

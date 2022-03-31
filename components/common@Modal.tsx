@@ -206,7 +206,10 @@ export const SectionPropertyChildren = ({ titleTag = 'h2', propertySuffix = fals
         } />
     );
 };
-export const SectionPropertyViewportRef = ({ titleTag = 'h2', propertySuffix = false, property = 'viewportRef', properties = <>Scoping the Backdrop</>, specList, description, ...restProps }: SectionPreviewPropertyProps) => {
+export interface SectionPropertyViewportRefProps extends SectionPreviewPropertyProps {
+    dummyContent ?: string
+}
+export const SectionPropertyViewportRef = ({ titleTag = 'h2', propertySuffix = false, property = 'viewportRef', properties = <>Scoping the Backdrop</>, specList, description, dummyContent = '<WelcomeDialog />', ...restProps }: SectionPropertyViewportRefProps) => {
     const { componentName } = useComponentInfo();
     
     
@@ -245,7 +248,7 @@ export default function FooComponent() {
             <${componentName}
                 viewportRef={containerRef}
             >
-                <WelcomeDialog />
+                ${dummyContent}
             </${componentName}>
             
             <p>...</p>
@@ -253,11 +256,11 @@ export default function FooComponent() {
         </Content>
     );
 }
-                    `}</TypeScriptCode>
-                    <p>
-                        An example using <code>useState()</code>:
-                    </p>
-                    <TypeScriptCode>{`
+                `}</TypeScriptCode>
+                <p>
+                    An example using <code>useState()</code>:
+                </p>
+                <TypeScriptCode>{`
 export default function FooComponent() {
     const [containerRef, setContainerRef] = useState(null);
 
@@ -272,7 +275,7 @@ export default function FooComponent() {
             <${componentName}
                 viewportRef={containerRef}
             >
-                <WelcomeDialog />
+                ${dummyContent}
             </${componentName}>
             
             <p>...</p>

@@ -13,7 +13,7 @@ import { ParagraphLorem } from './common';
 
 export const modalInitials = {
     theme         : 'primary' as ThemeName|undefined,
-    backdropStyle : undefined as BackdropStyle|undefined,
+    backdropStyle : 'static'  as BackdropStyle|undefined,
 };
 export type ModalInitials = typeof modalInitials & Partial<PopupInitials>
 export const useModalStates = (initials ?: Partial<ModalInitials>) => {
