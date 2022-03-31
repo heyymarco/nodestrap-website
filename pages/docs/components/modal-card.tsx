@@ -26,16 +26,6 @@ import {
     themeNames,
 } from '../../../components/common@Basic'
 import {
-    SectionPropertyTheme,
-    SectionPropertySize,
-    SectionPropertyNude,
-    SectionPropertyGradient,
-    SectionPropertyOutlined,
-    SectionPropertyMild,
-    
-    // SectionPropertyNestedChildren,
-} from '../../../components/common@Group'
-import {
     SectionPropertyBackdropStyle,
     SectionPropertyHiddenStyle,
     SectionPropertyInteractiveStyle,
@@ -43,11 +33,19 @@ import {
     
     SectionPropertyActive,
     SectionPropertyOnActiveChange,
-    SectionPropertyEnabled,
     
     SectionPropertyLazy,
 } from '../../../components/common@Modal'
 import {
+    SectionPropertyTheme,
+    SectionPropertySize,
+ // SectionPropertyNude,
+    SectionPropertyGradient,
+    SectionPropertyOutlined,
+    SectionPropertyMild,
+    
+    SectionPropertyEnabled,
+    
     SectionPropertyViewportRef,
 } from '../../../components/common@ModalCard'
 

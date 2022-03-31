@@ -16,7 +16,8 @@ import {
     SectionPropertyLazy     as PopupSectionPropertyLazy,
 } from './common@Popup'
 import {
-    ParagraphIgnoreProperty
+    SectionPreviewIgnorablePropertyProps,
+    ParagraphIgnoreProperty,
 } from './common@Group'
 import { DetailSpecItem, SpecList } from './SpecList'
 import { Warning } from './Info'
@@ -106,13 +107,13 @@ export const SectionPropertyOnActiveChange = ({ titleTag = 'h4', propertySuffix 
         } />
     );
 };
-export const SectionPropertyEnabled  = ({ nestedable = false, effectNestedable = true, moreDescription, ...props }: SectionPreviewPropertyProps) => {
+export const SectionPropertyEnabled  = ({ nestedable = false, effectNestedable = true, moreDescription, ignorable = true, ...props }: SectionPreviewIgnorablePropertyProps) => {
     return (
         <PopupSectionPropertyEnabled {...props} nestedable={nestedable} effectNestedable={effectNestedable} moreDescription={
             moreDescription
             ??
             <>
-                <ParagraphIgnoreProperty />
+                {ignorable && <ParagraphIgnoreProperty />}
             </>
         } />
     );

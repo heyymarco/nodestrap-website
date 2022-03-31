@@ -24,71 +24,74 @@ export const ParagraphIgnoreProperty = () => (
         Note: <CurrentNestedComponent /> may <em>override</em> or <em>ignore</em> this property.
     </p>
 );
+export interface SectionPreviewIgnorablePropertyProps extends SectionPreviewPropertyProps {
+    ignorable ?: boolean
+}
 
 
 
-export const SectionPropertyTheme    = ({ nestedable = false, effectNestedable = true, moreDescription, ...props }: SectionPreviewPropertyProps) => {
+export const SectionPropertyTheme    = ({ nestedable = false, effectNestedable = true, moreDescription, ignorable = true, ...props }: SectionPreviewIgnorablePropertyProps) => {
     return (
         <ListSectionPropertyTheme {...props} nestedable={nestedable} effectNestedable={effectNestedable} moreDescription={
             moreDescription
             ??
             <>
-                <ParagraphIgnoreProperty />
+                {ignorable && <ParagraphIgnoreProperty />}
             </>
         } />
     );
 };
-export const SectionPropertySize     = ({ nestedable = false, effectNestedable = true, moreDescription, ...props }: SectionPreviewPropertyProps) => {
+export const SectionPropertySize     = ({ nestedable = false, effectNestedable = true, moreDescription, ignorable = true, ...props }: SectionPreviewIgnorablePropertyProps) => {
     return (
         <ListSectionPropertySize {...props} nestedable={nestedable} effectNestedable={effectNestedable} moreDescription={
             moreDescription
             ??
             <>
-                <ParagraphIgnoreProperty />
+                {ignorable && <ParagraphIgnoreProperty />}
             </>
         } />
     );
 };
-export const SectionPropertyNude     = ({ nestedable = false, effectNestedable = true, moreDescription, ...props }: SectionPropertyNudeProps) => {
+export const SectionPropertyNude     = ({ nestedable = false, effectNestedable = true, moreDescription, ignorable = true, ...props }: SectionPreviewIgnorablePropertyProps) => {
     return (
         <ListSectionPropertyNude {...props} nestedable={nestedable} effectNestedable={effectNestedable} moreDescription={
             moreDescription
             ??
             <>
-                <ParagraphIgnoreProperty />
+                {ignorable && <ParagraphIgnoreProperty />}
             </>
         } />
     );
 };
-export const SectionPropertyGradient = ({ nestedable = false, effectNestedable = true, moreDescription, ...props }: SectionPreviewPropertyProps) => {
+export const SectionPropertyGradient = ({ nestedable = false, effectNestedable = true, moreDescription, ignorable = true, ...props }: SectionPreviewIgnorablePropertyProps) => {
     return (
         <ListSectionPropertyGradient {...props} nestedable={nestedable} effectNestedable={effectNestedable} moreDescription={
             moreDescription
             ??
             <>
-                <ParagraphIgnoreProperty />
+                {ignorable && <ParagraphIgnoreProperty />}
             </>
         } />
     );
 };
-export const SectionPropertyOutlined = ({ nestedable = false, effectNestedable = true, moreDescription, ...props }: SectionPreviewPropertyProps) => {
+export const SectionPropertyOutlined = ({ nestedable = false, effectNestedable = true, moreDescription, ignorable = true, ...props }: SectionPreviewIgnorablePropertyProps) => {
     return (
         <ListSectionPropertyOutlined {...props} nestedable={nestedable} effectNestedable={effectNestedable} moreDescription={
             moreDescription
             ??
             <>
-                <ParagraphIgnoreProperty />
+                {ignorable && <ParagraphIgnoreProperty />}
             </>
         } />
     );
 };
-export const SectionPropertyMild     = ({ nestedable = false, effectNestedable = true, moreDescription, defaultValue = false, ...props }: SectionPreviewPropertyProps) => {
+export const SectionPropertyMild     = ({ nestedable = false, effectNestedable = true, moreDescription, defaultValue = false, ignorable = true, ...props }: SectionPreviewIgnorablePropertyProps) => {
     return (
         <ListSectionPropertyMild {...props} nestedable={nestedable} effectNestedable={effectNestedable} defaultValue={defaultValue} moreDescription={
             moreDescription
             ??
             <>
-                <ParagraphIgnoreProperty />
+                {ignorable && <ParagraphIgnoreProperty />}
             </>
         } />
     );
@@ -96,24 +99,24 @@ export const SectionPropertyMild     = ({ nestedable = false, effectNestedable =
 
 
 
-export const SectionPropertyActive   = ({ nestedable = false, effectNestedable = true, moreDescription, defaultValue = false, ...props }: SectionPreviewPropertyProps) => {
+export const SectionPropertyActive   = ({ nestedable = false, effectNestedable = true, moreDescription, defaultValue = false, ignorable = true, ...props }: SectionPreviewIgnorablePropertyProps) => {
     return (
         <IndicatorSectionPropertyActive {...props} nestedable={nestedable} effectNestedable={effectNestedable} defaultValue={defaultValue} moreDescription={
             moreDescription
             ??
             <>
-                <ParagraphIgnoreProperty />
+                {ignorable && <ParagraphIgnoreProperty />}
             </>
         } />
     );
 };
-export const SectionPropertyEnabled  = ({ nestedable = false, effectNestedable = true, moreDescription, defaultValue = false, ...props }: SectionPreviewPropertyProps) => {
+export const SectionPropertyEnabled  = ({ nestedable = false, effectNestedable = true, moreDescription, defaultValue = false, ignorable = true, ...props }: SectionPreviewIgnorablePropertyProps) => {
     return (
         <IndicatorSectionPropertyEnabled {...props} nestedable={nestedable} effectNestedable={effectNestedable} defaultValue={defaultValue} moreDescription={
             moreDescription
             ??
             <>
-                <ParagraphIgnoreProperty />
+                {ignorable && <ParagraphIgnoreProperty />}
             </>
         } />
     );
