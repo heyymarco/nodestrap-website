@@ -8,14 +8,10 @@ import { useFlipFlop, useInViewport } from '../../../components/hooks'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
-import { SectionInheritedProps, LinkModalPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionVariables, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, ParagraphLorem, LinkModalCardPage, LinkModalSidePage, CurrentBaseComponents, LinkCardPage } from '../../../components/common'
+import { SectionInheritedProps, LinkModalPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionVariables, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, ParagraphLorem, LinkModalSidePage, CurrentBaseComponents, LinkCardPage, LinkModalCardPage } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 
-import type {
-    Prop,
-}                           from '@cssfn/css-types'   // ts defs support for cssfn
-
-import { ModalCard as ModalCardOri, ModalCardProps, CardDialogProps } from '@nodestrap/modal-card'
+import { ModalSide as ModalSideOri, ModalSideProps, SideDialogProps } from '@nodestrap/modal-side'
 import Button from '@nodestrap/button'
 import Group from '@nodestrap/group'
 import Label from '@nodestrap/label'
@@ -52,18 +48,17 @@ import {
     SectionPropertyFooter,
     SectionPropertyCard,
     SectionPropertyViewportRef,
-    
-    SectionPropertyModalCardStyle,
-    SectionPropertyScrollableStyle,
-    SectionPropertyAlignments,
 } from '../../../components/common@ModalCard'
+import {
+    SectionPropertyModalSideStyle,
+} from '../../../components/common@ModalSide'
 
 import loadable from '@loadable/component'
-const DemoModalCardLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@ModalCard' */'../../../components/DemoPanel@ModalCard'))
+const DemoModalSideLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@ModalSide' */'../../../components/DemoPanel@ModalSide'))
 
 
 
-const ModalCardWithContent = (props: ModalCardProps) => <ModalCardOri
+const ModalSideWithContent = (props: ModalSideProps) => <ModalSideOri
     {...props}
     theme={props.theme ?? 'primary'}
     header={props.header ?? 'The Title'}
@@ -78,19 +73,19 @@ const ModalCardWithContent = (props: ModalCardProps) => <ModalCardOri
             <p>
                 This is an awesome message!
             </p>
-            <ParagraphLorem words={8} />
+            <ParagraphLorem words={6} />
         </>
     }
-</ModalCardOri>
+</ModalSideOri>
 
-interface ModalCardExProps extends ModalCardProps {
+interface ModalSideExProps extends ModalSideProps {
     height ?: string
 }
-const ModalCard = (props: ModalCardExProps) => {
+const ModalSide = (props: ModalSideExProps) => {
     const viewportRef = useRef(null);
     
     return (<div ref={viewportRef} style={{ position: 'relative', padding: '1rem', height: (props.height ?? '28rem'), overflow: 'hidden' }} className='media'>
-        <ModalCardWithContent
+        <ModalSideWithContent
             {...props}
             viewportRef={viewportRef}
         />
@@ -102,7 +97,7 @@ const ModalCard = (props: ModalCardExProps) => {
     </div>);
 }
 
-const ModalCardPreview = () => {
+const ModalSidePreview = () => {
     const [containerRef, isActiveFlip] = useFlipFlop({ defaultState: true });
     
     
@@ -112,7 +107,7 @@ const ModalCardPreview = () => {
             elmRef={containerRef}
             blockDisplay={true}
         >{(isLoaded) => <>
-            <ModalCard
+            <ModalSide
                 active={isLoaded ? isActiveFlip : true}
                 theme='primary'
             />
@@ -120,38 +115,38 @@ const ModalCardPreview = () => {
     )
 };
 
-interface ModalCardWithWelcomeUIProps {
+interface ModalSideWithWelcomeUIProps {
     viewportRef       ?: React.RefObject<HTMLElement> | HTMLElement | null;
-    showModalCardMessage  ?: string
+    showModalSideMessage  ?: string
     additionalMessage ?: string
 }
-const ModalCardWithWelcome = ({ viewportRef: modalCardViewportRef, showModalCardMessage, additionalMessage }: ModalCardWithWelcomeUIProps) => {
+const ModalSideWithWelcome = ({ viewportRef: modalSideViewportRef, showModalSideMessage, additionalMessage }: ModalSideWithWelcomeUIProps) => {
     const [viewportRef, isInViewport] = useInViewport();
-    const [isModalCardVisible, setModalCardVisible] = useState(false);
+    const [isModalSideVisible, setModalSideVisible] = useState(false);
     
     return (<div ref={viewportRef} style={{ position: 'relative', padding: '1rem', height: '28rem', overflow: 'hidden' }} className='media'>
         <p style={{ textAlign: 'center' }}>
             <Button
                 theme='primary'
-                onClick={() => setModalCardVisible(true)}
+                onClick={() => setModalSideVisible(true)}
             >
-                {showModalCardMessage ?? 'Show ModalCard'}
+                {showModalSideMessage ?? 'Show ModalSide'}
             </Button>
         </p>
-        <ModalCardWithContent
-            active={isModalCardVisible}
-            onActiveChange={(newActive, reason) => setModalCardVisible(newActive)}
-            viewportRef={(modalCardViewportRef === undefined) ? viewportRef : modalCardViewportRef}
+        <ModalSideWithContent
+            active={isModalSideVisible}
+            onActiveChange={(newActive, reason) => setModalSideVisible(newActive)}
+            viewportRef={(modalSideViewportRef === undefined) ? viewportRef : modalSideViewportRef}
         >
             <p>
-                Welcome to ModalCard Dialog.
+                Welcome to ModalSide Dialog.
             </p>
             <p>
                 To dismiss this message, press <kbd>Esc</kbd> key or click the Close button below:
             </p>
             {additionalMessage && <p>{additionalMessage}</p>}
-            <ParagraphLorem words={8} />
-        </ModalCardWithContent>
+            <ParagraphLorem words={6} />
+        </ModalSideWithContent>
         <ParagraphLorem />
         <ParagraphLorem />
         <ParagraphLorem />
@@ -160,29 +155,29 @@ const ModalCardWithWelcome = ({ viewportRef: modalCardViewportRef, showModalCard
     </div>);
 }
 
-const ModalCardWithOnActiveChange = () => {
+const ModalSideWithOnActiveChange = () => {
     const [viewportRef, isInViewport] = useInViewport();
-    const [modalCardActive, setModalCardActive] = useState(true);
+    const [modalSideActive, setModalSideActive] = useState(true);
     
-    // re-show the <ModalCard> after 2 seconds:
+    // re-show the <ModalSide> after 2 seconds:
     useEffect(() => {
         // conditions:
         if (!isInViewport) return;
-        if (modalCardActive) return;
+        if (modalSideActive) return;
         
         // setups:
-        const timerHandler = setTimeout(() => setModalCardActive(true), 2000);
+        const timerHandler = setTimeout(() => setModalSideActive(true), 2000);
         
         // cleanups:
         return () => {
             clearTimeout(timerHandler);
         };
-    }, [isInViewport, modalCardActive]);
+    }, [isInViewport, modalSideActive]);
     
     return (<div ref={viewportRef} style={{ position: 'relative', padding: '1rem', height: '28rem', overflow: 'hidden' }} className='media'>
-        <ModalCardWithContent
-            active={modalCardActive}
-            onActiveChange={(newActive, reason) => setModalCardActive(newActive)}
+        <ModalSideWithContent
+            active={modalSideActive}
+            onActiveChange={(newActive, reason) => setModalSideActive(newActive)}
             theme='primary'
             viewportRef={viewportRef}
         />
@@ -194,78 +189,10 @@ const ModalCardWithOnActiveChange = () => {
     </div>);
 };
 
-const ModalCardAlignmentPreview = () => {
-    const [horzAlign, setHorzAlign] = useState<Prop.JustifyItems>('center');
-    const [vertAlign, setVertAlign] = useState<Prop.AlignItems>('center');
-    
-    return (<>
-        <Preview>
-            <ModalCard
-                horzAlign={horzAlign}
-                vertAlign={vertAlign}
-                active={true}
-                theme='primary'
-                height='35rem'
-                size='sm'
-                header='Card Alignments'
-            >
-                <p>
-                    Change the controls below:
-                </p>
-                <Group orientation='inline' size='sm'>
-                    <Label>
-                        horzAlign
-                    </Label>
-                    <Radio nude={false} name='horzAlign' active={(horzAlign === 'start')} onActiveChange={(newActive) => newActive && setHorzAlign('start')}>
-                        start
-                    </Radio>
-                    <Radio nude={false} name='horzAlign' active={(horzAlign === 'center')} onActiveChange={(newActive) => newActive && setHorzAlign('center')}>
-                        center
-                    </Radio>
-                    <Radio nude={false} name='horzAlign' active={(horzAlign === 'end')} onActiveChange={(newActive) => newActive && setHorzAlign('end')}>
-                        end
-                    </Radio>
-                </Group>
-                <p></p>
-                <Group orientation='inline' size='sm'>
-                    <Label>
-                        vertAlign
-                    </Label>
-                    <Group orientation='block'>
-                        <Radio nude={false} name='vertAlign' active={(vertAlign === 'start')} onActiveChange={(newActive) => newActive && setVertAlign('start')}>
-                            start
-                        </Radio>
-                        <Radio nude={false} name='vertAlign' active={(vertAlign === 'center')} onActiveChange={(newActive) => newActive && setVertAlign('center')}>
-                            center
-                        </Radio>
-                        <Radio nude={false} name='vertAlign' active={(vertAlign === 'end')} onActiveChange={(newActive) => newActive && setVertAlign('end')}>
-                            end
-                        </Radio>
-                    </Group>
-                </Group>
-            </ModalCard>
-        </Preview>
-        <p></p>
-        <TypeScriptCode>{`
-<ModalCard
-    horzAlign='${horzAlign}'
-    vertAlign='${vertAlign}'
-    active={true}
-    theme='primary'
-    header='Card Alignments'
->
-    <p>...</p>
-    <p>...</p>
-    <p>...</p>
-</ModalCard>
-        `}</TypeScriptCode>
-    </>);
-}
-
-const ModalCardWithCustomCard = () => {
+const ModalSideWithCustomCard = () => {
     const viewportRef = useRef(null);
     
-    const CustomCard = ({onActiveChange, ...props}: CardDialogProps) => {
+    const CustomCard = ({onActiveChange, ...props}: SideDialogProps) => {
         const handleClose = () => {
             onActiveChange?.(false, 'ui');
         };
@@ -296,7 +223,7 @@ const ModalCardWithCustomCard = () => {
     };
     
     return (<div ref={viewportRef} style={{ position: 'relative', padding: '1rem', height: '28rem', overflow: 'hidden' }} className='media'>
-        <ModalCardWithContent
+        <ModalSideWithContent
             active={true}
             theme='primary'
             card={<CustomCard />}
@@ -314,10 +241,10 @@ const ModalCardWithCustomCard = () => {
 
 const Page: NextPage = () => {
     return (
-        <ComponentInfoProvider packageName='@nodestrap/modal-card' component={<LinkModalCardPage />} bases={<LinkModalPage />}>
+        <ComponentInfoProvider packageName='@nodestrap/modal-side' component={<LinkModalSidePage />} bases={<LinkModalPage />}>
             <Head>
-                <title>&lt;ModalCard&gt; Component</title>
-                <meta name="description" content="Using <ModalCard> component" />
+                <title>&lt;ModalSide&gt; Component</title>
+                <meta name="description" content="Using <ModalSide> component" />
             </Head>
 
             <SectionIntro>
@@ -329,19 +256,19 @@ const Page: NextPage = () => {
                     The <em>dialog UI</em> uses a <LinkCardPage /> component, hence its name is <CurrentComponent />.
                 </p>
                 <p>
-                    This is the <em>centered</em> version of <LinkModalSidePage />.
+                    This is the <em>side</em> version of <LinkModalCardPage />.
                 </p>
                 <p>
                     Here the preview:
                 </p>
-                <ModalCardPreview />
+                <ModalSidePreview />
             </SectionIntro>
             <SectionDemo>
-                <DemoModalCardLazy fallback={<BusyBar />} />
+                <DemoModalSideLazy fallback={<BusyBar />} />
             </SectionDemo>
             <SectionPropertyChildren>
                 <Preview>
-                    <ModalCard
+                    <ModalSide
                         active={true}
                         theme='primary'
                         height='35rem'
@@ -360,11 +287,11 @@ const Page: NextPage = () => {
                         <p>
                             Do you like that?
                         </p>
-                    </ModalCard>
+                    </ModalSide>
                 </Preview>
                 <p></p>
                 <TypeScriptCode>{`
-<ModalCard
+<ModalSide
     active={true}
     theme='primary'
     header='The Title'
@@ -383,14 +310,14 @@ const Page: NextPage = () => {
     <p>
         Do you like that?
     </p>
-</ModalCard>
+</ModalSide>
                 `}</TypeScriptCode>
                 <SectionPropertyHeader>
                     <p>
                         A simple header (string):
                     </p>
                     <Preview>
-                        <ModalCard
+                        <ModalSide
                             active={true}
                             theme='primary'
                             header='An Interesting Header'
@@ -398,7 +325,7 @@ const Page: NextPage = () => {
                     </Preview>
                     <p></p>
                     <TypeScriptCode>{`
-<ModalCard
+<ModalSide
     active={true}
     theme='primary'
     header='An Interesting Header'
@@ -410,14 +337,14 @@ const Page: NextPage = () => {
         This is an awesome message!
     </p>
     <p>...</p>
-</ModalCard>
+</ModalSide>
                     `}</TypeScriptCode>
                     <p></p>
                     <p>
                         A composite header (JSX):
                     </p>
                     <Preview>
-                        <ModalCard
+                        <ModalSide
                             active={true}
                             theme='primary'
                             header={<>
@@ -428,7 +355,7 @@ const Page: NextPage = () => {
                     </Preview>
                     <p></p>
                     <TypeScriptCode>{`
-<ModalCard
+<ModalSide
     active={true}
     theme='primary'
     header={<>
@@ -443,7 +370,7 @@ const Page: NextPage = () => {
         This is an awesome message!
     </p>
     <p>...</p>
-</ModalCard>
+</ModalSide>
                     `}</TypeScriptCode>
                 </SectionPropertyHeader>
                 <SectionPropertyFooter>
@@ -451,7 +378,7 @@ const Page: NextPage = () => {
                         A simple footer (string):
                     </p>
                     <Preview>
-                        <ModalCard
+                        <ModalSide
                             active={true}
                             theme='primary'
                             footer='An interesting summary'
@@ -459,7 +386,7 @@ const Page: NextPage = () => {
                     </Preview>
                     <p></p>
                     <TypeScriptCode>{`
-<ModalCard
+<ModalSide
     active={true}
     theme='primary'
     footer='An interesting summary'
@@ -471,14 +398,14 @@ const Page: NextPage = () => {
         This is an awesome message!
     </p>
     <p>...</p>
-</ModalCard>
+</ModalSide>
                     `}</TypeScriptCode>
                     <p></p>
                     <p>
                         A composite footer (JSX):
                     </p>
                     <Preview>
-                        <ModalCard
+                        <ModalSide
                             active={true}
                             theme='primary'
                             footer={<>
@@ -489,7 +416,7 @@ const Page: NextPage = () => {
                     </Preview>
                     <p></p>
                     <TypeScriptCode>{`
-<ModalCard
+<ModalSide
     active={true}
     theme='primary'
     footer={<>
@@ -504,23 +431,23 @@ const Page: NextPage = () => {
         This is an awesome message!
     </p>
     <p>...</p>
-</ModalCard>
+</ModalSide>
                     `}</TypeScriptCode>
                 </SectionPropertyFooter>
                 <SectionPropertyCard>
                     <Preview>
-                        <ModalCardWithCustomCard />
+                        <ModalSideWithCustomCard />
                     </Preview>
                     <p></p>
                     <TypeScriptCode>{`
-import { ModalCard, CardDialogProps } from '@nodestrap/modal-card'
+import { ModalSide, SideDialogProps } from '@nodestrap/modal-card'
 import { Card } from '@nodestrap/card'
 import { Button } from '@nodestrap/button'
 import { CloseButton } from '@nodestrap/close-button'
 
 /* ... */
 
-const CustomCard = ({onActiveChange, ...props}: CardDialogProps) => {
+const CustomCard = ({onActiveChange, ...props}: SideDialogProps) => {
     const handleClose = () => {
         onActiveChange?.(false, 'ui');
     };
@@ -552,7 +479,7 @@ const CustomCard = ({onActiveChange, ...props}: CardDialogProps) => {
 
 /* ... */
 
-<ModalCard
+<ModalSide
     active={true}
     theme='primary'
     card={<CustomCard />}
@@ -564,17 +491,17 @@ const CustomCard = ({onActiveChange, ...props}: CardDialogProps) => {
         This is an awesome message!
     </p>
     <p>...</p>
-</ModalCard>
+</ModalSide>
                     `}</TypeScriptCode>
                 </SectionPropertyCard>
             </SectionPropertyChildren>
             <SectionPropertyViewportRef>
                 <Preview>
-                    <ModalCardWithWelcome showModalCardMessage='Show ModalCard on this <article>' />
+                    <ModalSideWithWelcome showModalSideMessage='Show ModalSide on this <article>' />
                 </Preview>
                 <p></p>
                 <Preview>
-                    <ModalCardWithWelcome showModalCardMessage='Show ModalCard on whole <body>' viewportRef={null} />
+                    <ModalSideWithWelcome showModalSideMessage='Show ModalSide on whole <body>' viewportRef={null} />
                 </Preview>
             </SectionPropertyViewportRef>
             <SectionInheritedProps />
@@ -582,7 +509,7 @@ const CustomCard = ({onActiveChange, ...props}: CardDialogProps) => {
                 <SectionPropertyTheme>
                     <Preview>
                         {themeNames.map((themeName, index) =>
-                            <ModalCard
+                            <ModalSide
                                 theme={themeName}
                                 active={true}
                                 key={index}
@@ -590,33 +517,33 @@ const CustomCard = ({onActiveChange, ...props}: CardDialogProps) => {
                                 <p>
                                     A <CurrentComponent/> with {themeName} theme.
                                 </p>
-                                <ParagraphLorem words={8} />
-                                <ParagraphLorem words={8} />
-                            </ModalCard>
+                                <ParagraphLorem words={6} />
+                                <ParagraphLorem words={6} />
+                            </ModalSide>
                         )}
                     </Preview>
                     <p></p>
                     <TypeScriptCode>
                         {themeNames.map((themeName) =>
 `
-<ModalCard
+<ModalSide
     theme='${themeName}'
     active={true}
     header='The Title'
 >
     <p>
-        A <code>{'<ModalCard>'}</code> with ${themeName} theme.
+        A <code>{'<ModalSide>'}</code> with ${themeName} theme.
     </p>
     <p>...</p>
     <p>...</p>
-</ModalCard>
+</ModalSide>
 `
                         ).join('')}
                     </TypeScriptCode>
                 </SectionPropertyTheme>
                 <SectionPropertySize>
                     <Preview>
-                        <ModalCard
+                        <ModalSide
                             size='sm'
                             active={true}
                             theme='primary'
@@ -624,9 +551,9 @@ const CustomCard = ({onActiveChange, ...props}: CardDialogProps) => {
                             <p>
                                 A <CurrentComponent/> with smaller size.
                             </p>
-                            <ParagraphLorem words={8} />
-                        </ModalCard>
-                        <ModalCard
+                            <ParagraphLorem words={6} />
+                        </ModalSide>
+                        <ModalSide
                             size={undefined}
                             active={true}
                             theme='primary'
@@ -634,9 +561,9 @@ const CustomCard = ({onActiveChange, ...props}: CardDialogProps) => {
                             <p>
                                 A <CurrentComponent/> with default size.
                             </p>
-                            <ParagraphLorem words={8} />
-                        </ModalCard>
-                        <ModalCard
+                            <ParagraphLorem words={6} />
+                        </ModalSide>
+                        <ModalSide
                             size='lg'
                             active={true}
                             theme='primary'
@@ -644,52 +571,52 @@ const CustomCard = ({onActiveChange, ...props}: CardDialogProps) => {
                             <p>
                                 A <CurrentComponent/> with larger size.
                             </p>
-                            <ParagraphLorem words={8} />
-                        </ModalCard>
+                            <ParagraphLorem words={6} />
+                        </ModalSide>
                     </Preview>
                     <p></p>
                     <TypeScriptCode>{`
-<ModalCard
+<ModalSide
     size='sm'
     active={true}
     theme='primary'
     header='The Title'
 >
     <p>
-        A <code>{'<ModalCard>'}</code> with smaller size.
+        A <code>{'<ModalSide>'}</code> with smaller size.
     </p>
     <p>...</p>
-</ModalCard>
+</ModalSide>
 
-<ModalCard
+<ModalSide
     size={undefined}
     active={true}
     theme='primary'
     header='The Title'
 >
     <p>
-        A <code>{'<ModalCard>'}</code> with default size.
+        A <code>{'<ModalSide>'}</code> with default size.
     </p>
     <p>...</p>
-</ModalCard>
+</ModalSide>
 
-<ModalCard
+<ModalSide
     size='lg'
     active={true}
     theme='primary'
     header='The Title'
 >
     <p>
-        A <code>{'<ModalCard>'}</code> with larger size.
+        A <code>{'<ModalSide>'}</code> with larger size.
     </p>
     <p>...</p>
-</ModalCard>
+</ModalSide>
                     `}</TypeScriptCode>
                 </SectionPropertySize>
                 <SectionPropertyGradient>
                     <Preview>
                         {themeNames.map((themeName, index) =>
-                            <ModalCard
+                            <ModalSide
                                 gradient={true}
                                 active={true}
                                 theme={themeName}
@@ -701,7 +628,7 @@ const CustomCard = ({onActiveChange, ...props}: CardDialogProps) => {
                     <TypeScriptCode>
                         {themeNames.map((themeName) =>
 `
-<ModalCard
+<ModalSide
     gradient={true}
     active={true}
     theme='${themeName}'
@@ -714,7 +641,7 @@ const CustomCard = ({onActiveChange, ...props}: CardDialogProps) => {
         This is an awesome message!
     </p>
     <p>...</p>
-</ModalCard>
+</ModalSide>
 `
                         ).join('')}
                     </TypeScriptCode>
@@ -722,7 +649,7 @@ const CustomCard = ({onActiveChange, ...props}: CardDialogProps) => {
                 <SectionPropertyOutlined>
                     <TransparentPreview>
                         {themeNames.map((themeName, index) =>
-                            <ModalCard
+                            <ModalSide
                                 outlined={true}
                                 active={true}
                                 theme={themeName}
@@ -734,7 +661,7 @@ const CustomCard = ({onActiveChange, ...props}: CardDialogProps) => {
                     <TypeScriptCode>
                         {themeNames.map((themeName) =>
 `
-<ModalCard
+<ModalSide
     outlined={true}
     active={true}
     theme='${themeName}'
@@ -747,7 +674,7 @@ const CustomCard = ({onActiveChange, ...props}: CardDialogProps) => {
         This is an awesome message!
     </p>
     <p>...</p>
-</ModalCard>
+</ModalSide>
 `
                         ).join('')}
                     </TypeScriptCode>
@@ -755,7 +682,7 @@ const CustomCard = ({onActiveChange, ...props}: CardDialogProps) => {
                 <SectionPropertyMild>
                     <Preview>
                         {themeNames.map((themeName, index) =>
-                            <ModalCard
+                            <ModalSide
                                 mild={false}
                                 active={true}
                                 theme={themeName}
@@ -767,7 +694,7 @@ const CustomCard = ({onActiveChange, ...props}: CardDialogProps) => {
                     <TypeScriptCode>
                         {themeNames.map((themeName) =>
 `
-<ModalCard
+<ModalSide
     mild={false}
     active={true}
     theme='${themeName}'
@@ -780,7 +707,7 @@ const CustomCard = ({onActiveChange, ...props}: CardDialogProps) => {
         This is an awesome message!
     </p>
     <p>...</p>
-</ModalCard>
+</ModalSide>
 `
                         ).join('')}
                     </TypeScriptCode>
@@ -788,7 +715,7 @@ const CustomCard = ({onActiveChange, ...props}: CardDialogProps) => {
                 <SectionPropertyBackdropStyle>
                     <SectionPropertyHiddenStyle>
                         <Preview>
-                            <ModalCard
+                            <ModalSide
                                 backdropStyle='hidden'
                                 active={true}
                                 theme='primary'
@@ -796,7 +723,7 @@ const CustomCard = ({onActiveChange, ...props}: CardDialogProps) => {
                         </Preview>
                         <p></p>
                         <TypeScriptCode>{`
-<ModalCard
+<ModalSide
     backdropStyle='hidden'
     active={true}
     theme='primary'
@@ -809,12 +736,12 @@ const CustomCard = ({onActiveChange, ...props}: CardDialogProps) => {
         This is an awesome message!
     </p>
     <p>...</p>
-</ModalCard>
+</ModalSide>
                         `}</TypeScriptCode>
                     </SectionPropertyHiddenStyle>
                     <SectionPropertyInteractiveStyle>
                         <Preview>
-                            <ModalCard
+                            <ModalSide
                                 backdropStyle='interactive'
                                 active={true}
                                 theme='primary'
@@ -822,7 +749,7 @@ const CustomCard = ({onActiveChange, ...props}: CardDialogProps) => {
                         </Preview>
                         <p></p>
                         <TypeScriptCode>{`
-<ModalCard
+<ModalSide
     backdropStyle='interactive'
     active={true}
     theme='primary'
@@ -835,12 +762,12 @@ const CustomCard = ({onActiveChange, ...props}: CardDialogProps) => {
         This is an awesome message!
     </p>
     <p>...</p>
-</ModalCard>
+</ModalSide>
                         `}</TypeScriptCode>
                     </SectionPropertyInteractiveStyle>
                     <SectionPropertyStaticStyle>
                         <Preview>
-                            <ModalCard
+                            <ModalSide
                                 backdropStyle='static'
                                 active={true}
                                 theme='primary'
@@ -848,7 +775,7 @@ const CustomCard = ({onActiveChange, ...props}: CardDialogProps) => {
                         </Preview>
                         <p></p>
                         <TypeScriptCode>{`
-<ModalCard
+<ModalSide
     backdropStyle='static'
     active={true}
     theme='primary'
@@ -861,88 +788,25 @@ const CustomCard = ({onActiveChange, ...props}: CardDialogProps) => {
         This is an awesome message!
     </p>
     <p>...</p>
-</ModalCard>
+</ModalSide>
                         `}</TypeScriptCode>
                     </SectionPropertyStaticStyle>
                 </SectionPropertyBackdropStyle>
-                <SectionPropertyModalCardStyle>
-                    <SectionPropertyScrollableStyle>
-                        <Preview>
-                            <ModalCard
-                                modalCardStyle='scrollable'
-                                active={true}
-                                theme='primary'
-                            >
-                                <ParagraphLorem />
-                                <p style={{ whiteSpace: 'nowrap' }}>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi perspiciatis autem cum exercitationem illo nihil tempore nemo impedit.
-                                </p>
-                                <p style={{ whiteSpace: 'normal', width: '1px' }}>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi perspiciatis autem cum exercitationem illo nihil tempore nemo impedit.
-                                </p>
-                            </ModalCard>
-                        </Preview>
-                        <p></p>
-                        <TypeScriptCode>{`
-<ModalCard
-    modalCardStyle='scrollable'
-    active={true}
-    theme='primary'
-    header='The Title'
->
-    <p>...</p>
-    <p>...</p>
-    <p>...</p>
-</ModalCard>
-                        `}</TypeScriptCode>
-                        <p></p>
-                        <p>
-                            If you don&apos;t set <code>{`<ModalCard modalCardStyle='scrollable'>`}</code>, the scrollbars are on the <em>backdrop</em>:
-                        </p>
-                        <Preview>
-                            <ModalCard
-                                active={true}
-                                theme='primary'
-                            >
-                                <ParagraphLorem />
-                                <p style={{ whiteSpace: 'nowrap' }}>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi perspiciatis autem cum exercitationem illo nihil tempore nemo impedit.
-                                </p>
-                                <p style={{ whiteSpace: 'normal', width: '1px' }}>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi perspiciatis autem cum exercitationem illo nihil tempore nemo impedit.
-                                </p>
-                            </ModalCard>
-                        </Preview>
-                        <p></p>
-                        <TypeScriptCode>{`
-<ModalCard
-    modalCardStyle='scrollable'
-    active={true}
-    theme='primary'
-    header='The Title'
->
-    <p>...</p>
-    <p>...</p>
-    <p>...</p>
-</ModalCard>
-                        `}</TypeScriptCode>
-                    </SectionPropertyScrollableStyle>
-                    <SectionPropertyAlignments>
-                        <ModalCardAlignmentPreview />
-                    </SectionPropertyAlignments>
-                </SectionPropertyModalCardStyle>
+                <SectionPropertyModalSideStyle>
+                    //
+                </SectionPropertyModalSideStyle>
             </SectionVariants>
             <SectionStates>
                 <SectionPropertyActive>
                     <Preview>
-                        <ModalCard
+                        <ModalSide
                             active={true}
                             theme='primary'
                         />
                     </Preview>
                     <p></p>
                     <TypeScriptCode>{`
-<ModalCard
+<ModalSide
     active={true}
     theme='primary'
     header='The Title'
@@ -954,35 +818,35 @@ const CustomCard = ({onActiveChange, ...props}: CardDialogProps) => {
         This is an awesome message!
     </p>
     <p>...</p>
-</ModalCard>
+</ModalSide>
                     `}</TypeScriptCode>
                     <SectionPropertyOnActiveChange>
                         <Preview blockDisplay={true}>
-                            <ModalCardWithOnActiveChange />
+                            <ModalSideWithOnActiveChange />
                         </Preview>
                         <p></p>
                         <TypeScriptCode>{`
 export default function App() {
-    const [modalCardActive, setModalCardActive] = useState(true);
+    const [modalSideActive, setModalSideActive] = useState(true);
     
-    // re-show the <ModalCard> after 2 seconds:
+    // re-show the <ModalSide> after 2 seconds:
     useEffect(() => {
         // conditions:
-        if (modalCardActive) return;
+        if (modalSideActive) return;
         
         // setups:
-        const timerHandler = setTimeout(() => setModalCardActive(true), 2000);
+        const timerHandler = setTimeout(() => setModalSideActive(true), 2000);
         
         // cleanups:
         return () => {
             clearTimeout(timerHandler);
         };
-    }, [modalCardActive]);
+    }, [modalSideActive]);
     
     return (
-        <ModalCard
-            active={modalCardActive}
-            onActiveChange={(newActive, reason) => setModalCardActive(newActive)}
+        <ModalSide
+            active={modalSideActive}
+            onActiveChange={(newActive, reason) => setModalSideActive(newActive)}
             theme='primary'
             header='The Title'
         >
@@ -993,7 +857,7 @@ export default function App() {
                 This is an awesome message!
             </p>
             <p>...</p>
-        </ModalCard>
+        </ModalSide>
     );
 };
                         `}</TypeScriptCode>
@@ -1001,7 +865,7 @@ export default function App() {
                 </SectionPropertyActive>
                 <SectionPropertyEnabled>
                     <Preview>
-                        <ModalCard
+                        <ModalSide
                             enabled={false}
                             active={true}
                             theme='primary'
@@ -1009,7 +873,7 @@ export default function App() {
                     </Preview>
                     <p></p>
                     <TypeScriptCode>{`
-<ModalCard
+<ModalSide
     enabled={false}
     active={true}
     theme='primary'
@@ -1022,7 +886,7 @@ export default function App() {
         This is an awesome message!
     </p>
     <p>...</p>
-</ModalCard>
+</ModalSide>
                     `}</TypeScriptCode>
                 </SectionPropertyEnabled>
             </SectionStates>
@@ -1045,11 +909,11 @@ export default function App() {
             }/>
             <SectionDerivering>
                 <SectionOverridingDefaults>{`
-import { ModalCard } from '@nodestrap/modal-card'
+import { ModalSide } from '@nodestrap/modal-card'
 
 export default function SuccessDialog(props) {
     return (
-        <ModalCard
+        <ModalSide
             {...props} // preserves other properties
             
             theme={props.theme ?? 'success'} // override default value of theme to 'success'
@@ -1062,7 +926,7 @@ export default function SuccessDialog(props) {
                     Data updated successfully.
                 </p>
             </>}
-        </ModalCard>
+        </ModalSide>
     );
 }
                 `}</SectionOverridingDefaults>
@@ -1077,7 +941,7 @@ export default function SuccessDialog(props) {
                         <DetailSpecItem code='usesCardDialogVariants()'>
                             <p>
                                 Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentComponent />&apos;s dialog such as:<br />
-                                <code>SizeVariant</code>, <code>ModalCardVariant</code>, and <strong>all variants</strong> inherited from <CurrentBaseComponents />&apos;s dialog.
+                                <code>SizeVariant</code>, <code>ModalSideVariant</code>, and <strong>all variants</strong> inherited from <CurrentBaseComponents />&apos;s dialog.
                             </p>
                         </DetailSpecItem>
                         <DetailSpecItem code='usesCardDialogStates()'>
@@ -1110,13 +974,13 @@ export default function SuccessDialog(props) {
                 }>{`
 import { mainComposition, style, imports, variants, rule, children } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
-import { ModalCard, usesCardDialogLayout, usesCardDialogVariants, usesCardDialogStates, ModalCardProps } from '@nodestrap/modal-card'
+import { ModalSide, usesCardDialogLayout, usesCardDialogVariants, usesCardDialogStates, ModalSideProps } from '@nodestrap/modal-card'
 
 
 const useLoginDialogSheet = createUseSheet(() => [
     mainComposition(
         imports([
-            // import some stuff from <ModalCard>'s dialog:
+            // import some stuff from <ModalSide>'s dialog:
             usesCardDialogLayout(),
             usesCardDialogVariants(),
             usesCardDialogStates(),
@@ -1151,16 +1015,16 @@ const useLoginDialogSheet = createUseSheet(() => [
     ),
 ]);
 
-export default function SuccessDialog(props: ModalCardProps) {
+export default function SuccessDialog(props: ModalSideProps) {
     const sheet = useLoginDialogSheet();
     return (
-        <ModalCard {...props} mainClass={sheet.main}>
+        <ModalSide {...props} mainClass={sheet.main}>
             {props.children ?? <>
                 <p>
                     Data updated successfully.
                 </p>
             </>}
-        </ModalCard>
+        </ModalSide>
     );
 }
                 `}</SectionCustomizingCss>
