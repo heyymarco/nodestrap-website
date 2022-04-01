@@ -46,6 +46,8 @@ import {
     SectionPropertyEnabled,
     
     SectionPropertyChildren,
+    SectionPropertyHeader,
+    SectionPropertyFooter,
     SectionPropertyViewportRef,
     
     SectionPropertyModalCardStyle,
@@ -332,6 +334,128 @@ const Page: NextPage = () => {
     </p>
 </ModalCard>
                 `}</TypeScriptCode>
+                <SectionPropertyHeader>
+                    <p>
+                        A simple header (string):
+                    </p>
+                    <Preview>
+                        <ModalCard
+                            active={true}
+                            theme='primary'
+                            header='An Interesting Header'
+                        />
+                    </Preview>
+                    <p></p>
+                    <TypeScriptCode>{`
+<ModalCard
+    active={true}
+    theme='primary'
+    header='An Interesting Header'
+>
+    <p>
+        Hello everyone!
+    </p>
+    <p>
+        This is an awesome message!
+    </p>
+    <p>...</p>
+</ModalCard>
+                    `}</TypeScriptCode>
+                    <p></p>
+                    <p>
+                        A composite header (JSX):
+                    </p>
+                    <Preview>
+                        <ModalCard
+                            active={true}
+                            theme='primary'
+                            header={<>
+                                <h4>An Interesting Header</h4>
+                                <h5>A Subtitle</h5>
+                            </>}
+                        />
+                    </Preview>
+                    <p></p>
+                    <TypeScriptCode>{`
+<ModalCard
+    active={true}
+    theme='primary'
+    header={<>
+        <h4>An Interesting Header</h4>
+        <h5>A Subtitle</h5>
+    </>}
+>
+    <p>
+        Hello everyone!
+    </p>
+    <p>
+        This is an awesome message!
+    </p>
+    <p>...</p>
+</ModalCard>
+                    `}</TypeScriptCode>
+                </SectionPropertyHeader>
+                <SectionPropertyFooter>
+                    <p>
+                        A simple footer (string):
+                    </p>
+                    <Preview>
+                        <ModalCard
+                            active={true}
+                            theme='primary'
+                            footer='An interesting summary'
+                        />
+                    </Preview>
+                    <p></p>
+                    <TypeScriptCode>{`
+<ModalCard
+    active={true}
+    theme='primary'
+    footer='An interesting summary'
+>
+    <p>
+        Hello everyone!
+    </p>
+    <p>
+        This is an awesome message!
+    </p>
+    <p>...</p>
+</ModalCard>
+                    `}</TypeScriptCode>
+                    <p></p>
+                    <p>
+                        A composite footer (JSX):
+                    </p>
+                    <Preview>
+                        <ModalCard
+                            active={true}
+                            theme='primary'
+                            footer={<>
+                                An interesting summary.
+                                This is <em>awesome</em>!
+                            </>}
+                        />
+                    </Preview>
+                    <p></p>
+                    <TypeScriptCode>{`
+<ModalCard
+    active={true}
+    theme='primary'
+    footer={<>
+        An interesting summary.
+        This is <em>awesome</em>!
+    </>}
+>
+    <p>
+        Hello everyone!
+    </p>
+    <p>
+        This is an awesome message!
+    </p>
+    <p>...</p>
+</ModalCard>
+                    `}</TypeScriptCode>
+                </SectionPropertyFooter>
             </SectionPropertyChildren>
             <SectionPropertyViewportRef>
                 <Preview>

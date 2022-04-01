@@ -1,5 +1,5 @@
 import React from 'react'
-import { LinkCardPage, SectionPreviewPropertyProps, useComponentInfo } from './common';
+import { LinkActionControlPage, LinkButtonPage, LinkCardPage, LinkCloseButtonPage, SectionPreviewProperty, SectionPreviewPropertyProps, useComponentInfo } from './common';
 import {
     SectionPropertyStyleProps,
     SectionPropertyStyle,
@@ -67,7 +67,7 @@ export const SectionPropertyEnabled = ({ ignorable = false, ...restProps }: Sect
 
 
 
-export const SectionPropertyChildren = ({ properties = <>Adding the Content</>, description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyChildren = ({ properties = <>Adding a Content</>, description, ...restProps }: SectionPreviewPropertyProps) => {
     const { componentName } = useComponentInfo();
     
     
@@ -78,10 +78,54 @@ export const SectionPropertyChildren = ({ properties = <>Adding the Content</>, 
             ??
             <>
                 <p>
-                    Place paragraphs, images, or any <em>JSX expressions</em> between the <code>{`<componentName></componentName>`}</code>.
+                    Place paragraphs, images, or any <em>JSX expressions</em> between the <code>{`<${componentName}></${componentName}>`}</code>.
                 </p>
                 <p>
                     The content will be shown in the <LinkCardPage />&apos;s body.
+                </p>
+            </>
+        } />
+    );
+};
+export const SectionPropertyHeader = ({ titleTag = 'h3', propertySuffix = false, property = 'header', properties = <>Adding a Header</>, specList, description, ...restProps }: SectionPreviewPropertyProps) => {
+    const { componentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPreviewProperty {...restProps} titleTag={titleTag} propertySuffix={propertySuffix} property={property} properties={properties} description={
+            description
+            ??
+            <>
+                <p>
+                    To add a header text, assign a <code>string</code> like this: <code>{`<${componentName} header='An Interesting Header'>`}</code>.
+                    The assigned string will be wrapped with <code>{`<h4></h4>`}</code> and placed before the <LinkCloseButtonPage />.
+                </p>
+                <p>
+                    You can also <strong>replace all the header UI</strong> by assigning any <strong>JSX element</strong> to <code>{`<${componentName} header={<>...custom header UI...</>}>`}</code>.<br />
+                    Note: You are responsible to add a <LinkCloseButtonPage /> (if you like) or any <LinkActionControlPage /> to the header.
+                </p>
+            </>
+        } />
+    );
+};
+export const SectionPropertyFooter = ({ titleTag = 'h3', propertySuffix = false, property = 'footer', properties = <>Adding a Footer</>, specList, description, ...restProps }: SectionPreviewPropertyProps) => {
+    const { componentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPreviewProperty {...restProps} titleTag={titleTag} propertySuffix={propertySuffix} property={property} properties={properties} description={
+            description
+            ??
+            <>
+                <p>
+                    To add a footer text, assign a <code>string</code> like this: <code>{`<${componentName} footer='An interesting summary'>`}</code>.
+                    The assigned string will be wrapped with <code>{`<p></p>`}</code> and placed before the <LinkButtonPage />.
+                </p>
+                <p>
+                    You can also <strong>replace all the footer UI</strong> by assigning any <strong>JSX element</strong> to <code>{`<${componentName} footer={<>...custom footer UI...</>}>`}</code>.<br />
+                    Note: You are responsible to add a <LinkButtonPage /> (if you like) or any <LinkActionControlPage /> to the footer.
                 </p>
             </>
         } />
