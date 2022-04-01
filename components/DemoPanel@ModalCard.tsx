@@ -100,6 +100,8 @@ export const DemoModalCard = () => {
                         outlined={states.outlined[0]}
                         mild={states.mild[0]}
                         
+                        header='The Title'
+                        
                         viewportRef={viewportRef}
                     >
                         <p>
@@ -146,6 +148,8 @@ export const DemoModalCard = () => {
     gradient={${states.gradient[0]}}
     outlined={${states.outlined[0]}}
     mild={${states.mild[0]}}
+    
+    header='The Title'
 >
     <p>
         Hello everyone!

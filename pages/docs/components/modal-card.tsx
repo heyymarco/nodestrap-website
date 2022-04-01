@@ -247,6 +247,7 @@ const ModalCardAlignmentPreview = () => {
     vertAlign='${vertAlign}'
     active={true}
     theme='primary'
+    header='Card Alignments'
 >
     <p>...</p>
     <p>...</p>
@@ -313,6 +314,7 @@ const Page: NextPage = () => {
 <ModalCard
     active={true}
     theme='primary'
+    header='The Title'
 >
     <p>
         This is a dummy content.
@@ -365,6 +367,7 @@ const Page: NextPage = () => {
 <ModalCard
     theme='${themeName}'
     active={true}
+    header='The Title'
 >
     <p>
         A <code>{'<ModalCard>'}</code> with ${themeName} theme.
@@ -415,6 +418,7 @@ const Page: NextPage = () => {
     size='sm'
     active={true}
     theme='primary'
+    header='The Title'
 >
     <p>
         A <code>{'<ModalCard>'}</code> with smaller size.
@@ -426,6 +430,7 @@ const Page: NextPage = () => {
     size={undefined}
     active={true}
     theme='primary'
+    header='The Title'
 >
     <p>
         A <code>{'<ModalCard>'}</code> with default size.
@@ -437,6 +442,7 @@ const Page: NextPage = () => {
     size='lg'
     active={true}
     theme='primary'
+    header='The Title'
 >
     <p>
         A <code>{'<ModalCard>'}</code> with larger size.
@@ -464,6 +470,7 @@ const Page: NextPage = () => {
     gradient={true}
     active={true}
     theme='${themeName}'
+    header='The Title'
 >
     <p>
         Hello everyone!
@@ -496,6 +503,7 @@ const Page: NextPage = () => {
     outlined={true}
     active={true}
     theme='${themeName}'
+    header='The Title'
 >
     <p>
         Hello everyone!
@@ -528,6 +536,7 @@ const Page: NextPage = () => {
     mild={false}
     active={true}
     theme='${themeName}'
+    header='The Title'
 >
     <p>
         Hello everyone!
@@ -556,6 +565,7 @@ const Page: NextPage = () => {
     backdropStyle='hidden'
     active={true}
     theme='primary'
+    header='The Title'
 >
     <p>
         Hello everyone!
@@ -581,6 +591,7 @@ const Page: NextPage = () => {
     backdropStyle='interactive'
     active={true}
     theme='primary'
+    header='The Title'
 >
     <p>
         Hello everyone!
@@ -606,6 +617,7 @@ const Page: NextPage = () => {
     backdropStyle='static'
     active={true}
     theme='primary'
+    header='The Title'
 >
     <p>
         Hello everyone!
@@ -641,6 +653,7 @@ const Page: NextPage = () => {
     modalCardStyle='scrollable'
     active={true}
     theme='primary'
+    header='The Title'
 >
     <p>...</p>
     <p>...</p>
@@ -671,6 +684,7 @@ const Page: NextPage = () => {
     modalCardStyle='scrollable'
     active={true}
     theme='primary'
+    header='The Title'
 >
     <p>...</p>
     <p>...</p>
@@ -696,6 +710,7 @@ const Page: NextPage = () => {
 <ModalCard
     active={true}
     theme='primary'
+    header='The Title'
 >
     <p>
         Hello everyone!
@@ -734,6 +749,7 @@ export default function App() {
             active={modalCardActive}
             onActiveChange={(newActive, reason) => setModalCardActive(newActive)}
             theme='primary'
+            header='The Title'
         >
             <p>
                 Hello everyone!
@@ -762,6 +778,7 @@ export default function App() {
     enabled={false}
     active={true}
     theme='primary'
+    header='The Title'
 >
     <p>
         Hello everyone!
