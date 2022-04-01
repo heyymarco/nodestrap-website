@@ -1,5 +1,5 @@
 import React from 'react'
-import { CurrentComponent, LinkCardPage, useComponentInfo } from './common';
+import { LinkCardPage, useComponentInfo } from './common';
 import {
     SectionPropertyStyleProps,
     SectionPropertyStyle,
@@ -97,7 +97,7 @@ export const SectionPropertyScrollableStyle = ({ styleName = modalCardStyle, pro
         } />
     );
 };
-export const SectionPropertyAlignments = ({ styleName = modalCardStyle, property = 'alignments', properties = <><LinkCardPage /> Alignments</>, description, ...restProps }: SectionPropertyItemStyleProps) => {
+export const SectionPropertyAlignments      = ({ styleName = modalCardStyle, property = 'alignments', properties = <><LinkCardPage /> Alignments</>, description, ...restProps }: SectionPropertyItemStyleProps) => {
     const { componentName } = useComponentInfo();
     
     
