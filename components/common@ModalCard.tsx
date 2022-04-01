@@ -131,6 +131,26 @@ export const SectionPropertyFooter = ({ titleTag = 'h3', propertySuffix = false,
         } />
     );
 };
+export const SectionPropertyCard   = ({ titleTag = 'h3', propertySuffix = false, property = 'card', properties = <>Custom <LinkCardPage /> Component</>, specList, description, ...restProps }: SectionPreviewPropertyProps) => {
+    const { componentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPreviewProperty {...restProps} titleTag={titleTag} propertySuffix={propertySuffix} property={property} properties={properties} description={
+            description
+            ??
+            <>
+                <p>
+                    To further customize the <LinkCardPage /> component, assign <code>{`<${componentName} card={<Card ...>...</Card>}>`}</code>.
+                </p>
+                <p>
+                    You can also assign a <strong>custom component</strong> derived from <LinkCardPage />.
+                </p>
+            </>
+        } />
+    );
+};
 export const SectionPropertyViewportRef = ({ dummyContent = '<p>...</p>', ...restProps }: SectionPropertyViewportRefProps) => {
     return (
         <ModalSectionPropertyViewportRef {...restProps} dummyContent={dummyContent} />

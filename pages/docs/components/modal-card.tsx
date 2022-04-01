@@ -15,12 +15,14 @@ import type {
     Prop,
 }                           from '@cssfn/css-types'   // ts defs support for cssfn
 
-import { ModalCard as ModalCardOri, ModalCardProps } from '@nodestrap/modal-card'
+import { ModalCard as ModalCardOri, ModalCardProps, CardDialogProps, ModalCardCloseType } from '@nodestrap/modal-card'
 import Button from '@nodestrap/button'
 import Group from '@nodestrap/group'
 import Label from '@nodestrap/label'
 import Radio from '@nodestrap/radio'
 import Carousel from '@nodestrap/carousel'
+import { Card } from '@nodestrap/card'
+import { CloseButton } from '@nodestrap/close-button'
 import {
     themeNames,
 } from '../../../components/common@Basic'
@@ -48,6 +50,7 @@ import {
     SectionPropertyChildren,
     SectionPropertyHeader,
     SectionPropertyFooter,
+    SectionPropertyCard,
     SectionPropertyViewportRef,
     
     SectionPropertyModalCardStyle,
@@ -259,6 +262,54 @@ const ModalCardAlignmentPreview = () => {
     </>);
 }
 
+const ModalCardWithCustomCard = () => {
+    const viewportRef = useRef(null);
+    
+    const CustomCard = ({onActiveChange, ...props}: CardDialogProps) => {
+        const handleClose = () => {
+            onActiveChange?.(false, 'ui');
+        };
+        
+        return (
+            <Card
+                header={<div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <div>
+                        <h4>An Interesting Header</h4>
+                        <h5>A Subtitle</h5>
+                    </div>
+                    <CloseButton size={props.size} onClick={handleClose} />
+                </div>}
+                
+                footer={<div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <div>
+                        <p>An interesting summary.</p>
+                        <p>This is <em>awesome</em>!</p>
+                    </div>
+                    <Button size={props.size} onClick={handleClose}>
+                        Okay
+                    </Button>
+                </div>}
+            >
+                { props.children }
+            </Card>
+        );
+    };
+    
+    return (<div ref={viewportRef} style={{ position: 'relative', padding: '1rem', height: '28rem', overflow: 'hidden' }} className='media'>
+        <ModalCardWithContent
+            active={true}
+            theme='primary'
+            card={<CustomCard />}
+            viewportRef={viewportRef}
+        />
+        <ParagraphLorem />
+        <ParagraphLorem />
+        <ParagraphLorem />
+        <ParagraphLorem />
+        <ParagraphLorem />
+    </div>);
+};
+
 
 
 const Page: NextPage = () => {
@@ -456,6 +507,66 @@ const Page: NextPage = () => {
 </ModalCard>
                     `}</TypeScriptCode>
                 </SectionPropertyFooter>
+                <SectionPropertyCard>
+                    <Preview>
+                        <ModalCardWithCustomCard />
+                    </Preview>
+                    <p></p>
+                    <TypeScriptCode>{`
+import { ModalCard, CardDialogProps } from '@nodestrap/modal-card'
+import { Card } from '@nodestrap/card'
+import { Button } from '@nodestrap/button'
+import { CloseButton } from '@nodestrap/close-button'
+
+/* ... */
+
+const CustomCard = ({onActiveChange, ...props}: CardDialogProps) => {
+    const handleClose = () => {
+        onActiveChange?.(false, 'ui');
+    };
+    
+    return (
+        <Card
+            header={<div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                <div>
+                    <h4>An Interesting Header</h4>
+                    <h5>A Subtitle</h5>
+                </div>
+                <CloseButton size={props.size} onClick={handleClose} />
+            </div>}
+            
+            footer={<div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                <div>
+                    <p>An interesting summary.</p>
+                    <p>This is <em>awesome</em>!</p>
+                </div>
+                <Button size={props.size} onClick={handleClose}>
+                    Okay
+                </Button>
+            </div>}
+        >
+            { props.children }
+        </Card>
+    );
+};
+
+/* ... */
+
+<ModalCard
+    active={true}
+    theme='primary'
+    card={<CustomCard />}
+>
+    <p>
+        Hello everyone!
+    </p>
+    <p>
+        This is an awesome message!
+    </p>
+    <p>...</p>
+</ModalCard>
+                    `}</TypeScriptCode>
+                </SectionPropertyCard>
             </SectionPropertyChildren>
             <SectionPropertyViewportRef>
                 <Preview>
