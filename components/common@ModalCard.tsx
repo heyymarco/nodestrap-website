@@ -97,3 +97,24 @@ export const SectionPropertyScrollableStyle = ({ styleName = modalCardStyle, pro
         } />
     );
 };
+export const SectionPropertyAlignments = ({ styleName = modalCardStyle, property = 'alignments', properties = <><LinkCardPage /> Alignments</>, description, ...restProps }: SectionPropertyItemStyleProps) => {
+    const { componentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPropertyItemStyle {...restProps} styleName={styleName} property={property} properties={properties} description={
+            description
+            ??
+            <>
+                <p>
+                    By default, the <LinkCardPage /> is centered on the viewport, but you can adjust the alignment <em>horizontally</em> and/or <em>vertically</em>.
+                </p>
+                <p>
+                    Set <code>{`<${componentName} horzAlign='start'>`}</code> or <code>{`<${componentName} horzAlign='end'>`}</code> to align the <LinkCardPage /> to the left or right.<br />
+                    Set <code>{`<${componentName} vertAlign='start'>`}</code> or <code>{`<${componentName} vertAlign='end'>`}</code> to align the <LinkCardPage /> to the top or bottom.
+                </p>
+            </>
+        } />
+    );
+};

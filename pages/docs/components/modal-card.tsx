@@ -8,20 +8,18 @@ import { useFlipFlop, useInViewport } from '../../../components/hooks'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
-import { SectionInheritedProps, LinkModalPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionVariables, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, ParagraphLorem, LinkModalDialogPage, LinkModalCardPage, LinkModalSidePage, CurrentBaseComponents } from '../../../components/common'
+import { SectionInheritedProps, LinkModalPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionVariables, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, ParagraphLorem, LinkModalCardPage, LinkModalSidePage, CurrentBaseComponents, LinkCardPage } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 
-import { mainComposition, imports } from '@cssfn/cssfn'
-import { createUseSheet } from '@cssfn/react-cssfn'
-import { usesContentLayout, usesContentVariants, usesContentChildren } from '@nodestrap/content'
+import type {
+    Prop,
+}                           from '@cssfn/css-types'   // ts defs support for cssfn
 
-import { DialogProps, usesDialogLayout, usesDialogStates } from '@nodestrap/modal'
-import { ModalCard as ModalCardOri, ModalCardCloseType, ModalCardProps } from '@nodestrap/modal-card'
-import { Content, ContentProps } from '@nodestrap/content'
-import { useExcitedState } from '@nodestrap/basic'
-import Control from '@nodestrap/control'
+import { ModalCard as ModalCardOri, ModalCardProps } from '@nodestrap/modal-card'
 import Button from '@nodestrap/button'
-import { TextInput, EmailInput } from '@nodestrap/input'
+import Group from '@nodestrap/group'
+import Label from '@nodestrap/label'
+import Radio from '@nodestrap/radio'
 import {
     themeNames,
 } from '../../../components/common@Basic'
@@ -50,6 +48,7 @@ import {
     
     SectionPropertyModalCardStyle,
     SectionPropertyScrollableStyle,
+    SectionPropertyAlignments,
 } from '../../../components/common@ModalCard'
 
 import loadable from '@loadable/component'
@@ -77,10 +76,13 @@ const ModalCardWithContent = (props: ModalCardProps) => <ModalCardOri
     }
 </ModalCardOri>
 
-const ModalCard = (props: ModalCardProps) => {
+interface ModalCardExProps extends ModalCardProps {
+    height ?: string
+}
+const ModalCard = (props: ModalCardExProps) => {
     const viewportRef = useRef(null);
     
-    return (<div ref={viewportRef} style={{ position: 'relative', padding: '1rem', height: '28rem', overflow: 'hidden' }} className='media'>
+    return (<div ref={viewportRef} style={{ position: 'relative', padding: '1rem', height: (props.height ?? '28rem'), overflow: 'hidden' }} className='media'>
         <ModalCardWithContent
             {...props}
             viewportRef={viewportRef}
@@ -132,7 +134,7 @@ const ModalCardWithWelcome = ({ viewportRef: modalCardViewportRef, showModalCard
         <ModalCardWithContent
             active={isModalCardVisible}
             onActiveChange={(newActive, reason) => setModalCardVisible(newActive)}
-            viewportRef={(modalCardViewportRef === undefined) ? viewportRef : (modalCardViewportRef ?? undefined)}
+            viewportRef={(modalCardViewportRef === undefined) ? viewportRef : modalCardViewportRef}
         >
             <p>
                 Welcome to ModalCard Dialog.
@@ -185,6 +187,71 @@ const ModalCardWithOnActiveChange = () => {
     </div>);
 };
 
+const ModalCardAlignmentPreview = () => {
+    const [horzAlign, setHorzAlign] = useState<Prop.JustifyItems>('center');
+    const [vertAlign, setVertAlign] = useState<Prop.AlignItems>('center');
+    
+    return (<>
+        <Preview>
+            <ModalCard
+                horzAlign={horzAlign}
+                vertAlign={vertAlign}
+                active={true}
+                theme='primary'
+                height='35em'
+            >
+                <p>
+                    Change the controls below:
+                </p>
+                <Group orientation='inline' size='sm'>
+                    <Label>
+                        horzAlign
+                    </Label>
+                    <Radio nude={false} name='horzAlign' active={(horzAlign === 'start')} onActiveChange={(newActive) => newActive && setHorzAlign('start')}>
+                        start
+                    </Radio>
+                    <Radio nude={false} name='horzAlign' active={(horzAlign === 'center')} onActiveChange={(newActive) => newActive && setHorzAlign('center')}>
+                        center
+                    </Radio>
+                    <Radio nude={false} name='horzAlign' active={(horzAlign === 'end')} onActiveChange={(newActive) => newActive && setHorzAlign('end')}>
+                        end
+                    </Radio>
+                </Group>
+                <p></p>
+                <Group orientation='inline' size='sm'>
+                    <Label>
+                        vertAlign
+                    </Label>
+                    <Group orientation='block'>
+                        <Radio nude={false} name='vertAlign' active={(vertAlign === 'start')} onActiveChange={(newActive) => newActive && setVertAlign('start')}>
+                            start
+                        </Radio>
+                        <Radio nude={false} name='vertAlign' active={(vertAlign === 'center')} onActiveChange={(newActive) => newActive && setVertAlign('center')}>
+                            center
+                        </Radio>
+                        <Radio nude={false} name='vertAlign' active={(vertAlign === 'end')} onActiveChange={(newActive) => newActive && setVertAlign('end')}>
+                            end
+                        </Radio>
+                    </Group>
+                </Group>
+            </ModalCard>
+        </Preview>
+        <p></p>
+        <TypeScriptCode>{`
+<ModalCard
+    horzAlign='${horzAlign}'
+    vertAlign='${vertAlign}'
+    active={true}
+    theme='primary'
+>
+    <p>...</p>
+    <p>...</p>
+    <p>...</p>
+</ModalCard>
+        `}</TypeScriptCode>
+    </>);
+}
+
 
 
 const Page: NextPage = () => {
@@ -200,7 +267,8 @@ const Page: NextPage = () => {
                     Displays a <strong>secondary HTML document</strong> on the top of main HTML document.
                 </p>
                 <p>
-                    Similar to native <code>{`<dialog>`}</code> but this is the <em>polyfill</em> version with more rich features and fully controllable component.
+                    Similar to native <code>{`<dialog>`}</code> but this is the <em>polyfill</em> version with more rich features and fully controllable component.<br />
+                    The <em>dialog UI</em> uses a <LinkCardPage /> component, hence its name is <CurrentComponent />.
                 </p>
                 <p>
                     This is the <em>centered</em> version of <LinkModalSidePage />.
@@ -560,6 +628,9 @@ const Page: NextPage = () => {
 </ModalCard>
                         `}</TypeScriptCode>
                     </SectionPropertyScrollableStyle>
+                    <SectionPropertyAlignments>
+                        <ModalCardAlignmentPreview />
+                    </SectionPropertyAlignments>
                 </SectionPropertyModalCardStyle>
             </SectionVariants>
             <SectionStates>
