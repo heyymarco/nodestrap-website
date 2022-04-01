@@ -199,6 +199,8 @@ const ModalCardAlignmentPreview = () => {
                 active={true}
                 theme='primary'
                 height='35em'
+                size='sm'
+                header='Card Alignments'
             >
                 <p>
                     Change the controls below:
