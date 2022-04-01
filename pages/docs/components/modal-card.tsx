@@ -20,6 +20,7 @@ import Button from '@nodestrap/button'
 import Group from '@nodestrap/group'
 import Label from '@nodestrap/label'
 import Radio from '@nodestrap/radio'
+import Carousel from '@nodestrap/carousel'
 import {
     themeNames,
 } from '../../../components/common@Basic'
@@ -44,6 +45,7 @@ import {
     
     SectionPropertyEnabled,
     
+    SectionPropertyChildren,
     SectionPropertyViewportRef,
     
     SectionPropertyModalCardStyle,
@@ -198,7 +200,7 @@ const ModalCardAlignmentPreview = () => {
                 vertAlign={vertAlign}
                 active={true}
                 theme='primary'
-                height='35em'
+                height='35rem'
                 size='sm'
                 header='Card Alignments'
             >
@@ -283,6 +285,52 @@ const Page: NextPage = () => {
             <SectionDemo>
                 <DemoModalCardLazy fallback={<BusyBar />} />
             </SectionDemo>
+            <SectionPropertyChildren>
+                <Preview>
+                    <ModalCard
+                        active={true}
+                        theme='primary'
+                        height='35rem'
+                    >
+                        <p>
+                            This is a dummy content.
+                        </p>
+                        <p>
+                            See my gallery:
+                        </p>
+                        <Carousel classes={['media']}>
+                            <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+                            <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+                            <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+                        </Carousel>
+                        <p>
+                            Do you like that?
+                        </p>
+                    </ModalCard>
+                </Preview>
+                <p></p>
+                <TypeScriptCode>{`
+<ModalCard
+    active={true}
+    theme='primary'
+>
+    <p>
+        This is a dummy content.
+    </p>
+    <p>
+        See my gallery:
+    </p>
+    <Carousel classes={['media']}>
+        <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+        <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+        <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
+    </Carousel>
+    <p>
+        Do you like that?
+    </p>
+</ModalCard>
+                `}</TypeScriptCode>
+            </SectionPropertyChildren>
             <SectionPropertyViewportRef>
                 <Preview>
                     <ModalCardWithWelcome showModalCardMessage='Show ModalCard on this <article>' />

@@ -1,5 +1,5 @@
 import React from 'react'
-import { LinkCardPage, useComponentInfo } from './common';
+import { LinkCardPage, SectionPreviewPropertyProps, useComponentInfo } from './common';
 import {
     SectionPropertyStyleProps,
     SectionPropertyStyle,
@@ -17,6 +17,7 @@ import {
     SectionPropertyMild     as GroupSectionPropertyMild,
 } from './common@Group'
 import {
+    SectionPropertyChildren    as ModalSectionPropertyChildren,
     SectionPropertyViewportRefProps,
     SectionPropertyViewportRef as ModalSectionPropertyViewportRef,
     
@@ -66,6 +67,26 @@ export const SectionPropertyEnabled = ({ ignorable = false, ...restProps }: Sect
 
 
 
+export const SectionPropertyChildren = ({ properties = <>Adding the Content</>, description, ...restProps }: SectionPreviewPropertyProps) => {
+    const { componentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <ModalSectionPropertyChildren {...restProps} properties={properties} description={
+            description
+            ??
+            <>
+                <p>
+                    Place paragraphs, images, or any <em>JSX expressions</em> between the <code>{`<componentName></componentName>`}</code>.
+                </p>
+                <p>
+                    The content will be shown in the <LinkCardPage />&apos;s body.
+                </p>
+            </>
+        } />
+    );
+};
 export const SectionPropertyViewportRef = ({ dummyContent = '<p>...</p>', ...restProps }: SectionPropertyViewportRefProps) => {
     return (
         <ModalSectionPropertyViewportRef {...restProps} dummyContent={dummyContent} />
