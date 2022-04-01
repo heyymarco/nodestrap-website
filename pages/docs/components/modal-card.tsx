@@ -47,6 +47,9 @@ import {
     SectionPropertyEnabled,
     
     SectionPropertyViewportRef,
+    
+    SectionPropertyModalCardStyle,
+    SectionPropertyScrollableStyle,
 } from '../../../components/common@ModalCard'
 
 import loadable from '@loadable/component'
@@ -497,6 +500,67 @@ const Page: NextPage = () => {
                         `}</TypeScriptCode>
                     </SectionPropertyStaticStyle>
                 </SectionPropertyBackdropStyle>
+                <SectionPropertyModalCardStyle>
+                    <SectionPropertyScrollableStyle>
+                        <Preview>
+                            <ModalCard
+                                modalCardStyle='scrollable'
+                                active={true}
+                                theme='primary'
+                            >
+                                <ParagraphLorem />
+                                <p style={{ whiteSpace: 'nowrap' }}>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi perspiciatis autem cum exercitationem illo nihil tempore nemo impedit.
+                                </p>
+                                <p style={{ whiteSpace: 'normal', width: '1px' }}>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi perspiciatis autem cum exercitationem illo nihil tempore nemo impedit.
+                                </p>
+                            </ModalCard>
+                        </Preview>
+                        <p></p>
+                        <TypeScriptCode>{`
+<ModalCard
+    modalCardStyle='scrollable'
+    active={true}
+    theme='primary'
+>
+    <p>...</p>
+    <p>...</p>
+    <p>...</p>
+</ModalCard>
+                        `}</TypeScriptCode>
+                        <p></p>
+                        <p>
+                            If you don&apos;t set <code>{`<ModalCard modalCardStyle='scrollable'>`}</code>, the scrollbars are on the <em>backdrop</em>:
+                        </p>
+                        <Preview>
+                            <ModalCard
+                                active={true}
+                                theme='primary'
+                            >
+                                <ParagraphLorem />
+                                <p style={{ whiteSpace: 'nowrap' }}>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi perspiciatis autem cum exercitationem illo nihil tempore nemo impedit.
+                                </p>
+                                <p style={{ whiteSpace: 'normal', width: '1px' }}>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi perspiciatis autem cum exercitationem illo nihil tempore nemo impedit.
+                                </p>
+                            </ModalCard>
+                        </Preview>
+                        <p></p>
+                        <TypeScriptCode>{`
+<ModalCard
+    modalCardStyle='scrollable'
+    active={true}
+    theme='primary'
+>
+    <p>...</p>
+    <p>...</p>
+    <p>...</p>
+</ModalCard>
+                        `}</TypeScriptCode>
+                    </SectionPropertyScrollableStyle>
+                </SectionPropertyModalCardStyle>
             </SectionVariants>
             <SectionStates>
                 <SectionPropertyActive>

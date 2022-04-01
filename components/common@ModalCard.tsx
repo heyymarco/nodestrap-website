@@ -1,5 +1,12 @@
 import React from 'react'
-
+import { CurrentComponent, LinkCardPage, useComponentInfo } from './common';
+import {
+    SectionPropertyStyleProps,
+    SectionPropertyStyle,
+    
+    SectionPropertyItemStyleProps,
+    SectionPropertyItemStyle,
+} from './common@Basic'
 import {
     SectionPreviewIgnorablePropertyProps,
     SectionPropertyTheme    as GroupSectionPropertyTheme,
@@ -62,5 +69,31 @@ export const SectionPropertyEnabled = ({ ignorable = false, ...restProps }: Sect
 export const SectionPropertyViewportRef = ({ dummyContent = '<p>...</p>', ...restProps }: SectionPropertyViewportRefProps) => {
     return (
         <ModalSectionPropertyViewportRef {...restProps} dummyContent={dummyContent} />
+    );
+};
+
+
+
+const modalCardStyle = 'modalCardStyle';
+export const SectionPropertyModalCardStyle  = ({ styleName = modalCardStyle, properties = 'Card Styles', component = <LinkCardPage />, ...restProps }: SectionPropertyStyleProps) => {
+    return (
+        <SectionPropertyStyle {...restProps} styleName={styleName} properties={properties} component={component} />
+    );
+};
+export const SectionPropertyScrollableStyle = ({ styleName = modalCardStyle, property = 'scrollable', properties = 'Scrolling Long Content', description, ...restProps }: SectionPropertyItemStyleProps) => {
+    const { componentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPropertyItemStyle {...restProps} styleName={styleName} property={property} properties={properties} description={
+            description
+            ??
+            <>
+                <p>
+                    Set <code>{`<${componentName} ${styleName}='${property}'>`}</code> to add horizontal and/or vertical scrollbars to the <LinkCardPage /> when its content is too wide/tall.
+                </p>
+            </>
+        } />
     );
 };
