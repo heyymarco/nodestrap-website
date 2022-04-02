@@ -1047,18 +1047,18 @@ export default function SuccessDialog(props) {
                             </p>
                         </DetailSpecItem>
                         
-                        <DetailSpecItem code='usesCardBackdropLayout()'>
+                        <DetailSpecItem code='usesSideBackdropLayout()'>
                             <p>
                                 Returns a <code>Rule</code> object represents a complete <CurrentComponent />&apos;s backdrop <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
                             </p>
                         </DetailSpecItem>
-                        <DetailSpecItem code='usesCardBackdropVariants()'>
+                        <DetailSpecItem code='usesSideBackdropVariants()'>
                             <p>
                                 Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentComponent />&apos;s backdrop such as:<br />
                                 <code>SizeVariant</code> and <code>BackdropVariant</code>.
                             </p>
                         </DetailSpecItem>
-                        <DetailSpecItem code='usesCardBackdropStates()'>
+                        <DetailSpecItem code='usesSideBackdropStates()'>
                             <p>
                                 Returns a <code>Rule</code> object represents the <strong>states</strong> of <CurrentComponent />.
                             </p>
