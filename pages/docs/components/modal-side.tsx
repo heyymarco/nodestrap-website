@@ -5,7 +5,7 @@ import Head from 'next/head'
 
 import { useFlipFlop, useInViewport } from '../../../components/hooks'
 
-import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
+import { SpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
 import { SectionInheritedProps, LinkModalPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionVariables, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, ParagraphLorem, LinkModalSidePage, CurrentBaseComponents, LinkCardPage, LinkModalCardPage } from '../../../components/common'
@@ -13,9 +13,6 @@ import { TypeScriptCode } from '../../../components/Code'
 
 import { ModalSide as ModalSideOri, ModalSideProps, SideDialogProps } from '@nodestrap/modal-side'
 import Button from '@nodestrap/button'
-import Group from '@nodestrap/group'
-import Label from '@nodestrap/label'
-import Radio from '@nodestrap/radio'
 import Carousel from '@nodestrap/carousel'
 import { Card } from '@nodestrap/card'
 import { CloseButton } from '@nodestrap/close-button'
@@ -51,6 +48,10 @@ import {
 } from '../../../components/common@ModalCard'
 import {
     SectionPropertyModalSideStyle,
+    SectionPropertyInlineStart,
+    SectionPropertyInlineEnd,
+    SectionPropertyBlockStart,
+    SectionPropertyBlockEnd,
 } from '../../../components/common@ModalSide'
 
 import loadable from '@loadable/component'
@@ -794,7 +795,110 @@ const CustomCard = ({onActiveChange, ...props}: SideDialogProps) => {
                     </SectionPropertyStaticStyle>
                 </SectionPropertyBackdropStyle>
                 <SectionPropertyModalSideStyle>
-                    //
+                    <SectionPropertyInlineStart>
+                        <Preview>
+                            <ModalSide
+                                modalSideStyle='inlineStart'
+                                active={true}
+                                theme='primary'
+                            />
+                        </Preview>
+                        <p></p>
+                        <TypeScriptCode>{`
+<ModalSide
+    modalSideStyle='inlineStart'
+    active={true}
+    theme='primary'
+    header='The Title'
+>
+    <p>
+        Hello everyone!
+    </p>
+    <p>
+        This is an awesome message!
+    </p>
+    <p>...</p>
+</ModalSide>
+                        `}</TypeScriptCode>
+                    </SectionPropertyInlineStart>
+                    <SectionPropertyInlineEnd>
+                        <Preview>
+                            <ModalSide
+                                modalSideStyle='inlineEnd'
+                                active={true}
+                                theme='primary'
+                            />
+                        </Preview>
+                        <p></p>
+                        <TypeScriptCode>{`
+<ModalSide
+    modalSideStyle='inlineEnd'
+    active={true}
+    theme='primary'
+    header='The Title'
+>
+    <p>
+        Hello everyone!
+    </p>
+    <p>
+        This is an awesome message!
+    </p>
+    <p>...</p>
+</ModalSide>
+                        `}</TypeScriptCode>
+                    </SectionPropertyInlineEnd>
+                    <SectionPropertyBlockStart>
+                        <Preview>
+                            <ModalSide
+                                modalSideStyle='blockStart'
+                                active={true}
+                                theme='primary'
+                            />
+                        </Preview>
+                        <p></p>
+                        <TypeScriptCode>{`
+<ModalSide
+    modalSideStyle='blockStart'
+    active={true}
+    theme='primary'
+    header='The Title'
+>
+    <p>
+        Hello everyone!
+    </p>
+    <p>
+        This is an awesome message!
+    </p>
+    <p>...</p>
+</ModalSide>
+                        `}</TypeScriptCode>
+                    </SectionPropertyBlockStart>
+                    <SectionPropertyBlockEnd>
+                        <Preview>
+                            <ModalSide
+                                modalSideStyle='blockEnd'
+                                active={true}
+                                theme='primary'
+                            />
+                        </Preview>
+                        <p></p>
+                        <TypeScriptCode>{`
+<ModalSide
+    modalSideStyle='blockEnd'
+    active={true}
+    theme='primary'
+    header='The Title'
+>
+    <p>
+        Hello everyone!
+    </p>
+    <p>
+        This is an awesome message!
+    </p>
+    <p>...</p>
+</ModalSide>
+                        `}</TypeScriptCode>
+                    </SectionPropertyBlockEnd>
                 </SectionPropertyModalSideStyle>
             </SectionVariants>
             <SectionStates>

@@ -1,5 +1,7 @@
 import React from 'react'
-import { LinkActionControlPage, LinkButtonPage, LinkCardPage, LinkCloseButtonPage, SectionPreviewProperty, SectionPreviewPropertyProps, useComponentInfo } from './common';
+
+import { LinkCardPage, useComponentInfo } from './common';
+
 import {
     SectionPropertyStyleProps,
     SectionPropertyStyle,
@@ -7,22 +9,6 @@ import {
     SectionPropertyItemStyleProps,
     SectionPropertyItemStyle,
 } from './common@Basic'
-import {
-    SectionPreviewIgnorablePropertyProps,
-    SectionPropertyTheme    as GroupSectionPropertyTheme,
-    SectionPropertySize     as GroupSectionPropertySize,
-    SectionPropertyNude     as GroupSectionPropertyNude,
-    SectionPropertyGradient as GroupSectionPropertyGradient,
-    SectionPropertyOutlined as GroupSectionPropertyOutlined,
-    SectionPropertyMild     as GroupSectionPropertyMild,
-} from './common@Group'
-import {
-    SectionPropertyChildren    as ModalSectionPropertyChildren,
-    SectionPropertyViewportRefProps,
-    SectionPropertyViewportRef as ModalSectionPropertyViewportRef,
-    
-    SectionPropertyEnabled     as ModalSectionPropertyEnabled,
-} from './common@Modal'
 
 
 
@@ -32,7 +18,7 @@ export const SectionPropertyModalSideStyle  = ({ styleName = modalSideStyle, pro
         <SectionPropertyStyle {...restProps} styleName={styleName} properties={properties} component={component} />
     );
 };
-export const SectionPropertyScrollableStyle = ({ styleName = modalSideStyle, property = 'scrollable', properties = 'Scrolling Long Content', description, ...restProps }: SectionPropertyItemStyleProps) => {
+export const SectionPropertyInlineStart = ({ styleName = modalSideStyle, property = 'inlineStart', properties = <><LinkCardPage /> on Left Side</>, description, ...restProps }: SectionPropertyItemStyleProps) => {
     const { componentName } = useComponentInfo();
     
     
@@ -43,7 +29,58 @@ export const SectionPropertyScrollableStyle = ({ styleName = modalSideStyle, pro
             ??
             <>
                 <p>
-                    Set <code>{`<${componentName} ${styleName}='${property}'>`}</code> to add horizontal and/or vertical scrollbars to the <LinkCardPage /> when its content is too wide/tall.
+                    Set <code>{`<${componentName} ${styleName}='${property}'>`}</code> to place the <LinkCardPage /> on the left (<code>ltr</code> mode, English) or on the right (<code>rtl</code> mode, Arabic).
+                </p>
+            </>
+        } />
+    );
+};
+export const SectionPropertyInlineEnd = ({ styleName = modalSideStyle, property = 'inlineEnd', properties = <><LinkCardPage /> on Right Side</>, description, ...restProps }: SectionPropertyItemStyleProps) => {
+    const { componentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPropertyItemStyle {...restProps} styleName={styleName} property={property} properties={properties} description={
+            description
+            ??
+            <>
+                <p>
+                    Set <code>{`<${componentName} ${styleName}='${property}'>`}</code> to place the <LinkCardPage /> on the right (<code>ltr</code> mode, English) or on the left (<code>rtl</code> mode, Arabic).
+                </p>
+            </>
+        } />
+    );
+};
+export const SectionPropertyBlockStart = ({ styleName = modalSideStyle, property = 'blockStart', properties = <><LinkCardPage /> on Top Side</>, description, ...restProps }: SectionPropertyItemStyleProps) => {
+    const { componentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPropertyItemStyle {...restProps} styleName={styleName} property={property} properties={properties} description={
+            description
+            ??
+            <>
+                <p>
+                    Set <code>{`<${componentName} ${styleName}='${property}'>`}</code> to place the <LinkCardPage /> on the top.
+                </p>
+            </>
+        } />
+    );
+};
+export const SectionPropertyBlockEnd = ({ styleName = modalSideStyle, property = 'blockEnd', properties = <><LinkCardPage /> on Bottom Side</>, description, ...restProps }: SectionPropertyItemStyleProps) => {
+    const { componentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPropertyItemStyle {...restProps} styleName={styleName} property={property} properties={properties} description={
+            description
+            ??
+            <>
+                <p>
+                    Set <code>{`<${componentName} ${styleName}='${property}'>`}</code> to place the <LinkCardPage /> on the bottom.
                 </p>
             </>
         } />
