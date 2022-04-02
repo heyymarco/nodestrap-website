@@ -142,7 +142,8 @@ const ModalSideWithWelcome = ({ viewportRef: modalSideViewportRef, showModalSide
                 Welcome to ModalSide Dialog.
             </p>
             <p>
-                To dismiss this message, press <kbd>Esc</kbd> key or click the Close button below:
+                To dismiss this message,<br />
+                press <kbd>Esc</kbd> key or click the Close button below:
             </p>
             {additionalMessage && <p>{additionalMessage}</p>}
             <ParagraphLorem words={6} />
@@ -253,7 +254,7 @@ const Page: NextPage = () => {
                 </p>
                 <p>
                     Similar to native <code>{`<dialog>`}</code> but this is the <em>polyfill</em> version with more rich features and fully controllable component.<br />
-                    The <em>dialog UI</em> uses a <LinkCardPage /> component, hence its name is <CurrentComponent />.
+                    The <em>dialog UI</em> uses a <LinkCardPage /> component and placed on the side of main document, hence its name is <CurrentComponent />.
                 </p>
                 <p>
                     This is the <em>side</em> version of <LinkModalCardPage />.
@@ -279,7 +280,7 @@ const Page: NextPage = () => {
                         <p>
                             See my gallery:
                         </p>
-                        <Carousel classes={['media']}>
+                        <Carousel classes={['media']} style={{ maxWidth: '20rem' }}>
                             <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
                             <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
                             <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
@@ -302,7 +303,7 @@ const Page: NextPage = () => {
     <p>
         See my gallery:
     </p>
-    <Carousel classes={['media']}>
+    <Carousel classes={['media']} style={{ maxWidth: '20rem' }}>
         <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
         <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
         <img alt='lorem image' src='/images/lorem-image-1.svg' style={{ height: '150px' }} />
@@ -440,7 +441,7 @@ const Page: NextPage = () => {
                     </Preview>
                     <p></p>
                     <TypeScriptCode>{`
-import { ModalSide, SideDialogProps } from '@nodestrap/modal-card'
+import { ModalSide, SideDialogProps } from '@nodestrap/modal-side'
 import { Card } from '@nodestrap/card'
 import { Button } from '@nodestrap/button'
 import { CloseButton } from '@nodestrap/close-button'
@@ -893,23 +894,14 @@ export default function App() {
             <SectionPropertyLazy />
             <SectionVariables specList={
                 <SpecList>
-                    <DetailSpecItem title='Positions'>
-                        <SubSpecList>
-                            <SimpleSpecItem>
-                                <code>horzAlign</code>
-                                <p>The default horizontal align of dialog.</p>
-                            </SimpleSpecItem>
-                            <SimpleSpecItem>
-                                <code>vertAlign</code>
-                                <p>The default vertical align of dialog.</p>
-                            </SimpleSpecItem>
-                        </SubSpecList>
-                    </DetailSpecItem>
+                    <SimpleSpecItem>
+                        -- no config yet --
+                    </SimpleSpecItem>
                 </SpecList>
             }/>
             <SectionDerivering>
                 <SectionOverridingDefaults>{`
-import { ModalSide } from '@nodestrap/modal-card'
+import { ModalSide } from '@nodestrap/modal-side'
 
 export default function SuccessDialog(props) {
     return (
@@ -933,18 +925,18 @@ export default function SuccessDialog(props) {
 
                 <SectionCustomizingCss specList={
                     <SpecList>
-                        <DetailSpecItem code='usesCardDialogLayout()'>
+                        <DetailSpecItem code='usesSideDialogLayout()'>
                             <p>
                                 Returns a <code>Rule</code> object represents a complete <CurrentComponent />&apos;s dialog <strong>layout</strong> except its <strong>variants</strong> and <strong>states</strong>.
                             </p>
                         </DetailSpecItem>
-                        <DetailSpecItem code='usesCardDialogVariants()'>
+                        <DetailSpecItem code='usesSideDialogVariants()'>
                             <p>
                                 Returns a <code>Rule</code> object represents the <strong>variants</strong> of <CurrentComponent />&apos;s dialog such as:<br />
                                 <code>SizeVariant</code>, <code>ModalSideVariant</code>, and <strong>all variants</strong> inherited from <CurrentBaseComponents />&apos;s dialog.
                             </p>
                         </DetailSpecItem>
-                        <DetailSpecItem code='usesCardDialogStates()'>
+                        <DetailSpecItem code='usesSideDialogStates()'>
                             <p>
                                 Returns a <code>Rule</code> object represents the <strong>states</strong> of <CurrentComponent />&apos;s dialog such as:<br />
                                 <strong>excited</strong>.
@@ -974,16 +966,16 @@ export default function SuccessDialog(props) {
                 }>{`
 import { mainComposition, style, imports, variants, rule, children } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
-import { ModalSide, usesCardDialogLayout, usesCardDialogVariants, usesCardDialogStates, ModalSideProps } from '@nodestrap/modal-card'
+import { ModalSide, usesSideDialogLayout, usesSideDialogVariants, usesSideDialogStates, ModalSideProps } from '@nodestrap/modal-side'
 
 
 const useLoginDialogSheet = createUseSheet(() => [
     mainComposition(
         imports([
             // import some stuff from <ModalSide>'s dialog:
-            usesCardDialogLayout(),
-            usesCardDialogVariants(),
-            usesCardDialogStates(),
+            usesSideDialogLayout(),
+            usesSideDialogVariants(),
+            usesSideDialogStates(),
         ]),
         style({
             // then overwrite with your style:

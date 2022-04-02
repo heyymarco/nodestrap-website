@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 
 import { useResetableState, Option, ResetButton } from './DemoPanel';
-import { ModalCardInitials, ModalCardOptionProps, ModalCardOptions, useModalCardStates } from './DemoPanel@ModalCard';
+import { ModalInitials, ModalOptionProps, ModalOptions, useModalStates } from './DemoPanel@Modal';
 
 import { ModalSideStyle, ModalSide } from '@nodestrap/modal-side'
 import { SizeName } from '@nodestrap/basic';
@@ -12,9 +12,10 @@ import { ParagraphLorem } from './common';
 
 
 export const modalSideInitials = {
+    size           : 'sm'          as SizeName,
     modalSideStyle : 'inlineStart' as ModalSideStyle|undefined,
 };
-export type ModalSideInitials = typeof modalSideInitials & Partial<ModalCardInitials>
+export type ModalSideInitials = typeof modalSideInitials & Partial<ModalInitials>
 export const useModalSideStates = (initials ?: Partial<ModalSideInitials>) => {
     const initials2 : ModalSideInitials = {
         ...modalSideInitials,
@@ -24,11 +25,11 @@ export const useModalSideStates = (initials ?: Partial<ModalSideInitials>) => {
     const modalSideStyle = useResetableState(initials2.modalSideStyle);
     
     return {
-        ...useModalCardStates(initials2),
+        ...useModalStates(initials2),
         modalSideStyle,
     }
 }
-export type ModalSideOptionProps = { states: ReturnType<typeof useModalSideStates> } & ModalCardOptionProps
+export type ModalSideOptionProps = { states: ReturnType<typeof useModalSideStates> } & ModalOptionProps
 export const ModalSideOptions = (props: ModalSideOptionProps) => {
     const { states } = props;
     
@@ -42,7 +43,7 @@ export const ModalSideOptions = (props: ModalSideOptionProps) => {
             setValue={states.modalSideStyle[1]}
         />
         
-        <ModalCardOptions
+        <ModalOptions
             {...props}
             warningEitherMildOutlined={false}
         />
