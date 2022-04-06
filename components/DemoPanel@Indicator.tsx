@@ -33,19 +33,21 @@ export const useIndicatorStates = (initials ?: Partial<IndicatorInitials>) => {
         readOnly,
     }
 }
-export type IndicatorOptionProps = { states: ReturnType<typeof useIndicatorStates>, warningEitherMildOutlined?: boolean } & BasicOptionProps
+export type IndicatorOptionProps = { states: ReturnType<typeof useIndicatorStates>, warningEitherMildOutlined?: boolean } & BasicOptionProps & {
+    enableEnableOptions ?: boolean,
+}
 export const IndicatorOptions = (props: IndicatorOptionProps) => {
-    const { states, warningEitherMildOutlined = true } = props;
+    const { states, warningEitherMildOutlined = true, enableEnableOptions = true } = props;
     
     
     
     return (<>
-        <Option
+        {enableEnableOptions && <Option
             name='enabled'
             options={[false, true]}
             value={states.enabled[0]}
             setValue={states.enabled[1]}
-        />
+        />}
         
         <Option
             name='active'
