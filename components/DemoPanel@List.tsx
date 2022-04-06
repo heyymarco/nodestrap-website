@@ -124,6 +124,7 @@ export const ListOptions = (props: ListOptionProps) => {
 
         <IndicatorOptions
             {...props}
+            warningEitherMildOutlined={false}
         />
     </>);
 }

@@ -4,7 +4,8 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { ButtonIcon as Button } from '@nodestrap/button-icon'
 import { BashCode, TypeScriptCode } from '../../components/Code'
-import { Navbar, NavbarMenu } from '@nodestrap/navbar';
+import { Navbar } from '@nodestrap/navbar';
+import { Nav, NavItem } from '@nodestrap/nav';
 import { MainSection, Section } from '../../components/Section'
 
 
@@ -92,30 +93,40 @@ import { Link } from '@nodestrap/react-router-link' // for React-Router user
 /* ... */
 function App() {
     {/* ... */}
-    <Navbar theme='primary'>
-        <NavbarMenu href='/'>Home</NavbarMenu>
-        <NavbarMenu href='/about'>About</NavbarMenu>
-    </Navbar>
+    <Navbar theme='primary'>{(compact) =>
+        <Nav orientation={compact ? 'block' : 'inline'}>
+            <NavItem href='/'>
+                Home
+            </NavItem>
+            <NavItem href='/about'>
+                About
+            </NavItem>
+        </Nav>
+    }</Navbar>
     {/* ... */}
     /* for React-Router or Gatsby-JS with <Link to='...'>: */
-    <Navbar theme='primary'>
-        <NavbarMenu>
-            <Link to='/'>Home</Link>
-        </NavbarMenu>
-        <NavbarMenu>
-            <Link to='/about'>About</Link>
-        </NavbarMenu>
-    </Navbar>
+    <Navbar theme='primary'>{(compact) =>
+        <Nav orientation={compact ? 'block' : 'inline'}>
+            <NavItem>
+                <Link to='/'>Home</Link>
+            </NavItem>
+            <NavItem>
+                <Link to='/about'>About</Link>
+            </NavItem>
+        </Nav>
+    }</Navbar>
     {/* ... */}
     /* for Next-JS with <Link href='...'>: */
-    <Navbar theme='primary'>
-        <NavbarMenu>
-            <Link href='/'>Home</Link>
-        </NavbarMenu>
-        <NavbarMenu>
-            <Link href='/about'>About</Link>
-        </NavbarMenu>
-    </Navbar>
+    <Navbar theme='primary'>{(compact) =>
+        <Nav orientation={compact ? 'block' : 'inline'}>
+            <NavItem>
+                <Link href='/'>Home</Link>
+            </NavItem>
+            <NavItem>
+                <Link href='/about'>About</Link>
+            </NavItem>
+        </Nav>
+    }</Navbar>
     {/* ... */}
 }
 /* ... */
@@ -128,10 +139,16 @@ function App() {
             <p>
                 When running your app, you should see the navbar like this:
             </p>
-            <Navbar theme='primary'>
-                <NavbarMenu href='/'><Link href='/'>Home</Link></NavbarMenu>
-                <NavbarMenu href='/about'><Link href='/about'>About</Link></NavbarMenu>
-            </Navbar>
+            <Navbar theme='primary'>{(compact) =>
+                <Nav orientation={compact ? 'block' : 'inline'}>
+                    <NavItem>
+                        <Link href='/'>Home</Link>
+                    </NavItem>
+                    <NavItem>
+                        <Link href='/about'>About</Link>
+                    </NavItem>
+                </Nav>
+            }</Navbar>
         </Section>
         <Section title='Installing the Second Component'>
             <p>
