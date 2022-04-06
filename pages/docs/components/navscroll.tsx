@@ -1722,7 +1722,7 @@ const scrollableContainerRef = useRef(null);
                                 // a <div> to watch for overflows
                                 <div style={{
                                     display    : 'block',
-                                    overflow   : 'hidden',
+                                    overflow   : 'auto',
                                     background : 'pink',
                                     border     : 'solid 1px darkred',
                                     resize     : 'horizontal',
@@ -1755,7 +1755,7 @@ const scrollableContainerRef = useRef(null);
     // a <div> to watch for overflows
     <div style={{
         display    : 'block',
-        overflow   : 'hidden',
+        overflow   : 'auto',
         background : 'pink',
         border     : 'solid 1px darkred',
         resize     : 'horizontal',
