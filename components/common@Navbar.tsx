@@ -88,17 +88,13 @@ export const SectionPropertyToggler = ({ titleTag = 'h2', propertySuffix = false
 };
 
 export const SectionPropertyRearrangeLogoMenusToggler = ({ titleTag = 'h2', propertySuffix = false, property = 'logo_toggler', properties = <>Rearrange the Logo, Menus, and Toggler</>, specList, description, ...restProps }: SectionPreviewPropertyProps) => {
-    const { componentName } = useComponentInfo();
-    
-    
-    
     return (
         <SectionPreviewProperty {...restProps} titleTag={titleTag} propertySuffix={propertySuffix} property={property} properties={properties} description={
             description
             ??
             <>
                 <p>
-                    You can swap the location of the <strong>logo</strong>, <strong>menus</strong>, and the <strong>toggler button</strong> by configuring the <CurrentComponent />&apos;s variables.
+                    You can change the location of the <strong>logo</strong>, <strong>menus</strong>, and the <strong>toggler button</strong> by configuring the <CurrentComponent />&apos;s variables.
                 </p>
                 <p>
                     The <CurrentComponent /> is built using css <code>grid</code>.

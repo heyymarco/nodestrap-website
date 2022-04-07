@@ -46,11 +46,6 @@ const DemoNavbarLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Nav
 
 
 
-(navbarCssProps as any).logoGridArea    = '1 / -3';
-(navbarCssProps as any).togglerGridArea = '1 / 2';
-
-
-
 const ExampleNavbarMenu = (compact: boolean) => <Nav orientation={compact ? 'block' : 'inline'}>
     <NavItem>
         <Link href='/'>Home</Link>
@@ -77,8 +72,10 @@ const Navbar = (props: NavbarProps) => <NavbarOri
     theme={props.theme ?? 'primary'}
     active={('active' in props) ? props.active : false}
     logo={
+        ('logo' in props)
+        ?
         props.logo
-        ??
+        :
         <ActionControl mild={props.mild ?? false} style={{ border: 'none' }}>
             <Link href='/'>
                 <img src='/images/test-logo.png' alt='logo' style={{ height: '30px' }} />
@@ -154,14 +151,14 @@ const RearrangeLogoMenusToggler = () => {
         const swapped = !swappedRef.current;
         swappedRef.current = swapped;
         if (swapped) {
-            (navbarCssProps as any).logoGridArea    = '1 / 2';
-            (navbarCssProps as any).togglerGridArea = '1 / -3';
-            navbarCssProps.listJustifySelfFull = 'start' as any;
+            navbarCssProps.logoGridArea        = '1 / 2'  as any;
+            navbarCssProps.togglerGridArea     = '1 / -3' as any;
+            navbarCssProps.listJustifySelfFull = 'start'  as any;
         }
         else {
-            (navbarCssProps as any).logoGridArea    = '1 / -3';
-            (navbarCssProps as any).togglerGridArea = '1 / 2';
-            navbarCssProps.listJustifySelfFull = 'end' as any;
+            navbarCssProps.logoGridArea        = '1 / -3' as any;
+            navbarCssProps.togglerGridArea     = '1 / 2'  as any;
+            navbarCssProps.listJustifySelfFull = 'end'    as any;
         } // if
     }
     return (
@@ -438,7 +435,7 @@ export default function MyPage() {
             </SectionPropertyChildren>
             <SectionPropertyLogo>
                 <Preview>
-                    <Navbar logo={<div />} />
+                    <Navbar logo={null} />
                     <Navbar
                         logo={
                             <img src='/images/test-logo.png' alt='logo' style={{ height: '30px' }} />

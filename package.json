@@ -43,7 +43,7 @@
     "@nodestrap/modal-side": "^4.0.6",
     "@nodestrap/nav": "^4.0.7",
     "@nodestrap/nav-button": "^4.0.12",
-    "@nodestrap/navbar": "^4.0.10",
+    "@nodestrap/navbar": "^4.0.11",
     "@nodestrap/navscroll": "^4.0.6",
     "@nodestrap/popup": "^4.0.10",
     "@nodestrap/progress": "^4.0.10",
