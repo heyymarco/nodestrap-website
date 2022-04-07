@@ -784,8 +784,29 @@ navbarCssProps.listJustifySelfFull = 'start';  // align to left
                             </SimpleSpecItem>
                         </SubSpecList>
                     </DetailSpecItem>
+                    <DetailSpecItem title='Sizes'>
+                        <SubSpecList>
+                            <SimpleSpecItem>
+                                <code>blockSize</code>
+                                <p>The height of <CurrentComponent />.</p>
+                            </SimpleSpecItem>
+                        </SubSpecList>
+                    </DetailSpecItem>
                     <DetailSpecItem title='Menus'>
                         <SubSpecList>
+                            <SimpleSpecItem>
+                                <code>menusGridAreaFull</code>
+                                <p>The css <code>grid-area</code> of <CurrentComponent />&apos;s menus when in desktop (full) mode.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>menusGridAreaCompact</code>
+                                <p>The css <code>grid-area</code> of <CurrentComponent />&apos;s menus when in mobile (compact) mode.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>menusAlignSelf</code>
+                                <p>The css <code>align-self</code> of <CurrentComponent />&apos;s menus.</p>
+                            </SimpleSpecItem>
+                            
                             <SimpleSpecItem>
                                 <code>menusMarginBlockFull</code>
                                 <p>The outer spacing on the top &amp; bottom of <CurrentComponent />&apos;s menus when in desktop (full) mode.</p>
@@ -829,6 +850,30 @@ navbarCssProps.listJustifySelfFull = 'start';  // align to left
                             <SimpleSpecItem>
                                 <code>menuTextAlign</code>
                                 <p>The <code>text-align</code> mode of <CurrentComponent />&apos;s menu.</p>
+                            </SimpleSpecItem>
+                        </SubSpecList>
+                    </DetailSpecItem>
+                    <DetailSpecItem title='Logo'>
+                        <SubSpecList>
+                            <SimpleSpecItem>
+                                <code>logoGridArea</code>
+                                <p>The css <code>grid-area</code> of <CurrentComponent />&apos;s logo.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>logoAlignSelf</code>
+                                <p>The css <code>align-self</code> of <CurrentComponent />&apos;s logo.</p>
+                            </SimpleSpecItem>
+                        </SubSpecList>
+                    </DetailSpecItem>
+                    <DetailSpecItem title='Toggler Button'>
+                        <SubSpecList>
+                            <SimpleSpecItem>
+                                <code>togglerGridArea</code>
+                                <p>The css <code>grid-area</code> of <CurrentComponent />&apos;s toggler button.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>togglerAlignSelf</code>
+                                <p>The css <code>align-self</code> of <CurrentComponent />&apos;s toggler button.</p>
                             </SimpleSpecItem>
                         </SubSpecList>
                     </DetailSpecItem>
