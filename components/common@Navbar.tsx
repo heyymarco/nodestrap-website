@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { CurrentComponent, LinkNavPage, SectionPreviewProperty, SectionPreviewPropertyProps, useComponentInfo } from './common'
+import { CurrentComponent, LinkNavPage, LinkTogglerMenuButtonPage, SectionPreviewProperty, SectionPreviewPropertyProps, useComponentInfo } from './common'
 
 
 
@@ -43,6 +43,43 @@ export const SectionPropertyChildrenAdv = ({ titleTag = 'h3', propertySuffix = f
                     Just place <code>{`<YourCustomMenus>`}</code> between <code>{`<${componentName}></${componentName}>`}</code>.
                     The theme, size, and other variant properties are <em>automatically injected</em> to that component via <code>props</code>.
                     You can re-override the properties by explicitly assigning the <code>props</code>.
+                </p>
+            </>
+        } />
+    );
+};
+
+export const SectionPropertyLogo = ({ titleTag = 'h2', propertySuffix = false, property = 'logo', properties = <>Setting the Logo</>, specList, description, ...restProps }: SectionPreviewPropertyProps) => {
+    const { componentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPreviewProperty {...restProps} titleTag={titleTag} propertySuffix={propertySuffix} property={property} properties={properties} description={
+            description
+            ??
+            <>
+                <p>
+                    Additionally, you can add a logo into <CurrentComponent /> by assigning <code>{`<${componentName} logo={<YourLogo />}>`}</code>.
+                    It can be an <code>{`<img>`}</code> or any <strong>JSX expression</strong>.
+                </p>
+            </>
+        } />
+    );
+};
+
+export const SectionPropertyToggler = ({ titleTag = 'h2', propertySuffix = false, property = 'toggler', properties = <>Customizing the Toggler Button</>, specList, description, ...restProps }: SectionPreviewPropertyProps) => {
+    const { componentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPreviewProperty {...restProps} titleTag={titleTag} propertySuffix={propertySuffix} property={property} properties={properties} description={
+            description
+            ??
+            <>
+                <p>
+                    You can replace the built-in <LinkTogglerMenuButtonPage /> with a <strong>custom button</strong> by assigning <code>{`<${componentName} toggler={<YourCustomButton />}>`}</code>.
                 </p>
             </>
         } />

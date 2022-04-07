@@ -18,12 +18,13 @@ import type { ListProps } from '@nodestrap/list'
 import { ActionControl } from '@nodestrap/action-control'
 import { Basic } from '@nodestrap/basic'
 import { NavButton } from '@nodestrap/nav-button'
+import { Button, ButtonProps } from '@nodestrap/button'
+import { CheckProps } from '@nodestrap/check'
 import { SearchInput } from '@nodestrap/input'
 import {
     themeNames,
     SectionPropertyTheme,
     SectionPropertySize,
-    SectionPropertyNude,
     SectionPropertyGradient,
     SectionPropertyOutlined,
 } from '../../../components/common@Basic'
@@ -35,6 +36,8 @@ import {
 import {
     SectionPropertyChildren,
     SectionPropertyChildrenAdv,
+    SectionPropertyLogo,
+    SectionPropertyToggler,
 } from '../../../components/common@Navbar'
 
 import loadable from '@loadable/component'
@@ -68,6 +71,8 @@ const Navbar = (props: NavbarProps) => <NavbarOri
     theme={props.theme ?? 'primary'}
     active={('active' in props) ? props.active : false}
     logo={
+        props.logo
+        ??
         <ActionControl mild={props.mild ?? false} style={{ border: 'none' }}>
             <Link href='/'>
                 <img src='/images/test-logo.png' alt='logo' style={{ height: '30px' }} />
@@ -122,6 +127,18 @@ const CustomNavbarMenu = (props: ListProps) => {
             </NavButton>
             <SearchInput placeholder='search something' />
         </Basic>
+    );
+}
+
+const CustomToggler = (props: CheckProps) => {
+    return (
+        <Button
+            {...(props as ButtonProps)}
+            press={props.active || undefined}
+            onClick={() => props.onActiveChange?.(!props.active)}
+        >
+            { props.active ? 'Close' : 'Open' }
+        </Button>
     );
 }
 
@@ -386,6 +403,97 @@ export default function MyPage() {
                     `}</TypeScriptCodeReactRemix>
                 </SectionPropertyChildrenAdv>
             </SectionPropertyChildren>
+            <SectionPropertyLogo>
+                <Preview>
+                    <Navbar logo={<div />} />
+                    <Navbar
+                        logo={
+                            <img src='/images/test-logo.png' alt='logo' style={{ height: '30px' }} />
+                        }
+                    />
+                    <Navbar />
+                </Preview>
+                <p></p>
+                <TypeScriptCode>{`
+<Navbar
+    active={true}
+    theme='primary'
+>{(compact) =>
+    <Nav orientation={compact ? 'block' : 'inline'}>
+        ...
+    </Nav>
+}</Navbar>
+
+<Navbar
+    active={true}
+    theme='primary'
+    logo={
+        <img src='/images/test-logo.png' alt='logo' style={{ height: '30px' }} />
+    }
+>{(compact) =>
+    <Nav orientation={compact ? 'block' : 'inline'}>
+        ...
+    </Nav>
+}</Navbar>
+
+<Navbar
+    active={true}
+    theme='primary'
+    logo={
+        <ActionControl mild={false} style={{ border: 'none' }}>
+            <Link href='/'>
+                <img src='/images/test-logo.png' alt='logo' style={{ height: '30px' }} />
+            </Link>
+        </ActionControl>
+    }
+>{(compact) =>
+    <Nav orientation={compact ? 'block' : 'inline'}>
+        ...
+    </Nav>
+}</Navbar>
+                `}</TypeScriptCode>
+            </SectionPropertyLogo>
+            <SectionPropertyToggler>
+                <Preview>
+                    <div style={{ paddingBlockEnd: '16rem' }}>
+                        <Navbar
+                            toggler={
+                                <CustomToggler />
+                            }
+                            compact={true}
+                            active={undefined}
+                            defaultActive={true}
+                        />
+                    </div>
+                </Preview>
+                <p></p>
+                <TypeScriptCode>{`
+const CustomToggler = (props) => {
+    return (
+        <Button
+            {...props}
+            press={props.active || undefined}
+            onClick={() => props.onActiveChange?.(!props.active)}
+        >
+            { props.active ? 'Close' : 'Open' }
+        </Button>
+    );
+}
+
+<Navbar
+    active={true}
+    theme='primary'
+    logo={...}
+    toggler={
+        <CustomToggler />
+    }
+>{(compact) =>
+    <Nav orientation={compact ? 'block' : 'inline'}>
+        ...
+    </Nav>
+}</Navbar>
+                    `}</TypeScriptCode>
+            </SectionPropertyToggler>
             <SectionInheritedProps />
             <SectionVariants>
                 <SectionPropertyTheme>
@@ -461,26 +569,6 @@ export default function MyPage() {
 }</Navbar>
                     `}</TypeScriptCode>
                 </SectionPropertySize>
-                <SectionPropertyNude>
-                    <TransparentPreview>
-                        <Navbar
-                            nude={true}
-                            theme='warning'
-                        />
-                    </TransparentPreview>
-                    <p></p>
-                    <TypeScriptCode>{`
-<Navbar
-    nude={true}
-    theme='warning'
-    logo={...}
->{(compact) =>
-    <Nav orientation={compact ? 'block' : 'inline'}>
-        ...
-    </Nav>
-}</Navbar>
-                    `}</TypeScriptCode>
-                </SectionPropertyNude>
                 <SectionPropertyGradient>
                     <Preview>
                         {themeNames.map((themeName, index) =>
