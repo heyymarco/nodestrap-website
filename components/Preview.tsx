@@ -34,7 +34,7 @@ import spacers from '@nodestrap/spacers'
 
 import { usesPadding } from '@nodestrap/basic';
 import { Card, CardProps } from '@nodestrap/card';
-import { useWindowSize } from '@nodestrap/dimensions';
+import { useResponsive } from '@nodestrap/responsive';
 
 
 
@@ -128,16 +128,9 @@ export const Preview = ({blockDisplay = false, stretch = true, preventShift = fa
     
     
     
-    const { width: currentMediaWidth } = useWindowSize();
-    const [mediaWidth, setMediaWidth] = useState<number|null>(currentMediaWidth);
-    useEffect(() => {
-        if (mediaWidth === currentMediaWidth) return;
-        setMediaWidth(currentMediaWidth);
-        
-        
-        
+    useResponsive(cardRef, () => {
         setLoaded(false);
-    }, [mediaWidth, currentMediaWidth]);
+    });
     
     
     
