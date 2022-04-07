@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 
 import type { NextPage } from 'next'
 import Head from 'next/head'
@@ -11,7 +11,7 @@ import { Preview, TransparentPreview } from '../../../components/Preview'
 import { SectionInheritedProps, LinkNavbarPage, LinkIndicatorPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionVariables, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents, LinkNavPage, SeeDocumentation } from '../../../components/common'
 import { TypeScriptCode, TypeScriptCodeGatsbyJs, TypeScriptCodeNextJs, TypeScriptCodeReactRemix, TypeScriptCodeReactRouter } from '../../../components/Code'
 
-import { Navbar as NavbarOri, NavbarProps} from '@nodestrap/navbar'
+import { Navbar as NavbarOri, NavbarProps, cssProps as navbarCssProps } from '@nodestrap/navbar'
 import { Nav, NavItem } from '@nodestrap/nav'
 import Link from 'next/link'
 import type { ListProps } from '@nodestrap/list'
@@ -38,10 +38,16 @@ import {
     SectionPropertyChildrenAdv,
     SectionPropertyLogo,
     SectionPropertyToggler,
+    SectionPropertyRearrangeLogoMenusToggler,
 } from '../../../components/common@Navbar'
 
 import loadable from '@loadable/component'
-const DemoNavbarLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Navbar' */'../../../components/DemoPanel@Navbar'))
+const DemoNavbarLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Navbar' */'../../../components/DemoPanel@Navbar'));
+
+
+
+(navbarCssProps as any).logoGridArea    = '1 / -3';
+(navbarCssProps as any).togglerGridArea = '1 / 2';
 
 
 
@@ -139,6 +145,33 @@ const CustomToggler = (props: CheckProps) => {
         >
             { props.active ? 'Close' : 'Open' }
         </Button>
+    );
+}
+
+const RearrangeLogoMenusToggler = () => {
+    const swappedRef = useRef(false);
+    const handleClick = () => {
+        const swapped = !swappedRef.current;
+        swappedRef.current = swapped;
+        if (swapped) {
+            (navbarCssProps as any).logoGridArea    = '1 / 2';
+            (navbarCssProps as any).togglerGridArea = '1 / -3';
+            navbarCssProps.listJustifySelfFull = 'start' as any;
+        }
+        else {
+            (navbarCssProps as any).logoGridArea    = '1 / -3';
+            (navbarCssProps as any).togglerGridArea = '1 / 2';
+            navbarCssProps.listJustifySelfFull = 'end' as any;
+        } // if
+    }
+    return (
+        <>
+            <Navbar compact={false} />
+            <Navbar compact={true} />
+            <Button onClick={handleClick}>
+                Click to rearrange the Logo, Menus, &amp; Toggler
+            </Button>
+        </>
     );
 }
 
@@ -494,6 +527,25 @@ const CustomToggler = (props) => {
 }</Navbar>
                     `}</TypeScriptCode>
             </SectionPropertyToggler>
+            <SectionPropertyRearrangeLogoMenusToggler>
+                <Preview>
+                    <RearrangeLogoMenusToggler />
+                </Preview>
+                <p></p>
+                <TypeScriptCode>{`
+import { cssProps as navbarCssProps } from '@nodestrap/navbar'
+
+// the default config:
+// navbarCssProps.logoGridArea        = '1 / -3'; // place before the .menus
+// navbarCssProps.togglerGridArea     = '1 / 2';  // place after  the .menus
+// navbarCssProps.listJustifySelfFull = 'end';    // align to right
+
+// the new config:
+navbarCssProps.logoGridArea        = '1 / 2';  // place after  the .menus
+navbarCssProps.togglerGridArea     = '1 / -3'; // place before the .menus
+navbarCssProps.listJustifySelfFull = 'start';  // align to left
+                `}</TypeScriptCode>
+            </SectionPropertyRearrangeLogoMenusToggler>
             <SectionInheritedProps />
             <SectionVariants>
                 <SectionPropertyTheme>

@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { CurrentComponent, LinkNavPage, LinkTogglerMenuButtonPage, SectionPreviewProperty, SectionPreviewPropertyProps, useComponentInfo } from './common'
+import { Warning } from './Info';
 
 
 
@@ -81,6 +82,41 @@ export const SectionPropertyToggler = ({ titleTag = 'h2', propertySuffix = false
                 <p>
                     You can replace the built-in <LinkTogglerMenuButtonPage /> with a <strong>custom button</strong> by assigning <code>{`<${componentName} toggler={<YourCustomButton />}>`}</code>.
                 </p>
+            </>
+        } />
+    );
+};
+
+export const SectionPropertyRearrangeLogoMenusToggler = ({ titleTag = 'h2', propertySuffix = false, property = 'logo_toggler', properties = <>Rearrange the Logo, Menus, and Toggler</>, specList, description, ...restProps }: SectionPreviewPropertyProps) => {
+    const { componentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPreviewProperty {...restProps} titleTag={titleTag} propertySuffix={propertySuffix} property={property} properties={properties} description={
+            description
+            ??
+            <>
+                <p>
+                    You can swap the location of the <strong>logo</strong>, <strong>menus</strong>, and the <strong>toggler button</strong> by configuring the <CurrentComponent />&apos;s variables.
+                </p>
+                <p>
+                    The <CurrentComponent /> is built using css <code>grid</code>.
+                    There is only <em>single explicit grid area</em>, named <code>menus</code>, used by a container element of <CurrentComponent />&apos; links.
+                    The logo and toggler button are placed in <em>implicit grid area</em>.
+                </p>
+                <p>
+                    You can swap the location of the logo and toggler button by defining the css <code>grid-area</code> property.
+                </p>
+                <p>
+                    The <CurrentComponent />&apos; links (a list) is inside the container element (made by css <code>grid</code> too).
+                    To align the links just define the css <code>justify-self</code> to <code>start</code> or <code>end</code> value.
+                </p>
+                <Warning>
+                    <p>
+                        Note: Because the <CurrentComponent />&apos;s variables are global configuration, so all <CurrentComponent /> instances are affected.
+                    </p>
+                </Warning>
             </>
         } />
     );
