@@ -129,7 +129,10 @@ export const Preview = ({blockDisplay = false, stretch = true, preventShift = fa
     
     
     useResponsive(cardRef, () => {
-        setLoaded(false);
+        const body = cardRef.current?.getElementsByClassName('.body')?.[0];
+        if (body && (body.scrollWidth > body.clientWidth)) {
+            setLoaded(false);
+        } // if
     });
     
     
