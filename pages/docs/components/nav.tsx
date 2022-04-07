@@ -9,7 +9,7 @@ import { useFlipFlop } from '../../../components/hooks'
 import { Preview, TransparentPreview } from '../../../components/Preview'
 import { SectionInheritedProps, LinkNavPage, LinkListPage, SectionOverridingDefaults, ComponentInfoProvider, SectionDerivering, SectionCustomizingParent, SectionIntro, SectionDemo, BusyBar, LinkNavItemPage, SectionVariants, SectionStates, LinkNavSeparatorItemPage, SectionPreviewProperty, CurrentDominantBaseComponent } from '../../../components/common'
 import { Nav, NavItem, NavSeparatorItem, OrientationName } from '@nodestrap/nav'
-import { TypeScriptCode } from '../../../components/Code'
+import { TypeScriptCode, TypeScriptCodeGatsbyJs, TypeScriptCodeNextJs, TypeScriptCodeReactRemix, TypeScriptCodeReactRouter } from '../../../components/Code'
 import ResponsiveProvider from '@nodestrap/responsive'
 import { Tips } from '../../../components/Info'
 import Element from '@nodestrap/element'
@@ -217,7 +217,7 @@ const Page: NextPage = () => {
                     </Nav>
                 </Preview>
                 <p></p>
-                <TypeScriptCode label={<>Show code for <strong>Next JS</strong> user</>}>{`
+                <TypeScriptCodeNextJs>{`
 import { Nav, NavItem } from '@nodestrap/nav'
 import Link from 'next/link'
 
@@ -247,13 +247,13 @@ export default function MyPage() {
         </Nav>
     );
 }
-                `}</TypeScriptCode>
+                `}</TypeScriptCodeNextJs>
                 <p></p>
-                <TypeScriptCode label={<>Show code for <strong>Gatsby JS</strong> user</>}>{`
+                <TypeScriptCodeGatsbyJs>{`
 // coming soon
-                `}</TypeScriptCode>
+                `}</TypeScriptCodeGatsbyJs>
                 <p></p>
-                <TypeScriptCode label={<>Show code for <strong>React Router</strong> user</>}>{`
+                <TypeScriptCodeReactRouter>{`
 import { Nav, NavItem } from '@nodestrap/nav'
 
 // import { Link } from 'react-router-dom'          // do not use the original <Link>
@@ -285,11 +285,11 @@ export default function MyPage() {
         </Nav>
     );
 }
-                `}</TypeScriptCode>
+                `}</TypeScriptCodeReactRouter>
                 <p></p>
-                <TypeScriptCode label={<>Show code for <strong>React Remix</strong> user</>}>{`
+                <TypeScriptCodeReactRemix>{`
 // coming soon
-                `}</TypeScriptCode>
+                `}</TypeScriptCodeReactRemix>
             </SectionPropertyChildren>
             <SectionPropertyMatchingUrl>
                 <SectionPropertyCaseSensitive>

@@ -1,10 +1,10 @@
 import React from 'react'
 
-import { CurrentComponent, LinkNavPage, SectionPreviewProperty, SectionPreviewPropertyProps } from './common'
+import { CurrentComponent, LinkNavPage, SectionPreviewProperty, SectionPreviewPropertyProps, useComponentInfo } from './common'
 
 
 
-export const SectionPropertyChildren = ({ titleTag = 'h2', propertySuffix = false, property = 'children', properties = <>Setting the Menus</>, specList, description, ...restProps }: SectionPreviewPropertyProps) => {
+export const SectionPropertyChildren = ({ titleTag = 'h2', propertySuffix = false, property = 'children', properties = <>Setting the Navigation Links</>, specList, description, ...restProps }: SectionPreviewPropertyProps) => {
     return (
         <SectionPreviewProperty {...restProps} titleTag={titleTag} propertySuffix={propertySuffix} property={property} properties={properties} description={
             description
@@ -12,7 +12,7 @@ export const SectionPropertyChildren = ({ titleTag = 'h2', propertySuffix = fals
             <>
                 <p>
                     <CurrentComponent /> needs a <LinkNavPage /> (usually) or another component as a single child.
-                    The <CurrentComponent /> determines the best responsive mode (desktop or mobile version) based on screen width and then the child displays the menus based on the <CurrentComponent /> request.
+                    The <CurrentComponent /> decides the best responsive mode (desktop or mobile version) <em>based on screen width and overflow detection</em> and then the child displays the menus based on <CurrentComponent />&apos;s decision.
                 </p>
                 <p>
                     The <CurrentComponent /> should have a <strong>single child</strong> component.
@@ -28,4 +28,23 @@ export const SectionPropertyChildren = ({ titleTag = 'h2', propertySuffix = fals
         } />
     );
 };
-
+export const SectionPropertyChildrenAdv = ({ titleTag = 'h3', propertySuffix = false, property = 'children', properties = <>Custom Navigation Links</>, specList, description, ...restProps }: SectionPreviewPropertyProps) => {
+    const { componentName } = useComponentInfo();
+    
+    
+    
+    return (
+        <SectionPreviewProperty {...restProps} titleTag={titleTag} propertySuffix={propertySuffix} property={property} properties={properties} description={
+            description
+            ??
+            <>
+                <p>
+                    You can also place any component for making a complex navigation menus.
+                    Just place <code>{`<YourCustomMenus>`}</code> between <code>{`<${componentName}></${componentName}>`}</code>.
+                    The theme, size, and other variant properties are <em>automatically injected</em> to that component via <code>props</code>.
+                    You can re-override the properties by explicitly assigning the <code>props</code>.
+                </p>
+            </>
+        } />
+    );
+};

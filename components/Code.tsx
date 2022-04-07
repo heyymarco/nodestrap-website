@@ -59,4 +59,8 @@ export { Code as default }
 
 export const BashCode = (props: Omit<CodeProps, 'language'>)       => <Code {...props} language='bash'/>
 export const TypeScriptCode = (props: Omit<CodeProps, 'language'>) => <Code {...props} language='tsx'/>
+export const TypeScriptCodeNextJs = (props: Omit<CodeProps, 'language'>) => <TypeScriptCode {...props} label={<>Show code for <strong>Next JS</strong> user</>} />
+export const TypeScriptCodeGatsbyJs = (props: Omit<CodeProps, 'language'>) => <TypeScriptCode {...props} label={<>Show code for <strong>Gatsby JS</strong> user</>} />
+export const TypeScriptCodeReactRouter = (props: Omit<CodeProps, 'language'>) => <TypeScriptCode {...props} label={<>Show code for <strong>React Router</strong> user</>} />
+export const TypeScriptCodeReactRemix = (props: Omit<CodeProps, 'language'>) => <TypeScriptCode {...props} label={<>Show code for <strong>React Remix</strong> user</>} />
 export const CssCode = (props: Omit<CodeProps, 'language'>) => <Code {...props} language='css'/>
