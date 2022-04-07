@@ -8,7 +8,7 @@ import { useFlipFlop } from '../../../components/hooks'
 import { SpecList, SubSpecList, DetailSpecItem, SimpleSpecItem } from '../../../components/SpecList'
 
 import { Preview, TransparentPreview } from '../../../components/Preview'
-import GenericSection, { Section } from '../../../components/Section'
+import { Section } from '../../../components/Section'
 import { SectionInheritedProps, LinkTooltipPage, LinkPopupPage, SectionOverridingDefaults, SectionCustomizingCss, ComponentInfoProvider, SectionDerivering, SectionVariables, SectionVariants, SectionStates, SectionIntro, SectionDemo, BusyBar, CurrentComponent, CurrentBaseComponents } from '../../../components/common'
 import { TypeScriptCode } from '../../../components/Code'
 import { Tips } from '../../../components/Info'
@@ -16,9 +16,6 @@ import { Tips } from '../../../components/Info'
 import Label from '@nodestrap/label'
 import Tooltip, { TooltipProps } from '@nodestrap/tooltip'
 import Button from '@nodestrap/button'
-import breakpoints from '@nodestrap/breakpoints'
-import { useWindowSize } from '@nodestrap/dimensions'
-import { List, ListItem } from '@nodestrap/list'
 import SelectPopupPlacement from '../../../components/SelectPopupPlacement';
 import {
     themeNames,
