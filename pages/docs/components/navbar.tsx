@@ -15,6 +15,7 @@ import Element from '@nodestrap/element'
 import { Navbar as NavbarOri, NavbarProps} from '@nodestrap/navbar'
 import { Nav, NavItem } from '@nodestrap/nav'
 import Link from 'next/link'
+import { Icon } from '@nodestrap/icon'
 import {
     themeNames,
     SectionPropertyTheme,
@@ -27,10 +28,10 @@ import {
     SectionPropertyMild,
     
     SectionPropertyActive,
-    SectionPropertyActiveNoOutlined,
-    SectionPropertyActiveNoMild,
-    SectionPropertyReadOnly,
 } from '../../../components/common@Indicator'
+import {
+    SectionPropertyChildren,
+} from '../../../components/common@Navbar'
 
 import loadable from '@loadable/component'
 const DemoNavbarLazy = loadable(() => import(/* webpackChunkName: 'DemoPanel@Navbar' */'../../../components/DemoPanel@Navbar'))
@@ -49,38 +50,10 @@ const ExampleNavbarMenu = (compact: boolean) => <Nav orientation={compact ? 'blo
 const Navbar = (props: NavbarProps) => <NavbarOri
     {...props}
     theme={props.theme ?? 'primary'}
+    logo={<div />}
 >
     { ExampleNavbarMenu }
 </NavbarOri>
-
-const NavbarWithActiveOutlined = () => {
-    const [navbarRef, isActive] = useFlipFlop({ defaultState: true });
-    
-    
-    
-    return (
-        <Navbar
-            elmRef={navbarRef}
-            active={isActive}
-            outlined={true}
-            theme='primary'
-        />
-    );
-};
-const NavbarWithActiveMild     = () => {
-    const [navbarRef, isActive] = useFlipFlop({ defaultState: true });
-    
-    
-    
-    return (
-        <Navbar
-            elmRef={navbarRef}
-            active={isActive}
-            mild={true}
-            theme='primary'
-        />
-    );
-};
 
 
 
@@ -97,12 +70,18 @@ const Page: NextPage = () => {
                     <CurrentComponent /> is an <strong>abstract</strong> component for <strong>displaying indications</strong> such as <strong>enabled</strong>/<strong>disabled</strong> and <strong>active</strong>/<strong>passive</strong>.
                 </p>
                 <p>
-                    In <em>most cases</em>, you should <strong>not use </strong>this component <strong>directly</strong>, instead create your own component by derivering <CurrentComponent />.
+                    Here the preview:
                 </p>
+                <Preview>
+                    <Navbar />
+                </Preview>
             </SectionIntro>
             <SectionDemo>
                 <DemoNavbarLazy fallback={<BusyBar />} />
             </SectionDemo>
+            <SectionPropertyChildren>
+                // TODO: under construction
+            </SectionPropertyChildren>
             <SectionInheritedProps />
             <SectionVariants>
                 <SectionPropertyTheme>
@@ -277,47 +256,111 @@ const Page: NextPage = () => {
             </SectionStates>
             <SectionVariables specList={
                 <SpecList>
-                    <DetailSpecItem title='Animations'>
+                    <DetailSpecItem title='Positions'>
                         <SubSpecList>
                             <SimpleSpecItem>
-                                <code>filterDisable</code>
-                                <p>A <code>filter</code> to apply when <code>{`enabled={false}`}</code>.</p>
+                                <code>zIndex</code>
+                                <p>The stacking index of <CurrentComponent />.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
-                                <code>filterActive</code>
-                                <p>A <code>filter</code> to apply when <code>{`active={true}`}</code>.</p>
+                                <code>position</code>
+                                <p>How the <CurrentComponent /> is positioned in a document.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
-                                <code>@keyframes enable</code>
-                                <p>A keyframes name represents <em>enabling keyframes</em>, transition from <code>{`enabled={false}`}</code> to <code>{`enabled={true}`}</code>.</p>
+                                <code>insetBlockStart</code>
+                                <p>The top location of <CurrentComponent />.</p>
+                            </SimpleSpecItem>
+                        </SubSpecList>
+                    </DetailSpecItem>
+                    <DetailSpecItem title='Foregrounds, Backgrounds &amp; Borders'>
+                        <SubSpecList>
+                            <SimpleSpecItem>
+                                <code>boxShadow</code>
+                                <p>A <code>boxShadow</code> to apply, so the <CurrentComponent /> appears hovered.</p>
+                            </SimpleSpecItem>
+                        </SubSpecList>
+                    </DetailSpecItem>
+                    <DetailSpecItem title='Borders'>
+                        <SubSpecList>
+                            <SimpleSpecItem>
+                                <code>borderInline</code>
+                                <p>The left &amp; right border of <CurrentComponent />.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
-                                <code>@keyframes disable</code>
-                                <p>A keyframes name represents <em>disabling keyframes</em>, transition from <code>{`enabled={true}`}</code> to <code>{`enabled={false}`}</code>.</p>
+                                <code>borderBlockStart</code>
+                                <p>The top border of <CurrentComponent />.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
-                                <code>@keyframes active</code>
-                                <p>A keyframes name represents <em>activating keyframes</em>, transition from <code>{`active={false}`}</code> to <code>{`active={true}`}</code>.</p>
+                                <code>borderRadius</code>
+                                <p>The diameter of the corners of <CurrentComponent />.</p>
+                            </SimpleSpecItem>
+                        </SubSpecList>
+                    </DetailSpecItem>
+                    <DetailSpecItem title='Spacings'>
+                        <SubSpecList>
+                            <SimpleSpecItem>
+                                <code>paddingInline</code>
+                                <p>The inner spacing on the left &amp; right of <CurrentComponent />.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
-                                <code>@keyframes passive</code>
-                                <p>A keyframes name represents <em>deactivating keyframes</em>, transition from <code>{`active={true}`}</code> to <code>{`active={false}`}</code>.</p>
+                                <code>paddingBlock</code>
+                                <p>The inner spacing on the top &amp; bottom of <CurrentComponent />.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
-                                <code>animEnable</code>
-                                <p>An animation represents <em>enabling animation</em>, transition from <code>{`enabled={false}`}</code> to <code>{`enabled={true}`}</code>.</p>
+                                <code>gapInline</code>
+                                <p>The horizontal spacing between <CurrentComponent />&apos;s items.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
-                                <code>animDisable</code>
-                                <p>An animation represents <em>disabling animation</em>, transition from <code>{`enabled={true}`}</code> to <code>{`enabled={false}`}</code>.</p>
+                                <code>gapBlock</code>
+                                <p>The vertical spacing between <CurrentComponent />&apos;s items.</p>
+                            </SimpleSpecItem>
+                        </SubSpecList>
+                    </DetailSpecItem>
+                    <DetailSpecItem title='Menus'>
+                        <SubSpecList>
+                            <SimpleSpecItem>
+                                <code>menusMarginBlockFull</code>
+                                <p>The outer spacing on the top &amp; bottom of <CurrentComponent />&apos;s menus when in desktop (full) mode.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
-                                <code>animActive</code>
-                                <p>An animation represents <em>activating animation</em>, transition from <code>{`active={false}`}</code> to <code>{`active={true}`}</code>.</p>
+                                <code>menusMarginInlineCompact</code>
+                                <p>The outer spacing on the left &amp; right of <CurrentComponent />&apos;s menus when in mobile (compact) mode.</p>
+                            </SimpleSpecItem>
+                        </SubSpecList>
+                    </DetailSpecItem>
+                    <DetailSpecItem title='Lists'>
+                        <SubSpecList>
+                            <SimpleSpecItem>
+                                <code>listJustifySelfFull</code>
+                                <p>The alignment of <CurrentComponent />&apos;s menus when in desktop (full) mode.</p>
+                            </SimpleSpecItem>
+                        </SubSpecList>
+                    </DetailSpecItem>
+                    <DetailSpecItem title='Menu'>
+                        <SubSpecList>
+                            <SimpleSpecItem>
+                                <code>menuDisplay</code>
+                                <p>The <code>display</code> type of <CurrentComponent />&apos;s menu.</p>
                             </SimpleSpecItem>
                             <SimpleSpecItem>
-                                <code>animPassive</code>
-                                <p>An animation represents <em>deactivating animation</em>, transition from <code>{`active={true}`}</code> to <code>{`active={false}`}</code>.</p>
+                                <code>menuFlexDirection</code>
+                                <p>The <code>flex-direction</code> of <CurrentComponent />&apos;s menu.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>menuJustifyContent</code>
+                                <p>The <code>justify-content</code> of <CurrentComponent />&apos;s menu.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>menuAlignItems</code>
+                                <p>The <code>align-items</code> of <CurrentComponent />&apos;s menu.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>menuWhiteSpace</code>
+                                <p>The <code>white-space</code> mode of <CurrentComponent />&apos;s menu.</p>
+                            </SimpleSpecItem>
+                            <SimpleSpecItem>
+                                <code>menuTextAlign</code>
+                                <p>The <code>text-align</code> mode of <CurrentComponent />&apos;s menu.</p>
                             </SimpleSpecItem>
                         </SubSpecList>
                     </DetailSpecItem>
@@ -327,18 +370,15 @@ const Page: NextPage = () => {
                 <SectionOverridingDefaults>{`
 import { Navbar } from '@nodestrap/navbar'
 
-export default function OnOffNavbar(props) {
+export default function SiteNavbar(props) {
     return (
         <Navbar
             {...props} // preserves other properties
 
-            semanticRole={props.semanticRole ?? 'status'} // override default value of semanticRole to 'status'
-            semantictag={props.semanticTag ?? 'span'}     // override default value of semanticTag  to 'span'
-            
             theme={props.theme ?? 'danger'} // override default value of theme to 'danger'
             mild={props.mild ?? true}       // override default value of mild  to true
         >
-            { props.active ? 'ON' : 'OFF' }
+            { props.children }
         </Navbar>
     );
 }
@@ -360,16 +400,16 @@ export default function OnOffNavbar(props) {
                         <DetailSpecItem code='usesNavbarStates()'>
                             <p>
                                 Returns a <code>Rule</code> object represents the <strong>states</strong> of <CurrentComponent /> such as:<br />
-                                <strong>enabled</strong>/<strong>disabled</strong> and <strong>active</strong>/<strong>passive</strong>.
+                                <strong>active</strong>/<strong>passive</strong>.
                             </p>
                         </DetailSpecItem>
                     </SpecList>
                 }>{`
 import { mainComposition, style, imports, variants, states, rule } from '@cssfn/cssfn'
 import { createUseSheet } from '@cssfn/react-cssfn'
-import { Navbar, usesNavbarLayout, usesNavbarVariants, usesNavbarStates, isDisable, isActive } from '@nodestrap/navbar'
+import { Navbar, usesNavbarLayout, usesNavbarVariants, usesNavbarStates, isActive } from '@nodestrap/navbar'
 
-const useCustomComponentSheet = createUseSheet(() => [
+const usesSiteNavbarSheet = createUseSheet(() => [
     mainComposition(
         imports([
             // import some stuff from <Navbar>:
@@ -379,7 +419,6 @@ const useCustomComponentSheet = createUseSheet(() => [
         ]),
         style({
             // then overwrite with your style:
-            display : 'inline-block',
             margin  : '1em',
             /* ... */
             
@@ -398,11 +437,6 @@ const useCustomComponentSheet = createUseSheet(() => [
                 /* ... */
             ]),
             ...states([
-                isDisable({
-                    // define the style at 'being/fully disabled' state:
-                    background-color: 'gray',
-                    /* ... */
-                }),
                 isActive({
                     // define the style at 'being/fully active' state:
                     background-color: 'red',
@@ -416,8 +450,8 @@ const useCustomComponentSheet = createUseSheet(() => [
     ),
 ]);
 
-export default function CustomComponent(props) {
-    const sheet = useCustomComponentSheet();
+export default function SiteNavbar(props) {
+    const sheet = usesSiteNavbarSheet();
     return (
         <Navbar {...props} mainClass={sheet.main}>
             { props.children }

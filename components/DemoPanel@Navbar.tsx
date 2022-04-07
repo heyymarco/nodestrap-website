@@ -10,6 +10,7 @@ import { TypeScriptCode } from './Code';
 
 
 export const navbarInitials = {
+    active   : true   as boolean|undefined,
     size     : 'sm'   as SizeName,
     mild     : false,
 };
@@ -49,6 +50,7 @@ export const DemoNavbar = () => {
                 <div style={{ width: '100%' }}>
                     <Navbar
                         active={states.active[0]}
+                        onActiveChange={(newActive) => states.active[1](newActive)}
                         
                         size={states.size[0]}
                         nude={states.nude[0]}
@@ -56,6 +58,8 @@ export const DemoNavbar = () => {
                         gradient={states.gradient[0]}
                         outlined={states.outlined[0]}
                         mild={states.mild[0]}
+                        
+                        logo={<div />}
                     >{(compact) =>
                         <Nav orientation={compact ? 'block' : 'inline'}>
                             <NavItem><Link href='/'>Home</Link></NavItem>
