@@ -8,17 +8,19 @@ import { Section } from '../components/Section';
 import Container from '@nodestrap/container';
 
 import loadable from '@loadable/component'
+import { useRef } from 'react';
 const SiteNavbarLazy = loadable(() => import(/* webpackChunkName: 'SiteNavbar' */'../components/SiteNavbar'))
 
 
 
 function Header() {
-    const setHeaderRef = useElementCssSize({ varHeight: siteVarDecls.headerHeight });
+    const headerRef = useRef<HTMLElement>(null);
+    useElementCssSize(headerRef, { varHeight: siteVarDecls.headerHeight });
     
     
     
     return (
-        <header ref={setHeaderRef}>
+        <header ref={headerRef}>
             <SiteNavbarLazy fallback={
             <Container
                 classes={['siteNavbar', 'lazy']}
@@ -31,12 +33,13 @@ function Header() {
 }
 
 function Footer() {
-    const setFooterRef = useElementCssSize({ varHeight: siteVarDecls.footerHeight });
+    const footerRef = useRef<HTMLElement>(null);
+    useElementCssSize(footerRef, { varHeight: siteVarDecls.footerHeight });
     
     
     
     return (
-        <footer ref={setFooterRef}>
+        <footer ref={footerRef}>
             <Section titleTag='h5' title='Support Us' theme='primary'>
                 <p>
                     Nodestrap is open source project (ISC-licensed).
@@ -55,7 +58,7 @@ function Footer() {
 function MyApp({ Component, pageProps }: AppProps) {
     const Outlet = Component;
     return (<>
-        <UseWindowCssSize options={{ varHeight: siteVarDecls.windowHeight }} />
+        <UseWindowCssSize varHeight={siteVarDecls.windowHeight} />
         
         <Head>
             <link rel='icon' type='image/svg+xml' href='/favicon.svg' />

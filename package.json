@@ -24,7 +24,7 @@
     "@nodestrap/collapse": "^4.0.5",
     "@nodestrap/container": "^4.0.15",
     "@nodestrap/content": "^4.0.14",
-    "@nodestrap/dimensions": "^4.0.3",
+    "@nodestrap/dimensions": "^4.0.4",
     "@nodestrap/dropdown": "^4.0.8",
     "@nodestrap/dropdown-button": "^4.0.12",
     "@nodestrap/dropdown-list": "^4.0.10",

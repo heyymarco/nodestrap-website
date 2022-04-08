@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import type { NextPage } from 'next'
 import Head from 'next/head'
@@ -62,8 +62,8 @@ const OverlayBadgePreview = ({ overlay = true }: OverlayBadgePreviewProps) => {
     const menuRef = useRef<HTMLElement>(null);
     
     
-    
-    const { width: mediaWidth } = useWindowSize();
+    const [mediaWidth, setMediaWidth] = useState(0);
+    useWindowSize((size) => setMediaWidth(size.width));
     const isListMini = (
         !!mediaWidth
         &&
